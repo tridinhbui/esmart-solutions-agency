@@ -50,5 +50,41 @@ export default {
 </script>
 
 <style scoped>
-/* Styles remain the same */
+.blog-post {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.main-post {
+  flex: 1 1 70%;
+  max-width: 70%;
+  margin-right: 20px;
+}
+
+.sidebar {
+  flex: 1 1 30%;
+  max-width: 30%;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .main-post {
+    flex: 1 1 100%;
+    max-width: 100%;
+    margin-right: 0;
+  }
+
+  .sidebar {
+    flex: 1 1 100%;
+    max-width: 100%;
+    margin-top: 20px;
+  }
+}
+
+/* Styles for images */
+img {
+  max-width: 100%;
+  height: auto;
+}
 </style>
