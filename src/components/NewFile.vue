@@ -45,7 +45,7 @@
 
 <style scoped>
 .header {
-  background-color: #d11a2a;
+  background-color: #1a23d1;
   color: white;
   padding: 2rem;
   text-align: center;
@@ -89,7 +89,7 @@
 }
 
 .card button {
-  background-color: #d11a2a;
+  background-color: #460de2;
   border: none;
   border-radius: 5px;
   color: white;
@@ -99,7 +99,7 @@
 }
 
 .card button:hover {
-  background-color: #b31422;
+  background-color: #252aca;
 }
 </style>
 

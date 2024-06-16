@@ -1,26 +1,38 @@
+```vue
 <template>
   <section class="process">
-    <h2>Our Process</h2>
+    <h2>Quy trình làm việc</h2>
     <div class="steps">
       <div class="step" v-for="(step, index) in steps" :key="index">
-        <h3>{{ step.title }}</h3>
-        <p>{{ step.description }}</p>
+        <div class="step-number">Bước {{ index + 1 }}</div>
+        <div class="icon">
+          <font-awesome-icon icon="check" />
+        </div>
+        <div class="content">
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 export default {
   name: 'ProcessInt',
+  components: {
+    FontAwesomeIcon
+  },
   data() {
     return {
       steps: [
-        { title: 'Initial Proof', description: 'The initial design concept is put up for review. We discuss what changes/preferences (if any) are required.' },
-        { title: 'Project Brief', description: 'The project kicks off with a comprehensive discussion about design and layout.' },
-        { title: 'Collaboration', description: 'We work together to create a new design and layout. You directly shape the process.' },
-        { title: 'Print Production', description: 'Upon approval, your project goes to print.' },
-        { title: 'Delivery', description: 'Your printed pieces are delivered straight to your door.' }
+        { title: 'Chứng minh ban đầu', description: 'Ý tưởng thiết kế ban đầu được đưa ra để đánh giá. Chúng tôi thảo luận về những thay đổi/sở thích (nếu có) cần thiết.' },
+        { title: 'Bản tóm tắt dự án', description: 'Dự án bắt đầu với cuộc thảo luận toàn diện về thiết kế và bố trí.' },
+        { title: 'Sự hợp tác', description: 'Chúng tôi cùng nhau làm việc để tạo ra một thiết kế và bố trí mới. Bạn trực tiếp định hình quy trình.' },
+        { title: 'Sản xuất in ấn', description: 'Sau khi được chấp nhận, dự án của bạn được in.' },
+        { title: 'Giao hàng', description: 'Các sản phẩm in của bạn được giao trực tiếp đến cửa nhà của bạn.' }
       ]
     }
   }
@@ -54,7 +66,7 @@ export default {
 
 .step {
   flex: 1 1 45%;
-  background-color: #342d6e; /* Dark purple-blue background */
+  background-color: #3222c3; /* Màu nền tím đậm */
   color: white;
   margin: 0.5rem;
   padding: 2rem 1.5rem;
@@ -127,6 +139,16 @@ export default {
   z-index: 2;
 }
 
+.step-number {
+  font-size: 2rem;
+  color: #3222c3;
+  margin-bottom: 0.5rem;
+}
+
+.icon {
+  margin-bottom: 1rem;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -147,3 +169,4 @@ export default {
   }
 }
 </style>
+```

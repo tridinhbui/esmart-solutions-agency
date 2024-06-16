@@ -8,8 +8,10 @@
     <ProcessInt />
     <Project />
     <BlogPost />
+    <NewFile/>
     <ContactUs />
     <Footer />
+
   </div>
 </template>
 
@@ -24,6 +26,8 @@ import ContactUs from './components/ContactUs.vue'
 import Footer from './components/FooterBar.vue'
 import Service from './components/ServiceSection.vue'
 import Project from './components/ProjectSection.vue'
+import NewFile from './components/NewFile.vue'
+
 
 export default {
   name: 'App',
@@ -38,6 +42,7 @@ export default {
     Project,
     Footer,
     Service,
+    NewFile
  
   }
 }

@@ -3,7 +3,9 @@
     <h2>Our Achievements</h2>
     <div class="achievements">
       <div class="achievement" v-for="(item, index) in achievements" :key="index">
-        <img :src="item.icon" :alt="item.title">
+        <div class="icon">
+          <i :class="item.icon"></i>
+        </div>
         <div class="number">{{ item.currentValue }}</div>
         <div class="title">{{ item.title }}</div>
         <div class="description">{{ item.description }}</div>
@@ -28,10 +30,10 @@ export default {
   data() {
     return {
       achievements: [
-        { icon: 'path/to/icon1.png', title: 'Members', value: 35, currentValue: 0, description: '35+' },
-        { icon: 'path/to/icon2.png', title: 'Products Sold', value: 100, currentValue: 0, description: '100+' },
-        { icon: 'path/to/icon3.png', title: 'Regions', value: 10, currentValue: 0, description: '10+' },
-        { icon: 'path/to/icon4.png', title: 'Reach', value: 13000, currentValue: 0, description: '13000+' }
+        { icon: 'fas fa-users', title: 'Members', value: 35, currentValue: 0, description: '35+' },
+        { icon: 'fas fa-shopping-cart', title: 'Products Sold', value: 100, currentValue: 0, description: '100+' },
+        { icon: 'fas fa-globe', title: 'Regions', value: 10, currentValue: 0, description: '10+' },
+        { icon: 'fas fa-bullhorn', title: 'Reach', value: 13000, currentValue: 0, description: '13000+' }
       ]
     };
   },
@@ -88,9 +90,10 @@ export default {
   text-align: center;
 }
 
-.achievement img {
-  width: 50px;
-  height: 50px;
+.icon {
+  font-size: 2rem;
+  color: #0077b6;
+  margin-bottom: 0.5rem;
 }
 
 .number {

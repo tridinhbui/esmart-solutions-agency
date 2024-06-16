@@ -1,38 +1,44 @@
 <template>
+  <v-app>
     <section class="services-section">
       <h1>Providing Global VIP Customer Care to our clients' most valuable asset: their customers</h1>
-      <button class="services-button">Services</button>
+      <v-btn class="services-button" color="primary">Services</v-btn>
       <div class="services-container">
-        <div class="service-card" v-for="(service, index) in services" :key="index">
-          <img :src="service.image" :alt="service.title">
-          <div class="service-content">
-            <h2>{{ service.title }}</h2>
-            <p>{{ service.category }}</p>
-          </div>
-        </div>
+        <v-card
+          v-for="(service, index) in services"
+          :key="index"
+          class="service-card"
+        >
+          <v-icon class="service-icon">{{ service.icon }}</v-icon>
+          <v-card-title>{{ service.title }}</v-card-title>
+          <v-card-subtitle>{{ service.category }}</v-card-subtitle>
+        </v-card>
       </div>
     </section>
-  </template>
-  
-  <script>
-  export default {
-    name: 'ServicesSection',
-    data() {
-      return {
-        services: [
-          { title: 'Customer Care & Technical Solutions', category: 'Services', image: '@/assets/customer-care.jpg' },
-          { title: 'Email & Chat', category: 'Customer Service', image: '@/assets/email-chat.jpg' },
-          { title: 'Social Media Customer Care', category: 'Services', image: '@/assets/social-media.jpg' },
-          { title: 'Social Media Management', category: 'Services', image: '@/assets/social-media-management.jpg' },
-          { title: 'Reputation & Crisis Management', category: 'Services', image: '@/assets/reputation-crisis.jpg' },
-          { title: 'Consulting', category: 'Services', image: '@/assets/consulting.jpg' }
-        ]
-      };
-    }
+  </v-app>
+</template>
+
+<script>
+export default {
+  name: 'ServicesSection',
+  data() {
+    return {
+      services: [
+        { title: 'Customer Care & Technical Solutions', category: 'Services', icon: 'mdi-headset' },
+        { title: 'Email & Chat', category: 'Customer Service', icon: 'mdi-email' },
+        { title: 'Social Media Customer Care', category: 'Services', icon: 'mdi-twitter' },
+        { title: 'Social Media Management', category: 'Services', icon: 'mdi-instagram' },
+        { title: 'Reputation & Crisis Management', category: 'Services', icon: 'mdi-shield' },
+        { title: 'Consulting', category: 'Services', icon: 'mdi-lightbulb' }
+      ]
+    };
   }
-  </script>
+};
+</script>
 
 <style scoped>
+@import '~vuetify/styles';
+
 .services-section {
   background: url('@/assets/bg.jpg') no-repeat center center fixed; 
   background-size: cover;
@@ -64,10 +70,9 @@
 .services-button {
   background-color: #ff4b5c;
   color: white;
-  border: none;
   padding: 1rem 2rem;
   font-size: 1.2rem;
-  border-radius: 8px;
+  border-radius: 25px;
   cursor: pointer;
   margin-bottom: 3rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -88,8 +93,8 @@
 }
 
 .service-card {
-  background: white;
-  color: black;
+  background: linear-gradient(135deg, #1a3263, #6f4a8e); /* Gradient of blue ocean and purple */
+  color: white;
   border-radius: 15px;
   overflow: hidden;
   margin: 1.5rem;
@@ -128,26 +133,6 @@
 .service-card img {
   width: 100%;
   height: auto;
-}
-
-.service-card .service-content {
-  padding: 1.5rem;
-}
-
-.service-card h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.8rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.service-card p {
-  color: #666;
-  font-size: 1.1rem;
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes heading-slide-up {
@@ -199,5 +184,3 @@
   }
 }
 </style>
-
-  

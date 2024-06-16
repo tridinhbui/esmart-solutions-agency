@@ -9,15 +9,15 @@
           <h1>ESmart Solutions Agency</h1>
           <p>Specializing in assisting businesses in enhancing their reach and promoting their products to potential customers with optimal cost-effectiveness.</p>
           <div class="buttons">
-            <StyledButton>Join Today</StyledButton>
-            <StyledButton>Try ESmart Risk Free For 30 Days!</StyledButton>
+            <button class = "styled-button">Join Today</button>
+            <button class = "styled-button" >Contact Us</button>
           </div>
         </div>
         <img src="@/assets/logo.png" alt="ESmart Logo" class="logo">
       </div>
     </section>
   </template>
-  
+
   <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
   
@@ -58,11 +58,26 @@
       width: 100%;
     }
   }
-  
-  .hero {
-    background: linear-gradient(135deg, #1c1c4c, #0077b6);
+  .styled-button {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    border: none;
+    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
     color: white;
-    height: 100vh;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+  }
+  
+  .styled-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  .hero {
+    background: linear-gradient(135deg, #07076c, #71bae2);
+    color: white;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -106,7 +121,7 @@
   }
   
   .header nav ul li {
-    margin: 0 1rem;
+ 
     color: white;
     cursor: pointer;
   }
@@ -123,7 +138,7 @@
   }
   
   .text-content {
-    max-width: 600px;
+    max-width: px;
     text-align: left;
   }
   

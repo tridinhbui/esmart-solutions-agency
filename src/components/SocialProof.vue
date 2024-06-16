@@ -3,14 +3,14 @@
     <h2>Social Proof</h2>
     <div class="socials animate-slideIn">
       <div class="social-item" v-for="social in socialMedia" :key="social.name">
-        <img :src="social.icon" :alt="social.name">
+        <img :src="getImageUrl(social.icon)" :alt="social.name">
         <p>{{ social.description }}</p>
       </div>
     </div>
     <h2>What Customers Are Saying About Our Support Team</h2>
     <div class="testimonials-container animate-fadeIn">
       <div class="testimonial-card" v-for="(testimonial, index) in testimonials" :key="index">
-        <img :src="testimonial.image" :alt="testimonial.name" class="avatar">
+        <img :src="getImageUrl(testimonial.image)" :alt="testimonial.name" class="avatar">
         <h3>{{ testimonial.name }}</h3>
         <h4>{{ testimonial.title }}</h4>
         <div class="stars">
@@ -36,46 +36,52 @@ export default {
   data() {
     return {
       socialMedia: [
-        { name: 'Facebook', icon: '@/assets/facebook.png', description: 'Over 1,000,000 followers on Facebook' },
-        { name: 'Instagram', icon: '@/assets/instagram.png', description: 'Engaging content on Instagram' },
-        { name: 'LinkedIn', icon: '@/assets/linkedin.png', description: 'Professional connections on LinkedIn' },
-        { name: 'TikTok', icon: '@/assets/tiktok.png', description: 'Viral trends on TikTok' }
+        { name: 'Facebook', icon: 'facebook.png', description: 'Over 1,000,000 followers on Facebook' },
+        { name: 'Instagram', icon: 'instagram.png', description: 'Engaging content on Instagram' },
+        { name: 'LinkedIn', icon: 'linkedin.png', description: 'Professional connections on LinkedIn' },
+        { name: 'TikTok', icon: 'tiktok.png', description: 'Viral trends on TikTok' }
       ],
       testimonials: [
+      {
+  name: 'Lê Khánh Linh - Đối tác hợp tác toàn diện',
+  title: 'Nhà sáng lập thương hiệu thời trang xanh Mỵ',
+  image: 'testimonial2.jpg',
+  text: 'Tôi đã đồng ý lựa chọn sản phẩm hỗ trợ truyền thông đa kênh toàn diện ngay lần gặp mặt đầu tiên. Đội ngũ ESmart Solutions tuy trẻ tuổi nhưng có quy trình và cách thức làm việc rất chuyên nghiệp, rõ ràng. Ngoài ra, sản phẩm của ESmart mang ý nghĩa nhân văn và giá cả phải chăng.'
+},
+      {
+          name: 'Tạ Việt Dũng',
+          title: 'Đối tác hợp tác toàn diện',
+          image: 'testimonial1.jpg',
+          text: 'Ban đầu, mục tiêu của chúng tôi là xuất khẩu sản phẩm sang Mỹ và châu Âu, ít quan tâm đến các kênh truyền thông tại Việt Nam. Tuy nhiên, sau khi xem xét hồ sơ hợp tác với ESmart Solutions, chúng tôi đã quyết định hợp tác vì sự rõ ràng trong kế hoạch truyền thông và giá cả hợp lý. Thông qua E-Boost, chúng tôi đặt mục tiêu đưa ống hút VietStraw đến các nhà hàng trên Châu Âu và Bắc Mỹ.'
+        },
+  
         {
-          name: 'Krishnam Raju',
-          title: 'CEO of XYZ',
-          image: '@/assets/testimonial1.jpg',
-          text: 'The best WordPress framework ever. No doubt about it. You will shout with joy. Get it and you\'ll become a lifelong fan.'
+          name: 'Nguyễn Thu Huyền',
+          title: 'CEO Thời Trang Mimi Organic',
+          image: 'testimonial3.jpg',
+          text: 'Mimi - Doanh nghiệp thời trang hữu cơ đạt chứng nhận dệt may hữu cơ toàn cầu (GOTS) - đối tác lựa chọn hợp tác toàn diện cùng ESmart Solutions, sử dụng tất cả các dịch vụ từ truyền thông đa kênh, thương mại điện tử, công nghệ thông tin,…'
         },
         {
-          name: 'Zamir Gomeh',
-          title: 'Marketing Head',
-          image: '@/assets/testimonial2.jpg',
-          text: 'Without a doubt the best service and support. Elegant Themes is without a doubt the best service and support I\'ve ever met. The level of willingness to crack and solve problems that arise is above and beyond all expectations. They do this professionally until the customer is fully satisfied. Highly recommend.'
-        },
-        {
-          name: 'Howard Blount',
-          title: 'Web Developer',
-          image: '@/assets/testimonial3.jpg',
-          text: 'Elegant Themes Support ROCKS! I own a website, but I am not a developer and know nothing about coding. Whenever I have a Divi update or customization need, Elegant Themes support always helps me and resolves my issues. I have worked with some of the support techs for so long that we feel like we know each other.'
-        },
-        {
-          name: 'Christiane Weigel',
-          title: 'Product Manager',
-          image: '@/assets/testimonial4.jpg',
-          text: 'Perfect in product and support. The Themes Divi and Extra are really professional and easy to use. But simply the best is the support. Always friendly, highest quality solutions and fast in requests. Perfect to work with. Thanks.'
+          name: 'Bác sĩ My',
+          title: 'CEO -KinderHealth',
+          image: 'testimonial4.jpg',
+          text: 'ESmart Solutions là một đối tác trẻ, năng động và mang lại giá trị cho Kinderhealth. Hợp tác với ESmart trong việc quản lý và phát triển trang Facebook và hài lòng kết quả mà team đã đem lại.'
         }
       ],
       toolkit: [
-        { title: 'Complete Design System', description: 'You have complete control using Divi\'s Visual Builder and Theme Builder, enhanced by many workflow-boosting design features.', icon: 'fas fa-palette' },
-        { title: 'Unbeatable Pricing', description: 'Build unlimited websites with a single Divi membership and give access to your team members for a fraction of the cost.', icon: 'fas fa-tags' },
-        { title: 'Hundreds Of Extensions', description: 'Extend the power of Divi with hundreds of free and premium extensions from the Divi Marketplace.', icon: 'fas fa-puzzle-piece' },
-        { title: 'Your Clients Will Love It', description: 'Hand off websites to your clients that are easy to manage and edit, with full control over client permissions.', icon: 'fas fa-heart' },
-        { title: 'Cloud-Based Collaboration', description: 'All of your team’s design assets are available in Divi Cloud so new websites take shape in no time.', icon: 'fas fa-cloud' },
-        { title: 'Built With 16 Years Of Experience', description: 'Divi is built on a foundation of 16 years of WordPress theme building experience. It’s the most reliable and complete toolkit.', icon: 'fas fa-cogs' }
-      ]
+  { title: 'Giải pháp quản lý truyền thông số đa kênh', description: 'Esmart Solutions cung cấp giải pháp quản lý truyền thông số đa kênh - Omnichannel Saving Digital Marketing - trên các nền tảng như Facebook, Instagram, Website, TikTok, Thương mại điện tử,...', icon: 'fas fa-palette' },
+  { title: 'Xây dựng kế hoạch Marketing tích hợp', description: 'Chúng tôi hỗ trợ bạn xây dựng kế hoạch Marketing tích hợp, triển khai đa kênh dựa theo hành trình khách hàng để tăng tỷ lệ chuyển đổi tốt nhất.', icon: 'fas fa-tags' },
+  { title: 'Hàng trăm Phần mở rộng', description: 'Mở rộng sức mạnh của Esmart Solutions với hàng trăm phần mở rộng miễn phí và trả phí từ Thị trường Esmart Solutions.', icon: 'fas fa-puzzle-piece' },
+  { title: 'Hỗ trợ đa kênh và quản lý mạng xã hội', description: 'Esmart Solutions giúp bạn quản lý mạng xã hội và truyền thông số kênh một cách hiệu quả, giúp tạo ra trải nghiệm khách hàng tốt nhất.', icon: 'fas fa-heart' },
+  { title: 'Hợp tác Trên Đám mây', description: 'Tất cả dữ liệu và tài nguyên thiết kế của bạn đều được lưu trữ trên đám mây của Esmart Solutions, giúp tiết kiệm thời gian và công sức.', icon: 'fas fa-cloud' },
+  { title: 'Xây dựng từ 2 Năm Kinh nghiệm', description: 'Esmart Solutions được xây dựng trên nền tảng của 16 năm kinh nghiệm trong lĩnh vực quảng cáo và quản lý truyền thông số kênh. Đây là công cụ hoàn chỉnh và đáng tin cậy nhất.', icon: 'fas fa-cogs' }
+]
     };
+  },
+  methods: {
+    getImageUrl(image) {
+      return require(`@/assets/${image}`);
+    }
   },
   mounted() {
     const observer = new IntersectionObserver((entries) => {
@@ -126,7 +132,6 @@ export default {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  animation: slideIn 1.5s ease-in-out;
   margin-bottom: 2rem;
 }
 
@@ -148,11 +153,11 @@ export default {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  animation: fadeIn 1.5s ease-in-out;
 }
 
 .testimonial-card {
   background: white;
+  color: black; /* Ensure text is visible on white background */
   border-radius: 8px;
   padding: 1rem;
   margin: 1rem;
@@ -189,11 +194,11 @@ export default {
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 2rem;
-  animation: slideIn 1.5s ease-in-out;
 }
 
 .toolkit-item {
   background: white;
+  color: black; /* Ensure text is visible on white background */
   border-radius: 8px;
   padding: 1rem;
   margin: 1rem;
