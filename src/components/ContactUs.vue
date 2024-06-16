@@ -148,4 +148,25 @@
 .chat-button:hover {
   transform: translateY(-4px); /* Added vertical translation on hover */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased box-shadow on hover */
-}</style>
+}
+
+.contact-card {
+  flex: 1 1 100%; /* Thay đổi width của card khi màn hình nhỏ hơn 768px */
+  max-width: 100%; /* Chỉ định width tối đa cho card */
+}
+
+.contact-card form {
+  max-width: 100%; /* Chỉ định width tối đa cho form */
+}
+
+@media (min-width: 768px) {
+  .contact-card {
+    flex: 1 1 45%; /* Giữ nguyên width của card khi màn hình lớn hơn hoặc bằng 768px */
+    max-width: 45%; /* Giữ nguyên width của card */
+  }
+
+  .contact-card form {
+    max-width: 100%; /* Giữ nguyên width của form */
+  }
+}
+</style>

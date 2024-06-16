@@ -101,6 +101,24 @@
 .card button:hover {
   background-color: #252aca;
 }
+
+
+@media (min-width: 768px){
+  .content {
+  flex-direction: column; /* Hiển thị các card theo chiều dọc trên điện thoại di động */
+  align-items: center; /* Căn giữa các card */
+}
+
+.card {
+  width: 90%; /* Sử dụng 90% chiều rộng của màn hình trên điện thoại di động */
+  margin-bottom: 2rem; /* Khoảng cách giữa các card */
+}
+
+.card button {
+  width: 100%; /* Button chiếm toàn bộ chiều rộng của card */
+}
+
+}
 </style>
 
   
