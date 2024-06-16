@@ -1,10 +1,9 @@
-```vue
 <template>
   <section class="process">
-    <h2>Quy trình làm việc</h2>
+    <h2>Our Process</h2>
     <div class="steps">
       <div class="step" v-for="(step, index) in steps" :key="index">
-        <div class="step-number">Bước {{ index + 1 }}</div>
+        <div class="step-number">{{ index + 1 }}</div>
         <div class="icon">
           <font-awesome-icon icon="check" />
         </div>
@@ -20,6 +19,7 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+
 export default {
   name: 'ProcessInt',
   components: {
@@ -28,17 +28,16 @@ export default {
   data() {
     return {
       steps: [
-        { title: 'Chứng minh ban đầu', description: 'Ý tưởng thiết kế ban đầu được đưa ra để đánh giá. Chúng tôi thảo luận về những thay đổi/sở thích (nếu có) cần thiết.' },
-        { title: 'Bản tóm tắt dự án', description: 'Dự án bắt đầu với cuộc thảo luận toàn diện về thiết kế và bố trí.' },
-        { title: 'Sự hợp tác', description: 'Chúng tôi cùng nhau làm việc để tạo ra một thiết kế và bố trí mới. Bạn trực tiếp định hình quy trình.' },
-        { title: 'Sản xuất in ấn', description: 'Sau khi được chấp nhận, dự án của bạn được in.' },
-        { title: 'Giao hàng', description: 'Các sản phẩm in của bạn được giao trực tiếp đến cửa nhà của bạn.' }
+        { title: 'Initial Proof', description: 'The initial design concept is put up for review. We discuss what changes/preferences (if any) are required.' },
+        { title: 'Project Brief', description: 'The project kicks off with a comprehensive discussion about design and layout.' },
+        { title: 'Collaboration', description: 'We work together to create a new design and layout. You directly shape the process.' },
+        { title: 'Print Production', description: 'Upon approval, your project goes to print.' },
+        { title: 'Delivery', description: 'Your printed pieces are delivered straight to your door.' }
       ]
     }
   }
 }
 </script>
-
 <style scoped>
 .process {
   background-color: #f3f4f6;
@@ -66,7 +65,7 @@ export default {
 
 .step {
   flex: 1 1 45%;
-  background-color: #3222c3; /* Màu nền tím đậm */
+  background-color: #3222c3; /* Dark purple-blue background */
   color: white;
   margin: 0.5rem;
   padding: 2rem 1.5rem;
@@ -168,5 +167,6 @@ export default {
     width: 100%;
   }
 }
+
+
 </style>
-```

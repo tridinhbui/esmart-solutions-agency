@@ -2,14 +2,14 @@
   <section class="social-proof-testimonials">
     <h2>Social Proof</h2>
     <div class="socials animate-slideIn">
-      <div class="social-item" v-for="social in socialMedia" :key="social.name">
+      <div class="social-item animate-float" v-for="social in socialMedia" :key="social.name">
         <img :src="getImageUrl(social.icon)" :alt="social.name">
         <p>{{ social.description }}</p>
       </div>
     </div>
     <h2>What Customers Are Saying About Our Support Team</h2>
     <div class="testimonials-container animate-fadeIn">
-      <div class="testimonial-card" v-for="(testimonial, index) in testimonials" :key="index">
+      <div class="testimonial-card animate-float" v-for="(testimonial, index) in testimonials" :key="index">
         <img :src="getImageUrl(testimonial.image)" :alt="testimonial.name" class="avatar">
         <h3>{{ testimonial.name }}</h3>
         <h4>{{ testimonial.title }}</h4>
@@ -21,7 +21,7 @@
     </div>
     <h2>ESmart Solutions Offers The Ultimate Toolkit</h2>
     <div class="toolkit animate-slideIn">
-      <div class="toolkit-item" v-for="(item, index) in toolkit" :key="index">
+      <div class="toolkit-item animate-float" v-for="(item, index) in toolkit" :key="index">
         <i :class="item.icon"></i>
         <h3>{{ item.title }}</h3>
         <p>{{ item.description }}</p>
@@ -223,6 +223,52 @@ export default {
 .toolkit-item h3 {
   color: #333;
   margin-bottom: 0.5rem;
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotateX(0) rotateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    transform: translateY(0) rotateX(0) rotateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 1s ease-in-out;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-in-out;
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
 }
 
 /* Mobile Responsiveness */

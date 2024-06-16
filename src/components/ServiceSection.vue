@@ -106,28 +106,9 @@ export default {
   animation: card-slide-up 1s ease-in-out forwards;
 }
 
-.service-card:nth-child(1) {
-  animation-delay: 0.2s;
-}
-
-.service-card:nth-child(2) {
-  animation-delay: 0.4s;
-}
-
-.service-card:nth-child(3) {
-  animation-delay: 0.6s;
-}
-
-.service-card:nth-child(4) {
-  animation-delay: 0.8s;
-}
-
-.service-card:nth-child(5) {
-  animation-delay: 1s;
-}
-
-.service-card:nth-child(6) {
-  animation-delay: 1.2s;
+.service-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .service-card img {
