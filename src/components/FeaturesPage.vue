@@ -110,8 +110,8 @@ export default {
 
 .feature {
   margin: 1rem;
-  flex: 1 1 45%;
-  max-width: 45%;
+  flex: 1 1 100%; /* Full width on mobile */
+  max-width: 100%;
   background: #f3f4f6;
   padding: 1rem;
   border-radius: 8px;
@@ -122,5 +122,18 @@ export default {
 .feature h3 {
   margin-bottom: 0.5rem;
   color: #0077b6;
+}
+
+/* Media query for phones */
+@media (max-width: 768px) {
+  .achievements {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .achievement {
+    flex: 1 1 100%;
+    margin-bottom: 1rem;
+  }
 }
 </style>

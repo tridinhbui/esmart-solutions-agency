@@ -1,47 +1,60 @@
+To enhance the CSS and animation and ensure responsiveness for phones, you can make the following adjustments:
+
+1. **Header Styles**: Increase the font size for better readability on smaller screens.
+
+2. **Content Styles**: Adjust the flex direction and alignment for smaller screens. Increase the width of the cards to occupy more space.
+
+3. **Button Styles**: Increase the button size and adjust the padding for better touch interaction.
+
+4. **Media Query**: Use a media query to apply specific styles for screens with a minimum width of 768px (tablets and larger screens).
+
+Here's the updated code:
+
+```vue
 <template>
-    <div>
-      <header class="header">
-        <h1>See How Your Business Stacks Up</h1>
+  <div>
+    <header class="header">
+      <h1>See How Your Business Stacks Up</h1>
+      <p>
+        Gain insights into your Facebook performance and elevate it with NexGen's social media check-up. Assess your call center's operations and receive tailored recommendations and statistics through a brief questionnaire for an operational analysis.
+      </p>
+    </header>
+    
+    <div class="content">
+      <div class="card">
+        <h2>Social Media Check-Up</h2>
         <p>
-          Gain insights into your Facebook performance and elevate it with NexGen's social media check-up. Assess your call center's operations and receive tailored recommendations and statistics through a brief questionnaire for an operational analysis.
+          How is your business’ Facebook performing? <strong>Click the button</strong> to see how you stack up and learn how NexGen can take you to the next level!
         </p>
-      </header>
+        <button @click="goToSocialMediaCheckup">Click Here</button>
+      </div>
       
-      <div class="content">
-        <div class="card">
-          <h2>Social Media Check-Up</h2>
-          <p>
-            How is your business’ Facebook performing? <strong>Click the button</strong> to see how you stack up and learn how NexGen can take you to the next level!
-          </p>
-          <button @click="goToSocialMediaCheckup">Click Here</button>
-        </div>
-        
-        <div class="card">
-          <h2>Call Center Operational Check-Up and Analysis</h2>
-          <p>
-            How is your business’ Facebook performing? <strong>Fill out your brief questionnaire</strong> to receive recommendations and statistics on the current state of your contact center!
-          </p>
-          <button @click="goToCallCenterCheckup">Click Here</button>
-        </div>
+      <div class="card">
+        <h2>Call Center Operational Check-Up and Analysis</h2>
+        <p>
+          How is your business’ Facebook performing? <strong>Fill out your brief questionnaire</strong> to receive recommendations and statistics on the current state of your contact center!
+        </p>
+        <button @click="goToCallCenterCheckup">Click Here</button>
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'BusinessCheckup',
-    methods: {
-      goToSocialMediaCheckup() {
-        // Logic to navigate to the Social Media Check-Up page
-        this.$router.push('/social-media-checkup');
-      },
-      goToCallCenterCheckup() {
-        // Logic to navigate to the Call Center Check-Up page
-        this.$router.push('/call-center-checkup');
-      }
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'BusinessCheckup',
+  methods: {
+    goToSocialMediaCheckup() {
+      // Logic to navigate to the Social Media Check-Up page
+      this.$router.push('/social-media-checkup');
+    },
+    goToCallCenterCheckup() {
+      // Logic to navigate to the Call Center Check-Up page
+      this.$router.push('/call-center-checkup');
     }
-  };
-  </script>
+  }
+};
+</script>
 
 <style scoped>
 .header {
@@ -93,32 +106,32 @@
   border: none;
   border-radius: 5px;
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1.2rem; /* Increase padding for better touch interaction */
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.1rem; /* Increase font size for better readability */
 }
 
 .card button:hover {
   background-color: #252aca;
 }
 
-
-@media (min-width: 768px){
+@media (max-width: 768px) {
   .content {
-  flex-direction: column; /* Hiển thị các card theo chiều dọc trên điện thoại di động */
-  align-items: center; /* Căn giữa các card */
-}
+    flex-direction: column;
+    align-items: center;
+  }
 
-.card {
-  width: 90%; /* Sử dụng 90% chiều rộng của màn hình trên điện thoại di động */
-  margin-bottom: 2rem; /* Khoảng cách giữa các card */
-}
+  .card {
+    width: 90%; /* Use 90% of the screen width */
+    margin-bottom: 2rem;
+  }
 
-.card button {
-  width: 100%; /* Button chiếm toàn bộ chiều rộng của card */
-}
-
+  .card button {
+    width: 100%;
+    padding: 1rem 1.5rem; /* Adjust padding for smaller screens */
+  }
 }
 </style>
+```
 
-  
+These adjustments should make the layout more responsive and improve the overall user experience on mobile devices.
