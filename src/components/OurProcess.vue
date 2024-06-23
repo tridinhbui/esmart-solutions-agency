@@ -3,13 +3,13 @@
     <h2>Our Process</h2>
     <div class="steps">
       <div class="step" v-for="(step, index) in steps" :key="index">
-        <div class="step-number">{{ index + 1 }}</div>
-        <div class="icon">
-          <font-awesome-icon icon="check" />
-        </div>
         <div class="content">
           <h3>{{ step.title }}</h3>
-          <p>{{ step.description }}</p>
+          <ul>
+            <li v-for="(subStep, subIndex) in step.subsSteps" :key="subIndex">
+              {{ subStep.title }}
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -17,27 +17,48 @@
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
 
 export default {
   name: 'ProcessInt',
-  components: {
-    FontAwesomeIcon
-  },
   data() {
     return {
       steps: [
-        { title: 'Initial Proof', description: 'The initial design concept is put up for review. We discuss what changes/preferences (if any) are required.' },
-        { title: 'Project Brief', description: 'The project kicks off with a comprehensive discussion about design and layout.' },
-        { title: 'Collaboration', description: 'We work together to create a new design and layout. You directly shape the process.' },
-        { title: 'Print Production', description: 'Upon approval, your project goes to print.' },
-        { title: 'Delivery', description: 'Your printed pieces are delivered straight to your door.' }
+        { 
+          title: 'Bước 1: Tư vấn và lập kế hoạch ',
+          subsSteps: [
+            {title: 'Phân tích chuyên sâu: Khám phá chi tiết về sản phẩm/dịch vụ, xác định thông tin khách hàng mục tiêu và đánh giá thị trường cạnh tranh.'},
+            {title: 'Xây dựng customer insight: Tạo ra những hiểu biết sâu sắc về khách hàng mục tiêu.'},
+            {title: 'Lên kế hoạch triển khai: Thiết lập chiến lược triển khai theo tháng, đảm bảo mỗi bước đều có mục tiêu rõ ràng.'},
+          ]
+        },
+        { 
+          title: 'Bước 2: Ký kết hợp đồng',
+          subsSteps: [
+            {title: 'Chốt thỏa thuận: Ký kết hợp đồng với gói dịch vụ phù hợp đã chọn, đảm bảo mọi điều khoản đều minh bạch và rõ ràng.'},
+          ]
+        },
+        { 
+          title: 'Bước 3: Triển khai chăm sóc Fanpage',
+          subsSteps: [
+            {title: 'Khởi tạo dự án: Sử dụng công cụ Google Sheets để quản lý dự án, thêm các thành viên và khách hàng vào nhóm nhằm dễ dàng trao đổi và giám sát công việc.'},
+            {title: 'Xây dựng timeline nội dung: Lên kế hoạch chi tiết nội dung hàng tháng và trình khách hàng phê duyệt.'},
+            {title: 'Sản xuất nội dung: Thiết kế hình ảnh, sản xuất video và triển khai các chiến dịch quảng cáo nhằm phủ sóng thương hiệu và tăng doanh số bán hàng trên Fanpage.'},
+          ]
+        },
+        { 
+          title: 'Bước 4: Báo cáo và đánh giá',
+          subsSteps: [
+            {title: 'Báo cáo chi tiết: Cung cấp báo cáo chi tiết về các hạng mục đã triển khai vào cuối tháng, giúp khách hàng đánh giá hiệu quả và đưa ra những điều chỉnh cần thiết cho các chiến lược tiếp theo.'},
+            {title: 'Chăm sóc: Thu thập phản hồi khách hàng để cải thiện dịch vụ, hỗ trợ khách hàng tận tâm trong suốt quá trình sử dụng.'},
+          ]
+        },
       ]
     }
   }
 }
+
 </script>
+
 <style scoped>
 .process {
   background-color: #f3f4f6;
@@ -64,6 +85,9 @@ export default {
 }
 
 .step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex: 1 1 45%;
   background-color: #3222c3; /* Dark purple-blue background */
   color: white;
@@ -122,6 +146,8 @@ export default {
 }
 
 .step h3 {
+  margin: 0; /* Remove all margins */
+  padding: 0; /* Remove all paddings */
   margin-bottom: 0.5rem;
   font-size: 1.4rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -142,11 +168,15 @@ export default {
   font-size: 2rem;
   color: #3222c3;
   margin-bottom: 0.5rem;
+  margin-top: 0;
 }
 
-.icon {
-  margin-bottom: 1rem;
+.content li {
+  text-align: left; /* Align substep text to the left for better readability */
+  margin-bottom: 5px;
 }
+
+
 
 @keyframes fadeIn {
   from {
