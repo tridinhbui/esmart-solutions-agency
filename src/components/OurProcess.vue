@@ -177,7 +177,7 @@ export default {
 }
 
 
-
+/* Animation in CSS */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -197,6 +197,35 @@ export default {
     width: 100%;
   }
 }
+/* Component-specific media queries */
+@media (max-width: 768px) {
+  .step {
+    flex: 1 1 100%;
+    margin: 0.5rem 0;
+    padding: 1rem;
+  }
 
+  .responsive-step-title {
+    font-size: 1.2rem;
+  }
+
+  .responsive-step-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .step {
+    padding: 0.5rem;
+  }
+
+  .responsive-step-title {
+    font-size: 1rem;
+  }
+
+  .responsive-step-text {
+    font-size: 0.8rem;
+  }
+}
 
 </style>
