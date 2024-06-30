@@ -1,17 +1,36 @@
 <template>
   <div id="app">
     <Navbar />
-    <HeroSection />
-    <Service />
-    <SocialProof />
-    <FeaturesPage />
-    <ProcessInt />
-    <Project />
-    <BlogPost />
-    <NewFile/>
-    <ContactUs />
-    <Footer />
-
+    <section id="home">
+      <HeroSection />
+    </section>
+    <section id="social-proof">
+      <SocialProof />
+    </section>
+    <section id="features">
+      <FeaturesPage />
+    </section>
+    <section id="process">
+      <ProcessInt />
+    </section>
+    <section id="blog">
+      <BlogPost />
+    </section>
+    <section id="project">
+      <Project />
+    </section>
+    <section id="about-us">
+      <AboutUs />
+    </section>
+    <section id="service">
+      <Service />
+    </section>
+    <section id="contact">
+      <ContactUs />
+    </section>
+    <section id="footer">
+      <Footer />
+    </section>
   </div>
 </template>
 
@@ -26,8 +45,7 @@ import ContactUs from './components/ContactUs.vue'
 import Footer from './components/FooterBar.vue'
 import Service from './components/ServiceSection.vue'
 import Project from './components/ProjectSection.vue'
-import NewFile from './components/NewFile.vue'
-
+import AboutUs from './components/AboutUs.vue'
 
 export default {
   name: 'App',
@@ -42,8 +60,7 @@ export default {
     Project,
     Footer,
     Service,
-    NewFile
- 
+    AboutUs
   }
 }
 </script>
@@ -57,6 +74,10 @@ body {
 #app {
   text-align: center;
   padding-top: 70px; /* Adjust padding to avoid navbar overlap */
+}
+
+section {
+  padding: 4rem 0; /* Adjust padding for better spacing */
 }
 
 .card {

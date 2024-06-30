@@ -4,14 +4,20 @@
       <img src="@/assets/logo.png" alt="ESmart Logo" class="logo">
       <nav>
         <ul :class="{ open: isOpen }">
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/social-proof">Our Achievement</router-link></li>
-          <li><router-link to="/features">Features</router-link></li>
-          <li><router-link to="/process">Process</router-link></li>
-          <li><router-link to="/blog">Blog</router-link></li>
-          <li><router-link to="/pricing">Pricing</router-link></li>
-          <li><router-link to="/contact">Contact</router-link></li>
-          <li><router-link to="/project">Project</router-link></li>
+          <li><router-link to="#home">Home</router-link></li>
+          <li><router-link to="#social-proof">Our Achievement</router-link></li>
+          <li><router-link to="#process">Process</router-link></li>
+          <li><router-link to="#blog">Blog</router-link></li>
+          <li><router-link to="#project">Project</router-link></li>
+          <li class="dropdown">
+            <router-link to="#about-us">About Us</router-link>
+            <ul class="dropdown-menu">
+              <li><router-link to="#about-us">About Us</router-link></li>
+              <li><router-link to="#contact">Contact</router-link></li>
+              <li><router-link to="#footer">Footer</router-link></li>
+            </ul>
+          </li>
+          <li><router-link to="#service">Service</router-link></li>
         </ul>
       </nav>
       <div class="burger" @click="toggleMenu">
@@ -42,11 +48,10 @@ export default {
 <style scoped>
 .navbar {
   background-color: white;
-  /* padding: 1rem 1rem; */
   padding-right: 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
-  width: 100%; /* Ensures navbar stays within screen width */
+  width: 100%;
   top: 0;
   z-index: 1000;
 }
@@ -60,11 +65,10 @@ export default {
 .logo {
   max-width: 6%;
   margin-left: 3rem;
-
 }
 
 nav ul {
-  display: flex; /* Default display for larger screens */
+  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -75,11 +79,16 @@ nav ul li {
   cursor: pointer;
   color: #333;
   font-weight: bold;
+  position: relative;
 }
 
 nav ul li a {
   text-decoration: none;
   color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 nav ul li:hover {
@@ -87,7 +96,7 @@ nav ul li:hover {
 }
 
 .burger {
-  display: none; /* Hidden initially for larger screens */
+  display: none;
   flex-direction: column;
   cursor: pointer;
 }
@@ -100,7 +109,6 @@ nav ul li:hover {
   transition: all 0.3s ease;
 }
 
-/* Enhanced animations for open/close menu */
 nav ul.open {
   animation: slide-in 0.3s ease-in-out forwards;
 }
@@ -126,22 +134,21 @@ nav ul.open .burger div:nth-child(3) {
   transform: rotate(-45deg) translateX(-8px);
 }
 
-/* Media query for phone screens (adjust breakpoint as needed) */
 @media (max-width: 768px) {
   nav ul {
-    display: none; /* Hidden initially on small screens */
+    display: none;
     flex-direction: column;
     width: 100%;
     background-color: white;
     position: absolute;
     top: 60px;
     left: 0;
-    transition: transform 0.3s ease; /* Animation for menu slide-out */
+    transition: transform 0.3s ease;
   }
 
   nav ul.open {
-    display: flex; /* Display menu when open on small screens */
-    transform: translateX(0); /* Reset transform for open menu */
+    display: flex;
+    transform: translateX(0);
   }
 
   nav ul li {
@@ -150,8 +157,43 @@ nav ul.open .burger div:nth-child(3) {
   }
 
   .burger {
-    display: flex; /* Show burger menu on small screens */
+    display: flex;
   }
 }
 
+/* Dropdown Menu Styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 150px;
+}
+
+.dropdown-menu li {
+  padding: 8px 16px;
+  text-align: center;
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  font-size: 16px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
 </style>
