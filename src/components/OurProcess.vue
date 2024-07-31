@@ -1,6 +1,6 @@
 <template>
   <section class="process">
-    <h2>Our Process</h2>
+    <h2>Quy trình của chúng tôi</h2>
     <div class="steps">
       <div class="step" v-for="(step, index) in steps" :key="index">
         <div class="content">

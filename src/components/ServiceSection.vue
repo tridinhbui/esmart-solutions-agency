@@ -1,8 +1,9 @@
 <template>
   <v-app>
     <section class="services-section">
-      <h1>Providing Global VIP Customer Care to our clients' most valuable asset: their customers</h1>
-      <v-btn class="services-button" color="primary">Services</v-btn>
+      <h1>Chúng tôi cung cấp dịch vụ chăm sóc khách hàng toàn cầu, giúp đối tác xây dựng và duy trì mối quan hệ với khách hàng của mình.
+</h1>
+      
       <div class="services-container">
         <v-card
           v-for="(service, index) in services"
@@ -24,12 +25,12 @@ export default {
   data() {
     return {
       services: [
-        { title: 'Customer Care & Technical Solutions', category: 'Services', icon: 'mdi-headset' },
-        { title: 'Email & Chat', category: 'Customer Service', icon: 'mdi-email' },
-        { title: 'Social Media Customer Care', category: 'Services', icon: 'mdi-twitter' },
-        { title: 'Social Media Management', category: 'Services', icon: 'mdi-instagram' },
-        { title: 'Reputation & Crisis Management', category: 'Services', icon: 'mdi-shield' },
-        { title: 'Consulting', category: 'Services', icon: 'mdi-lightbulb' }
+        { title: 'Chăm sóc khách hàng & Giải pháp kỹ thuật', category: 'Services', icon: 'mdi-headset' },
+        { title: 'Email & Trò chuyện trực tuyến', category: 'Customer Service', icon: 'mdi-email' },
+        { title: 'Chăm sóc khách hàng trên mạng xã hội', category: 'Services', icon: 'mdi-twitter' },
+        { title: 'Quản lý mạng xã hội', category: 'Services', icon: 'mdi-instagram' },
+        { title: 'Quản lý thương hiệu & Xử lý khủng hoảngt', category: 'Services', icon: 'mdi-shield' },
+        { title: 'Dịch vụ tư vấn chiến lược', category: 'Services', icon: 'mdi-lightbulb' }
       ]
     };
   }
@@ -68,6 +69,9 @@ export default {
 }
 
 .services-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #ff4b5c;
   color: white;
   padding: 1rem 2rem;
@@ -78,6 +82,7 @@ export default {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, box-shadow 0.3s;
   animation: button-slide-up 1s ease-in-out;
+  text-align: center;
 }
 
 .services-button:hover {
@@ -93,14 +98,21 @@ export default {
 }
 
 .service-card {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   background: linear-gradient(135deg, #1a3263, #6f4a8e); /* Gradient of blue ocean and purple */
   color: white;
-  border-radius: 15px;
+  border-radius: 25px;
   overflow: hidden;
   margin: 1.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
   width: 350px;
+  height: 125px; /* Adjust height as needed */
   opacity: 0;
   transform: translateY(50px);
   animation: card-slide-up 1s ease-in-out forwards;
@@ -163,5 +175,11 @@ export default {
     width: 100%;
     margin: 1rem 0;
   }
+  .service-card .service-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+  
 }
 </style>
+
