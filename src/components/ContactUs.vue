@@ -1,24 +1,24 @@
 <template>
     <section class="contact-us">
-      <h2>Contact Us</h2>
+      <h2>Liên hệ với chúng tôi</h2>
       <div class="contact-container">
         <div class="contact-card">
-          <h3>Sales, Accounts & Billing</h3>
-          <p>Send us an email if you have any questions about billing or your ESmart Solutions account</p>
+          <h3>Tài khoản & Thanh toán</h3>
+          <p>Gửi email trực tiếp cho đội ngũ Esmart nếu bạn có bất kỳ câu hỏi nào.</p>
           <form>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email Address" />
+            <input type="text" placeholder="Tên" />
+            <input type="email" placeholder="Địa chỉ email" />
             <select>
-              <option>Sales and General Information</option>
+              <option>Thông tin chung</option>
             </select>
-            <button type="submit">Send</button>
+            <button type="submit">Gửi</button>
           </form>
         </div>
         <div class="contact-card">
-          <h3>Technical Support</h3>
-          <p>If you ever need help, you can chat directly with our support team!</p>
-          <button class="chat-button">Chat With Support</button>
-          <p>You must be an active ESmart Solutions customer to receive support.</p>
+          <h3>Hỗ trợ kỹ thuật</h3>
+          <p>Nếu cần trợ giúp, khách hàng có thể trò chuyện trực tiếp với nhóm hỗ trợ của Esmart Solutions!</p>
+          <button class="chat-button">Trò chuyện với nhóm hỗ trợ </button>
+          <p></p>
         </div>
       </div>
     </section>

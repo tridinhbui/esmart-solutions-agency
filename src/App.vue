@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar />
-    <section id="home">
+    <section id="Trang chủ">
       <HeroSection />
     </section>
     <section id="social-proof">
@@ -77,7 +77,7 @@ body {
 }
 
 section {
-  padding: 4rem 0; /* Adjust padding for better spacing */
+  padding:  0; /* Adjust padding for better spacing */
 }
 
 .card {

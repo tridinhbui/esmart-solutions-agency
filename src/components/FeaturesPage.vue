@@ -1,6 +1,6 @@
 <template>
   <section class="features">
-    <h2>Our Achievements</h2>
+    <h2>Thành tựu</h2>
     <div class="achievements">
       <div class="achievement" v-for="(item, index) in achievements" :key="index">
         <div class="icon">
@@ -13,12 +13,12 @@
     </div>
     <div class="features-container animate-fadeIn">
       <div class="feature">
-        <h3>Team Size</h3>
-        <p>With a team of over 20+ personnel, ESmart Solutions has reached nearly 1,000,000+ individuals through over 400+ publications since the inception of our communication campaigns.</p>
+        <h3>Đội ngũ</h3>
+        <p>Với đội ngũ nhân viên lên tới hơn 20 người, ESmart Solutions đã đạt được số lượng người dùng lên tới 1,000,000+ kể từ lúc bắt đầu chiến dịch truyền thông.</p>
       </div>
       <div class="feature">
-        <h3>Investment</h3>
-        <p>ESmart Solutions has also received investment funding and strategic guidance from the Macalester Entrepreneurship and Innovation Fund, based in Saint Paul, Minnesota, USA.</p>
+        <h3>Đầu tư</h3>
+        <p>Esmart Solution đã gây quỹ tài trợ và nhận được sự hợp tác chiến lược từ tổ chức Macalester Entrepreneurship and Innovation Fund có trụ sở tại Saint Paul, Minnesota</p>
       </div>
     </div>
   </section>
@@ -30,10 +30,10 @@ export default {
   data() {
     return {
       achievements: [
-        { icon: 'fas fa-users', title: 'Members', value: 35, currentValue: 0, description: '35+' },
-        { icon: 'fas fa-shopping-cart', title: 'Products Sold', value: 100, currentValue: 0, description: '100+' },
-        { icon: 'fas fa-globe', title: 'Regions', value: 10, currentValue: 0, description: '10+' },
-        { icon: 'fas fa-bullhorn', title: 'Reach', value: 13000, currentValue: 0, description: '13000+' }
+        { icon: 'fas fa-users', title: 'Nhân sự', value: 20, currentValue: 0, description: '20+' },
+        { icon: 'fas fa-shopping-cart', title: 'Ấn phẩm truyền thông', value: 5000, currentValue: 0, description: '5000+' },
+        { icon: 'fas fa-globe', title: 'Khu vực', value: 10, currentValue: 0, description: '10+' },
+        { icon: 'fas fa-bullhorn', title: 'Tiếp cận', value: 13000, currentValue: 0, description: '1000000+' }
       ]
     };
   },

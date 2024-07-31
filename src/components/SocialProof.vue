@@ -1,6 +1,6 @@
 <template>
   <section class="social-proof-testimonials">
-    <h2>Social Proof</h2>
+    <h2>Social Media</h2>
     <div class="socials animate-slideIn">
       <div class="social-item animate-float" v-for="social in socialMedia" :key="social.name">
         <img :src="getImageUrl(social.icon)" :alt="social.name">
@@ -19,7 +19,7 @@
         <p class="testimonial-text">{{ testimonial.text }}</p>
       </div>
     </div>
-    <h2>ESmart Solutions Offers The Ultimate Toolkit</h2>
+    <h2>ESmart Solutions cung cấp bộ công cụ tối ưu</h2>
     <div class="toolkit animate-slideIn">
       <div class="toolkit-item animate-float" v-for="(item, index) in toolkit" :key="index">
         <i :class="item.icon"></i>
@@ -36,10 +36,10 @@ export default {
   data() {
     return {
       socialMedia: [
-        { name: 'Facebook', icon: 'facebook.png', description: 'Over 1,000,000 followers on Facebook' },
-        { name: 'Instagram', icon: 'instagram.png', description: 'Engaging content on Instagram' },
-        { name: 'LinkedIn', icon: 'linkedin.png', description: 'Professional connections on LinkedIn' },
-        { name: 'TikTok', icon: 'tiktok.png', description: 'Viral trends on TikTok' }
+        { name: 'Facebook', icon: 'facebook.png', description: 'Hơn 1,000,000 lượt tiếp cận Facebook' },
+        { name: 'Instagram', icon: 'instagram.png', description: 'Nội dung hấp dẫn trên Instagram' },
+        { name: 'LinkedIn', icon: 'linkedin.png', description: 'Kết nối chuyên nghiệp trên Linkedin ' },
+        { name: 'TikTok', icon: 'tiktok.png', description: 'Tạo xu hướng thịnh hành trên TikTok' }
       ],
       testimonials: [
       {

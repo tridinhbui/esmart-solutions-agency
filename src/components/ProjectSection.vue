@@ -13,8 +13,8 @@ Then, update your Vue component to use Font Awesome icons and add a 3D float eff
 ```html
 <template>
   <section class="features-section">
-    <h2>Our Awesome Features</h2>
-    <h1>Buy Choicy & Enjoy Some Exclusive Features</h1>
+    <h2>Tính năng</h2>
+    <h1>Cùng Esmart trải nghiệm những tính năng độc quyền</h1>
     <div class="features-container">
       <div class="feature-item" v-for="(feature, index) in features" :key="index">
         <div class="feature-icon">
@@ -32,11 +32,11 @@ export default {
   data() {
     return {
       features: [
-        { title: 'Elementor Page Builder', icon: 'fas fa-cogs' },
-        { title: 'Woocommerce Ready', icon: 'fas fa-shopping-cart' },
-        { title: 'Support WPML Multilingual', icon: 'fas fa-globe' },
-        { title: 'Video Documentation', icon: 'fas fa-video' },
-        { title: 'Unlimited Colors Option', icon: 'fas fa-paint-brush' },
+        { title: 'Trình tạo trang Elementor', icon: 'fas fa-cogs' },
+        { title: 'Tích hợp sẵn Woocommerce', icon: 'fas fa-shopping-cart' },
+        { title: 'Hỗ trợ WPML Đa ngôn ngữ', icon: 'fas fa-globe' },
+        { title: 'Tài liệu hướng dẫn bằng video', icon: 'fas fa-video' },
+        { title: 'Tùy chọn màu sắc không giới hạn', icon: 'fas fa-paint-brush' },
         // Add more features as needed
       ]
     };
