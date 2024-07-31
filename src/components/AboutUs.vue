@@ -1,8 +1,12 @@
 <template>
   <section class="about">
-    <h2>About Us</h2>
-    <p>The members of the ESmart team always prioritize Respect - Efficiency - Professionalism in their work. Therefore, our partners will regularly receive updates, care, and assurance of benefits from even the smallest terms.</p>
-    <p>We believe that our E-Boost product presents an opportunity for your esteemed business not only to expand and optimize business operations but also to elevate your brand and contribute to the development of the growing business ecosystem.</p>
+    <h2>Về chúng tôi</h2>
+    <p>
+ESmart Solutions, với sứ mệnh tập trung hỗ trợ các doanh nghiệp kinh doanh tăng cường khả năng tiếp cận và quảng bá sản phẩm của mình đến khách hàng tiềm năng. Với đội ngũ hơn 20 thành viên đến từ trên 7 tỉnh thành, ESmart Solutions đã tiếp cận gần 600.000 người thông qua hơn 200+ ấn phẩm kể từ lúc bắt đầu triển khai các chiến dịch truyền thông. ESmart Solutions còn được rót vốn đầu tư và trực tiếp tư vấn, hỗ trợ chiến lược bởi quỹ đầu tư Doanh nhân và Sáng tạo Macalester, Macalester Entrepreneurship and Innovation Fund, tới từ thành phố Saint Paul, bang Minnesota, Hoa Kỳ.
+
+Đội ngũ thành viên của ESmart luôn đặt tôn chỉ Tôn trọng - Hiệu quả - Chuyên nghiệp lên hàng đầu khi làm việc. Vì vậy, đối tác của chúng tôi sẽ thường xuyên được cập nhật thông tin, chăm sóc và đảm bảo quyền lợi từ những điều khoản nhỏ nhất. Chúng tôi tin rằng sản phẩm E-Boost của chúng tôi là cơ hội để Quý Doanh nghiệp không chỉ mở rộng và tối ưu hoạt động kinh doanh mà còn có thể nâng tầm thương hiệu của chính mình và góp phần chung tay xây dựng hệ sinh thái các doanh nghiệp đang phát triển.
+</p>
+    <p>Chúng tôi tin rằng sản phẩm E-Boost của chúng tôi mang đến cơ hội cho doanh nghiệp quý giá của bạn không chỉ mở rộng và tối ưu hóa hoạt động kinh doanh mà còn nâng cao thương hiệu của bạn và góp phần phát triển hệ sinh thái kinh doanh đang phát triển.</p>
   </section>
 </template>
 
