@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 // Import the components used in your routes
-import Home from '@/components/IntroSection.vue';
+import IntroSection from '@/components/IntroSection.vue';
 import SocialProof from '@/components/SocialProof.vue';
 import FeaturesPage from '@/components/FeaturesPage.vue';
 import ProcessInt from '@/components/OurProcess.vue';
@@ -12,7 +12,7 @@ import AboutUs from '@/components/AboutUs.vue';
 import Service from '@/components/ServiceSection.vue';
 
 const routes = [
-  { path: '/', name: 'Home', component: Home },
+  { path: '/intro', name: 'Intro', component: IntroSection },
   { path: '/social-proof', name: 'SocialProof', component: SocialProof },
   { path: '/features', name: 'FeaturesPage', component: FeaturesPage },
   { path: '/process', name: 'ProcessInt', component: ProcessInt },

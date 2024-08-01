@@ -7,7 +7,7 @@
         <p>{{ social.description }}</p>
       </div>
     </div>
-    <h2>What Customers Are Saying About Our Support Team</h2>
+    <h2>Khách hàng nói gì về chúng tôi</h2>
     <div class="testimonials-container animate-fadeIn">
       <div class="testimonial-card animate-float" v-for="(testimonial, index) in testimonials" :key="index">
         <img :src="getImageUrl(testimonial.image)" :alt="testimonial.name" class="avatar">
@@ -19,14 +19,28 @@
         <p class="testimonial-text">{{ testimonial.text }}</p>
       </div>
     </div>
-    <h2>ESmart Solutions cung cấp bộ công cụ tối ưu</h2>
+    <h2>ESmart Solutions - Dịch vụ hỗ trợ tối ưu</h2>
     <div class="toolkit animate-slideIn">
-      <div class="toolkit-item animate-float" v-for="(item, index) in toolkit" :key="index">
+      <div class="toolkit-item animate-float" v-for="(item, index) in toolkit" :key="index" @click="openModal(item)">
         <i :class="item.icon"></i>
         <h3>{{ item.title }}</h3>
         <p>{{ item.description }}</p>
       </div>
     </div>
+
+    <!-- Modal for toolkit details -->
+    <v-dialog v-model="isModalOpen" max-width="500px">
+      <v-card>
+        <v-card-title class="headline">{{ selectedItem.title }}</v-card-title>
+        <v-card-text>
+          <p>{{ selectedItem.description }}</p>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="isModalOpen = false">Close</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </section>
 </template>
 
@@ -35,6 +49,8 @@ export default {
   name: 'SocialProofTestimonials',
   data() {
     return {
+      isModalOpen: false,
+      selectedItem: {},
       socialMedia: [
         { name: 'Facebook', icon: 'facebook.png', description: 'Hơn 1,000,000 lượt tiếp cận Facebook' },
         { name: 'Instagram', icon: 'instagram.png', description: 'Nội dung hấp dẫn trên Instagram' },
@@ -42,19 +58,18 @@ export default {
         { name: 'TikTok', icon: 'tiktok.png', description: 'Tạo xu hướng thịnh hành trên TikTok' }
       ],
       testimonials: [
-      {
-  name: 'Lê Khánh Linh - Đối tác hợp tác toàn diện',
-  title: 'Nhà sáng lập thương hiệu thời trang xanh Mỵ',
-  image: 'testimonial2.jpg',
-  text: 'Tôi đã đồng ý lựa chọn sản phẩm hỗ trợ truyền thông đa kênh toàn diện ngay lần gặp mặt đầu tiên. Đội ngũ ESmart Solutions tuy trẻ tuổi nhưng có quy trình và cách thức làm việc rất chuyên nghiệp, rõ ràng. Ngoài ra, sản phẩm của ESmart mang ý nghĩa nhân văn và giá cả phải chăng.'
-},
-      {
+        {
+          name: 'Lê Khánh Linh - Đối tác hợp tác toàn diện',
+          title: 'Nhà sáng lập thương hiệu thời trang xanh Mỵ',
+          image: 'testimonial2.jpg',
+          text: 'Tôi đã đồng ý lựa chọn sản phẩm hỗ trợ truyền thông đa kênh toàn diện ngay lần gặp mặt đầu tiên. Đội ngũ ESmart Solutions tuy trẻ tuổi nhưng có quy trình và cách thức làm việc rất chuyên nghiệp, rõ ràng. Ngoài ra, sản phẩm của ESmart mang ý nghĩa nhân văn và giá cả phải chăng.'
+        },
+        {
           name: 'Tạ Việt Dũng',
           title: 'Đối tác hợp tác toàn diện',
           image: 'testimonial1.jpg',
           text: 'Ban đầu, mục tiêu của chúng tôi là xuất khẩu sản phẩm sang Mỹ và châu Âu, ít quan tâm đến các kênh truyền thông tại Việt Nam. Tuy nhiên, sau khi xem xét hồ sơ hợp tác với ESmart Solutions, chúng tôi đã quyết định hợp tác vì sự rõ ràng trong kế hoạch truyền thông và giá cả hợp lý. Thông qua E-Boost, chúng tôi đặt mục tiêu đưa ống hút VietStraw đến các nhà hàng trên Châu Âu và Bắc Mỹ.'
         },
-  
         {
           name: 'Nguyễn Thu Huyền',
           title: 'CEO Thời Trang Mimi Organic',
@@ -69,18 +84,20 @@ export default {
         }
       ],
       toolkit: [
-  { title: 'Giải pháp quản lý truyền thông số đa kênh', description: 'Esmart Solutions cung cấp giải pháp quản lý truyền thông số đa kênh - Omnichannel Saving Digital Marketing - trên các nền tảng như Facebook, Instagram, Website, TikTok, Thương mại điện tử,...', icon: 'fas fa-palette' },
-  { title: 'Xây dựng kế hoạch Marketing tích hợp', description: 'Chúng tôi hỗ trợ bạn xây dựng kế hoạch Marketing tích hợp, triển khai đa kênh dựa theo hành trình khách hàng để tăng tỷ lệ chuyển đổi tốt nhất.', icon: 'fas fa-tags' },
-  { title: 'Hàng trăm Phần mở rộng', description: 'Mở rộng sức mạnh của Esmart Solutions với hàng trăm phần mở rộng miễn phí và trả phí từ Thị trường Esmart Solutions.', icon: 'fas fa-puzzle-piece' },
-  { title: 'Hỗ trợ đa kênh và quản lý mạng xã hội', description: 'Esmart Solutions giúp bạn quản lý mạng xã hội và truyền thông số kênh một cách hiệu quả, giúp tạo ra trải nghiệm khách hàng tốt nhất.', icon: 'fas fa-heart' },
-  { title: 'Hợp tác Trên Đám mây', description: 'Tất cả dữ liệu và tài nguyên thiết kế của bạn đều được lưu trữ trên đám mây của Esmart Solutions, giúp tiết kiệm thời gian và công sức.', icon: 'fas fa-cloud' },
-  { title: 'Xây dựng từ 2 Năm Kinh nghiệm', description: 'Esmart Solutions được xây dựng trên nền tảng của 16 năm kinh nghiệm trong lĩnh vực quảng cáo và quản lý truyền thông số kênh. Đây là công cụ hoàn chỉnh và đáng tin cậy nhất.', icon: 'fas fa-cogs' }
-]
+        { title: 'Giải pháp quản lý truyền thông số đa kênh', description: 'Esmart Solutions cung cấp giải pháp quản lý truyền thông số đa kênh - Omnichannel Saving Digital Marketing - trên các nền tảng như Facebook, Instagram, Website, TikTok, Thương mại điện tử,...', icon: 'fas fa-palette' },
+        { title: 'Xây dựng kế hoạch Marketing tích hợp', description: 'Chúng tôi hỗ trợ bạn xây dựng kế hoạch Marketing tích hợp, triển khai đa kênh dựa theo hành trình khách hàng để tăng tỷ lệ chuyển đổi.', icon: 'fas fa-tags' },
+        { title: 'Hỗ trợ đa kênh và quản lý mạng xã hội', description: 'Esmart Solutions giúp bạn quản lý mạng xã hội và truyền thông số kênh một cách hiệu quả, tạo ra trải nghiệm khách hàng tốt nhất.', icon: 'fas fa-heart' },
+        { title: 'Xây dựng từ 2 Năm Kinh nghiệm', description: 'Esmart Solutions được xây dựng trên nền tảng trong lĩnh vực quảng cáo và quản lý truyền thông số kênh.', icon: 'fas fa-cogs' }
+      ]
     };
   },
   methods: {
     getImageUrl(image) {
       return require(`@/assets/${image}`);
+    },
+    openModal(item) {
+      this.selectedItem = item;
+      this.isModalOpen = true;
     }
   },
   mounted() {
@@ -163,8 +180,8 @@ export default {
   margin: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex: 1 1 20%;
-  max-width: 20%;
+  flex: 1 1 45%;
+  max-width: 45%;
   text-align: left;
 }
 
@@ -204,9 +221,10 @@ export default {
   margin: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex: 1 1 30%;
-  max-width: 30%;
+  flex: 1 1 45%;
+  max-width: 45%;
   text-align: left;
+  cursor: pointer; /* Indicate that the cards are clickable */
 }
 
 .toolkit-item:hover {
@@ -224,6 +242,7 @@ export default {
   color: #333;
   margin-bottom: 0.5rem;
 }
+
 @keyframes slideIn {
   from {
     transform: translateX(-100%);

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <Navbar />
-    <section id="Trang chủ">
-      <HeroSection />
+    <section id="intro">
+      <IntroSection />
     </section>
     <section id="social-proof">
       <SocialProof />
@@ -36,7 +36,7 @@
 
 <script>
 import Navbar from './components/NavBar.vue'
-import HeroSection from './components/IntroSection.vue'
+import IntroSection from './components/IntroSection.vue'
 import SocialProof from './components/SocialProof.vue'
 import FeaturesPage from './components/FeaturesPage.vue'
 import ProcessInt from './components/OurProcess.vue'
@@ -51,7 +51,7 @@ export default {
   name: 'App',
   components: {
     Navbar,
-    HeroSection,
+    IntroSection,
     SocialProof,
     FeaturesPage,
     ProcessInt,
@@ -73,7 +73,7 @@ body {
 }
 #app {
   text-align: center;
-  padding-top: 70px; /* Adjust padding to avoid navbar overlap */
+
 }
 
 section {

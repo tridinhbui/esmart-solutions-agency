@@ -5,6 +5,10 @@
       <div class="card-content">
         <h2>{{ mainPost.title }}</h2>
         <p>{{ mainPost.excerpt }}</p>
+        <br>
+        <br>
+        <br>
+        <br>
         <button class="read-more">Read More</button>
       </div>
     </div>
@@ -50,10 +54,15 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 .blog-post {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding: 2rem 1rem;
+  background: #f0f2f5;
+  font-family: 'Poppins', sans-serif;
 }
 
 .card {
@@ -64,6 +73,12 @@ export default {
   margin: 10px;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .main-post {
@@ -71,6 +86,7 @@ export default {
   display: flex;
   flex-direction: row;
   max-width: 100%;
+  animation: fadeInUp 1s ease-in-out;
 }
 
 .sidebar {
@@ -84,11 +100,13 @@ export default {
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+  animation: fadeInUp 0.8s ease-in-out;
 }
 
 .card-image {
   width: 100%;
   height: auto;
+  object-fit: cover;
 }
 
 .card-content {
@@ -102,13 +120,13 @@ export default {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .read-more:hover {
   background: #0056b3;
 }
 
-/* Adjust the image size for horizontal layout */
 .main-post .card-image {
   width: 40%;
   height: auto;
@@ -125,6 +143,18 @@ export default {
 
 .sidebar-post .card-content {
   width: 60%;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Media query for mobile devices */

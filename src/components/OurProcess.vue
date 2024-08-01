@@ -2,7 +2,7 @@
   <section class="process">
     <h2>Quy trình của chúng tôi</h2>
     <div class="steps">
-      <div class="step" v-for="(step, index) in steps" :key="index">
+      <div class="step" v-for="(step, index) in steps" :key="index" @click="openModal(step)">
         <div class="content">
           <h3>{{ step.title }}</h3>
           <ul>
@@ -13,50 +13,74 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal for step details -->
+    <v-dialog v-model="isModalOpen" max-width="500px">
+      <v-card>
+        <v-card-title class="headline">{{ selectedStep.title }}</v-card-title>
+        <v-card-text>
+          <ul>
+            <li v-for="(subStep, subIndex) in selectedStep.subsSteps" :key="subIndex">
+              {{ subStep.title }}
+            </li>
+          </ul>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="isModalOpen = false">Close</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </section>
 </template>
 
 <script>
-
 export default {
   name: 'ProcessInt',
   data() {
     return {
+      isModalOpen: false,
+      selectedStep: {},
       steps: [
         { 
-          title: 'Bước 1: Tư vấn và lập kế hoạch ',
+          title: 'Bước 1: Tư vấn và lập kế hoạch',
           subsSteps: [
-            {title: 'Phân tích chuyên sâu: Khám phá chi tiết về sản phẩm/dịch vụ, xác định thông tin khách hàng mục tiêu và đánh giá thị trường cạnh tranh.'},
-            {title: 'Xây dựng customer insight: Tạo ra những hiểu biết sâu sắc về khách hàng mục tiêu.'},
-            {title: 'Lên kế hoạch triển khai: Thiết lập chiến lược triển khai theo tháng, đảm bảo mỗi bước đều có mục tiêu rõ ràng.'},
+            {title: 'Phân tích thị trường - khách hàng mục tiêu.'},
+            {title: 'Xây dựng customer insight'},
+            {title: 'Lên kế hoạch triển khai theo tháng, có mục tiêu rõ ràng.'},
           ]
         },
         { 
           title: 'Bước 2: Ký kết hợp đồng',
           subsSteps: [
-            {title: 'Chốt thỏa thuận: Ký kết hợp đồng với gói dịch vụ phù hợp đã chọn, đảm bảo mọi điều khoản đều minh bạch và rõ ràng.'},
+            {title: 'Ký hợp đồng với gói dịch vụ phù hợp, đảm bảo điều khoản đều minh bạch, rõ ràng.'},
           ]
         },
         { 
-          title: 'Bước 3: Triển khai chăm sóc Fanpage',
+          title: 'Bước 3: Triển khai Dịch vụ',
           subsSteps: [
-            {title: 'Khởi tạo dự án: Sử dụng công cụ Google Sheets để quản lý dự án, thêm các thành viên và khách hàng vào nhóm nhằm dễ dàng trao đổi và giám sát công việc.'},
-            {title: 'Xây dựng timeline nội dung: Lên kế hoạch chi tiết nội dung hàng tháng và trình khách hàng phê duyệt.'},
-            {title: 'Sản xuất nội dung: Thiết kế hình ảnh, sản xuất video và triển khai các chiến dịch quảng cáo nhằm phủ sóng thương hiệu và tăng doanh số bán hàng trên Fanpage.'},
+            {title: 'Tạo nhóm trao đổi và giám sát công việc.'},
+            {title: 'Lên kế hoạch nội dung hàng tháng, trình khách hàng phê duyệt.'},
+            {title: 'Thiết kế hình ảnh, sản xuất video, triển khai các chiến dịch quảng cáo'},
           ]
         },
         { 
           title: 'Bước 4: Báo cáo và đánh giá',
           subsSteps: [
-            {title: 'Báo cáo chi tiết: Cung cấp báo cáo chi tiết về các hạng mục đã triển khai vào cuối tháng, giúp khách hàng đánh giá hiệu quả và đưa ra những điều chỉnh cần thiết cho các chiến lược tiếp theo.'},
-            {title: 'Chăm sóc: Thu thập phản hồi khách hàng để cải thiện dịch vụ, hỗ trợ khách hàng tận tâm trong suốt quá trình sử dụng.'},
+            {title: 'Báo cáo kết quả cuối tháng, đưa ra điều chỉnh cần thiết'},
+            {title: 'Thu thập phản hồi khách hàng, hỗ trợ khách hàng trong quá trình sử dụng.'},
           ]
         },
       ]
     }
+  },
+  methods: {
+    openModal(step) {
+      this.selectedStep = step;
+      this.isModalOpen = true;
+    }
   }
 }
-
 </script>
 
 <style scoped>
@@ -101,6 +125,7 @@ export default {
   overflow: hidden;
   opacity: 0;
   animation-fill-mode: forwards;
+  cursor: pointer; /* Add cursor pointer to indicate clickability */
 }
 
 .step:nth-child(1) {
@@ -174,8 +199,8 @@ export default {
 .content li {
   text-align: left; /* Align substep text to the left for better readability */
   margin-bottom: 5px;
+  padding: 0 15px; /* Ensure padding inside cards */
 }
-
 
 /* Animation in CSS */
 @keyframes fadeIn {
@@ -197,26 +222,13 @@ export default {
     width: 100%;
   }
 }
+
 /* Component-specific media queries */
 @media (max-width: 768px) {
   .step {
     flex: 1 1 100%;
     margin: 0.5rem 0;
     padding: 1rem;
-  }
-
-  .responsive-step-title {
-    font-size: 1.2rem;
-  }
-
-  .responsive-step-text {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .step {
-    padding: 0.5rem;
   }
 
   .responsive-step-title {
@@ -228,5 +240,17 @@ export default {
   }
 }
 
-</style>
+@media (max-width: 480px) {
+  .step {
+    padding: 0.4rem;
+  }
 
+  .responsive-step-title {
+    font-size: 0.8rem;
+  }
+
+  .responsive-step-text {
+    font-size: 0.6rem;
+  }
+}
+</style>

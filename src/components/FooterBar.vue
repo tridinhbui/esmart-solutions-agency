@@ -4,9 +4,8 @@
       <div class="footer-brand">ESmart Solutions</div>
       <div class="description">Hiệu quả - Tôn trọng - Chuyên nghiệp.</div>
     </div>
-    <div class="Đăng kí">
-      <label for="Name" class="subscribetous">Đăng kí với chúng tôi</label>
-      <div class="gap"></div>
+    <div class="subscribe">
+      <label for="Email-4" class="subscribetous">Đăng kí với chúng tôi</label>
       <div class="subscribe-box">
         <input class="footer-text-field w-input" maxlength="256" name="Email-4" data-name="Email 4" placeholder="Đăng nhập bằng email" type="email" id="Email-4" required="">
         <input type="submit" data-wait="Please wait..." class="button footer-form-button w-button" value="Đăng kí">
@@ -14,14 +13,14 @@
     </div>
     <div class="footer-items">
       <ul class="footer-items2">  <!-- First column -->
-        <li><a href="#">Trang chủ</a></li>
-        <li><a href="#">Về chúng tôi</a></li>
-        <li><a href="#"></a></li>
+        <li><a href="#intro">Trang chủ</a></li>
+        <li><a href="#about-us">Về chúng tôi</a></li>
+        <li><a href="#process">Sản phẩm</a></li>
       </ul>
       <ul class="footer-items2">  <!-- Second column -->
-        <li><a href="#">Liên hệ</a></li>
-        <li><a href="#">Giá</a></li>
-        <li><a href="#"></a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+        <li><a href="#social-proof">Thành tựu</a></li>
+        <li><a href="#blog">Blog</a></li>
       </ul>
     </div>
   </nav>
@@ -34,11 +33,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
-/* Existing styles */
-.gap {
-  gap: 10px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap');
 
 .footer-bar {
   background-color: #0F1F3D;
@@ -47,45 +42,79 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 3rem;
-  flex-wrap: wrap; /* Allows items to wrap as needed on smaller screens */
+  flex-wrap: wrap;
   font-family: 'Space Grotesk', sans-serif;
-  height: auto;
-}
-
-.subscribe {
-  display: flex;
-  flex-direction: column;
-}
-
-.subscribe-box {
-  margin-top: 5px;
-  display: flex;
 }
 
 .footer-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .footer-brand {
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: bold;
   cursor: pointer;
 }
 
 .description {
-  font-size: 15px;
+  font-size: 1rem;
   color: gray;
+}
+
+.subscribe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.subscribetous {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.subscribe-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.footer-text-field {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.footer-form-button {
+  background-color: #145aff;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.footer-form-button:hover {
+  background-color: #0a47c3;
 }
 
 .footer-items {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   gap: 2rem;
-  list-style: none;
-  align-items: flex-start;
+  margin-top: 1rem;
 }
 
 .footer-items2 {
@@ -93,88 +122,70 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  padding-inline-start: 0;
 }
 
 .footer-items2 li {
   padding: 0.5rem 0;
 }
 
-.footer-text-field {
-    color: white;
-    background-color: rgba(255, 255, 255, .2);
-    border: 1px solid #000;
-    border-radius: 5px;
-    padding: 10px 24px;
-    font-size: 16px;
-}
-
-.button.footer-form-button {
-    background-color: #145aff;
-    color: white;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-weight: 700;
-    line-height: 120%;
-    cursor: pointer;
-    border: none;
-}
-
-.footer-items li a {
+.footer-items2 li a {
   color: white;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
-.footer-items li a:hover {
-  background-color: #0056b3;
-  border-radius: 5px;
+.footer-items2 li a:hover {
+  color: #145aff;
 }
 
-/* Responsive adjustments */
 @media (max-width: 985px) {
-  .footer-content, .subscribe, .footer-items {
-    flex: 1 1 auto; /* Make each section full width */
-    text-align: center;
+  .footer-bar {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .footer-brand, .description {
-    font-size: 24px; /* Slightly reduce the font size */
+  .footer-content, .subscribe, .footer-items {
+    width: 100%;
   }
 
   .subscribe-box {
-    flex-direction: column; /* Stack input and button vertically */
+    flex-direction: column;
+    align-items: center;
   }
 
-  .footer-items {
-    justify-content: center;
-    gap: 2rem;
-  }
-
-  .footer-items2 {
-    justify-content: center;
-    text-align: center;
-    padding-inline-start: 0px;
+  .footer-text-field, .footer-form-button {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 0.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .footer-bar {
-    padding: 20px; /* Increase padding slightly for smaller devices */
+    padding: 1rem;
   }
 
-  .footer-text-field, .button.footer-form-button {
-    width: auto; /* Full width for input and button */
-    margin-right: 0.2rem; /* Remove margin to fit full width */
+  .footer-brand {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    font-size: 0.875rem;
   }
 }
 
 @media (max-width: 480px) {
+  .footer-bar {
+    padding: 1rem;
+  }
+
   .footer-brand {
-    font-size: 20px; /* Further reduce the font size for small devices */
+    font-size: 1.25rem;
   }
 
   .description {
-    font-size: 14px; /* Reduce description font size for readability */
+    font-size: 0.75rem;
   }
 }
 </style>

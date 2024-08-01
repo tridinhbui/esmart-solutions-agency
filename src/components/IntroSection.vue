@@ -8,8 +8,9 @@
     <div class="hero-content animate-slideIn">
       <div class="text-content">
         <h1>ESmart Solutions Agency</h1>
-        <p>Với sứ mệnh xây dựng Fanpage chuyên nghiệp và cung cấp giải pháp chuyên sâu về Digital marketing, ESmart Solutions Agency không chỉ là một đối tác, mà là người bạn đồng hành cùng bạn trên hành trình xây dựng và phát triển thương hiệu toàn diện trên thị trường online. Chúng tôi mang đến những dịch vụ vượt trội, bao gồm: Thiết kế website hiện đại và tối ưu, SEO - Đưa website lên top tìm kiếm, Sáng tạo nội dung website và fanpage,...
-</p>
+        <p> ESmart Solutions Agency là đối tác, người bạn đồng hành chuyên nghiệp cùng doanh nghiệp Việt Nam trên hành
+          trình xây dựng và phát triển
+          thương hiệu uy tín, chất lượng. </p>
         <div class="buttons">
           <button class="styled-button">Tham gia</button>
           <button class="styled-button">Liên hệ</button>
@@ -28,6 +29,7 @@
     transform: translateX(-100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -38,6 +40,7 @@
   from {
     opacity: 0.2;
   }
+
   to {
     opacity: 0.5;
   }
@@ -47,6 +50,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -56,6 +60,7 @@
   from {
     width: 0;
   }
+
   to {
     width: 100%;
   }
@@ -146,7 +151,8 @@
 }
 
 .text-content h1 {
-  font-size: 2.5rem; /* Slightly increased font size */
+  font-size: 2.5rem;
+  /* Slightly increased font size */
   margin-bottom: 1rem;
   overflow: hidden;
   white-space: nowrap;
@@ -154,13 +160,15 @@
 }
 
 .text-content p {
-  font-size: 1.125rem; /* Slightly increased font size */
+  font-size: 1.125rem;
+  /* Slightly increased font size */
   line-height: 1.5;
   margin-bottom: 2rem;
 }
 
 .logo {
-  max-width: 350px; /* Increased max width */
+  max-width: 350px;
+  /* Increased max width */
   animation: logo-spin 3s ease-in-out infinite;
 }
 
@@ -175,6 +183,37 @@
   margin-bottom: 1rem;
 }
 
+@media (min-width: 769px) {
+  .hero-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .text-content {
+    text-align: left;
+    max-width: 600px;
+  }
+
+  .text-content h1 {
+    font-size: 2.5rem;
+    animation: typing 3s steps(30, end) forwards;
+  }
+
+  .text-content p {
+    font-size: 1.125rem;
+  }
+
+  .logo {
+    max-width: 350px;
+    margin-top: 0;
+  }
+
+  .buttons {
+    justify-content: flex-start;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-content {
     flex-direction: column;
@@ -187,16 +226,20 @@
   }
 
   .text-content h1 {
-    font-size: 2rem; /* Adjusted size for medium screens */
-    animation: none; /* Remove typing animation on smaller screens */
+    font-size: 2rem;
+    /* Adjusted size for medium screens */
+    animation: none;
+    /* Remove typing animation on smaller screens */
   }
 
   .text-content p {
-    font-size: 1rem; /* Adjusted size for medium screens */
+    font-size: 1rem;
+    /* Adjusted size for medium screens */
   }
 
   .logo {
-    max-width: 60vw; /* Increased size for medium screens */
+    max-width: 60vw;
+    /* Increased size for medium screens */
     margin-bottom: 2rem;
   }
 
@@ -206,18 +249,23 @@
 }
 
 @media (max-width: 480px) {
+  .hero .hero-content{
+    margin-top: 5.5rem;
+    padding-bottom: 1rem;
+  }
   .text-content h1 {
-    font-size: 1.6rem; /* Further reduced size for small screens */
+    font-size: 1.4rem;
+    /* Further reduced size for small screens */
   }
 
   .text-content p {
-    font-size: 0.9rem; /* Adjusted size for small screens */
+    font-size: 0.9rem;
+    /* Adjusted size for small screens */
   }
 
   .logo {
-    max-width: 70vw; /* Further increased size for small screens */
+    max-width: 70vw;
+    /* Further increased size for small screens */
   }
 }
 </style>
-
-  

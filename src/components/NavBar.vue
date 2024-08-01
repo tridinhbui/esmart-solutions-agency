@@ -4,7 +4,7 @@
       <img src="@/assets/logo.png" alt="ESmart Logo" class="logo">
       <nav>
         <ul :class="{ open: isOpen }">
-          <li><router-link to="/home">Trang chủ</router-link></li>
+          <li><router-link to="#intro">Trang chủ</router-link></li>
           <li><router-link to="#social-proof">Thành tựu</router-link></li>
           <li><router-link to="#process">Quy trình</router-link></li>
           <li><router-link to="#blog">Blog</router-link></li>
@@ -12,9 +12,11 @@
           <li class="dropdown">
             <router-link to="#about-us">Về Chúng Tôi</router-link>
             <ul class="dropdown-menu">
-              <li><router-link to="#about-us">About Us</router-link></li>
-              <li><router-link to="#contact">Contact</router-link></li>
-              <li><router-link to="#footer">Footer</router-link></li>
+              <li><router-link to="#intro">Trang chủ</router-link></li>
+              <li><router-link to="#social-proof">Thành tựu</router-link></li>
+              <li><router-link to="#process">Quy trình</router-link></li>
+              <li><router-link to="#blog">Blog</router-link></li>
+              <li><router-link to="#project">Sản phẩm</router-link></li>
             </ul>
           </li>
           <li><router-link to="#service"></router-link></li>
@@ -117,6 +119,7 @@ nav ul.open {
   from {
     transform: translateX(-80%);
   }
+
   to {
     transform: translateX(0);
   }

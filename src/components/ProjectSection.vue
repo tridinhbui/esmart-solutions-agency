@@ -1,20 +1,8 @@
-To enhance the CSS and replace the image icons with font icons (for a 3D float effect), you can use an icon library like Font Awesome and adjust the styles accordingly. Here's how you can do it:
 
-First, add Font Awesome to your project. You can do this by including the Font Awesome CDN link in the `<head>` section of your HTML file:
-
-```html
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xxlOQpCTa+DixO1C3tCSHSvGYz1Zq+Yq41rQO7bwZ/3qYjUQqg/9aLqYnQjXYrm4TJ4TpgT6noRZx5nlH98n1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-```
-
-Then, update your Vue component to use Font Awesome icons and add a 3D float effect:
-
-```html
 <template>
   <section class="features-section">
-    <h2>Tính năng</h2>
-    <h1>Cùng Esmart trải nghiệm những tính năng độc quyền</h1>
+    <h2>Phát triển website</h2>
+    <h1>Cùng Esmart trải nghiệm những tính năng đặc biệt</h1>
     <div class="features-container">
       <div class="feature-item" v-for="(feature, index) in features" :key="index">
         <div class="feature-icon">
