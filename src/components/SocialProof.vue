@@ -2,15 +2,27 @@
   <section class="social-proof-testimonials">
     <h2>Social Media</h2>
     <div class="socials animate-slideIn">
-      <div class="social-item animate-float" v-for="social in socialMedia" :key="social.name">
-        <img :src="getImageUrl(social.icon)" :alt="social.name">
+      <div
+        class="social-item animate-float"
+        v-for="social in socialMedia"
+        :key="social.name"
+      >
+        <img :src="getImageUrl(social.icon)" :alt="social.name" />
         <p>{{ social.description }}</p>
       </div>
     </div>
     <h2>Khách hàng nói gì về chúng tôi</h2>
     <div class="testimonials-container animate-fadeIn">
-      <div class="testimonial-card animate-float" v-for="(testimonial, index) in testimonials" :key="index">
-        <img :src="getImageUrl(testimonial.image)" :alt="testimonial.name" class="avatar">
+      <div
+        class="testimonial-card animate-float"
+        v-for="(testimonial, index) in testimonials"
+        :key="index"
+      >
+        <img
+          :src="getImageUrl(testimonial.image)"
+          :alt="testimonial.name"
+          class="avatar"
+        />
         <h3>{{ testimonial.name }}</h3>
         <h4>{{ testimonial.title }}</h4>
         <div class="stars">
@@ -21,7 +33,12 @@
     </div>
     <h2>ESmart Solutions - Dịch vụ hỗ trợ tối ưu</h2>
     <div class="toolkit animate-slideIn">
-      <div class="toolkit-item animate-float" v-for="(item, index) in toolkit" :key="index" @click="openModal(item)">
+      <div
+        class="toolkit-item animate-float"
+        v-for="(item, index) in toolkit"
+        :key="index"
+        @click="openModal(item)"
+      >
         <i :class="item.icon"></i>
         <h3>{{ item.title }}</h3>
         <p>{{ item.description }}</p>
@@ -37,7 +54,9 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="isModalOpen = false">Close</v-btn>
+          <v-btn color="blue darken-1" text @click="isModalOpen = false"
+            >Close</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -46,49 +65,97 @@
 
 <script>
 export default {
-  name: 'SocialProofTestimonials',
+  name: "SocialProofTestimonials",
   data() {
     return {
       isModalOpen: false,
       selectedItem: {},
       socialMedia: [
-        { name: 'Facebook', icon: 'facebook.png', description: 'Hơn 1,000,000 lượt tiếp cận Facebook' },
-        { name: 'Instagram', icon: 'instagram.png', description: 'Nội dung hấp dẫn trên Instagram' },
-        { name: 'LinkedIn', icon: 'linkedin.png', description: 'Kết nối chuyên nghiệp trên Linkedin ' },
-        { name: 'TikTok', icon: 'tiktok.png', description: 'Tạo xu hướng thịnh hành trên TikTok' }
+        {
+          name: "Facebook",
+          icon: "facebook.png",
+          description: "Hơn 1,000,000 lượt tiếp cận Facebook",
+        },
+        {
+          name: "Instagram",
+          icon: "instagram.png",
+          description: "Nội dung hấp dẫn trên Instagram",
+        },
+        {
+          name: "LinkedIn",
+          icon: "linkedin.png",
+          description: "Kết nối chuyên nghiệp trên Linkedin ",
+        },
+        {
+          name: "TikTok",
+          icon: "tiktok.png",
+          description: "Tạo xu hướng thịnh hành trên TikTok",
+        },
       ],
       testimonials: [
         {
-          name: 'Lê Khánh Linh - Đối tác hợp tác toàn diện',
-          title: 'Nhà sáng lập thương hiệu thời trang xanh Mỵ',
-          image: 'testimonial2.jpg',
-          text: 'Tôi đã đồng ý lựa chọn sản phẩm hỗ trợ truyền thông đa kênh toàn diện ngay lần gặp mặt đầu tiên. Đội ngũ ESmart Solutions tuy trẻ tuổi nhưng có quy trình và cách thức làm việc rất chuyên nghiệp, rõ ràng. Ngoài ra, sản phẩm của ESmart mang ý nghĩa nhân văn và giá cả phải chăng.'
+          name: "Lê Khánh Linh - Đối tác hợp tác toàn diện",
+          title: "Nhà sáng lập thương hiệu thời trang xanh Mỵ",
+          image: "testimonial2.jpg",
+          text: "Tôi đã đồng ý lựa chọn sản phẩm hỗ trợ truyền thông đa kênh toàn diện ngay lần gặp mặt đầu tiên. Đội ngũ ESmart Solutions tuy trẻ tuổi nhưng có quy trình và cách thức làm việc rất chuyên nghiệp, rõ ràng. Ngoài ra, sản phẩm của ESmart mang ý nghĩa nhân văn và giá cả phải chăng.",
         },
         {
-          name: 'Tạ Việt Dũng',
-          title: 'Đối tác hợp tác toàn diện',
-          image: 'testimonial1.jpg',
-          text: 'Ban đầu, mục tiêu của chúng tôi là xuất khẩu sản phẩm sang Mỹ và châu Âu, ít quan tâm đến các kênh truyền thông tại Việt Nam. Tuy nhiên, sau khi xem xét hồ sơ hợp tác với ESmart Solutions, chúng tôi đã quyết định hợp tác vì sự rõ ràng trong kế hoạch truyền thông và giá cả hợp lý. Thông qua E-Boost, chúng tôi đặt mục tiêu đưa ống hút VietStraw đến các nhà hàng trên Châu Âu và Bắc Mỹ.'
+          name: "Tạ Việt Dũng",
+          title: "Đối tác hợp tác toàn diện",
+          image: "testimonial1.jpg",
+          text: "Ban đầu, mục tiêu của chúng tôi là xuất khẩu sản phẩm sang Mỹ và châu Âu, ít quan tâm đến các kênh truyền thông tại Việt Nam. Tuy nhiên, sau khi xem xét hồ sơ hợp tác với ESmart Solutions, chúng tôi đã quyết định hợp tác vì sự rõ ràng trong kế hoạch truyền thông và giá cả hợp lý. Thông qua E-Boost, chúng tôi đặt mục tiêu đưa ống hút VietStraw đến các nhà hàng trên Châu Âu và Bắc Mỹ.",
         },
         {
-          name: 'Nguyễn Thu Huyền',
-          title: 'CEO Thời Trang Mimi Organic',
-          image: 'testimonial3.jpg',
-          text: 'Mimi - Doanh nghiệp thời trang hữu cơ đạt chứng nhận dệt may hữu cơ toàn cầu (GOTS) - đối tác lựa chọn hợp tác toàn diện cùng ESmart Solutions, sử dụng tất cả các dịch vụ từ truyền thông đa kênh, thương mại điện tử, công nghệ thông tin,…'
+          name: "Nguyễn Thu Huyền",
+          title: "CEO Thời Trang Mimi Organic",
+          image: "testimonial3.jpg",
+          text: "Mimi - Doanh nghiệp thời trang hữu cơ đạt chứng nhận dệt may hữu cơ toàn cầu (GOTS) - đối tác lựa chọn hợp tác toàn diện cùng ESmart Solutions, sử dụng tất cả các dịch vụ từ truyền thông đa kênh, thương mại điện tử, công nghệ thông tin,…",
         },
         {
-          name: 'Bác sĩ My',
-          title: 'CEO -KinderHealth',
-          image: 'testimonial4.jpg',
-          text: 'ESmart Solutions là một đối tác trẻ, năng động và mang lại giá trị cho Kinderhealth. Hợp tác với ESmart trong việc quản lý và phát triển trang Facebook và hài lòng kết quả mà team đã đem lại.'
-        }
+          name: "Bác sĩ My",
+          title: "CEO -KinderHealth",
+          image: "testimonial4.jpg",
+          text: "ESmart Solutions là một đối tác trẻ, năng động và mang lại giá trị cho Kinderhealth. Hợp tác với ESmart trong việc quản lý và phát triển trang Facebook và hài lòng kết quả mà team đã đem lại.",
+        },
+        {
+          name: "Phan Minh Tuấn",
+          title: "Giám đốc Marketing tại Công ty Công Nghệ FTech",
+          image: "testimonial4.jpg",
+          text: "Chúng tôi đã rất ấn tượng với cách ESmart Solutions tiếp cận và giải quyết các vấn đề truyền thông của chúng tôi. Đội ngũ chuyên nghiệp và tận tâm, cùng với sự sáng tạo trong các giải pháp truyền thông đã giúp chúng tôi gia tăng hiệu quả quảng cáo và mở rộng thị trường. ESmart thực sự là một đối tác đáng tin cậy trong hành trình phát triển thương hiệu của chúng tôi.",
+        },
+        {
+          name: "Hà Anh Thư",
+          title: "Founder và Giám đốc điều hành Tinh Tế Café",
+          image: "testimonial4.jpg",
+          text: "Khi bắt đầu hợp tác với ESmart Solutions, chúng tôi mong muốn tạo ra một hình ảnh thương hiệu độc đáo và nổi bật cho Tinh Tế Café. Đội ngũ ESmart đã vượt qua mong đợi của chúng tôi với những ý tưởng sáng tạo và giải pháp truyền thông hiệu quả. Họ không chỉ giúp nâng cao nhận diện thương hiệu mà còn tăng cường sự kết nối với khách hàng mục tiêu. Chúng tôi rất hài lòng với kết quả đạt được.",
+        },
       ],
       toolkit: [
-        { title: 'Giải pháp quản lý truyền thông số đa kênh', description: 'Esmart Solutions cung cấp giải pháp quản lý truyền thông số đa kênh - Omnichannel Saving Digital Marketing - trên các nền tảng như Facebook, Instagram, Website, TikTok, Thương mại điện tử,...', icon: 'fas fa-palette' },
-        { title: 'Xây dựng kế hoạch Marketing tích hợp', description: 'Chúng tôi hỗ trợ bạn xây dựng kế hoạch Marketing tích hợp, triển khai đa kênh dựa theo hành trình khách hàng để tăng tỷ lệ chuyển đổi.', icon: 'fas fa-tags' },
-        { title: 'Hỗ trợ đa kênh và quản lý mạng xã hội', description: 'Esmart Solutions giúp bạn quản lý mạng xã hội và truyền thông số kênh một cách hiệu quả, tạo ra trải nghiệm khách hàng tốt nhất.', icon: 'fas fa-heart' },
-        { title: 'Xây dựng từ 2 Năm Kinh nghiệm', description: 'Esmart Solutions được xây dựng trên nền tảng trong lĩnh vực quảng cáo và quản lý truyền thông số kênh.', icon: 'fas fa-cogs' }
-      ]
+        {
+          title: "Giải pháp quản lý truyền thông số đa kênh",
+          description:
+            "Esmart Solutions cung cấp giải pháp quản lý truyền thông số đa kênh - Omnichannel Saving Digital Marketing - trên các nền tảng như Facebook, Instagram, Website, TikTok, Thương mại điện tử,...",
+          icon: "fas fa-palette",
+        },
+        {
+          title: "Xây dựng kế hoạch Marketing tích hợp",
+          description:
+            "Chúng tôi hỗ trợ bạn xây dựng kế hoạch Marketing tích hợp, triển khai đa kênh dựa theo hành trình khách hàng để tăng tỷ lệ chuyển đổi.",
+          icon: "fas fa-tags",
+        },
+        {
+          title: "Hỗ trợ đa kênh và quản lý mạng xã hội",
+          description:
+            "Esmart Solutions giúp bạn quản lý mạng xã hội và truyền thông số kênh một cách hiệu quả, tạo ra trải nghiệm khách hàng tốt nhất.",
+          icon: "fas fa-heart",
+        },
+        {
+          title: "Xây dựng từ 2 Năm Kinh nghiệm",
+          description:
+            "Esmart Solutions được xây dựng trên nền tảng trong lĩnh vực quảng cáo và quản lý truyền thông số kênh.",
+          icon: "fas fa-cogs",
+        },
+      ],
     };
   },
   methods: {
@@ -98,25 +165,27 @@ export default {
     openModal(item) {
       this.selectedItem = item;
       this.isModalOpen = true;
-    }
+    },
   },
   mounted() {
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
+          entry.target.classList.add("animate");
         }
       });
     });
-    document.querySelectorAll('.animate-slideIn, .animate-fadeIn').forEach((el) => {
-      observer.observe(el);
-    });
-  }
-}
+    document
+      .querySelectorAll(".animate-slideIn, .animate-fadeIn")
+      .forEach((el) => {
+        observer.observe(el);
+      });
+  },
+};
 </script>
 
 <style scoped>
-@import '@fortawesome/fontawesome-free/css/all.css';
+@import "@fortawesome/fontawesome-free/css/all.css";
 
 @keyframes slideIn {
   from {
@@ -292,7 +361,9 @@ export default {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-  .social-item, .testimonial-card, .toolkit-item {
+  .social-item,
+  .testimonial-card,
+  .toolkit-item {
     flex: 1 1 100%;
     max-width: 100%;
   }
