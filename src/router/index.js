@@ -10,6 +10,8 @@ import ContactUs from '@/components/ContactUs.vue';
 import Project from '@/components/ProjectSection.vue';
 import AboutUs from '@/components/AboutUs.vue';
 import Service from '@/components/ServiceSection.vue';
+import DetailedBlog1 from '@/components/DetailedBlog1.vue';
+
 
 const routes = [
   { path: '/intro', name: 'Intro', component: IntroSection },
@@ -21,6 +23,11 @@ const routes = [
   { path: '/project', name: 'Project', component: Project },
   { path: '/about-us', name: 'AboutUs', component: AboutUs },
   { path: '/service', name: 'Service', component: Service },
+  {
+    path: '/detailed-blog-1',
+    name: 'DetailedBlog1',
+    component: DetailedBlog1,
+  },
 ];
 
 const router = createRouter({
