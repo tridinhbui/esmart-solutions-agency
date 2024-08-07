@@ -2,14 +2,22 @@
   <section class="social-proof-testimonials">
     <h2>Social Media</h2>
     <div class="socials animate-slideIn">
-      <div
+      <!-- <div
         class="social-item animate-float"
         v-for="social in socialMedia"
         :key="social.name"
+      > -->
+      <a
+        v-for="social in socialMedia"
+        :key="social.name"
+        :href="social.link"
+        target="_blank"
+        class="social-item animate-float"
       >
         <img :src="getImageUrl(social.icon)" :alt="social.name" />
-        <p>{{ social.description }}</p>
-      </div>
+        <p class="description">{{ social.description }}</p>
+        <!-- </div> -->
+      </a>
     </div>
     <h2>Khách hàng nói gì về chúng tôi</h2>
     <div class="testimonials-container animate-fadeIn">
@@ -75,21 +83,25 @@ export default {
           name: "Facebook",
           icon: "facebook.png",
           description: "Hơn 1,000,000 lượt tiếp cận Facebook",
+          link: "https://www.facebook.com", // Link to Facebook
         },
         {
           name: "Instagram",
           icon: "instagram.png",
           description: "Nội dung hấp dẫn trên Instagram",
+          link: "https://www.instagram.com", // Link to Facebook
         },
         {
           name: "LinkedIn",
           icon: "linkedin.png",
           description: "Kết nối chuyên nghiệp trên Linkedin ",
+          link: "https://www.linkedin.com", // Link to Facebook
         },
         {
           name: "TikTok",
           icon: "tiktok.png",
           description: "Tạo xu hướng thịnh hành trên TikTok",
+          link: "https://www.tiktok.com", // Link to Facebook
         },
       ],
       testimonials: [
@@ -120,13 +132,13 @@ export default {
         {
           name: "Phan Minh Tuấn",
           title: "Giám đốc Marketing tại Công ty Công Nghệ FTech",
-          image: "testimonial4.jpg",
+          image: "testimonial5.jpg",
           text: "Chúng tôi đã rất ấn tượng với cách ESmart Solutions tiếp cận và giải quyết các vấn đề truyền thông của chúng tôi. Đội ngũ chuyên nghiệp và tận tâm, cùng với sự sáng tạo trong các giải pháp truyền thông đã giúp chúng tôi gia tăng hiệu quả quảng cáo và mở rộng thị trường. ESmart thực sự là một đối tác đáng tin cậy trong hành trình phát triển thương hiệu của chúng tôi.",
         },
         {
           name: "Hà Anh Thư",
           title: "Founder và Giám đốc điều hành Tinh Tế Café",
-          image: "testimonial4.jpg",
+          image: "testimonial6.jpg",
           text: "Khi bắt đầu hợp tác với ESmart Solutions, chúng tôi mong muốn tạo ra một hình ảnh thương hiệu độc đáo và nổi bật cho Tinh Tế Café. Đội ngũ ESmart đã vượt qua mong đợi của chúng tôi với những ý tưởng sáng tạo và giải pháp truyền thông hiệu quả. Họ không chỉ giúp nâng cao nhận diện thương hiệu mà còn tăng cường sự kết nối với khách hàng mục tiêu. Chúng tôi rất hài lòng với kết quả đạt được.",
         },
       ],
@@ -225,6 +237,10 @@ export default {
   margin: 0.5rem;
   text-align: center;
   flex: 1 1 20%;
+}
+
+.social-item p.description {
+  color: white !important; /* Đảm bảo màu trắng */
 }
 
 .social-item img {

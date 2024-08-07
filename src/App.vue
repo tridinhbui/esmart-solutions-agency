@@ -28,6 +28,8 @@
     <section id="contact">
       <ContactUs />
     </section>
+    <router-view />
+
     <section id="footer">
       <Footer />
     </section>
@@ -35,20 +37,21 @@
 </template>
 
 <script>
-import Navbar from './components/NavBar.vue'
-import IntroSection from './components/IntroSection.vue'
-import SocialProof from './components/SocialProof.vue'
-import FeaturesPage from './components/FeaturesPage.vue'
-import ProcessInt from './components/OurProcess.vue'
-import BlogPost from './components/BlogPost.vue'
-import ContactUs from './components/ContactUs.vue'
-import Footer from './components/FooterBar.vue'
-import Service from './components/ServiceSection.vue'
-import Project from './components/ProjectSection.vue'
-import AboutUs from './components/AboutUs.vue'
+import Navbar from "./components/NavBar.vue";
+import IntroSection from "./components/IntroSection.vue";
+import SocialProof from "./components/SocialProof.vue";
+import FeaturesPage from "./components/FeaturesPage.vue";
+import ProcessInt from "./components/OurProcess.vue";
+import BlogPost from "./components/BlogPost.vue";
+import ContactUs from "./components/ContactUs.vue";
+import Footer from "./components/FooterBar.vue";
+import Service from "./components/ServiceSection.vue";
+import Project from "./components/ProjectSection.vue";
+import AboutUs from "./components/AboutUs.vue";
+//import DetailedBlog1 from "./components/DetailedBlog1.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Navbar,
     IntroSection,
@@ -60,24 +63,24 @@ export default {
     Project,
     Footer,
     Service,
-    AboutUs
-  }
-}
+    AboutUs,
+    //DetailedBlog1,
+  },
+};
 </script>
 
 <style>
 body {
   margin: 0;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   background-color: #f3f4f6;
 }
 #app {
   text-align: center;
-
 }
 
 section {
-  padding:  0; /* Adjust padding for better spacing */
+  padding: 0; /* Adjust padding for better spacing */
 }
 
 .card {

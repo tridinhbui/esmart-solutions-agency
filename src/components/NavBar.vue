@@ -1,14 +1,21 @@
 <template>
   <header class="navbar">
     <div class="navbar-content">
-      <img src="@/assets/logo.png" alt="ESmart Logo" class="logo">
+      <img src="@/assets/logo.png" alt="ESmart Logo" class="logo" />
       <nav>
         <ul :class="{ open: isOpen }">
           <li><router-link to="#intro">Trang chủ</router-link></li>
           <li><router-link to="#social-proof">Thành tựu</router-link></li>
-          <li><router-link to="#process">Quy trình</router-link></li>
-          <li><router-link to="#blog">Blog</router-link></li>
+          <li class="dropdown">
+            <router-link to="#blog">Blog</router-link>
+            <ul class="dropdown-menu">
+              <li>
+                <router-link to="#detailed-blog-1">Trang blog 1</router-link>
+              </li>
+            </ul>
+          </li>
           <li><router-link to="#project">Sản phẩm</router-link></li>
+
           <li class="dropdown">
             <router-link to="#about-us">Về Chúng Tôi</router-link>
             <ul class="dropdown-menu">
@@ -33,7 +40,7 @@
 
 <script>
 export default {
-  name: 'NavBar',
+  name: "NavBar",
   data() {
     return {
       isOpen: false,
