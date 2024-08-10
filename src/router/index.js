@@ -10,7 +10,7 @@ import ContactUs from '@/components/ContactUs.vue';
 import Project from '@/components/ProjectSection.vue';
 import AboutUs from '@/components/AboutUs.vue';
 import Service from '@/components/ServiceSection.vue';
-import DetailedBlog1 from '@/components/DetailedBlog1.vue';
+import DetailedBlog1 from '@/components/detailedblogpage/DetailedBlog1.vue';
 
 
 const routes = [

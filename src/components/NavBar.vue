@@ -10,7 +10,14 @@
             <router-link to="#blog">Blog</router-link>
             <ul class="dropdown-menu">
               <li>
-                <router-link to="#detailed-blog-1">Trang blog 1</router-link>
+                <a
+                  href="/detailed-blog-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button>Trang Blog 1</button>
+                </a>
+                <!-- <router-link to="#detailed-blog-1">Trang blog 1</router-link> -->
               </li>
             </ul>
           </li>

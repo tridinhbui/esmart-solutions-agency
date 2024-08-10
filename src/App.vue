@@ -1,36 +1,44 @@
 <template>
   <div id="app">
-    <Navbar />
-    <section id="intro">
-      <IntroSection />
-    </section>
-    <section id="social-proof">
-      <SocialProof />
-    </section>
-    <section id="features">
-      <FeaturesPage />
-    </section>
-    <section id="process">
-      <ProcessInt />
-    </section>
-    <section id="blog">
-      <BlogPost />
-    </section>
-    <section id="project">
-      <Project />
-    </section>
-    <section id="about-us">
-      <AboutUs />
-    </section>
-    <section id="service">
-      <Service />
-    </section>
-    <section id="contact">
-      <ContactUs />
-    </section>
+    <!-- Render Navbar only if the current route is not DetailedBlog1 -->
+    <Navbar v-if="!isDetailedBlogPage" />
+
+    <!-- Render sections only if the current route is not DetailedBlog1 -->
+    <div v-if="!isDetailedBlogPage">
+      <section id="intro">
+        <IntroSection />
+      </section>
+      <section id="social-proof">
+        <SocialProof />
+      </section>
+      <section id="features">
+        <FeaturesPage />
+      </section>
+      <section id="process">
+        <ProcessInt />
+      </section>
+      <section id="blog">
+        <BlogPost />
+      </section>
+      <section id="project">
+        <Project />
+      </section>
+      <section id="about-us">
+        <AboutUs />
+      </section>
+      <section id="service">
+        <Service />
+      </section>
+      <section id="contact">
+        <ContactUs />
+      </section>
+    </div>
+
+    <!-- Router view for all routes, including DetailedBlog1 -->
     <router-view />
 
-    <section id="footer">
+    <!-- Render footer only if the current route is not DetailedBlog1 -->
+    <section id="footer" v-if="!isDetailedBlogPage">
       <Footer />
     </section>
   </div>
@@ -48,7 +56,6 @@ import Footer from "./components/FooterBar.vue";
 import Service from "./components/ServiceSection.vue";
 import Project from "./components/ProjectSection.vue";
 import AboutUs from "./components/AboutUs.vue";
-//import DetailedBlog1 from "./components/DetailedBlog1.vue";
 
 export default {
   name: "App",
@@ -64,7 +71,11 @@ export default {
     Footer,
     Service,
     AboutUs,
-    //DetailedBlog1,
+  },
+  computed: {
+    isDetailedBlogPage() {
+      return this.$route.name === "DetailedBlog1";
+    },
   },
 };
 </script>
