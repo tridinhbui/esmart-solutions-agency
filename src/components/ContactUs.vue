@@ -1,35 +1,36 @@
 <template>
-    <section class="contact-us">
-      <h2>Liên hệ với chúng tôi</h2>
-      <div class="contact-container">
-        <div class="contact-card">
-          <h3>Tài khoản & Thanh toán</h3>
-          <p>Gửi email trực tiếp cho đội ngũ Esmart nếu bạn có bất kỳ câu hỏi nào.</p>
-          <form>
-            <input type="text" placeholder="Tên" />
-            <input type="email" placeholder="Địa chỉ email" />
-            <select>
-              <option>Thông tin chung</option>
-            </select>
-            <button type="submit">Gửi</button>
-          </form>
-        </div>
-        <div class="contact-card">
-          <h3>Hỗ trợ kỹ thuật</h3>
-          <p>Nếu cần trợ giúp, khách hàng có thể trò chuyện trực tiếp với nhóm hỗ trợ của Esmart Solutions!</p>
-          <button class="chat-button">Trò chuyện với nhóm hỗ trợ </button>
-          <p></p>
-        </div>
+  <section class="contact-us">
+    <h2>{{ $t("contactUs.title") }}</h2>
+    <div class="contact-container">
+      <div class="contact-card">
+        <h3>{{ $t("contactUs.general.title") }}</h3>
+        <p>{{ $t("contactUs.general.description") }}</p>
+        <form>
+          <input type="text" :placeholder="$t('contactUs.form.name')" />
+          <input type="email" :placeholder="$t('contactUs.form.email')" />
+          <select>
+            <option>{{ $t("contactUs.form.option") }}</option>
+          </select>
+          <button type="submit">{{ $t("contactUs.form.submit") }}</button>
+        </form>
       </div>
-    </section>
-  </template>
-  
-  <script>
-  export default {
-    name: 'ContactUs'
-  }
-  </script>
-  
+      <div class="contact-card">
+        <h3>{{ $t("contactUs.support.title") }}</h3>
+        <p>{{ $t("contactUs.support.description") }}</p>
+        <button class="chat-button">
+          {{ $t("contactUs.support.button") }}
+        </button>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+export default {
+  name: "ContactUs",
+};
+</script>
+
 <style>
 .contact-us {
   background: linear-gradient(135deg, #f3f4f6, #fff);
@@ -120,11 +121,14 @@
 }
 
 @keyframes button-bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-8px); /* Increased vertical translation for a more pronounced bounce */
+    transform: translateY(
+      -8px
+    ); /* Increased vertical translation for a more pronounced bounce */
   }
 }
 

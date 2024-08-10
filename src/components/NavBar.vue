@@ -4,10 +4,27 @@
       <img src="@/assets/logo.png" alt="ESmart Logo" class="logo" />
       <nav>
         <ul :class="{ open: isOpen }">
-          <li><router-link to="#intro">Trang chủ</router-link></li>
-          <li><router-link to="#social-proof">Thành tựu</router-link></li>
+          <li>
+            <div class="language-switcher">
+              <button @click="switchLanguage('vi')">
+                <img src="@/assets/vietnamese-flag.png" alt="Vietnamese" />
+              </button>
+              <button @click="switchLanguage('en')">
+                <img src="@/assets/english-flag.png" alt="English" />
+              </button>
+            </div>
+          </li>
+          <!-- <li><router-link to="#intro">Trang chủ</router-link></li> -->
+          <li>
+            <router-link to="#intro">{{ $t("home") }}</router-link>
+          </li>
+          <li>
+            <router-link to="#social-proof">{{
+              $t("achievements")
+            }}</router-link>
+          </li>
           <li class="dropdown">
-            <router-link to="#blog">Blog</router-link>
+            <router-link to="#blog">{{ $t("blog") }}</router-link>
             <ul class="dropdown-menu">
               <li>
                 <a
@@ -15,22 +32,34 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <button>Trang Blog 1</button>
+                  <button>{{ $t("blogPage1") }}</button>
                 </a>
-                <!-- <router-link to="#detailed-blog-1">Trang blog 1</router-link> -->
               </li>
             </ul>
           </li>
-          <li><router-link to="#project">Sản phẩm</router-link></li>
-
+          <li>
+            <router-link to="#project">{{ $t("products") }}</router-link>
+          </li>
           <li class="dropdown">
-            <router-link to="#about-us">Về Chúng Tôi</router-link>
+            <router-link to="#about-us">{{ $t("About Us") }}</router-link>
             <ul class="dropdown-menu">
-              <li><router-link to="#intro">Trang chủ</router-link></li>
-              <li><router-link to="#social-proof">Thành tựu</router-link></li>
-              <li><router-link to="#process">Quy trình</router-link></li>
-              <li><router-link to="#blog">Blog</router-link></li>
-              <li><router-link to="#project">Sản phẩm</router-link></li>
+              <li>
+                <router-link to="#intro">{{ $t("home") }}</router-link>
+              </li>
+              <li>
+                <router-link to="#social-proof">{{
+                  $t("achievements")
+                }}</router-link>
+              </li>
+              <li>
+                <router-link to="#process">{{ $t("process") }}</router-link>
+              </li>
+              <li>
+                <router-link to="#blog">{{ $t("blog") }}</router-link>
+              </li>
+              <li>
+                <router-link to="#project">{{ $t("products") }}</router-link>
+              </li>
             </ul>
           </li>
           <li><router-link to="#service"></router-link></li>
@@ -46,6 +75,8 @@
 </template>
 
 <script>
+// import { useI18n } from "vue-i18n";
+
 export default {
   name: "NavBar",
   data() {
@@ -57,11 +88,39 @@ export default {
     toggleMenu() {
       this.isOpen = !this.isOpen;
     },
+    switchLanguage(language) {
+      this.$i18n.locale = language;
+    },
+    goToBlog() {
+      this.$router.push({ name: "DetailedBlog1" });
+    },
   },
 };
 </script>
 
 <style scoped>
+.language-switcher {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.language-switcher button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.language-switcher img {
+  width: 30px; /* Adjust size as needed */
+  height: auto;
+}
+
+.language-switcher button:hover {
+  opacity: 0.8;
+}
+
 .navbar {
   background-color: white;
   padding-right: 2rem;

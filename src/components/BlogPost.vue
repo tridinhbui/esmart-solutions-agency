@@ -7,19 +7,23 @@
         class="card-image"
       />
       <div class="card-content">
-        <h2>{{ mainPost.title }}</h2>
+        <h2>{{ $t("blogPost.mainPost.title") }}</h2>
         <p>
-          {{ isExpanded ? mainPost.fullText : mainPost.excerpt }}
+          {{
+            isExpanded
+              ? $t("blogPost.mainPost.fullText")
+              : $t("blogPost.mainPost.excerpt")
+          }}
         </p>
         <br />
         <br />
         <button class="read-more" @click="toggleReadMore">
-          {{ isExpanded ? "Read Less" : "Read More" }}
+          {{ isExpanded ? $t("blogPost.readLess") : $t("blogPost.readMore") }}
         </button>
       </div>
     </div>
     <div class="sidebar">
-      <h3>More Posts</h3>
+      <h3>{{ $t("blogPost.morePosts") }}</h3>
       <div
         class="card sidebar-post"
         v-for="(post, index) in sidebarPosts"

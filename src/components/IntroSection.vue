@@ -7,22 +7,22 @@
     </header>
     <div class="hero-content animate-slideIn">
       <div class="text-content">
-        <h1>ESmart Solutions Agency</h1>
-        <p> ESmart Solutions Agency là đối tác, người bạn đồng hành chuyên nghiệp cùng doanh nghiệp Việt Nam trên hành
-          trình xây dựng và phát triển
-          thương hiệu uy tín, chất lượng. </p>
+        <h1>{{ $t("hero.title") }}</h1>
+        <p>{{ $t("hero.description") }}</p>
         <div class="buttons">
-          <button class="styled-button">Tham gia</button>
-          <button class="styled-button">Liên hệ</button>
+          <button class="styled-button">{{ $t("hero.buttons.join") }}</button>
+          <button class="styled-button">
+            {{ $t("hero.buttons.contact") }}
+          </button>
         </div>
       </div>
-      <img src="@/assets/logo.png" alt="ESmart Logo" class="logo">
+      <img src="@/assets/logo.png" alt="ESmart Logo" class="logo" />
     </div>
   </section>
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 @keyframes slideIn {
   from {
@@ -93,7 +93,7 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .hero:after {
@@ -249,7 +249,7 @@
 }
 
 @media (max-width: 480px) {
-  .hero .hero-content{
+  .hero .hero-content {
     margin-top: 5.5rem;
     padding-bottom: 1rem;
   }

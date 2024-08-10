@@ -1,19 +1,16 @@
 <template>
   <section class="about">
-    <h2>Về chúng tôi</h2>
-    <p>
-ESmart Solutions - tập trung hỗ trợ các doanh nghiệp kinh doanh tăng cường khả năng tiếp cận và quảng bá sản phẩm đến khách hàng tiềm năng. </p>
-
-<p>  ESmart với tôn chỉ Tôn trọng - Hiệu quả - Chuyên nghiệp, đối tác của chúng tôi sẽ thường xuyên được cập nhật thông tin, chăm sóc và đảm bảo quyền lợi từ những điều khoản nhỏ nhất.
-</p>
-    <p>Sản phẩm E-Boost của chúng tôi mang đến cơ hội cho doanh nghiệp không chỉ mở rộng và tối ưu hóa hoạt động kinh doanh, mà còn nâng cao thương hiệu, góp phần phát triển hệ sinh thái các doanh nghiệp phát triển bền vững.</p>
+    <h2>{{ $t("AboutUs.title") }}</h2>
+    <p>{{ $t("AboutUs.description1") }}</p>
+    <p>{{ $t("AboutUs.description2") }}</p>
+    <p>{{ $t("AboutUs.description3") }}</p>
   </section>
 </template>
 
 <script>
 export default {
-  name: 'AboutUs'
-}
+  name: "AboutUs",
+};
 </script>
 
 <style scoped>
@@ -65,12 +62,12 @@ p {
 
 @keyframes key-value-pop {
   from {
-      opacity: 0;
-      transform: translateY(20px);
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
