@@ -1,13 +1,18 @@
 <template>
   <section class="process">
-    <h2>Quy trình của chúng tôi</h2>
+    <h2>{{ $t("process.title") }}</h2>
     <div class="steps">
-      <div class="step" v-for="(step, index) in steps" :key="index" @click="openModal(step)">
+      <div
+        class="step"
+        v-for="(step, index) in steps"
+        :key="index"
+        @click="openModal(step)"
+      >
         <div class="content">
-          <h3>{{ step.title }}</h3>
+          <h3>{{ $t(`process.steps.${index}.title`) }}</h3>
           <ul>
             <li v-for="(subStep, subIndex) in step.subsSteps" :key="subIndex">
-              {{ subStep.title }}
+              {{ $t(`process.steps.${index}.subs.${subIndex}`) }}
             </li>
           </ul>
         </div>
@@ -15,17 +20,24 @@
     </div>
     <v-dialog v-model="isModalOpen" max-width="600px">
       <v-card>
-        <v-card-title class="headline">{{ selectedStep.title }}</v-card-title>
+        <v-card-title class="headline">{{
+          $t(selectedStep.title)
+        }}</v-card-title>
         <v-card-text>
           <ul>
-            <li v-for="(subStep, subIndex) in selectedStep.subsSteps" :key="subIndex">
-              {{ subStep.title }}
+            <li
+              v-for="(subStep, subIndex) in selectedStep.subsSteps"
+              :key="subIndex"
+            >
+              {{ $t(selectedStep.subs[subIndex]) }}
             </li>
           </ul>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="isModalOpen = false">Close</v-btn>
+          <v-btn color="blue darken-1" text @click="isModalOpen = false">{{
+            $t("process.closeButton")
+          }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -34,51 +46,46 @@
 
 <script>
 export default {
-  name: 'ProcessInt',
+  name: "ProcessInt",
   data() {
     return {
       isModalOpen: false,
       selectedStep: {},
       steps: [
-        { 
-          title: 'Bước 1: Tư vấn và lập kế hoạch',
+        {
+          title: "process.steps.0.title",
           subsSteps: [
-            {title: 'Phân tích thị trường - khách hàng mục tiêu.'},
-            {title: 'Xây dựng customer insight'},
-            {title: 'Lên kế hoạch triển khai triển khai theo tháng, có mục tiêu rõ ràng.'},
-          ]
+            "process.steps.0.subs.0",
+            "process.steps.0.subs.1",
+            "process.steps.0.subs.2",
+          ],
         },
-        { 
-          title: 'Bước 2: Ký kết hợp đồng',
+        {
+          title: "process.steps.1.title",
+          subsSteps: ["process.steps.1.subs.0"],
+        },
+        {
+          title: "process.steps.2.title",
           subsSteps: [
-            {title: 'Ký hợp đồng với gói dịch vụ phù hợp, đảm bảo điều khoản đều minh bạch, rõ ràng.'},
-          ]
+            "process.steps.2.subs.0",
+            "process.steps.2.subs.1",
+            "process.steps.2.subs.2",
+          ],
         },
-        { 
-          title: 'Bước 3: Triển khai chăm sóc Fanpage',
-          subsSteps: [
-            {title: 'Tạo nhóm trao đổi và giám sát công việc.'},
-            {title: 'Lên kế hoạch nội dung hàng tháng, trình khách hàng phê duyệt.'},
-            {title: 'Thiết kế hình ảnh, sản xuất video, triển khai các chiến dịch quảng cáo'},
-          ]
+        {
+          title: "process.steps.3.title",
+          subsSteps: ["process.steps.3.subs.0", "process.steps.3.subs.1"],
         },
-        { 
-          title: 'Bước 4: Báo cáo và đánh giá',
-          subsSteps: [
-            {title: 'Báo cáo kết quả cuối tháng, đưa ra điều chỉnh cần thiết'},
-            {title: 'Thu thập phản hồi khách hàng, hỗ trợ khách hàng trong quá trình sử dụng.'},
-          ]
-        },
-      ]
-    }
+      ],
+    };
   },
   methods: {
     openModal(step) {
       this.selectedStep = step;
       this.isModalOpen = true;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>

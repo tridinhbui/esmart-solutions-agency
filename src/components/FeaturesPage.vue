@@ -1,24 +1,32 @@
 <template>
   <section class="features">
-    <h2>Thành tựu</h2>
+    <h2>{{ $t("features.title") }}</h2>
     <div class="achievements">
-      <div class="achievement" v-for="(item, index) in achievements" :key="index">
+      <div
+        class="achievement"
+        v-for="(item, index) in achievements"
+        :key="index"
+      >
         <div class="icon">
           <i :class="item.icon"></i>
         </div>
         <div class="number">{{ item.currentValue }}</div>
-        <div class="title">{{ item.title }}</div>
-        <div class="description">{{ item.description }}</div>
+        <div class="title">
+          {{ $t(`features.achievements.${index}.title`) }}
+        </div>
+        <div class="description">
+          {{ $t(`features.achievements.${index}.description`) }}
+        </div>
       </div>
     </div>
     <div class="features-container animate-fadeIn">
       <div class="feature">
-        <h3>Đội ngũ</h3>
-        <p> Các ấn phẩm truyền thông của ESmart Solutions đã đạt được số lượng người tiếp cận lên tới 1,000,000+ .</p>
+        <h3>{{ $t("features.feature1.title") }}</h3>
+        <p>{{ $t("features.feature1.description") }}</p>
       </div>
       <div class="feature">
-        <h3>Đầu tư</h3>
-        <p>Esmart Solution đã gây quỹ tài trợ và nhận được sự hợp tác chiến lược từ tổ chức Macalester Entrepreneurship and Innovation Fund có trụ sở tại Saint Paul, Minnesota</p>
+        <h3>{{ $t("features.feature2.title") }}</h3>
+        <p>{{ $t("features.feature2.description") }}</p>
       </div>
     </div>
   </section>
@@ -26,15 +34,31 @@
 
 <script>
 export default {
-  name: 'FeaturesPage',
+  name: "FeaturesPage",
   data() {
     return {
       achievements: [
-        { icon: 'fas fa-users', title: 'Nhân sự', value: 20, currentValue: 0, description: '20+' },
-        { icon: 'fas fa-shopping-cart', title: 'Ấn phẩm', value: 5000, currentValue: 0, description: '5000+' },
-        { icon: 'fas fa-globe', title: 'Khu vực', value: 10, currentValue: 0, description: '10+' },
-        { icon: 'fas fa-bullhorn', title: 'Tiếp cận', value: 13000, currentValue: 0, description: '1000000+' }
-      ]
+        {
+          icon: "fas fa-users",
+          value: 20,
+          currentValue: 0,
+        },
+        {
+          icon: "fas fa-shopping-cart",
+          value: 5000,
+          currentValue: 0,
+        },
+        {
+          icon: "fas fa-globe",
+          value: 10,
+          currentValue: 0,
+        },
+        {
+          icon: "fas fa-bullhorn",
+          value: 1000000,
+          currentValue: 0,
+        },
+      ],
     };
   },
   mounted() {
@@ -56,8 +80,8 @@ export default {
           clearInterval(timer);
         }
       }, stepTime);
-    }
-  }
+    },
+  },
 };
 </script>
 

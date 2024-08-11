@@ -1,34 +1,58 @@
 <template>
   <section class="social-proof-testimonials">
-    <h2>Social Media</h2>
+    <h2>{{ $t("socialProof.mediaTitle") }}</h2>
     <div class="socials animate-slideIn">
-      <div class="social-item animate-float" v-for="social in socialMedia" :key="social.name">
-        <img :src="getImageUrl(social.icon)" :alt="social.name">
-        <p>{{ social.description }}</p>
-      </div>
+      <a
+        v-for="social in socialMedia"
+        :key="social.name"
+        :href="social.link"
+        target="_blank"
+        class="social-item animate-float"
+      >
+        <img :src="getImageUrl(social.icon)" :alt="social.name" />
+        <p class="description">
+          {{ $t("socialProof." + social.name.toLowerCase()) }}
+        </p>
+      </a>
     </div>
-    <h2>Khách hàng nói gì về chúng tôi</h2>
+    <h2>{{ $t("socialProof.testimonialsTitle") }}</h2>
     <div class="testimonials-container animate-fadeIn">
-      <div class="testimonial-card animate-float" v-for="(testimonial, index) in testimonials" :key="index">
-        <img :src="getImageUrl(testimonial.image)" :alt="testimonial.name" class="avatar">
-        <h3>{{ testimonial.name }}</h3>
-        <h4>{{ testimonial.title }}</h4>
+      <div
+        class="testimonial-card animate-float"
+        v-for="(testimonial, index) in testimonials"
+        :key="index"
+      >
+        <img
+          :src="getImageUrl(testimonial.image)"
+          :alt="testimonial.name"
+          class="avatar"
+        />
+        <h3>{{ $t("socialProof.testimonial" + (index + 1) + ".name") }}</h3>
+        <h4>{{ $t("socialProof.testimonial" + (index + 1) + ".title") }}</h4>
         <div class="stars">
           <i class="fas fa-star" v-for="n in 5" :key="n"></i>
         </div>
-        <p class="testimonial-text">{{ testimonial.text }}</p>
+        <p class="testimonial-text">
+          {{ $t("socialProof.testimonial" + (index + 1) + ".text") }}
+        </p>
       </div>
     </div>
-    <h2>ESmart Solutions - Dịch vụ hỗ trợ tối ưu</h2>
+    <h2>{{ $t("socialProof.toolkitTitle") }}</h2>
     <div class="toolkit animate-slideIn">
-      <div class="toolkit-item animate-float" v-for="(item, index) in toolkit" :key="index" @click="openModal(item)">
+      <div
+        class="toolkit-item animate-float"
+        v-for="(item, index) in toolkit"
+        :key="index"
+        @click="openModal(item)"
+      >
         <i :class="item.icon"></i>
-        <h3>{{ item.title }}</h3>
-        <p>{{ item.description }}</p>
+        <h3>{{ $t("socialProof.toolkit.item" + (index + 1) + ".title") }}</h3>
+        <p>
+          {{ $t("socialProof.toolkit.item" + (index + 1) + ".description") }}
+        </p>
       </div>
     </div>
 
-    <!-- Modal for toolkit details -->
     <v-dialog v-model="isModalOpen" max-width="500px">
       <v-card>
         <v-card-title class="headline">{{ selectedItem.title }}</v-card-title>
@@ -37,7 +61,9 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="isModalOpen = false">Close</v-btn>
+          <v-btn color="blue darken-1" text @click="isModalOpen = false"
+            >Close</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -46,49 +72,47 @@
 
 <script>
 export default {
-  name: 'SocialProofTestimonials',
+  name: "SocialProofTestimonials",
   data() {
     return {
       isModalOpen: false,
       selectedItem: {},
       socialMedia: [
-        { name: 'Facebook', icon: 'facebook.png', description: 'Hơn 1,000,000 lượt tiếp cận Facebook' },
-        { name: 'Instagram', icon: 'instagram.png', description: 'Nội dung hấp dẫn trên Instagram' },
-        { name: 'LinkedIn', icon: 'linkedin.png', description: 'Kết nối chuyên nghiệp trên Linkedin ' },
-        { name: 'TikTok', icon: 'tiktok.png', description: 'Tạo xu hướng thịnh hành trên TikTok' }
+        {
+          name: "Facebook",
+          icon: "facebook.png",
+          link: "https://www.facebook.com",
+        },
+        {
+          name: "Instagram",
+          icon: "instagram.png",
+          link: "https://www.instagram.com",
+        },
+        {
+          name: "LinkedIn",
+          icon: "linkedin.png",
+          link: "https://www.linkedin.com",
+        },
+        {
+          name: "TikTok",
+          icon: "tiktok.png",
+          link: "https://www.tiktok.com",
+        },
       ],
       testimonials: [
-        {
-          name: 'Lê Khánh Linh - Đối tác hợp tác toàn diện',
-          title: 'Nhà sáng lập thương hiệu thời trang xanh Mỵ',
-          image: 'testimonial2.jpg',
-          text: 'Tôi đã đồng ý lựa chọn sản phẩm hỗ trợ truyền thông đa kênh toàn diện ngay lần gặp mặt đầu tiên. Đội ngũ ESmart Solutions tuy trẻ tuổi nhưng có quy trình và cách thức làm việc rất chuyên nghiệp, rõ ràng. Ngoài ra, sản phẩm của ESmart mang ý nghĩa nhân văn và giá cả phải chăng.'
-        },
-        {
-          name: 'Tạ Việt Dũng',
-          title: 'Đối tác hợp tác toàn diện',
-          image: 'testimonial1.jpg',
-          text: 'Ban đầu, mục tiêu của chúng tôi là xuất khẩu sản phẩm sang Mỹ và châu Âu, ít quan tâm đến các kênh truyền thông tại Việt Nam. Tuy nhiên, sau khi xem xét hồ sơ hợp tác với ESmart Solutions, chúng tôi đã quyết định hợp tác vì sự rõ ràng trong kế hoạch truyền thông và giá cả hợp lý. Thông qua E-Boost, chúng tôi đặt mục tiêu đưa ống hút VietStraw đến các nhà hàng trên Châu Âu và Bắc Mỹ.'
-        },
-        {
-          name: 'Nguyễn Thu Huyền',
-          title: 'CEO Thời Trang Mimi Organic',
-          image: 'testimonial3.jpg',
-          text: 'Mimi - Doanh nghiệp thời trang hữu cơ đạt chứng nhận dệt may hữu cơ toàn cầu (GOTS) - đối tác lựa chọn hợp tác toàn diện cùng ESmart Solutions, sử dụng tất cả các dịch vụ từ truyền thông đa kênh, thương mại điện tử, công nghệ thông tin,…'
-        },
-        {
-          name: 'Bác sĩ My',
-          title: 'CEO -KinderHealth',
-          image: 'testimonial4.jpg',
-          text: 'ESmart Solutions là một đối tác trẻ, năng động và mang lại giá trị cho Kinderhealth. Hợp tác với ESmart trong việc quản lý và phát triển trang Facebook và hài lòng kết quả mà team đã đem lại.'
-        }
+        { image: "testimonial2.jpg" },
+        { image: "testimonial1.jpg" },
+        { image: "testimonial3.jpg" },
+        { image: "testimonial4.jpg" },
+        { image: "testimonial5.jpg" },
+        { image: "testimonial6.jpg" },
       ],
       toolkit: [
-        { title: 'Giải pháp quản lý truyền thông số đa kênh', description: 'Esmart Solutions cung cấp giải pháp quản lý truyền thông số đa kênh - Omnichannel Saving Digital Marketing - trên các nền tảng như Facebook, Instagram, Website, TikTok, Thương mại điện tử,...', icon: 'fas fa-palette' },
-        { title: 'Xây dựng kế hoạch Marketing tích hợp', description: 'Chúng tôi hỗ trợ bạn xây dựng kế hoạch Marketing tích hợp, triển khai đa kênh dựa theo hành trình khách hàng để tăng tỷ lệ chuyển đổi.', icon: 'fas fa-tags' },
-        { title: 'Hỗ trợ đa kênh và quản lý mạng xã hội', description: 'Esmart Solutions giúp bạn quản lý mạng xã hội và truyền thông số kênh một cách hiệu quả, tạo ra trải nghiệm khách hàng tốt nhất.', icon: 'fas fa-heart' },
-        { title: 'Xây dựng từ 2 Năm Kinh nghiệm', description: 'Esmart Solutions được xây dựng trên nền tảng trong lĩnh vực quảng cáo và quản lý truyền thông số kênh.', icon: 'fas fa-cogs' }
-      ]
+        { icon: "fas fa-palette" },
+        { icon: "fas fa-tags" },
+        { icon: "fas fa-heart" },
+        { icon: "fas fa-cogs" },
+      ],
     };
   },
   methods: {
@@ -98,25 +122,27 @@ export default {
     openModal(item) {
       this.selectedItem = item;
       this.isModalOpen = true;
-    }
+    },
   },
   mounted() {
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
+          entry.target.classList.add("animate");
         }
       });
     });
-    document.querySelectorAll('.animate-slideIn, .animate-fadeIn').forEach((el) => {
-      observer.observe(el);
-    });
-  }
-}
+    document
+      .querySelectorAll(".animate-slideIn, .animate-fadeIn")
+      .forEach((el) => {
+        observer.observe(el);
+      });
+  },
+};
 </script>
 
 <style scoped>
-@import '@fortawesome/fontawesome-free/css/all.css';
+@import "@fortawesome/fontawesome-free/css/all.css";
 
 @keyframes slideIn {
   from {
@@ -156,6 +182,10 @@ export default {
   margin: 0.5rem;
   text-align: center;
   flex: 1 1 20%;
+}
+
+.social-item p.description {
+  color: white !important; /* Đảm bảo màu trắng */
 }
 
 .social-item img {
@@ -292,7 +322,9 @@ export default {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-  .social-item, .testimonial-card, .toolkit-item {
+  .social-item,
+  .testimonial-card,
+  .toolkit-item {
     flex: 1 1 100%;
     max-width: 100%;
   }

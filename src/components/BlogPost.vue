@@ -1,21 +1,39 @@
 <template>
   <section class="blog-post">
     <div class="card main-post">
-      <img :src="require(`@/assets/${mainPost.image}`)" :alt="mainPost.title" class="card-image" />
+      <img
+        :src="require(`@/assets/${mainPost.image}`)"
+        :alt="mainPost.title"
+        class="card-image"
+      />
       <div class="card-content">
-        <h2>{{ mainPost.title }}</h2>
-        <p>{{ mainPost.excerpt }}</p>
-        <br>
-        <br>
-        <br>
-        <br>
-        <button class="read-more">Read More</button>
+        <h2>{{ $t("blogPost.mainPost.title") }}</h2>
+        <p>
+          {{
+            isExpanded
+              ? $t("blogPost.mainPost.fullText")
+              : $t("blogPost.mainPost.excerpt")
+          }}
+        </p>
+        <br />
+        <br />
+        <button class="read-more" @click="toggleReadMore">
+          {{ isExpanded ? $t("blogPost.readLess") : $t("blogPost.readMore") }}
+        </button>
       </div>
     </div>
     <div class="sidebar">
-      <h3>More Posts</h3>
-      <div class="card sidebar-post" v-for="(post, index) in sidebarPosts" :key="index">
-        <img :src="require(`@/assets/${post.image}`)" :alt="post.title" class="card-image" />
+      <h3>{{ $t("blogPost.morePosts") }}</h3>
+      <div
+        class="card sidebar-post"
+        v-for="(post, index) in sidebarPosts"
+        :key="index"
+      >
+        <img
+          :src="require(`@/assets/${post.image}`)"
+          :alt="post.title"
+          class="card-image"
+        />
         <div class="card-content">
           <h4>{{ post.title }}</h4>
         </div>
@@ -26,35 +44,44 @@
 
 <script>
 export default {
-  name: 'BlogPost',
+  name: "BlogPost",
   data() {
     return {
+      isExpanded: false,
       mainPost: {
-        image: 'image1.jpg',
-        title: 'ECO TOUCH - A NEW JOURNEY OF VIET STRAW TO GO GLOBAL',
-        excerpt: 'Joining forces with EcoSmart Solutions, ECO Touch embarks on an exhilarating journey alongside VietStraw...'
+        image: "image1.jpg",
+        title: "ECO TOUCH - A NEW JOURNEY OF VIET STRAW TO GO GLOBAL",
+        excerpt:
+          "Joining forces with EcoSmart Solutions, ECO Touch embarks on an exhilarating journey alongside VietStraw...",
+        fullText:
+          "Joining forces with EcoSmart Solutions, ECO Touch embarks on an exhilarating journey alongside VietStraw. As we embark on this exhilarating journey, ECO Touch and EcoSmart Solutions are poised to revolutionize the landscape of sustainable practices. Our partnership is built on a foundation of mutual respect and a commitment to advancing environmental solutions. With EcoSmart Solutions' expertise in cutting-edge green technologies and ECO Touch’s pioneering approach to eco-friendly products, we are set to make a significant impact.",
       },
       sidebarPosts: [
         {
-          image: 'image1.jpg',
-          title: 'Check Your Mail!'
+          image: "image1.jpg",
+          title: "Check Your Mail!",
         },
         {
-          image: 'image2.jpg',
-          title: 'Exciting news!'
+          image: "image2.jpg",
+          title: "Exciting news!",
         },
         {
-          image: 'image1.jpg',
-          title: '1 Day Left for Registration'
-        }
-      ]
+          image: "image1.jpg",
+          title: "1 Day Left for Registration",
+        },
+      ],
     };
-  }
+  },
+  methods: {
+    toggleReadMore() {
+      this.isExpanded = !this.isExpanded;
+    },
+  },
 };
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 .blog-post {
   display: flex;
@@ -62,7 +89,7 @@ export default {
   flex-wrap: wrap;
   padding: 2rem 1rem;
   background: #f0f2f5;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .card {
