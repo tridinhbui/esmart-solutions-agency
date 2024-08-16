@@ -20,8 +20,7 @@
     </div>
     <v-dialog v-model="isModalOpen" max-width="600px">
       <v-card>
-        <v-card-title class="headline">{{
-          $t(selectedStep.title)
+        <v-card-title class="headline">{{ $t(selectedStep.title)
         }}</v-card-title>
         <v-card-text>
           <ul>

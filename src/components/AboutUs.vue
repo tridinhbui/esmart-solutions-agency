@@ -4,6 +4,7 @@
     <p>{{ $t("AboutUs.description1") }}</p>
     <p>{{ $t("AboutUs.description2") }}</p>
     <p>{{ $t("AboutUs.description3") }}</p>
+    <img src="@/assets/esmart_end.jpg" :alt="$t('AboutUs.imageAlt')" class="about-image" />
   </section>
 </template>
 
@@ -69,6 +70,19 @@ p {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.about-image {
+  margin-top: 2rem;
+  max-width: 80%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.5s ease, filter 0.5s ease;
+  filter: brightness(1.2); /* Makes the image brighter */
+}
+
+.about-image:hover {
+  transform: scale(0.9) translateZ(-10px); /* Makes the image smaller and moves it away */
 }
 
 .key-value {

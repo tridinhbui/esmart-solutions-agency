@@ -6,12 +6,12 @@
         <h3>{{ $t("contactUs.general.title") }}</h3>
         <p>{{ $t("contactUs.general.description") }}</p>
         <form>
-          <input type="text" :placeholder="$t('contactUs.form.name')" />
-          <input type="email" :placeholder="$t('contactUs.form.email')" />
+          <input type="text" :placeholder="$t('contactUs.general.form.name')" />
+          <input type="email" :placeholder="$t('contactUs.general.form.email')" />
           <select>
-            <option>{{ $t("contactUs.form.option") }}</option>
+            <option>{{ $t("contactUs.general.form.option") }}</option>
           </select>
-          <button type="submit">{{ $t("contactUs.form.submit") }}</button>
+          <button type="submit">{{ $t("contactUs.general.form.submit") }}</button>
         </form>
       </div>
       <div class="contact-card">

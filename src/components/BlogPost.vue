@@ -203,5 +203,26 @@ export default {
   .sidebar-post .card-content {
     width: 100%;
   }
+
+  /* Adjust font size for bold text on mobile */
+  .card-content h2, .card-content h3, .read-more {
+    font-size: 1.2rem; /* Adjust as needed */
+  }
+
+  .blog-post {
+    padding: 1rem 0.5rem; /* Reduce padding on mobile */
+  }
+
+  .card {
+    margin: 5px; /* Reduce margin for mobile */
+  }
+
+  .card-content {
+    padding: 15px; /* Reduce padding for mobile */
+  }
+
+  .read-more {
+    padding: 8px 15px; /* Adjust button padding for mobile */
+  }
 }
 </style>

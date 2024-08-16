@@ -1,4 +1,7 @@
-<!-- <template>
+<!-- Why is this identical to ServiceSection.vue????
+
+
+<template>
   <section class="process">
     <h2>{{ $t("process.title") }}</h2>
     <div class="steps">
@@ -19,8 +22,8 @@
       </div>
     </div>
 
- Modal for step details -->
-<!-- <v-dialog v-model="isModalOpen" max-width="500px">
+ Modal for step details
+  <v-dialog v-model="isModalOpen" max-width="500px">
       <v-card>
         <v-card-title class="headline">{{ selectedStep.title }}</v-card-title>
         <v-card-text>
@@ -249,6 +252,6 @@ export default {
   .responsive-step-text {
     font-size: 0.6rem;
   }
-} -->
-<!-- <-- </style> -->
--->
+}
+ </style> -->
+

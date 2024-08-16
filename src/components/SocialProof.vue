@@ -100,8 +100,8 @@ export default {
         },
       ],
       testimonials: [
-        { image: "testimonial2.jpg" },
         { image: "testimonial1.jpg" },
+        { image: "testimonial2.jpg" },
         { image: "testimonial3.jpg" },
         { image: "testimonial4.jpg" },
         { image: "testimonial5.jpg" },

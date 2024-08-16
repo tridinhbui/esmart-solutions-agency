@@ -3,7 +3,7 @@
     <h2>{{ $t("feats.sectionTitle") }}</h2>
     <h1>{{ $t("feats.mainTitle") }}</h1>
     <div class="feats-container">
-      <div class="feat-item" v-for="(feat, index) in feats" :key="index">
+      <div class="feat-item" v-for="(feat, index) in features" :key="index">
         <div class="feat-icon">
           <i :class="feat.icon"></i>
         </div>
@@ -16,17 +16,17 @@
 <script>
 export default {
   name: "FeatsSection",
-  data() {
-    return {
-      features: [
-        { title: "", icon: "fas fa-cogs" }, // Titles now managed via translations
-        { title: "", icon: "fas fa-shopping-cart" },
-        { title: "", icon: "fas fa-globe" },
-        { title: "", icon: "fas fa-video" },
-        { title: "", icon: "fas fa-paint-brush" },
-        // Add more features as needed
-      ],
-    };
+  computed: {
+    features() {
+      // The titles are managed via the translation keys directly
+      return [
+        { icon: "fas fa-cogs" }, // Titles now managed via translations
+        { icon: "fas fa-shopping-cart" },
+        { icon: "fas fa-globe" },
+        { icon: "fas fa-video" },
+        { icon: "fas fa-paint-brush" },
+      ];
+    },
   },
 };
 </script>
@@ -96,4 +96,4 @@ export default {
 ``` In this example, I've replaced the image tags with Font Awesome icons using
 the `i` tag and the class names provided by Font Awesome. I've also adjusted the
 CSS to style the icons and add a 3D float effect on hover. You can customize the
-icon classes and styles as needed for your project.
+icon classes and styles as needed for your project. -->
