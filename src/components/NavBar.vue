@@ -23,6 +23,9 @@
               $t("achievements")
             }}</router-link>
           </li>
+          <li>
+                <router-link to="#blog">{{ $t("Team") }}</router-link>
+              </li>
           <li class="dropdown">
             <router-link to="#blog">{{ $t("blog") }}</router-link>
             <ul class="dropdown-menu">
@@ -52,13 +55,16 @@
                 }}</router-link>
               </li>
               <li>
-                <router-link to="#process">{{ $t("process") }}</router-link>
+                <router-link to="#process">{{ $t("Process") }}</router-link>
               </li>
               <li>
                 <router-link to="#blog">{{ $t("blog") }}</router-link>
               </li>
               <li>
                 <router-link to="#project">{{ $t("products") }}</router-link>
+              </li>
+              <li>
+                <router-link to="#blog">{{ $t("Team") }}</router-link>
               </li>
             </ul>
           </li>
@@ -75,7 +81,6 @@
 </template>
 
 <script>
-// import { useI18n } from "vue-i18n";
 
 export default {
   name: "NavBar",
