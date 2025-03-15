@@ -151,7 +151,7 @@ export default {
       });
 
     const scrollers = document.querySelectorAll(".scroller");
-    // If a user hasn't opted in for recuded motion, then we add the animation
+    // If a user hasn't opted in for reduced motion, then we add the animation
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       addAnimation();
     }
@@ -165,9 +165,6 @@ export default {
         const scrollerInner = scroller.querySelector(".scroller__inner");
         const scrollerContent = Array.from(scrollerInner.children);
 
-        // For each item in the array, clone it
-        // add aria-hidden to it
-        // add it into the `.scroller-inner`
         scrollerContent.forEach((item) => {
           const duplicatedItem = item.cloneNode(true);
           duplicatedItem.setAttribute("aria-hidden", true);
@@ -206,55 +203,54 @@ export default {
 .social-proof-testimonials {
   background: linear-gradient(135deg, #1c1c4c, #0077b6);
   color: white;
-  padding: 3rem 2rem;  /* Increased padding for better spacing */
+  padding: 3rem 2rem; 
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);  /* Added shadow for depth */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);  
 }
 
 .socials {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 0 auto 3rem;  /* Increased bottom margin */
-  max-width: 1200px;  /* Added max-width for better large screen display */
+  margin: 0 auto 3rem; 
+  max-width: 1200px;  
 }
 
 .social-item {
-  margin: 1rem;  /* Increased margin for better spacing */
   text-align: center;
   flex: 1 1 20%;
-  transition: transform 0.3s ease;  /* Added transition for hover effect */
-  padding: 1rem;  /* Added padding */
-  border-radius: 8px;  /* Rounded corners */
-  background: rgba(255, 255, 255, 0.1);  /* Subtle background */
+  transition: transform 0.3s ease;  
+  padding: 1rem;  
+  border-radius: 8px;  
+  background: rgba(255, 255, 255, 0.1);  
 }
 
 .social-item:hover {
-  transform: translateY(-5px);  /* Hover effect */
-  background: rgba(255, 255, 255, 0.15);  /* Slightly lighter on hover */
+  transform: translateY(-5px);  
+  background: rgba(255, 255, 255, 0.15); 
 }
 
 .social-item p.description {
   color: white !important;
-  font-weight: 500;  /* Made text slightly bolder */
-  font-size: 1.1rem;  /* Increased font size */
+  font-weight: 500;  
+  font-size: 1.1rem;  
 }
 
 .social-item img {
-  height: 60px;  /* Larger icons */
+  height: 60px;  
   width: auto;
-  margin-bottom: 1rem;  /* Added margin below image */
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));  /* Added shadow to icons */
-  transition: transform 0.3s ease;  /* Smooth transition for hover */
+  margin-bottom: 1rem;  
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));  
+  transition: transform 0.3s ease;  
 }
 
 .social-item:hover img {
-  transform: scale(1.1);  /* Slightly enlarge icon on hover */
+  transform: scale(1.1); 
 }
 
 .social-item p {
   margin-top: 0.75rem;
-  line-height: 1.4;  /* Improved line height for readability */
+  line-height: 1.4; 
 }
 
 .testimonials-container {
@@ -265,7 +261,7 @@ export default {
 
 .testimonial-card {
   background: white;
-  color: black; /* Ensure text is visible on white background */
+  color: black; 
   border-radius: 8px;
   padding: 1rem;
   margin: 1rem;
