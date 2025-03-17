@@ -14,9 +14,9 @@
       <section id="features">
         <FeaturesPage />
       </section>
-      <!-- <section id="process">
+      < <section id="process">
         <ProcessInt />
-      </section> -->
+      </section>
       <section id="blog">
         <BlogPost />
       </section>

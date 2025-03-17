@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import IntroSection from '@/components/IntroSection.vue';
 import SocialProof from '@/components/SocialProof.vue';
 import FeaturesPage from '@/components/FeaturesPage.vue';
-// import ProcessInt from '@/components/OurProcess.vue';
+import ProcessInt from '@/components/OurProcess.vue';
 import BlogPost from '@/components/BlogPost.vue';
 import ContactUs from '@/components/ContactUs.vue';
 import Project from '@/components/ProjectSection.vue';
@@ -17,7 +17,7 @@ const routes = [
   { path: '/intro', name: 'Intro', component: IntroSection },
   { path: '/social-proof', name: 'SocialProof', component: SocialProof },
   { path: '/features', name: 'FeaturesPage', component: FeaturesPage },
-  // { path: '/process', name: 'ProcessInt', component: ProcessInt },
+  { path: '/process', name: 'ProcessInt', component: ProcessInt },
   { path: '/blog', name: 'BlogPost', component: BlogPost },
   { path: '/contact', name: 'ContactUs', component: ContactUs },
   { path: '/project', name: 'Project', component: Project },
