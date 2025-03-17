@@ -64,7 +64,7 @@ export default {
     IntroSection,
     SocialProof,
     FeaturesPage,
-    //ProcessInt,
+    ProcessInt,
     BlogPost,
     ContactUs,
     Project,
