@@ -77,7 +77,7 @@
     }
   },
 
-  "Process": {
+  "pprocess": {
     "title": "Our Process",
     "steps": [
       {
