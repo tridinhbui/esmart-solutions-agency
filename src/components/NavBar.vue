@@ -52,7 +52,7 @@
                 }}</router-link>
               </li>
               <li>
-                <router-link to="#process">{{ $t("process") }}</router-link>
+                <router-link to="#process">{{ $t("Process") }}</router-link>
               </li>
               <li>
                 <router-link to="#blog">{{ $t("blog") }}</router-link>
