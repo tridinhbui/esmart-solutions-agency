@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import IntroSection from '@/components/IntroSection.vue';
 import SocialProof from '@/components/SocialProof.vue';
 import FeaturesPage from '@/components/FeaturesPage.vue';
-import ProcessInt from '@/components/OurProcess.vue';
+import ProcessInt from '@/components/ServiceSection.vue';
 import BlogPost from '@/components/BlogPost.vue';
 import ContactUs from '@/components/ContactUs.vue';
 import Project from '@/components/ProjectSection.vue';
