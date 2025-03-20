@@ -11,7 +11,7 @@ import Project from '@/components/ProjectSection.vue';
 import AboutUs from '@/components/AboutUs.vue';
 import Service from '@/components/ServiceSection.vue';
 import DetailedBlog1 from '@/components/detailedblogpage/DetailedBlog1.vue';
-import Team from '@/components/Team.vue';
+
 
 const routes = [
   { path: '/intro', name: 'Intro', component: IntroSection },
@@ -23,7 +23,6 @@ const routes = [
   { path: '/project', name: 'Project', component: Project },
   { path: '/about-us', name: 'AboutUs', component: AboutUs },
   { path: '/service', name: 'Service', component: Service },
-  { path: '/team', name: 'Team', component: Team },
   {
     path: '/detailed-blog-1',
     name: 'DetailedBlog1',
