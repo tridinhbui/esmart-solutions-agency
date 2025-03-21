@@ -16,25 +16,19 @@
       </a>
     </div>
     <h2>{{ $t("socialProof.testimonialsTitle") }}</h2>
-    <div class="testimonials-container animate-fadeIn">
-      <div
-        class="testimonial-card animate-float"
-        v-for="(testimonial, index) in testimonials"
-        :key="index"
-      >
-        <img
-          :src="getImageUrl(testimonial.image)"
-          :alt="testimonial.name"
-          class="avatar"
-        />
-        <h3>{{ $t("socialProof.testimonial" + (index + 1) + ".name") }}</h3>
-        <h4>{{ $t("socialProof.testimonial" + (index + 1) + ".title") }}</h4>
-        <div class="stars">
-          <i class="fas fa-star" v-for="n in 5" :key="n"></i>
+    <div class="testimonials-scroller" data-speed="slow">
+      <div class="testimonials-scroller__inner">
+        <div class="testimonial-card animate-float" v-for="(testimonial, index) in testimonials" :key="index">
+          <img :src="getImageUrl(testimonial.image)" :alt="testimonial.name" class="avatar" />
+          <h3>{{ $t("socialProof.testimonial" + (index + 1) + ".name") }}</h3>
+          <h4>{{ $t("socialProof.testimonial" + (index + 1) + ".title") }}</h4>
+          <div class="stars">
+            <i class="fas fa-star" v-for="n in 5" :key="n"></i>
+          </div>
+          <p class="testimonial-text">
+            {{ $t("socialProof.testimonial" + (index + 1) + ".text") }}
+          </p>
         </div>
-        <p class="testimonial-text">
-          {{ $t("socialProof.testimonial" + (index + 1) + ".text") }}
-        </p>
       </div>
     </div>
     <h2>{{ $t("socialProof.toolkitTitle") }}</h2>
@@ -137,6 +131,27 @@ export default {
       .forEach((el) => {
         observer.observe(el);
       });
+
+    const scrollers = document.querySelectorAll(".testimonials-scroller");
+    // If a user hasn't opted in for reduced motion, then we add the animation
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      addAnimation();
+    }
+
+    function addAnimation() {
+      scrollers.forEach((scroller) => {
+        scroller.setAttribute("data-animated", true);
+
+        const scrollerInner = scroller.querySelector(".testimonials-scroller__inner");
+        const scrollerContent = Array.from(scrollerInner.children);
+
+        scrollerContent.forEach((item) => {
+          const duplicatedItem = item.cloneNode(true);
+          duplicatedItem.setAttribute("aria-hidden", true);
+          scrollerInner.appendChild(duplicatedItem);
+        });
+      });
+    }
   },
 };
 </script>
@@ -196,10 +211,42 @@ export default {
   margin-top: 0.5rem;
 }
 
-.testimonials-container {
+.testimonials-scroller {
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.testimonials-scroller__inner {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  width: max-content;
+}
+
+.testimonials-scroller[data-animated="true"] {
+  -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+
+.testimonials-scroller[data-animated="true"] .testimonials-scroller__inner {
+  animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+}
+
+.testimonials-scroller[data-direction="right"] {
+  --_animation-direction: reverse;
+}
+
+.testimonials-scroller[data-direction="left"] {
+  --_animation-direction: forwards;
+}
+
+.testimonials-scroller[data-speed="fast"] {
+  --_animation-duration: 20s;
+}
+
+.testimonials-scroller[data-speed="slow"] {
+  --_animation-duration: 60s;
 }
 
 .testimonial-card {
@@ -210,8 +257,8 @@ export default {
   margin: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex: 1 1 45%;
-  max-width: 45%;
+  flex: 1 1 400px;
+  max-width: 400px;
   text-align: left;
 }
 
@@ -305,6 +352,12 @@ export default {
   100% {
     transform: translateY(0) rotateX(0) rotateY(0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
   }
 }
 
