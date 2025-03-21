@@ -14,9 +14,9 @@
       <section id="features">
         <FeaturesPage />
       </section>
-      <!-- <section id="process">
+      <section id="process">
         <ProcessInt />
-      </section> -->
+      </section>
       <section id="blog">
         <BlogPost />
       </section>
@@ -31,9 +31,6 @@
       </section>
       <section id="team">
         <Team />
-      </section>
-      <section id="questions">
-        <Questions/>
       </section>
       <section id="contact">
         <ContactUs />
@@ -55,7 +52,7 @@ import Navbar from "./components/NavBar.vue";
 import IntroSection from "./components/IntroSection.vue";
 import SocialProof from "./components/SocialProof.vue";
 import FeaturesPage from "./components/FeaturesPage.vue";
-//import ProcessInt from "./components/OurProcess.vue";
+import ProcessInt from "./components/ServiceSection.vue";
 import BlogPost from "./components/BlogPost.vue";
 import ContactUs from "./components/ContactUs.vue";
 import Footer from "./components/FooterBar.vue";
@@ -63,7 +60,6 @@ import Service from "./components/ServiceSection.vue";
 import Project from "./components/ProjectSection.vue";
 import AboutUs from "./components/AboutUs.vue";
 import Team from "./components/Team.vue";
-import Questions from "./components/Questions.vue";
 
 export default {
   name: "App",
@@ -72,7 +68,7 @@ export default {
     IntroSection,
     SocialProof,
     FeaturesPage,
-    //ProcessInt,
+    ProcessInt,
     BlogPost,
     ContactUs,
     Project,
@@ -80,7 +76,6 @@ export default {
     Service,
     AboutUs,
     Team,
-    Questions,
   },
   computed: {
     isDetailedBlogPage() {

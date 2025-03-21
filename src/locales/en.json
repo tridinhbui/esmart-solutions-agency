@@ -5,7 +5,7 @@
         "blogPage1": "Blog Page 1",
         "products": "Products",
         "AboutUs": "About Us",
-        "process": "Process",
+        "Process": "Process",
         "AboutUs": {
     "title": "About Us",
     "description1": "ESmart Solutions focuses on helping businesses enhance their ability to reach and promote their products to potential customers.",
@@ -77,7 +77,7 @@
     }
   },
 
-  "Process": {
+  "process": {
     "title": "Our Process",
     "steps": [
       {
@@ -188,8 +188,6 @@
     "facebook": "Over 1,000,000 Facebook reach",
     "instagram": "Engaging content on Instagram",
     "linkedin": "Professional connections on LinkedIn",
-    "threads": "See some content on threads",
-    "snapchat": "Connect for a quick chat",
     "tiktok": "Create trending content on TikTok",
     "testimonial1": {
       "name": "Le Khanh Linh - Comprehensive Partner",

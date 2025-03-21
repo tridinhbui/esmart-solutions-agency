@@ -1,21 +1,19 @@
 <template>
   <section class="social-proof-testimonials">
     <h2>{{ $t("socialProof.mediaTitle") }}</h2>
-    <div class="scroller" data-speed="fast">
-      <div class="scroller__inner">
-        <a
-          v-for="social in socialMedia"
-          :key="social.name"
-          :href="social.link"
-          target="_blank"
-          class="social-item animate-float"
-        >
-          <img :src="getImageUrl(social.icon)" :alt="social.name" />
-          <p class="description">
-            {{ $t("socialProof." + social.name.toLowerCase()) }}
-          </p>
-        </a>
-      </div>
+    <div class="socials animate-slideIn">
+      <a
+        v-for="social in socialMedia"
+        :key="social.name"
+        :href="social.link"
+        target="_blank"
+        class="social-item animate-float"
+      >
+        <img :src="getImageUrl(social.icon)" :alt="social.name" />
+        <p class="description">
+          {{ $t("socialProof." + social.name.toLowerCase()) }}
+        </p>
+      </a>
     </div>
     <h2>{{ $t("socialProof.testimonialsTitle") }}</h2>
     <div class="testimonials-container animate-fadeIn">
@@ -100,16 +98,6 @@ export default {
           icon: "tiktok.png",
           link: "https://www.tiktok.com",
         },
-        {
-          name: "Threads",
-          icon: "threads.png",
-          link: "https://www.threads.net/",
-        },
-        {
-          name: "SnapChat",
-          icon: "snapchat.png",
-          link: "https://www.snapchat.com/",
-        },
       ],
       testimonials: [
         { image: "testimonial1.jpg" },
@@ -149,30 +137,6 @@ export default {
       .forEach((el) => {
         observer.observe(el);
       });
-
-    const scrollers = document.querySelectorAll(".scroller");
-    // If a user hasn't opted in for reduced motion, then we add the animation
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      addAnimation();
-    }
-
-    function addAnimation() {
-      scrollers.forEach((scroller) => {
-        // add data-animated="true" to every `.scroller` on the page
-        scroller.setAttribute("data-animated", true);
-
-        // Make an array from the elements within `.scroller-inner`
-        const scrollerInner = scroller.querySelector(".scroller__inner");
-        const scrollerContent = Array.from(scrollerInner.children);
-
-        scrollerContent.forEach((item) => {
-          const duplicatedItem = item.cloneNode(true);
-          duplicatedItem.setAttribute("aria-hidden", true);
-          scrollerInner.appendChild(duplicatedItem);
-        });
-      });
-    }
-
   },
 };
 </script>
@@ -203,54 +167,33 @@ export default {
 .social-proof-testimonials {
   background: linear-gradient(135deg, #1c1c4c, #0077b6);
   color: white;
-  padding: 3rem 2rem; 
+  padding: 2rem 1rem;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);  
 }
 
 .socials {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 0 auto 3rem; 
-  max-width: 1200px;  
+  margin-bottom: 2rem;
 }
 
 .social-item {
+  margin: 0.5rem;
   text-align: center;
   flex: 1 1 20%;
-  transition: transform 0.3s ease;  
-  padding: 1rem;  
-  border-radius: 8px;  
-  background: rgba(255, 255, 255, 0.1);  
-}
-
-.social-item:hover {
-  transform: translateY(-5px);  
-  background: rgba(255, 255, 255, 0.15); 
 }
 
 .social-item p.description {
-  color: white !important;
-  font-weight: 500;  
-  font-size: 1.1rem;  
+  color: white !important; /* Đảm bảo màu trắng */
 }
 
 .social-item img {
-  height: 60px;  
-  width: auto;
-  margin-bottom: 1rem;  
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));  
-  transition: transform 0.3s ease;  
-}
-
-.social-item:hover img {
-  transform: scale(1.1); 
+  height: 50px;
 }
 
 .social-item p {
-  margin-top: 0.75rem;
-  line-height: 1.4; 
+  margin-top: 0.5rem;
 }
 
 .testimonials-container {
@@ -261,7 +204,7 @@ export default {
 
 .testimonial-card {
   background: white;
-  color: black; 
+  color: black; /* Ensure text is visible on white background */
   border-radius: 8px;
   padding: 1rem;
   margin: 1rem;
@@ -375,94 +318,6 @@ export default {
 
 .animate-float {
   animation: float 5s ease-in-out infinite;
-}
-
-.scroller {
-  max-width: 100%;
-}
-
-.scroller__inner {
-  padding-block: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.scroller[data-animated="true"] {
-  overflow: hidden;
-  -webkit-mask: linear-gradient(
-    90deg,
-    transparent,
-    white 20%,
-    white 80%,
-    transparent
-  );
-  mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
-}
-
-.scroller[data-animated="true"] .scroller__inner {
-  width: max-content;
-  flex-wrap: nowrap;
-  animation: scroll var(--_animation-duration, 40s)
-    var(--_animation-direction, forwards) linear infinite;
-}
-
-.scroller[data-direction="right"] {
-  --_animation-direction: reverse;
-}
-
-.scroller[data-direction="left"] {
-  --_animation-direction: forwards;
-}
-
-.scroller[data-speed="fast"] {
-  --_animation-duration: 20s;
-}
-
-.scroller[data-speed="slow"] {
-  --_animation-duration: 60s;
-}
-
-@keyframes scroll {
-  to {
-    transform: translate(calc(-50% - 0.5rem));
-  }
-}
-
-/* general styles */
-
-:root {
-  --clr-neutral-100: hsl(0, 0%, 100%);
-  --clr-primary-100: hsl(205, 15%, 58%);
-  --clr-primary-400: hsl(215, 25%, 27%);
-  --clr-primary-800: hsl(217, 33%, 17%);
-  --clr-primary-900: hsl(218, 33%, 9%);
-}
-
-html {
-  color-scheme: dark;
-}
-
-body {
-  display: grid;
-  min-block-size: 100vh;
-  place-content: center;
-  font-family: system-ui;
-  font-size: 1.125rem;
-  background-color: var(--clr-primary-800);
-}
-
-.tag-list {
-  margin: 0;
-  padding-inline: 0;
-  list-style: none;
-}
-
-.tag-list li {
-  padding: 1rem;
-  background: var(--clr-primary-400);
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1rem -0.25rem var(--clr-primary-900);
 }
 
 /* Mobile Responsiveness */
