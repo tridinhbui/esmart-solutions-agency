@@ -32,6 +32,9 @@
       <section id="questions">
         <Questions />
       </section>
+      <section id="chat">
+        <Chat />
+      </section>
       <section id="contact">
         <ContactUs />
       </section>
@@ -60,6 +63,7 @@ import Service from "./components/ServiceSection.vue";
 import Project from "./components/ProjectSection.vue";
 import AboutUs from "./components/AboutUs.vue";
 import Questions from "./components/Questions.vue";
+import Chat from "./components/Chat.vue";
 
 export default {
   name: "App",
@@ -76,6 +80,7 @@ export default {
     Service,
     AboutUs,
     Questions,
+    Chat,
   },
   computed: {
     isDetailedBlogPage() {
