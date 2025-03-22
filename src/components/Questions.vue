@@ -54,36 +54,44 @@ export default {
       activeIndex: null,
       faqItems: [
         {
-          question: 'What does a web design agency do?',
-          answer: 'A web design agency grows your brand online by bringing a team of experts together to create a custom site that is optimized for SEO and drives higher conversions for more leads and increased sales. A custom website starts with a strategy and planning before going into design and development. The designs need to be responsive to ensure a good user experience on both mobile and desktop devices.'
+          question: 'eSmart Solutions cung cấp những dịch vụ gì?',
+          answer: 'Chúng tôi chuyên cung cấp các giải pháp công nghệ như phát triển phần mềm tùy chỉnh, chuyển đổi số, ứng dụng di động, và dịch vụ tư vấn CNTT để giúp doanh nghiệp tối ưu hóa hoạt động và tăng trưởng bền vững.'
         },
         {
-          question: 'What is the difference between web design and web development?',
-          answer: 'Web design focuses on the visual aspects of a website including layout, colors, typography, and user experience. Web development involves the actual coding and programming that makes the website function. Design is about how it looks and feels, while development is about how it works.'
+          question: 'Tôi có thể yêu cầu giải pháp riêng cho doanh nghiệp của mình không?',
+          answer: 'Chắc chắn rồi! Chúng tôi thiết kế các giải pháp tùy chỉnh theo nhu cầu cụ thể của từng doanh nghiệp, đảm bảo phù hợp với mục tiêu và quy mô của bạn.'
         },
         {
-          question: 'Why is responsive web design important?',
-          answer: 'Responsive web design is crucial because it ensures your website looks and functions well on all devices, from desktops to smartphones. With mobile traffic accounting for over 50% of web traffic, having a responsive site improves user experience, boosts SEO rankings, and increases conversion rates.'
+          question: 'Quy trình phát triển phần mềm của eSmart diễn ra như thế nào?',
+          answer: 'Quy trình của chúng tôi gồm 5 bước: Phân tích yêu cầu, thiết kế giải pháp, phát triển sản phẩm, kiểm thử chất lượng, và triển khai. Chúng tôi luôn trao đổi chặt chẽ với khách hàng để đảm bảo kết quả tốt nhất.'
         },
         {
-          question: 'How long does it take to design a website?',
-          answer: 'The timeline for designing a website typically ranges from 4-12 weeks depending on the complexity, number of pages, and specific requirements. A simple informational website might take 4-6 weeks, while a complex e-commerce site could take 8-12 weeks or more.'
+          question: 'Mất bao lâu để hoàn thành một dự án?',
+          answer: 'Thời gian phụ thuộc vào độ phức tạp của dự án, nhưng trung bình từ 4 tuần đến 6 tháng. Chúng tôi sẽ cung cấp lộ trình chi tiết sau khi thảo luận yêu cầu của bạn.'
         },
         {
-          question: 'How much should I expect to pay for web design?',
-          answer: 'Web design costs vary widely based on project scope, complexity, and the expertise of the agency. Small business websites typically range from $5,000 to $15,000, while larger corporate sites or e-commerce platforms can cost $20,000 to $50,000+. Ongoing maintenance and updates are additional considerations.'
+          question: 'Chi phí cho một dự án là bao nhiêu?',
+          answer: 'Chi phí được tính dựa trên phạm vi dự án, tính năng yêu cầu, và thời gian thực hiện. Vui lòng liên hệ chúng tôi qua [email/form liên hệ] để nhận báo giá chính xác.'
         },
         {
-          question: 'How can you help me generate leads after my website is launched?',
-          answer: 'After launch, we can help generate leads through search engine optimization (SEO), content marketing, paid advertising campaigns, email marketing, social media strategies, and conversion rate optimization. We also offer analytics tracking to measure performance and make data-driven improvements.'
+          question: 'eSmart có hỗ trợ sau khi bàn giao sản phẩm không?',
+          answer: 'Có, chúng tôi cung cấp dịch vụ bảo trì, nâng cấp, và hỗ trợ kỹ thuật dài hạn để đảm bảo giải pháp của bạn luôn hoạt động hiệu quả."'
         },
         {
-          question: 'Do you offer website redesign services?',
-          answer: 'Yes, we offer comprehensive website redesign services. This includes evaluating your current site, identifying areas for improvement, and implementing modern design principles, improved functionality, and better user experience while preserving your brand identity and SEO value.'
+          question: 'eSmart phù hợp với loại hình doanh nghiệp nào?',
+          answer: '"Chúng tôi phục vụ đa dạng khách hàng, từ doanh nghiệp nhỏ, startup đến các công ty lớn trong nhiều lĩnh vực như bán lẻ, giáo dục, tài chính, và sản xuất.'
         },
         {
-          question: 'Will my website be mobile-friendly?',
-          answer: 'Absolutely. All websites we design are fully responsive and mobile-friendly by default. We test on multiple devices and screen sizes to ensure optimal performance and user experience across all platforms, from smartphones and tablets to desktop computers.'
+          question: 'Tôi không rành về công nghệ, eSmart có hỗ trợ tôi không?',
+          answer: 'Hoàn toàn có! Đội ngũ của chúng tôi sẽ tư vấn và đồng hành cùng bạn từ ý tưởng đến khi hoàn thiện, không cần bạn phải am hiểu sâu về công nghệ'
+          },
+        {
+          question: 'Tại sao tôi nên chọn eSmart Solutions?',
+          answer: 'Chúng tôi mang đến giải pháp sáng tạo, đội ngũ giàu kinh nghiệm, và cam kết đồng hành cùng sự phát triển của bạn với chi phí hợp lý và chất lượng vượt trội.'
+          },
+        {
+          question: 'Chuyển đổi số với eSmart giúp gì cho doanh nghiệp của tôi?',
+          answer: 'Chuyển đổi số giúp bạn tối ưu hóa quy trình, giảm chi phí vận hành, tăng trải nghiệm khách hàng, và cạnh tranh mạnh mẽ hơn trên thị trường.'
         }
       ]
     }
