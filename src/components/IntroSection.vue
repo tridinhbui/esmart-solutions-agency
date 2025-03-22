@@ -86,7 +86,9 @@
 .hero {
   background: linear-gradient(135deg, #07076c, #71bae2);
   color: white;
-  height: 90vh;
+  height: 95vh;
+  margin-top: -5vh;
+  padding-top: 5vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

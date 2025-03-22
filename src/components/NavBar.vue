@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar">
+  <header :class="['navbar', { 'navbar-scrolled': isScrolled }]">
     <div class="navbar-content">
       <img src="@/assets/logo.png" alt="ESmart Logo" class="logo" />
       <nav>
@@ -21,17 +21,13 @@
           <li>
             <router-link to="#social-proof">{{
               $t("achievements")
-            }}</router-link>
+              }}</router-link>
           </li>
           <li class="dropdown">
             <router-link to="#blog">{{ $t("blog") }}</router-link>
             <ul class="dropdown-menu">
               <li>
-                <a
-                  href="/detailed-blog-1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="/detailed-blog-1" target="_blank" rel="noopener noreferrer">
                   <button>{{ $t("blogPage1") }}</button>
                 </a>
               </li>
@@ -49,7 +45,7 @@
               <li>
                 <router-link to="#social-proof">{{
                   $t("achievements")
-                }}</router-link>
+                  }}</router-link>
               </li>
               <li>
                 <router-link to="#process">{{ $t("process") }}</router-link>
@@ -82,6 +78,7 @@ export default {
   data() {
     return {
       isOpen: false,
+      isScrolled: false,
     };
   },
   methods: {
@@ -94,6 +91,16 @@ export default {
     goToBlog() {
       this.$router.push({ name: "DetailedBlog1" });
     },
+    handleScroll() {
+      this.isScrolled = window.scrollY > 0;
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
   },
 };
 </script>
@@ -113,7 +120,8 @@ export default {
 }
 
 .language-switcher img {
-  width: 30px; /* Adjust size as needed */
+  width: 30px;
+  /* Adjust size as needed */
   height: auto;
 }
 
@@ -122,13 +130,20 @@ export default {
 }
 
 .navbar {
-  background-color: white;
+  background-color: transparent;
+  color: white;
   padding-right: 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar-scrolled {
+  background-color: white;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-content {
@@ -152,7 +167,7 @@ nav ul {
 nav ul li {
   margin: 0 1rem;
   cursor: pointer;
-  color: #333;
+  color: inherit;
   font-weight: bold;
   position: relative;
 }
