@@ -29,6 +29,9 @@
       <section id="service">
         <Service />
       </section>
+      <section id="questions">
+        <Questions />
+      </section>
       <section id="contact">
         <ContactUs />
       </section>
@@ -56,6 +59,7 @@ import Footer from "./components/FooterBar.vue";
 import Service from "./components/ServiceSection.vue";
 import Project from "./components/ProjectSection.vue";
 import AboutUs from "./components/AboutUs.vue";
+import Questions from "./components/Questions.vue";
 
 export default {
   name: "App",
@@ -71,6 +75,7 @@ export default {
     Footer,
     Service,
     AboutUs,
+    Questions,
   },
   computed: {
     isDetailedBlogPage() {
