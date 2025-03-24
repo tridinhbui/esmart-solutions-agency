@@ -2,9 +2,9 @@
   <section class="feats-section">
     <h2>{{ $t("feats.sectionTitle") }}</h2>
     <h1>{{ $t("feats.mainTitle") }}</h1>
-    <div class="feats-container">
-      <div class="feat-item" v-for="(feat, index) in features" :key="index">
-        <div class="feat-icon">
+    <div class="feats-container reveal">
+      <div class="feat-item reveal" v-for="(feat, index) in features" :key="index">
+        <div class="feat-icon reveal">
           <i :class="feat.icon"></i>
         </div>
         <p>{{ $t(`feats.items.${index}`) }}</p>
@@ -28,10 +28,54 @@ export default {
       ];
     },
   },
+  mounted() {
+    window.addEventListener("scroll", this.reveal);
+    this.reveal(); // Ensure animation triggers on page load if elements are already in view
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.reveal);
+  },
+  methods: {
+    reveal() {
+      const reveals = document.querySelectorAll(".reveal");
+      const windowHeight = window.innerHeight;
+      const revealPoint = 200;
+
+      reveals.forEach((element) => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < windowHeight - revealPoint) {
+          element.classList.add("active");
+        } else {
+          element.classList.remove("active");
+        }
+      });
+    },
+  },
 };
 </script>
 
 <style scoped>
+.reveal {
+  position: relative;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease-in-out;
+}
+
+.reveal.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+/* Adjust delay for each element */
+.feat-icon {
+  transition-delay: 0s; /* slightly earlier */
+}
+
+.feat-item {
+  transition-delay: 0s; /* appears earlier */
+}
+
+
 .feats-section {
   text-align: center;
   padding: 3rem 1rem;
