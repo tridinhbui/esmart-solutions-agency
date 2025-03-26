@@ -134,7 +134,7 @@ export default {
         observer.observe(el);
       });
 
-    const scroller = document.querySelectorAll(".scroller");
+    const scrollers = document.querySelectorAll(".testimonials-scroller");
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       addAnimation();
     }
