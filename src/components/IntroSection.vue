@@ -10,8 +10,10 @@
         <h1>{{ $t("hero.title") }}</h1>
         <p>{{ $t("hero.description") }}</p>
         <div class="buttons">
-          <button class="styled-button">{{ $t("hero.buttons.join") }}</button>
-          <button class="styled-button">
+          <button class="styled-button" @click="$router.push('#about-us')">
+            {{ $t("hero.buttons.join") }}
+          </button>
+          <button class="styled-button" @click="$router.push('#contact')">
             {{ $t("hero.buttons.contact") }}
           </button>
         </div>
