@@ -36,47 +36,22 @@ const getRandomUserAgent = () => {
   try {
     console.log('Starting scraper with anti-blocking measures...');
     
-    // Add initial delay before starting
-    await randomDelay(5000, 10000);
-    
-    // Launch browser with stealth options
     browser = await playwright.chromium.launch({ 
       headless: false,
-      slowMo: 50, // Reduced slowMo to make it less obvious
+      slowMo: 50, 
     });
     
-    // Create a persistent context to maintain cookies
     const context = await browser.newContext({
       userAgent: getRandomUserAgent(),
       viewport: { width: 1920, height: 1080 },
-      // Add additional browser fingerprinting protection
       deviceScaleFactor: 1,
       hasTouch: false,
       javaScriptEnabled: true,
       locale: 'en-US',
-      timezoneId: 'Asia/Ho_Chi_Minh' // Set Vietnam timezone
+      timezoneId: 'Asia/Ho_Chi_Minh'
     });
-    
-    // Add storage state if you have previously saved cookies
-    try {
-      if (fs.existsSync('./cookies.json')) {
-        const storageState = JSON.parse(fs.readFileSync('./cookies.json', 'utf8'));
-        await context.addCookies(storageState.cookies);
-      }
-    } catch (e) {
-      console.log('No saved cookies found, proceeding with fresh session');
-    }
     
     const page = await context.newPage();
-    
-    // Set extra HTTP headers to appear more like a real browser
-    await page.setExtraHTTPHeaders({
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-      'Accept-Language': 'en-US,en;q=0.5',
-      'Connection': 'keep-alive',
-      'Upgrade-Insecure-Requests': '1',
-      'Cache-Control': 'max-age=0'
-    });
     
     console.log(`Waiting ${await randomDelay(2000, 5000)}ms before navigating...`);
     
@@ -89,14 +64,13 @@ const getRandomUserAgent = () => {
           waitUntil: 'networkidle',
           timeout: 60000
         });
-        break; // If successful, exit the retry loop
+        break;
       } catch (error) {
         console.log(`Navigation failed: ${error.message}`);
         retries--;
         
         if (retries === 0) throw error;
         
-        // If navigation fails, wait longer before retrying
         console.log(`Taking a longer break before retry...`);
         await longDelay();
         
@@ -113,12 +87,7 @@ const getRandomUserAgent = () => {
         });
       }
     }
-    
-    
-    // Take a screenshot to debug
-    await page.screenshot({ path: 'debug-screenshot.png', fullPage: true });
-    console.log('Screenshot saved as debug-screenshot.png');
-    
+
     // Wait before extracting data
     await randomDelay(2000, 5000);
     
@@ -130,7 +99,6 @@ const getRandomUserAgent = () => {
                           document.querySelectorAll('.post');
       
       return Array.from(blogElements).map(blog => {
-        // Use multiple possible selector patterns
         const titleEl = blog.querySelector('h3.mb-3.mb-md-2') || 
                        blog.querySelector('h3') || 
                        blog.querySelector('.entry-title');
@@ -167,13 +135,6 @@ const getRandomUserAgent = () => {
     // Save the results to a file
     fs.writeFileSync('blogs.json', JSON.stringify(blogs, null, 2));
     console.log('Results saved to blogs.json');
-    
-    // Wait before saving cookies
-    await randomDelay(1000, 3000);
-    
-    // Save cookies for future sessions
-    const storageState = await context.storageState();
-    fs.writeFileSync('./cookies.json', JSON.stringify(storageState));
     
     await browser.close();
     console.log('Browser closed successfully');
