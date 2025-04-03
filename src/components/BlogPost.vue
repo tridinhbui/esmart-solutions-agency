@@ -1,228 +1,593 @@
 <template>
-  <section class="blog-post">
-    <div class="card main-post">
-      <img
-        :src="require(`@/assets/${mainPost.image}`)"
-        :alt="mainPost.title"
-        class="card-image"
-      />
-      <div class="card-content">
-        <h2>{{ $t("blogPost.mainPost.title") }}</h2>
-        <p>
-          {{
-            isExpanded
-              ? $t("blogPost.mainPost.fullText")
-              : $t("blogPost.mainPost.excerpt")
-          }}
-        </p>
-        <br />
-        <br />
-        <button class="read-more" @click="toggleReadMore">
-          {{ isExpanded ? $t("blogPost.readLess") : $t("blogPost.readMore") }}
-        </button>
+  <div class="blog-container">
+    <!-- Hero Banner Section -->
+    <div class="hero-banner" v-if="blogs.length > 0">
+      <img :src="blogs[0].image" alt="Hero Banner" class="hero-image" />
+      <div class="hero-content">
+        <h1>Startup</h1>
+        <p>The startup stories from successful founders in a variety of fields inspire other people.</p>
+        <button class="follow-btn">Theo dõi</button>
       </div>
     </div>
-    <div class="sidebar">
-      <h3>{{ $t("blogPost.morePosts") }}</h3>
-      <div
-        class="card sidebar-post"
-        v-for="(post, index) in sidebarPosts"
-        :key="index"
-      >
-        <img
-          :src="require(`@/assets/${post.image}`)"
-          :alt="post.title"
-          class="card-image"
-        />
-        <div class="card-content">
-          <h4>{{ post.title }}</h4>
+
+    <!-- Main Content Area -->
+    <div class="content-area">
+      <!-- Main Articles Grid -->
+      <div class="main-articles">
+        <div class="articles-grid">
+          <div v-for="(post, index) in blogs.slice(0, 3)" :key="`article-${index}`" class="article-card" @click="navigateToBlogPost(post.url)">
+            <div class="card-image">
+              <img :src="post.image" :alt="post.title" />
+            </div>
+            <div class="card-content">
+              <h3>{{ post.title }}</h3>
+              <div class="author-row">
+                <div class="author-avatar">
+                  <img :src="post.authorImage || getDefaultAuthorImage()" :alt="post.author" />
+                </div>
+                <span class="author-name">{{ post.author }}</span>
+                <div class="engagement">
+                  <span class="likes"><i class="icon-heart"></i> {{ Math.floor(Math.random() * 5) }}</span>
+                  <span class="comments"><i class="icon-comment"></i> {{ Math.floor(Math.random() * 3) }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second Row Articles -->
+        <div class="articles-grid">
+          <div v-for="(post, index) in blogs.slice(3, 6)" :key="`second-${index}`" class="article-card" @click="navigateToBlogPost(post.url)">
+            <div class="card-image">
+              <img :src="post.image" :alt="post.title" />
+            </div>
+            <div class="card-content">
+              <h3>{{ post.title }}</h3>
+              <div class="author-row">
+                <div class="author-avatar">
+                  <img :src="post.authorImage || getDefaultAuthorImage()" :alt="post.author" />
+                </div>
+                <span class="author-name">{{ post.author }}</span>
+                <div class="engagement">
+                  <span class="likes"><i class="icon-heart"></i> {{ Math.floor(Math.random() * 5) }}</span>
+                  <span class="comments"><i class="icon-comment"></i> {{ Math.floor(Math.random() * 3) }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Editor's Picks -->
+        <div class="editors-picks">
+          <h2 class="section-title">Editor's Picks</h2>
+          
+          <div v-for="(post, index) in blogs.slice(0, 5)" :key="`pick-${index}`" class="pick-item" @click="navigateToBlogPost(post.url)">
+            <div class="pick-image">
+              <img :src="post.image" :alt="post.title" />
+            </div>
+            <div class="pick-content">
+              <h3>{{ post.title }}</h3>
+              <div class="author-info">
+                <span class="author-name">{{ post.author }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hot Articles -->
+        <div class="hot-articles">
+          <div class="section-header">
+            <h2 class="section-title">Bài hot trong tuần</h2>
+          </div>
+          
+          <div class="hot-articles-list">
+            <div v-for="(post, index) in blogs.slice(0, 5)" :key="`hot-${index}`" class="hot-article" @click="navigateToBlogPost(post.url)">
+              <div class="hot-number">#{{ index + 1 }}</div>
+              <div class="hot-content">
+                <h3>{{ post.title }}</h3>
+                <div class="author-info">
+                  <span class="author-name">{{ post.author }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Authors Section -->
+        <div class="authors-section">
+          <div class="section-header">
+            <h2 class="section-title">Tác giả nổi bật</h2>
+          </div>
+          
+          <div class="authors-list">
+            <div v-for="(author, index) in getUniqueAuthors()" :key="`author-${index}`" class="author-card">
+              <div class="author-avatar large">
+                <img :src="getAuthorImage(author)" :alt="author" />
+              </div>
+              <div class="author-details">
+                <h3 class="author-name">{{ author }}</h3>
+                <p class="author-title">Content Writer | Advertising Vietnam</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
+import blogData from '../components/crawl/blogs.json';
+
 export default {
   name: "BlogPost",
   data() {
     return {
-      isExpanded: false,
-      mainPost: {
-        image: "image1.jpg",
-        title: "ECO TOUCH - A NEW JOURNEY OF VIET STRAW TO GO GLOBAL",
-        excerpt:
-          "Joining forces with EcoSmart Solutions, ECO Touch embarks on an exhilarating journey alongside VietStraw...",
-        fullText:
-          "Joining forces with EcoSmart Solutions, ECO Touch embarks on an exhilarating journey alongside VietStraw. As we embark on this exhilarating journey, ECO Touch and EcoSmart Solutions are poised to revolutionize the landscape of sustainable practices. Our partnership is built on a foundation of mutual respect and a commitment to advancing environmental solutions. With EcoSmart Solutions' expertise in cutting-edge green technologies and ECO Touch’s pioneering approach to eco-friendly products, we are set to make a significant impact.",
-      },
-      sidebarPosts: [
-        {
-          image: "image1.jpg",
-          title: "Check Your Mail!",
-        },
-        {
-          image: "image2.jpg",
-          title: "Exciting news!",
-        },
-        {
-          image: "image1.jpg",
-          title: "1 Day Left for Registration",
-        },
-      ],
+      blogs: []
     };
   },
-  methods: {
-    toggleReadMore() {
-      this.isExpanded = !this.isExpanded;
-    },
+  created() {
+    // Load all blogs from the JSON file
+    this.blogs = blogData || [];
   },
+  methods: {
+    navigateToBlogPost(url) {
+      if (url) {
+        window.open(url, '_blank');
+      }
+    },
+    getDefaultAuthorImage() {
+      return 'https://advertisingvietnam.com/assets/image/user/avatar-default.jpg';
+    },
+    getUniqueAuthors() {
+      const authors = [...new Set(this.blogs.map(blog => blog.author))];
+      return authors.slice(0, 5);
+    },
+    getAuthorImage(authorName) {
+      const post = this.blogs.find(blog => blog.author === authorName);
+      return post?.authorImage || this.getDefaultAuthorImage();
+    }
+  }
 };
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-.blog-post {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 2rem 1rem;
-  background: #f0f2f5;
-  font-family: "Poppins", sans-serif;
+/* Base Styles */
+.blog-container {
+  font-family: 'Inter', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #333;
+  padding: 0 10px;
 }
 
-.card {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* Hero Banner */
+.hero-banner {
+  position: relative;
+  height: 350px;
+  border-radius: 6px;
   overflow: hidden;
-  margin: 10px;
+  margin-bottom: 20px;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  width: 80%;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.follow-btn {
+  background-color: white;
+  color: #333;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.follow-btn:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+/* Content Area */
+.content-area {
   display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  gap: 20px;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-.main-post {
+.main-articles {
   flex: 2;
-  display: flex;
-  flex-direction: row;
-  max-width: 100%;
-  animation: fadeInUp 1s ease-in-out;
 }
 
 .sidebar {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  max-width: 100%;
 }
 
-.sidebar-post {
+/* Articles Grid */
+.articles-grid {
   display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
-  animation: fadeInUp 0.8s ease-in-out;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.article-card {
+  flex: 1;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.article-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
 .card-image {
+  height: 160px;
+  overflow: hidden;
+}
+
+.card-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.article-card:hover .card-image img {
+  transform: scale(1.05);
 }
 
 .card-content {
-  padding: 20px;
+  padding: 12px;
 }
 
-.read-more {
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+.card-content h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 2.6em;
+}
+
+/* Author Row */
+.author-row {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.author-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 8px;
+}
+
+.author-avatar.large {
+  width: 40px;
+  height: 40px;
+}
+
+.author-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.author-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+}
+
+/* Engagement */
+.engagement {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: #777;
+}
+
+.likes, .comments {
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.icon-heart::before {
+  content: '♥';
+  margin-right: 2px;
+}
+
+.icon-comment::before {
+  content: '💬';
+  margin-right: 2px;
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background-color: #ff3e4d;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+/* Editor's Picks */
+.editors-picks {
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.pick-item {
+  display: flex;
+  margin-bottom: 12px;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
-.read-more:hover {
-  background: #0056b3;
+.pick-item:last-child {
+  margin-bottom: 0;
 }
 
-.main-post .card-image {
-  width: 40%;
-  height: auto;
+.pick-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-right: 10px;
+  flex-shrink: 0;
 }
 
-.main-post .card-content {
-  width: 60%;
+.pick-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.sidebar-post .card-image {
-  width: 40%;
-  height: auto;
+.pick-content h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.sidebar-post .card-content {
-  width: 60%;
+.pick-content .author-info {
+  font-size: 0.75rem;
+  color: #777;
 }
 
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+/* Hot Articles */
+.hot-articles {
+  margin-bottom: 15px;
+}
+
+.hot-articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hot-article {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.hot-article:hover {
+  background-color: #f0f0f0;
+}
+
+.hot-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ff3e4d;
+  margin-right: 10px;
+  min-width: 40px;
+  text-align: center;
+}
+
+.hot-content {
+  flex: 1;
+}
+
+.hot-content h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 3px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hot-content .author-info {
+  font-size: 0.75rem;
+  color: #777;
+}
+
+/* Authors Section */
+.authors-section {
+  margin-bottom: 15px;
+}
+
+.authors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.author-card {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+}
+
+.author-details {
+  margin-left: 10px;
+  overflow: hidden;
+}
+
+.author-details h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.author-title {
+  font-size: 0.75rem;
+  color: #777;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .content-area {
+    flex-direction: column;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
   }
 }
 
-/* Media query for mobile devices */
 @media (max-width: 768px) {
-  .main-post {
+  .articles-grid {
     flex-direction: column;
   }
-
-  .main-post .card-image,
-  .main-post .card-content {
-    width: 100%;
+  
+  .article-card {
+    margin-bottom: 15px;
   }
-
-  .sidebar-post {
-    flex-direction: column;
+  
+  .hero-content h1 {
+    font-size: 1.8rem;
   }
-
-  .sidebar-post .card-image,
-  .sidebar-post .card-content {
-    width: 100%;
+  
+  .hero-banner {
+    height: 280px;
   }
-
-  /* Adjust font size for bold text on mobile */
-  .card-content h2, .card-content h3, .read-more {
-    font-size: 1.2rem; /* Adjust as needed */
+  
+  .author-name {
+    max-width: 150px;
   }
+}
 
-  .blog-post {
-    padding: 1rem 0.5rem; /* Reduce padding on mobile */
+@media (max-width: 576px) {
+  .hero-content h1 {
+    font-size: 1.6rem;
   }
-
-  .card {
-    margin: 5px; /* Reduce margin for mobile */
+  
+  .hero-content p {
+    font-size: 0.85rem;
   }
-
-  .card-content {
-    padding: 15px; /* Reduce padding for mobile */
+  
+  .hero-banner {
+    height: 220px;
   }
-
-  .read-more {
-    padding: 8px 15px; /* Adjust button padding for mobile */
+  
+  .pick-image {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .hot-number {
+    font-size: 1.5rem;
+    min-width: 35px;
+  }
+  
+  .card-content h3,
+  .pick-content h3,
+  .hot-content h3 {
+    -webkit-line-clamp: 2;
   }
 }
 </style>
