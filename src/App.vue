@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <!-- Render Navbar only if the current route is not DetailedBlog1 -->
-    <Navbar v-if="!isDetailedBlogPage" />
-
+    <Navbar v-if="!isAuthPage && !isDetailedBlogPage" />
+    <router-view v-if="shouldShowRouterView"></router-view>
     <!-- Render sections only if the current route is not DetailedBlog1 -->
-    <div v-if="!isDetailedBlogPage">
+    <template v-if="shouldShowMainContent">
       <section id="intro">
         <IntroSection />
       </section>
@@ -38,15 +38,10 @@
       <section id="contact">
         <ContactUs />
       </section>
-    </div>
+    </template>
 
     <!-- Router view for all routes, including DetailedBlog1 -->
-    <router-view />
-
-    <!-- Render footer only if the current route is not DetailedBlog1 -->
-    <section id="footer" v-if="!isDetailedBlogPage">
-      <Footer />
-    </section>
+    <Footer v-if="!isAuthPage && !isDetailedBlogPage" />
   </div>
 </template>
 
@@ -85,8 +80,17 @@ export default {
   computed: {
     isDetailedBlogPage() {
       return this.$route.name === "DetailedBlog1";
+    },  
+    isAuthPage() {
+      return ['SignIn', 'SignUp'].includes(this.$route.name);
     },
-  },
+    shouldShowRouterView() {
+      return this.isAuthPage || this.isDetailedBlogPage;
+    },
+    shouldShowMainContent() {
+      return !this.isAuthPage && !this.isDetailedBlogPage;
+    }
+  }
 };
 </script>
 
