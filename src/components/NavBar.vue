@@ -19,6 +19,11 @@
             <router-link to="#intro">{{ $t("home") }}</router-link>
           </li>
           <li>
+            <router-link to="#marketing-assessment">{{
+              $t("Assessment")
+              }}</router-link>
+          </li>
+          <li>
             <router-link to="#social-proof">{{
               $t("achievements")
               }}</router-link>

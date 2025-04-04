@@ -15,6 +15,7 @@ import SignIn from '@/views/SignIn.vue';
 import SignUp from '@/views/SignUp.vue';
 import { useAuthStore } from '@/stores/auth'
 
+import MarketingAssessment from '@/components/MarketingAssessment.vue';
 
 
 const routes = [
@@ -38,6 +39,11 @@ const routes = [
     path: '/detailed-blog-1',
     name: 'DetailedBlog1',
     component: DetailedBlog1,
+  },
+  {
+    path: '/marketing-assessment',
+    name: 'MarketingAssessment',
+    component: MarketingAssessment,
   },
 ];
 
