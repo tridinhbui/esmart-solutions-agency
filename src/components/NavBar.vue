@@ -19,15 +19,22 @@
             <router-link to="#intro">{{ $t("home") }}</router-link>
           </li>
           <li>
+            <router-link to="/creator-ai">{{ $t("aiCreator") }}</router-link>
+          </li>
+          <li>
             <router-link to="#social-proof">{{
               $t("achievements")
-              }}</router-link>
+            }}</router-link>
           </li>
           <li class="dropdown">
             <router-link to="#blog">{{ $t("blog") }}</router-link>
             <ul class="dropdown-menu">
               <li>
-                <a href="/detailed-blog-1" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="/detailed-blog-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <button>{{ $t("blogPage1") }}</button>
                 </a>
               </li>
@@ -45,7 +52,7 @@
               <li>
                 <router-link to="#social-proof">{{
                   $t("achievements")
-                  }}</router-link>
+                }}</router-link>
               </li>
               <li>
                 <router-link to="#process">{{ $t("Process") }}</router-link>

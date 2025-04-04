@@ -1,0 +1,1 @@
+ALTER TABLE contents ADD COLUMN IF NOT EXISTS image_data BYTEA;

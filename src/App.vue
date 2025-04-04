@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <!-- Render Navbar only if the current route is not DetailedBlog1 -->
-    <Navbar v-if="!isDetailedBlogPage" />
+    <!-- Render Navbar only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
+    <Navbar v-if="!isDetailedBlogPage && !isCreatorAIPage" />
 
-    <!-- Render sections only if the current route is not DetailedBlog1 -->
-    <div v-if="!isDetailedBlogPage">
+    <!-- Render sections only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
+    <div v-if="!isDetailedBlogPage && !isCreatorAIPage">
       <section id="intro">
         <IntroSection />
       </section>
@@ -40,11 +40,11 @@
       </section>
     </div>
 
-    <!-- Router view for all routes, including DetailedBlog1 -->
+    <!-- Router view for all routes -->
     <router-view />
 
-    <!-- Render footer only if the current route is not DetailedBlog1 -->
-    <section id="footer" v-if="!isDetailedBlogPage">
+    <!-- Render footer only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
+    <section id="footer" v-if="!isDetailedBlogPage && !isCreatorAIPage">
       <Footer />
     </section>
   </div>
@@ -85,6 +85,9 @@ export default {
   computed: {
     isDetailedBlogPage() {
       return this.$route.name === "DetailedBlog1";
+    },
+    isCreatorAIPage() {
+      return this.$route.name === "EsmartCreatorAI";
     },
   },
 };

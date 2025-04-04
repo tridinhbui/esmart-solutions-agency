@@ -1,5 +1,6 @@
 {
   "home": "Trang chủ",
+  "aiCreator": "AI Creator",
   "achievements": "Thành tựu",
   "blog": "Blog",
   "blogPage1": "Trang Blog 1",
@@ -48,28 +49,40 @@
         "subsSteps": [
           { "title": "Phân tích thị trường - khách hàng mục tiêu." },
           { "title": "Xây dựng customer insight" },
-          { "title": "Lên kế hoạch triển khai theo tháng, có mục tiêu rõ ràng." }
+          {
+            "title": "Lên kế hoạch triển khai theo tháng, có mục tiêu rõ ràng."
+          }
         ]
       },
       {
         "title": "Bước 2: Ký kết hợp đồng",
         "subsSteps": [
-          { "title": "Ký hợp đồng với gói dịch vụ phù hợp, đảm bảo điều khoản đều minh bạch, rõ ràng." }
+          {
+            "title": "Ký hợp đồng với gói dịch vụ phù hợp, đảm bảo điều khoản đều minh bạch, rõ ràng."
+          }
         ]
       },
       {
         "title": "Bước 3: Triển khai Dịch vụ",
         "subsSteps": [
           { "title": "Tạo nhóm trao đổi và giám sát công việc." },
-          { "title": "Lên kế hoạch nội dung hàng tháng, trình khách hàng phê duyệt." },
-          { "title": "Thiết kế hình ảnh, sản xuất video, triển khai các chiến dịch quảng cáo." }
+          {
+            "title": "Lên kế hoạch nội dung hàng tháng, trình khách hàng phê duyệt."
+          },
+          {
+            "title": "Thiết kế hình ảnh, sản xuất video, triển khai các chiến dịch quảng cáo."
+          }
         ]
       },
       {
         "title": "Bước 4: Báo cáo và đánh giá",
         "subsSteps": [
-          { "title": "Báo cáo kết quả cuối tháng, đưa ra điều chỉnh cần thiết." },
-          { "title": "Thu thập phản hồi khách hàng, hỗ trợ khách hàng trong quá trình sử dụng." }
+          {
+            "title": "Báo cáo kết quả cuối tháng, đưa ra điều chỉnh cần thiết."
+          },
+          {
+            "title": "Thu thập phản hồi khách hàng, hỗ trợ khách hàng trong quá trình sử dụng."
+          }
         ]
       }
     ],
@@ -232,6 +245,109 @@
         "title": "Xây dựng từ 2 Năm Kinh nghiệm",
         "description": "Esmart Solutions được xây dựng trên nền tảng trong lĩnh vực quảng cáo và quản lý truyền thông số kênh."
       }
+    }
+  },
+  "creatorAI": {
+    "dashboard": {
+      "title": "Bảng điều khiển",
+      "noProjects": "Không tìm thấy dự án nào. Nhấp vào \"Tạo nội dung mới\" để bắt đầu.",
+      "loading": "Đang tải dự án...",
+      "inProgress": "Đang tiến hành",
+      "finished": "Hoàn thành",
+      "noDescription": "Không có mô tả",
+      "deleteConfirm": "Bạn có chắc chắn muốn xóa dự án này không?",
+      "deleteSuccess": "Đã xóa dự án thành công",
+      "deleteFailed": "Xóa dự án thất bại",
+      "deleteError": "Đã xảy ra lỗi khi xóa dự án",
+      "backToHome": "Trở về trang chủ",
+      "createNew": "Tạo nội dung mới"
+    },
+    "requirements": {
+      "title": "Yêu cầu nội dung",
+      "projectTitle": "Tiêu đề dự án",
+      "projectDescription": "Mô tả dự án",
+      "contentType": "Loại nội dung",
+      "topic": "Chủ đề nội dung",
+      "keywords": "Từ khóa mục tiêu",
+      "tone": "Giọng điệu nội dung",
+      "blog": "Bài viết Blog",
+      "article": "Bài báo",
+      "productDescription": "Mô tả sản phẩm",
+      "socialMedia": "Bài đăng mạng xã hội",
+      "emailNewsletter": "Bản tin Email",
+      "professional": "Chuyên nghiệp",
+      "casual": "Thân mật",
+      "formal": "Trang trọng",
+      "friendly": "Thân thiện",
+      "persuasive": "Thuyết phục",
+      "optimistic": "Lạc quan",
+      "keywordsTip": "Nhập từ khóa, phân cách bằng dấu phẩy",
+      "previous": "Trước",
+      "next": "Tiếp theo",
+      "analyzing": "Đang phân tích tiềm năng SEO...",
+      "requiredFields": "Vui lòng điền vào tất cả các trường bắt buộc"
+    },
+    "editor": {
+      "title": "Trình soạn thảo nội dung",
+      "readabilityScore": "Điểm dễ đọc",
+      "contentLength": "Độ dài nội dung",
+      "words": "từ",
+      "save": "Lưu",
+      "saveSuccess": "Đã lưu nội dung thành công!",
+      "saving": "Đang lưu...",
+      "previous": "Trước",
+      "next": "Tiếp theo",
+      "seoAnalyzing": "Đang phân tích chỉ số SEO...",
+      "keywordsTitle": "Từ khóa đề xuất",
+      "backToDashboard": "Trở về bảng điều khiển"
+    },
+    "image": {
+      "title": "Tạo hình ảnh AI",
+      "styleTitle": "Chọn style",
+      "promptTitle": "Mô tả hình ảnh",
+      "generateButton": "Tạo hình ảnh",
+      "regenerateButton": "Tạo lại hình ảnh",
+      "generating": "Đang tạo hình ảnh...",
+      "previous": "Quay lại",
+      "next": "Tiếp tục",
+      "saveImage": "Lưu hình ảnh",
+      "generatePrompt": "Tạo prompt",
+      "generatingPrompt": "Đang tạo prompt...",
+      "promptGeneratedSuccess": "Đã tạo prompt thành công!",
+      "promptGeneratedError": "Lỗi khi tạo prompt",
+      "generationMethod": "Phương thức tạo",
+      "fromTopic": "Từ chủ đề",
+      "customPrompt": "Mô tả tùy chỉnh",
+      "customPromptLabel": "Mô tả tùy chỉnh",
+      "promptPlaceholder": "Mô tả hình ảnh bạn muốn tạo...",
+      "styles": {
+        "realistic": "Thực tế",
+        "threeD": "3D",
+        "minimalist": "Tối giản",
+        "watercolor": "Màu nước",
+        "flatVector": "Vector phẳng"
+      }
+    },
+    "final": {
+      "title": "Kết quả cuối cùng",
+      "editImage": "Chỉnh sửa hình",
+      "generateImage": "Tạo hình ảnh",
+      "createNew": "Tạo nội dung mới",
+      "backToDashboard": "Trở về bảng điều khiển",
+      "export": "Xuất",
+      "share": "Chia sẻ",
+      "downloadPDF": "Tải xuống PDF",
+      "contentSection": "Nội dung",
+      "imageSection": "Hình ảnh",
+      "projectDetails": "Chi tiết dự án",
+      "exportSuccess": "Xuất nội dung thành công!",
+      "shareSuccess": "Đã chia sẻ nội dung thành công!",
+      "downloadStart": "Quá trình tải xuống của bạn sẽ bắt đầu trong giây lát..."
+    },
+    "common": {
+      "loading": "Đang tải dữ liệu nội dung...",
+      "error": "Lỗi khi tải dữ liệu",
+      "returnToDashboard": "Trở về bảng điều khiển"
     }
   }
 }
