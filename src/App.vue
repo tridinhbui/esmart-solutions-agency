@@ -11,6 +11,9 @@
       <section id="social-proof">
         <SocialProof />
       </section>
+      <section id="marketing-assessment">
+        <MarketingAssessment />
+      </section>
       <section id="features">
         <FeaturesPage />
       </section>
@@ -59,12 +62,14 @@ import Project from "./components/ProjectSection.vue";
 import AboutUs from "./components/AboutUs.vue";
 import Questions from "./components/Questions.vue";
 import Chat from "./components/Chat.vue";
+import MarketingAssessment from "./components/MarketingAssessment.vue";
 
 export default {
   name: "App",
   components: {
     Navbar,
     IntroSection,
+    MarketingAssessment,
     SocialProof,
     FeaturesPage,
     ProcessInt,
