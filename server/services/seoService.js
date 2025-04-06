@@ -3,9 +3,13 @@ const { Content, SeoMetadata, TrendData } = require("../models");
 require("dotenv").config();
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_API_URL = "https://openrouter.ai/api/v1/chat/completions";
+const GEMINI_API_URL =
+  process.env.OPENROUTER_API_URL ||
+  "https://openrouter.ai/api/v1/chat/completions";
 const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
-const DEEPSEEK_API_URL = "https://openrouter.ai/api/v1/chat/completions";
+const DEEPSEEK_API_URL =
+  process.env.OPENROUTER_API_URL ||
+  "https://openrouter.ai/api/v1/chat/completions";
 
 /**
  * SEO Checklist used for content evaluation
@@ -315,6 +319,8 @@ async function analyzeTrendKeywords(keywords, topic = "") {
         headers: {
           Authorization: `Bearer ${GEMINI_API_KEY}`,
           "Content-Type": "application/json",
+          "HTTP-Referer": "https://esmart-solutions-agency.com",
+          "X-Title": "Esmart AI Content Generator",
         },
       }
     );
@@ -832,6 +838,8 @@ async function analyzeContentWithGemini(content, keywords, trendData) {
         headers: {
           Authorization: `Bearer ${GEMINI_API_KEY}`,
           "Content-Type": "application/json",
+          "HTTP-Referer": "https://esmart-solutions-agency.com",
+          "X-Title": "Esmart AI Content Generator",
         },
       }
     );

@@ -3,9 +3,13 @@ require("dotenv").config();
 const { TrendData } = require("../models");
 
 const API_KEY = process.env.DEEPSEEK_API_KEY;
-const API_URL = "https://openrouter.ai/api/v1/chat/completions";
+const API_URL =
+  process.env.OPENROUTER_API_URL ||
+  "https://openrouter.ai/api/v1/chat/completions";
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_API_URL = "https://openrouter.ai/api/v1/chat/completions";
+const GEMINI_API_URL =
+  process.env.OPENROUTER_API_URL ||
+  "https://openrouter.ai/api/v1/chat/completions";
 
 /**
  * Automated workflow between DeepSeek and Gemini
@@ -1397,4 +1401,200 @@ module.exports = {
   analyzeTrendKeywordsWithGemini,
   rewritePromptWithTrendKeywords,
   generateContentWithOptimizedPrompt,
+  generateContent,
 };
+
+/**
+ * Standard content generation without optimization workflow
+ */
+async function generateContent(
+  topic,
+  keywords,
+  tone,
+  type,
+  additionalDetails = ""
+) {
+  try {
+    console.log(`[STANDARD_FLOW] Generating content for topic: "${topic}"`);
+
+    // Create a prompt for content generation
+    const prompt = createContentPrompt(
+      topic,
+      keywords,
+      tone,
+      type,
+      additionalDetails
+    );
+
+    // Determine the maximum number of tokens based on content type
+    let maxTokens = calculateMaxTokens(type);
+
+    const systemPrompt =
+      "You are a professional content creator who specializes in creating high-quality, engaging content. Your writing adapts perfectly to the requested tone and content type while maintaining a natural, human-like flow. You create content that feels authentic rather than AI-generated. Follow the instructions carefully and create content that truly resonates with the target audience, maintaining their language and cultural context throughout. Never use markdown formatting like #, ##, *, -, >, or ``` in your output - use only standard text formatting with paragraphs and spacing.";
+
+    try {
+      const response = await axios.post(
+        API_URL,
+        {
+          model: "deepseek/deepseek-chat",
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: prompt },
+          ],
+          temperature: 0.7,
+          max_tokens: maxTokens,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${API_KEY}`,
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://esmart-solutions-agency.com",
+            "X-Title": "Esmart AI Content Generator",
+          },
+          timeout: Math.min(maxTokens * 50, 300000), // Timeout based on max_tokens, max 5 minutes
+        }
+      );
+
+      let content = response.data.choices[0].message.content;
+
+      // Process the content to remove any markdown formatting
+      content = content
+        .replace(/```(?:json|js|html|markdown|md)?[\s\S]*?```/g, "") // Remove code blocks
+        .replace(/`([^`]+)`/g, "$1") // Remove inline code
+        .replace(/\*\*([^*]+)\*\*/g, "$1") // Remove bold
+        .replace(/\*([^*]+)\*/g, "$1") // Remove italic
+        .replace(/\_\_([^_]+)\_\_/g, "$1") // Remove bold underscore
+        .replace(/\_([^_]+)\_/g, "$1") // Remove italic underscore
+        .replace(/\#\#+ (.+)$/gm, "$1") // Remove headings
+        .replace(/\# (.+)$/gm, "$1") // Remove heading H1
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1") // Remove links
+        .replace(/^\s*[-*+](?=\s)/gm, "") // Remove bullet points
+        .replace(/^\s*\d+\.(?=\s)/gm, "") // Remove numerical lists
+        .replace(/^\s*>/gm, "") // Remove blockquotes
+        .replace(/\n\s*\n\s*\n+/g, "\n\n"); // Remove multiple empty lines
+
+      console.log(
+        `[STANDARD_FLOW] Content generated successfully, length: ${content.length} characters`
+      );
+
+      return content;
+    } catch (error) {
+      console.error("[STANDARD_FLOW] Error generating content:", error.message);
+
+      // Try with backup model
+      try {
+        console.log("[STANDARD_FLOW] Trying with backup model (Claude)");
+
+        const backupResponse = await axios.post(
+          API_URL,
+          {
+            model: "anthropic/claude-3-haiku",
+            messages: [
+              { role: "system", content: systemPrompt },
+              { role: "user", content: prompt },
+            ],
+            temperature: 0.7,
+            max_tokens: Math.min(maxTokens, 4000),
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${API_KEY}`,
+              "Content-Type": "application/json",
+              "HTTP-Referer": "https://esmart-solutions-agency.com",
+              "X-Title": "Esmart AI Content Generator",
+            },
+            timeout: Math.min(maxTokens * 50, 300000), // Timeout based on max_tokens, max 5 minutes
+          }
+        );
+
+        let backupContent = backupResponse.data.choices[0].message.content;
+
+        // Process the content
+        backupContent = backupContent
+          .replace(/```(?:json|js|html|markdown|md)?[\s\S]*?```/g, "") // Remove code blocks
+          .replace(/`([^`]+)`/g, "$1") // Remove inline code
+          .replace(/\*\*([^*]+)\*\*/g, "$1") // Remove bold
+          .replace(/\*([^*]+)\*/g, "$1") // Remove italic
+          .replace(/\_\_([^_]+)\_\_/g, "$1") // Remove bold underscore
+          .replace(/\_([^_]+)\_/g, "$1") // Remove italic underscore
+          .replace(/\#\#+ (.+)$/gm, "$1") // Remove headings
+          .replace(/\# (.+)$/gm, "$1") // Remove heading H1
+          .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1") // Remove links
+          .replace(/^\s*[-*+](?=\s)/gm, "") // Remove bullet points
+          .replace(/^\s*\d+\.(?=\s)/gm, "") // Remove numerical lists
+          .replace(/^\s*>/gm, "") // Remove blockquotes
+          .replace(/\n\s*\n\s*\n+/g, "\n\n"); // Remove multiple empty lines
+
+        console.log(
+          `[STANDARD_FLOW] Content generated with backup model, length: ${backupContent.length} characters`
+        );
+
+        return backupContent;
+      } catch (backupError) {
+        console.error(
+          "[STANDARD_FLOW] Error with backup model:",
+          backupError.message
+        );
+
+        // Last resort: generate sample content
+        if (type === "blog") {
+          return generateSampleBlogContent(topic, keywords);
+        } else {
+          return generateSampleContent(topic, keywords, type);
+        }
+      }
+    }
+  } catch (error) {
+    console.error("[STANDARD_FLOW] Critical error:", error.message);
+
+    // Return sample content as ultimate fallback
+    if (type === "blog") {
+      return generateSampleBlogContent(topic, keywords);
+    } else {
+      return generateSampleContent(topic, keywords, type);
+    }
+  }
+}
+
+/**
+ * Create a standard content generation prompt
+ */
+function createContentPrompt(
+  topic,
+  keywords,
+  tone,
+  type,
+  additionalDetails = ""
+) {
+  return `Please create ${type} content about "${topic}" with the following requirements:
+  
+  TOPIC: ${topic}
+  KEYWORDS: ${keywords}
+  TONE: ${tone || "professional"}
+  CONTENT TYPE: ${type || "article"}
+  ADDITIONAL DETAILS: ${additionalDetails || ""}
+  
+  Requirements:
+  1. Create high-quality, well-structured content
+  2. Include the keywords naturally throughout the content
+  3. Use appropriate headings and subheadings to organize the content
+  4. Maintain the specified tone throughout
+  5. Include a strong introduction and conclusion
+  6. Write in a natural, engaging style that feels human-written
+  7. Use the original language of the topic
+  
+  Length requirements:
+  - For articles: 8000+ words
+  - For blog posts: 4000+ words
+  - For social media posts: 1000+ words
+  - For product descriptions: 1000+ words
+  - For emails: 1000+ words
+  
+  IMPORTANT:
+  - Do not use any markdown formatting (#, ##, *, -, etc.) in your response
+  - Use standard text with paragraph breaks for formatting
+  - Ensure all content is factually accurate and helpful
+  - Optimize for SEO while maintaining readability
+  
+  Please generate the complete ${type} content now:`;
+}
