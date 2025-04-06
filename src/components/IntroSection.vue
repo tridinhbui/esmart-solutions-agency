@@ -10,16 +10,35 @@
         <h1>{{ $t("hero.title") }}</h1>
         <p>{{ $t("hero.description") }}</p>
         <div class="buttons">
-          <button class="styled-button">{{ $t("hero.buttons.join") }}</button>
-          <button class="styled-button">
+          <button class="styled-button" @click="scrollToSection('about-us')">
+            {{ $t("hero.buttons.join") }}
+          </button>
+          <button class="styled-button" @click="scrollToSection('contact')">
             {{ $t("hero.buttons.contact") }}
           </button>
         </div>
       </div>
-      <img src="@/assets/logo.png" alt="ESmart Logo" class="logo" />
+      <img :src="require('@/assets/logo.png')" alt="ESmart Logo" class="logo" />
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  name: 'HeroSection',
+  methods: {
+    scrollToSection(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // Fallback to router if the element doesn't exist on the current page
+        this.$router.push({ path: '/', hash: `#${sectionId}` });
+      }
+    }
+  }
+}
+</script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
@@ -86,7 +105,9 @@
 .hero {
   background: linear-gradient(135deg, #07076c, #71bae2);
   color: white;
-  height: 90vh;
+  height: 95vh;
+  margin-top: -5vh;
+  padding-top: 5vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

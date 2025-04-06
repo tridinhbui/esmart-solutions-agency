@@ -6,6 +6,7 @@
         "products": "Products",
         "AboutUs": "About Us",
         "Process": "Process",
+        "signIn": "Sign In",
         "AboutUs": {
     "title": "About Us",
     "description1": "ESmart Solutions focuses on helping businesses enhance their ability to reach and promote their products to potential customers.",
@@ -189,6 +190,8 @@
     "instagram": "Engaging content on Instagram",
     "linkedin": "Professional connections on LinkedIn",
     "tiktok": "Create trending content on TikTok",
+    "whatsapp": "Connect with us through WhatsApp",
+    "snapchat": "See what we are doing through SnapChat",
     "testimonial1": {
       "name": "Le Khanh Linh - Comprehensive Partner",
       "title": "Founder of Green Fashion Brand My",

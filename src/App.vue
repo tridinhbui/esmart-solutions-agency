@@ -1,15 +1,18 @@
 <template>
   <div id="app">
     <!-- Render Navbar only if the current route is not DetailedBlog1 -->
-    <Navbar v-if="!isDetailedBlogPage" />
-
+    <Navbar v-if="!isAuthPage && !isDetailedBlogPage" />
+    <router-view v-if="shouldShowRouterView"></router-view>
     <!-- Render sections only if the current route is not DetailedBlog1 -->
-    <div v-if="!isDetailedBlogPage">
+    <template v-if="shouldShowMainContent">
       <section id="intro">
         <IntroSection />
       </section>
       <section id="social-proof">
         <SocialProof />
+      </section>
+      <section id="marketing-assessment">
+        <MarketingAssessment />
       </section>
       <section id="features">
         <FeaturesPage />
@@ -29,18 +32,19 @@
       <section id="service">
         <Service />
       </section>
+      <section id="questions">
+        <Questions />
+      </section>
+      <section id="chat">
+        <Chat />
+      </section>
       <section id="contact">
         <ContactUs />
       </section>
-    </div>
+    </template>
 
     <!-- Router view for all routes, including DetailedBlog1 -->
-    <router-view />
-
-    <!-- Render footer only if the current route is not DetailedBlog1 -->
-    <section id="footer" v-if="!isDetailedBlogPage">
-      <Footer />
-    </section>
+    <Footer v-if="!isAuthPage && !isDetailedBlogPage" />
   </div>
 </template>
 
@@ -56,12 +60,16 @@ import Footer from "./components/FooterBar.vue";
 import Service from "./components/ServiceSection.vue";
 import Project from "./components/ProjectSection.vue";
 import AboutUs from "./components/AboutUs.vue";
+import Questions from "./components/Questions.vue";
+import Chat from "./components/Chat.vue";
+import MarketingAssessment from "./components/MarketingAssessment.vue";
 
 export default {
   name: "App",
   components: {
     Navbar,
     IntroSection,
+    MarketingAssessment,
     SocialProof,
     FeaturesPage,
     ProcessInt,
@@ -71,12 +79,23 @@ export default {
     Footer,
     Service,
     AboutUs,
+    Questions,
+    Chat,
   },
   computed: {
     isDetailedBlogPage() {
       return this.$route.name === "DetailedBlog1";
+    },  
+    isAuthPage() {
+      return ['SignIn', 'SignUp'].includes(this.$route.name);
     },
-  },
+    shouldShowRouterView() {
+      return this.isAuthPage || this.isDetailedBlogPage;
+    },
+    shouldShowMainContent() {
+      return !this.isAuthPage && !this.isDetailedBlogPage;
+    }
+  }
 };
 </script>
 
