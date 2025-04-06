@@ -508,7 +508,7 @@ function validateKeywordsForTopic(keywords, topic, mainKeyword) {
 
   // Tạo bộ kiểm tra tương đồng từ topic
   const topicMatchers = [
-    // Kiểm tra từ khóa chứa từ nào đó trong topic
+    // Kiểm tra từ khóa chứa từ nào đó   trong topic
     (keyword) =>
       topicWords.some(
         (word) =>
