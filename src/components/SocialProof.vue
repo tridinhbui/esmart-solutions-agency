@@ -15,28 +15,53 @@
         </p>
       </a>
     </div>
+
     <h2>{{ $t("socialProof.testimonialsTitle") }}</h2>
-    <div class="testimonials-container animate-fadeIn">
-      <div
-        class="testimonial-card animate-float"
-        v-for="(testimonial, index) in testimonials"
-        :key="index"
-      >
-        <img
-          :src="getImageUrl(testimonial.image)"
-          :alt="testimonial.name"
-          class="avatar"
-        />
-        <h3>{{ $t("socialProof.testimonial" + (index + 1) + ".name") }}</h3>
-        <h4>{{ $t("socialProof.testimonial" + (index + 1) + ".title") }}</h4>
-        <div class="stars">
-          <i class="fas fa-star" v-for="n in 5" :key="n"></i>
+    <div class="testimonials-container">
+      <div class="testimonials-track" :style="{ transform: `translateX(-${translateX}px)` }">
+        <!-- First set of testimonials -->
+        <div
+          class="testimonial-card"
+          v-for="(testimonial, index) in testimonials"
+          :key="'first-' + index"
+        >
+          <img
+            :src="getImageUrl(testimonial.image)"
+            :alt="testimonial.name"
+            class="avatar"
+          />
+          <h3>{{ $t("socialProof.testimonial" + (index + 1) + ".name") }}</h3>
+          <h4>{{ $t("socialProof.testimonial" + (index + 1) + ".title") }}</h4>
+          <div class="stars">
+            <i class="fas fa-star" v-for="n in 5" :key="n"></i>
+          </div>
+          <p class="testimonial-text">
+            {{ $t("socialProof.testimonial" + (index + 1) + ".text") }}
+          </p>
         </div>
-        <p class="testimonial-text">
-          {{ $t("socialProof.testimonial" + (index + 1) + ".text") }}
-        </p>
+        <!-- Second set of testimonials for seamless looping -->
+        <div
+          class="testimonial-card"
+          v-for="(testimonial, index) in testimonials"
+          :key="'second-' + index"
+        >
+          <img
+            :src="getImageUrl(testimonial.image)"
+            :alt="testimonial.name"
+            class="avatar"
+          />
+          <h3>{{ $t("socialProof.testimonial" + (index + 1) + ".name") }}</h3>
+          <h4>{{ $t("socialProof.testimonial" + (index + 1) + ".title") }}</h4>
+          <div class="stars">
+            <i class="fas fa-star" v-for="n in 5" :key="n"></i>
+          </div>
+          <p class="testimonial-text">
+            {{ $t("socialProof.testimonial" + (index + 1) + ".text") }}
+          </p>
+        </div>
       </div>
     </div>
+
     <h2>{{ $t("socialProof.toolkitTitle") }}</h2>
     <div class="toolkit animate-slideIn">
       <div
@@ -77,6 +102,8 @@ export default {
     return {
       isModalOpen: false,
       selectedItem: {},
+      translateX: 0, // For sliding the testimonials track
+      slideInterval: null, // For automatic sliding
       socialMedia: [
         {
           name: "Facebook",
@@ -115,6 +142,12 @@ export default {
       ],
     };
   },
+  computed: {
+    trackWidth() {
+      // Calculate the total width of the first set of testimonials
+      return this.testimonials.length * 320; // 320px is the width of each card (300px + 20px margin)
+    },
+  },
   methods: {
     getImageUrl(image) {
       return require(`@/assets/${image}`);
@@ -122,6 +155,14 @@ export default {
     openModal(item) {
       this.selectedItem = item;
       this.isModalOpen = true;
+    },
+    startAutoSlide() {
+      this.slideInterval = setInterval(() => {
+        this.translateX += 1; // Move 1px to the left per frame
+        if (this.translateX >= this.trackWidth) {
+          this.translateX = 0; // Reset to the beginning for seamless looping
+        }
+      }, 16); // ~60fps (1000ms / 60 ≈ 16ms)
     },
   },
   mounted() {
@@ -137,141 +178,21 @@ export default {
       .forEach((el) => {
         observer.observe(el);
       });
+
+    // Start the auto-slide for testimonials
+    this.startAutoSlide();
+  },
+  beforeUnmount() {
+    // Clear the interval when the component is unmounted
+    if (this.slideInterval) {
+      clearInterval(this.slideInterval);
+    }
   },
 };
 </script>
 
 <style scoped>
 @import "@fortawesome/fontawesome-free/css/all.css";
-
-@keyframes slideIn {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.social-proof-testimonials {
-  background: linear-gradient(135deg, #1c1c4c, #0077b6);
-  color: white;
-  padding: 2rem 1rem;
-  text-align: center;
-}
-
-.socials {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-
-.social-item {
-  margin: 0.5rem;
-  text-align: center;
-  flex: 1 1 20%;
-}
-
-.social-item p.description {
-  color: white !important; /* Đảm bảo màu trắng */
-}
-
-.social-item img {
-  height: 50px;
-}
-
-.social-item p {
-  margin-top: 0.5rem;
-}
-
-.testimonials-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.testimonial-card {
-  background: white;
-  color: black; /* Ensure text is visible on white background */
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex: 1 1 45%;
-  max-width: 45%;
-  text-align: left;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.testimonial-card img.avatar {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-}
-
-.stars {
-  color: #ffd700;
-  margin: 0.5rem 0;
-}
-
-.testimonial-text {
-  margin-top: 0.5rem;
-}
-
-.toolkit {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 2rem;
-}
-
-.toolkit-item {
-  background: white;
-  color: black; /* Ensure text is visible on white background */
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex: 1 1 45%;
-  max-width: 45%;
-  text-align: left;
-  cursor: pointer; /* Indicate that the cards are clickable */
-}
-
-.toolkit-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.toolkit-item i {
-  font-size: 2rem;
-  color: #0077b6;
-  margin-bottom: 0.5rem;
-}
-
-.toolkit-item h3 {
-  color: #333;
-  margin-bottom: 0.5rem;
-}
 
 @keyframes slideIn {
   from {
@@ -308,6 +229,131 @@ export default {
   }
 }
 
+.social-proof-testimonials {
+  background: linear-gradient(135deg, #1c1c4c, #0077b6);
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.social-item {
+  margin: 0.5rem;
+  text-align: center;
+  flex: 1 1 20%;
+}
+
+.social-item p.description {
+  color: white !important;
+}
+
+.social-item img {
+  height: 50px;
+}
+
+.social-item p {
+  margin-top: 0.5rem;
+}
+
+.testimonials-container {
+  overflow: hidden;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.testimonials-track {
+  display: flex;
+  transition: transform 0.1s linear; /* Smooth sliding effect */
+}
+
+.testimonial-card {
+  background: white;
+  color: black;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0 10px; /* Space between cards */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Fixed width for each card */
+  flex-shrink: 0; /* Prevent cards from shrinking */
+  text-align: left;
+  position: relative;
+}
+
+.testimonial-card img.avatar {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.testimonial-card h3 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0 0.2rem;
+  color: #333;
+}
+
+.testimonial-card h4 {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.stars {
+  color: #ffd700;
+  margin: 0.5rem 0;
+}
+
+.testimonial-text {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+.toolkit {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.toolkit-item {
+  background: white;
+  color: black;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 45%;
+  max-width: 45%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.toolkit-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.toolkit-item i {
+  font-size: 2rem;
+  color: #0077b6;
+  margin-bottom: 0.5rem;
+}
+
+.toolkit-item h3 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
 .animate-slideIn {
   animation: slideIn 1s ease-in-out;
 }
@@ -323,10 +369,17 @@ export default {
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .social-item,
-  .testimonial-card,
   .toolkit-item {
     flex: 1 1 100%;
     max-width: 100%;
+  }
+
+  .testimonials-track {
+    display: flex;
+  }
+
+  .testimonial-card {
+    width: 250px; /* Smaller card width on mobile */
   }
 }
 </style>

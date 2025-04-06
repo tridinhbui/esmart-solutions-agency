@@ -16,14 +16,7 @@
           :class="{ active: currentIndex === index }"
         />
       </div>
-      <button class="arrow left-arrow" @click="prevSlide" aria-label="Previous Slide">
-        ❮
-      </button>
-      <button class="arrow right-arrow" @click="nextSlide" aria-label="Next Slide">
-        ❯
-      </button>
     </div>
-
   </section>
 </template>
 
@@ -34,10 +27,11 @@ export default {
     return {
       currentIndex: 0,
       images: [
-        { src: require("@/assets/esmart_end.jpg"), alt: this.$t("AboutUs.imageAlt") },
-        { src: require("@/assets/esmart_start.jpg"), alt: this.$t("AboutUs.imageAlt1") },
-        { src: require("@/assets/logo.png"), alt: this.$t("AboutUs.imageAlt2") },
+        { src: require("@/assets/esmart_end.jpg"), alt: "Team working at Esmart Solutions office" },
+        { src: require("@/assets/esmart_start.jpg"), alt: "Esmart Solutions team collaborating on a project" },
+        { src: require("@/assets/logo.png"), alt: "Esmart Solutions logo" },
       ],
+      slideInterval: null, // To store the interval ID
     };
   },
   methods: {
@@ -48,6 +42,22 @@ export default {
       this.currentIndex =
         (this.currentIndex - 1 + this.images.length) % this.images.length;
     },
+    startAutoSlide() {
+      // Start the interval to call nextSlide every 2 seconds (2000 milliseconds)
+      this.slideInterval = setInterval(() => {
+        this.nextSlide();
+      }, 2000);
+    },
+  },
+  mounted() {
+    // Start the auto-slide when the component is mounted
+    this.startAutoSlide();
+  },
+  beforeUnmount() { // Replaced beforeDestroy with beforeUnmount
+    // Clear the interval when the component is unmounted to prevent memory leaks
+    if (this.slideInterval) {
+      clearInterval(this.slideInterval);
+    }
   },
 };
 </script>
@@ -96,7 +106,7 @@ p {
 .slideshow {
   position: relative;
   width: 100%;
-  height: 1000px; /* Adjust height as needed */
+  height: 400px;
 }
 
 .about-image {
@@ -105,29 +115,29 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the image fills the container while maintaining aspect ratio */
-  border-radius: 100px;
+  object-fit: cover;
+  border-radius: 8px;
   transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
-  filter: brightness(1.2); /* Makes the image brighter */
-  opacity: 0; /* Hide all images by default */
+  filter: brightness(1.2);
+  opacity: 0;
 }
 
 .about-image.active {
-  opacity: 1; /* Show only the active image */
+  opacity: 1;
 }
 
 .about-image:hover {
-  transform: scale(0.9) translateZ(-10px); /* Makes the image smaller and moves it away */
+  transform: scale(0.9) translateZ(-10px);
 }
 
 .arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #000; /* Match the screenshot's black background */
+  background-color: #000;
   color: white;
   border: none;
-  padding: 0.5rem 1rem; /* Adjust padding to match the screenshot */
+  padding: 0.5rem 1rem;
   cursor: pointer;
   font-size: 1.5rem;
   border-radius: 50%;
@@ -135,7 +145,7 @@ p {
 }
 
 .arrow:hover {
-  background-color: #333; /* Slightly lighter black on hover */
+  background-color: #333;
 }
 
 .left-arrow {
