@@ -3,39 +3,37 @@
     <div class="navbar-content">
       <img src="@/assets/logo.png" alt="ESmart Logo" class="logo" />
 
-      <nav class="main-nav">
-        <ul :class="['main-nav-links', { open: isOpen }]">
-          <li>
-            <router-link to="#intro">{{ $t("home") }}</router-link>
-          </li>
-          <li>
-            <router-link to="#marketing-assessment">{{
-              $t("Assessment")
-              }}</router-link>
-          </li>
-          <li>
-            <router-link to="#social-proof">{{
-              $t("achievements")
-              }}</router-link>
-          </li>
-          <li class="dropdown">
-            <router-link to="#blog">{{ $t("blog") }}</router-link>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="/detailed-blog-1" target="_blank" rel="noopener noreferrer">
-                  <button>{{ $t("blogPage1") }}</button>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <router-link to="#project">{{ $t("products") }}</router-link>
-          </li>
-          <li>
-            <router-link to="#about-us">{{ $t("About Us") }}</router-link>
-          </li>
-           </ul>
-      </nav>
+      <ul :class="['main-nav-links', { open: isOpen }]">
+        <li>
+          <router-link to="#intro">{{ $t("home") }}</router-link>
+        </li>
+        <li>
+          <router-link to="#marketing-assessment">{{
+            $t("Assessment")
+            }}</router-link>
+        </li>
+        <li>
+          <router-link to="#social-proof">{{
+            $t("achievements")
+            }}</router-link>
+        </li>
+        <li class="dropdown">
+          <router-link to="#blog">{{ $t("blog") }}</router-link>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="/detailed-blog-1" target="_blank" rel="noopener noreferrer">
+                <button>{{ $t("blogPage1") }}</button>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <router-link to="#project">{{ $t("products") }}</router-link>
+        </li>
+        <li>
+          <router-link to="#about-us">{{ $t("About Us") }}</router-link>
+        </li>
+      </ul>
 
       <div class="right-nav-items">
         <div class="language-switcher">
@@ -68,7 +66,6 @@
         </div>
       </div>
 
-
       <div class="burger" @click="toggleMenu">
         <div></div>
         <div></div>
@@ -100,13 +97,13 @@ export default {
   },
   methods: {
     toggleMenu() {
+      // Toggle needs to target .main-nav-links now
       this.isOpen = !this.isOpen;
     },
     switchLanguage(language) {
       this.$i18n.locale = language;
     },
     goToBlog() {
-      // Consider if this is still needed if link works directly
       this.$router.push({ name: "DetailedBlog1" });
     },
     handleScroll() {
@@ -136,7 +133,6 @@ export default {
 .navbar {
   background-color: transparent;
   color: white;
-  /* padding-right: 2rem; Remove default padding, handle spacing with flex */
   position: fixed;
   width: 100%;
   top: 0;
@@ -153,338 +149,183 @@ export default {
 .navbar-content {
   position: relative;
   display: flex;
-  justify-content: space-between; /* Keeps logo left, right items right */
+  /* Removed justify-content: space-between; */
   align-items: center;
   width: 100%;
-  padding: 0 1rem; /* Add some padding */
-  box-sizing: border-box; /* Include padding in width */
-  height: 60px; /* Example fixed height */
+  padding: 0 1.5rem; /* Increased padding slightly */
+  box-sizing: border-box;
+  height: 65px; /* Increased height slightly */
 }
 
 .logo {
-  /* Adjust size as needed, flex-shrink prevents it from shrinking */
-  height: 40px; /* Example height */
+  height: 45px; /* Adjusted */
   width: auto;
-  max-width: 150px; /* Limit logo width */
+  max-width: 160px; /* Adjusted */
   flex-shrink: 0;
-  margin-right: 1rem; /* Space between logo and nav */
+  /* Removed margin-right, handled by nav margin */
 }
 
-/* Styles for the middle navigation container */
-.main-nav {
-  display: flex; /* Changed from default */
-  justify-content: center; /* Center the ul inside */
-  flex-grow: 1; /* Allow it to take up available space */
-  overflow: hidden; /* Hide overflow if links are too many */
-}
+/* Removed .main-nav container styles */
+/* .main-nav { ... } */
 
-/* Styles for the main navigation links list */
+/* Styles for the main navigation links list (now direct child) */
 .main-nav-links {
   display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
-  align-items: center; /* Align items vertically */
+  align-items: center;
+  margin-left: auto; /* Push this list and subsequent items to the right */
+  margin-right: 1.5rem; /* Space BEFORE the right-nav-items */
 }
 
 .main-nav-links li {
-  margin: 0 0.8rem; /* Adjust spacing between links */
+  margin: 0 1rem; /* Increased spacing between links */
   cursor: pointer;
   color: inherit;
-  font-weight: bold;
+  font-weight: 600; /* Slightly bolder */
   position: relative;
-  white-space: nowrap; /* Prevent links from wrapping */
+  white-space: nowrap;
 }
 
 .main-nav-links li a {
-  text-decoration: none; /* Removes underline */
+  text-decoration: none;
   color: inherit;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
-  /* Add transition for smooth color change if you have hover effects */
   transition: color 0.2s ease;
+  font-size: 1.05rem; /* Increased font size */
+  padding: 5px 0; /* Add some vertical padding */
 }
+.main-nav-links li a:hover,
+.main-nav-links li a.router-link-exact-active { /* Style active link */
+    color: #00aaff; /* Example hover/active color */
+    /* Add underline or other indicator if desired */
+    /* border-bottom: 2px solid #00aaff; */
+}
+
 
 /* Styles for the right-side items container */
 .right-nav-items {
   display: flex;
   align-items: center;
-  flex-shrink: 0; /* Prevent shrinking */
-  margin-left: 1rem; /* Space between nav and right items */
+  flex-shrink: 0;
+  /* Removed margin-left */
 }
 
 .language-switcher {
   display: flex;
   align-items: center;
-  /* Removed margin-left: auto; as it's now positioned by the parent */
-  margin-right: 1rem; /* Add space before auth items */
+  margin-right: 1.5rem; /* Increased space before auth items */
 }
 
 .language-switcher button {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0; /* Remove padding if image is the only content */
-  margin: 0 3px; /* Fine-tune spacing */
+  padding: 0;
+  margin: 0 4px; /* Adjusted */
 }
 
 .language-switcher img {
-  width: 28px; /* Slightly adjusted size */
+  width: 30px; /* Adjusted */
   height: auto;
-  display: block; /* Prevents extra space below image */
-}
-
-.language-switcher button:hover {
-  opacity: 0.8;
-}
-
-
-/* Keep other styles like .dropdown, .sign-in-btn, .user-avatar-wrapper, .burger etc. */
-/* Ensure mobile styles correctly target the new structure if needed */
-
-
-
-.sign-in-link {
-  text-decoration: none; /* Removes underline */
-  background-color: #275de1;
-  color: white !important;
-  padding: 6px 14px;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-  white-space: nowrap;
-}
-
-.sign-in-link:hover {
-  background-color: #1a4abd; /* Darker shade on hover */
-  text-decoration: none;
-}
-
-.user-avatar-wrapper {
-  position: relative;
-  /* margin-left: 1.5rem; Adjusted - now spacing controlled by parent */
-}
-
-.user-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: transform 0.2s;
   display: block;
 }
+.language-switcher button:hover { opacity: 0.8; }
 
-.user-avatar:hover {
-  transform: scale(1.05);
-}
-
-.avatar-dropdown {
-  display: inline-block;
-  position: relative;
-}
-
-.avatar-menu {
-  position: absolute;
-  top: calc(100% + 8px); /* Position below avatar */
-  right: 0; /* Align to the right edge of the wrapper */
-  left: auto; /* Override previous centering */
-  transform: translateX(0); /* Override previous centering */
-  /* Other styles remain */
-   width: auto;
-  min-width: 80px;
-  padding: 4px 8px;
-  background: white;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  padding: 8px 0;
-  text-align: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  z-index: 100;
-}
-
-.avatar-menu::before {
-  content: '';
-  position: absolute;
-  top: -5px;
-  right: 10px; /* Position arrow near the right */
-  left: auto;
-  transform: translateX(0);
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid white;
-}
-
-.avatar-dropdown:hover .avatar-menu {
-  opacity: 1;
-  visibility: visible;
-}
-
-.logout-btn {
-  width: 100%;
-  padding: 6px 12px;
-  background: none;
-  border: none;
-  color: #ff4444;
-  font-size: 0.9rem; /* Slightly smaller font */
-  cursor: pointer;
-  transition: background 0.2s;
+.sign-in-link {
+  text-decoration: none;
+  background-color: #275de1;
+  color: white !important;
+  padding: 7px 15px; /* Adjusted */
+  border-radius: 5px; /* Adjusted */
+  transition: background-color 0.3s;
   white-space: nowrap;
+  font-weight: 500; /* Adjusted */
 }
+.sign-in-link:hover { background-color: #1a4abd; text-decoration: none; }
 
-.logout-btn:hover {
-  background: #ffeeee;
-}
+.user-avatar-wrapper { position: relative; }
+.user-avatar { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: transform 0.2s; display: block; } /* Increased size */
+.user-avatar:hover { transform: scale(1.05); }
+.avatar-dropdown { display: inline-block; position: relative; }
 
+.avatar-menu { position: absolute; top: calc(100% + 10px); right: 0; left: auto; transform: translateX(0); width: auto; min-width: 90px; background: white; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 8px 0; text-align: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 100; }
+.avatar-menu::before { content: ''; position: absolute; top: -5px; right: 10px; left: auto; transform: translateX(0); border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid white; }
+.avatar-dropdown:hover .avatar-menu { opacity: 1; visibility: visible; }
 
-/* Burger and Mobile Styles need careful review */
-.burger {
-  display: none; /* Hidden by default */
-  flex-direction: column;
-  cursor: pointer;
-  flex-shrink: 0; /* Prevent shrinking */
-}
+.logout-btn { width: 100%; padding: 7px 14px; background: none; border: none; color: #ff4444; font-size: 1rem; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+.logout-btn:hover { background: #ffeeee; }
 
-.burger div {
-  width: 25px;
-  height: 3px;
-  /* Background color should adapt based on scroll */
-  background-color: white; /* Default for transparent */
-  margin: 4px;
-  transition: all 0.3s ease;
-}
-
-.navbar-scrolled .burger div {
-  background-color: #333; /* Color when scrolled */
-}
+/* Burger and Mobile Styles */
+.burger { display: none; flex-direction: column; cursor: pointer; flex-shrink: 0; margin-left: 1rem; /* Space from right items */ }
+.burger div { width: 25px; height: 3px; background-color: white; margin: 4px; transition: all 0.3s ease; }
+.navbar-scrolled .burger div { background-color: #333; }
 
 
 /* Dropdown Menu Styles */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: white;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  min-width: 150px;
-  border-radius: 4px; /* Added */
-}
-
-.dropdown-menu li {
-  padding: 0; /* Remove padding here */
-  margin: 0; /* Remove margin here */
-  text-align: center; /* Keep text centered if needed */
-  color: #333; /* Ensure text color is set */
-}
-
-.dropdown-menu li a {
-  text-decoration: none; /* Removes underline */
-  color: #333;
-  display: block;
-  padding: 8px 16px;
-  font-size: 1rem;
-  background: none;
-  border: none;
-  width: 100%;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.dropdown-menu li button,
-.dropdown-menu li a { /* Style buttons and links similarly */
-  text-decoration: none;
-  color: #333;
-  display: block;
-  padding: 8px 16px; /* Add padding here */
-  font-size: 1rem; /* Match other links */
-  background: none;
-  border: none;
-  width: 100%;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-.dropdown-menu li button:hover,
-.dropdown-menu li a:hover {
-  background-color: #f0f0f0;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
+.dropdown { position: relative; }
+.dropdown-menu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: white; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); z-index: 1000; list-style: none; padding: 0; margin: 0; min-width: 160px; border-radius: 4px; }
+.dropdown-menu li { padding: 0; margin: 0; text-align: center; color: #333; }
+.dropdown-menu li button, .dropdown-menu li a { text-decoration: none; color: #333; display: block; padding: 9px 18px; font-size: 1rem; background: none; border: none; width: 100%; cursor: pointer; transition: background-color 0.2s ease; }
+.dropdown-menu li button:hover, .dropdown-menu li a:hover { background-color: #f0f0f0; }
+.dropdown:hover .dropdown-menu { display: block; }
 
 
 /* Mobile Styles */
-@media (max-width: 992px) { /* Adjust breakpoint as needed */
-  .main-nav {
-    /* Hide main nav, show burger */
-    position: absolute; /* Take it out of flow */
-    top: 60px; /* Position below navbar */
+@media (max-width: 992px) { /* Tablet and below */
+  /* Target the main links list directly for mobile menu */
+  .main-nav-links {
+    display: none; /* Hide by default */
+    position: absolute;
+    top: 65px; /* Position below navbar height */
     left: 0;
     width: 100%;
-    background-color: white; /* Background for mobile menu */
+    background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: translateX(-100%); /* Hide off-screen */
+    flex-direction: column; /* Stack vertically */
+    padding: 1rem 0;
+    margin-left: 0; /* Reset margin */
+    margin-right: 0; /* Reset margin */
+    transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
-    z-index: 999; /* Below navbar but above content */
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    z-index: 999;
   }
 
-  .main-nav-links {
-    flex-direction: column; /* Stack links vertically */
-    width: 100%;
-  }
-
-  .main-nav-links li {
-    margin: 0.8rem 0; /* Vertical spacing */
-    text-align: center;
-    width: 100%;
-    color: #333; /* Ensure text color is visible on white */
-  }
-
-   .main-nav-links li a { /* Ensure links take full width */
-     padding: 0.5rem 0;
-     display: block;
-     width: 100%;
-     color: #333; /* Explicit color */
-   }
-   .main-nav-links li a:hover {
-      background-color: #f0f0f0; /* Hover effect */
-   }
-
-  .main-nav-links.open { /* Renamed from nav ul.open */
+  .main-nav-links.open {
+    display: flex; /* Show when open */
     transform: translateX(0); /* Slide in */
   }
 
+  .main-nav-links li {
+    margin: 1rem 0;
+    text-align: center;
+    width: 100%;
+    color: #333;
+  }
+   .main-nav-links li a {
+     padding: 0.5rem 0;
+     display: block;
+     width: 100%;
+     color: #333; /* Ensure color for mobile */
+     font-size: 1.1rem; /* Slightly larger for mobile tap */
+   }
+   .main-nav-links li a:hover {
+      background-color: #f0f0f0;
+      color: #0077b6; /* Example hover color */
+   }
+
   .right-nav-items {
-    /* Decide if these stay visible or hide */
-    /* Option 1: Keep visible */
-     /* margin-left: auto; Push to right */
-    /* Option 2: Hide and move to burger menu - More complex */
-     display: none; /* Example: Hide */
+     display: none; /* Hide right items on mobile (or move them into menu) */
   }
 
   .burger {
     display: flex; /* Show burger */
-    margin-left: auto; /* Push burger to the right */
+    margin-left: auto; /* Push burger right */
   }
-
-  /* You'll need to adjust the .open class toggling and potentially move
-     the right-nav-items into the main-nav when it's open on mobile */
-
 }
-
 
 </style>
