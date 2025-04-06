@@ -112,8 +112,6 @@ export default {
 <style>
 /* Styles remain largely the same, but adjust margins/padding if needed */
 .contact-us {
-  background: linear-gradient(135deg, #f3f4f6, #fff);
-  color: #1c1c4c;
   padding: 2rem 1rem;
   text-align: center;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -126,6 +124,7 @@ export default {
   gap: 1rem; /* Use gap for spacing */
 }
 
+/* Remove styles for process-container and process-card since they're no longer used */
 .contact-card {
   background: white;
   border-radius: 12px;

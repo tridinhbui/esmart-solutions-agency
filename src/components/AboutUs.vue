@@ -16,14 +16,7 @@
           :class="{ active: currentIndex === index }"
         />
       </div>
-      <button class="arrow left-arrow" @click="prevSlide" aria-label="Previous Slide">
-        ❮
-      </button>
-      <button class="arrow right-arrow" @click="nextSlide" aria-label="Next Slide">
-        ❯
-      </button>
     </div>
-
   </section>
 </template>
 
@@ -50,11 +43,24 @@ export default {
       this.currentIndex =
         (this.currentIndex - 1 + this.images.length) % this.images.length;
     },
+    startAutoSlide() {
+      // Start the interval to call nextSlide every 2 seconds (2000 milliseconds)
+      this.slideInterval = setInterval(() => {
+        this.nextSlide();
+      }, 2000);
+    },
   },
-   mounted() {
-    // Optional: Add automatic slideshow transition
-    // setInterval(this.nextSlide, 5000); // Change slide every 5 seconds
-  }
+  mounted() {
+    // Start the auto-slide when the component is mounted
+    this.startAutoSlide();
+  },
+  beforeUnmount() { // Replaced beforeDestroy with beforeUnmount
+    // Clear the interval when the component is unmounted to prevent memory leaks
+    if (this.slideInterval) {
+      clearInterval(this.slideInterval);
+    }
+  },
+
 };
 </script>
 
@@ -119,6 +125,7 @@ p {
 .slideshow {
   position: relative;
   width: 100%;
+  height: 400px;
   /* Control height using aspect-ratio instead of fixed pixels */
   aspect-ratio: 16 / 9; /* Adjust (e.g., 4 / 3, 1 / 1) based on your image shapes */
   /* Remove fixed height: height: 1000px; */
