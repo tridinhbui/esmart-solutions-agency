@@ -6,13 +6,11 @@
         <textarea
           v-model="content"
           placeholder="Your AI-generated content will appear here..."
-          @input="updateContent"
+          @input="handleInput"
           style="height: 600px; resize: none"
         ></textarea>
 
-        <div class="editor-actions">
-          <!-- Đã xóa ô optimization-status và loading-indicator -->
-        </div>
+        <div class="editor-actions"></div>
       </div>
       <div class="sidebar">
         <div class="sidebar-section">
@@ -115,7 +113,7 @@
       <button class="secondary-button" @click="goBack">
         {{ $t("creatorAI.editor.previous") }}
       </button>
-      <button class="primary-button-save" @click="saveContent" v-if="contentId">
+      <button class="primary-button-save" @click="saveContent">
         {{ $t("creatorAI.editor.save") }}
       </button>
       <button class="primary-button" @click="$emit('next')">
@@ -166,7 +164,23 @@ export default {
       optimizationCount: 0,
       maxOptimizations: 3,
       lastSavedContent: this.initialContent,
+      lastNotificationTime: 0,
+      lastNotificationMessage: "",
       showNotification: function (type, title, message) {
+        // Prevent duplicate notifications within 2 seconds
+        const now = Date.now();
+        if (
+          now - this.lastNotificationTime < 2000 &&
+          this.lastNotificationMessage === message
+        ) {
+          console.log("Preventing duplicate notification:", message);
+          return;
+        }
+
+        // Update last notification info
+        this.lastNotificationTime = now;
+        this.lastNotificationMessage = message;
+
         if (this.$notify) {
           this.$notify({
             group: "seo",
@@ -198,12 +212,31 @@ export default {
     },
   },
   methods: {
+    handleInput(event) {
+      // Use event.target.value to get the latest value from textarea
+      const newContent = event.target.value;
+      console.log(
+        "[SEO_CLIENT] Input changed, first 50 chars:",
+        newContent.substring(0, 50)
+      );
+
+      // Update content variable
+      this.content = newContent;
+
+      // Notify parent component
+      this.updateContent();
+    },
+
     updateContent() {
       if (this.content !== null && this.content !== undefined) {
-        console.log("[SEO_CLIENT] Updating content in parent component");
+        console.log(
+          "[SEO_CLIENT] Updating content in parent component, first 50 chars:",
+          this.content.substring(0, 50)
+        );
+        // Use .sync or v-model from parent component
         this.$emit("update:content", this.content);
 
-        // Bỏ qua autoAnalyzeAndOptimize nếu đang có thao tác nhập liệu
+        // Skip autoAnalyzeAndOptimize if there's ongoing input
         clearTimeout(this.updateContentTimer);
         this.updateContentTimer = null;
       }
@@ -216,43 +249,81 @@ export default {
       }
     },
     async saveContent() {
+      console.log("saveContent called, contentId:", this.contentId);
+      console.log(
+        "Content to save (first 50 chars):",
+        this.content ? this.content.substring(0, 50) : "none"
+      );
+      console.log(
+        "Last saved content (first 50 chars):",
+        this.lastSavedContent ? this.lastSavedContent.substring(0, 50) : "none"
+      );
+
       if (!this.contentId) {
+        console.error("Cannot save content: No contentId provided");
+        this.showNotification(
+          "error",
+          "Save Content",
+          "Cannot save content: No content ID provided. Please try creating a new content or refreshing the page."
+        );
         return;
       }
 
       try {
-        if (this.content === this.lastSavedContent) {
-          console.log("[SEO_CLIENT] Nội dung không thay đổi, không cần lưu");
+        // Ensure getting the latest content from textarea
+        const currentContent = this.content;
+
+        // But still check if there's no change to notify user
+        if (currentContent === this.lastSavedContent) {
+          console.log("[SEO_CLIENT] Content unchanged, no need to save");
+          this.showNotification(
+            "info",
+            "Save Content",
+            "Content is unchanged, no need to save"
+          );
           return;
         }
 
-        console.log("[SEO_CLIENT] Đang lưu nội dung...");
+        // Check again to ensure
+        if (!this.contentId || this.contentId.trim() === "") {
+          this.showNotification(
+            "error",
+            "Save Content",
+            "Invalid content ID. Cannot save changes."
+          );
+          return;
+        }
 
-        // Gọi API lưu nội dung
+        console.log(
+          "[SEO_CLIENT] Saving content with contentId:",
+          this.contentId
+        );
+
+        // Call API to save content
         const response = await axios.put(
           `/api/content/contents/${this.contentId}`,
           {
-            generatedContent: this.content,
+            generatedContent: currentContent,
           }
         );
 
         if (response.data.success) {
-          console.log("[SEO_CLIENT] Lưu nội dung thành công");
-          this.lastSavedContent = this.content;
+          console.log("[SEO_CLIENT] Content saved successfully");
+          this.lastSavedContent = currentContent;
 
-          // Hiển thị thông báo thành công
+          // Display success notification - only show once
           this.showNotification(
             "success",
             "Save Content",
             "Content saved successfully"
           );
 
-          // Tự động phân tích và tối ưu SEO sau khi lưu
-          this.optimizationCount = 0; // Reset count khi có nội dung mới
+          // Automatically analyze and optimize SEO after saving
+          this.optimizationCount = 0; // Reset count when new content is saved
           await this.autoAnalyzeAndOptimize();
         } else {
           console.error(
-            "[SEO_CLIENT] Lỗi khi lưu nội dung:",
+            "[SEO_CLIENT] Error saving content:",
             response.data.error
           );
           this.showNotification(
@@ -262,7 +333,7 @@ export default {
           );
         }
       } catch (error) {
-        console.error("[SEO_CLIENT] Lỗi khi lưu nội dung:", error);
+        console.error("[SEO_CLIENT] Error saving content:", error);
         this.showNotification(
           "error",
           "Save Content",
@@ -272,50 +343,56 @@ export default {
     },
 
     async autoAnalyzeAndOptimize() {
-      console.log("[SEO_CLIENT] Bắt đầu tự động phân tích và tối ưu hóa SEO");
+      console.log(
+        "[SEO_CLIENT] Starting automatic SEO analysis and optimization"
+      );
 
       // Kiểm tra nếu gần đây đã phân tích
       const now = new Date().getTime();
       if (this.lastAnalysisTime && now - this.lastAnalysisTime < 5000) {
-        console.log("[SEO_CLIENT] Đã phân tích gần đây, bỏ qua để tránh lặp");
-        return;
-      }
-
-      // Nếu đã đạt giới hạn tối ưu, không tiếp tục
-      if (this.optimizationCount >= this.maxOptimizations) {
         console.log(
-          `[SEO_CLIENT] Đã đạt giới hạn tối ưu (${this.maxOptimizations}), không tối ưu thêm`
+          "[SEO_CLIENT] Recent analysis, skipping to avoid repetition"
         );
         return;
       }
 
-      // Không tiếp tục nếu đang phân tích hoặc tối ưu
-      if (this.isAnalyzing || this.isOptimizing) {
-        console.log("[SEO_CLIENT] Đang phân tích hoặc tối ưu, không tiếp tục");
+      // If optimization limit reached, skip
+      if (this.optimizationCount >= this.maxOptimizations) {
+        console.log(
+          `[SEO_CLIENT] Optimization limit reached (${this.maxOptimizations}), skipping`
+        );
         return;
       }
 
-      // Lưu thời điểm phân tích hiện tại
+      // Don't continue if analyzing or optimizing
+      if (this.isAnalyzing || this.isOptimizing) {
+        console.log("[SEO_CLIENT] Analyzing or optimizing, skipping");
+        return;
+      }
+
+      // Save current analysis time
       this.lastAnalysisTime = now;
 
       await this.analyzeSEO();
 
-      // Thêm độ trễ nhỏ trước khi tối ưu để tránh gọi API liên tục
+      // Add small delay before optimizing to avoid continuous API calls
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      // Nếu điểm SEO dưới 80, tự động tối ưu hóa
+      // If SEO score below 80, automatically optimize
       if (
         this.seoData &&
         (this.seoData.seoScore || this.seoData.score) < 80 &&
         this.optimizationCount < this.maxOptimizations &&
         !this.hasBeenOptimized
       ) {
-        console.log("[SEO_CLIENT] Điểm SEO dưới 80, tự động tối ưu hóa");
+        console.log(
+          "[SEO_CLIENT] SEO score below 80, automatically optimizing"
+        );
         await this.autoOptimizeSEO();
         this.hasBeenOptimized = true;
       } else {
         console.log(
-          "[SEO_CLIENT] Điểm SEO đạt yêu cầu hoặc đã đạt giới hạn tối ưu, không cần tối ưu hóa"
+          "[SEO_CLIENT] SEO score meets requirements or optimization limit reached, no need to optimize"
         );
       }
     },
@@ -327,23 +404,25 @@ export default {
 
       try {
         this.isAnalyzing = true;
-        console.log("[SEO_CLIENT] Bắt đầu phân tích SEO với Gemini API");
-        this.seoAnalysisStage = "Đang gọi Gemini API để phân tích SEO...";
+        console.log("[SEO_CLIENT] Starting SEO analysis with Gemini API");
+        this.seoAnalysisStage = "Analyzing SEO with Gemini API...";
 
-        // Gọi API phân tích SEO
         const response = await axios.post(`/api/seo/analyze/${this.contentId}`);
 
         if (response.data.success) {
           this.seoData = response.data.data.analysis;
-          console.log("[SEO_CLIENT] Phân tích SEO hoàn tất:", this.seoData);
-          this.seoAnalysisStage = "Phân tích SEO hoàn tất";
+          console.log("[SEO_CLIENT] SEO analysis complete:", this.seoData);
+          this.seoAnalysisStage = "SEO analysis complete";
         } else {
-          console.error("[SEO_CLIENT] Lỗi phân tích SEO:", response.data.error);
-          this.seoAnalysisStage = "Phân tích SEO thất bại";
+          console.error(
+            "[SEO_CLIENT] SEO analysis error:",
+            response.data.error
+          );
+          this.seoAnalysisStage = "SEO analysis failed";
         }
       } catch (error) {
-        console.error("[SEO_CLIENT] Lỗi phân tích SEO:", error);
-        this.seoAnalysisStage = "Lỗi phân tích SEO";
+        console.error("[SEO_CLIENT] SEO analysis error:", error);
+        this.seoAnalysisStage = "SEO analysis failed";
       } finally {
         this.isAnalyzing = false;
       }
@@ -357,8 +436,8 @@ export default {
       try {
         this.isOptimizing = true;
         this.optimizationStage =
-          "Đang tối ưu hóa nội dung với DeepSeek và Gemini...";
-        console.log("[SEO_CLIENT] Bắt đầu tối ưu hóa SEO thủ công");
+          "Optimizing content with DeepSeek and Gemini...";
+        console.log("[SEO_CLIENT] Starting manual SEO optimization");
 
         this.showNotification(
           "info",
@@ -371,63 +450,58 @@ export default {
           this.lastSeoScore ||
           (this.seoData ? this.seoData.seoScore || this.seoData.score || 0 : 0);
         console.log(
-          `[SEO_CLIENT] Điểm SEO trước khi tối ưu thủ công: ${previousScore}`
+          `[SEO_CLIENT] SEO score before manual optimization: ${previousScore}`
         );
 
-        // Gọi API tối ưu hóa SEO
+        // Call SEO optimization API
         const response = await axios.post(
           `/api/seo/optimize/${this.contentId}`
         );
 
         if (response.data.success) {
           const result = response.data.data;
-          console.log("[SEO_CLIENT] Kết quả tối ưu hóa SEO:", result);
+          console.log("[SEO_CLIENT] SEO optimization result:", result);
 
           if (result.optimized) {
-            // Lấy dữ liệu SEO trước khi cập nhật nội dung
+            // Get SEO data before updating content
             this.seoData = await this.fetchSEOData();
 
-            // Lưu lại điểm SEO mới
+            // Save new SEO score
             this.lastSeoScore = result.newScore;
 
-            // Cập nhật nội dung sau khi đã có dữ liệu SEO
+            // Update content after having SEO data
             console.log(
-              "[SEO_CLIENT] Cập nhật nội dung và điểm số sau khi tối ưu"
+              "[SEO_CLIENT] Update content and score after optimization"
             );
             this.content = result.content.generatedContent;
-            this.lastSavedContent = this.content; // Cập nhật nội dung đã lưu
+            this.lastSavedContent = this.content; // Update saved content
 
-            // Gọi updateContent() sau khi đã cập nhật SEO data
+            // Call updateContent() after updating SEO data
             this.updateContent();
-            this.optimizationStage = "Tối ưu hóa SEO hoàn tất";
+            this.optimizationStage = "SEO optimization complete";
 
-            // Đánh dấu đã tối ưu
             this.hasBeenOptimized = true;
-
-            // Tăng bộ đếm tối ưu
             this.optimizationCount++;
-
-            // Hiển thị thông báo thành công
             this.showNotification(
               "success",
               "SEO Optimization",
               `Content optimized! SEO Score: ${result.previousScore} → ${result.newScore}`
             );
           } else {
-            // Hiển thị thông báo nếu không thể tối ưu thêm
-            this.optimizationStage = "Không thể tối ưu thêm";
+            // Show notification if unable to optimize further
+            this.optimizationStage = "Unable to optimize further";
             this.showNotification("info", "SEO Optimization", result.message);
           }
         } else {
           console.error(
-            "[SEO_CLIENT] Lỗi tối ưu hóa SEO:",
+            "[SEO_CLIENT] SEO optimization error:",
             response.data.error
           );
-          this.optimizationStage = "Tối ưu hóa SEO thất bại";
+          this.optimizationStage = "SEO optimization failed";
         }
       } catch (error) {
-        console.error("[SEO_CLIENT] Lỗi tối ưu hóa SEO:", error);
-        this.optimizationStage = "Lỗi tối ưu hóa SEO";
+        console.error("[SEO_CLIENT] SEO optimization error:", error);
+        this.optimizationStage = "SEO optimization failed";
       } finally {
         this.isOptimizing = false;
       }
@@ -478,17 +552,17 @@ export default {
 
       try {
         this.isOptimizing = true;
-        console.log("[SEO_CLIENT] Bắt đầu tự động tối ưu hóa SEO");
+        console.log("[SEO_CLIENT] Starting automatic SEO optimization");
 
-        // Lưu điểm SEO trước khi tối ưu
+        // Save SEO score before optimization
         const previousScore =
           this.lastSeoScore ||
           (this.seoData ? this.seoData.seoScore || this.seoData.score || 0 : 0);
         console.log(
-          `[SEO_CLIENT] Điểm SEO trước khi tự động tối ưu: ${previousScore}`
+          `[SEO_CLIENT] SEO score before automatic optimization: ${previousScore}`
         );
 
-        // Gọi API tự động tối ưu hóa
+        // Call automatic SEO optimization API
         const response = await axios.post(
           `/api/seo/auto-optimize/${this.contentId}`,
           {
@@ -500,7 +574,7 @@ export default {
         if (response.data.success) {
           const result = response.data.data;
 
-          // Lưu dữ liệu SEO trước khi cập nhật nội dung
+          // Save SEO data before updating content
           this.seoData = {
             seoScore: result.finalScore,
             keywordDensity: result.finalReport.keywordDensity,
@@ -509,27 +583,20 @@ export default {
             detailedAnalysis: result.finalReport.detailedAnalysis,
           };
 
-          // Cập nhật điểm cuối cùng
           this.lastSeoScore = result.finalScore;
-
-          // Đánh dấu đã tối ưu
           this.hasBeenOptimized = true;
 
-          // Sau đó cập nhật nội dung
           this.content = result.finalReport.content;
-          this.lastSavedContent = this.content; // Cập nhật nội dung đã lưu
+          this.lastSavedContent = this.content;
 
-          // Gọi update content sau khi đã cập nhật dữ liệu SEO
+          // Call updateContent() after updating SEO data
           this.updateContent();
-
-          // Hiển thị thông báo thành công
           this.showNotification(
             "success",
             "SEO Optimization",
             `Automatic optimization completed! SEO Score: ${result.initialScore} → ${result.finalScore}`
           );
 
-          // Tăng bộ đếm tối ưu hóa
           this.optimizationCount++;
         } else {
           console.error("Failed to auto optimize SEO:", response.data.error);
@@ -538,6 +605,32 @@ export default {
         console.error("Error auto optimizing SEO:", error);
       } finally {
         this.isOptimizing = false;
+      }
+    },
+
+    async autoSaveContent() {
+      if (!this.contentId || !this.content) {
+        return;
+      }
+
+      try {
+        // Call API to save content without showing notification
+        console.log("Auto-saving content with contentId:", this.contentId);
+        const response = await axios.put(
+          `/api/content/contents/${this.contentId}`,
+          {
+            generatedContent: this.content,
+          }
+        );
+
+        if (response.data.success) {
+          console.log("Content auto-saved successfully");
+          this.lastSavedContent = this.content;
+        } else {
+          console.error("Failed to auto-save content:", response.data.error);
+        }
+      } catch (error) {
+        console.error("Error during auto-save:", error);
       }
     },
   },
@@ -549,20 +642,17 @@ export default {
       }
     },
     content(newValue) {
-      // Khi nội dung thay đổi, không phân tích ngay lập tức
-      // Chỉ đặt timer để phân tích sau khi người dùng ngừng gõ một khoảng thời gian
+      // When content changes, don't analyze immediately
+      // Only set timer to analyze after a certain time when user stops typing
       if (this.updateContentTimer) {
         clearTimeout(this.updateContentTimer);
       }
 
-      // Chỉ phân tích nếu người dùng đã lưu nội dung
       if (newValue === this.lastSavedContent) {
         return;
       }
 
-      // Tạo timer mới để phân tích sau 5 giây ngừng gõ
       this.updateContentTimer = setTimeout(() => {
-        // Đặt lại cờ hasBeenOptimized để có thể tối ưu lại nếu cần
         this.hasBeenOptimized = false;
       }, 5000);
     },
@@ -575,13 +665,13 @@ export default {
           this.hasBeenOptimized = false;
           this.lastAnalysisTime = null;
 
-          // Nếu có contentId, kiểm tra xem đã có dữ liệu SEO chưa
+          // If contentId exists, check if SEO data is available
           const seoData = await this.fetchSEOData();
           if (seoData) {
             this.seoData = seoData;
             this.lastSeoScore = seoData.seoScore || seoData.score || 0;
 
-            // Nếu SEO score dưới 80, tự động tối ưu
+            // If SEO score is below 80, automatically optimize
             if (
               (seoData.seoScore || seoData.score) < 80 &&
               !this.hasBeenOptimized
@@ -590,7 +680,7 @@ export default {
               this.hasBeenOptimized = true;
             }
           } else {
-            // Nếu chưa có dữ liệu SEO, tự động phân tích và tối ưu
+            // If no SEO data, automatically analyze and optimize
             await this.autoAnalyzeAndOptimize();
             this.hasBeenOptimized = true;
           }
@@ -599,26 +689,61 @@ export default {
     },
   },
   mounted() {
-    this.content = this.initialContent || "";
-    this.lastSavedContent = this.initialContent || "";
+    console.log("EditorStep mounted, contentId:", this.contentId);
+    console.log(
+      "EditorStep initialContent:",
+      this.initialContent
+        ? this.initialContent.substring(0, 50) + "..."
+        : "No content"
+    );
 
+    // Ensure content is initialized from props
+    this.content = this.initialContent || "";
+
+    // Initialize lastSavedContent initially - set to initialContent to avoid unnecessary auto-save
+    this.lastSavedContent = this.initialContent || "";
+    console.log("lastSavedContent initialized with initial content");
+
+    // Avoid unnecessary emit event if there's no content
     if (this.content) {
-      this.updateContent();
+      console.log(
+        "Initializing content with:",
+        this.content.substring(0, 50) + "..."
+      );
+      // Avoid unnecessary emit event if there's no content
+      // this.$emit("update:content", this.content);
     }
 
-    // Thêm biến để lưu điểm SEO cuối cùng
+    // Add variable to save final SEO score
     this.lastSeoScore = 0;
 
-    // Nếu có contentId nhưng chưa có seoData, phân tích ngay khi component được tạo
+    // Add event listener for navigation buttons
+    document.querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", (e) => {
+        // If not save button and content has changed, save before navigation
+        if (
+          !e.target.classList.contains("primary-button-save") &&
+          this.contentId &&
+          this.content &&
+          this.content !== this.lastSavedContent
+        ) {
+          console.log("Auto-saving content before navigation");
+          // Call API to save content silently - no notification
+          this.autoSaveContent();
+        }
+      });
+    });
+
+    // If contentId exists but no SEO data, analyze and optimize immediately
     if (this.contentId && !this.seoData) {
       this.$nextTick(async () => {
-        // Lấy dữ liệu SEO nếu đã có
+        // Get SEO data if available
         const seoData = await this.fetchSEOData();
         if (seoData) {
           this.seoData = seoData;
           this.lastSeoScore = seoData.seoScore || seoData.score || 0;
 
-          // Chỉ tối ưu nếu điểm dưới 80 và chưa có phân tích trước đó
+          // Only optimize if score is below 80 and no previous analysis
           if (
             (seoData.seoScore || seoData.score) < 80 &&
             !this.hasBeenOptimized
@@ -633,11 +758,11 @@ export default {
       });
     }
 
-    // Nếu đang trong trạng thái phân tích SEO, cập nhật UI
+    // If in SEO analysis state, update UI
     if (this.isAnalyzingSeo) {
       this.isFetchingSeo = true;
 
-      // Thiết lập interval để kiểm tra dữ liệu SEO mỗi 3 giây
+      // Set interval to check SEO data every 3 seconds
       const checkSeoInterval = setInterval(async () => {
         if (this.contentId) {
           try {
@@ -653,11 +778,24 @@ export default {
         }
       }, 3000);
 
-      // Xóa interval sau 30 giây để tránh lãng phí tài nguyên
+      // Clear interval after 30 seconds to avoid wasting resources
       setTimeout(() => {
         clearInterval(checkSeoInterval);
         this.isFetchingSeo = false;
       }, 30000);
+    }
+  },
+  beforeUnmount() {
+    // When component is destroyed, save content before navigating
+    console.log("EditorStep beforeUnmount, will attempt to save content");
+    if (
+      this.contentId &&
+      this.content &&
+      this.content !== this.lastSavedContent
+    ) {
+      console.log("Content changed but not saved, auto-saving before unmount");
+      // Use autoSaveContent instead of saveContent to avoid showing notification
+      this.autoSaveContent();
     }
   },
 };

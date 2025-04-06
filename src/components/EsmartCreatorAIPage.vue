@@ -1,5 +1,7 @@
 <template>
   <div class="creator-ai-page">
+    <NavBar />
+
     <div v-if="isLoading" class="loading-container">
       <div class="loading-spinner"></div>
       <p>{{ $t("creatorAI.common.loading") }}</p>
@@ -12,7 +14,7 @@
       </button>
     </div>
 
-    <div v-else>
+    <div v-else class="creator-ai-content">
       <DashboardStep
         v-if="currentStep === 1"
         :previous-content="previousContent"
@@ -37,7 +39,7 @@
         :suggested-keywords="parseKeywords(contentData.keywords)"
         :readability-score="readabilityScore"
         :content-length="calculateContentLength(contentData.content)"
-        :content-id="contentData.contentId"
+        :content-id="contentData.contentId || ''"
         :is-analyzing-seo="isAnalyzingSeo"
         @prev="prevStep"
         @next="nextStep"
@@ -80,6 +82,13 @@
       <p>Current Step: {{ currentStep }}</p>
       <p>Content Data: {{ JSON.stringify(contentData, null, 2) }}</p>
     </div>
+
+    <div class="contact-section">
+      <ContactUs />
+    </div>
+
+    <Footer />
+    <Chat />
   </div>
 </template>
 
@@ -89,6 +98,10 @@ import RequirementsStep from "./creator-ai/RequirementsStep.vue";
 import EditorStep from "./creator-ai/EditorStep.vue";
 import ImageStep from "./creator-ai/ImageStep.vue";
 import FinalStep from "./creator-ai/FinalStep.vue";
+import NavBar from "./NavBar.vue";
+import Footer from "./FooterBar.vue";
+import Chat from "./Chat.vue";
+import ContactUs from "./ContactUs.vue";
 import axios from "axios";
 
 export default {
@@ -99,6 +112,10 @@ export default {
     EditorStep,
     ImageStep,
     FinalStep,
+    NavBar,
+    Footer,
+    Chat,
+    ContactUs,
   },
   props: {
     id: {
@@ -170,8 +187,31 @@ export default {
         this.loadContent(this.id);
       }
     }
+
+    // Set navbar background color
+    this.setupNavbarStyle();
+  },
+  mounted() {
+    // Double-check navbar styling is applied
+    this.setupNavbarStyle();
   },
   methods: {
+    // Setup navbar styling
+    setupNavbarStyle() {
+      setTimeout(() => {
+        const navbar = document.querySelector(".navbar");
+        if (navbar) {
+          navbar.style.backgroundColor = "#ffffff";
+          navbar.style.color = "#333333";
+          navbar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.1)";
+
+          const navLinks = navbar.querySelectorAll("a");
+          navLinks.forEach((link) => {
+            link.style.color = "#333333";
+          });
+        }
+      }, 100);
+    },
     // Add a central error handler for API errors
     handleApiError(error) {
       console.error("API error intercepted:", error);
@@ -351,15 +391,24 @@ export default {
         console.warn("Received null or empty content, skipping update");
         return;
       }
-      console.log("Updating content:", content.substring(0, 50) + "...");
 
-      // Lưu điểm SEO hiện tại trước khi cập nhật nội dung
+      console.log(
+        "EsmartCreatorAIPage - Updating content:",
+        typeof content === "string"
+          ? content.substring(0, 50) + "..."
+          : "Not a string"
+      );
+
+      if (typeof content !== "string") {
+        console.error("Invalid content type:", typeof content);
+        return;
+      }
+
       const currentSeoScore = this.contentData.seoScore;
 
-      // Cập nhật nội dung
       this.contentData.content = content;
+      console.log("Content updated in contentData");
 
-      // Đảm bảo giữ nguyên điểm SEO sau khi cập nhật
       if (currentSeoScore) {
         this.contentData.seoScore = currentSeoScore;
       }
@@ -375,17 +424,17 @@ export default {
         typeof imageData === "object" ? "object" : "string"
       );
 
-      // Lưu trữ imageData nguyên bản cho trường hợp cần thiết
+      // Store the raw image data for debugging purposes
       this.rawImageData = imageData;
 
-      // Xử lý imageData là null hoặc undefined
+      // Handle null or undefined image data
       if (!imageData) {
         console.log("Received null or undefined image data, clearing image");
         this.generatedImage = null;
         return;
       }
 
-      // Xử lý cẩn thận với nhiều trường hợp format khác nhau
+      // Handle object type image data
       if (typeof imageData === "object") {
         if (imageData === null) {
           console.log("Received null image data, clearing image");
@@ -393,9 +442,12 @@ export default {
         } else if (imageData.image) {
           console.log(
             "Using image from object.image property:",
-            imageData.image.substring(0, 50) + "..."
+            typeof imageData.image === "string" && imageData.image.length > 50
+              ? imageData.image.substring(0, 50) + "..."
+              : imageData.image
           );
-          this.generatedImage = this.handleImagePath(imageData.image);
+          // Always prioritize the direct image data over URL to ensure immediate display
+          this.generatedImage = imageData.image;
         } else if (imageData.imageUrl) {
           console.log(
             "Using image from object.imageUrl property:",
@@ -412,14 +464,14 @@ export default {
             "Using string directly as image:",
             imageData.substring(0, 50) + "..."
           );
-          this.generatedImage = this.handleImagePath(imageData);
+          this.generatedImage = imageData;
         }
       } else {
         console.warn("Unrecognized image data format, cannot process");
       }
 
       console.log(
-        "Final generatedImage value:",
+        "Final generatedImage value updated to:",
         this.generatedImage
           ? typeof this.generatedImage === "string" &&
             this.generatedImage.length > 50
@@ -482,7 +534,6 @@ export default {
       };
     },
     createNewContent() {
-      // Reset tất cả dữ liệu về mặc định trước khi chuyển sang RequirementsStep
       this.contentData = {
         title: "",
         description: "",
@@ -494,7 +545,7 @@ export default {
         type: "blog",
         content: "",
       };
-      // Chuyển sang bước RequirementsStep
+
       this.currentStep = 2;
     },
     async editProject(projectId) {
@@ -604,44 +655,45 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .creator-ai-page {
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-top: 6rem;
+  background-color: #f6f8fa;
+}
+
+.creator-ai-content {
+  flex: 1;
+  padding: 120px 30px 60px;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-.debug-panel {
-  margin-top: 2rem;
-  padding: 1rem;
-  background-color: #f8f9fa;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-family: monospace;
-  white-space: pre-wrap;
-}
-
-.loading-container {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  box-sizing: border-box;
 }
 
-.loading-spinner {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
-  border-radius: 50%;
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  padding-top: 120px;
+  min-height: 60vh;
+  text-align: center;
+}
+
+/* .loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
   width: 40px;
   height: 40px;
+  border-radius: 50%;
+  border-left-color: #1c1c4c;
   animation: spin 1s linear infinite;
-}
+  margin-bottom: 20px;
+} */
 
 @keyframes spin {
   0% {
@@ -652,31 +704,109 @@ export default {
   }
 }
 
-.error-container {
+.debug-panel {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  max-width: 500px;
+  max-height: 300px;
+  overflow: auto;
   z-index: 1000;
+  font-family: monospace;
+  font-size: 12px;
 }
 
-.primary-button {
-  background-color: #3498db;
-  color: #fff;
+/* .primary-button {
+  background-color: #1c1c4c;
+  color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
+  margin-top: 1rem;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  height: 48px;
+  line-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+} */
 
 .primary-button:hover {
-  background-color: #2980b9;
+  background-color: #2a2a6c;
+}
+
+/* Override NavBar styles for creator-ai pages */
+.creator-ai-page .navbar {
+  background-color: #ffffff !important;
+  color: #333333 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.creator-ai-page .navbar a {
+  color: #333333 !important;
+}
+
+.creator-ai-page .navbar a:hover {
+  color: #0077b6 !important;
+}
+
+/* Dashboard button styles */
+.creator-ai-page .button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.creator-ai-page .button-group button {
+  height: 48px;
+  min-width: 150px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.creator-ai-page .secondary-button {
+  background-color: #f5f5f5;
+  color: #1c1c4c;
+  border: 1px solid #ddd;
+  height: 48px;
+  line-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.creator-ai-page .secondary-button:hover {
+  background-color: #e5e5e5;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .creator-ai-content {
+    padding: 100px 15px 40px;
+  }
+
+  .creator-ai-page .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .creator-ai-page .button-group button {
+    width: 100%;
+    max-width: 300px;
+  }
 }
 </style>

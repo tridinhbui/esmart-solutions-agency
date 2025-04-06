@@ -318,8 +318,8 @@ async function analyzeTrendKeywordsWithGemini(initialPrompt, topic, keywords) {
           return true;
         }
 
-        // Kiểm tra nếu topic hiện tại và topic đã lưu khác nhau hoàn toàn
-        // Ví dụ: "Review Cơm tấm" vs "Mercedes S500"
+        // Check if current topic and saved topic are completely different
+        // Example: "Review Cơm tấm" vs "Mercedes S500"
         const savedTopicWords = (existingTrend.topic || "")
           .toLowerCase()
           .split(/\s+/)
@@ -329,7 +329,7 @@ async function analyzeTrendKeywordsWithGemini(initialPrompt, topic, keywords) {
           .split(/\s+/)
           .filter((w) => w.length > 2);
 
-        // Nếu không có từ nào trùng giữa 2 chủ đề, xem như không liên quan
+        // If there are no common words between the two topics, consider them unrelated
         const hasCommonWord = savedTopicWords.some((word) =>
           currentTopicWords.some(
             (current) => current.includes(word) || word.includes(current)
@@ -561,12 +561,12 @@ async function analyzeTrendKeywordsWithGemini(initialPrompt, topic, keywords) {
         // Combine topic words with user keywords to ensure relevance
         const userKeywordsList = keywords.split(",").map((k) => k.trim());
 
-        // Tạo danh sách từ khóa đảm bảo liên quan đến chủ đề
+        // Create a list of keywords to ensure relevance to the topic
         const oldRelatedKeywords = trendData.relatedKeywords;
         trendData.relatedKeywords = [
-          topic, // Luôn có chủ đề là từ khóa đầu tiên
-          ...userKeywordsList.slice(0, 3), // Thêm một số từ khóa người dùng
-          ...topicBasedKeywords.keywords.slice(0, 4), // Thêm từ khóa dựa trên chủ đề
+          topic, // Always have the topic as the first keyword
+          ...userKeywordsList.slice(0, 3), // Add some user keywords
+          ...topicBasedKeywords.keywords.slice(0, 4), // Add topic-based keywords
         ];
 
         console.log(`[GEMINI_KEYWORDS] Replaced keywords:
@@ -778,15 +778,14 @@ async function generateContentWithOptimizedPrompt(optimizedPrompt, type) {
   try {
     console.log(`[DEEPSEEK_GENERATE] Creating content from improved prompt`);
 
-    // Không cần cắt ngắn prompt nữa, sử dụng trực tiếp prompt đầy đủ
     let finalPrompt = optimizedPrompt;
 
-    // Log thông tin về độ dài prompt để theo dõi
+    // Log information about prompt length for tracking
     console.log(
       `[DEEPSEEK_GENERATE] Using full prompt with length: ${optimizedPrompt.length} characters`
     );
 
-    // Xác định số lượng tokens tối đa dựa trên loại nội dung
+    // Determine the maximum number of tokens based on content type
     let maxTokens = calculateMaxTokens(type);
     console.log(
       `[DEEPSEEK_GENERATE] Using max_tokens=${maxTokens} for content type: ${type}`
@@ -1018,23 +1017,23 @@ async function processContent(content, type) {
   try {
     console.log(`[PROCESSOR] Processing content for type: ${type}`);
 
-    // Loại bỏ toàn bộ định dạng markdown
+    // Remove all markdown formatting
     content = content
-      .replace(/```(?:json|js|html|markdown|md)?[\s\S]*?```/g, "") // Xóa code blocks
-      .replace(/`([^`]+)`/g, "$1") // Xóa inline code
-      .replace(/\*\*([^*]+)\*\*/g, "$1") // Xóa bold
-      .replace(/\*([^*]+)\*/g, "$1") // Xóa italic
-      .replace(/\_\_([^_]+)\_\_/g, "$1") // Xóa bold underscore
-      .replace(/\_([^_]+)\_/g, "$1") // Xóa italic underscore
-      .replace(/\#\#+ (.+)$/gm, "$1") // Xóa headings
-      .replace(/\# (.+)$/gm, "$1") // Xóa heading H1
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1") // Xóa links
-      .replace(/^\s*[-*+](?=\s)/gm, "") // Xóa bullet points
-      .replace(/^\s*\d+\.(?=\s)/gm, "") // Xóa numerical lists
-      .replace(/^\s*>/gm, "") // Xóa blockquotes
-      .replace(/\n\s*\n\s*\n+/g, "\n\n"); // Xóa nhiều dòng trống liên tiếp
+      .replace(/```(?:json|js|html|markdown|md)?[\s\S]*?```/g, "") // Remove code blocks
+      .replace(/`([^`]+)`/g, "$1") // Remove inline code
+      .replace(/\*\*([^*]+)\*\*/g, "$1") // Remove bold
+      .replace(/\*([^*]+)\*/g, "$1") // Remove italic
+      .replace(/\_\_([^_]+)\_\_/g, "$1") // Remove bold underscore
+      .replace(/\_([^_]+)\_/g, "$1") // Remove italic underscore
+      .replace(/\#\#+ (.+)$/gm, "$1") // Remove headings
+      .replace(/\# (.+)$/gm, "$1") // Remove heading H1
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1") // Remove links
+      .replace(/^\s*[-*+](?=\s)/gm, "") // Remove bullet points
+      .replace(/^\s*\d+\.(?=\s)/gm, "") // Remove numerical lists
+      .replace(/^\s*>/gm, "") // Remove blockquotes
+      .replace(/\n\s*\n\s*\n+/g, "\n\n"); // Remove multiple empty lines
 
-    // Kiểm tra nếu nội dung trống sau khi xử lý
+    // Check if content is empty after processing
     if (!content || content.trim().length === 0) {
       console.error("[PROCESSOR] Content is empty after processing");
       return generateFallbackContent(
@@ -1045,7 +1044,7 @@ async function processContent(content, type) {
       );
     }
 
-    // Lấy giá trị độ dài tối thiểu theo loại nội dung
+    // Get minimum length value based on content type
     let minLength = 0;
     let currentLength = content.split(/\s+/).length;
 
@@ -1065,14 +1064,14 @@ async function processContent(content, type) {
         minLength = 1000;
         break;
       default:
-        minLength = 2000; // Mặc định cho các loại nội dung khác
+        minLength = 2000; // Default for other content types
     }
 
     console.log(
       `[PROCESSOR] Content type: ${type}, current length: ${currentLength} words, minimum required: ${minLength} words`
     );
 
-    // Kiểm tra nếu nội dung không đủ dài
+    // Check if content does not meet minimum length requirements
     if (currentLength < minLength) {
       console.log(
         `[PROCESSOR] Content does not meet minimum length requirements. Requesting extended content...`
@@ -1105,11 +1104,11 @@ async function extendContent(content, type, minLength, currentLength) {
 
     const additionalWordsNeeded = minLength - currentLength;
 
-    // Chuẩn bị prompt để yêu cầu API mở rộng nội dung
+    // Prepare prompt to request API content expansion
     const systemPrompt =
       "You are a professional content writer who excels at expanding existing content while maintaining the original topic, tone, and style. You add relevant details, examples, and explanations to make the content more comprehensive and valuable. Your expanded content feels like a natural extension of the original text, not like additional content tacked on. You never use markdown formatting (*, #, ##, -, etc.) in your output, only normal text with paragraph breaks.";
 
-    // Xác định hướng mở rộng dựa trên loại nội dung
+    // Determine expansion direction based on content type
     let expansionInstructions;
     switch (type.toLowerCase()) {
       case "article":
@@ -1181,7 +1180,7 @@ COMPLETE EXPANDED CONTENT (at least ${minLength} words):`;
 
       let expandedContent = response.data.choices[0].message.content;
 
-      // Xử lý để loại bỏ định dạng markdown nếu có
+      // Process to remove markdown formatting if present
       expandedContent = expandedContent
         .replace(/```(?:json|js|html|markdown|md)?[\s\S]*?```/g, "")
         .replace(/`([^`]+)`/g, "$1")
@@ -1197,7 +1196,7 @@ COMPLETE EXPANDED CONTENT (at least ${minLength} words):`;
         .replace(/^\s*>/gm, "")
         .replace(/\n\s*\n\s*\n+/g, "\n\n");
 
-      // Kiểm tra độ dài mới
+      // Check new length
       const newLength = expandedContent.split(/\s+/).length;
 
       console.log(
@@ -1214,7 +1213,7 @@ COMPLETE EXPANDED CONTENT (at least ${minLength} words):`;
     } catch (apiError) {
       console.error(`[PROCESSOR] API error when extending content:`, apiError);
 
-      // Thử với model dự phòng
+      // Try with backup model
       try {
         console.log(
           `[PROCESSOR] Trying alternate model (Claude) for content extension`
@@ -1245,7 +1244,7 @@ COMPLETE EXPANDED CONTENT (at least ${minLength} words):`;
         let backupExpandedContent =
           backupResponse.data.choices[0].message.content;
 
-        // Xử lý để loại bỏ định dạng markdown
+        // Process to remove markdown formatting if present
         backupExpandedContent = backupExpandedContent
           .replace(/```(?:json|js|html|markdown|md)?[\s\S]*?```/g, "")
           .replace(/`([^`]+)`/g, "$1")

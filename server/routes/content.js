@@ -145,7 +145,65 @@ router.delete("/contents/:id", deleteContent);
 // Generate image for content
 router.post("/contents/:id/generate-image", generateImageForContent);
 
-// Generate prompt from content
+// Save image data to content
+router.post("/contents/:id/save-image", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { imageData } = req.body;
+
+    if (!imageData) {
+      return res.status(400).json({
+        success: false,
+        error: "Missing image data",
+      });
+    }
+
+    // Find the content record
+    const content = await Content.findByPk(id);
+
+    if (!content) {
+      return res.status(404).json({
+        success: false,
+        error: "Content not found",
+      });
+    }
+
+    // Process the base64 data
+    let base64Data;
+    if (imageData.startsWith("data:image")) {
+      base64Data = imageData.replace(/^data:image\/\w+;base64,/, "");
+    } else {
+      base64Data = imageData;
+    }
+
+    // Convert to buffer
+    const buffer = Buffer.from(base64Data, "base64");
+
+    // Update the content record
+    content.image_data = buffer;
+    content.imageUrl = `/api/image/content-image/${id}`;
+
+    await content.save();
+
+    console.log(
+      `[IMAGE] Saved image directly to database for content ID: ${id}`
+    );
+
+    return res.json({
+      success: true,
+      imageUrl: content.imageUrl,
+      message: "Image saved to database successfully",
+    });
+  } catch (error) {
+    console.error("Error saving image to content:", error);
+    return res.status(500).json({
+      success: false,
+      error: "Failed to save image to content",
+    });
+  }
+});
+
+// Generate prompt from content for image generation
 router.post("/contents/generate-prompt", generatePromptFromContent);
 
 // Partial update route for content
@@ -161,7 +219,7 @@ router.patch("/contents/:contentId/partial", async (req, res) => {
       });
     }
 
-    // Tìm nội dung hiện có
+    // Find existing content
     const content = await Content.findByPk(contentId);
     if (!content) {
       return res.status(404).json({
@@ -172,7 +230,7 @@ router.patch("/contents/:contentId/partial", async (req, res) => {
 
     console.log(`Updating content ${contentId} with fields:`, updateFields);
 
-    // Cập nhật các trường được cung cấp
+    // Update provided fields
     await content.update(updateFields);
 
     return res.json({

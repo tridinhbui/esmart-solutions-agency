@@ -284,7 +284,7 @@
       "keywordsTip": "Nhập từ khóa, phân cách bằng dấu phẩy",
       "previous": "Trước",
       "next": "Tiếp theo",
-      "analyzing": "Đang phân tích tiềm năng SEO...",
+      "analyzing": "Đang phân tích...",
       "requiredFields": "Vui lòng điền vào tất cả các trường bắt buộc"
     },
     "editor": {
@@ -297,7 +297,7 @@
       "saving": "Đang lưu...",
       "previous": "Trước",
       "next": "Tiếp theo",
-      "seoAnalyzing": "Đang phân tích chỉ số SEO...",
+      "seoAnalyzing": "Đang phân tích...",
       "keywordsTitle": "Từ khóa đề xuất",
       "backToDashboard": "Trở về bảng điều khiển"
     },

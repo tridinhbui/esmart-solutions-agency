@@ -1,12 +1,10 @@
-from fastapi import FastAPI, HTTPException, UploadFile, File, Form, BackgroundTasks
+from fastapi import FastAPI, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import JSONResponse
 import torch
-from diffusers import KandinskyV22Pipeline, KandinskyV22PriorPipeline, AutoPipelineForText2Image
-from PIL import Image
+from diffusers import KandinskyV22Pipeline, KandinskyV22PriorPipeline
 import io
 import os
-import json
 import requests
 import base64
 import uuid
@@ -14,12 +12,12 @@ from dotenv import load_dotenv
 import logging
 from typing import Optional, List
 
-# Cấu hình logging
+# Configure logging
 logging.basicConfig(level=logging.INFO, 
                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# Thiết lập device - sử dụng MPS cho Apple Silicon (M1/M2)
+# Set device - use MPS for Apple Silicon (M1/M2)
 if torch.backends.mps.is_available():
     device = "mps"
     logger.info("Using MPS (Metal Performance Shaders) for Apple Silicon")
@@ -33,30 +31,30 @@ else:
 # Set default device
 torch.set_default_device(device)
 
-# Load các biến môi trường
+# Load environment variables
 load_dotenv()
 
 app = FastAPI(title="Esmart AI Image Generator API")
 
-# Thiết lập CORS
+# Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Trong môi trường production, hãy chỉ định domain cụ thể
+    allow_origins=["*"],  # In production environment, specify specific domains
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Khai báo các biến toàn cục
+# Declare global variables
 PRIOR_MODEL_ID = "kandinsky-community/kandinsky-2-2-prior"
 MODEL_ID = "kandinsky-community/kandinsky-2-2-decoder"
 OUTPUT_DIR = "outputs"
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 
-# Đảm bảo thư mục outputs tồn tại
+# Ensure the outputs directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# Lazy loading models để tối ưu memory
+# Lazy loading models to optimize memory
 prior_pipe = None
 pipe = None
 
@@ -87,15 +85,16 @@ def load_model():
     return pipe
 
 def save_image(image, prompt):
-    """Lưu ảnh vào thư mục outputs"""
+    """Return image data without saving to disk"""
+    # Generate a filename for reference purposes only
     filename = f"{uuid.uuid4()}.png"
-    filepath = os.path.join(OUTPUT_DIR, filename)
-    image.save(filepath)
-    logger.info(f"Image saved to {filepath}")
-    return filepath, filename
+    
+    # Don't save to file system, instead return the filename and image object
+    logger.info(f"Generated image with filename: {filename} (not saved to disk)")
+    return None, filename
 
 async def generate_improved_prompt(original_prompt):
-    """Sử dụng DeepSeek để cải thiện prompt"""
+    """Use DeepSeek to improve prompt"""
     if not OPENROUTER_API_KEY:
         logger.warning("OpenRouter API key not found, using original prompt")
         return original_prompt
@@ -139,7 +138,7 @@ async def root():
 
 @app.get("/status")
 async def check_status():
-    """Kiểm tra trạng thái của API và các models"""
+    """Check the status of the API and models"""
     cuda_available = torch.cuda.is_available()
     mps_available = torch.backends.mps.is_available()
     cuda_device = torch.cuda.get_device_name(0) if cuda_available else "N/A"
@@ -167,29 +166,29 @@ async def generate_image(
     style: Optional[str] = Form("Simple")
 ):
     """
-    Tạo ảnh từ prompt văn bản sử dụng Kandinsky 2.2
-    - prompt: Mô tả nội dung ảnh muốn tạo
-    - negative_prompt: Mô tả những gì không muốn xuất hiện trong ảnh
-    - width, height: Kích thước ảnh (pixels)
-    - num_inference_steps: Số bước suy luận (cao hơn = chất lượng tốt hơn nhưng chậm hơn)
-    - guidance_scale: Mức độ tuân thủ prompt (cao hơn = theo sát prompt hơn)
-    - style: Phong cách nghệ thuật
+    Create an image from a text prompt using Kandinsky 2.2
+    - prompt: Description of the image content to create
+    - negative_prompt: Description of what should not appear in the image
+    - width, height: Image size (pixels)
+    - num_inference_steps: Number of inference steps (higher = better quality but slower)
+    - guidance_scale: Level of adherence to prompt (higher = more closely follows prompt)
+    - style: Artistic style
     """
     try:
-        # Cải thiện prompt nếu được yêu cầu
+        # Improve prompt if requested
         if enhance_prompt:
-            # Thêm style vào prompt gốc
+            # Add style to original prompt
             styled_prompt = f"{prompt}, {style} style"
             final_prompt = await generate_improved_prompt(styled_prompt)
         else:
-            # Nếu không cải thiện, vẫn thêm style vào prompt
+            # If not improving, still add style to prompt
             final_prompt = f"{prompt}, {style} style"
         
-        # Load models nếu chưa được load
+        # Load models if not already loaded
         prior = load_prior_model()
         decoder = load_model()
         
-        # Tạo image embeddings bằng prior model
+        # Create image embeddings using prior model
         logger.info(f"Generating image embedding for prompt: {final_prompt}")
         image_embeds, negative_image_embeds = prior(
             prompt=final_prompt,
@@ -198,7 +197,7 @@ async def generate_image(
             num_inference_steps=num_inference_steps
         ).to_tuple()
         
-        # Tạo ảnh từ embeddings bằng decoder model
+        # Create image from embeddings using decoder model
         logger.info("Generating image from embeddings...")
         image = decoder(
             image_embeds=image_embeds,
@@ -208,10 +207,10 @@ async def generate_image(
             num_inference_steps=num_inference_steps
         ).images[0]
         
-        # Lưu ảnh vào thư mục và trả về đường dẫn
-        filepath, filename = save_image(image, final_prompt)
+        # Return reference filename only, don't save to disk
+        _, filename = save_image(image, final_prompt)
         
-        # Chuyển đổi ảnh thành base64 để trả về
+        # Convert image to base64 to return
         buffer = io.BytesIO()
         image.save(buffer, format="PNG")
         img_str = base64.b64encode(buffer.getvalue()).decode("utf-8")
@@ -236,28 +235,27 @@ async def topic_to_image(
     num_inference_steps: Optional[int] = Form(20)
 ):
     """
-    Tạo ảnh từ một chủ đề (topic) bằng cách tạo prompt từ chủ đề trước
+    Create an image from a topic by creating a prompt from the topic first
     """
     try:
-        # Tạo một prompt chi tiết từ topic sử dụng DeepSeek
+        # Create a detailed prompt from topic using DeepSeek
         prompt_prefix = f"Create a visually striking image of {topic} in {style} style."
         improved_prompt = await generate_improved_prompt(prompt_prefix)
         
-        # Gọi lại API generate-image
-        # Load models nếu chưa được load
+        # Call the generate-image API
+        # Load models if not already loaded
         prior = load_prior_model()
         decoder = load_model()
         
-        # Tạo image embeddings bằng prior model
-        logger.info(f"Generating image embedding for topic: {topic}")
+        # Create image embeddings using prior model
+        logger.info(f"Generating image embedding for prompt: {improved_prompt}")
         image_embeds, negative_image_embeds = prior(
             prompt=improved_prompt,
-            negative_prompt="low quality, blurry",
-            guidance_scale=7.5,
+            negative_prompt="low quality, blurry, deformed",
             num_inference_steps=num_inference_steps
         ).to_tuple()
         
-        # Tạo ảnh từ embeddings bằng decoder model
+        # Create image from embeddings using decoder model
         logger.info("Generating image from embeddings...")
         image = decoder(
             image_embeds=image_embeds,
@@ -267,17 +265,16 @@ async def topic_to_image(
             num_inference_steps=num_inference_steps
         ).images[0]
         
-        # Lưu ảnh vào thư mục và trả về đường dẫn
-        filepath, filename = save_image(image, improved_prompt)
+        # Return reference filename only, don't save to disk
+        _, filename = save_image(image, improved_prompt)
         
-        # Chuyển đổi ảnh thành base64 để trả về
+        # Convert image to base64 to return
         buffer = io.BytesIO()
         image.save(buffer, format="PNG")
         img_str = base64.b64encode(buffer.getvalue()).decode("utf-8")
         
         return JSONResponse({
             "success": True,
-            "topic": topic,
             "prompt": improved_prompt,
             "filename": filename,
             "image_data": img_str
@@ -289,35 +286,27 @@ async def topic_to_image(
 
 @app.get("/images/{filename}")
 async def get_image(filename: str):
-    """Trả về một ảnh đã tạo theo filename"""
-    filepath = os.path.join(OUTPUT_DIR, filename)
-    if not os.path.isfile(filepath):
-        raise HTTPException(status_code=404, detail="Image not found")
-    return FileResponse(filepath)
+    """
+    This endpoint is no longer needed because images are stored directly in the database
+    Kept for backward compatibility with older versions
+    """
+    logger.warning(f"Deprecated endpoint called: GET /images/{filename}")
+    return JSONResponse({
+        "success": false,
+        "error": "Images are now stored in the database, not in the file system"
+    }, status_code=410)  # 410 Gone status code
 
 @app.delete("/images/{filename}")
 async def delete_image(filename: str):
-    """Xóa một ảnh đã tạo theo filename"""
-    filepath = os.path.join(OUTPUT_DIR, filename)
-    if not os.path.isfile(filepath):
-        return JSONResponse({
-            "success": False,
-            "message": "Image not found",
-        }, status_code=404)
-    
-    try:
-        os.remove(filepath)
-        logger.info(f"Deleted image: {filename}")
-        return JSONResponse({
-            "success": True,
-            "message": f"Successfully deleted image: {filename}",
-        })
-    except Exception as e:
-        logger.error(f"Error deleting image {filename}: {str(e)}")
-        raise HTTPException(
-            status_code=500, 
-            detail=f"Error deleting image: {str(e)}"
-        )
+    """
+    This endpoint is no longer needed because images are stored directly in the database
+    Kept for backward compatibility with older versions
+    """
+    logger.warning(f"Deprecated endpoint called: DELETE /images/{filename}")
+    return JSONResponse({
+        "success": False,
+        "error": "Images are now stored in the database, not in the file system"
+    }, status_code=410)  # 410 Gone status code
 
 if __name__ == "__main__":
     import uvicorn

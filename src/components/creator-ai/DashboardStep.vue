@@ -113,7 +113,7 @@ export default {
         type: "info", // info, success, error
         timeout: null,
       },
-      // Thay thế projectMenu bằng các biến riêng biệt
+      // Replace projectMenu with separate variables
       showProjectMenu: false,
       projectMenuId: null,
       projectMenuTitle: "",
@@ -153,10 +153,10 @@ export default {
     },
 
     viewProject(projectId) {
-      // Tìm project để hiển thị tên
+      // Find project to display name
       const project = this.projects.find((p) => p.id === projectId);
 
-      // Hiển thị menu lựa chọn bằng các biến riêng biệt
+      // Display selection menu with separate variables
       this.showProjectMenu = true;
       this.projectMenuId = projectId;
       this.projectMenuTitle = project ? project.title : "Project";
@@ -222,7 +222,7 @@ export default {
     },
 
     confirmDeleteProject(event, projectId) {
-      // Ngăn chặn sự kiện click lan truyền đến card
+      // Prevent click event from propagating to card
       event.stopPropagation();
 
       // Debug project ID
@@ -237,14 +237,14 @@ export default {
       try {
         console.log("Deleting project with ID:", projectId);
 
-        // Đảm bảo projectId không null và là string
+        // Ensure projectId is not null and is a string
         if (!projectId) {
           console.error("Project ID is null or undefined");
           this.showToast(this.$t("creatorAI.dashboard.deleteError"), "error");
           return;
         }
 
-        // Log URL để debug
+        // Log URL for debugging
         const url = `/api/projects/${projectId}`;
         console.log("Delete URL:", url);
 
@@ -279,7 +279,7 @@ export default {
       } catch (error) {
         console.error("Error deleting project:", error);
 
-        // Log chi tiết lỗi để debug
+        // Log detailed error for debugging
         if (error.response) {
           console.error("Error response:", error.response.data);
           console.error("Error status:", error.response.status);

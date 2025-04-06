@@ -515,206 +515,30 @@ const deleteContent = async (req, res) => {
         }
 
         // Function to delete image from a directory
-        const deleteImageFromDir = (dir, fileName) => {
-          try {
-            const filePath = path.join(dir, fileName);
-            if (fs.existsSync(filePath)) {
+        const deleteImageFromDir = (dirPath, fileName) => {
+          if (!fs.existsSync(dirPath)) return;
+
+          const filePath = path.join(dirPath, fileName);
+          if (fs.existsSync(filePath)) {
+            try {
               fs.unlinkSync(filePath);
-              console.log(
-                `[IMAGE] Successfully deleted image file from ${dir}: ${fileName}`
+              console.log(`[IMAGE] Deleted image: ${filePath}`);
+            } catch (err) {
+              console.error(
+                `[IMAGE] Error deleting image ${filePath}: ${err.message}`
               );
-              imagesDeleted = true;
-              return true;
-            }
-            return false;
-          } catch (error) {
-            console.error(
-              `[IMAGE] Error deleting from ${dir}: ${error.message}`
-            );
-            return false;
-          }
-        };
-
-        // Function to scan a directory for similar images based on hash or filename pattern
-        const scanDirectoryForImages = (dirPath, baseFileName) => {
-          if (!fs.existsSync(dirPath)) {
-            console.log(`[IMAGE] Directory does not exist: ${dirPath}`);
-            return;
-          }
-
-          // Extract timestamp part from filename for pattern matching
-          let timestampPattern = null;
-          let fileBaseName = null;
-
-          if (baseFileName.startsWith("image_")) {
-            const parts = baseFileName.split("_");
-            if (parts.length > 1) {
-              const timestamp = parts[1].split(".")[0];
-              // Use first few digits of timestamp for pattern matching
-              if (timestamp.length >= 4) {
-                timestampPattern = timestamp.substring(0, 4);
-                console.log(
-                  `[IMAGE] Looking for pattern: image_*${timestampPattern}*`
-                );
-              }
-              fileBaseName = "image_";
-            }
-          } else {
-            // For other file types, use the first part of the name for pattern matching
-            fileBaseName = baseFileName.split(".")[0];
-            if (fileBaseName && fileBaseName.length > 3) {
-              // Use first few characters as pattern
-              timestampPattern = fileBaseName.substring(
-                0,
-                Math.min(fileBaseName.length, 5)
-              );
-              console.log(`[IMAGE] Looking for pattern: *${timestampPattern}*`);
-            }
-          }
-
-          // Scan directory for files
-          const files = fs.readdirSync(dirPath);
-          console.log(
-            `[IMAGE] Scanning ${dirPath}, found ${files.length} files`
-          );
-
-          for (const file of files) {
-            // Skip if not an image file
-            if (
-              !file.endsWith(".png") &&
-              !file.endsWith(".jpg") &&
-              !file.endsWith(".jpeg")
-            ) {
-              continue;
-            }
-
-            // Exact match with filename
-            if (file === baseFileName) {
-              deleteImageFromDir(dirPath, file);
-              continue;
-            }
-
-            // For pattern matching
-            if (timestampPattern && file.includes(timestampPattern)) {
-              console.log(`[IMAGE] Found file with matching pattern: ${file}`);
-              // Confirm with hash comparison if we have the original image content
-              if (imageContent) {
-                try {
-                  const filePath = path.join(dirPath, file);
-                  const fileBuffer = fs.readFileSync(filePath);
-                  const fileHash = crypto
-                    .createHash("md5")
-                    .update(fileBuffer)
-                    .digest("hex");
-                  const originalHash = crypto
-                    .createHash("md5")
-                    .update(imageContent)
-                    .digest("hex");
-
-                  // If hashes are similar (allowing for small differences)
-                  if (fileHash === originalHash) {
-                    console.log(`[IMAGE] Hash match for file: ${file}`);
-                    deleteImageFromDir(dirPath, file);
-                  } else {
-                    console.log(`[IMAGE] Hash mismatch: ${file}`);
-
-                    // Even if hash doesn't match exactly, if file pattern is very close
-                    // and they're from same timestamp period (within few minutes), delete anyway
-                    if (
-                      fileBaseName === "image_" &&
-                      file.startsWith("image_")
-                    ) {
-                      // Extract timestamps for comparison
-                      const origTimestamp = parseInt(
-                        baseFileName.split("_")[1].split(".")[0]
-                      );
-                      const fileTimestamp = parseInt(
-                        file.split("_")[1].split(".")[0]
-                      );
-
-                      // If timestamps are within 1 minute (60000 ms) of each other
-                      if (
-                        !isNaN(origTimestamp) &&
-                        !isNaN(fileTimestamp) &&
-                        Math.abs(origTimestamp - fileTimestamp) < 60000
-                      ) {
-                        console.log(
-                          `[IMAGE] Timestamps are very close, deleting anyway: ${file}`
-                        );
-                        deleteImageFromDir(dirPath, file);
-                      }
-                    }
-                  }
-                } catch (hashError) {
-                  console.error(
-                    `[IMAGE] Error comparing file hash: ${hashError.message}`
-                  );
-                }
-              } else {
-                // If we don't have original content, delete based on filename pattern
-                deleteImageFromDir(dirPath, file);
-              }
             }
           }
         };
-
-        // Check primary locations: uploads and outputs folders
-        const uploadsDir = path.join(__dirname, "../uploads");
-        const outputsDir = path.join(__dirname, "../outputs");
-
-        // Ensure uploads directory exists
-        if (!fs.existsSync(uploadsDir)) {
-          try {
-            fs.mkdirSync(uploadsDir, { recursive: true });
-            console.log(`[IMAGE] Created uploads directory: ${uploadsDir}`);
-          } catch (mkdirError) {
-            console.error(
-              `[IMAGE] Error creating uploads directory: ${mkdirError.message}`
-            );
-          }
-        }
-
-        // Ensure outputs directory exists
-        if (!fs.existsSync(outputsDir)) {
-          try {
-            fs.mkdirSync(outputsDir, { recursive: true });
-            console.log(`[IMAGE] Created outputs directory: ${outputsDir}`);
-          } catch (mkdirError) {
-            console.error(
-              `[IMAGE] Error creating outputs directory: ${mkdirError.message}`
-            );
-          }
-        }
 
         // Exact matches first
         if (filename) {
-          deleteImageFromDir(uploadsDir, filename);
-          deleteImageFromDir(outputsDir, filename);
-
-          // Also look for filename with different extension
-          const baseNameWithoutExt =
-            filename.substring(0, filename.lastIndexOf(".")) || filename;
-          if (baseNameWithoutExt !== filename) {
-            for (const ext of [".png", ".jpg", ".jpeg"]) {
-              const altFileName = baseNameWithoutExt + ext;
-              if (altFileName !== filename) {
-                deleteImageFromDir(uploadsDir, altFileName);
-                deleteImageFromDir(outputsDir, altFileName);
-              }
-            }
-          }
+          // No need to delete from file system
+          console.log(`[IMAGE] Using database storage for images`);
         }
 
-        // Then scan for similar images
-        scanDirectoryForImages(uploadsDir, filename);
-        scanDirectoryForImages(outputsDir, filename);
-
-        // If no images were deleted, log a warning
-        if (!imagesDeleted) {
-          console.log(
-            `[IMAGE] Warning: No image files were found or deleted for this content`
-          );
-        }
+        // No need to scan directories anymore
+        console.log(`[IMAGE] No filesystem directories to scan for images`);
       } catch (imageDeleteError) {
         console.error(
           `[IMAGE] Failed to delete image file: ${imageDeleteError.message}`
@@ -858,6 +682,29 @@ const updateContentPartial = async (req, res) => {
       details: error.message,
     });
   }
+};
+
+// Function to delete images from a directory
+const deleteImageFromDir = (dirPath, fileName) => {
+  if (!fs.existsSync(dirPath)) return;
+
+  const filePath = path.join(dirPath, fileName);
+  if (fs.existsSync(filePath)) {
+    try {
+      fs.unlinkSync(filePath);
+      console.log(`[IMAGE] Deleted image: ${filePath}`);
+    } catch (err) {
+      console.error(`[IMAGE] Error deleting image ${filePath}: ${err.message}`);
+    }
+  }
+};
+
+// Delete image associated with content
+const deleteContentImages = (content, filename, imageContent) => {
+  if (!content) return;
+
+  // No need to check for files since we're using database storage
+  console.log(`[IMAGE] Content uses database storage for images`);
 };
 
 // Generate image for content

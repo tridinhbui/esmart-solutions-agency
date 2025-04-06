@@ -85,17 +85,17 @@
         class="primary-button"
         @click="generateContent"
         :disabled="isLoading"
+        :class="{ 'loading-button': isLoading }"
       >
-        <span v-if="isLoading" class="loading-spinner"></span>
-        {{
-          isLoading
-            ? $t("creatorAI.requirements.analyzing")
-            : $t("creatorAI.requirements.next")
-        }}
+        <div class="button-content">
+          <span v-if="isLoading" class="loading-spinner"></span>
+          <span>{{
+            isLoading
+              ? $t("creatorAI.requirements.analyzing")
+              : $t("creatorAI.requirements.next")
+          }}</span>
+        </div>
       </button>
-    </div>
-    <div v-if="isLoading" class="loading-message">
-      <p>{{ $t("creatorAI.requirements.analyzing") }}</p>
     </div>
   </div>
 </template>
@@ -409,6 +409,8 @@ h2 {
   font-size: 1rem;
   transition: background-color 0.3s ease;
   position: relative;
+  min-width: 120px;
+  height: 48px;
 }
 
 .primary-button:hover:not(:disabled) {
@@ -420,6 +422,18 @@ h2 {
   cursor: not-allowed;
 }
 
+.loading-button {
+  background: #2a2a6c !important;
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 100%;
+}
+
 .secondary-button {
   background: white;
   color: #1c1c4c;
@@ -429,6 +443,8 @@ h2 {
   cursor: pointer;
   font-size: 1rem;
   transition: all 0.3s ease;
+  min-width: 120px;
+  height: 48px;
 }
 
 .secondary-button:hover {
@@ -437,41 +453,17 @@ h2 {
 
 .loading-spinner {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border: 2px solid #ffffff;
   border-radius: 50%;
   border-top-color: transparent;
   animation: spin 1s linear infinite;
-  margin-right: 8px;
 }
 
 @keyframes spin {
   to {
     transform: rotate(360deg);
-  }
-}
-
-.loading-message {
-  background-color: #f0f5ff;
-  border: 1px solid #d9e7ff;
-  padding: 10px 15px;
-  border-radius: 6px;
-  margin-top: 15px;
-  text-align: center;
-  color: #1c1c4c;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    background-color: #f0f5ff;
-  }
-  50% {
-    background-color: #e5edff;
-  }
-  100% {
-    background-color: #f0f5ff;
   }
 }
 

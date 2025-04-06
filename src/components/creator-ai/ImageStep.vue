@@ -34,7 +34,12 @@
 
     <div class="image-container">
       <div class="generated-image">
-        <img v-if="displayImage" :src="displayImage" alt="AI Generated Image" />
+        <img
+          v-if="displayImage"
+          :src="displayImage"
+          alt="AI Generated Image"
+          @error="handleImageLoadError"
+        />
         <div v-else-if="isGenerating" class="image-placeholder">
           <div class="loading-spinner"></div>
           <p>{{ $t("creatorAI.image.generating") }}</p>
@@ -165,11 +170,7 @@
       <button class="secondary-button" @click="$emit('prev')">
         {{ $t("creatorAI.image.previous") }}
       </button>
-      <button
-        class="primary-button"
-        @click="handleContinue"
-        :disabled="!generatedImage"
-      >
+      <button class="primary-button" @click="handleContinue">
         {{ $t("creatorAI.image.next") }}
       </button>
     </div>
@@ -231,6 +232,10 @@ export default {
     topicForImage() {
       // Sử dụng chủ đề từ requirements
       return this.requirements.topic || "AI Generated Image";
+    },
+    contentId() {
+      // Extract contentId from requirements
+      return this.requirements && this.requirements.contentId;
     },
   },
   methods: {
@@ -303,39 +308,58 @@ export default {
       }
 
       try {
-        // Extract image data from the dataURL
-        const imageData = this.displayImage.split(",")[1];
+        // Check if we have contentId - if so, save directly to the database
+        if (this.contentId) {
+          console.log(
+            `Saving image directly to database for content ID: ${this.contentId}`
+          );
+          // Save image data to content record
+          const saveResponse = await axios.post(
+            `/api/content/contents/${this.contentId}/save-image`,
+            { imageData: this.displayImage }
+          );
 
-        // Call API to save the image
-        const response = await axios.post(`${this.apiUrl}/image/save`, {
-          image_data: imageData,
-          prompt: this.customPrompt,
-          style: this.selectedStyle,
-        });
+          if (saveResponse.data && saveResponse.data.success) {
+            // Emit event with the URL that fetches from the database
+            this.$emit("image-saved", {
+              imageUrl: saveResponse.data.imageUrl,
+              prompt: this.customPrompt,
+              style: this.selectedStyle,
+            });
 
-        if (response.data && response.data.success) {
-          // Emit event with the URL of the saved image
+            // Show success message
+            this.showToast("Image saved successfully to database!", "success");
+          } else {
+            throw new Error(
+              saveResponse.data?.error || "Failed to save image to database"
+            );
+          }
+        } else {
+          // If no contentId, save the image as base64 data and return it
+          // Don't save to server uploads folder
           this.$emit("image-saved", {
-            imageUrl: response.data.imageUrl,
+            image: this.displayImage, // Pass base64 directly
             prompt: this.customPrompt,
             style: this.selectedStyle,
           });
 
           // Show success message
-          alert("Image saved successfully!");
-        } else {
-          throw new Error(response.data?.error || "Failed to save image");
+          this.showToast("Image saved to local state", "success");
         }
       } catch (error) {
         console.error("Error saving image:", error);
         this.error =
           error.response?.data?.error || error.message || "Error saving image";
+        this.showToast(this.error, "error");
       }
     },
 
     async generateImage() {
       this.isGenerating = true;
       this.error = null;
+
+      // Clear any previously cached image data to prevent display of old images
+      this.localImage = null;
 
       try {
         let response;
@@ -364,6 +388,12 @@ export default {
             steps = 30;
         }
 
+        // Show a toast to inform the user that generation has started
+        this.showToast(
+          `Generating image with ${this.imageQuality} quality...`,
+          "info"
+        );
+
         if (this.generationMethod === "prompt") {
           // Tạo ảnh từ prompt tùy chỉnh
           if (!this.customPrompt.trim()) {
@@ -371,61 +401,119 @@ export default {
           }
 
           console.log("Generating image from custom prompt...");
-          response = await axios.post(
-            `${this.apiUrl}/image/generate`,
-            {
-              prompt: this.customPrompt,
-              style: this.selectedStyle,
-              width: width,
-              height: height,
-              num_inference_steps: steps,
-            },
-            {
-              timeout: 90000, // 90 seconds timeout for image generation
-            }
-          );
+          try {
+            response = await axios.post(
+              `${this.apiUrl}/image/generate`,
+              {
+                prompt: this.customPrompt,
+                style: this.selectedStyle,
+                width: width,
+                height: height,
+                num_inference_steps: steps,
+              },
+              {
+                timeout: 90000, // 90 seconds timeout for image generation
+              }
+            );
+          } catch (error) {
+            console.error("Error generating image from prompt:", error);
+            // Ensure we return a base64 data URL since we can't retrieve from file system
+            throw new Error(
+              "Failed to generate image. Please try again or contact support if the issue persists."
+            );
+          }
         } else {
           // Tạo ảnh từ chủ đề (topic)
           console.log(`Generating image from topic: ${this.topicForImage}`);
-          response = await axios.post(
-            `${this.apiUrl}/image/topic-to-image`,
-            {
-              topic: this.topicForImage,
-              style: this.selectedStyle,
-              width: width,
-              height: height,
-              num_inference_steps: steps,
-            },
-            {
-              timeout: 90000, // 90 seconds timeout for image generation
-            }
-          );
+          try {
+            response = await axios.post(
+              `${this.apiUrl}/image/topic-to-image`,
+              {
+                topic: this.topicForImage,
+                style: this.selectedStyle,
+                width: width,
+                height: height,
+                num_inference_steps: steps,
+              },
+              {
+                timeout: 90000, // 90 seconds timeout for image generation
+              }
+            );
+          } catch (error) {
+            console.error("Error generating image from topic:", error);
+            // Ensure we return a base64 data URL since we can't retrieve from file system
+            throw new Error(
+              "Failed to generate image. Please try again or contact support if the issue persists."
+            );
+          }
         }
 
-        if (response.data && response.data.success) {
-          // Đặt ảnh từ dữ liệu base64
-          this.localImage = `data:image/png;base64,${response.data.image_data}`;
+        if (!response.data.success) {
+          throw new Error(response.data.error || "Failed to generate image");
+        }
 
-          // Lưu prompt được sử dụng để tạo ảnh
-          this.customPrompt = response.data.prompt || this.customPrompt;
+        console.log("Image generated successfully");
 
-          // Gửi thông tin ảnh lên component cha
+        // Create a data URL directly to display locally
+        const dataUrl = `data:image/png;base64,${response.data.image_data}`;
+
+        // Update the local image first for immediate display
+        this.localImage = dataUrl;
+
+        // If we have a contentId, save the image to the database
+        if (this.contentId) {
+          console.log(
+            `Saving generated image to content ID: ${this.contentId}`
+          );
+          try {
+            // Save the image data to the content record
+            const saveResponse = await axios.post(
+              `/api/content/contents/${this.contentId}/save-image`,
+              { imageData: dataUrl }
+            );
+
+            if (!saveResponse.data.success) {
+              console.warn(
+                "Warning: Failed to save image to content record:",
+                saveResponse.data.error
+              );
+              // Even if saving fails, emit the data URL so it's still displayed
+              this.$emit("image-generated", { image: dataUrl });
+            } else {
+              // If save was successful, emit both the image data URL and the database URL
+              // This ensures the image is immediately displayed and can be fetched later
+              const contentImageUrl = saveResponse.data.imageUrl;
+              this.$emit("image-generated", {
+                image: dataUrl,
+                imageUrl: contentImageUrl,
+                prompt: this.customPrompt,
+                style: this.selectedStyle,
+              });
+            }
+          } catch (saveError) {
+            console.error("Error saving image to content:", saveError);
+            // Even if saving to the database fails, emit the data URL so it's still displayed
+            this.$emit("image-generated", { image: dataUrl });
+          }
+        } else {
+          // If no contentId, just emit the data URL
           this.$emit("image-generated", {
-            image: this.localImage,
+            image: dataUrl,
             prompt: this.customPrompt,
             style: this.selectedStyle,
           });
-
-          // Show success toast
-          this.showToast("Đã tạo hình ảnh thành công!", "success");
-        } else {
-          throw new Error(response.data?.error || "Failed to generate image");
         }
-      } catch (error) {
-        // Use the new handleApiError method
-        this.handleApiError(error, "tạo hình ảnh");
-      } finally {
+
+        // Reset the loading state
         this.isGenerating = false;
+
+        // Show success message
+        this.showToast("Image generated successfully!", "success");
+      } catch (error) {
+        console.error("Error generating image:", error);
+        this.error = error.message || "Failed to generate image";
+        this.isGenerating = false;
+        this.showToast(this.error, "error");
       }
     },
 
@@ -492,32 +580,31 @@ export default {
     },
 
     handleContinue() {
-      // Nếu đã có ảnh, gửi thông tin ảnh lên component cha
+      // If we have an image, send the image data to the parent component
       if (this.displayImage) {
+        // Emit the image-generated event with the current image data
         this.$emit("image-generated", {
-          image: this.displayImage,
+          image: this.displayImage, // Always send the actual image data to ensure it's displayed
           prompt: this.customPrompt,
           style: this.selectedStyle,
         });
+
+        // Also show a success message
+        this.showToast("Proceeding with the generated image", "success");
       } else {
-        // Nếu chưa có ảnh, thông báo cho người dùng
-        if (
-          confirm(
-            "Bạn chưa tạo ảnh. Bạn có muốn tiếp tục mà không có ảnh không?"
-          )
-        ) {
-          this.$emit("image-generated", {
-            image: null,
-            prompt: this.customPrompt,
-            style: this.selectedStyle,
-          });
-        } else {
-          // Người dùng muốn tạo ảnh trước
-          return;
-        }
+        // If there's no image, just proceed without showing a confirmation
+        // User has intentionally decided to continue without an image
+        this.$emit("image-generated", {
+          image: null,
+          prompt: this.customPrompt,
+          style: this.selectedStyle,
+        });
+
+        // Optionally show a message indicating no image was generated
+        this.showToast("Continuing without an image", "info");
       }
 
-      // Tiếp tục sang bước tiếp theo
+      // Proceed to the next step
       this.$emit("next");
     },
 
@@ -539,10 +626,77 @@ export default {
         this.toasts = this.toasts.filter((toast) => toast.id !== id);
       }
     },
+
+    handleImageLoadError(event) {
+      console.error("Image failed to load:", event);
+      this.error = "Failed to load image. Trying fallback approach...";
+
+      // If we have base64 data, let's try to use that directly
+      if (this.localImage && this.localImage.startsWith("data:image")) {
+        console.log("Using fallback to local base64 image data");
+        return; // Keep using the localImage since it's already a data URL
+      }
+
+      // For database images that failed to load, try to re-fetch the image
+      if (this.contentId && this.generatedImageUrl) {
+        console.log(
+          `Trying to re-fetch image for content ID: ${this.contentId}`
+        );
+        axios
+          .get(`/api/content/contents/${this.contentId}`)
+          .then((response) => {
+            if (
+              response.data.success &&
+              response.data.data &&
+              response.data.data.image_data
+            ) {
+              // Create a data URL from the image_data
+              const dataUrl = `data:image/png;base64,${response.data.data.image_data}`;
+              this.localImage = dataUrl;
+              console.log("Successfully recovered image from database");
+
+              // Clear the error since we've recovered
+              this.error = null;
+            } else {
+              this.error = "Failed to load image. Please try generating again.";
+              this.$emit("message", {
+                type: "error",
+                text: this.error,
+              });
+            }
+          })
+          .catch((err) => {
+            console.error("Error fetching content for image recovery:", err);
+            this.error = "Failed to load image. Please try generating again.";
+            this.$emit("message", {
+              type: "error",
+              text: this.error,
+            });
+          });
+      } else {
+        this.error = "Failed to load image. Please try generating again.";
+        this.$emit("message", {
+          type: "error",
+          text: this.error,
+        });
+      }
+    },
   },
   mounted() {
-    // Kiểm tra trạng thái API khi component được tạo
+    // Check API status when component is created
     this.checkApiStatus();
+
+    // Debug logging for image data
+    console.log("ImageStep mounted with props:", {
+      generatedImage: this.generatedImage
+        ? typeof this.generatedImage === "string"
+          ? "string data (truncated)"
+          : typeof this.generatedImage
+        : "null",
+      hasContent: !!this.content,
+      requirements: this.requirements,
+      contentId: this.contentId,
+    });
   },
 };
 </script>

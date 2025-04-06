@@ -138,10 +138,6 @@
           <i class="fas fa-home me-1"></i>
           Back to Dashboard
         </button>
-        <button class="btn btn-info" @click="$emit('go-to-dashboard')">
-          <i class="fas fa-home me-1"></i>
-          Dashboard
-        </button>
         <button class="btn btn-success" @click="$emit('new')">
           <i class="fas fa-plus me-1"></i>
           Create New
@@ -214,6 +210,8 @@ export default {
       imageError: null,
       localImage: this.generatedImage,
       toasts: [],
+      lastNotificationTime: null,
+      lastNotificationMessage: null,
     };
   },
   computed: {
@@ -229,30 +227,23 @@ export default {
     formattedContent() {
       if (!this.content) return "";
 
-      // Tạo định dạng HTML cho nội dung
       const formatted = this.content
-        // Thay thế dòng trống bằng thẻ đoạn
         .replace(/\n\s*\n/g, "</p><p>")
-        // Thay thế dòng mới đơn bằng thẻ br
         .replace(/\n/g, "<br>")
-        // Bọc toàn bộ nội dung trong thẻ p
         .replace(/^(.+)$/, "<p>$1</p>");
 
       return formatted;
     },
     imageUrl() {
-      // First, use localImage from data if available
       if (this.localImage) {
         console.log(
           "Using local image:",
           this.localImage.substring(0, 50) + "..."
         );
 
-        // Ensure the URL is properly formatted for deployment
         return this.ensureAbsoluteUrl(this.localImage);
       }
 
-      // Next, try to use generated image from props
       if (this.generatedImage) {
         console.log(
           "Using generated image from props:",
@@ -309,12 +300,12 @@ export default {
     console.log("From dashboard:", this.fromDashboard);
     console.log("Generated image from props:", !!this.generatedImage);
 
-    // Thêm giá trị mặc định cho toasts
+    // Add default value for toasts
     if (!this.toasts) {
       this.toasts = [];
     }
 
-    // Tải lại dữ liệu hình ảnh từ cơ sở dữ liệu nếu có contentId
+    // Reload image data from database if contentId exists
     if (this.contentId && (!this.generatedImage || this.fromDashboard)) {
       console.log("Loading image data from database...");
       this.loadImageFromDatabase();
@@ -345,15 +336,15 @@ export default {
 
         if (!this.contentId) {
           console.error("No content ID available");
-          throw new Error("Không có ID nội dung để tải hình ảnh");
+          throw new Error("No content ID available to load image");
         }
 
-        // Ưu tiên sử dụng endpoint content-image để lấy ảnh từ database
+        // Prioritize using content-image endpoint to get image from database
         const contentImageUrl = `/api/image/content-image/${this.contentId}`;
         console.log(`Trying content-image endpoint: ${contentImageUrl}`);
 
         try {
-          // Kiểm tra xem ảnh có tồn tại trong database không
+          // Check if image exists in database
           const testImg = new Image();
           const imageLoadPromise = new Promise((resolve) => {
             testImg.onload = () => resolve(true);
@@ -378,7 +369,7 @@ export default {
 
         console.log("Image not found in database, checking content record");
 
-        // Nếu không tìm thấy trong database, thì kiểm tra từ API
+        // If not found in database, check from API
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000);
 
@@ -430,7 +421,7 @@ export default {
               return;
             }
 
-            // Kiểm tra đường dẫn hình ảnh
+            // Check image URL
             if (
               contentData.imageUrl.includes("undefined") ||
               contentData.imageUrl === "null" ||
@@ -440,7 +431,7 @@ export default {
                 "Invalid image URL detected:",
                 contentData.imageUrl
               );
-              this.imageError = "URL hình ảnh không hợp lệ";
+              this.imageError = "Invalid image URL";
               this.imageLoading = false;
               return;
             }
@@ -457,13 +448,13 @@ export default {
             console.log(`No image found for content ${this.contentId}`);
             this.imageUrl = null;
             this.imageLoading = false;
-            this.imageError = "Không tìm thấy hình ảnh trong cơ sở dữ liệu";
+            this.imageError = "Image not found in database";
           }
         } else {
           console.warn("API did not return success:", response.data);
           this.imageUrl = null;
           this.imageLoading = false;
-          this.imageError = "Lỗi khi lấy dữ liệu nội dung";
+          this.imageError = "Error fetching content data";
         }
       } catch (error) {
         console.error("Error in fetchContentImage:", error);
@@ -569,7 +560,7 @@ export default {
     },
     exportContent() {
       try {
-        // Tạo dữ liệu để export
+        // Create data to export
         const exportData = {
           title: this.projectTitle || "Untitled Content",
           content: this.content,
@@ -582,20 +573,20 @@ export default {
           },
         };
 
-        // Tạo JSON string
+        // Create JSON string
         const dataStr = JSON.stringify(exportData, null, 2);
 
-        // Tạo blob để download
+        // Create blob for download
         const blob = new Blob([dataStr], { type: "application/json" });
         const url = URL.createObjectURL(blob);
 
-        // Tạo link và kích hoạt download
+        // Create link and trigger download
         const a = document.createElement("a");
         a.download = `${this.projectTitle || "content"}_export.json`;
         a.href = url;
         a.click();
 
-        // Giải phóng URL object
+        // Release URL object
         URL.revokeObjectURL(url);
 
         this.saveMessage = "Content exported successfully!";
@@ -617,9 +608,9 @@ export default {
       }
     },
     shareContent() {
-      // Xử lý chia sẻ nội dung - có thể thông qua email hoặc mạng xã hội
+      // Process content sharing - can be through email or social media
       try {
-        // Kiểm tra nếu Web Share API được hỗ trợ
+        // Check if Web Share API is supported
         if (navigator.share) {
           navigator
             .share({
@@ -635,7 +626,7 @@ export default {
               throw error;
             });
         } else {
-          // Fallback - copy URL vào clipboard
+          // Fallback - copy URL to clipboard
           navigator.clipboard.writeText(window.location.href).then(() => {
             this.saveMessage = "URL copied to clipboard!";
             this.saveStatus = "success";
@@ -659,23 +650,20 @@ export default {
     },
     downloadPDF() {
       try {
-        // Thông báo cho người dùng rằng chức năng đang được phát triển
+        // Notify user that feature is under development
         this.saveMessage = "PDF download feature will be available soon.";
         this.saveStatus = "success";
 
-        // Xóa thông báo sau 3 giây
         setTimeout(() => {
           this.saveMessage = null;
         }, 3000);
 
-        // NOTE: Chức năng này sẽ được triển khai trong bản cập nhật tới
-        // Sử dụng thư viện như jsPDF hoặc html2pdf.js để tạo PDF từ nội dung
+        // NOTE: This feature will be implemented in the upcoming update
       } catch (error) {
         console.error("Error downloading PDF:", error);
         this.saveMessage = "Failed to download PDF: " + error.message;
         this.saveStatus = "error";
 
-        // Clear message after 3 seconds
         setTimeout(() => {
           this.saveMessage = null;
         }, 3000);
@@ -689,23 +677,23 @@ export default {
         this.imageLoading = true;
         this.imageError = null;
 
-        // Hiển thị thông báo đang xử lý
-        this.showToast("Đang chuẩn bị tạo hình ảnh cho nội dung...", "info");
+        // Show processing notification
+        this.showToast("Preparing to create image for content...", "info");
 
         if (!this.contentId) {
-          throw new Error("Không có ID nội dung để tạo hình ảnh");
+          throw new Error("No content ID available to create image");
         }
 
-        // Kiểm tra xem có nội dung không
+        // Check if content is available
         if (!this.content || this.content.trim().length === 0) {
-          this.showToast("Không thể tạo hình ảnh: Nội dung trống", "error");
-          throw new Error("Nội dung trống, không thể tạo hình ảnh");
+          this.showToast("Cannot create image: Content is empty", "error");
+          throw new Error("Content is empty, cannot create image");
         }
 
         console.log(`Generating image for content ID: ${this.contentId}`);
         console.log(`Content length: ${this.content.length} characters`);
 
-        // Bước 1: Tạo prompt từ nội dung
+        // Step 1: Generate prompt from content
         console.log("Step 1: Generating prompt from content");
         const promptResponse = await axios.post(
           `/api/content/contents/generate-prompt`,
@@ -716,13 +704,13 @@ export default {
             content: this.content,
           },
           {
-            timeout: 45000, // 45 seconds timeout for prompt generation
+            timeout: 45000,
           }
         );
 
         if (!promptResponse.data.success) {
           throw new Error(
-            promptResponse.data.error || "Lỗi khi tạo mô tả hình ảnh"
+            promptResponse.data.error || "Error creating image description"
           );
         }
 
@@ -732,13 +720,10 @@ export default {
           generatedPrompt.substring(0, 100) + "..."
         );
 
-        // Hiển thị thông báo prompt đã được tạo
-        this.showToast(
-          "Đã tạo mô tả hình ảnh, đang tạo hình ảnh...",
-          "success"
-        );
+        // Show prompt creation notification
+        this.showToast("Prompt created successfully", "success");
 
-        // Bước 2: Tạo hình ảnh từ prompt
+        // Step 2: Create image from prompt
         const imageResponse = await axios.post(
           `/api/image/generate`,
           {
@@ -749,17 +734,17 @@ export default {
             num_inference_steps: 30,
           },
           {
-            timeout: 180000, // 3 minutes timeout for image generation
+            timeout: 180000,
           }
         );
 
         if (!imageResponse.data.success) {
           throw new Error(
-            imageResponse.data.error || "Lỗi khi tạo hình ảnh từ mô tả"
+            imageResponse.data.error || "Error creating image from prompt"
           );
         }
 
-        // Kiểm tra nếu response có chứa dữ liệu hình ảnh dạng base64
+        // Check if response contains base64 image data
         if (
           imageResponse.data.image &&
           imageResponse.data.image.startsWith("data:image")
@@ -771,34 +756,34 @@ export default {
           return;
         }
 
-        // Trường hợp API trả về filename
+        // Case where API returns filename
         const imageUrl = `/api/content/contents/${this.contentId}/images/${imageResponse.data.filename}`;
 
-        // Bước 3: Cập nhật URL hình ảnh vào nội dung
+        // Step 3: Update image URL to content
         const updateResponse = await axios.put(
           `/api/content/contents/${this.contentId}`,
           {
             imageUrl,
-            generatedContent: this.content, // Thêm trường generatedContent để tránh lỗi
+            generatedContent: this.content, // Add generatedContent field to avoid error
           }
         );
 
         if (!updateResponse.data.success) {
           throw new Error(
-            updateResponse.data.error || "Lỗi khi cập nhật URL hình ảnh"
+            updateResponse.data.error || "Error updating image URL"
           );
         }
 
-        // Cập nhật URL hình ảnh vào local state
+        // Update image URL in local state
         this.localImage = imageUrl;
         this.$emit("update:image", imageUrl);
 
-        // Hiển thị thông báo thành công
-        this.showToast("Đã tạo hình ảnh thành công!", "success");
+        // Show success notification
+        this.showToast("Image loaded successfully", "success");
       } catch (error) {
         console.error("Error generating image for content:", error);
 
-        let errorMessage = "Lỗi không xác định";
+        let errorMessage = "Unknown error";
 
         // Check for API response error
         if (error.response) {
@@ -810,8 +795,7 @@ export default {
 
             // Specific checks for common errors
             if (errorMessage.includes("Missing required field")) {
-              errorMessage =
-                "Thiếu trường dữ liệu cần thiết. Vui lòng thử lại.";
+              errorMessage = "Missing required data. Please try again.";
               console.log("Content availability:", !!this.content);
               console.log("ContentId availability:", !!this.contentId);
 
@@ -820,7 +804,7 @@ export default {
                 this.contentId &&
                 (!this.content || this.content.trim().length === 0)
               ) {
-                this.showToast("Đang thử tải lại nội dung...", "info");
+                this.showToast("Attempting to reload content...", "info");
                 try {
                   const contentResponse = await axios.get(
                     `/api/content/contents/${this.contentId}`
@@ -835,7 +819,7 @@ export default {
                       contentResponse.data.data.generatedContent
                     );
                     this.showToast(
-                      "Đã tải lại nội dung, vui lòng thử lại",
+                      "Content reloaded, please try again",
                       "info"
                     );
                   }
@@ -849,15 +833,15 @@ export default {
           errorMessage = error.message;
         }
 
-        this.imageError = `Lỗi khi tạo hình ảnh: ${errorMessage}`;
+        this.imageError = `Error creating image: ${errorMessage}`;
 
-        // Hiển thị thông báo lỗi
-        this.showToast(`Lỗi: ${errorMessage}`, "error");
+        // Show error notification
+        this.showToast(`Error: ${errorMessage}`, "error");
 
-        // Nếu lỗi do timeout
+        // If error due to timeout
         if (error.message.includes("timeout")) {
           this.showToast(
-            "Quá thời gian chờ phản hồi. Vui lòng thử lại sau.",
+            "Timeout waiting for response. Please try again later.",
             "error"
           );
         }
@@ -872,24 +856,24 @@ export default {
           throw new Error("No content ID available");
         }
 
-        // Hiển thị thông báo đang xử lý
-        this.showToast("Đang lưu hình ảnh vào máy chủ...", "info");
+        // Show processing notification
+        this.showToast("Saving image to server...", "info");
 
-        // 1. Gửi dữ liệu base64 đến API để lưu trên server
+        // 1. Send base64 data to API to save on server
         const saveResponse = await axios.post("/api/image/save-base64", {
           imageData: base64Data,
           contentId: this.contentId,
         });
 
         if (!saveResponse.data.success) {
-          throw new Error(saveResponse.data.error || "Lỗi khi lưu hình ảnh");
+          throw new Error(saveResponse.data.error || "Error saving image");
         }
 
-        // 2. Lấy URL của hình ảnh đã lưu
+        // 2. Get URL of saved image
         const imageUrl = saveResponse.data.imageUrl;
         console.log("Image saved successfully, URL:", imageUrl);
 
-        // 3. Cập nhật URL hình ảnh vào content
+        // 3. Update image URL in content
         const updateResponse = await axios.patch(
           `/api/content/contents/${this.contentId}/partial`,
           { imageUrl }
@@ -897,63 +881,62 @@ export default {
 
         if (!updateResponse.data.success) {
           throw new Error(
-            updateResponse.data.error || "Lỗi khi cập nhật URL hình ảnh"
+            updateResponse.data.error || "Error updating image URL"
           );
         }
 
-        // 4. Cập nhật URL hình ảnh vào local state
+        // 4. Update image URL in local state
         this.localImage = imageUrl;
         this.$emit("update:image", imageUrl);
 
-        // Hiển thị thông báo thành công
-        this.showToast("Đã lưu hình ảnh thành công!", "success");
+        // Show success notification
+        this.showToast("Image saved successfully", "success");
         this.imageError = null;
       } catch (error) {
         console.error("Error saving base64 image:", error);
 
-        // Nếu đã có dữ liệu base64, vẫn hiển thị dù không lưu được
+        // If base64 data is available, still show it even if not saved
         if (base64Data) {
           this.localImage = base64Data;
           this.$emit("update:image", base64Data);
           this.showToast(
-            "Hiển thị hình ảnh tạm thời. Không thể lưu vào máy chủ.",
+            "Displaying temporary image. Unable to save to server.",
             "warning"
           );
         } else {
-          this.imageError =
-            "Không thể lưu hình ảnh vào máy chủ: " + error.message;
-          this.showToast("Lỗi: " + error.message, "error");
+          this.imageError = "Unable to save image to server: " + error.message;
+          this.showToast("Error: " + error.message, "error");
         }
       }
     },
     async updateImageUrlToDatabase() {
       try {
-        // Kiểm tra xem có imageUrl trong local state không
+        // Check if imageUrl exists in local state
         if (!this.localImage || !this.contentId) {
-          console.error("Không có dữ liệu hình ảnh hoặc ID nội dung");
+          console.error("No image data or content ID available");
           return;
         }
 
         this.imageLoading = true;
-        this.showToast("Đang cập nhật hình ảnh vào cơ sở dữ liệu...", "info");
+        this.showToast("Updating image to database...", "info");
 
-        // Lấy thông tin nội dung hiện tại
+        // Get current content information
         const contentResponse = await axios.get(
           `/api/content/contents/${this.contentId}`
         );
         if (!contentResponse.data.success) {
-          throw new Error("Không thể lấy thông tin nội dung");
+          throw new Error("Unable to get content information");
         }
 
         const content = contentResponse.data.data;
 
-        // Nếu là data URL, cần lưu vào server trước
+        // If it's a data URL, need to save to server first
         if (this.localImage.startsWith("data:image")) {
           await this.saveBase64ImageToServer(this.localImage);
           return;
         }
 
-        // Cập nhật URL
+        // Update URL
         const updateResponse = await axios.put(
           `/api/content/contents/${this.contentId}`,
           {
@@ -964,14 +947,14 @@ export default {
 
         if (!updateResponse.data.success) {
           throw new Error(
-            updateResponse.data.error || "Lỗi khi cập nhật URL hình ảnh"
+            updateResponse.data.error || "Error updating image URL"
           );
         }
 
-        this.showToast("Đã cập nhật hình ảnh vào cơ sở dữ liệu!", "success");
+        this.showToast("Image updated in database!", "success");
       } catch (error) {
         console.error("Error updating image URL:", error);
-        this.showToast("Lỗi: " + error.message, "error");
+        this.showToast("Error: " + error.message, "error");
       } finally {
         this.imageLoading = false;
       }
@@ -979,10 +962,25 @@ export default {
     showToast(message, type = "info") {
       if (!this.toasts) this.toasts = [];
 
+      // Prevent duplicate notifications within 2 seconds
+      const now = Date.now();
+      if (
+        this.lastNotificationTime &&
+        now - this.lastNotificationTime < 2000 &&
+        this.lastNotificationMessage === message
+      ) {
+        console.log("Preventing duplicate notification:", message);
+        return;
+      }
+
+      // Update last notification info
+      this.lastNotificationTime = now;
+      this.lastNotificationMessage = message;
+
       const id = Date.now();
       this.toasts.push({ id, message, type });
 
-      // Tự động xóa sau 5 giây
+      // Automatically remove after 5 seconds
       setTimeout(() => {
         this.removeToast(id);
       }, 5000);
@@ -1074,7 +1072,7 @@ export default {
     debugImageUrl(originalUrl) {
       console.log("Debugging image URL:", originalUrl);
 
-      // Kiểm tra nhiều định dạng URL khác nhau
+      // Check multiple different URL formats
       const possibleUrls = [];
 
       if (typeof originalUrl !== "string") {
@@ -1082,11 +1080,11 @@ export default {
         return;
       }
 
-      // Lấy tên tệp nếu có
+      // Get filename if present
       const filename = originalUrl.split("/").pop();
       console.log("Extracted filename:", filename);
 
-      // Đường dẫn trực tiếp đến API endpoint (ưu tiên cao nhất)
+      // Direct path to API endpoint (highest priority)
       if (filename) {
         possibleUrls.push(`/api/image/uploads/${filename}`);
         possibleUrls.push(
@@ -1095,12 +1093,12 @@ export default {
       }
 
       if (originalUrl.includes("uploads/")) {
-        // Các định dạng khác cũng được thử
+        // Other formats also tried
         possibleUrls.push(`/server/uploads/${filename}`);
         possibleUrls.push(`/uploads/${filename}`);
       }
 
-      // Thử URL gốc với tên miền
+      // Try original URL with domain
       if (!originalUrl.startsWith("http") && !originalUrl.startsWith("data:")) {
         possibleUrls.push(
           `${window.location.origin}${
@@ -1109,14 +1107,14 @@ export default {
         );
       }
 
-      // Thêm URL gốc vào danh sách (nếu chưa có)
+      // Add original URL to list (if not already present)
       if (!possibleUrls.includes(originalUrl)) {
         possibleUrls.push(originalUrl);
       }
 
       console.log("Trying alternate URLs:", possibleUrls);
 
-      // Thử tải mỗi URL
+      // Try loading each URL
       let successFound = false;
 
       possibleUrls.forEach((url, index) => {
@@ -1132,15 +1130,16 @@ export default {
             this.$emit("update:image", url);
             this.imageError = null;
             this.imageLoading = false;
+            this.showToast("Đã tải hình ảnh thành công", "success");
           };
           img.onerror = () => {
             console.log(`Failed with URL: ${url}`);
 
-            // Nếu đây là URL cuối cùng và tất cả đều thất bại, hiển thị nút tạo hình ảnh mới
+            // If this is the last URL and all failed, show generate button
             if (index === possibleUrls.length - 1 && !successFound) {
               console.log("All URLs failed, showing generate button");
               this.imageError =
-                "Không thể tải hình ảnh. Bạn có thể tạo hình ảnh mới.";
+                "Unable to load image. You can create a new image.";
             }
           };
           img.src = url;
@@ -1160,7 +1159,7 @@ export default {
 
       console.log(`Fetching image data for content ID: ${this.contentId}`);
 
-      // Nếu có hình ảnh ở local state nhưng chưa được lưu vào database
+      // If there's a local image but not saved to database
       if (this.localImage && this.localImage.startsWith("data:image")) {
         console.log("Found local base64 image, saving to database...");
         this.saveBase64ImageToServer(this.localImage);
@@ -1273,13 +1272,13 @@ export default {
             } else {
               console.log("No image URL found in database");
 
-              // Kiểm tra xem có generatedImage từ prop hoặc local state không
+              // Check if generatedImage from prop or local state exists
               if (this.generatedImage || this.localImage) {
                 console.log("Using generatedImage or localImage instead");
 
                 const imageToUse = this.localImage || this.generatedImage;
 
-                // Nếu là data URL, lưu vào database
+                // If it's a data URL, save to database
                 if (
                   typeof imageToUse === "string" &&
                   imageToUse.startsWith("data:image")
@@ -1314,7 +1313,7 @@ export default {
           this.imageLoading = false;
         });
     },
-    // Thêm hàm mới để thử các phương pháp thay thế khi tải hình ảnh
+    // Add new function to try alternative methods when loading image
     tryAlternativeImageUrls(originalUrl) {
       try {
         console.log("Trying alternative methods to load image:", originalUrl);
@@ -1468,7 +1467,7 @@ export default {
           // Always fetch the image when contentId changes
           this.fetchContentImage();
 
-          // Tải dữ liệu hình ảnh từ cơ sở dữ liệu
+          // Load image from database
           this.loadImageFromDatabase();
         }
       },

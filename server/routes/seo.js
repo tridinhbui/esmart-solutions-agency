@@ -9,22 +9,22 @@ const {
   autoOptimizeSEO,
 } = require("../controllers/seoController");
 
-// GET: Lấy báo cáo SEO cho một content
+// GET: Retrieve SEO report for specific content
 router.get("/report/:contentId", getSEOReport);
 
-// GET: Lấy metadata SEO cho một content
+// GET: Fetch SEO metadata for specific content
 router.get("/metadata/:contentId", getSEOMetadata);
 
-// GET: Lấy trending keywords
+// GET: Get trending keywords
 router.get("/trends", getTrendKeywords);
 
-// POST: Phân tích SEO cho một content
+// POST: Analyze SEO for specific content
 router.post("/analyze/:contentId", analyzeContentSEO);
 
-// POST: Tối ưu hóa content dựa trên phân tích SEO
+// POST: Optimize content based on SEO analysis
 router.post("/optimize/:contentId", optimizeContentSEO);
 
-// POST: Tự động tối ưu hóa content
+// POST: Auto-optimize content for SEO
 router.post("/auto-optimize/:contentId", autoOptimizeSEO);
 
 module.exports = router;

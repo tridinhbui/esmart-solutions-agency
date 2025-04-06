@@ -24,7 +24,7 @@ const Content = sequelize.define(
       allowNull: false,
     },
     keywords: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     tone: {

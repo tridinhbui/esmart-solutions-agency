@@ -3,14 +3,14 @@ const axios = require("axios");
 const FormData = require("form-data");
 const router = express.Router();
 require("dotenv").config();
-const fs = require("fs");
-const path = require("path");
-const crypto = require("crypto");
+// const fs = require("fs");
+// const path = require("path");
+// const crypto = require("crypto");
 
-// Cấu hình API URL
+// Configure API URL
 const FASTAPI_URL = process.env.FASTAPI_URL || "http://localhost:8000";
 
-// Kiểm tra trạng thái FastAPI service
+// Check FastAPI service status
 async function checkServiceStatus() {
   try {
     const response = await axios.get(`${FASTAPI_URL}/status`, {
@@ -30,7 +30,7 @@ async function checkServiceStatus() {
   }
 }
 
-// Tạo ảnh từ prompt
+// Create image from prompt
 router.post("/generate", async (req, res) => {
   try {
     const { prompt, style = "Realistic", width = 768, height = 768 } = req.body;
@@ -42,7 +42,7 @@ router.post("/generate", async (req, res) => {
       });
     }
 
-    // Tạo FormData để gửi đến FastAPI
+    // Create FormData to send to FastAPI
     const formData = new FormData();
     formData.append("prompt", prompt);
     formData.append("style", style);
@@ -51,7 +51,7 @@ router.post("/generate", async (req, res) => {
     formData.append("enhance_prompt", "true");
     formData.append("num_inference_steps", "30");
 
-    // Gửi request đến FastAPI service
+    // Send request to FastAPI service
     console.log(`Sending request to ${FASTAPI_URL}/generate-image`);
     const response = await axios.post(
       `${FASTAPI_URL}/generate-image`,
@@ -64,7 +64,7 @@ router.post("/generate", async (req, res) => {
       }
     );
 
-    // Xử lý response từ FastAPI
+    // Process response from FastAPI
     if (response.data && response.data.success) {
       return res.json({
         success: true,
@@ -86,7 +86,7 @@ router.post("/generate", async (req, res) => {
   }
 });
 
-// Tạo ảnh từ topic
+// Create image from topic
 router.post("/topic-to-image", async (req, res) => {
   try {
     const { topic, style = "Realistic", width = 768, height = 768 } = req.body;
@@ -98,7 +98,7 @@ router.post("/topic-to-image", async (req, res) => {
       });
     }
 
-    // Tạo FormData để gửi đến FastAPI
+    // Create FormData to send to FastAPI
     const formData = new FormData();
     formData.append("topic", topic);
     formData.append("style", style);
@@ -106,7 +106,7 @@ router.post("/topic-to-image", async (req, res) => {
     formData.append("height", height);
     formData.append("num_inference_steps", "30");
 
-    // Gửi request đến FastAPI service
+    // Send request to FastAPI service
     console.log(`Sending request to ${FASTAPI_URL}/topic-to-image`);
     const response = await axios.post(
       `${FASTAPI_URL}/topic-to-image`,
@@ -119,7 +119,7 @@ router.post("/topic-to-image", async (req, res) => {
       }
     );
 
-    // Xử lý response từ FastAPI
+    // Process response from FastAPI
     if (response.data && response.data.success) {
       return res.json({
         success: true,
@@ -157,9 +157,9 @@ router.get("/status", async (req, res) => {
 });
 
 // Save an image
-router.post("/save", (req, res) => {
+router.post("/save", async (req, res) => {
   try {
-    const { image_data, prompt, style } = req.body;
+    const { image_data, prompt, style, contentId } = req.body;
 
     if (!image_data) {
       return res.status(400).json({
@@ -168,122 +168,75 @@ router.post("/save", (req, res) => {
       });
     }
 
-    console.log("[IMAGE] Saving image to server");
+    console.log("[IMAGE] Processing image save request");
 
-    // Xử lý dữ liệu hình ảnh
+    // Parse the base64 image data
     const buffer = Buffer.from(image_data, "base64");
 
-    // Tạo mã hash từ dữ liệu hình ảnh để so sánh
-    const imageHash = crypto.createHash("md5").update(buffer).digest("hex");
+    // If contentId is provided, save directly to the associated content record
+    if (contentId) {
+      const Content = require("../models").Content;
+      const content = await Content.findByPk(contentId);
 
-    // Thiết lập đường dẫn thư mục uploads
-    const uploadsDir = path.join(__dirname, "../uploads");
-
-    // Đảm bảo thư mục tồn tại
-    if (!fs.existsSync(uploadsDir)) {
-      fs.mkdirSync(uploadsDir, { recursive: true });
-    }
-
-    // Kiểm tra tất cả các file trong thư mục uploads để tìm ảnh trùng lặp
-    let existingImagePath = null;
-    let fileName = null;
-
-    // Lấy danh sách file hiện có
-    const files = fs.readdirSync(uploadsDir);
-    for (const file of files) {
-      // Chỉ kiểm tra các file ảnh
-      if (
-        file.endsWith(".png") ||
-        file.endsWith(".jpg") ||
-        file.endsWith(".jpeg")
-      ) {
-        const filePath = path.join(uploadsDir, file);
-        const fileBuffer = fs.readFileSync(filePath);
-        const fileHash = crypto
-          .createHash("md5")
-          .update(fileBuffer)
-          .digest("hex");
-
-        // Nếu hash giống nhau, ảnh đã tồn tại
-        if (fileHash === imageHash) {
-          existingImagePath = filePath;
-          fileName = file;
-          console.log(`[IMAGE] Found existing identical image: ${fileName}`);
-          break;
-        }
+      if (!content) {
+        return res.status(404).json({
+          success: false,
+          error: "Content not found",
+        });
       }
-    }
 
-    // Nếu ảnh chưa tồn tại, tạo file mới
-    if (!existingImagePath) {
-      // Tạo tên file duy nhất
-      fileName = `image_${Date.now()}.png`;
-      const filePath = path.join(uploadsDir, fileName);
+      // Save image to database
+      content.image_data = buffer;
+      content.imageUrl = `/api/image/content-image/${contentId}`;
+      content.imagePrompt = prompt || content.imagePrompt;
 
-      // Lưu file
-      fs.writeFileSync(filePath, buffer);
-      console.log(`[IMAGE] Saved new image to ${filePath}`);
-    } else {
+      await content.save();
+
       console.log(
-        `[IMAGE] Reusing existing image: ${fileName} instead of creating duplicate`
+        `[IMAGE] Saved image directly to database for content ID: ${contentId}`
       );
+
+      return res.json({
+        success: true,
+        imageUrl: content.imageUrl,
+        message: "Image saved to database successfully",
+      });
+    } else {
+      // If no contentId is provided, create a temporary content record
+      // to store the image or return an error
+      return res.status(400).json({
+        success: false,
+        error: "contentId is required to save images",
+      });
     }
-
-    // Tạo URL hình ảnh để trả về
-    const imageUrl = `${
-      process.env.API_URL || "http://localhost:3001"
-    }/api/image/uploads/${fileName}`;
-
-    console.log(`[IMAGE] Image saved successfully: ${fileName}`);
-
-    // Trả về kết quả
-    res.json({
-      success: true,
-      message: "Image saved successfully",
-      fileName: fileName,
-      imageUrl: imageUrl,
-      prompt: prompt,
-      style: style,
-    });
   } catch (error) {
-    console.error("[IMAGE] Error saving image:", error);
-    res.status(500).json({
+    console.error("Error saving image:", error);
+    return res.status(500).json({
       success: false,
-      error: "Failed to save image",
-      details: error.message,
+      error: "Failed to save image: " + error.message,
     });
   }
 });
 
-// Route để phục vụ hình ảnh từ thư mục uploads
+// Route to serve images from the uploads directory - now deprecated
 router.get("/uploads/:fileName", (req, res) => {
   const { fileName } = req.params;
-  const path = require("path");
-  const fs = require("fs");
 
-  // Đường dẫn đến file yêu cầu
-  const filePath = path.join(__dirname, "../uploads", fileName);
+  console.log(
+    `[WARNING] Deprecated /uploads/${fileName} endpoint called. Images are now stored in database.`
+  );
 
-  // Đảm bảo thư mục uploads tồn tại
-  const uploadsDir = path.join(__dirname, "../uploads");
-  if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
-    console.log(`Created uploads directory at ${uploadsDir}`);
-  }
-
-  // Kiểm tra xem file có tồn tại không
-  if (!fs.existsSync(filePath)) {
-    return res.status(404).json({
-      success: false,
-      error: "File not found",
-    });
-  }
-
-  // Trả về file
-  return res.sendFile(filePath);
+  // Return a proper error message explaining that the endpoint is deprecated
+  return res.status(410).json({
+    success: false,
+    error:
+      "This endpoint is deprecated. Images are now stored in the database.",
+    message:
+      "Please update your code to use /api/image/content-image/:contentId instead.",
+  });
 });
 
-// Thêm route mới để xử lý hình ảnh base64
+// Add new route to handle base64 image
 router.post("/save-base64", async (req, res) => {
   try {
     const { imageData, contentId } = req.body;
@@ -295,7 +248,7 @@ router.post("/save-base64", async (req, res) => {
       });
     }
 
-    // Kiểm tra xem dữ liệu có phải là base64 không
+    // Check if the data is base64
     if (!imageData.startsWith("data:image")) {
       return res.status(400).json({
         success: false,
@@ -303,20 +256,20 @@ router.post("/save-base64", async (req, res) => {
       });
     }
 
-    // Xử lý dữ liệu base64
+    // Process base64 data
     const base64Data = imageData.replace(/^data:image\/\w+;base64,/, "");
     const buffer = Buffer.from(base64Data, "base64");
 
-    // Nếu có contentId, lưu trực tiếp vào database
+    // If contentId is provided, save directly to the database
     if (contentId) {
       try {
         const Content = require("../models").Content;
         const content = await Content.findByPk(contentId);
         if (content) {
-          // Lưu dữ liệu hình ảnh vào database
+          // Save image data to database
           content.image_data = buffer;
 
-          // Cập nhật imageUrl để trỏ đến endpoint lấy ảnh từ database
+          // Update imageUrl to point to the endpoint to get image from database
           const imageUrl = `/api/image/content-image/${contentId}`;
           content.imageUrl = imageUrl;
 
@@ -344,74 +297,10 @@ router.post("/save-base64", async (req, res) => {
         });
       }
     } else {
-      // Nếu không có contentId, lưu vào uploads như trước đây
-      const fs = require("fs");
-      const path = require("path");
-      const crypto = require("crypto");
-
-      // Đảm bảo thư mục uploads tồn tại
-      const uploadsDir = path.join(__dirname, "../uploads");
-      if (!fs.existsSync(uploadsDir)) {
-        fs.mkdirSync(uploadsDir, { recursive: true });
-        console.log(`Created uploads directory at ${uploadsDir}`);
-      }
-
-      // Tạo mã hash từ dữ liệu hình ảnh để so sánh
-      const imageHash = crypto.createHash("md5").update(buffer).digest("hex");
-
-      // Kiểm tra tất cả các file trong thư mục uploads
-      let existingImagePath = null;
-      let fileName = null;
-
-      // Lấy danh sách file hiện có
-      const files = fs.readdirSync(uploadsDir);
-      for (const file of files) {
-        // Chỉ kiểm tra các file ảnh
-        if (
-          file.endsWith(".png") ||
-          file.endsWith(".jpg") ||
-          file.endsWith(".jpeg")
-        ) {
-          const filePath = path.join(uploadsDir, file);
-          const fileBuffer = fs.readFileSync(filePath);
-          const fileHash = crypto
-            .createHash("md5")
-            .update(fileBuffer)
-            .digest("hex");
-
-          // Nếu hash giống nhau, ảnh đã tồn tại
-          if (fileHash === imageHash) {
-            existingImagePath = filePath;
-            fileName = file;
-            console.log(`Found existing identical image: ${fileName}`);
-            break;
-          }
-        }
-      }
-
-      // Nếu ảnh chưa tồn tại, tạo file mới
-      if (!existingImagePath) {
-        // Tạo tên file duy nhất
-        const timestamp = Date.now();
-        fileName = `image_${timestamp}.png`;
-        const filePath = path.join(uploadsDir, fileName);
-
-        // Lưu file
-        fs.writeFileSync(filePath, buffer);
-        console.log(`Saved new base64 image to ${filePath}`);
-      } else {
-        console.log(
-          `Reusing existing image: ${fileName} instead of creating duplicate`
-        );
-      }
-
-      // Trả về URL cho client
-      const imageUrl = `/api/image/uploads/${fileName}`;
-
-      return res.json({
-        success: true,
-        imageUrl,
-        message: "Image saved successfully",
+      // If no contentId, return an error
+      return res.status(400).json({
+        success: false,
+        error: "contentId is required to save images",
       });
     }
   } catch (error) {
@@ -423,31 +312,31 @@ router.post("/save-base64", async (req, res) => {
   }
 });
 
-// Endpoint để lấy hình ảnh từ database dựa vào contentId
+// Endpoint to retrieve image from database based on contentId
 router.get("/content-image/:contentId", async (req, res) => {
   try {
     const { contentId } = req.params;
 
-    // Lấy dữ liệu hình ảnh từ database
+    // Get image data from database
     const Content = require("../models").Content;
     const content = await Content.findByPk(contentId);
 
     if (!content || !content.image_data) {
       return res.status(404).json({
         success: false,
-        error: "Không tìm thấy hình ảnh trong cơ sở dữ liệu",
+        error: "Image not found in database",
       });
     }
 
-    // Thiết lập header phù hợp
+    // Set appropriate header
     res.setHeader("Content-Type", "image/png");
-    // Gửi dữ liệu hình ảnh về client
+    // Send image data to client
     res.send(content.image_data);
   } catch (error) {
     console.error("Error retrieving image from database:", error);
     res.status(500).json({
       success: false,
-      error: "Lỗi khi lấy hình ảnh từ cơ sở dữ liệu",
+      error: "Error retrieving image from database",
       details: error.message,
     });
   }
