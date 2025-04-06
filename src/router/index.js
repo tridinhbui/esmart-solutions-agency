@@ -11,7 +11,7 @@ import Project from "@/components/ProjectSection.vue";
 import AboutUs from "@/components/AboutUs.vue";
 import Service from "@/components/ServiceSection.vue";
 import DetailedBlog1 from "@/components/detailedblogpage/DetailedBlog1.vue";
-import EsmartCreatorAIPage from "@/components/EsmartCreatorAIPage.vue";
+import EsmartCreatorAIPage from "../components/EsmartCreatorAIPage.vue";
 
 const routes = [
   { path: "/intro", name: "Intro", component: IntroSection },
