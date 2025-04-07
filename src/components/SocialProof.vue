@@ -19,8 +19,8 @@
     </div>
 
     <h2>{{ $t("socialProof.testimonialsTitle") }}</h2>
-    <div class="testimonials-container">
-      <div class="testimonials-track" :style="{ transform: `translateX(-${translateX}px)` }">
+    <div class="testimonials-container scroller" data-speed="slow">
+      <div class="testimonials-track scroller__inner" :style="{ transform: `translateX(-${translateX}px)` }">
         <!-- First set of testimonials -->
         <div
           class="testimonial-card"
