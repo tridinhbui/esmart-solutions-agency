@@ -1,33 +1,34 @@
+const questionsEn = require('../assets/questions-en.json');
+const questionsVi = require('../assets/questions-vi.json');
+
 function calculateScore(answers) {
     let score = 0;
     answers.forEach(answer => {
-        if (answer === 'yes') score += 10;
+        if (answer === 0) score += 10;
+        else if (answer === 1) score += 5;
     });
     return score;
 }
 
-function generateReport(score) {
+function generateReport(answers, locale) {
     const report = {
         strengths: [],
         weaknesses: [],
         suggestions: [],
     };
 
-    if (score >= 80) {
-        report.strengths.push('Excellent marketing strategy.');
-        report.weaknesses.push('None');
-        report.suggestions.push('Keep up the good work!');
-    } else if (score >= 50) {
-        report.strengths.push('Good marketing efforts.');
-        report.weaknesses.push('Needs improvement in SEO.');
-        report.suggestions.push('Focus on improving SEO and content strategy.');
-    } else {
-        report.strengths.push('Some marketing efforts detected.');
-        report.weaknesses.push('Poor marketing performance.');
-        report.suggestions.push('Consider investing in social media ads.');
-    }
+    const questions = locale === 'en' ? questionsEn : questionsVi;
 
-    return report;
-}
+    questions.forEach((question, index) => {
+        const answer = answers[index];
+        const matchedAnswer = question.answers[answer];
+
+        if (matchedAnswer.strength) report.strengths.push(matchedAnswer.strength);
+        if (matchedAnswer.weakness) report.weaknesses.push(matchedAnswer.weakness);
+        if (matchedAnswer.suggestion) report.suggestions.push(matchedAnswer.suggestion);
+    });
+
+        return report;
+    }
 
 module.exports = { calculateScore, generateReport };

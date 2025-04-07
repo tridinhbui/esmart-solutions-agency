@@ -1,6 +1,7 @@
 {
   "home": "Trang chủ",
   "aiCreator": "AI Creator",
+  "assessment": "Đánh giá",
   "achievements": "Thành tựu",
   "blog": "Blog",
   "blogPage1": "Trang Blog 1",
@@ -48,8 +49,12 @@
       {
         "title": "Bước 1: Tư vấn và lập kế hoạch",
         "subsSteps": [
-          { "title": "Phân tích thị trường - khách hàng mục tiêu." },
-          { "title": "Xây dựng customer insight" },
+          {
+            "title": "Phân tích thị trường - khách hàng mục tiêu."
+          },
+          {
+            "title": "Xây dựng customer insight"
+          },
           {
             "title": "Lên kế hoạch triển khai theo tháng, có mục tiêu rõ ràng."
           }
@@ -66,7 +71,9 @@
       {
         "title": "Bước 3: Triển khai Dịch vụ",
         "subsSteps": [
-          { "title": "Tạo nhóm trao đổi và giám sát công việc." },
+          {
+            "title": "Tạo nhóm trao đổi và giám sát công việc."
+          },
           {
             "title": "Lên kế hoạch nội dung hàng tháng, trình khách hàng phê duyệt."
           },
@@ -350,5 +357,173 @@
       "error": "Lỗi khi tải dữ liệu",
       "returnToDashboard": "Trở về bảng điều khiển"
     }
+=======
+  "MarketingAssessment": {
+    "title": "Đánh Giá Marketing",
+    "progressText": "{completed} trên {total} câu hỏi",
+    "progressPercentage": "{percentage}%",
+    "questionNumber": "Câu hỏi {number}",
+    "submitButton": "Gửi bài đánh giá",
+    "nextButton": "Tiếp theo",
+    "prevButton": "Trước đó",
+    "alert": "Vui lòng trả lời câu hỏi hiện tại trước khi tiếp tục",
+    "results": {
+      "scoreTitle": "Điểm số của bạn",
+      "strengthsTitle": "Điểm mạnh",
+      "weaknessesTitle": "Điểm cần cải thiện",
+      "suggestionsTitle": "Khuyến nghị"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "question": "Trang web của bạn có tiêu đề và mô tả meta riêng cho từng trang không?",
+        "answers": [
+          {
+            "text": "Có"
+          },
+          {
+            "text": "Một số trang"
+          },
+          {
+            "text": "Không"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "Trang web của bạn có được tối ưu hóa cho thiết bị di động không?",
+        "answers": [
+          {
+            "text": "Có"
+          },
+          {
+            "text": "Một phần"
+          },
+          {
+            "text": "Không"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "Bạn có thực hiện nghiên cứu từ khóa để nhắm mục tiêu SEO không?",
+        "answers": [
+          {
+            "text": "Thường xuyên"
+          },
+          {
+            "text": "Thỉnh thoảng"
+          },
+          {
+            "text": "Không bao giờ"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "Trang web của bạn có tải trong vòng 3 giây không?",
+        "answers": [
+          {
+            "text": "Luôn luôn"
+          },
+          {
+            "text": "Thỉnh thoảng"
+          },
+          {
+            "text": "Không"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "Các tệp hình ảnh có được tối ưu hóa (nén, có thẻ alt) không?",
+        "answers": [
+          {
+            "text": "Có"
+          },
+          {
+            "text": "Một số"
+          },
+          {
+            "text": "Không"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "Bạn có liên kết ngược (backlink) chất lượng từ các trang web khác không?",
+        "answers": [
+          {
+            "text": "Hơn 20 liên kết"
+          },
+          {
+            "text": "5-20 liên kết"
+          },
+          {
+            "text": "Ít hoặc không có"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "Bạn đăng nội dung mới thường xuyên như thế nào?",
+        "answers": [
+          {
+            "text": "Hàng tuần trở lên"
+          },
+          {
+            "text": "Hàng tháng"
+          },
+          {
+            "text": "Hiếm khi/Không bao giờ"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "Bạn có theo dõi hiệu suất SEO (ví dụ: qua Google Search Console hoặc Google Analytics) không?",
+        "answers": [
+          {
+            "text": "Báo cáo định kỳ"
+          },
+          {
+            "text": "Hiếm khi xem"
+          },
+          {
+            "text": "Không sử dụng"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "URL của bạn có chứa từ khóa rõ ràng (thân thiện với SEO) không?",
+        "answers": [
+          {
+            "text": "Luôn luôn"
+          },
+          {
+            "text": "Thỉnh thoảng"
+          },
+          {
+            "text": "Không"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "Trang web của bạn có bảo mật SSL (HTTPS) không?",
+        "answers": [
+          {
+            "text": "Có"
+          },
+          {
+            "text": "Không"
+          },
+          {
+            "text": "Không chắc"
+          }
+        ]
+      }
+    ]
   }
 }

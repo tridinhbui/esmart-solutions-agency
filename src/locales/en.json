@@ -1,6 +1,7 @@
 {
   "home": "Home",
   "aiCreator": "AI Creator",
+  "assessment": "Assessment",
   "achievements": "Achievements",
   "blog": "Blog",
   "blogPage1": "Blog Page 1",
@@ -8,7 +9,6 @@
   "AboutUs": "About Us",
   "Process": "Process",
   "signIn": "Sign In",
-  "Assessment": "Assessment",
   "AboutUs": {
     "title": "About Us",
     "description1": "ESmart Solutions focuses on helping businesses enhance their ability to reach and promote their products to potential customers.",
@@ -43,7 +43,6 @@
       "button": "Chat with Support Team"
     }
   },
-
   "process": {
     "title": "Our Process",
     "closeButton": "Close",
@@ -79,16 +78,21 @@
       }
     }
   },
-
   "process": {
     "title": "Our Process",
     "steps": [
       {
         "title": "Step 1: Consultation and Planning",
         "subsSteps": [
-          { "title": "Market analysis - target customers." },
-          { "title": "Build customer insight" },
-          { "title": "Plan implementation monthly, with clear goals." }
+          {
+            "title": "Market analysis - target customers."
+          },
+          {
+            "title": "Build customer insight"
+          },
+          {
+            "title": "Plan implementation monthly, with clear goals."
+          }
         ]
       },
       {
@@ -102,7 +106,9 @@
       {
         "title": "Step 3: Service Implementation",
         "subsSteps": [
-          { "title": "Create a team for communication and work supervision." },
+          {
+            "title": "Create a team for communication and work supervision."
+          },
           {
             "title": "Develop monthly content plans, present to customers for approval."
           },
@@ -181,7 +187,6 @@
       "contact": "Contact Us"
     }
   },
-
   "feats": {
     "sectionTitle": "Website Development",
     "mainTitle": "Experience the Special Features with Esmart",
@@ -193,7 +198,6 @@
       "4": "Unlimited Color Options"
     }
   },
-
   "socialProof": {
     "mediaTitle": "Social Media",
     "testimonialsTitle": "What our customers say about us",
@@ -363,5 +367,173 @@
       "shareSuccess": "Content shared successfully!",
       "downloadStart": "Your download will start shortly..."
     }
+=======
+  "MarketingAssessment": {
+    "title": "Marketing Assessment",
+    "progressText": "{completed} of {total} questions",
+    "progressPercentage": "{percentage}%",
+    "questionNumber": "Question {number}",
+    "submitButton": "Submit Assessment",
+    "nextButton": "Next",
+    "prevButton": "Previous",
+    "alert": "Please answer the current question before proceeding",
+    "results": {
+      "scoreTitle": "Your Score",
+      "strengthsTitle": "Strengths",
+      "weaknessesTitle": "Areas to Improve",
+      "suggestionsTitle": "Recommendations"
+    },
+    "questions": [
+      {
+        "id": 1,
+        "question": "Does your website have unique meta titles and descriptions for each page?",
+        "answers": [
+          {
+            "text": "Yes"
+          },
+          {
+            "text": "Some pages"
+          },
+          {
+            "text": "No"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "Is your website optimized for mobile devices?",
+        "answers": [
+          {
+            "text": "Yes"
+          },
+          {
+            "text": "Partially"
+          },
+          {
+            "text": "No"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "Do you perform keyword research to target SEO-friendly keywords?",
+        "answers": [
+          {
+            "text": "Regularly"
+          },
+          {
+            "text": "Occasionally"
+          },
+          {
+            "text": "Never"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "Does your site load within 3 seconds?",
+        "answers": [
+          {
+            "text": "Always"
+          },
+          {
+            "text": "Sometimes"
+          },
+          {
+            "text": "No"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "Are image files optimized (compressed, with alt tags)?",
+        "answers": [
+          {
+            "text": "Yes"
+          },
+          {
+            "text": "Some"
+          },
+          {
+            "text": "No"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "Do you have quality backlinks from other websites?",
+        "answers": [
+          {
+            "text": "20+ backlinks"
+          },
+          {
+            "text": "5-20 backlinks"
+          },
+          {
+            "text": "Few or none"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "How often do you publish new content?",
+        "answers": [
+          {
+            "text": "Weekly+"
+          },
+          {
+            "text": "Monthly"
+          },
+          {
+            "text": "Rarely/Never"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "Do you track SEO performance (e.g., via Google Search Console or Google Analytics)?",
+        "answers": [
+          {
+            "text": "Regular reports"
+          },
+          {
+            "text": "Rarely check"
+          },
+          {
+            "text": "Not using"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "Do your URLs contain clear keywords (SEO-friendly URLs)?",
+        "answers": [
+          {
+            "text": "Always"
+          },
+          {
+            "text": "Sometimes"
+          },
+          {
+            "text": "No"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "Is your website SSL secured (HTTPS)?",
+        "answers": [
+          {
+            "text": "Yes"
+          },
+          {
+            "text": "No"
+          },
+          {
+            "text": "Not sure"
+          }
+        ]
+      }
+    ]
   }
 }
