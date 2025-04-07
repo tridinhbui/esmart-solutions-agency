@@ -356,22 +356,22 @@
       "loading": "Đang tải dữ liệu nội dung...",
       "error": "Lỗi khi tải dữ liệu",
       "returnToDashboard": "Trở về bảng điều khiển"
-    }
-=======
-  "MarketingAssessment": {
-    "title": "Đánh Giá Marketing",
-    "progressText": "{completed} trên {total} câu hỏi",
-    "progressPercentage": "{percentage}%",
-    "questionNumber": "Câu hỏi {number}",
-    "submitButton": "Gửi bài đánh giá",
-    "nextButton": "Tiếp theo",
-    "prevButton": "Trước đó",
-    "alert": "Vui lòng trả lời câu hỏi hiện tại trước khi tiếp tục",
-    "results": {
-      "scoreTitle": "Điểm số của bạn",
-      "strengthsTitle": "Điểm mạnh",
-      "weaknessesTitle": "Điểm cần cải thiện",
-      "suggestionsTitle": "Khuyến nghị"
+    },
+    "MarketingAssessment": {
+      "title": "Đánh Giá Marketing",
+      "progressText": "{completed} trên {total} câu hỏi",
+      "progressPercentage": "{percentage}%",
+      "questionNumber": "Câu hỏi {number}",
+      "submitButton": "Gửi bài đánh giá",
+      "nextButton": "Tiếp theo",
+      "prevButton": "Trước đó",
+      "alert": "Vui lòng trả lời câu hỏi hiện tại trước khi tiếp tục",
+      "results": {
+        "scoreTitle": "Điểm số của bạn",
+        "strengthsTitle": "Điểm mạnh",
+        "weaknessesTitle": "Điểm cần cải thiện",
+        "suggestionsTitle": "Khuyến nghị"
+      }
     },
     "questions": [
       {
