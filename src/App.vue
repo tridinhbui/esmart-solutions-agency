@@ -1,15 +1,18 @@
 <template>
   <div id="app">
     <!-- Render Navbar only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
-    <Navbar v-if="!isDetailedBlogPage && !isCreatorAIPage" />
-
+    <Navbar v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage" />
+    <router-view v-if="shouldShowRouterView"></router-view>
     <!-- Render sections only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
-    <div v-if="!isDetailedBlogPage && !isCreatorAIPage">
+    <template v-if="shouldShowMainContent && !isCreatorAIPage">
       <section id="intro">
         <IntroSection />
       </section>
       <section id="social-proof">
         <SocialProof />
+      </section>
+      <section id="marketing-assessment">
+        <MarketingAssessment />
       </section>
       <section id="features">
         <FeaturesPage />
@@ -38,13 +41,11 @@
       <section id="contact">
         <ContactUs />
       </section>
-    </div>
-
-    <!-- Router view for all routes -->
-    <router-view />
-
-    <!-- Render footer only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
-    <section id="footer" v-if="!isDetailedBlogPage && !isCreatorAIPage">
+    </template>
+    <section
+      id="footer"
+      v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage"
+    >
       <Footer />
     </section>
   </div>
@@ -64,12 +65,14 @@ import Project from "./components/ProjectSection.vue";
 import AboutUs from "./components/AboutUs.vue";
 import Questions from "./components/Questions.vue";
 import Chat from "./components/Chat.vue";
+import MarketingAssessment from "./components/MarketingAssessment.vue";
 
 export default {
   name: "App",
   components: {
     Navbar,
     IntroSection,
+    MarketingAssessment,
     SocialProof,
     FeaturesPage,
     ProcessInt,
@@ -86,8 +89,17 @@ export default {
     isDetailedBlogPage() {
       return this.$route.name === "DetailedBlog1";
     },
+    isAuthPage() {
+      return ["SignIn", "SignUp"].includes(this.$route.name);
+    },
+    shouldShowRouterView() {
+      return this.isAuthPage || this.isDetailedBlogPage;
+    },
     isCreatorAIPage() {
       return this.$route.name === "EsmartCreatorAI";
+    },
+    shouldShowMainContent() {
+      return !this.isAuthPage && !this.isDetailedBlogPage;
     },
   },
 };

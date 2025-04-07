@@ -5,172 +5,166 @@
       <div class="contact-card">
         <h3>{{ $t("contactUs.general.title") }}</h3>
         <p>{{ $t("contactUs.general.description") }}</p>
-        <form>
-          <input type="text" :placeholder="$t('contactUs.general.form.name')" />
-          <input type="email" :placeholder="$t('contactUs.general.form.email')" />
-          <select>
-            <option>{{ $t("contactUs.general.form.option") }}</option>
-          </select>
-          <button type="submit">{{ $t("contactUs.general.form.submit") }}</button>
-        </form>
+        <v-form ref="form" @submit.prevent="submitForm">
+          <v-text-field
+            v-model="formData.name"
+            :label="$t('contactUs.general.form.name')"
+            :rules="[rules.required]"
+            required
+            variant="outlined"
+            class="mb-4"
+          ></v-text-field>
+
+          <v-text-field
+            v-model="formData.email"
+            :label="$t('contactUs.general.form.email')"
+            :rules="[rules.required, rules.email]"
+            required
+            type="email"
+            variant="outlined"
+            class="mb-4"
+          ></v-text-field>
+
+          <v-select
+            v-model="formData.inquiryType"
+            :items="inquiryOptions"
+            :label="$t('contactUs.general.form.option')"
+            :rules="[rules.required]"
+            required
+            variant="outlined"
+            class="mb-4"
+          ></v-select>
+
+          <v-btn type="submit" color="#0077b6" class="white--text submit-button">
+            {{ $t("contactUs.general.form.submit") }}
+          </v-btn>
+        </v-form>
       </div>
       <div class="contact-card">
         <h3>{{ $t("contactUs.support.title") }}</h3>
         <p>{{ $t("contactUs.support.description") }}</p>
-        <button class="chat-button">
+        <v-btn color="#00c853" class="white--text chat-button">
           {{ $t("contactUs.support.button") }}
-        </button>
+        </v-btn>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import { ref } from 'vue'; // Import ref for Composition API
+
 export default {
   name: "ContactUs",
+  setup() {
+    // --- State using Composition API ---
+    const form = ref(null); // Reference to the v-form component
+    const formData = ref({
+      name: '',
+      email: '',
+      inquiryType: null, // Use null for v-select initial value
+    });
+
+    // --- Validation Rules ---
+    const rules = {
+      required: value => !!value || 'This field is required.',
+      email: value => {
+        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email pattern
+        return pattern.test(value) || 'Invalid e-mail format.';
+      },
+    };
+
+    // --- Mock Inquiry Options ---
+    // You might fetch these or define them based on your needs
+    const inquiryOptions = ref([
+      'General Inquiry',
+      'Billing Question',
+      'Feature Request',
+    ]);
+
+    // --- Methods ---
+    const submitForm = async () => {
+      // Validate the form using the ref
+      const { valid } = await form.value.validate();
+
+      if (valid) {
+        // Form is valid, proceed with submission logic
+        console.log("Form submitted successfully:", formData.value);
+        alert("Form submitted!"); // Replace with actual submission (e.g., API call)
+        // Optionally reset form: form.value.reset(); formData.value = { name: '', email: '', inquiryType: null };
+      } else {
+        // Form is invalid, errors are shown automatically by v-text-field
+        console.log("Form validation failed.");
+      }
+    };
+
+    return {
+      form, // Expose ref to template
+      formData,
+      rules,
+      inquiryOptions,
+      submitForm,
+    };
+  }
 };
 </script>
 
 <style>
+/* Styles remain largely the same, but adjust margins/padding if needed */
 .contact-us {
-  background: linear-gradient(135deg, #f3f4f6, #fff);
-  color: #1c1c4c;
   padding: 2rem 1rem;
   text-align: center;
-  animation: background-pulse 5s infinite ease-in-out; /* Slower animation for background */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add a subtle box-shadow */
-}
-
-@keyframes background-pulse {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 100% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .contact-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 1rem; /* Use gap for spacing */
 }
 
+/* Remove styles for process-container and process-card since they're no longer used */
 .contact-card {
   background: white;
-  border-radius: 12px; /* Increased border-radius for a smoother look */
-  padding: 1.5rem; /* Increased padding for better spacing */
-  margin: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Slightly adjusted box-shadow */
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   flex: 1 1 45%;
   max-width: 45%;
+  min-width: 300px; /* Ensure cards don't get too small */
   text-align: left;
-  animation: card-pop-in 0.5s ease-in-out forwards;
-}
-
-@keyframes card-pop-in {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
 }
 
 .contact-card:hover {
-  transform: translateY(-8px); /* Increased vertical translation on hover */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Increased box-shadow on hover */
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.contact-card form {
-  display: flex;
-  flex-direction: column;
+/* Remove default form styling if needed, rely on Vuetify */
+/* .contact-card form { } */
+
+/* Adjust button styling if using v-btn */
+.submit-button.v-btn {
+  /* Use !important cautiously if needed */
+  color: white !important;
 }
 
-.contact-card input,
-.contact-card select {
-  margin-bottom: 1rem;
-  padding: 0.7rem; /* Increased padding for better spacing */
-  border-radius: 6px; /* Increased border-radius for a smoother look */
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) inset; /* Added inner box-shadow for depth */
-  transition: box-shadow 0.3s ease; /* Added transition for smoother hover effect */
+.chat-button.v-btn {
+  color: white !important;
 }
 
-.contact-card input:hover,
-.contact-card select:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) inset; /* Increased inner box-shadow on hover */
+/* Minor adjustment for Vuetify input margin */
+.mb-4 {
+  margin-bottom: 1rem !important; /* Match original spacing */
 }
 
-.contact-card button {
-  background-color: #0077b6;
-  border: none;
-  border-radius: 6px; /* Increased border-radius for a smoother look */
-  padding: 0.7rem 1.2rem; /* Increased padding for better spacing */
-  color: white;
-  cursor: pointer;
-  animation: button-bounce 1s infinite ease-in-out;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box-shadow for depth */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition for smoother hover effect */
-}
 
-@keyframes button-bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(
-      -8px
-    ); /* Increased vertical translation for a more pronounced bounce */
-  }
-}
-
-.contact-card button:hover {
-  background-color: #005f9e;
-  transform: translateY(-4px); /* Added vertical translation on hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased box-shadow on hover */
-}
-
-.chat-button {
-  background-color: #00c853;
-  border: none;
-  border-radius: 6px; /* Increased border-radius for a smoother look */
-  padding: 0.7rem 1.2rem; /* Increased padding for better spacing */
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box-shadow for depth */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition for smoother hover effect */
-}
-
-.chat-button:hover {
-  transform: translateY(-4px); /* Added vertical translation on hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased box-shadow on hover */
-}
-
-.contact-card {
-  flex: 1 1 100%; /* Thay đổi width của card khi màn hình nhỏ hơn 768px */
-  max-width: 100%; /* Chỉ định width tối đa cho card */
-}
-
-.contact-card form {
-  max-width: 100%; /* Chỉ định width tối đa cho form */
-}
-
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .contact-card {
-    flex: 1 1 45%; /* Giữ nguyên width của card khi màn hình lớn hơn hoặc bằng 768px */
-    max-width: 45%; /* Giữ nguyên width của card */
-  }
-
-  .contact-card form {
-    max-width: 100%; /* Giữ nguyên width của form */
+    flex: 1 1 100%;
+    max-width: 100%;
   }
 }
 </style>

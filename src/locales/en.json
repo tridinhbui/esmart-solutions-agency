@@ -7,6 +7,8 @@
   "products": "Products",
   "AboutUs": "About Us",
   "Process": "Process",
+  "signIn": "Sign In",
+  "Assessment": "Assessment",
   "AboutUs": {
     "title": "About Us",
     "description1": "ESmart Solutions focuses on helping businesses enhance their ability to reach and promote their products to potential customers.",
@@ -252,19 +254,32 @@
     }
   },
   "creatorAI": {
+    "common": {
+      "loading": "Loading...",
+      "returnToDashboard": "Return to Dashboard",
+      "back": "Back",
+      "next": "Next",
+      "done": "Done",
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "create": "Create",
+      "view": "View",
+      "update": "Update",
+      "download": "Download",
+      "share": "Share",
+      "copy": "Copy"
+    },
     "dashboard": {
-      "title": "Dashboard",
-      "noProjects": "No projects found. Click \"Create New Content\" to get started.",
-      "loading": "Loading projects...",
-      "inProgress": "In Progress",
-      "finished": "Finished",
-      "noDescription": "No description",
-      "deleteConfirm": "Are you sure you want to delete this project?",
-      "deleteSuccess": "Project deleted successfully",
-      "deleteFailed": "Failed to delete project",
-      "deleteError": "An error occurred while deleting the project",
-      "backToHome": "Back to Home",
-      "createNew": "Create New Content"
+      "title": "Welcome to Esmart Creator AI",
+      "subtitle": "Create amazing content with AI",
+      "createNew": "Create New Content",
+      "recentProjects": "Recent Projects",
+      "viewAll": "View All",
+      "savedContent": "Saved Content",
+      "noProjects": "You don't have any projects yet",
+      "getStarted": "Get Started"
     },
     "requirements": {
       "title": "Content Requirements",
@@ -347,11 +362,6 @@
       "exportSuccess": "Content exported successfully!",
       "shareSuccess": "Content shared successfully!",
       "downloadStart": "Your download will start shortly..."
-    },
-    "common": {
-      "loading": "Loading content data...",
-      "error": "Error loading data",
-      "returnToDashboard": "Return to Dashboard"
     }
   }
 }
