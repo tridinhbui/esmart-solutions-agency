@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <!-- Render Navbar only if the current route is not DetailedBlog1 -->
-    <Navbar v-if="!isAuthPage && !isDetailedBlogPage" />
+    <!-- Render Navbar only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
+    <Navbar v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage" />
     <router-view v-if="shouldShowRouterView"></router-view>
-    <!-- Render sections only if the current route is not DetailedBlog1 -->
-    <template v-if="shouldShowMainContent">
+    <!-- Render sections only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
+    <template v-if="shouldShowMainContent && !isCreatorAIPage">
       <section id="intro">
         <IntroSection />
       </section>
@@ -42,9 +42,12 @@
         <ContactUs />
       </section>
     </template>
-
-    <!-- Router view for all routes, including DetailedBlog1 -->
-    <Footer v-if="!isAuthPage && !isDetailedBlogPage" />
+    <section
+      id="footer"
+      v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage"
+    >
+      <Footer />
+    </section>
   </div>
 </template>
 
@@ -85,17 +88,20 @@ export default {
   computed: {
     isDetailedBlogPage() {
       return this.$route.name === "DetailedBlog1";
-    },  
+    },
     isAuthPage() {
-      return ['SignIn', 'SignUp'].includes(this.$route.name);
+      return ["SignIn", "SignUp"].includes(this.$route.name);
     },
     shouldShowRouterView() {
       return this.isAuthPage || this.isDetailedBlogPage;
     },
+    isCreatorAIPage() {
+      return this.$route.name === "EsmartCreatorAI";
+    },
     shouldShowMainContent() {
       return !this.isAuthPage && !this.isDetailedBlogPage;
-    }
-  }
+    },
+  },
 };
 </script>
 

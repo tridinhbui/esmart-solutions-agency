@@ -1,5 +1,6 @@
 {
   "home": "Trang chủ",
+  "aiCreator": "AI Creator",
   "assessment": "Đánh giá",
   "achievements": "Thành tựu",
   "blog": "Blog",
@@ -254,20 +255,123 @@
       }
     }
   },
-  "MarketingAssessment": {
-    "title": "Đánh Giá Marketing",
-    "progressText": "{completed} trên {total} câu hỏi",
-    "progressPercentage": "{percentage}%",
-    "questionNumber": "Câu hỏi {number}",
-    "submitButton": "Gửi bài đánh giá",
-    "nextButton": "Tiếp theo",
-    "prevButton": "Trước đó",
-    "alert": "Vui lòng trả lời câu hỏi hiện tại trước khi tiếp tục",
-    "results": {
-      "scoreTitle": "Điểm số của bạn",
-      "strengthsTitle": "Điểm mạnh",
-      "weaknessesTitle": "Điểm cần cải thiện",
-      "suggestionsTitle": "Khuyến nghị"
+  "creatorAI": {
+    "dashboard": {
+      "title": "Bảng điều khiển",
+      "noProjects": "Không tìm thấy dự án nào. Nhấp vào \"Tạo nội dung mới\" để bắt đầu.",
+      "loading": "Đang tải dự án...",
+      "inProgress": "Đang tiến hành",
+      "finished": "Hoàn thành",
+      "noDescription": "Không có mô tả",
+      "deleteConfirm": "Bạn có chắc chắn muốn xóa dự án này không?",
+      "deleteSuccess": "Đã xóa dự án thành công",
+      "deleteFailed": "Xóa dự án thất bại",
+      "deleteError": "Đã xảy ra lỗi khi xóa dự án",
+      "backToHome": "Trở về trang chủ",
+      "createNew": "Tạo nội dung mới"
+    },
+    "requirements": {
+      "title": "Yêu cầu nội dung",
+      "projectTitle": "Tiêu đề dự án",
+      "projectDescription": "Mô tả dự án",
+      "contentType": "Loại nội dung",
+      "topic": "Chủ đề nội dung",
+      "keywords": "Từ khóa mục tiêu",
+      "tone": "Giọng điệu nội dung",
+      "blog": "Bài viết Blog",
+      "article": "Bài báo",
+      "productDescription": "Mô tả sản phẩm",
+      "socialMedia": "Bài đăng mạng xã hội",
+      "emailNewsletter": "Bản tin Email",
+      "professional": "Chuyên nghiệp",
+      "casual": "Thân mật",
+      "formal": "Trang trọng",
+      "friendly": "Thân thiện",
+      "persuasive": "Thuyết phục",
+      "optimistic": "Lạc quan",
+      "keywordsTip": "Nhập từ khóa, phân cách bằng dấu phẩy",
+      "previous": "Trước",
+      "next": "Tiếp theo",
+      "analyzing": "Đang phân tích...",
+      "requiredFields": "Vui lòng điền vào tất cả các trường bắt buộc"
+    },
+    "editor": {
+      "title": "Trình soạn thảo nội dung",
+      "readabilityScore": "Điểm dễ đọc",
+      "contentLength": "Độ dài nội dung",
+      "words": "từ",
+      "save": "Lưu",
+      "saveSuccess": "Đã lưu nội dung thành công!",
+      "saving": "Đang lưu...",
+      "previous": "Trước",
+      "next": "Tiếp theo",
+      "seoAnalyzing": "Đang phân tích...",
+      "keywordsTitle": "Từ khóa đề xuất",
+      "backToDashboard": "Trở về bảng điều khiển"
+    },
+    "image": {
+      "title": "Tạo hình ảnh AI",
+      "styleTitle": "Chọn style",
+      "promptTitle": "Mô tả hình ảnh",
+      "generateButton": "Tạo hình ảnh",
+      "regenerateButton": "Tạo lại hình ảnh",
+      "generating": "Đang tạo hình ảnh...",
+      "previous": "Quay lại",
+      "next": "Tiếp tục",
+      "saveImage": "Lưu hình ảnh",
+      "generatePrompt": "Tạo prompt",
+      "generatingPrompt": "Đang tạo prompt...",
+      "promptGeneratedSuccess": "Đã tạo prompt thành công!",
+      "promptGeneratedError": "Lỗi khi tạo prompt",
+      "generationMethod": "Phương thức tạo",
+      "fromTopic": "Từ chủ đề",
+      "customPrompt": "Mô tả tùy chỉnh",
+      "customPromptLabel": "Mô tả tùy chỉnh",
+      "promptPlaceholder": "Mô tả hình ảnh bạn muốn tạo...",
+      "styles": {
+        "realistic": "Thực tế",
+        "threeD": "3D",
+        "minimalist": "Tối giản",
+        "watercolor": "Màu nước",
+        "flatVector": "Vector phẳng"
+      }
+    },
+    "final": {
+      "title": "Kết quả cuối cùng",
+      "editImage": "Chỉnh sửa hình",
+      "generateImage": "Tạo hình ảnh",
+      "createNew": "Tạo nội dung mới",
+      "backToDashboard": "Trở về bảng điều khiển",
+      "export": "Xuất",
+      "share": "Chia sẻ",
+      "downloadPDF": "Tải xuống PDF",
+      "contentSection": "Nội dung",
+      "imageSection": "Hình ảnh",
+      "projectDetails": "Chi tiết dự án",
+      "exportSuccess": "Xuất nội dung thành công!",
+      "shareSuccess": "Đã chia sẻ nội dung thành công!",
+      "downloadStart": "Quá trình tải xuống của bạn sẽ bắt đầu trong giây lát..."
+    },
+    "common": {
+      "loading": "Đang tải dữ liệu nội dung...",
+      "error": "Lỗi khi tải dữ liệu",
+      "returnToDashboard": "Trở về bảng điều khiển"
+    },
+    "MarketingAssessment": {
+      "title": "Đánh Giá Marketing",
+      "progressText": "{completed} trên {total} câu hỏi",
+      "progressPercentage": "{percentage}%",
+      "questionNumber": "Câu hỏi {number}",
+      "submitButton": "Gửi bài đánh giá",
+      "nextButton": "Tiếp theo",
+      "prevButton": "Trước đó",
+      "alert": "Vui lòng trả lời câu hỏi hiện tại trước khi tiếp tục",
+      "results": {
+        "scoreTitle": "Điểm số của bạn",
+        "strengthsTitle": "Điểm mạnh",
+        "weaknessesTitle": "Điểm cần cải thiện",
+        "suggestionsTitle": "Khuyến nghị"
+      }
     },
     "questions": [
       {

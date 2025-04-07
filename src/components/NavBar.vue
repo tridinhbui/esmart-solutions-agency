@@ -8,20 +8,25 @@
           <router-link to="#intro">{{ $t("home") }}</router-link>
         </li>
         <li>
-          <router-link to="#marketing-assessment">{{
-            $t("assessment")
-            }}</router-link>
+          <router-link to="/creator-ai">{{ $t("aiCreator") }}</router-link>
         </li>
         <li>
-          <router-link to="#social-proof">{{
-            $t("achievements")
-            }}</router-link>
+          <router-link to="#marketing-assessment">{{
+            $t("assessment")
+          }}</router-link>
+        </li>
+        <li>
+          <router-link to="#social-proof">{{ $t("achievements") }}</router-link>
         </li>
         <li class="dropdown">
           <router-link to="#blog">{{ $t("blog") }}</router-link>
           <ul class="dropdown-menu">
             <li>
-              <a href="/detailed-blog-1" target="_blank" rel="noopener noreferrer">
+              <a
+                href="/detailed-blog-1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <button>{{ $t("blogPage1") }}</button>
               </a>
             </li>
@@ -30,8 +35,27 @@
         <li>
           <router-link to="#project">{{ $t("products") }}</router-link>
         </li>
-        <li>
+        <li class="dropdown">
           <router-link to="#about-us">{{ $t("About Us") }}</router-link>
+          <ul class="dropdown-menu">
+            <li>
+              <router-link to="#intro">{{ $t("home") }}</router-link>
+            </li>
+            <li>
+              <router-link to="#social-proof">{{
+                $t("achievements")
+              }}</router-link>
+            </li>
+            <li>
+              <router-link to="#process">{{ $t("Process") }}</router-link>
+            </li>
+            <li>
+              <router-link to="#blog">{{ $t("blog") }}</router-link>
+            </li>
+            <li>
+              <router-link to="#project">{{ $t("products") }}</router-link>
+            </li>
+          </ul>
         </li>
       </ul>
 
@@ -51,12 +75,16 @@
           </router-link>
         </div>
         <div v-else class="user-avatar-wrapper">
-          <div class="avatar-dropdown"
+          <div
+            class="avatar-dropdown"
             @mouseenter="showDropdown = true"
-            @mouseleave="showDropdown = false">
-            <img :src="authStore.user.photoURL || defaultAvatar"
-            class="user-avatar"
-            alt="User Avatar">
+            @mouseleave="showDropdown = false"
+          >
+            <img
+              :src="authStore.user.photoURL || defaultAvatar"
+              class="user-avatar"
+              alt="User Avatar"
+            />
             <div v-if="showDropdown" class="dropdown-menu avatar-menu">
               <button @click="handleLogout" class="logout-btn">
                 {{ $t("Sign Out") }}
@@ -77,9 +105,9 @@
 
 <script>
 // Script content remains the same
-import { useAuthStore } from '@/stores/auth';
-import { signOut } from 'firebase/auth';
-import { auth } from '@/firebase';
+import { useAuthStore } from "@/stores/auth";
+import { signOut } from "firebase/auth";
+import { auth } from "@/firebase";
 
 export default {
   name: "NavBar",
@@ -88,7 +116,7 @@ export default {
       isOpen: false,
       isScrolled: false,
       showDropdown: false, // Controls avatar dropdown visibility
-      defaultAvatar: 'https://cdn-icons-png.flaticon.com/512/149/149071.png' // Fallback avatar image
+      defaultAvatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png", // Fallback avatar image
     };
   },
   setup() {
@@ -112,11 +140,11 @@ export default {
     async handleLogout() {
       try {
         await signOut(auth);
-        this.$router.push('/sign-in');
+        this.$router.push("/sign-in");
       } catch (error) {
-        console.error('Logout error:', error);
+        console.error("Logout error:", error);
       }
-    }
+    },
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
@@ -200,12 +228,12 @@ export default {
   padding: 5px 0; /* Add some vertical padding */
 }
 .main-nav-links li a:hover,
-.main-nav-links li a.router-link-exact-active { /* Style active link */
-    color: #00aaff; /* Example hover/active color */
-    /* Add underline or other indicator if desired */
-    /* border-bottom: 2px solid #00aaff; */
+.main-nav-links li a.router-link-exact-active {
+  /* Style active link */
+  color: #00aaff; /* Example hover/active color */
+  /* Add underline or other indicator if desired */
+  /* border-bottom: 2px solid #00aaff; */
 }
-
 
 /* Styles for the right-side items container */
 .right-nav-items {
@@ -234,7 +262,9 @@ export default {
   height: auto;
   display: block;
 }
-.language-switcher button:hover { opacity: 0.8; }
+.language-switcher button:hover {
+  opacity: 0.8;
+}
 
 .sign-in-link {
   text-decoration: none;
@@ -246,37 +276,147 @@ export default {
   white-space: nowrap;
   font-weight: 500; /* Adjusted */
 }
-.sign-in-link:hover { background-color: #1a4abd; text-decoration: none; }
+.sign-in-link:hover {
+  background-color: #1a4abd;
+  text-decoration: none;
+}
 
-.user-avatar-wrapper { position: relative; }
-.user-avatar { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: transform 0.2s; display: block; } /* Increased size */
-.user-avatar:hover { transform: scale(1.05); }
-.avatar-dropdown { display: inline-block; position: relative; }
+.user-avatar-wrapper {
+  position: relative;
+}
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: block;
+} /* Increased size */
+.user-avatar:hover {
+  transform: scale(1.05);
+}
+.avatar-dropdown {
+  display: inline-block;
+  position: relative;
+}
 
-.avatar-menu { position: absolute; top: calc(100% + 10px); right: 0; left: auto; transform: translateX(0); width: auto; min-width: 90px; background: white; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 8px 0; text-align: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 100; }
-.avatar-menu::before { content: ''; position: absolute; top: -5px; right: 10px; left: auto; transform: translateX(0); border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid white; }
-.avatar-dropdown:hover .avatar-menu { opacity: 1; visibility: visible; }
+.avatar-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  left: auto;
+  transform: translateX(0);
+  width: auto;
+  min-width: 90px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+.avatar-menu::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: 10px;
+  left: auto;
+  transform: translateX(0);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid white;
+}
+.avatar-dropdown:hover .avatar-menu {
+  opacity: 1;
+  visibility: visible;
+}
 
-.logout-btn { width: 100%; padding: 7px 14px; background: none; border: none; color: #ff4444; font-size: 1rem; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
-.logout-btn:hover { background: #ffeeee; }
+.logout-btn {
+  width: 100%;
+  padding: 7px 14px;
+  background: none;
+  border: none;
+  color: #ff4444;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.logout-btn:hover {
+  background: #ffeeee;
+}
 
 /* Burger and Mobile Styles */
-.burger { display: none; flex-direction: column; cursor: pointer; flex-shrink: 0; margin-left: 1rem; /* Space from right items */ }
-.burger div { width: 25px; height: 3px; background-color: white; margin: 4px; transition: all 0.3s ease; }
-.navbar-scrolled .burger div { background-color: #333; }
-
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-left: 1rem; /* Space from right items */
+}
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 4px;
+  transition: all 0.3s ease;
+}
+.navbar-scrolled .burger div {
+  background-color: #333;
+}
 
 /* Dropdown Menu Styles */
-.dropdown { position: relative; }
-.dropdown-menu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: white; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); z-index: 1000; list-style: none; padding: 0; margin: 0; min-width: 160px; border-radius: 4px; }
-.dropdown-menu li { padding: 0; margin: 0; text-align: center; color: #333; }
-.dropdown-menu li button, .dropdown-menu li a { text-decoration: none; color: #333; display: block; padding: 9px 18px; font-size: 1rem; background: none; border: none; width: 100%; cursor: pointer; transition: background-color 0.2s ease; }
-.dropdown-menu li button:hover, .dropdown-menu li a:hover { background-color: #f0f0f0; }
-.dropdown:hover .dropdown-menu { display: block; }
-
+.dropdown {
+  position: relative;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 160px;
+  border-radius: 4px;
+}
+.dropdown-menu li {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  color: #333;
+}
+.dropdown-menu li button,
+.dropdown-menu li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 9px 18px;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.dropdown-menu li button:hover,
+.dropdown-menu li a:hover {
+  background-color: #f0f0f0;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
 
 /* Mobile Styles */
-@media (max-width: 992px) { /* Tablet and below */
+@media (max-width: 992px) {
+  /* Tablet and below */
   /* Target the main links list directly for mobile menu */
   .main-nav-links {
     display: none; /* Hide by default */
@@ -306,20 +446,20 @@ export default {
     width: 100%;
     color: #333;
   }
-   .main-nav-links li a {
-     padding: 0.5rem 0;
-     display: block;
-     width: 100%;
-     color: #333; /* Ensure color for mobile */
-     font-size: 1.1rem; /* Slightly larger for mobile tap */
-   }
-   .main-nav-links li a:hover {
-      background-color: #f0f0f0;
-      color: #0077b6; /* Example hover color */
-   }
+  .main-nav-links li a {
+    padding: 0.5rem 0;
+    display: block;
+    width: 100%;
+    color: #333; /* Ensure color for mobile */
+    font-size: 1.1rem; /* Slightly larger for mobile tap */
+  }
+  .main-nav-links li a:hover {
+    background-color: #f0f0f0;
+    color: #0077b6; /* Example hover color */
+  }
 
   .right-nav-items {
-     display: none; /* Hide right items on mobile (or move them into menu) */
+    display: none; /* Hide right items on mobile (or move them into menu) */
   }
 
   .burger {
@@ -327,5 +467,4 @@ export default {
     margin-left: auto; /* Push burger right */
   }
 }
-
 </style>
