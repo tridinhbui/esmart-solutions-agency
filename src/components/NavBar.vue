@@ -9,7 +9,7 @@
         </li>
         <li>
           <router-link to="#marketing-assessment">{{
-            $t("Assessment")
+            $t("assessment")
             }}</router-link>
         </li>
         <li>
