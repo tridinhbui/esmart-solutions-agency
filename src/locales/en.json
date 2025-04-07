@@ -366,23 +366,22 @@
       "exportSuccess": "Content exported successfully!",
       "shareSuccess": "Content shared successfully!",
       "downloadStart": "Your download will start shortly..."
-    }
-=======
-  "MarketingAssessment": {
-    "title": "Marketing Assessment",
-    "progressText": "{completed} of {total} questions",
-    "progressPercentage": "{percentage}%",
-    "questionNumber": "Question {number}",
-    "submitButton": "Submit Assessment",
-    "nextButton": "Next",
-    "prevButton": "Previous",
-    "alert": "Please answer the current question before proceeding",
-    "results": {
-      "scoreTitle": "Your Score",
-      "strengthsTitle": "Strengths",
-      "weaknessesTitle": "Areas to Improve",
-      "suggestionsTitle": "Recommendations"
     },
+    "MarketingAssessment": {
+      "title": "Marketing Assessment",
+      "progressText": "{completed} of {total} questions",
+      "progressPercentage": "{percentage}%",
+      "questionNumber": "Question {number}",
+      "submitButton": "Submit Assessment",
+      "nextButton": "Next",
+      "prevButton": "Previous",
+      "alert": "Please answer the current question before proceeding",
+      "results": {
+        "scoreTitle": "Your Score",
+        "strengthsTitle": "Strengths",
+        "weaknessesTitle": "Areas to Improve",
+        "suggestionsTitle": "Recommendations"
+      },
     "questions": [
       {
         "id": 1,
