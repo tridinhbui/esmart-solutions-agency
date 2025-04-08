@@ -17,6 +17,10 @@
       <section id="features">
         <FeaturesPage />
       </section>
+       <!-- TestimonialQuote section -->
+       <section id="testimonials">
+        <TestimonialQuote />
+      </section>
       <section id="process">
         <ProcessInt />
       </section>
@@ -66,6 +70,7 @@ import AboutUs from "./components/AboutUs.vue";
 import Questions from "./components/Questions.vue";
 import Chat from "./components/Chat.vue";
 import MarketingAssessment from "./components/MarketingAssessment.vue";
+import TestimonialQuote from "./components/TestimonialQuote.vue";
 
 export default {
   name: "App",
@@ -84,6 +89,7 @@ export default {
     AboutUs,
     Questions,
     Chat,
+    TestimonialQuote,
   },
   computed: {
     isDetailedBlogPage() {
