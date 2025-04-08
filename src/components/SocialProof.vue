@@ -18,51 +18,7 @@
       </div>
     </div>
 
-    <h2>{{ $t("socialProof.testimonialsTitle") }}</h2>
-    <div class="testimonials-container scroller" data-speed="slow">
-      <div class="testimonials-track scroller__inner" :style="{ transform: `translateX(-${translateX}px)` }">
-        <!-- First set of testimonials -->
-        <div
-          class="testimonial-card"
-          v-for="(testimonial, index) in testimonials"
-          :key="'first-' + index"
-        >
-          <img
-            :src="getImageUrl(testimonial.image)"
-            :alt="testimonial.name"
-            class="avatar"
-          />
-          <h3>{{ $t("socialProof.testimonial" + (index + 1) + ".name") }}</h3>
-          <h4>{{ $t("socialProof.testimonial" + (index + 1) + ".title") }}</h4>
-          <div class="stars">
-            <i class="fas fa-star" v-for="n in 5" :key="n"></i>
-          </div>
-          <p class="testimonial-text">
-            {{ $t("socialProof.testimonial" + (index + 1) + ".text") }}
-          </p>
-        </div>
-        <!-- Second set of testimonials for seamless looping -->
-        <div
-          class="testimonial-card"
-          v-for="(testimonial, index) in testimonials"
-          :key="'second-' + index"
-        >
-          <img
-            :src="getImageUrl(testimonial.image)"
-            :alt="testimonial.name"
-            class="avatar"
-          />
-          <h3>{{ $t("socialProof.testimonial" + (index + 1) + ".name") }}</h3>
-          <h4>{{ $t("socialProof.testimonial" + (index + 1) + ".title") }}</h4>
-          <div class="stars">
-            <i class="fas fa-star" v-for="n in 5" :key="n"></i>
-          </div>
-          <p class="testimonial-text">
-            {{ $t("socialProof.testimonial" + (index + 1) + ".text") }}
-          </p>
-        </div>
-      </div>
-    </div>
+   
 
     <h2>{{ $t("socialProof.toolkitTitle") }}</h2>
     <div class="toolkit animate-slideIn">
