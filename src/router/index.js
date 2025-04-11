@@ -11,21 +11,26 @@ import Project from "@/components/ProjectSection.vue";
 import AboutUs from "@/components/AboutUs.vue";
 import Service from "@/components/ServiceSection.vue";
 import DetailedBlog1 from "@/components/detailedblogpage/DetailedBlog1.vue";
-import EsmartCreatorAIPage from "../components/EsmartCreatorAIPage.vue";import SignIn from '@/views/SignIn.vue';
-import SignUp from '@/views/SignUp.vue';
-import { useAuthStore } from '@/stores/auth'
+import EsmartCreatorAIPage from "../components/EsmartCreatorAIPage.vue";
+import SignIn from "@/views/SignIn.vue";
+import SignUp from "@/views/SignUp.vue";
+import { useAuthStore } from "@/stores/auth";
 
-import MarketingAssessment from '@/components/MarketingAssessment.vue';
-
+import MarketingAssessment from "@/components/MarketingAssessment.vue";
 
 const routes = [
   {
-    path: '/sign-in',
-    name: 'SignIn',
+    path: "/sign-in",
+    name: "SignIn",
     component: SignIn,
-    meta: { requiresAuth: false }  
+    meta: { requiresAuth: false },
   },
-  { path: '/sign-up', name: 'SignUp', component: SignUp,  meta: { requiresAuth: false } },
+  {
+    path: "/sign-up",
+    name: "SignUp",
+    component: SignUp,
+    meta: { requiresAuth: false },
+  },
   { path: "/intro", name: "Intro", component: IntroSection },
   { path: "/social-proof", name: "SocialProof", component: SocialProof },
   { path: "/features", name: "FeaturesPage", component: FeaturesPage },
@@ -41,8 +46,8 @@ const routes = [
     component: DetailedBlog1,
   },
   {
-    path: '/marketing-assessment',
-    name: 'MarketingAssessment',
+    path: "/marketing-assessment",
+    name: "MarketingAssessment",
     component: MarketingAssessment,
   },
   {
@@ -85,27 +90,27 @@ const router = createRouter({
 
 // Route navigation guard
 router.beforeEach(async (to, from, next) => {
-  const authStore = useAuthStore()
-  
+  const authStore = useAuthStore();
+
   // Check authentication status
-  const isAuthenticated = authStore.user !== null
+  const isAuthenticated = authStore.user !== null;
 
   // Handle protected routes
   if (to.meta.requiresAuth && !isAuthenticated) {
     // Redirect to login with return URL
     next({
-      path: '/sign-in',
-      query: { redirect: to.fullPath }
-    })
-  } 
+      path: "/sign-in",
+      query: { redirect: to.fullPath },
+    });
+  }
   // Prevent access to auth pages when already logged in
-  else if ((to.name === 'SignIn' || to.name === 'SignUp') && isAuthenticated) {
-    next('/intro') // Redirect to main page
-  } 
+  else if ((to.name === "SignIn" || to.name === "SignUp") && isAuthenticated) {
+    next("/intro"); // Redirect to main page
+  }
   // Allow access for all other cases
   else {
-    next()
+    next();
   }
-})
+});
 
 export default router;
