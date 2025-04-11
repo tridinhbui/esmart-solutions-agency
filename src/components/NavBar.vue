@@ -5,21 +5,21 @@
 
       <ul :class="['main-nav-links', { open: isOpen }]">
         <li>
-          <router-link to="#intro">{{ $t("home") }}</router-link>
+          <router-link to="/#intro">{{ $t("home") }}</router-link>
         </li>
         <li>
           <router-link to="/creator-ai">{{ $t("aiCreator") }}</router-link>
         </li>
         <li>
-          <router-link to="#marketing-assessment">{{
+          <router-link to="/#marketing-assessment">{{
             $t("assessment")
           }}</router-link>
         </li>
         <li>
-          <router-link to="#social-proof">{{ $t("achievements") }}</router-link>
+          <router-link to="/#social-proof">{{ $t("achievements") }}</router-link>
         </li>
         <li class="dropdown">
-          <router-link to="#blog">{{ $t("blog") }}</router-link>
+          <router-link to="/#blog">{{ $t("blog") }}</router-link>
           <ul class="dropdown-menu">
             <li>
               <a
@@ -33,27 +33,30 @@
           </ul>
         </li>
         <li>
-          <router-link to="#project">{{ $t("products") }}</router-link>
+          <router-link to="/#project">{{ $t("products") }}</router-link>
         </li>
         <li class="dropdown">
-          <router-link to="#about-us">{{ $t("About Us") }}</router-link>
+          <router-link to="/#about-us">{{ $t("About Us") }}</router-link>
           <ul class="dropdown-menu">
             <li>
-              <router-link to="#intro">{{ $t("home") }}</router-link>
+              <router-link to="/#intro">{{ $t("home") }}</router-link>
             </li>
             <li>
-              <router-link to="#social-proof">{{
+              <router-link to="/#social-proof">{{
                 $t("achievements")
               }}</router-link>
             </li>
             <li>
-              <router-link to="#process">{{ $t("Process") }}</router-link>
+              <router-link to="/#process">{{ $t("Process") }}</router-link>
             </li>
             <li>
-              <router-link to="#blog">{{ $t("blog") }}</router-link>
+              <router-link to="/#blog">{{ $t("blog") }}</router-link>
             </li>
             <li>
-              <router-link to="#project">{{ $t("products") }}</router-link>
+              <router-link to="/#project">{{ $t("products") }}</router-link>
+            </li>
+            <li>
+              <router-link to="/contact">{{ $t("Contact Us") }}</router-link>
             </li>
           </ul>
         </li>

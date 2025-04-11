@@ -41,7 +41,7 @@
       </ul>
       <ul class="footer-items2">
         <li>
-          <a href="#contact">{{ $t("footer.links.contact") }}</a>
+          <a href="/contact">{{ $t("footer.links.contact") }}</a>
         </li>
         <li>
           <a href="#social-proof">{{ $t("footer.links.socialProof") }}</a>
