@@ -1,18 +1,25 @@
 <template>
   <div id="app">
-    <!-- Render Navbar only if the current route is not DetailedBlog1 -->
-    <Navbar v-if="!isDetailedBlogPage" />
-
-    <!-- Render sections only if the current route is not DetailedBlog1 -->
-    <div v-if="!isDetailedBlogPage">
+    <!-- Render Navbar only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
+    <Navbar v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage" />
+    <router-view v-if="shouldShowRouterView"></router-view>
+    <!-- Render sections only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
+    <template v-if="shouldShowMainContent && !isCreatorAIPage">
       <section id="intro">
         <IntroSection />
       </section>
       <section id="social-proof">
         <SocialProof />
       </section>
+      <section id="marketing-assessment">
+        <MarketingAssessment />
+      </section>
       <section id="features">
         <FeaturesPage />
+      </section>
+       <!-- TestimonialQuote section -->
+       <section id="testimonials">
+        <TestimonialQuote />
       </section>
       <section id="process">
         <ProcessInt />
@@ -38,13 +45,11 @@
       <section id="contact">
         <ContactUs />
       </section>
-    </div>
-
-    <!-- Router view for all routes, including DetailedBlog1 -->
-    <router-view />
-
-    <!-- Render footer only if the current route is not DetailedBlog1 -->
-    <section id="footer" v-if="!isDetailedBlogPage">
+    </template>
+    <section
+      id="footer"
+      v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage"
+    >
       <Footer />
     </section>
   </div>
@@ -64,12 +69,15 @@ import Project from "./components/ProjectSection.vue";
 import AboutUs from "./components/AboutUs.vue";
 import Questions from "./components/Questions.vue";
 import Chat from "./components/Chat.vue";
+import MarketingAssessment from "./components/MarketingAssessment.vue";
+import TestimonialQuote from "./components/TestimonialQuote.vue";
 
 export default {
   name: "App",
   components: {
     Navbar,
     IntroSection,
+    MarketingAssessment,
     SocialProof,
     FeaturesPage,
     ProcessInt,
@@ -81,10 +89,23 @@ export default {
     AboutUs,
     Questions,
     Chat,
+    TestimonialQuote,
   },
   computed: {
     isDetailedBlogPage() {
       return this.$route.name === "DetailedBlog1";
+    },
+    isAuthPage() {
+      return ["SignIn", "SignUp"].includes(this.$route.name);
+    },
+    shouldShowRouterView() {
+      return this.isAuthPage || this.isDetailedBlogPage;
+    },
+    isCreatorAIPage() {
+      return this.$route.name === "EsmartCreatorAI";
+    },
+    shouldShowMainContent() {
+      return !this.isAuthPage && !this.isDetailedBlogPage;
     },
   },
 };

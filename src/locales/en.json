@@ -1,12 +1,15 @@
 {
-        "home": "Home",
-        "achievements": "Achievements",
-        "blog": "Blog",
-        "blogPage1": "Blog Page 1",
-        "products": "Products",
-        "AboutUs": "About Us",
-        "Process": "Process",
-        "AboutUs": {
+  "home": "Home",
+  "aiCreator": "AI Creator",
+  "assessment": "Assessment",
+  "achievements": "Achievements",
+  "blog": "Blog",
+  "blogPage1": "Blog Page 1",
+  "products": "Products",
+  "AboutUs": "About Us",
+  "Process": "Process",
+  "signIn": "Sign In",
+  "AboutUs": {
     "title": "About Us",
     "description1": "ESmart Solutions focuses on helping businesses enhance their ability to reach and promote their products to potential customers.",
     "description2": "With the motto Respect - Efficiency - Professionalism, our partners will be regularly updated with information, care, and ensured rights from the smallest terms.",
@@ -16,7 +19,7 @@
     "mainPost": {
       "title": "ECO TOUCH - A NEW JOURNEY OF VIET STRAW TO GO GLOBAL",
       "excerpt": "Joining forces with EcoSmart Solutions, ECO Touch embarks on an exhilarating journey alongside VietStraw...",
-      "fullText": "Joining forces with EcoSmart Solutions, ECO Touch embarks on an exhilarating journey alongside VietStraw. As we embark on this exhilarating journey, ECO Touch and EcoSmart Solutions are poised to revolutionize the landscape of sustainable practices. Our partnership is built on a foundation of mutual respect and a commitment to advancing environmental solutions. With EcoSmart Solutions' expertise in cutting-edge green technologies and ECO Touch’s pioneering approach to eco-friendly products, we are set to make a significant impact."
+      "fullText": "Joining forces with EcoSmart Solutions, ECO Touch embarks on an exhilarating journey alongside VietStraw. As we embark on this exhilarating journey, ECO Touch and EcoSmart Solutions are poised to revolutionize the landscape of sustainable practices. Our partnership is built on a foundation of mutual respect and a commitment to advancing environmental solutions. With EcoSmart Solutions' expertise in cutting-edge green technologies and ECO Touch's pioneering approach to eco-friendly products, we are set to make a significant impact."
     },
     "readMore": "Read More",
     "readLess": "Read Less",
@@ -40,7 +43,6 @@
       "button": "Chat with Support Team"
     }
   },
-
   "process": {
     "title": "Our Process",
     "closeButton": "Close",
@@ -76,37 +78,54 @@
       }
     }
   },
-
   "process": {
     "title": "Our Process",
     "steps": [
       {
         "title": "Step 1: Consultation and Planning",
         "subsSteps": [
-          { "title": "Market analysis - target customers." },
-          { "title": "Build customer insight" },
-          { "title": "Plan implementation monthly, with clear goals." }
+          {
+            "title": "Market analysis - target customers."
+          },
+          {
+            "title": "Build customer insight"
+          },
+          {
+            "title": "Plan implementation monthly, with clear goals."
+          }
         ]
       },
       {
         "title": "Step 2: Contract Signing",
         "subsSteps": [
-          { "title": "Sign the contract with the appropriate service package, ensuring all terms are transparent and clear." }
+          {
+            "title": "Sign the contract with the appropriate service package, ensuring all terms are transparent and clear."
+          }
         ]
       },
       {
         "title": "Step 3: Service Implementation",
         "subsSteps": [
-          { "title": "Create a team for communication and work supervision." },
-          { "title": "Develop monthly content plans, present to customers for approval." },
-          { "title": "Design images, produce videos, and implement advertising campaigns." }
+          {
+            "title": "Create a team for communication and work supervision."
+          },
+          {
+            "title": "Develop monthly content plans, present to customers for approval."
+          },
+          {
+            "title": "Design images, produce videos, and implement advertising campaigns."
+          }
         ]
       },
       {
         "title": "Step 4: Reporting and Evaluation",
         "subsSteps": [
-          { "title": "Report results at the end of the month, make necessary adjustments." },
-          { "title": "Collect customer feedback, support customers during use." }
+          {
+            "title": "Report results at the end of the month, make necessary adjustments."
+          },
+          {
+            "title": "Collect customer feedback, support customers during use."
+          }
         ]
       }
     ],
@@ -168,7 +187,6 @@
       "contact": "Contact Us"
     }
   },
-
   "feats": {
     "sectionTitle": "Website Development",
     "mainTitle": "Experience the Special Features with Esmart",
@@ -180,7 +198,6 @@
       "4": "Unlimited Color Options"
     }
   },
-
   "socialProof": {
     "mediaTitle": "Social Media",
     "testimonialsTitle": "What our customers say about us",
@@ -189,6 +206,8 @@
     "instagram": "Engaging content on Instagram",
     "linkedin": "Professional connections on LinkedIn",
     "tiktok": "Create trending content on TikTok",
+    "whatsapp": "Connect with us through WhatsApp",
+    "snapchat": "See what we are doing through SnapChat",
     "testimonial1": {
       "name": "Le Khanh Linh - Comprehensive Partner",
       "title": "Founder of Green Fashion Brand My",
@@ -237,5 +256,284 @@
         "description": "Esmart Solutions is built on a foundation in the field of advertising and omnichannel digital marketing management."
       }
     }
+  },
+  "creatorAI": {
+    "common": {
+      "loading": "Loading...",
+      "returnToDashboard": "Return to Dashboard",
+      "back": "Back",
+      "next": "Next",
+      "done": "Done",
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "create": "Create",
+      "view": "View",
+      "update": "Update",
+      "download": "Download",
+      "share": "Share",
+      "copy": "Copy"
+    },
+    "dashboard": {
+      "title": "Welcome to Esmart Creator AI",
+      "subtitle": "Create amazing content with AI",
+      "createNew": "Create New Content",
+      "recentProjects": "Recent Projects",
+      "viewAll": "View All",
+      "savedContent": "Saved Content",
+      "noProjects": "You don't have any projects yet",
+      "getStarted": "Get Started"
+    },
+    "requirements": {
+      "title": "Content Requirements",
+      "projectTitle": "Project Title",
+      "projectDescription": "Project Description",
+      "contentType": "Content Type",
+      "topic": "Content Topic",
+      "keywords": "Target Keywords",
+      "tone": "Content Tone",
+      "blog": "Blog Post",
+      "article": "Article",
+      "productDescription": "Product Description",
+      "socialMedia": "Social Media Post",
+      "emailNewsletter": "Email Newsletter",
+      "professional": "Professional",
+      "casual": "Casual",
+      "formal": "Formal",
+      "friendly": "Friendly",
+      "persuasive": "Persuasive",
+      "optimistic": "Optimistic",
+      "keywordsTip": "Enter keywords separated by commas",
+      "previous": "Previous",
+      "next": "Next",
+      "analyzing": "Analyzing...",
+      "requiredFields": "Please fill in all required fields"
+    },
+    "editor": {
+      "title": "Content Editor",
+      "readabilityScore": "Readability Score",
+      "contentLength": "Content Length",
+      "words": "words",
+      "save": "Save",
+      "saveSuccess": "Content saved successfully!",
+      "saving": "Saving...",
+      "previous": "Previous",
+      "next": "Next",
+      "seoAnalyzing": "Analyzing SEO metrics...",
+      "keywordsTitle": "Suggested Keywords",
+      "backToDashboard": "Back to Dashboard"
+    },
+    "image": {
+      "title": "Generate AI Image",
+      "styleTitle": "Choose Style",
+      "promptTitle": "Image Description",
+      "generateButton": "Generate Image",
+      "regenerateButton": "Regenerate Image",
+      "generating": "Generating image...",
+      "previous": "Previous",
+      "next": "Next",
+      "saveImage": "Save Image",
+      "generatePrompt": "Generate prompt",
+      "generatingPrompt": "Generating prompt...",
+      "promptGeneratedSuccess": "Prompt generated successfully!",
+      "promptGeneratedError": "Error generating prompt",
+      "generationMethod": "Generation Method",
+      "fromTopic": "From Topic",
+      "customPrompt": "Custom Prompt",
+      "customPromptLabel": "Custom Prompt",
+      "promptPlaceholder": "Describe the image you want to generate...",
+      "styles": {
+        "realistic": "Realistic",
+        "threeD": "3D",
+        "minimalist": "Minimalist",
+        "watercolor": "Watercolor",
+        "flatVector": "Flat Vector"
+      }
+    },
+    "final": {
+      "title": "Final Result",
+      "editImage": "Edit Image",
+      "generateImage": "Generate Image",
+      "createNew": "Create New Content",
+      "backToDashboard": "Back to Dashboard",
+      "export": "Export",
+      "share": "Share",
+      "downloadPDF": "Download PDF",
+      "contentSection": "Content",
+      "imageSection": "Image",
+      "projectDetails": "Project Details",
+      "exportSuccess": "Content exported successfully!",
+      "shareSuccess": "Content shared successfully!",
+      "downloadStart": "Your download will start shortly..."
+    },
+    "MarketingAssessment": {
+      "title": "Marketing Assessment",
+      "progressText": "{completed} of {total} questions",
+      "progressPercentage": "{percentage}%",
+      "questionNumber": "Question {number}",
+      "submitButton": "Submit Assessment",
+      "nextButton": "Next",
+      "prevButton": "Previous",
+      "alert": "Please answer the current question before proceeding",
+      "results": {
+        "scoreTitle": "Your Score",
+        "strengthsTitle": "Strengths",
+        "weaknessesTitle": "Areas to Improve",
+        "suggestionsTitle": "Recommendations"
+      }
+    },
+    "questions": [
+      {
+        "id": 1,
+        "question": "Does your website have unique meta titles and descriptions for each page?",
+        "answers": [
+          {
+            "text": "Yes"
+          },
+          {
+            "text": "Some pages"
+          },
+          {
+            "text": "No"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "Is your website optimized for mobile devices?",
+        "answers": [
+          {
+            "text": "Yes"
+          },
+          {
+            "text": "Partially"
+          },
+          {
+            "text": "No"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "Do you perform keyword research to target SEO-friendly keywords?",
+        "answers": [
+          {
+            "text": "Regularly"
+          },
+          {
+            "text": "Occasionally"
+          },
+          {
+            "text": "Never"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "Does your site load within 3 seconds?",
+        "answers": [
+          {
+            "text": "Always"
+          },
+          {
+            "text": "Sometimes"
+          },
+          {
+            "text": "No"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "Are image files optimized (compressed, with alt tags)?",
+        "answers": [
+          {
+            "text": "Yes"
+          },
+          {
+            "text": "Some"
+          },
+          {
+            "text": "No"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "question": "Do you have quality backlinks from other websites?",
+        "answers": [
+          {
+            "text": "20+ backlinks"
+          },
+          {
+            "text": "5-20 backlinks"
+          },
+          {
+            "text": "Few or none"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "question": "How often do you publish new content?",
+        "answers": [
+          {
+            "text": "Weekly+"
+          },
+          {
+            "text": "Monthly"
+          },
+          {
+            "text": "Rarely/Never"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "question": "Do you track SEO performance (e.g., via Google Search Console or Google Analytics)?",
+        "answers": [
+          {
+            "text": "Regular reports"
+          },
+          {
+            "text": "Rarely check"
+          },
+          {
+            "text": "Not using"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "question": "Do your URLs contain clear keywords (SEO-friendly URLs)?",
+        "answers": [
+          {
+            "text": "Always"
+          },
+          {
+            "text": "Sometimes"
+          },
+          {
+            "text": "No"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "question": "Is your website SSL secured (HTTPS)?",
+        "answers": [
+          {
+            "text": "Yes"
+          },
+          {
+            "text": "No"
+          },
+          {
+            "text": "Not sure"
+          }
+        ]
+      }
+    ]
   }
 }
