@@ -9,7 +9,7 @@
         @click="openModal(step)"
       >
         <div class="content">
-          <h3>{{ $t(`process.steps.${index}.title`) }}</h3>
+          <h3>{{ $t(step.title) }}</h3>
           <ul>
             <li v-for="(subStep, subIndex) in step.subsSteps" :key="subIndex">
               {{ $t(`process.steps.${index}.subs.${subIndex}`) }}
@@ -28,7 +28,7 @@
               v-for="(subStep, subIndex) in selectedStep.subsSteps"
               :key="subIndex"
             >
-              {{ $t(selectedStep.subs[subIndex]) }}
+            {{ $t(subStep) }}
             </li>
           </ul>
         </v-card-text>
@@ -49,7 +49,10 @@ export default {
   data() {
     return {
       isModalOpen: false,
-      selectedStep: {},
+      selectedStep: {
+        title: "",
+      subsSteps: []
+      },
       steps: [
         {
           title: "process.steps.0.title",
