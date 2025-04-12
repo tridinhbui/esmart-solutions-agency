@@ -1,7 +1,9 @@
 <template>
   <header :class="['navbar', { 'navbar-scrolled': isScrolled }]">
     <div class="navbar-content">
-      <img src="@/assets/logo.png" alt="ESmart Logo" class="logo" />
+      <router-link to="#intro" class="logo-link">
+  <img src="@/assets/logo.png" alt="ESmart Logo" class="logo" />
+</router-link>
 
       <ul :class="['main-nav-links', { open: isOpen }]">
         <li>
@@ -75,23 +77,30 @@
           </router-link>
         </div>
         <div v-else class="user-avatar-wrapper">
-          <div
-            class="avatar-dropdown"
-            @mouseenter="showDropdown = true"
-            @mouseleave="showDropdown = false"
-          >
-            <img
-              :src="authStore.user.photoURL || defaultAvatar"
-              class="user-avatar"
-              alt="User Avatar"
-            />
-            <div v-if="showDropdown" class="dropdown-menu avatar-menu">
-              <button @click="handleLogout" class="logout-btn">
-                {{ $t("Sign Out") }}
-              </button>
-            </div>
-          </div>
-        </div>
+  <div
+    class="avatar-dropdown"
+    @mouseenter="!isMobile && (showDropdown = true)"
+    @mouseleave="!isMobile && (showDropdown = false)"
+    @click="isMobile && (showDropdown = !showDropdown)"
+  >
+    <img
+      :src="authStore.user.photoURL || defaultAvatar"
+      class="user-avatar"
+      @error="handleImageError"
+    />
+    <transition name="fade">
+      <div 
+        v-if="showDropdown"
+        class="avatar-menu"
+        v-click-outside="() => showDropdown = false"
+      >
+        <button @click="handleLogout" class="logout-btn">
+          {{ $t("Sign Out") }}
+        </button>
+      </div>
+    </transition>
+  </div>
+</div>
       </div>
 
       <div class="burger" @click="toggleMenu">
@@ -116,7 +125,7 @@ export default {
       isOpen: false,
       isScrolled: false,
       showDropdown: false, // Controls avatar dropdown visibility
-      defaultAvatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png", // Fallback avatar image
+      defaultAvatar: 'https://cdn-icons-png.flaticon.com/512/149/149071.png' // Fallback avatar image
     };
   },
   setup() {
@@ -124,10 +133,18 @@ export default {
     return { authStore };
   },
   methods: {
+    checkMobile() {
+    this.isMobile = window.innerWidth < 992;
+  },
     toggleMenu() {
       // Toggle needs to target .main-nav-links now
       this.isOpen = !this.isOpen;
     },
+    toggleDropdown() {
+    if (this.isMobile) {
+      this.showDropdown = !this.showDropdown;
+    }
+  },
     switchLanguage(language) {
       this.$i18n.locale = language;
     },
@@ -145,13 +162,33 @@ export default {
         console.error("Logout error:", error);
       }
     },
+    handleImageError(e) {
+      e.target.src = this.defaultAvatar;
   },
+},
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
+    console.log("User data:", this.authStore.user);
+
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   },
+  directives: {
+  'click-outside': {
+    mounted(el, binding) {
+      el.clickOutsideEvent = (event) => {
+        if (!el.contains(event.target)) {
+          binding.value();
+        }
+      };
+      document.addEventListener('click', el.clickOutsideEvent);
+    },
+    unmounted(el) {
+      document.removeEventListener('click', el.clickOutsideEvent);
+    }
+  }
+},
 };
 </script>
 
@@ -283,6 +320,7 @@ export default {
 
 .user-avatar-wrapper {
   position: relative;
+  padding: 0 5px;
 }
 .user-avatar {
   width: 40px;
@@ -291,40 +329,49 @@ export default {
   cursor: pointer;
   transition: transform 0.2s;
   display: block;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 } /* Increased size */
 .user-avatar:hover {
   transform: scale(1.05);
 }
 .avatar-dropdown {
-  display: inline-block;
   position: relative;
+  display: inline-block;
 }
 
+/* Thay thế cả 2 khối .avatar-menu bằng */
 .avatar-menu {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 5px);
   right: 0;
-  left: auto;
-  transform: translateX(0);
-  width: auto;
-  min-width: 90px;
+  min-width: 100px;
+  padding: 6px 0 !important;
+  right: 50% !important;
+  transform: translateX(50%) !important;
+  top: calc(100% + 8px) !important;
   background: white;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 8px 0;
-  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 1001;
+  /* Reset các thuộc tính nguy hiểm */
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter-from, .fade-leave-to {
   opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  z-index: 100;
 }
 .avatar-menu::before {
   content: "";
   position: absolute;
   top: -5px;
-  right: 10px;
+  right: 50% !important;
   left: auto;
-  transform: translateX(0);
+  transform: translateX(50%) !important;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 5px solid white;
@@ -335,8 +382,10 @@ export default {
 }
 
 .logout-btn {
-  width: 100%;
-  padding: 7px 14px;
+  width: auto;
+  padding: 6px 12px;
+  margin: 0 auto;
+  border-radius: 4px;
   background: none;
   border: none;
   color: #ff4444;
