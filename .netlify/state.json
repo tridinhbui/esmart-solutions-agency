@@ -1,0 +1,20 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Minneapolis",
+			"country": {
+				"code": "US",
+				"name": "United States"
+			},
+			"subdivision": {
+				"code": "MN",
+				"name": "Minnesota"
+			},
+			"timezone": "America/Chicago",
+			"latitude": 44.9702,
+			"longitude": -93.3047,
+			"postalCode": "55405"
+		},
+		"timestamp": 1744007988659
+	}
+}

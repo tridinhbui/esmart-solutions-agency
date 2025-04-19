@@ -1,0 +1,11 @@
+[dev]
+  command = "npm run dev"
+  targetPort = 8080            # Vue CLI default port
+  port = 3001
+  publish = "dist"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "http://localhost:5000/api/:splat"
+  status = 200
