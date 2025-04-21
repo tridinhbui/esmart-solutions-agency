@@ -138,18 +138,20 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  /* Keep 'cover' if you want it to fill, but it might crop.
-     Use 'contain' if seeing the WHOLE image is more important,
-     but it might leave blank space if aspect ratios don't match .slideshow */
   object-fit: cover;
-  /* Removed border-radius from image, apply to container instead if desired */
-  transition: opacity 0.6s ease-in-out; /* Smoother transition */
-  filter: brightness(1.1); /* Slightly reduced brightness */
+  transition: opacity 0.6s ease-in-out, transform 0.5s ease;
+  filter: brightness(1.1);
   opacity: 0;
+  z-index: 0;
 }
 
 .about-image.active {
   opacity: 1;
+  z-index: 1;
+}
+
+.about-image.active:hover {
+  transform: scale(1.05);
 }
 
 /* Removed the hover effect that shrinks the image as it might be distracting */

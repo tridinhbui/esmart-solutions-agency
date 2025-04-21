@@ -1,25 +1,42 @@
 <template>
   <header :class="['navbar', { 'navbar-scrolled': isScrolled }]">
     <div class="navbar-content">
-      <img src="@/assets/logo.png" alt="ESmart Logo" class="logo" />
+      <router-link to="#intro" class="logo-link">
+  <img src="@/assets/logo.png" alt="ESmart Logo" class="logo" />
+</router-link>
 
       <ul :class="['main-nav-links', { open: isOpen }]">
         <li>
+<<<<<<< HEAD
           <router-link to="/#intro">{{ $t("home") }}</router-link>
+=======
+          <router-link to="#intro" @click="toggleMenu">{{ $t("home") }}</router-link>
+>>>>>>> d07f00320ce1f2e8c413bc40626123f87257534a
         </li>
         <li>
-          <router-link to="/creator-ai">{{ $t("aiCreator") }}</router-link>
+          <router-link to="/creator-ai" @click="toggleMenu">{{ $t("aiCreator") }}</router-link>
         </li>
         <li>
+<<<<<<< HEAD
           <router-link to="/#marketing-assessment">{{
+=======
+          <router-link to="#marketing-assessment" @click="toggleMenu">{{
+>>>>>>> d07f00320ce1f2e8c413bc40626123f87257534a
             $t("assessment")
           }}</router-link>
         </li>
         <li>
+<<<<<<< HEAD
           <router-link to="/#social-proof">{{ $t("achievements") }}</router-link>
         </li>
         <li class="dropdown">
           <router-link to="/#blog">{{ $t("blog") }}</router-link>
+=======
+          <router-link to="#social-proof" @click="toggleMenu">{{ $t("achievements") }}</router-link>
+        </li>
+        <li class="dropdown">
+          <router-link to="#blog" @click="toggleMenu">{{ $t("blog") }}</router-link>
+>>>>>>> d07f00320ce1f2e8c413bc40626123f87257534a
           <ul class="dropdown-menu">
             <li>
               <a
@@ -33,6 +50,7 @@
           </ul>
         </li>
         <li>
+<<<<<<< HEAD
           <router-link to="/#project">{{ $t("products") }}</router-link>
         </li>
         <li class="dropdown">
@@ -43,10 +61,23 @@
             </li>
             <li>
               <router-link to="/#social-proof">{{
+=======
+          <router-link to="#project" @click="toggleMenu">{{ $t("products") }}</router-link>
+        </li>
+        <li class="dropdown">
+          <router-link to="#about-us" @click="toggleMenu">{{ $t("About Us") }}</router-link>
+          <ul class="dropdown-menu">
+            <li>
+              <router-link to="#intro" @click="toggleMenu">{{ $t("home") }}</router-link>
+            </li>
+            <li>
+              <router-link to="#social-proof" @click="toggleMenu">{{
+>>>>>>> d07f00320ce1f2e8c413bc40626123f87257534a
                 $t("achievements")
               }}</router-link>
             </li>
             <li>
+<<<<<<< HEAD
               <router-link to="/#process">{{ $t("Process") }}</router-link>
             </li>
             <li>
@@ -57,12 +88,24 @@
             </li>
             <li>
               <router-link to="/contact">{{ $t("Contact Us") }}</router-link>
+=======
+              <router-link to="#process" @click="toggleMenu">{{ $t("Process") }}</router-link>
+            </li>
+            <li>
+              <router-link to="#blog" @click="toggleMenu">{{ $t("blog") }}</router-link>
+            </li>
+            <li>
+              <router-link to="#project" @click="toggleMenu">{{ $t("products") }}</router-link>
+>>>>>>> d07f00320ce1f2e8c413bc40626123f87257534a
             </li>
           </ul>
         </li>
+        <!-- Add right-nav-items into the menu for when scrolled -->
+        
+        
       </ul>
 
-      <div class="right-nav-items">
+      <div class="right-nav-items" :class="{ 'hidden-on-scroll': isScrolled }">
         <div class="language-switcher">
           <button @click="switchLanguage('vi')">
             <img src="@/assets/vietnamese-flag.png" alt="Vietnamese" />
@@ -78,36 +121,42 @@
           </router-link>
         </div>
         <div v-else class="user-avatar-wrapper">
-          <div
-            class="avatar-dropdown"
-            @mouseenter="showDropdown = true"
-            @mouseleave="showDropdown = false"
-          >
-            <img
-              :src="authStore.user.photoURL || defaultAvatar"
-              class="user-avatar"
-              alt="User Avatar"
-            />
-            <div v-if="showDropdown" class="dropdown-menu avatar-menu">
-              <button @click="handleLogout" class="logout-btn">
-                {{ $t("Sign Out") }}
-              </button>
-            </div>
-          </div>
-        </div>
+  <div
+    class="avatar-dropdown"
+    @mouseenter="!isMobile && (showDropdown = true)"
+    @mouseleave="!isMobile && (showDropdown = false)"
+    @click="isMobile && (showDropdown = !showDropdown)"
+  >
+    <img
+      :src="authStore.user.photoURL || defaultAvatar"
+      class="user-avatar"
+      @error="handleImageError"
+    />
+    <transition name="fade">
+      <div 
+        v-if="showDropdown"
+        class="avatar-menu"
+        v-click-outside="() => showDropdown = false"
+      >
+        <button @click="handleLogout" class="logout-btn">
+          {{ $t("Sign Out") }}
+        </button>
+      </div>
+    </transition>
+  </div>
+</div>
       </div>
 
-      <div class="burger" @click="toggleMenu">
-        <div></div>
-        <div></div>
-        <div></div>
+      <div class="burger" :class="{ 'visible-on-scroll': isScrolled }" @click="toggleMenu">
+        <div :class="{ 'burger-line-1': isOpen }"></div>
+        <div :class="{ 'burger-line-2': isOpen }"></div>
+        <div :class="{ 'burger-line-3': isOpen }"></div>
       </div>
     </div>
   </header>
 </template>
 
 <script>
-// Script content remains the same
 import { useAuthStore } from "@/stores/auth";
 import { signOut } from "firebase/auth";
 import { auth } from "@/firebase";
@@ -119,7 +168,7 @@ export default {
       isOpen: false,
       isScrolled: false,
       showDropdown: false, // Controls avatar dropdown visibility
-      defaultAvatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png", // Fallback avatar image
+      defaultAvatar: 'https://cdn-icons-png.flaticon.com/512/149/149071.png' // Fallback avatar image
     };
   },
   setup() {
@@ -127,10 +176,17 @@ export default {
     return { authStore };
   },
   methods: {
+    checkMobile() {
+    this.isMobile = window.innerWidth < 992;
+  },
     toggleMenu() {
-      // Toggle needs to target .main-nav-links now
       this.isOpen = !this.isOpen;
     },
+    toggleDropdown() {
+    if (this.isMobile) {
+      this.showDropdown = !this.showDropdown;
+    }
+  },
     switchLanguage(language) {
       this.$i18n.locale = language;
     },
@@ -139,6 +195,9 @@ export default {
     },
     handleScroll() {
       this.isScrolled = window.scrollY > 0;
+      if (this.isScrolled && this.isOpen) {
+        this.isOpen = false;
+      }
     },
     async handleLogout() {
       try {
@@ -148,19 +207,37 @@ export default {
         console.error("Logout error:", error);
       }
     },
+    handleImageError(e) {
+      e.target.src = this.defaultAvatar;
   },
+},
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
+    console.log("User data:", this.authStore.user);
+
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   },
+  directives: {
+  'click-outside': {
+    mounted(el, binding) {
+      el.clickOutsideEvent = (event) => {
+        if (!el.contains(event.target)) {
+          binding.value();
+        }
+      };
+      document.addEventListener('click', el.clickOutsideEvent);
+    },
+    unmounted(el) {
+      document.removeEventListener('click', el.clickOutsideEvent);
+    }
+  }
+},
 };
 </script>
 
 <style scoped>
-/* Keep existing styles, add/modify the following */
-
 .navbar {
   background-color: transparent;
   color: white;
@@ -180,41 +257,36 @@ export default {
 .navbar-content {
   position: relative;
   display: flex;
-  /* Removed justify-content: space-between; */
   align-items: center;
   width: 100%;
-  padding: 0 1.5rem; /* Increased padding slightly */
+  padding: 0 1.5rem;
   box-sizing: border-box;
-  height: 65px; /* Increased height slightly */
+  height: 65px;
 }
 
 .logo {
-  height: 45px; /* Adjusted */
+  height: 45px;
   width: auto;
-  max-width: 160px; /* Adjusted */
+  max-width: 160px;
   flex-shrink: 0;
-  /* Removed margin-right, handled by nav margin */
 }
 
-/* Removed .main-nav container styles */
-/* .main-nav { ... } */
-
-/* Styles for the main navigation links list (now direct child) */
+/* Restore original main-nav-links styles */
 .main-nav-links {
-  display: flex;
+  display: flex; /* Restore original display */
   list-style: none;
   margin: 0;
   padding: 0;
   align-items: center;
-  margin-left: auto; /* Push this list and subsequent items to the right */
-  margin-right: 1.5rem; /* Space BEFORE the right-nav-items */
+  margin-left: auto;
+  margin-right: 1.5rem;
 }
 
 .main-nav-links li {
-  margin: 0 1rem; /* Increased spacing between links */
+  margin: 0 1rem;
   cursor: pointer;
   color: inherit;
-  font-weight: 600; /* Slightly bolder */
+  font-weight: 600;
   position: relative;
   white-space: nowrap;
 }
@@ -227,29 +299,25 @@ export default {
   justify-content: center;
   height: 100%;
   transition: color 0.2s ease;
-  font-size: 1.05rem; /* Increased font size */
-  padding: 5px 0; /* Add some vertical padding */
-}
-.main-nav-links li a:hover,
-.main-nav-links li a.router-link-exact-active {
-  /* Style active link */
-  color: #00aaff; /* Example hover/active color */
-  /* Add underline or other indicator if desired */
-  /* border-bottom: 2px solid #00aaff; */
+  font-size: 1.05rem;
+  padding: 5px 0;
 }
 
-/* Styles for the right-side items container */
+.main-nav-links li a:hover,
+.main-nav-links li a.router-link-exact-active {
+  color: #00aaff;
+}
+
 .right-nav-items {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  /* Removed margin-left */
 }
 
 .language-switcher {
   display: flex;
   align-items: center;
-  margin-right: 1.5rem; /* Increased space before auth items */
+  margin-right: 1.5rem;
 }
 
 .language-switcher button {
@@ -257,14 +325,15 @@ export default {
   border: none;
   cursor: pointer;
   padding: 0;
-  margin: 0 4px; /* Adjusted */
+  margin: 0 4px;
 }
 
 .language-switcher img {
-  width: 30px; /* Adjusted */
+  width: 30px;
   height: auto;
   display: block;
 }
+
 .language-switcher button:hover {
   opacity: 0.8;
 }
@@ -273,12 +342,13 @@ export default {
   text-decoration: none;
   background-color: #275de1;
   color: white !important;
-  padding: 7px 15px; /* Adjusted */
-  border-radius: 5px; /* Adjusted */
+  padding: 7px 15px;
+  border-radius: 5px;
   transition: background-color 0.3s;
   white-space: nowrap;
-  font-weight: 500; /* Adjusted */
+  font-weight: 500;
 }
+
 .sign-in-link:hover {
   background-color: #1a4abd;
   text-decoration: none;
@@ -286,7 +356,9 @@ export default {
 
 .user-avatar-wrapper {
   position: relative;
+  padding: 0 5px;
 }
+
 .user-avatar {
   width: 40px;
   height: 40px;
@@ -294,52 +366,66 @@ export default {
   cursor: pointer;
   transition: transform 0.2s;
   display: block;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 } /* Increased size */
 .user-avatar:hover {
   transform: scale(1.05);
 }
+
 .avatar-dropdown {
-  display: inline-block;
   position: relative;
+  display: inline-block;
 }
 
+/* Thay thế cả 2 khối .avatar-menu bằng */
 .avatar-menu {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 5px);
   right: 0;
-  left: auto;
-  transform: translateX(0);
-  width: auto;
-  min-width: 90px;
+  min-width: 100px;
+  padding: 6px 0 !important;
+  right: 50% !important;
+  transform: translateX(50%) !important;
+  top: calc(100% + 8px) !important;
   background: white;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 8px 0;
-  text-align: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  z-index: 100;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 1001;
+  /* Reset các thuộc tính nguy hiểm */
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
 }
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
 .avatar-menu::before {
   content: "";
   position: absolute;
   top: -5px;
-  right: 10px;
+  right: 50% !important;
   left: auto;
-  transform: translateX(0);
+  transform: translateX(50%) !important;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 5px solid white;
 }
+
 .avatar-dropdown:hover .avatar-menu {
   opacity: 1;
   visibility: visible;
 }
 
 .logout-btn {
-  width: 100%;
-  padding: 7px 14px;
+  width: auto;
+  padding: 6px 12px;
+  margin: 0 auto;
+  border-radius: 4px;
   background: none;
   border: none;
   color: #ff4444;
@@ -348,18 +434,24 @@ export default {
   transition: background 0.2s;
   white-space: nowrap;
 }
+
 .logout-btn:hover {
   background: #ffeeee;
 }
 
-/* Burger and Mobile Styles */
 .burger {
   display: none;
   flex-direction: column;
   cursor: pointer;
   flex-shrink: 0;
-  margin-left: 1rem; /* Space from right items */
+  margin-left: 1rem;
 }
+
+.burger.visible-on-scroll {
+  display: flex;
+  margin-left: auto;
+}
+
 .burger div {
   width: 25px;
   height: 3px;
@@ -367,14 +459,27 @@ export default {
   margin: 4px;
   transition: all 0.3s ease;
 }
+
 .navbar-scrolled .burger div {
   background-color: #333;
 }
 
-/* Dropdown Menu Styles */
+.burger-line-1 {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger-line-2 {
+  opacity: 0;
+}
+
+.burger-line-3 {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
 .dropdown {
   position: relative;
 }
+
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -390,12 +495,14 @@ export default {
   min-width: 160px;
   border-radius: 4px;
 }
+
 .dropdown-menu li {
   padding: 0;
   margin: 0;
   text-align: center;
   color: #333;
 }
+
 .dropdown-menu li button,
 .dropdown-menu li a {
   text-decoration: none;
@@ -409,38 +516,108 @@ export default {
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
+
 .dropdown-menu li button:hover,
 .dropdown-menu li a:hover {
   background-color: #f0f0f0;
 }
+
 .dropdown:hover .dropdown-menu {
   display: block;
 }
 
-/* Mobile Styles */
+.mobile-right-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.mobile-right-nav .language-switcher {
+  margin-right: 0;
+}
+
+.mobile-right-nav .sign-in-link {
+  background-color: #275de1;
+  color: white !important;
+  padding: 7px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.mobile-right-nav .sign-in-link:hover {
+  background-color: #1a4abd;
+}
+
+/* When scrolled, hide the nav links and show the toggle menu */
+.navbar-scrolled .main-nav-links {
+  display: none;
+  position: fixed;
+  top: 65px;
+  right: 0;
+  background-color: #1e3a8a;
+  width: 200px;
+  height: 100vh;
+  flex-direction: column;
+  padding: 1rem;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
+  z-index: 999;
+}
+
+.navbar-scrolled .main-nav-links.open {
+  display: flex;
+  transform: translateX(0);
+}
+
+.navbar-scrolled .main-nav-links li {
+  margin: 1rem 0;
+  text-align: center;
+  width: 100%;
+  color: white;
+}
+
+.navbar-scrolled .main-nav-links li a {
+  padding: 0.5rem 0;
+  display: block;
+  width: 100%;
+  color: white;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.navbar-scrolled .main-nav-links li a:hover,
+.navbar-scrolled .main-nav-links li a.router-link-exact-active {
+  color: #60a5fa;
+}
+
+.hidden-on-scroll {
+  display: none;
+}
+
+/* Original mobile styles (before scrolling) */
 @media (max-width: 992px) {
-  /* Tablet and below */
-  /* Target the main links list directly for mobile menu */
   .main-nav-links {
-    display: none; /* Hide by default */
+    display: none;
     position: absolute;
-    top: 65px; /* Position below navbar height */
+    top: 65px;
     left: 0;
     width: 100%;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    flex-direction: column; /* Stack vertically */
+    flex-direction: column;
     padding: 1rem 0;
-    margin-left: 0; /* Reset margin */
-    margin-right: 0; /* Reset margin */
+    margin-left: 0;
+    margin-right: 0;
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
     z-index: 999;
   }
 
   .main-nav-links.open {
-    display: flex; /* Show when open */
-    transform: translateX(0); /* Slide in */
+    display: flex;
+    transform: translateX(0);
   }
 
   .main-nav-links li {
@@ -449,25 +626,27 @@ export default {
     width: 100%;
     color: #333;
   }
+
   .main-nav-links li a {
     padding: 0.5rem 0;
     display: block;
     width: 100%;
-    color: #333; /* Ensure color for mobile */
-    font-size: 1.1rem; /* Slightly larger for mobile tap */
+    color: #333;
+    font-size: 1.1rem;
   }
+
   .main-nav-links li a:hover {
     background-color: #f0f0f0;
-    color: #0077b6; /* Example hover color */
+    color: #0077b6;
   }
 
   .right-nav-items {
-    display: none; /* Hide right items on mobile (or move them into menu) */
+    display: none;
   }
 
   .burger {
-    display: flex; /* Show burger */
-    margin-left: auto; /* Push burger right */
+    display: flex;
+    margin-left: auto;
   }
 }
 </style>

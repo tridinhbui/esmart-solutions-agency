@@ -49,6 +49,14 @@
     >
       <Footer />
     </section>
+    <!-- Back to Top Button -->
+    <button
+      v-show="showBackToTop"
+      @click="scrollToTop"
+      class="back-to-top"
+    >
+      ↑ Top
+    </button>
   </div>
 </template>
 
@@ -86,6 +94,11 @@ export default {
     Chat,
     TestimonialQuote,
   },
+  data() {
+    return {
+      showBackToTop: true, // Set to true initially for testing
+    };
+  },
   computed: {
     isDetailedBlogPage() {
       return this.$route.name === "DetailedBlog1";
@@ -101,6 +114,29 @@ export default {
     },
     shouldShowMainContent() {
       return !this.isAuthPage && !this.isDetailedBlogPage && this.$route.name !== "ContactUs";
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+    console.log("Scroll event listener added"); // Debug log
+    this.handleScroll(); // Call initially to check state
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+    console.log("Scroll event listener removed"); // Debug log
+  },
+  methods: {
+    handleScroll() {
+      const scrollY = window.scrollY;
+      console.log("Scroll position:", scrollY); // Debug log
+      this.showBackToTop = scrollY > 300;
+      console.log("showBackToTop:", this.showBackToTop); // Debug log
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     },
   },
 };
@@ -132,5 +168,28 @@ section {
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Back to Top Button Styles */
+.back-to-top {
+  position: fixed;
+  bottom: 200px;
+  right: 20px; /* Position on the right side */
+  background-color: #007bff; /* Example color */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s;
+  opacity: 0.8;
+  z-index: 1000; /* Ensure it’s above other elements */
+}
+
+.back-to-top:hover {
+  opacity: 1;
 }
 </style>
