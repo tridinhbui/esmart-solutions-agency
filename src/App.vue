@@ -99,13 +99,16 @@ export default {
       return ["SignIn", "SignUp"].includes(this.$route.name);
     },
     shouldShowRouterView() {
-      return this.isAuthPage || this.isDetailedBlogPage;
+      return this.isAuthPage || this.isDetailedBlogPage || this.isCreatorAIPage;
     },
     isCreatorAIPage() {
       return this.$route.name === "EsmartCreatorAI";
     },
     shouldShowMainContent() {
-      return !this.isAuthPage && !this.isDetailedBlogPage;
+      return (
+        this.isHomePage ||
+        (!this.isAuthPage && !this.isDetailedBlogPage && !this.isCreatorAIPage)
+      );
     },
   },
 };
