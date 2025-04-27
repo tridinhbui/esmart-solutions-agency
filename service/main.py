@@ -11,6 +11,7 @@ import uuid
 from dotenv import load_dotenv
 import logging
 from typing import Optional, List
+from fastapi import APIRouter
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, 
@@ -34,16 +35,8 @@ torch.set_default_device(device)
 # Load environment variables
 load_dotenv()
 
-app = FastAPI(title="Esmart AI Image Generator API")
+router = APIRouter()
 
-# Configure CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # In production environment, specify specific domains
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 # Declare global variables
 PRIOR_MODEL_ID = "kandinsky-community/kandinsky-2-2-prior"
@@ -132,11 +125,11 @@ async def generate_improved_prompt(original_prompt):
         logger.error(f"Error generating improved prompt: {str(e)}")
         return original_prompt
 
-@app.get("/")
+@router.get("/")
 async def root():
     return {"message": "Esmart AI Image Generator API is running"}
 
-@app.get("/status")
+@router.get("/status")
 async def check_status():
     """Check the status of the API and models"""
     cuda_available = torch.cuda.is_available()
@@ -154,7 +147,7 @@ async def check_status():
         }
     }
 
-@app.post("/generate-image")
+@router.post("/generate-image")
 async def generate_image(
     prompt: str = Form(...),
     negative_prompt: Optional[str] = Form("low quality, blurry"),
@@ -226,7 +219,7 @@ async def generate_image(
         logger.error(f"Error generating image: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error generating image: {str(e)}")
 
-@app.post("/topic-to-image")
+@router.post("/topic-to-image")
 async def topic_to_image(
     topic: str = Form(...),
     style: Optional[str] = Form("Simple"),
@@ -284,7 +277,7 @@ async def topic_to_image(
         logger.error(f"Error generating image from topic: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error generating image from topic: {str(e)}")
 
-@app.get("/images/{filename}")
+@router.get("/images/{filename}")
 async def get_image(filename: str):
     """
     This endpoint is no longer needed because images are stored directly in the database
@@ -292,11 +285,11 @@ async def get_image(filename: str):
     """
     logger.warning(f"Deprecated endpoint called: GET /images/{filename}")
     return JSONResponse({
-        "success": false,
+        "success": False,
         "error": "Images are now stored in the database, not in the file system"
     }, status_code=410)  # 410 Gone status code
 
-@app.delete("/images/{filename}")
+@router.delete("/images/{filename}")
 async def delete_image(filename: str):
     """
     This endpoint is no longer needed because images are stored directly in the database
@@ -308,6 +301,5 @@ async def delete_image(filename: str):
         "error": "Images are now stored in the database, not in the file system"
     }, status_code=410)  # 410 Gone status code
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True) 
+
+

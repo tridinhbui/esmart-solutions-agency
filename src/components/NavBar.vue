@@ -7,36 +7,21 @@
 
       <ul :class="['main-nav-links', { open: isOpen }]">
         <li>
-<<<<<<< HEAD
           <router-link to="/#intro">{{ $t("home") }}</router-link>
-=======
-          <router-link to="#intro" @click="toggleMenu">{{ $t("home") }}</router-link>
->>>>>>> d07f00320ce1f2e8c413bc40626123f87257534a
         </li>
         <li>
           <router-link to="/creator-ai" @click="toggleMenu">{{ $t("aiCreator") }}</router-link>
         </li>
         <li>
-<<<<<<< HEAD
           <router-link to="/#marketing-assessment">{{
-=======
-          <router-link to="#marketing-assessment" @click="toggleMenu">{{
->>>>>>> d07f00320ce1f2e8c413bc40626123f87257534a
             $t("assessment")
           }}</router-link>
         </li>
         <li>
-<<<<<<< HEAD
           <router-link to="/#social-proof">{{ $t("achievements") }}</router-link>
         </li>
         <li class="dropdown">
           <router-link to="/#blog">{{ $t("blog") }}</router-link>
-=======
-          <router-link to="#social-proof" @click="toggleMenu">{{ $t("achievements") }}</router-link>
-        </li>
-        <li class="dropdown">
-          <router-link to="#blog" @click="toggleMenu">{{ $t("blog") }}</router-link>
->>>>>>> d07f00320ce1f2e8c413bc40626123f87257534a
           <ul class="dropdown-menu">
             <li>
               <a
@@ -50,7 +35,6 @@
           </ul>
         </li>
         <li>
-<<<<<<< HEAD
           <router-link to="/#project">{{ $t("products") }}</router-link>
         </li>
         <li class="dropdown">
@@ -61,23 +45,10 @@
             </li>
             <li>
               <router-link to="/#social-proof">{{
-=======
-          <router-link to="#project" @click="toggleMenu">{{ $t("products") }}</router-link>
-        </li>
-        <li class="dropdown">
-          <router-link to="#about-us" @click="toggleMenu">{{ $t("About Us") }}</router-link>
-          <ul class="dropdown-menu">
-            <li>
-              <router-link to="#intro" @click="toggleMenu">{{ $t("home") }}</router-link>
-            </li>
-            <li>
-              <router-link to="#social-proof" @click="toggleMenu">{{
->>>>>>> d07f00320ce1f2e8c413bc40626123f87257534a
                 $t("achievements")
               }}</router-link>
             </li>
             <li>
-<<<<<<< HEAD
               <router-link to="/#process">{{ $t("Process") }}</router-link>
             </li>
             <li>
@@ -88,15 +59,6 @@
             </li>
             <li>
               <router-link to="/contact">{{ $t("Contact Us") }}</router-link>
-=======
-              <router-link to="#process" @click="toggleMenu">{{ $t("Process") }}</router-link>
-            </li>
-            <li>
-              <router-link to="#blog" @click="toggleMenu">{{ $t("blog") }}</router-link>
-            </li>
-            <li>
-              <router-link to="#project" @click="toggleMenu">{{ $t("products") }}</router-link>
->>>>>>> d07f00320ce1f2e8c413bc40626123f87257534a
             </li>
           </ul>
         </li>

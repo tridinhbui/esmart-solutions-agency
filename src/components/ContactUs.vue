@@ -104,7 +104,7 @@ export default {
 
       if (valid) {
         try {
-          await axios.post(`${process.env.VUE_APP_API_BASE_URL || 'http://localhost:3000'}/api/email/sendEmail`, {
+          await axios.post(`.netlify/functions/server/api/email/sendEmail`, {
             email: formData.value.email,
             message: `
                <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4;">
@@ -132,6 +132,13 @@ export default {
               </div>
             `,
           });
+          formData.value = {
+            name: '',
+            email: '',
+            inquiryType: '',
+          };
+
+          
         } catch (error) {
           console.error("Error sending email:", error);
         }

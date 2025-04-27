@@ -18,6 +18,13 @@ const { Content } = require("../models");
 
 const router = express.Router();
 
+router.get("/test", (req, res) => {
+  res.json({
+    success: true,
+    content: "hello world"
+  });
+});
+
 // Get all contents
 router.get("/contents", getAllContents);
 

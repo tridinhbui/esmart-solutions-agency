@@ -36,11 +36,14 @@
       <div class="chat-messages" ref="messagesContainer">
         <div v-for="(message, index) in messages" :key="index" 
              :class="['message', message.sender === 'user' ? 'user-message' : 'agent-message']">
-          <div class="message-content">
-            {{ message.text }}
-          </div>
+          <div v-html="message.text" class="message-content"></div>
           <div class="message-time">{{ message.time }}</div>
         </div>
+      </div>
+
+      <!-- Loading Spinner -->
+      <div v-if="loading" class="loading-typing">
+        <span>Thinking...</span>
       </div>
 
       <!-- Chat input -->
@@ -67,6 +70,9 @@
 </template>
 
 <script>
+import axios from 'axios';
+import {marked} from 'marked';
+
 export default {
   name: 'ChatWidget',
   data() {
@@ -98,6 +104,8 @@ export default {
         sender: 'user',
         time: this.getCurrentTime()
       });
+
+      this.loading = true;
       
       const userMessage = this.newMessage;
       this.newMessage = '';
@@ -111,19 +119,23 @@ export default {
         this.simulateResponse(userMessage);
       }, 1000 + Math.random() * 2000);
     },
-    simulateResponse(userMessage) {
+    async simulateResponse(userMessage) {
       let response = "Thank you for your message. Our team will get back to you soon.";
       
-      if (userMessage.toLowerCase().includes('hello') || userMessage.toLowerCase().includes('hi')) {
-        response = "Hello there! How can I assist you today?";
-      } else if (userMessage.toLowerCase().includes('help')) {
-        response = "I'd be happy to help. Could you please provide more details about what you need assistance with?";
-      } else if (userMessage.toLowerCase().includes('time')) {
-        response = `The current time is ${this.getCurrentTime()}.`;
+      try {
+        const data = await axios.post(`.netlify/functions/server/api/chatBot/chat`, { message: userMessage });
+        response = data.data.response;
+        console.log(response);
+      }
+      catch (error) {
+        console.error("Error:", error);
+      }
+      finally {
+        this.loading = false;
       }
       
       this.messages.push({
-        text: response,
+        text: marked.parse(response),
         sender: 'agent',
         time: this.getCurrentTime()
       });
@@ -373,6 +385,14 @@ export default {
 
 .emoji-button {
   color: #666;
+}
+
+.loading-typing {
+  font-size: 12px;
+  color: gray;
+  padding: 10px;
+  text-align: left;
+  font-style: italic;
 }
 
 /* Responsive adjustments */

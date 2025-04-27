@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "server/functions"
+
+[dev]
+    port = 8888
+    functions = "server/functions"
+    framework = "#auto"
+    
+    
