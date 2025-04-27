@@ -12,4 +12,3 @@
 [functions]
   [functions.max_duration]
     duration = 60
-  external_node_modules = ["sequelize", "cors", "pg"]
