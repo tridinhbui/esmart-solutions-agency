@@ -36,7 +36,7 @@ const routes = [
   { path: "/features", name: "FeaturesPage", component: FeaturesPage },
   { path: "/process", name: "ProcessInt", component: ProcessInt },
   { path: "/blog", name: "BlogPost", component: BlogPost },
-  { path: "/contact", name: "ContactUs", component: ContactUs },
+  { path: "/contact", name: "ContactUs", component: ContactUs, meta: { fullPage: true } },
   { path: "/project", name: "Project", component: Project },
   { path: "/about-us", name: "AboutUs", component: AboutUs },
   { path: "/service", name: "Service", component: Service },
@@ -87,7 +87,7 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
   scrollBehavior(to) {
-    if (to.hash) {
+    if (to.hash && !to.meta.fullPage) {
       return {
         el: to.hash,
         behavior: "smooth",

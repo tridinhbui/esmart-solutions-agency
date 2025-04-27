@@ -6,22 +6,22 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Install the Netlify CLI globally
 
 ```
-npm run serve
+npm install -g netlify-cli
 ```
 
-### Compiles and minifies for production
+### Connect repository to Netlify
 
 ```
-npm run build
+netlify link
 ```
 
-### Lints and fixes files
+### Run the local development server
 
 ```
-npm run lint
+netlify dev
 ```
 
 ### Customize configuration

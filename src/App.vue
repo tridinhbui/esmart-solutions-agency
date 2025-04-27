@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- Render Navbar only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
+    <!-- Render Navbar only if the current route is not DetailedBlog1 or EsmartCreatorAI or ContactUs -->
     <Navbar v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage" />
     <router-view v-if="shouldShowRouterView"></router-view>
     <!-- Render sections only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
@@ -42,9 +42,6 @@
       <section id="chat">
         <Chat />
       </section>
-      <section id="contact">
-        <ContactUs />
-      </section>
     </template>
     <section
       id="footer"
@@ -62,7 +59,6 @@ import SocialProof from "./components/SocialProof.vue";
 import FeaturesPage from "./components/FeaturesPage.vue";
 import ProcessInt from "./components/ServiceSection.vue";
 import BlogPost from "./components/BlogPost.vue";
-import ContactUs from "./components/ContactUs.vue";
 import Footer from "./components/FooterBar.vue";
 //import Service from "./components/ServiceSection.vue";
 import Project from "./components/ProjectSection.vue";
@@ -82,7 +78,6 @@ export default {
     FeaturesPage,
     ProcessInt,
     BlogPost,
-    ContactUs,
     Project,
     Footer,
     //Service,
@@ -99,7 +94,7 @@ export default {
       return ["SignIn", "SignUp"].includes(this.$route.name);
     },
     shouldShowRouterView() {
-      return this.isAuthPage || this.isDetailedBlogPage || this.isCreatorAIPage;
+      return this.isAuthPage || this.isDetailedBlogPage || this.isCreatorAIPage || this.$route.name === 'ContactUs';
     },
     isCreatorAIPage() {
       return this.$route.name === "EsmartCreatorAI";
@@ -107,7 +102,7 @@ export default {
     shouldShowMainContent() {
       return (
         this.isHomePage ||
-        (!this.isAuthPage && !this.isDetailedBlogPage && !this.isCreatorAIPage)
+        (!this.isAuthPage && !this.isDetailedBlogPage && !this.isCreatorAIPage && this.$route.name !== "ContactUs")
       );
     },
   },
