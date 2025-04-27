@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- Render Navbar only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
+    <!-- Render Navbar only if the current route is not DetailedBlog1 or EsmartCreatorAI or ContactUs -->
     <Navbar v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage" />
     <router-view v-if="shouldShowRouterView"></router-view>
     <!-- Render sections only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
@@ -102,7 +102,7 @@ export default {
     shouldShowMainContent() {
       return (
         this.isHomePage ||
-        (!this.isAuthPage && !this.isDetailedBlogPage && !this.isCreatorAIPage)
+        (!this.isAuthPage && !this.isDetailedBlogPage && !this.isCreatorAIPage && this.$route.name !== "ContactUs")
       );
     },
   },
