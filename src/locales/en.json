@@ -43,41 +43,96 @@
       "button": "Chat with Support Team"
     }
   },
-"process": {
-  "title": "Our Process",
-  "closeButton": "Close",
-  "steps": {
-    "0": {
-      "title": "Step 1: Consultation and Planning",
-      "subs": {
-        "0": "Market analysis - target customers.",
-        "1": "Building customer insight.",
-        "2": "Planning implementation monthly with clear objectives."
-      }
-    },
-    "1": {
-      "title": "Step 2: Contract Signing",
-      "subs": {
-        "0": "Sign a contract with an appropriate service package, ensuring transparent and clear terms."
-      }
-    },
-    "2": {
-      "title": "Step 3: Fanpage Management",
-      "subs": {
-        "0": "Create a group for discussion and work supervision.",
-        "1": "Monthly content planning, customer approval.",
-        "2": "Design images, produce videos, and launch ad campaigns."
-      }
-    },
-    "3": {
-      "title": "Step 4: Reporting and Evaluation",
-      "subs": {
-        "0": "Monthly result reporting, making necessary adjustments.",
-        "1": "Collect customer feedback, support customers during usage."
+  "process": {
+    "title": "Our Process",
+    "closeButton": "Close",
+    "steps": {
+      "0": {
+        "title": "Step 1: Consultation and Planning",
+        "subs": {
+          "0": "Market analysis - target customers.",
+          "1": "Building customer insight.",
+          "2": "Planning implementation monthly with clear objectives."
+        }
+      },
+      "1": {
+        "title": "Step 2: Contract Signing",
+        "subs": {
+          "0": "Sign a contract with an appropriate service package, ensuring transparent and clear terms."
+        }
+      },
+      "2": {
+        "title": "Step 3: Fanpage Management",
+        "subs": {
+          "0": "Create a group for discussion and work supervision.",
+          "1": "Monthly content planning, customer approval.",
+          "2": "Design images, produce videos, and launch ad campaigns."
+        }
+      },
+      "3": {
+        "title": "Step 4: Reporting and Evaluation",
+        "subs": {
+          "0": "Monthly result reporting, making necessary adjustments.",
+          "1": "Collect customer feedback, support customers during usage."
+        }
       }
     }
-  }
-},
+  },
+  "process": {
+    "title": "Our Process",
+    "steps": [
+      {
+        "title": "Step 1: Consultation and Planning",
+        "subsSteps": [
+          {
+            "title": "Market analysis - target customers."
+          },
+          {
+            "title": "Build customer insight"
+          },
+          {
+            "title": "Plan implementation monthly, with clear goals."
+          }
+        ]
+      },
+      {
+        "title": "Step 2: Contract Signing",
+        "subsSteps": [
+          {
+            "title": "Sign the contract with the appropriate service package, ensuring all terms are transparent and clear."
+          }
+        ]
+      },
+      {
+        "title": "Step 3: Service Implementation",
+        "subsSteps": [
+          {
+            "title": "Create a team for communication and work supervision."
+          },
+          {
+            "title": "Develop monthly content plans, present to customers for approval."
+          },
+          {
+            "title": "Design images, produce videos, and implement advertising campaigns."
+          }
+        ]
+      },
+      {
+        "title": "Step 4: Reporting and Evaluation",
+        "subsSteps": [
+          {
+            "title": "Report results at the end of the month, make necessary adjustments."
+          },
+          {
+            "title": "Collect customer feedback, support customers during use."
+          }
+        ]
+      }
+    ],
+    "modal": {
+      "close": "Close"
+    }
+  },
   "features": {
     "title": "Achievements",
     "achievements": [

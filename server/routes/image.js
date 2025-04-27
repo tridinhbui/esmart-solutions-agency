@@ -7,11 +7,13 @@ require("dotenv").config();
 // const path = require("path");
 // const crypto = require("crypto");
 
+// Configure API URL
+const FASTAPI_URL = process.env.FASTAPI_URL || "http://localhost:8000";
 
 // Check FastAPI service status
 async function checkServiceStatus() {
   try {
-    const response = await axios.get(`.netlify/functions/status`, {
+    const response = await axios.get(`${FASTAPI_URL}/status`, {
       timeout: 5000,
     });
     return {
@@ -50,9 +52,9 @@ router.post("/generate", async (req, res) => {
     formData.append("num_inference_steps", "30");
 
     // Send request to FastAPI service
-    console.log(`Sending request to .netlify/functions/generate-image`);
+    console.log(`Sending request to ${FASTAPI_URL}/generate-image`);
     const response = await axios.post(
-      `.netlify/functions/generate-image`,
+      `${FASTAPI_URL}/generate-image`,
       formData,
       {
         headers: {
@@ -68,7 +70,7 @@ router.post("/generate", async (req, res) => {
         success: true,
         prompt: response.data.prompt,
         filename: response.data.filename,
-        image_url: `.netlify/functions/images/${response.data.filename}`,
+        image_url: `${FASTAPI_URL}/images/${response.data.filename}`,
         image_data: response.data.image_data,
       });
     } else {
@@ -105,9 +107,9 @@ router.post("/topic-to-image", async (req, res) => {
     formData.append("num_inference_steps", "30");
 
     // Send request to FastAPI service
-    console.log(`Sending request to .netlify/functions/topic-to-image`);
+    console.log(`Sending request to ${FASTAPI_URL}/topic-to-image`);
     const response = await axios.post(
-      `.netlify/functions/topic-to-image`,
+      `${FASTAPI_URL}/topic-to-image`,
       formData,
       {
         headers: {
@@ -124,7 +126,7 @@ router.post("/topic-to-image", async (req, res) => {
         topic: response.data.topic,
         prompt: response.data.prompt,
         filename: response.data.filename,
-        image_url: `.netlify/functions/images/${response.data.filename}`,
+        image_url: `${FASTAPI_URL}/images/${response.data.filename}`,
         image_data: response.data.image_data,
       });
     } else {
