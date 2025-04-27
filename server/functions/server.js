@@ -7,12 +7,14 @@ const serverless = require("serverless-http");
 const questionnaireRoutes = require("../routes/questionnaireRoutes");
 const sendEmailRoutes = require("../routes/sendEmailRoute");
 const chatBotRoutes = require("../routes/chatBotRoute");
+/*
 const contentRoute = require("../routes/content");
 const imageRoute = require("../routes/image");
 const projectRoute = require("../routes/project");
 const seoRoute = require("../routes/seo");
 const { testConnection } = require("../config/database");
 const { initializeModels } = require("../models");
+*/
 
 
 const app = express();
@@ -28,6 +30,7 @@ const corsOptions = {
     credentials: true // Allow cookies if needed
 };
 
+/*
 // Initialize database connection
 async function initializeDatabase() {
     try {
@@ -54,11 +57,14 @@ console.error("Failed to initialize database:", err);
 app.use(cors(corsOptions));
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
+*/
 
 // Routes
 router.use("/api/questionnaire", questionnaireRoutes);
 router.use("/api/email", sendEmailRoutes);
 router.use("/api/chatbot", chatBotRoutes);
+
+/*
 router.use("/api/content", contentRoute);
 router.use("/api/image", imageRoute);
 router.use("/api", projectRoute);
@@ -167,6 +173,7 @@ router.get("/test", (req, res) => {
         </html>
     `);
 });
+*/
 
 app.use("/.netlify/functions/server", router);
 
