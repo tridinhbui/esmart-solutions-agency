@@ -2,8 +2,8 @@
   <header :class="['navbar', { 'navbar-scrolled': isScrolled }]">
     <div class="navbar-content">
       <router-link to="#intro" class="logo-link">
-  <img src="@/assets/logo.png" alt="ESmart Logo" class="logo" />
-</router-link>
+        <img src="@/assets/logo.png" alt="ESmart Logo" class="logo" />
+      </router-link>
 
       <ul :class="['main-nav-links', { open: isOpen }]">
         <li>
@@ -21,18 +21,11 @@
           <router-link to="#social-proof" @click="toggleMenu">{{ $t("achievements") }}</router-link>
         </li>
         <li class="dropdown">
-          <router-link to="#blog" @click="toggleMenu">{{ $t("blog") }}</router-link>
-          <ul class="dropdown-menu">
-            <li>
-              <a
-                href="/detailed-blog-1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button>{{ $t("blogPage1") }}</button>
-              </a>
-            </li>
-          </ul>
+          <router-link to="/detailed-blog-1" target="_blank" rel="noopener noreferrer">
+            <button>
+              {{ $t("Blog") }}
+            </button>
+          </router-link>
         </li>
         <li>
           <router-link to="#project" @click="toggleMenu">{{ $t("products") }}</router-link>
@@ -59,52 +52,40 @@
             </li>
           </ul>
         </li>
-        <!-- Add right-nav-items into the menu for when scrolled -->
-        
-        
-      </ul>
-
-      <div class="right-nav-items" :class="{ 'hidden-on-scroll': isScrolled }">
-        <div class="language-switcher">
-          <button @click="switchLanguage('vi')">
-            <img src="@/assets/vietnamese-flag.png" alt="Vietnamese" />
-          </button>
-          <button @click="switchLanguage('en')">
-            <img src="@/assets/english-flag.png" alt="English" />
-          </button>
-        </div>
-
-        <div v-if="!authStore.user" class="sign-in-btn">
-          <router-link to="/sign-in" class="sign-in-link">
+        <!-- Moved language switcher and sign-in into the toggle menu -->
+        <li class="language-switcher-item">
+          <div class="language-switcher">
+            <button @click="switchLanguage('vi')">
+              <img src="@/assets/vietnamese-flag.png" alt="Vietnamese" />
+            </button>
+            <button @click="switchLanguage('en')">
+              <img src="@/assets/english-flag.png" alt="English" />
+            </button>
+          </div>
+        </li>
+        <li v-if="!authStore.user" class="sign-in-item">
+          <router-link to="/sign-in" class="sign-in-link" @click="toggleMenu">
             {{ $t("signIn") }}
           </router-link>
-        </div>
-        <div v-else class="user-avatar-wrapper">
-  <div
-    class="avatar-dropdown"
-    @mouseenter="!isMobile && (showDropdown = true)"
-    @mouseleave="!isMobile && (showDropdown = false)"
-    @click="isMobile && (showDropdown = !showDropdown)"
-  >
-    <img
-      :src="authStore.user.photoURL || defaultAvatar"
-      class="user-avatar"
-      @error="handleImageError"
-    />
-    <transition name="fade">
-      <div 
-        v-if="showDropdown"
-        class="avatar-menu"
-        v-click-outside="() => showDropdown = false"
-      >
-        <button @click="handleLogout" class="logout-btn">
-          {{ $t("Sign Out") }}
-        </button>
-      </div>
-    </transition>
-  </div>
-</div>
-      </div>
+        </li>
+        <li v-else class="user-avatar-wrapper">
+          <div class="avatar-dropdown">
+            <img
+              :src="authStore.user.photoURL || defaultAvatar"
+              class="user-avatar"
+              @click="toggleDropdown"
+              @error="handleImageError"
+            />
+            <transition name="fade">
+              <div v-if="showDropdown" class="avatar-menu" v-click-outside="() => showDropdown = false">
+                <button @click="handleLogout" class="logout-btn">
+                  {{ $t("Sign Out") }}
+                </button>
+              </div>
+            </transition>
+          </div>
+        </li>
+      </ul>
 
       <div class="burger" :class="{ 'visible-on-scroll': isScrolled }" @click="toggleMenu">
         <div :class="{ 'burger-line-1': isOpen }"></div>
@@ -136,16 +117,16 @@ export default {
   },
   methods: {
     checkMobile() {
-    this.isMobile = window.innerWidth < 992;
-  },
+      this.isMobile = window.innerWidth < 992;
+    },
     toggleMenu() {
       this.isOpen = !this.isOpen;
     },
     toggleDropdown() {
-    if (this.isMobile) {
-      this.showDropdown = !this.showDropdown;
-    }
-  },
+      if (this.isMobile) {
+        this.showDropdown = !this.showDropdown;
+      }
+    },
     switchLanguage(language) {
       this.$i18n.locale = language;
     },
@@ -168,31 +149,30 @@ export default {
     },
     handleImageError(e) {
       e.target.src = this.defaultAvatar;
+    },
   },
-},
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
     console.log("User data:", this.authStore.user);
-
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   },
   directives: {
-  'click-outside': {
-    mounted(el, binding) {
-      el.clickOutsideEvent = (event) => {
-        if (!el.contains(event.target)) {
-          binding.value();
-        }
-      };
-      document.addEventListener('click', el.clickOutsideEvent);
-    },
-    unmounted(el) {
-      document.removeEventListener('click', el.clickOutsideEvent);
+    'click-outside': {
+      mounted(el, binding) {
+        el.clickOutsideEvent = (event) => {
+          if (!el.contains(event.target)) {
+            binding.value();
+          }
+        };
+        document.addEventListener('click', el.clickOutsideEvent);
+      },
+      unmounted(el) {
+        document.removeEventListener('click', el.clickOutsideEvent);
+      }
     }
-  }
-},
+  },
 };
 </script>
 
@@ -230,9 +210,8 @@ export default {
   flex-shrink: 0;
 }
 
-/* Restore original main-nav-links styles */
 .main-nav-links {
-  display: flex; /* Restore original display */
+  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -267,16 +246,18 @@ export default {
   color: #00aaff;
 }
 
-.right-nav-items {
+.language-switcher-item {
   display: flex;
+  justify-content: center;
   align-items: center;
-  flex-shrink: 0;
+  width: auto;
 }
 
 .language-switcher {
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin-right: 1.5rem;
+  gap: 8px;
 }
 
 .language-switcher button {
@@ -284,7 +265,6 @@ export default {
   border: none;
   cursor: pointer;
   padding: 0;
-  margin: 0 4px;
 }
 
 .language-switcher img {
@@ -295,6 +275,11 @@ export default {
 
 .language-switcher button:hover {
   opacity: 0.8;
+}
+
+.sign-in-item {
+  display: flex;
+  align-items: center;
 }
 
 .sign-in-link {
@@ -327,7 +312,8 @@ export default {
   display: block;
   object-fit: cover;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-} /* Increased size */
+}
+
 .user-avatar:hover {
   transform: scale(1.05);
 }
@@ -337,7 +323,6 @@ export default {
   display: inline-block;
 }
 
-/* Thay thế cả 2 khối .avatar-menu bằng */
 .avatar-menu {
   position: absolute;
   top: calc(100% + 5px);
@@ -351,14 +336,15 @@ export default {
   border-radius: 4px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   z-index: 1001;
-  /* Reset các thuộc tính nguy hiểm */
   opacity: 1 !important;
   visibility: visible !important;
   display: block !important;
 }
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.2s;
 }
+
 .fade-enter-from, .fade-leave-to {
   opacity: 0;
 }
@@ -373,11 +359,6 @@ export default {
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 5px solid white;
-}
-
-.avatar-dropdown:hover .avatar-menu {
-  opacity: 1;
-  visibility: visible;
 }
 
 .logout-btn {
@@ -485,37 +466,13 @@ export default {
   display: block;
 }
 
-.mobile-right-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.mobile-right-nav .language-switcher {
-  margin-right: 0;
-}
-
-.mobile-right-nav .sign-in-link {
-  background-color: #275de1;
-  color: white !important;
-  padding: 7px 15px;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.mobile-right-nav .sign-in-link:hover {
-  background-color: #1a4abd;
-}
-
-/* When scrolled, hide the nav links and show the toggle menu */
 .navbar-scrolled .main-nav-links {
   display: none;
   position: fixed;
   top: 65px;
-  right: 0;
+  right: -1.5rem; /* Adjusted to offset the 1.5rem padding of navbar-content */
   background-color: #1e3a8a;
-  width: 200px;
+  width: 200px; /* Kept the width at 200px as desired */
   height: 100vh;
   flex-direction: column;
   padding: 1rem;
@@ -551,11 +508,6 @@ export default {
   color: #60a5fa;
 }
 
-.hidden-on-scroll {
-  display: none;
-}
-
-/* Original mobile styles (before scrolling) */
 @media (max-width: 992px) {
   .main-nav-links {
     display: none;
@@ -599,8 +551,13 @@ export default {
     color: #0077b6;
   }
 
-  .right-nav-items {
-    display: none;
+  .language-switcher-item, .sign-in-item, .user-avatar-wrapper {
+    justify-content: center;
+  }
+
+  .language-switcher {
+    justify-content: center;
+    gap: 8px;
   }
 
   .burger {

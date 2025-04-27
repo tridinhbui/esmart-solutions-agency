@@ -40,6 +40,7 @@ const routes = [
   { path: "/project", name: "Project", component: Project },
   { path: "/about-us", name: "AboutUs", component: AboutUs },
   { path: "/service", name: "Service", component: Service },
+  { path: "/creator-ai", name: "EsmartCreatorAI", component: EsmartCreatorAIPage },  
   {
     path: "/detailed-blog-1",
     name: "DetailedBlog1",
@@ -54,11 +55,19 @@ const routes = [
     path: "/creator-ai",
     name: "EsmartCreatorAI",
     component: EsmartCreatorAIPage,
+    beforeEnter: (to, from, next) => {
+      console.log("Entering creator-ai route");
+      next();
+    },
   },
   {
     path: "/dashboard",
     name: "Dashboard",
     component: EsmartCreatorAIPage,
+    beforeEnter: (to, from, next) => {
+      console.log("Entering dashboard route");
+      next();
+    },
   },
   {
     path: "/project/:id",
