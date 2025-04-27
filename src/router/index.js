@@ -55,11 +55,19 @@ const routes = [
     path: "/creator-ai",
     name: "EsmartCreatorAI",
     component: EsmartCreatorAIPage,
+    beforeEnter: (to, from, next) => {
+      console.log("Entering creator-ai route");
+      next();
+    },
   },
   {
     path: "/dashboard",
     name: "Dashboard",
     component: EsmartCreatorAIPage,
+    beforeEnter: (to, from, next) => {
+      console.log("Entering dashboard route");
+      next();
+    },
   },
   {
     path: "/project/:id",
