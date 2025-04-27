@@ -9,6 +9,7 @@ const sequelize = new Sequelize({
   username: process.env.DB_USER || "postgres",
   password: process.env.DB_PASSWORD || "postgres",
   database: process.env.DB_NAME || "esmart_agency",
+  dialectModule: "pg",
   logging: false,
   pool: {
     max: 5,
