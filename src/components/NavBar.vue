@@ -7,21 +7,21 @@
 
       <ul :class="['main-nav-links', { open: isOpen }]">
         <li>
-          <router-link to="#intro" @click="toggleMenu">{{ $t("home") }}</router-link>
+          <router-link to="/#intro" @click="toggleMenu">{{ $t("home") }}</router-link>
         </li>
         <li>
           <router-link to="/creator-ai" @click="toggleMenu">{{ $t("aiCreator") }}</router-link>
         </li>
         <li>
-          <router-link to="#marketing-assessment" @click="toggleMenu">{{
+          <router-link to="/#marketing-assessment" @click="toggleMenu">{{
             $t("assessment")
           }}</router-link>
         </li>
         <li>
-          <router-link to="#social-proof" @click="toggleMenu">{{ $t("achievements") }}</router-link>
+          <router-link to="/#social-proof" @click="toggleMenu">{{ $t("achievements") }}</router-link>
         </li>
         <li class="dropdown">
-          <router-link to="#blog" @click="toggleMenu">{{ $t("blog") }}</router-link>
+          <router-link to="/#blog" @click="toggleMenu">{{ $t("blog") }}</router-link>
           <ul class="dropdown-menu">
             <li>
               <a
@@ -35,30 +35,30 @@
           </ul>
         </li>
         <li>
-          <router-link to="#project" @click="toggleMenu">{{ $t("products") }}</router-link>
+          <router-link to="/#project" @click="toggleMenu">{{ $t("products") }}</router-link>
         </li>
         <li class="dropdown">
-          <router-link to="#about-us" @click="toggleMenu">{{ $t("About Us") }}</router-link>
+          <router-link to="/#about-us" @click="toggleMenu">{{ $t("AboutUs.title") }}</router-link>
           <ul class="dropdown-menu">
             <li>
-              <router-link to="#intro" @click="toggleMenu">{{ $t("home") }}</router-link>
+              <router-link to="/#intro" @click="toggleMenu">{{ $t("home") }}</router-link>
             </li>
             <li>
-              <router-link to="#social-proof" @click="toggleMenu">{{
+              <router-link to="/#social-proof" @click="toggleMenu">{{
                 $t("achievements")
               }}</router-link>
             </li>
             <li>
-              <router-link to="#process" @click="toggleMenu">{{ $t("Process") }}</router-link>
+              <router-link to="/#process" @click="toggleMenu">{{ $t("Process") }}</router-link>
             </li>
             <li>
-              <router-link to="#blog" @click="toggleMenu">{{ $t("blog") }}</router-link>
+              <router-link to="/#blog" @click="toggleMenu">{{ $t("blog") }}</router-link>
             </li>
             <li>
-              <router-link to="#project" @click="toggleMenu">{{ $t("products") }}</router-link>
+              <router-link to="/#project" @click="toggleMenu">{{ $t("products") }}</router-link>
             </li>
             <li>
-              <router-link to="/contact" @click="toggleMenu">{{ $t("Contact Us") }}</router-link>
+              <router-link to="/contact" @click="toggleMenu">{{ $t("contactUs.title") }}</router-link>
             </li>
           </ul>
         </li>
