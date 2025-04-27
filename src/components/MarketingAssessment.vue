@@ -212,11 +212,17 @@ export default {
   methods: {
     async submitAnswers() {
       try {
+        console.log("Submitting answers:", this.answers);
         const response = await axios.post(
           `.netlify/functions/server/api/questionnaire/submit`,
           {
             answers: this.answers,
             locale: this.$i18n.locale,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
           }
         );
         this.score = response.data.score;

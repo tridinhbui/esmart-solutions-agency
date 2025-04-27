@@ -7,6 +7,7 @@ const {
 } = require("../controllers/questionnaireController");
 
 router.post("/submit", (req, res) => {
+    console.log("Received request body:", req.body);
     if (!req.body.answers) {
         return res.status(400).json({ message: "Answers are required" });
     }

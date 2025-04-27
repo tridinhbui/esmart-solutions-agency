@@ -10,8 +10,6 @@
     framework = "#auto"
     
 [functions]
-  node_bundler = "esbuild"
-  esbuild_options = { format = "esm" }
   [functions.max_duration]
     duration = 60
   external_node_modules = ["sequelize", "cors", "pg"]

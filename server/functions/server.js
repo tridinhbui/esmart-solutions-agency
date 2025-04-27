@@ -19,6 +19,7 @@ const { initializeModels } = require("../models");
 
 const app = express();
 const router = express.Router();
+app.use(bodyParser.json({ limit: "50mb" }));
 
 const corsOptions = {
     origin: [
