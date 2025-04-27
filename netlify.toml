@@ -8,4 +8,7 @@
     functions = "server/functions"
     framework = "#auto"
     
-    
+[functions]
+  [functions.max_duration]
+    duration = 30
+  external_node_modules = ["sequelize", "cors", "pg"]
