@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build && npm install",
-    "lint": "vue-cli-service lint"
+    "build": "npm install && vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "postinstall": "npm install pg"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.2",
