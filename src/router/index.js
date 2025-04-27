@@ -40,6 +40,7 @@ const routes = [
   { path: "/project", name: "Project", component: Project },
   { path: "/about-us", name: "AboutUs", component: AboutUs },
   { path: "/service", name: "Service", component: Service },
+  { path: "/creator-ai", name: "EsmartCreatorAI", component: EsmartCreatorAIPage },  
   {
     path: "/detailed-blog-1",
     name: "DetailedBlog1",

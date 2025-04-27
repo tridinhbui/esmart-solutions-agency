@@ -60,7 +60,7 @@ import FeaturesPage from "./components/FeaturesPage.vue";
 import ProcessInt from "./components/ServiceSection.vue";
 import BlogPost from "./components/BlogPost.vue";
 import Footer from "./components/FooterBar.vue";
-import Service from "./components/ServiceSection.vue";
+//import Service from "./components/ServiceSection.vue";
 import Project from "./components/ProjectSection.vue";
 import AboutUs from "./components/AboutUs.vue";
 import Questions from "./components/Questions.vue";
@@ -80,7 +80,7 @@ export default {
     BlogPost,
     Project,
     Footer,
-    Service,
+    //Service,
     AboutUs,
     Questions,
     Chat,
