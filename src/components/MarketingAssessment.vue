@@ -1,12 +1,12 @@
 <template>
   <section class="assessment">
-    <h2>{{ $t("MarketingAssessment.title") }}</h2>
+    <h2>{{ $t("creatorAI.MarketingAssessment.title") }}</h2>
 
     <div class="progress-container">
       <div class="progress-info">
         <span class="progress-text">
           {{
-            $t("MarketingAssessment.progressText", {
+            $t("creatorAI.MarketingAssessment.progressText", {
               completed: completedQuestions,
               total: questions.length,
             })
@@ -14,7 +14,7 @@
         </span>
         <span class="progress-percentage">
           {{
-            $t("MarketingAssessment.progressPercentage", {
+            $t("creatorAI.MarketingAssessment.progressPercentage", {
               percentage: Math.round(progressPercentage),
             })
           }}
@@ -37,7 +37,7 @@
         >
           <span class="question-number">
             {{
-              $t("MarketingAssessment.questionNumber", {
+              $t("creatorAI.MarketingAssessment.questionNumber", {
                 number: currentQuestionIndex + 1,
               })
             }}
@@ -71,7 +71,7 @@
           @click="prevQuestion"
           :disabled="currentQuestionIndex === 0"
         >
-          {{ $t("MarketingAssessment.prevButton") }}
+          {{ $t("creatorAI.MarketingAssessment.prevButton") }}
         </button>
 
         <button
@@ -81,7 +81,7 @@
           @click="nextQuestion"
           :disabled="answers[currentQuestionIndex] === undefined"
         >
-          {{ $t("MarketingAssessment.nextButton") }}
+          {{ $t("creatorAI.MarketingAssessment.nextButton") }}
         </button>
 
         <button
@@ -90,7 +90,7 @@
           class="nav-button submit-button"
           :disabled="!allQuestionsAnswered"
         >
-          {{ $t("MarketingAssessment.submitButton") }}
+          {{ $t("creatorAI.MarketingAssessment.submitButton") }}
         </button>
       </div>
     </form>
@@ -98,13 +98,13 @@
     <transition name="fade">
       <div v-if="report" class="results-container">
         <div class="score-card">
-          <h3>{{ $t("MarketingAssessment.results.scoreTitle") }}</h3>
+          <h3>{{ $t("creatorAI.MarketingAssessment.results.scoreTitle") }}</h3>
           <div class="score-value">{{ score }}<span>/100</span></div>
         </div>
 
         <div class="report-sections">
           <div class="report-section strengths">
-            <h4>{{ $t("MarketingAssessment.results.strengthsTitle") }}</h4>
+            <h4>{{ $t("creatorAI.MarketingAssessment.results.strengthsTitle") }}</h4>
             <ul>
               <li v-for="strength in report.strengths" :key="strength">
                 {{ strength }}
@@ -113,7 +113,7 @@
           </div>
 
           <div class="report-section weaknesses">
-            <h4>{{ $t("MarketingAssessment.results.weaknessesTitle") }}</h4>
+            <h4>{{ $t("creatorAI.MarketingAssessment.results.weaknessesTitle") }}</h4>
             <ul>
               <li v-for="weakness in report.weaknesses" :key="weakness">
                 {{ weakness }}
@@ -122,7 +122,7 @@
           </div>
 
           <div class="report-section suggestions">
-            <h4>{{ $t("MarketingAssessment.results.suggestionsTitle") }}</h4>
+            <h4>{{ $t("creatorAI.MarketingAssessment.results.suggestionsTitle") }}</h4>
             <ul>
               <li v-for="suggestion in report.suggestions" :key="suggestion">
                 {{ suggestion }}
@@ -154,17 +154,17 @@ export default {
         const locale = this.$i18n.locale;
         if (
           this.$i18n.messages[locale] &&
-          this.$i18n.messages[locale].MarketingAssessment &&
-          this.$i18n.messages[locale].MarketingAssessment.questions
+          this.$i18n.messages[locale].creatorAI &&
+          this.$i18n.messages[locale].creatorAI.questions
         ) {
-          return this.$i18n.messages[locale].MarketingAssessment.questions;
+          return this.$i18n.messages[locale].creatorAI.questions;
         } else {
           console.warn(
             `Translation path 'MarketingAssessment.questions' not found for locale ${locale}`
           );
           // Return empty array or fallback to English if available
           return (
-            this.$i18n.messages["en"]?.MarketingAssessment?.questions || []
+            this.$i18n.messages["en"]?.creatorAI?.questions || []
           );
         }
       } catch (error) {
@@ -179,7 +179,7 @@ export default {
       return this.questions[this.currentQuestionIndex];
     },
     progressPercentage() {
-      return (this.completedQuestions / this.questions.length) * 100;
+      return this.questions.length > 0 ? (this.completedQuestions / this.questions.length) * 100 : 0;
     },
     allQuestionsAnswered() {
       return this.answers.every((answer) => answer !== undefined);
@@ -212,13 +212,17 @@ export default {
   methods: {
     async submitAnswers() {
       try {
-        const baseUrl =
-          process.env.VUE_APP_API_BASE_URL || "http://localhost:3000";
+        console.log("Submitting answers:", this.answers);
         const response = await axios.post(
-          `${baseUrl}/api/questionnaire/submit`,
+          `.netlify/functions/server/api/questionnaire/submit`,
           {
             answers: this.answers,
             locale: this.$i18n.locale,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
           }
         );
         this.score = response.data.score;

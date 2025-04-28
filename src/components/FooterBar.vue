@@ -30,24 +30,24 @@
     <div class="footer-items">
       <ul class="footer-items2">
         <li>
-          <a href="#intro">{{ $t("footer.links.home") }}</a>
+          <a href="/#intro">{{ $t("footer.links.home") }}</a>
         </li>
         <li>
-          <a href="#about-us">{{ $t("footer.links.aboutUs") }}</a>
+          <a href="/#about-us">{{ $t("footer.links.aboutUs") }}</a>
         </li>
         <li>
-          <a href="#process">{{ $t("footer.links.process") }}</a>
+          <a href="/#process">{{ $t("footer.links.process") }}</a>
         </li>
       </ul>
       <ul class="footer-items2">
         <li>
-          <a href="#contact">{{ $t("footer.links.contact") }}</a>
+          <a href="/contact">{{ $t("footer.links.contact") }}</a>
         </li>
         <li>
-          <a href="#social-proof">{{ $t("footer.links.socialProof") }}</a>
+          <a href="/#social-proof">{{ $t("footer.links.socialProof") }}</a>
         </li>
         <li>
-          <a href="#blog">{{ $t("footer.links.blog") }}</a>
+          <a href="/#blog">{{ $t("footer.links.blog") }}</a>
         </li>
       </ul>
     </div>
