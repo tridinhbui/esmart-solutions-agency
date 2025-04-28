@@ -20,15 +20,11 @@
         <li>
           <router-link to="#social-proof" @click="toggleMenu">{{ $t("achievements") }}</router-link>
         </li>
-        <li class="dropdown">
-          <router-link to="/detailed-blog-1" target="_blank" rel="noopener noreferrer">
-            <button>
-              {{ $t("Blog") }}
-            </button>
-          </router-link>
+        <li>
+          <router-link to="/detailed-blog-1" @click="toggleMenu"> Blog </router-link>
         </li>
         <li>
-          <router-link to="#project" @click="toggleMenu">{{ $t("products") }}</router-link>
+          <router-link to="#project" @click="toggleMenu">{{ $t("products") }} </router-link>
         </li>
         <li class="dropdown">
           <router-link to="#about-us" @click="toggleMenu">{{ $t("About Us") }}</router-link>
