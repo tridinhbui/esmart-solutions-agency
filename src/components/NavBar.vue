@@ -20,40 +20,14 @@
         <li>
           <router-link to="/#social-proof" @click="toggleMenu">{{ $t("achievements") }}</router-link>
         </li>
-        <li class="dropdown">
-          <router-link to="/detailed-blog-1" target="_blank" rel="noopener noreferrer">
-            <button>
-              {{ $t("Blog") }}
-            </button>
-          </router-link>
+        <li>
+          <router-link to="/detailed-blog-1" @click="toggleMenu"> Blog </router-link>
         </li>
         <li>
           <router-link to="/#project" @click="toggleMenu">{{ $t("products") }}</router-link>
         </li>
-        <li class="dropdown">
+        <li>
           <router-link to="/#about-us" @click="toggleMenu">{{ $t("AboutUs.title") }}</router-link>
-          <ul class="dropdown-menu">
-            <li>
-              <router-link to="/#intro" @click="toggleMenu">{{ $t("home") }}</router-link>
-            </li>
-            <li>
-              <router-link to="/#social-proof" @click="toggleMenu">{{
-                $t("achievements")
-              }}</router-link>
-            </li>
-            <li>
-              <router-link to="/#process" @click="toggleMenu">{{ $t("Process") }}</router-link>
-            </li>
-            <li>
-              <router-link to="/#blog" @click="toggleMenu">{{ $t("blog") }}</router-link>
-            </li>
-            <li>
-              <router-link to="/#project" @click="toggleMenu">{{ $t("products") }}</router-link>
-            </li>
-            <li>
-              <router-link to="/contact" @click="toggleMenu">{{ $t("contactUs.title") }}</router-link>
-            </li>
-          </ul>
         </li>
         <!-- Moved language switcher and sign-in into the toggle menu -->
         <li class="language-switcher-item">

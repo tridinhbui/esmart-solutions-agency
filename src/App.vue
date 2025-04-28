@@ -49,6 +49,15 @@
     >
       <Footer />
     </section>
+    <!-- Push to Top Button -->
+    <button
+      v-if="showScrollButton"
+      class="scroll-to-top"
+      @click="scrollToTop"
+      title="Go to top"
+    >
+      ↑
+    </button>
   </div>
 </template>
 
@@ -60,7 +69,6 @@ import FeaturesPage from "./components/FeaturesPage.vue";
 import ProcessInt from "./components/ServiceSection.vue";
 import BlogPost from "./components/BlogPost.vue";
 import Footer from "./components/FooterBar.vue";
-//import Service from "./components/ServiceSection.vue";
 import Project from "./components/ProjectSection.vue";
 import AboutUs from "./components/AboutUs.vue";
 import Questions from "./components/Questions.vue";
@@ -80,11 +88,15 @@ export default {
     BlogPost,
     Project,
     Footer,
-    //Service,
     AboutUs,
     Questions,
     Chat,
     TestimonialQuote,
+  },
+  data() {
+    return {
+      showScrollButton: false,
+    };
   },
   computed: {
     isDetailedBlogPage() {
@@ -94,7 +106,12 @@ export default {
       return ["SignIn", "SignUp"].includes(this.$route.name);
     },
     shouldShowRouterView() {
-      return this.isAuthPage || this.isDetailedBlogPage || this.isCreatorAIPage || this.$route.name === 'ContactUs';
+      return (
+        this.isAuthPage ||
+        this.isDetailedBlogPage ||
+        this.isCreatorAIPage ||
+        this.$route.name === "ContactUs"
+      );
     },
     isCreatorAIPage() {
       return this.$route.name === "EsmartCreatorAI";
@@ -102,9 +119,35 @@ export default {
     shouldShowMainContent() {
       return (
         this.isHomePage ||
-        (!this.isAuthPage && !this.isDetailedBlogPage && !this.isCreatorAIPage && this.$route.name !== "ContactUs")
+        (!this.isAuthPage &&
+          !this.isDetailedBlogPage &&
+          !this.isCreatorAIPage &&
+          this.$route.name !== "ContactUs")
       );
     },
+  },
+  methods: {
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    },
+    handleScroll() {
+      // Debug: Log scroll position and button state
+      console.log("Scroll Y:", window.scrollY, "Show Button:", this.showScrollButton);
+      this.showScrollButton = window.scrollY > 300;
+    },
+  },
+  mounted() {
+    // Add scroll event listener
+    window.addEventListener("scroll", this.handleScroll);
+    console.log("Scroll event listener added");
+  },
+  beforeAmount() {
+    // Clean up event listener
+    window.removeEventListener("scroll", this.handleScroll);
+    console.log("Scroll event listener removed");
   },
 };
 </script>
@@ -135,5 +178,31 @@ section {
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Scroll to Top Button Styles */
+.scroll-to-top {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  background-color: #4a90e2; /* Blue color  */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  z-index: 1000; /* Ensure button is above other elements */
+}
+
+.scroll-to-top:hover {
+  background-color: #357abd; /* Darker shade on hover */
+  transform: translateY(-2px);
 }
 </style>
