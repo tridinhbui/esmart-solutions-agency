@@ -1,6 +1,6 @@
 <template>
   <section class="process">
-    <h2>{{ $t("process.title") }}</h2>
+    <h2>{{ $t("processStep.title") }}</h2>
     <div class="steps">
       <div
         class="step"
@@ -12,7 +12,7 @@
           <h3>{{ $t(step.title) }}</h3>
           <ul>
             <li v-for="(subStep, subIndex) in step.subsSteps" :key="subIndex">
-              {{ $t(`process.steps.${index}.subs.${subIndex}`) }}
+              {{ $t(`processStep.steps.${index}.subs.${subIndex}`) }}
             </li>
           </ul>
         </div>
@@ -25,17 +25,17 @@
         <v-card-text>
           <ul>
             <li
-              v-for="(subStep, subIndex) in selectedStep.subsSteps"
+              v-for="(subStep, subIndex) in selectedStep?.subsSteps || []"
               :key="subIndex"
             >
-            {{ $t(subStep) }}
+              {{ $t(subStep) }}
             </li>
           </ul>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="isModalOpen = false">{{
-            $t("process.closeButton")
+            $t("processStep.closeButton")
           }}</v-btn>
         </v-card-actions>
       </v-card>
@@ -55,28 +55,28 @@ export default {
       },
       steps: [
         {
-          title: "process.steps.0.title",
+          title: "processStep.steps.0.title",
           subsSteps: [
-            "process.steps.0.subs.0",
-            "process.steps.0.subs.1",
-            "process.steps.0.subs.2",
+            "processStep.steps.0.subs.0",
+            "processStep.steps.0.subs.1",
+            "processStep.steps.0.subs.2",
           ],
         },
         {
-          title: "process.steps.1.title",
-          subsSteps: ["process.steps.1.subs.0"],
+          title: "processStep.steps.1.title",
+          subsSteps: ["processStep.steps.1.subs.0"],
         },
         {
-          title: "process.steps.2.title",
+          title: "processStep.steps.2.title",
           subsSteps: [
-            "process.steps.2.subs.0",
-            "process.steps.2.subs.1",
-            "process.steps.2.subs.2",
+            "processStep.steps.2.subs.0",
+            "processStep.steps.2.subs.1",
+            "processStep.steps.2.subs.2",
           ],
         },
         {
-          title: "process.steps.3.title",
-          subsSteps: ["process.steps.3.subs.0", "process.steps.3.subs.1"],
+          title: "processStep.steps.3.title",
+          subsSteps: ["processStep.steps.3.subs.0", "processStep.steps.3.subs.1"],
         },
       ],
     };
