@@ -1,133 +1,248 @@
 <template>
-  <div>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-      <div class="hamburger" @click="toggleMenu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-      <div class="navbar-logo">
-        <router-link to="/" class="logo-text">
-          <span class="logo-the">the</span> <span class="logo-main">ESMART SOLUTION AGENCY</span>blog
-          <span class="logo-icon">🎯</span>
-        </router-link>
-        <p class="tagline">Shaken & Stirred - Influential Brand Profiling and Positioning</p>
-      </div>
-      <div class="social-icons">
-        <a href="#" class="social-icon"><span class="icon">🔍</span></a>
-        <a href="#" class="social-icon"><span class="icon">📘</span></a>
-        <a href="#" class="social-icon"><span class="icon">🐦</span></a>
-      </div>
+  <div class="detailed-blog-page">
+    <!-- Use the global NavBar component -->
+    <NavBar />
     
-    </nav>
-
     <!-- Blog Content -->
     <div class="blog-container">
       <div class="blog-main">
+        <!-- Hero Section -->
+        <section class="blog-hero">
+          <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="particles"></div>
+          </div>
+          <div class="hero-content">
+            <div class="badge">
+              <div class="badge-icon">📚</div>
+              <span>{{ $t('blog.featured') || 'Featured Blog' }}</span>
+            </div>
+            <h1 class="hero-title">
+              <span class="title-line">{{ $t('blog.title') || 'ESmart Solutions' }}</span>
+              <span class="gradient-text">{{ $t('blog.subtitle') || 'Blog & Insights' }}</span>
+            </h1>
+            <p class="hero-description">
+              {{ $t('blog.description') || 'Discover the latest trends, insights, and strategies in digital marketing, business growth, and technology innovation.' }}
+            </p>
+          </div>
+        </section>
+
         <!-- Loop through each category -->
-        <div v-for="(categoryPosts, category) in groupedPosts" :key="category" class="category-section">
-          <h2 class="category-title">{{ category }}</h2>
-          <!-- Loop through posts in this category -->
-          <div class="category-posts">
-            <div v-for="post in categoryPosts" :key="post.id" class="blog-post">
-              <img :src="post.image" :alt="post.title" class="post-image" />
-              <h3 class="post-title">{{ post.title }}</h3>
-              <p class="post-excerpt">{{ post.excerpt }}</p>
-              <router-link :to="`/blog/${post.id}`" class="read-more">Read More</router-link>
+        <div class="categories-container">
+          <div v-for="(categoryPosts, category) in groupedPosts" :key="category" class="category-section">
+            <h2 class="category-title">
+              <span class="category-icon">{{ getCategoryIcon(category) }}</span>
+              <span>{{ $t(`blog.categories.${category.toLowerCase().replace(' ', '_')}`) || category }}</span>
+            </h2>
+            <!-- Loop through posts in this category -->
+            <div class="category-posts">
+              <div v-for="post in categoryPosts" :key="post.id" class="blog-post" :data-aos="'fade-up'" :data-aos-delay="post.id * 100">
+                <div class="post-image-container">
+                  <img :src="post.image" :alt="post.title" class="post-image" />
+                  <div class="post-overlay">
+                    <div class="post-category-badge">{{ category }}</div>
+                  </div>
+                </div>
+                <div class="post-content">
+                  <h3 class="post-title">{{ getTranslatedTitle(post) }}</h3>
+                  <p class="post-excerpt">{{ getTranslatedExcerpt(post) }}</p>
+                  <div class="post-meta">
+                    <span class="post-date">{{ formatDate(post.date) }}</span>
+                    <span class="post-read-time">{{ post.readTime || '5 min read' }}</span>
+                  </div>
+                  <router-link :to="`/blog/${post.id}`" class="read-more-btn">
+                    <span>{{ $t('blog.readMore') || 'Read More' }}</span>
+                    <i class="fas fa-arrow-right"></i>
+                  </router-link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Sidebar -->
+      <!-- Enhanced Sidebar -->
       <aside class="sidebar">
-        <div class="widget">
-          <h3>Categories</h3>
-          <ul>
-            <li><a href="#">Digital Marketing</a></li>
-            <li><a href="#">Business</a></li>
-            <li><a href="#">Tech</a></li>
+        <div class="widget categories-widget">
+          <h3 class="widget-title">
+            <i class="fas fa-folder"></i>
+            {{ $t('blog.categories.title') || 'Categories' }}
+          </h3>
+          <ul class="categories-list">
+            <li v-for="category in categories" :key="category" class="category-item">
+              <a href="#" @click.prevent="filterByCategory(category)" class="category-link">
+                <span class="category-icon">{{ getCategoryIcon(category) }}</span>
+                <span>{{ $t(`blog.categories.${category.toLowerCase().replace(' ', '_')}`) || category }}</span>
+                <span class="post-count">{{ getCategoryCount(category) }}</span>
+              </a>
+            </li>
           </ul>
         </div>
-        <div class="widget">
-          <h3>Recent Posts</h3>
-          <ul>
-            <li><a href="#">Post Title 1</a></li>
-            <li><a href="#">Post Title 2</a></li>
-            <li><a href="#">Post Title 3</a></li>
+        
+        <div class="widget recent-posts-widget">
+          <h3 class="widget-title">
+            <i class="fas fa-clock"></i>
+            {{ $t('blog.recentPosts') || 'Recent Posts' }}
+          </h3>
+          <ul class="recent-posts-list">
+            <li v-for="post in recentPosts" :key="post.id" class="recent-post-item">
+              <div class="recent-post-image">
+                <img :src="post.image" :alt="post.title" />
+              </div>
+              <div class="recent-post-content">
+                <h4 class="recent-post-title">{{ getTranslatedTitle(post) }}</h4>
+                <span class="recent-post-date">{{ formatDate(post.date) }}</span>
+              </div>
+            </li>
           </ul>
+        </div>
+
+        <div class="widget newsletter-widget">
+          <h3 class="widget-title">
+            <i class="fas fa-envelope"></i>
+            {{ $t('blog.newsletter.title') || 'Newsletter' }}
+          </h3>
+          <p class="newsletter-description">
+            {{ $t('blog.newsletter.description') || 'Subscribe to get the latest insights delivered to your inbox.' }}
+          </p>
+          <form class="newsletter-form" @submit.prevent="subscribeNewsletter">
+            <input 
+              type="email" 
+              v-model="newsletterEmail" 
+              :placeholder="$t('blog.newsletter.placeholder') || 'Enter your email'"
+              class="newsletter-input"
+              required
+            />
+            <button type="submit" class="newsletter-btn">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
         </div>
       </aside>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-links">
-        <router-link to="/about">About</router-link>
-        <router-link to="/contact">Contact</router-link>
-        <router-link to="/privacy">Privacy Policy</router-link>
-      </div>
-      <p>© 2025 ESmart Solutions. All rights reserved.</p>
-    </footer>
+    <!-- Use the global Footer component -->
+    <Footer />
   </div>
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue';
+import Footer from '@/components/FooterBar.vue';
+
 export default {
-  name: "SimpleBlog",
+  name: "DetailedBlog1",
+  components: {
+    NavBar,
+    Footer
+  },
   data() {
     return {
       isMenuOpen: false,
+      newsletterEmail: '',
+      selectedCategory: null,
       posts: [
         {
           id: 1,
           category: "Digital Marketing",
           title: "Top 5 Digital Marketing Trends in 2025",
-          excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          image: "https://via.placeholder.com/600x400?text=Digital+Marketing+1",
+          excerpt: "Discover the cutting-edge digital marketing strategies that will dominate 2025 and beyond.",
+          image: "https://via.placeholder.com/600x400?text=Digital+Marketing+Trends",
+          date: new Date('2025-01-15'),
+          readTime: '8 min read',
+          translations: {
+            vi: {
+              title: "Top 5 Xu Hướng Marketing Số Năm 2025",
+              excerpt: "Khám phá những chiến lược marketing số tiên tiến sẽ thống trị năm 2025 và sau này."
+            }
+          }
         },
         {
           id: 2,
           category: "Digital Marketing",
-          title: "How to Optimize Your SEO Strategy",
-          excerpt: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          image: "https://via.placeholder.com/600x400?text=Digital+Marketing+2",
+          title: "How to Optimize Your SEO Strategy for Maximum Impact",
+          excerpt: "Learn advanced SEO techniques that will boost your search engine rankings and drive organic traffic.",
+          image: "https://via.placeholder.com/600x400?text=SEO+Strategy",
+          date: new Date('2025-01-12'),
+          readTime: '12 min read',
+          translations: {
+            vi: {
+              title: "Cách Tối Ưu Chiến Lược SEO Để Đạt Hiệu Quả Tối Đa",
+              excerpt: "Học các kỹ thuật SEO nâng cao giúp tăng thứ hạng công cụ tìm kiếm và thu hút lưu lượng tự nhiên."
+            }
+          }
         },
         {
           id: 3,
-          category: "Business",
+          category: "Business Growth",
           title: "Scaling Your Business in a Competitive Market",
-          excerpt: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-          image: "https://via.placeholder.com/600x400?text=Business+1",
+          excerpt: "Strategic approaches to sustainable business growth in today's challenging marketplace.",
+          image: "https://via.placeholder.com/600x400?text=Business+Growth",
+          date: new Date('2025-01-10'),
+          readTime: '10 min read',
+          translations: {
+            vi: {
+              title: "Mở Rộng Doanh Nghiệp Trong Thị Trường Cạnh Tranh",
+              excerpt: "Các phương pháp chiến lược cho tăng trưởng bền vững trong thị trường đầy thách thức ngày nay."
+            }
+          }
         },
         {
           id: 4,
-          category: "Business",
-          title: "Effective Leadership Strategies for 2025",
-          excerpt: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-          image: "https://via.placeholder.com/600x400?text=Business+2",
+          category: "Business Growth",
+          title: "Effective Leadership Strategies for Modern Teams",
+          excerpt: "Master the art of leading diverse, remote, and hybrid teams in the digital age.",
+          image: "https://via.placeholder.com/600x400?text=Leadership+Strategies",
+          date: new Date('2025-01-08'),
+          readTime: '7 min read',
+          translations: {
+            vi: {
+              title: "Chiến Lược Lãnh Đạo Hiệu Quả Cho Đội Nhóm Hiện Đại",
+              excerpt: "Thành thạo nghệ thuật lãnh đạo các đội nhóm đa dạng, từ xa và lai trong kỷ nguyên số."
+            }
+          }
         },
         {
           id: 5,
-          category: "Tech",
-          title: "The Rise of AI in Everyday Applications",
-          excerpt: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-          image: "https://via.placeholder.com/600x400?text=Tech+1",
+          category: "Technology",
+          title: "The Rise of AI in Everyday Business Applications",
+          excerpt: "Explore how artificial intelligence is revolutionizing business operations across industries.",
+          image: "https://via.placeholder.com/600x400?text=AI+Business",
+          date: new Date('2025-01-05'),
+          readTime: '15 min read',
+          translations: {
+            vi: {
+              title: "Sự Phát Triển Của AI Trong Ứng Dụng Kinh Doanh Hàng Ngày",
+              excerpt: "Khám phá cách trí tuệ nhân tạo đang cách mạng hóa hoạt động kinh doanh trên các ngành."
+            }
+          }
         },
         {
           id: 6,
-          category: "Tech",
+          category: "Technology",
           title: "Blockchain Technology: Beyond Cryptocurrency",
-          excerpt: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
-          image: "https://via.placeholder.com/600x400?text=Tech+2",
+          excerpt: "Understanding the broader applications of blockchain in supply chain, healthcare, and more.",
+          image: "https://via.placeholder.com/600x400?text=Blockchain+Tech",
+          date: new Date('2025-01-03'),
+          readTime: '11 min read',
+          translations: {
+            vi: {
+              title: "Công Nghệ Blockchain: Vượt Ra Ngoài Tiền Điện Tử",
+              excerpt: "Hiểu về các ứng dụng rộng lớn hơn của blockchain trong chuỗi cung ứng, chăm sóc sức khỏe và nhiều hơn nữa."
+            }
+          }
         },
       ],
     };
   },
   computed: {
     groupedPosts() {
-      return this.posts.reduce((acc, post) => {
+      const filtered = this.selectedCategory 
+        ? this.posts.filter(post => post.category === this.selectedCategory)
+        : this.posts;
+      
+      return filtered.reduce((acc, post) => {
         if (!acc[post.category]) {
           acc[post.category] = [];
         }
@@ -135,6 +250,19 @@ export default {
         return acc;
       }, {});
     },
+    categories() {
+      return [...new Set(this.posts.map(post => post.category))];
+    },
+    recentPosts() {
+      return this.posts
+        .slice()
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(0, 5);
+    }
+  },
+  mounted() {
+    this.createParticles();
+    this.initializeAOS();
   },
   methods: {
     toggleMenu() {
@@ -143,6 +271,69 @@ export default {
     closeMenu() {
       this.isMenuOpen = false;
     },
+    getCategoryIcon(category) {
+      const icons = {
+        'Digital Marketing': '📈',
+        'Business Growth': '🚀',
+        'Technology': '💻',
+        'Strategy': '🎯',
+        'Innovation': '💡'
+      };
+      return icons[category] || '📝';
+    },
+    getCategoryCount(category) {
+      return this.posts.filter(post => post.category === category).length;
+    },
+    getTranslatedTitle(post) {
+      const currentLang = this.$i18n?.locale || 'en';
+      return post.translations?.[currentLang]?.title || post.title;
+    },
+    getTranslatedExcerpt(post) {
+      const currentLang = this.$i18n?.locale || 'en';
+      return post.translations?.[currentLang]?.excerpt || post.excerpt;
+    },
+    formatDate(date) {
+      return new Date(date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    },
+    filterByCategory(category) {
+      this.selectedCategory = this.selectedCategory === category ? null : category;
+    },
+    subscribeNewsletter() {
+      if (this.newsletterEmail) {
+        // Handle newsletter subscription
+        console.log('Newsletter subscription:', this.newsletterEmail);
+        this.newsletterEmail = '';
+        // Show success message
+      }
+    },
+    createParticles() {
+      const particlesContainer = document.querySelector('.particles');
+      if (!particlesContainer) return;
+      
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 4 + 3) + 's';
+        particle.style.animationDelay = Math.random() * 3 + 's';
+        particlesContainer.appendChild(particle);
+      }
+    },
+    initializeAOS() {
+      // Initialize AOS (Animate On Scroll) if available
+      if (typeof window !== 'undefined' && window.AOS) {
+        window.AOS.init({
+          duration: 1000,
+          easing: 'ease-out-cubic',
+          once: true,
+          offset: 100
+        });
+      }
+    }
   },
 };
 </script>

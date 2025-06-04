@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-[dev]
-  command = "npm run dev"
-  targetPort = 8080            # Vue CLI default port
-  port = 3001
-  publish = "dist"
-  functions = "netlify/functions"
-
-[[redirects]]
-  from = "/api/*"
-  to = "http://localhost:5000/api/:splat"
-  status = 200
-=======
 [build]
   command = "npm run build"
   publish = "dist"
@@ -18,11 +5,11 @@
   node_version = "22"
 
 [dev]
-    port = 8888
+    command = "npm run serve"
+    port = 8887
     functions = "server/functions"
     framework = "#auto"
     
 [functions]
   [functions.max_duration]
     duration = 60
->>>>>>> a38b78a3cc3aecdb4ce0a055ccced3d3fa382248
