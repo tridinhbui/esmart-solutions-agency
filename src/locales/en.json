@@ -43,7 +43,7 @@
       "button": "Chat with Support Team"
     }
   },
-  "process": {
+  "processStep": {
     "title": "Our Process",
     "closeButton": "Close",
     "steps": {

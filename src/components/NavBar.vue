@@ -1,56 +1,33 @@
 <template>
   <header :class="['navbar', { 'navbar-scrolled': isScrolled }]">
     <div class="navbar-content">
-      <router-link to="#intro" class="logo-link">
+      <router-link to="/#intro" class="logo-link">
         <img src="@/assets/logo.png" alt="ESmart Logo" class="logo" />
       </router-link>
 
       <ul :class="['main-nav-links', { open: isOpen }]">
         <li>
-          <router-link to="#intro" @click="toggleMenu">{{ $t("home") }}</router-link>
+          <router-link to="/#intro" @click="toggleMenu">{{ $t("home") }}</router-link>
         </li>
         <li>
           <router-link to="/creator-ai" @click="toggleMenu">{{ $t("aiCreator") }}</router-link>
         </li>
         <li>
-          <router-link to="#marketing-assessment" @click="toggleMenu">{{
+          <router-link to="/#marketing-assessment" @click="toggleMenu">{{
             $t("assessment")
           }}</router-link>
         </li>
         <li>
-          <router-link to="#social-proof" @click="toggleMenu">{{ $t("achievements") }}</router-link>
-        </li>
-        <li class="dropdown">
-          <router-link to="/detailed-blog-1" target="_blank" rel="noopener noreferrer">
-            <button>
-              {{ $t("Blog") }}
-            </button>
-          </router-link>
+          <router-link to="/#social-proof" @click="toggleMenu">{{ $t("achievements") }}</router-link>
         </li>
         <li>
-          <router-link to="#project" @click="toggleMenu">{{ $t("products") }}</router-link>
+          <router-link to="/detailed-blog-1" @click="toggleMenu"> Blog </router-link>
         </li>
-        <li class="dropdown">
-          <router-link to="#about-us" @click="toggleMenu">{{ $t("About Us") }}</router-link>
-          <ul class="dropdown-menu">
-            <li>
-              <router-link to="#intro" @click="toggleMenu">{{ $t("home") }}</router-link>
-            </li>
-            <li>
-              <router-link to="#social-proof" @click="toggleMenu">{{
-                $t("achievements")
-              }}</router-link>
-            </li>
-            <li>
-              <router-link to="#process" @click="toggleMenu">{{ $t("Process") }}</router-link>
-            </li>
-            <li>
-              <router-link to="#blog" @click="toggleMenu">{{ $t("blog") }}</router-link>
-            </li>
-            <li>
-              <router-link to="#project" @click="toggleMenu">{{ $t("products") }}</router-link>
-            </li>
-          </ul>
+        <li>
+          <router-link to="/#project" @click="toggleMenu">{{ $t("products") }}</router-link>
+        </li>
+        <li>
+          <router-link to="/#about-us" @click="toggleMenu">{{ $t("AboutUs.title") }}</router-link>
         </li>
         <!-- Moved language switcher and sign-in into the toggle menu -->
         <li class="language-switcher-item">
@@ -211,7 +188,7 @@ export default {
 }
 
 .main-nav-links {
-  display: flex;
+  display: flex; /* Restore original display */
   list-style: none;
   margin: 0;
   padding: 0;
@@ -323,6 +300,7 @@ export default {
   display: inline-block;
 }
 
+/* Thay thế cả 2 khối .avatar-menu bằng */
 .avatar-menu {
   position: absolute;
   top: calc(100% + 5px);
