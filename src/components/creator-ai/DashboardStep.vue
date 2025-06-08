@@ -3,22 +3,37 @@
     <h2>{{ $t("creatorAI.dashboard.title") }}</h2>
 
     <!-- Toast Message -->
-    <div v-if="toast.show" class="toast-message" :class="toast.type">
+    <div
+      v-if="toast.show"
+      class="toast-message"
+      :class="toast.type"
+    >
       <span>{{ toast.message }}</span>
-      <button @click="toast.show = false" class="close-toast">&times;</button>
+      <button
+        class="close-toast"
+        @click="toast.show = false"
+      >
+        &times;
+      </button>
     </div>
 
     <!-- Projects Tab -->
     <div class="content-grid">
-      <div v-if="loading" class="loading-indicator">
+      <div
+        v-if="loading"
+        class="loading-indicator"
+      >
         <p>{{ $t("creatorAI.dashboard.loading") }}</p>
       </div>
-      <div v-else-if="projects.length === 0" class="empty-state">
+      <div
+        v-else-if="projects.length === 0"
+        class="empty-state"
+      >
         <p>{{ $t("creatorAI.dashboard.noProjects") }}</p>
       </div>
       <div
-        v-else
         v-for="project in projects"
+        v-else
         :key="project.id"
         class="content-card"
         :class="{ finished: project.status === 'finished' }"
@@ -27,7 +42,10 @@
         <div class="card-header">
           <h3>{{ project.title }}</h3>
           <div class="card-actions">
-            <span class="status-badge" :class="project.status">
+            <span
+              class="status-badge"
+              :class="project.status"
+            >
               {{
                 project.status === "in_progress"
                   ? $t("creatorAI.dashboard.inProgress")
@@ -36,10 +54,10 @@
             </span>
             <button
               class="delete-button"
-              @click.stop="confirmDeleteProject($event, project.id)"
               title="Delete project"
+              @click.stop="confirmDeleteProject($event, project.id)"
             >
-              <i class="fa-solid fa-trash"></i>
+              <i class="fa-solid fa-trash" />
             </button>
           </div>
         </div>
@@ -59,34 +77,48 @@
       class="project-menu-overlay"
       @click="closeProjectMenu"
     >
-      <div class="project-menu" @click.stop>
+      <div
+        class="project-menu"
+        @click.stop
+      >
         <h3>Select Option</h3>
-        <div class="project-name">{{ projectMenuTitle }}</div>
+        <div class="project-name">
+          {{ projectMenuTitle }}
+        </div>
         <div class="menu-options">
           <button
             class="menu-button edit-button"
             @click="goToEditor(projectMenuId)"
           >
-            <i class="fas fa-edit"></i> Edit Content
+            <i class="fas fa-edit" /> Edit Content
           </button>
           <button
             class="menu-button view-button"
             @click="goToFinal(projectMenuId)"
           >
-            <i class="fas fa-eye"></i> View Final Content
+            <i class="fas fa-eye" /> View Final Content
           </button>
-          <button class="menu-button close-button" @click="closeProjectMenu">
-            <i class="fas fa-times"></i> Cancel
+          <button
+            class="menu-button close-button"
+            @click="closeProjectMenu"
+          >
+            <i class="fas fa-times" /> Cancel
           </button>
         </div>
       </div>
     </div>
 
     <div class="button-group">
-      <button class="secondary-button" @click="goToHome">
+      <button
+        class="secondary-button"
+        @click="goToHome"
+      >
         {{ $t("creatorAI.dashboard.backToHome") }}
       </button>
-      <button class="primary-button" @click="createNewContent">
+      <button
+        class="primary-button"
+        @click="createNewContent"
+      >
         {{ $t("creatorAI.dashboard.createNew") }}
       </button>
     </div>
@@ -296,42 +328,133 @@ export default {
 </script>
 
 <style scoped>
+/* Revolutionary Quantum Dashboard */
 .step-content {
-  background: white;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 0 50px rgba(255, 107, 53, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.step-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.step-content::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    rgba(255, 107, 53, 0.3) 0%, 
+    rgba(245, 158, 11, 0.3) 25%, 
+    rgba(217, 119, 6, 0.3) 50%, 
+    rgba(255, 107, 53, 0.3) 75%, 
+    rgba(245, 158, 11, 0.3) 100%);
+  border-radius: 24px;
+  z-index: -2;
+  animation: borderGlow 4s ease-in-out infinite;
 }
 
 h2 {
-  color: #1c1c4c;
-  margin-bottom: 2rem;
+  color: white;
+  margin-bottom: 3rem;
   text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+  position: relative;
 }
 
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ff6b35, #f59e0b, #d97706, transparent);
+  border-radius: 2px;
+  animation: underlineGlow 3s ease-in-out infinite;
+}
+
+/* Quantum Content Grid */
 .content-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
 }
 
+/* Revolutionary Quantum Content Cards */
 .content-card {
-  background: #f8f9fa;
-  border-radius: 8px;
-  padding: 1.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  /* border-left: 4px solid #1c1c4c; */
+  position: relative;
+  overflow: hidden;
+}
+
+.content-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 107, 53, 0.05) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.content-card:hover::before {
+  opacity: 1;
 }
 
 .content-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(255, 107, 53, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 107, 53, 0.4);
 }
 
 .content-card.finished {
-  border-left-color: #28a745;
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.content-card.finished::before {
+  background: radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 70%);
 }
 
 .card-header {
@@ -362,63 +485,103 @@ h2 {
   background-color: rgba(220, 53, 69, 0.1);
 }
 
+/* Quantum Card Header */
 .card-header h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
+  font-weight: 700;
   max-width: 70%;
+  color: white;
+  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
+/* Quantum Status Badges */
 .status-badge,
 .content-type-badge {
-  font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 12px;
-  font-weight: bold;
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.status-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.status-badge:hover::before {
+  left: 100%;
 }
 
 .status-badge.in_progress {
-  background-color: #ecedf7;
-  color: #1c1c4c;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(245, 158, 11, 0.2));
+  color: #ff6b35;
+  border: 1px solid rgba(255, 107, 53, 0.3);
 }
 
 .status-badge.finished {
-  background-color: #e8f5e9;
-  color: #28a745;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(16, 185, 129, 0.2));
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
 .content-type-badge {
-  background-color: #e3f2fd;
-  color: #0d47a1;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.2));
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
+/* Quantum Description */
 .description {
-  color: #6c757d;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-  height: 40px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  height: 50px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  /* -webkit-box-orient: vertical; */
+  -webkit-box-orient: vertical;
 }
 
+/* Quantum Meta Information */
 .content-meta {
   display: flex;
   justify-content: space-between;
-  font-size: 0.8rem;
-  color: #6c757d;
-  border-top: 1px solid #eee;
-  padding-top: 0.75rem;
-  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  border-top: 1px solid rgba(255, 107, 53, 0.2);
+  padding-top: 1rem;
+  margin-top: 1rem;
+  font-weight: 500;
 }
 
+/* Quantum Empty State & Loading */
 .empty-state,
 .loading-indicator {
   grid-column: 1 / -1;
   text-align: center;
-  padding: 2rem;
-  color: #6c757d;
+  padding: 4rem;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  border-radius: 20px;
+  position: relative;
 }
 
 .primary-button {
@@ -589,5 +752,133 @@ h2 {
 
 .close-button:hover {
   background-color: #e9ecef;
+}
+
+/* Quantum Button Styles */
+.button-group {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.primary-button,
+.secondary-button {
+  padding: 1rem 2.5rem;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #d97706 100%);
+  color: white;
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+}
+
+.primary-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.primary-button:hover::before {
+  left: 100%;
+}
+
+.primary-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(255, 107, 53, 0.4);
+}
+
+.secondary-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.secondary-button:hover {
+  background: rgba(255, 107, 53, 0.1);
+  border-color: rgba(255, 107, 53, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 107, 53, 0.2);
+}
+
+/* Delete Button Quantum Style */
+.delete-button {
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.delete-button:hover {
+  background: rgba(220, 53, 69, 0.2);
+  border-color: rgba(220, 53, 69, 0.5);
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+}
+
+/* Quantum Animations */
+@keyframes borderGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes underlineGlow {
+  0%, 100% { 
+    opacity: 0.6; 
+    transform: translateX(-50%) scaleX(1); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: translateX(-50%) scaleX(1.2); 
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .step-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .primary-button,
+  .secondary-button {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
 }
 </style>

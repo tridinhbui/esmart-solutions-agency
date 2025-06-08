@@ -5,7 +5,8 @@
   node_version = "22"
 
 [dev]
-    port = 8888
+    command = "npm run serve"
+    port = 8887
     functions = "server/functions"
     framework = "#auto"
     

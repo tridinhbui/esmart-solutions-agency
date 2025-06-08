@@ -1,66 +1,153 @@
 <template>
-  <div class="chat-container" :class="{ 'chat-open': isOpen }">
+  <div
+    class="chat-container"
+    :class="{ 'chat-open': isOpen }"
+  >
     <!-- Chat button -->
     <button 
       v-if="!isOpen" 
       class="chat-button" 
-      @click="toggleChat"
       aria-label="Open chat"
+      @click="toggleChat"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-        <circle cx="12" cy="12" r="1"></circle>
-        <circle cx="16" cy="12" r="1"></circle>
-        <circle cx="8" cy="12" r="1"></circle>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+        <circle
+          cx="12"
+          cy="12"
+          r="1"
+        />
+        <circle
+          cx="16"
+          cy="12"
+          r="1"
+        />
+        <circle
+          cx="8"
+          cy="12"
+          r="1"
+        />
       </svg>
     </button>
 
-    <div v-if="isOpen" class="chat-window">
+    <div
+      v-if="isOpen"
+      class="chat-window"
+    >
       <div class="chat-header">
         <div class="chat-header-info">
           <h2>Let's Chat!</h2>
           <div class="chat-status">
-            <span class="status-dot"></span>
+            <span class="status-dot" />
             <span class="status-text">We'll reply as soon as we can</span>
           </div>
         </div>
-        <button class="close-button" @click="toggleChat" aria-label="Close chat">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
+        <button
+          class="close-button"
+          aria-label="Close chat"
+          @click="toggleChat"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line
+              x1="18"
+              y1="6"
+              x2="6"
+              y2="18"
+            />
+            <line
+              x1="6"
+              y1="6"
+              x2="18"
+              y2="18"
+            />
           </svg>
         </button>
       </div>
 
       <!-- Chat messages -->
-      <div class="chat-messages" ref="messagesContainer">
-        <div v-for="(message, index) in messages" :key="index" 
-             :class="['message', message.sender === 'user' ? 'user-message' : 'agent-message']">
-          <div v-html="message.text" class="message-content"></div>
-          <div class="message-time">{{ message.time }}</div>
+      <div
+        ref="messagesContainer"
+        class="chat-messages"
+      >
+        <div
+          v-for="(message, index) in messages"
+          :key="index" 
+          :class="['message', message.sender === 'user' ? 'user-message' : 'agent-message']"
+        >
+          <div
+            class="message-content"
+            v-html="message.text"
+          />
+          <div class="message-time">
+            {{ message.time }}
+          </div>
         </div>
       </div>
 
       <!-- Loading Spinner -->
-      <div v-if="loading" class="loading-typing">
+      <div
+        v-if="loading"
+        class="loading-typing"
+      >
         <span>Thinking...</span>
       </div>
 
       <!-- Chat input -->
       <div class="chat-input">
         <input 
-          type="text" 
           v-model="newMessage" 
+          type="text" 
           placeholder="Write your message..." 
           @keyup.enter="sendMessage"
-        />
+        >
         <div class="chat-controls">
-          <button class="control-button emoji-button" aria-label="Add emoji">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-              <line x1="9" y1="9" x2="9.01" y2="9"></line>
-              <line x1="15" y1="9" x2="15.01" y2="9"></line>
+          <button
+            class="control-button emoji-button"
+            aria-label="Add emoji"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+              />
+              <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+              <line
+                x1="9"
+                y1="9"
+                x2="9.01"
+                y2="9"
+              />
+              <line
+                x1="15"
+                y1="9"
+                x2="15.01"
+                y2="9"
+              />
             </svg>
           </button>
         </div>
@@ -160,11 +247,12 @@ export default {
 
 <style scoped>
 .chat-container {
+  display: none !important;
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 1000;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 .chat-button {

@@ -1,94 +1,262 @@
 <template>
-  <div class="blog-container">
-    <div class="content-grid">
-      <div class="grid-item main-articles">
-         <h2 class="section-title visually-hidden">Main Articles</h2> <div class="articles-grid">
+  <!-- Revolutionary Quantum News Section -->
+  <div class="quantum-news-zone">
+    <!-- Revolutionary Quantum Background System -->
+    <div class="news-quantum-background">
+      <!-- Quantum Orbs System -->
+      <div class="news-quantum-orbs">
+        <div class="quantum-orb orb-1" />
+        <div class="quantum-orb orb-2" />
+        <div class="quantum-orb orb-3" />
+        <div class="quantum-orb orb-4" />
+      </div>
+      
+      <!-- Energy Matrix System -->
+      <div class="news-energy-matrix">
+        <div
+          v-for="i in 16"
+          :key="'matrix-'+i"
+          class="matrix-cell"
+        />
+      </div>
+      
+      <!-- Floating Quantum Particles -->
+      <div class="news-floating-particles">
+        <div
+          v-for="i in 10"
+          :key="'particle-'+i"
+          class="quantum-particle"
+        />
+      </div>
+    </div>
+
+    <!-- Revolutionary Title Zone -->
+    <div class="news-title-zone animate-fadeIn" data-aos="fade-down" data-aos-delay="100">
+      <!-- Quantum Badge -->
+      <div class="news-quantum-badge animate-zoomIn" data-aos="zoom-in" data-aos-delay="150">
+        <div class="badge-energy-core" />
+        <i class="fas fa-newspaper" />
+        <span>Latest Updates</span>
+        <div class="badge-quantum-ring" />
+      </div>
+
+      <!-- Revolutionary Title -->
+      <h1 class="news-revolutionary-title animate-slideIn" data-aos="fade-up" data-aos-delay="200">
+        <span class="title-main">Tin Tức & Cập Nhật</span>
+        <div class="title-energy-beams">
+          <div class="energy-beam beam-1" />
+          <div class="energy-beam beam-2" />
+          <div class="energy-beam beam-3" />
+        </div>
+        <div class="title-hologram-effect" />
+      </h1>
+    </div>
+
+    <!-- Revolutionary Content Grid -->
+    <div class="quantum-content-grid animate-fadeIn" data-aos="fade-up" data-aos-delay="300">
+      <!-- Revolutionary Main Articles Portal -->
+      <div class="quantum-main-articles animate-slideIn" data-aos="fade-right" data-aos-delay="400">
+        <div class="section-quantum-header animate-fadeIn" data-aos="fade-down" data-aos-delay="420">
+          <h2 class="section-revolutionary-title">
+            <span class="title-glow">Bài Viết Chính</span>
+            <div class="title-energy-line" />
+          </h2>
+        </div>
+        
+        <div class="quantum-articles-grid">
           <div
-            v-for="(post, index) in blogs.slice(0, 4)" :key="`article-${index}`"
-            class="article-card"
+            v-for="(post, index) in blogs.slice(0, 6)"
+            :key="`article-${index}`"
+            class="quantum-article-card animate-fadeIn"
+            data-aos="zoom-in-up"
+            :data-aos-delay="440 + index*60"
             @click="navigateToBlogPost(post.url)"
           >
-            <div class="card-image">
-              <img :src="post.image || getDefaultImage()" :alt="post.title" @error="handleImageError" />
-            </div>
-            <div class="card-content">
-              <h3>{{ post.title }}</h3>
-              <div class="author-row">
-                <div class="author-avatar">
-                  <img :src="post.authorImage || getDefaultAuthorImage()" :alt="post.author" @error="handleImageError"/>
+            <!-- Article Quantum Shell -->
+            <div class="article-quantum-shell">
+              <div class="shell-energy-border" />
+              
+              <!-- Image Portal -->
+              <div class="image-quantum-portal">
+                <div class="image-energy-frame" />
+                <img
+                  :src="post.image || getDefaultImage()"
+                  :alt="post.title"
+                  @error="handleImageError"
+                >
+                <div class="image-hologram-overlay" />
+              </div>
+
+              <!-- Content Zone -->
+              <div class="article-content-zone">
+                <h3 class="article-title">
+                  <span>{{ post.title }}</span>
+                  <div class="title-quantum-underline" />
+                </h3>
+                
+                <div class="quantum-author-row">
+                  <div class="author-quantum-avatar">
+                    <div class="avatar-energy-ring" />
+                    <img
+                      :src="post.authorImage || getDefaultAuthorImage()"
+                      :alt="post.author"
+                      @error="handleImageError"
+                    >
+                    <div class="avatar-quantum-glow" />
+                  </div>
+                  <span class="quantum-author-name">{{ post.author }}</span>
+                  
+                  <!-- Quantum Engagement System -->
+                  <div class="quantum-engagement">
+                    <div class="engagement-item">
+                      <i class="fas fa-heart quantum-icon" />
+                      <span>{{ post.likes }}</span>
+                      <div class="engagement-glow" />
+                    </div>
+                    <div class="engagement-item">
+                      <i class="fas fa-comment quantum-icon" />
+                      <span>{{ post.comments }}</span>
+                      <div class="engagement-glow" />
+                    </div>
+                  </div>
                 </div>
-                <span class="author-name">{{ post.author }}</span>
-                <div class="engagement">
-                  <span class="likes"><i class="icon-heart"></i> {{ post.likes }}</span>
-                  <span class="comments"><i class="icon-comment"></i> {{ post.comments }}</span>
-                </div>
+              </div>
+
+              <!-- Card Magic Particles -->
+              <div class="article-magic-particles">
+                <div
+                  v-for="i in 4"
+                  :key="'article-particle-'+i"
+                  class="magic-particle"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="grid-item editors-picks">
-        <h2 class="section-title">Editor's Picks</h2>
-        <div class="picks-list"> <div
-              v-for="(post, index) in blogs.slice(0, 5)" :key="`pick-${index}`"
-              class="pick-item"
-              @click="navigateToBlogPost(post.url)"
-            >
-            <div class="pick-image">
-              <img :src="post.image || getDefaultImage()" :alt="post.title" @error="handleImageError"/>
-            </div>
-            <div class="pick-content">
-              <h3>{{ post.title }}</h3>
-              <div class="author-info">
-                <span class="author-name">{{ post.author }}</span>
+      <!-- Revolutionary Editor's Picks Portal -->
+      <div class="quantum-editors-picks animate-slideIn" data-aos="fade-left" data-aos-delay="500">
+        <div class="section-quantum-header animate-fadeIn" data-aos="fade-down" data-aos-delay="520">
+          <h2 class="section-revolutionary-title">
+            <span class="title-glow">Editor's Picks</span>
+            <div class="title-energy-line" />
+          </h2>
+        </div>
+        
+        <div class="quantum-picks-list">
+          <div
+            v-for="(post, index) in blogs.slice(0, 5)"
+            :key="`pick-${index}`"
+            class="quantum-pick-item animate-fadeIn"
+            data-aos="zoom-in"
+            :data-aos-delay="540 + index*60"
+            @click="navigateToBlogPost(post.url)"
+          >
+            <div class="pick-quantum-shell">
+              <div class="pick-image-portal">
+                <div class="image-quantum-frame" />
+                <img
+                  :src="post.image || getDefaultImage()"
+                  :alt="post.title"
+                  @error="handleImageError"
+                >
+                <div class="image-energy-glow" />
+              </div>
+              <div class="pick-content-zone">
+                <h3 class="pick-title">
+                  {{ post.title }}
+                </h3>
+                <div class="pick-author-info">
+                  <span class="quantum-author">{{ post.author }}</span>
+                </div>
+                <div class="pick-energy-trail" />
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="grid-item authors-section">
-        <div class="section-header">
-          <h2 class="section-title">Tác giả nổi bật</h2>
+      <!-- Revolutionary Authors Portal -->
+      <div class="quantum-authors-section animate-zoomIn" data-aos="zoom-in" data-aos-delay="600">
+        <div class="section-quantum-header animate-fadeIn" data-aos="fade-down" data-aos-delay="620">
+          <h2 class="section-revolutionary-title">
+            <span class="title-glow">Tác Giả Nổi Bật</span>
+            <div class="title-energy-line" />
+          </h2>
         </div>
-        <div class="authors-list">
+        
+        <div class="quantum-authors-list">
           <div
             v-for="(author, index) in getUniqueAuthors()"
             :key="`author-${index}`"
-            class="author-card" >
-            <div class="author-avatar large">
-              <img :src="getAuthorImage(author)" :alt="author" @error="handleImageError"/>
-            </div>
-            <div class="author-details">
-              <h3 class="author-name">{{ author }}</h3>
-              <p class="author-title">Content Writer</p> </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid-item hot-articles">
-        <div class="section-header">
-          <h2 class="section-title">Bài hot trong tuần</h2>
-        </div>
-        <div class="hot-articles-list">
-          <div
-            v-for="(post, index) in blogs.slice(0, 5)" :key="`hot-${index}`"
-            class="hot-article"
-            @click="navigateToBlogPost(post.url)"
+            class="quantum-author-card animate-fadeIn"
+            data-aos="zoom-in"
+            :data-aos-delay="640 + index*60"
           >
-            <div class="hot-number">#{{ index + 1 }}</div>
-            <div class="hot-content">
-              <h3>{{ post.title }}</h3>
-              <div class="author-info">
-                <span class="author-name">{{ post.author }}</span>
+            <div class="author-quantum-shell">
+              <div class="author-avatar-portal">
+                <div class="avatar-energy-ring" />
+                <img
+                  :src="getAuthorImage(author)"
+                  :alt="author"
+                  @error="handleImageError"
+                >
+                <div class="avatar-hologram-glow" />
+              </div>
+              <div class="author-details-zone">
+                <h3 class="quantum-author-name">
+                  {{ author }}
+                </h3>
+                <p class="quantum-author-title">
+                  Content Writer
+                </p>
+                <div class="author-energy-signature" />
               </div>
             </div>
           </div>
         </div>
       </div>
 
-    </div> </div>
+      <!-- Revolutionary Hot Articles Portal -->
+      <div class="quantum-hot-articles animate-fadeIn" data-aos="fade-up" data-aos-delay="700">
+        <div class="section-quantum-header animate-fadeIn" data-aos="fade-down" data-aos-delay="720">
+          <h2 class="section-revolutionary-title">
+            <span class="title-glow">Bài Hot Trong Tuần</span>
+            <div class="title-energy-line" />
+          </h2>
+        </div>
+        
+        <div class="quantum-hot-list">
+          <div
+            v-for="(post, index) in blogs.slice(0, 5)"
+            :key="`hot-${index}`"
+            class="quantum-hot-item animate-fadeIn"
+            data-aos="zoom-in-up"
+            :data-aos-delay="740 + index*60"
+            @click="navigateToBlogPost(post.url)"
+          >
+            <div class="hot-quantum-shell">
+              <div class="hot-number-portal">
+                <div class="number-energy-core" />
+                <span class="quantum-number">#{{ index + 1 }}</span>
+                <div class="number-quantum-ring" />
+              </div>
+              <div class="hot-content-zone">
+                <h3 class="hot-title">
+                  {{ post.title }}
+                </h3>
+                <div class="hot-author-info">
+                  <span class="quantum-author">{{ post.author }}</span>
+                </div>
+                <div class="hot-energy-pulse" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -145,23 +313,419 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "@fortawesome/fontawesome-free/css/all.css";
 
-/* Base Styles */
-.blog-container {
-  font-family: 'Inter', sans-serif;
-  max-width: 1280px;
-  margin: 2rem auto;
-  color: #333;
-  padding: 0 15px;
+/* Enhanced CSS Variables with Quantum Theme */
+:root {
+  --primary-color: rgba(255, 107, 53, 1);
+  --secondary-color: rgba(245, 158, 11, 1);
+  --tertiary-color: rgba(217, 119, 6, 1);
+  --quantum-blue: rgba(59, 130, 246, 1);
+  --quantum-purple: rgba(139, 92, 246, 1);
+  --quantum-green: rgba(34, 197, 94, 1);
+  --gradient-magical: linear-gradient(135deg, rgba(255, 107, 53, 0.9) 0%, rgba(245, 158, 11, 0.8) 50%, rgba(217, 119, 6, 0.9) 100%);
+  --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, var(--tertiary-color) 100%);
+  --gradient-tertiary: linear-gradient(135deg, var(--tertiary-color) 0%, var(--primary-color) 100%);
+  --gradient-quantum: linear-gradient(135deg, var(--quantum-blue) 0%, var(--quantum-purple) 50%, var(--primary-color) 100%);
+  --gradient-cyber: linear-gradient(135deg, var(--quantum-green) 0%, var(--quantum-blue) 100%);
+  --success-color: var(--quantum-green);
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.7);
 }
 
-/* Content Grid (2x2) */
-.content-grid {
+/* Revolutionary Quantum News Zone */
+.quantum-news-zone {
+  position: relative;
+  padding: 4rem 1rem 2rem;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  overflow: hidden;
+  min-height: 80vh;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Revolutionary Quantum Background System */
+.news-quantum-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Quantum Orbs System */
+.news-quantum-orbs {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.quantum-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--gradient-magical);
+  filter: blur(40px);
+  animation: quantumOrbFloat 8s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 180px;
+  height: 180px;
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 140px;
+  height: 140px;
+  top: 25%;
+  right: 15%;
+  background: var(--gradient-cyber);
+  animation-delay: 2s;
+}
+
+.orb-3 {
+  width: 160px;
+  height: 160px;
+  bottom: 20%;
+  left: 20%;
+  background: var(--gradient-quantum);
+  animation-delay: 4s;
+}
+
+.orb-4 {
+  width: 120px;
+  height: 120px;
+  bottom: 30%;
+  right: 25%;
+  animation-delay: 6s;
+}
+
+/* Energy Matrix System */
+.news-energy-matrix {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
-  /* Let rows size automatically based on content */
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 2px;
+  opacity: 0.3;
+}
+
+.matrix-cell {
+  border: 1px solid var(--quantum-blue);
+  background: linear-gradient(45deg, transparent 0%, rgba(59, 130, 246, 0.1) 50%, transparent 100%);
+  animation: matrixCellPulse 4s ease-in-out infinite;
+}
+
+.matrix-cell:nth-child(odd) {
+  animation-delay: 0s;
+}
+
+.matrix-cell:nth-child(even) {
+  animation-delay: 2s;
+}
+
+/* Floating Quantum Particles */
+.news-floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.quantum-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--gradient-magical);
+  border-radius: 50%;
+  animation: quantumParticleFloat 6s linear infinite;
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+.quantum-particle:nth-child(1) { top: 15%; left: 15%; animation-delay: 0s; }
+.quantum-particle:nth-child(2) { top: 25%; right: 20%; animation-delay: 0.6s; }
+.quantum-particle:nth-child(3) { top: 45%; left: 80%; animation-delay: 1.2s; }
+.quantum-particle:nth-child(4) { bottom: 35%; right: 30%; animation-delay: 1.8s; }
+.quantum-particle:nth-child(5) { bottom: 20%; left: 60%; animation-delay: 2.4s; }
+.quantum-particle:nth-child(6) { top: 60%; right: 70%; animation-delay: 3s; }
+.quantum-particle:nth-child(7) { bottom: 45%; left: 25%; animation-delay: 3.6s; }
+.quantum-particle:nth-child(8) { top: 35%; left: 50%; animation-delay: 4.2s; }
+.quantum-particle:nth-child(9) { bottom: 60%; right: 15%; animation-delay: 4.8s; }
+.quantum-particle:nth-child(10) { top: 80%; left: 35%; animation-delay: 5.4s; }
+
+/* Enhanced Compact Content Grid Layout */
+.quantum-content-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr;
   grid-template-rows: auto auto;
-  gap: 30px;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.quantum-main-articles {
+  grid-column: 1;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+}
+
+.quantum-editors-picks {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.quantum-authors-section {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: 0;
+}
+
+.quantum-hot-articles {
+  grid-column: 3;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Enhanced Responsive Grid */
+@media (max-width: 1200px) {
+  .quantum-content-grid {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .quantum-content-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 1.5rem;
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+  
+  .quantum-main-articles {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  
+  .quantum-editors-picks {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  .quantum-hot-articles {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  
+  .quantum-authors-section {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .quantum-news-zone {
+    padding: 2rem 1rem 1rem;
+  }
+  
+  .news-title-zone {
+    margin-bottom: 2rem;
+  }
+  
+  .quantum-content-grid {
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+  }
+}
+
+/* Revolutionary Title Zone */
+.news-title-zone {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* Ensure ALL text elements are white */
+.quantum-news-zone * {
+  color: white !important;
+}
+
+.quantum-news-zone .section-title,
+.quantum-news-zone .section-revolutionary-title,
+.quantum-news-zone .title-glow,
+.quantum-news-zone .title-main,
+.quantum-news-zone h1,
+.quantum-news-zone h2,
+.quantum-news-zone h3,
+.quantum-news-zone h4,
+.quantum-news-zone .article-title,
+.quantum-news-zone .pick-title,
+.quantum-news-zone .author-details h3,
+.quantum-news-zone .author-title,
+.quantum-news-zone .quantum-author,
+.quantum-news-zone .quantum-author-name,
+.quantum-news-zone .news-revolutionary-title {
+  color: rgba(255, 255, 255, 0.95) !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.quantum-news-zone .author-info,
+.quantum-news-zone .author-row,
+.quantum-news-zone .engagement {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Quantum Badge */
+.news-quantum-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  color: white;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.badge-energy-core {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-magical);
+  border-radius: 50px;
+  opacity: 0.2;
+  animation: badgeEnergyPulse 3s ease-in-out infinite;
+}
+
+.badge-quantum-ring {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid var(--quantum-blue);
+  border-radius: 50px;
+  animation: badgeRingRotate 4s linear infinite;
+  opacity: 0.8;
+}
+
+/* Revolutionary Title */
+.news-revolutionary-title {
+  position: relative;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.45), 0 0 8px #ff6b35;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  text-align: center;
+  background: linear-gradient(90deg, #fff 60%, #ff6b35 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px #ff6b35);
+}
+
+.title-main {
+  position: relative;
+  z-index: 2;
+  background: var(--gradient-magical);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.5));
+}
+
+.title-energy-beams {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.energy-beam {
+  position: absolute;
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--quantum-blue) 50%, transparent 100%);
+  animation: energyBeamPulse 2s ease-in-out infinite;
+}
+
+.beam-1 {
+  top: 20%;
+  left: -50px;
+  animation-delay: 0s;
+}
+
+.beam-2 {
+  bottom: 20%;
+  right: -50px;
+  animation-delay: 0.7s;
+}
+
+.beam-3 {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  animation-delay: 1.4s;
+}
+
+.title-hologram-effect {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: var(--gradient-cyber);
+  border-radius: 10px;
+  filter: blur(30px);
+  opacity: 0.3;
+  /* animation: hologramFlicker 3s ease-in-out infinite; */
+  z-index: -1;
+}
+
+/* Revolutionary Content Grid */
+.quantum-content-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto;
+  gap: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .grid-item {
@@ -347,59 +911,165 @@ export default {
   display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e0e0e0; padding-bottom: 12px; /* Increased padding */
 }
 
+/* Enhanced Article Titles and Author Names with White Text */
+.article-title, .pick-title, .hot-title {
+  color: #ffffff !important;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.quantum-author, .quantum-author-name {
+  color: #ffffff !important;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #ff6b35, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(255, 107, 53, 0.6));
+}
+
+/* Enhanced contrast for content */
+.article-content, .pick-content-zone, .hot-content-zone {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.article-content h3, .pick-content-zone h3, .hot-content-zone h3 {
+  color: #ffffff !important;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Revolutionary Quantum Articles Grid */
+.quantum-articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Quantum Editor's Picks List */
+.quantum-picks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Quantum Hot Articles List */
+.quantum-hot-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* Quantum Authors Grid */
+.quantum-authors-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
 /* Responsive Design */
-@media (max-width: 992px) { /* Tablet */
-  .content-grid {
-    grid-template-columns: 1fr 1fr;
+@media (max-width: 992px) {
+  .quantum-content-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
   }
-  .articles-grid {
-    grid-template-columns: repeat(1, 1fr); /* Switch main articles to 1 col */
+  .quantum-main-articles, .quantum-editors-picks, .quantum-authors-section, .quantum-hot-articles {
+    width: 100%;
+    min-width: 0;
+    max-width: 100vw;
+    margin: 0 auto;
   }
-  .authors-list {
-      /* Adjust grid for authors on tablet */
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  .quantum-articles-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem;
+  }
+  
+  .quantum-picks-list, .quantum-hot-list {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .quantum-authors-list {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
   }
 }
-
-@media (max-width: 768px) { /* Mobile Large */
-  .content-grid {
-    grid-template-columns: 1fr; /* Stack all sections */
-    gap: 25px;
+@media (max-width: 768px) {
+  .quantum-news-zone {
+    padding: 3.5rem 0.5rem;
   }
-  .articles-grid {
-     grid-template-columns: repeat(2, 1fr); /* Can go back to 2 cols when stacked */
+  .news-title-zone {
+    margin-bottom: 2rem;
   }
-  .grid-item {
-      max-height: none;
-      overflow-y: visible;
-      padding: 20px;
+  .news-revolutionary-title {
+    font-size: 1.5rem;
+    padding: 0 0.5rem;
   }
-   .authors-list {
-      /* Adjust grid for authors on mobile */
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  .section-revolutionary-title {
+    font-size: 1.1rem;
+    padding: 0 0.5rem;
   }
-   .author-card {
-       min-height: 200px; /* Adjust height for mobile */
-   }
+  .quantum-content-grid {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .quantum-articles-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+  
+  .quantum-picks-list, .quantum-hot-list {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .quantum-authors-list {
+    grid-template-columns: 1fr !important;
+    gap: 0.8rem;
+  }
+  .quantum-article-card, .quantum-pick-item, .quantum-author-card, .quantum-hot-item {
+    min-width: 0;
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: 0.98rem;
+  }
+  .article-title, .pick-title, .hot-title, .quantum-author-name {
+    font-size: 1rem;
+  }
 }
-
-@media (max-width: 576px) { /* Mobile Small */
-  .blog-container { padding: 0 10px; margin: 1rem auto; }
-  .content-grid { gap: 20px; }
-  .grid-item { padding: 15px; }
-  .articles-grid {
-    grid-template-columns: 1fr; /* Single column */
-    gap: 15px;
+@media (max-width: 480px) {
+  .news-revolutionary-title {
+    font-size: 1.1rem;
   }
-  .authors-list {
-     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Smaller cards */
-     gap: 10px;
+  .section-revolutionary-title {
+    font-size: 0.95rem;
   }
-  .author-card { min-height: 180px; padding: 15px 8px;}
-  .author-avatar.large { width: 60px; height: 60px; }
-  .author-details h3 { font-size: 0.9rem; }
-  .pick-image { width: 50px; height: 50px; }
-  .hot-number { font-size: 1.4rem; }
+  .quantum-article-card, .quantum-pick-item, .quantum-author-card, .quantum-hot-item {
+    padding: 0.7rem 0.5rem;
+    font-size: 0.93rem;
+  }
+  .article-title, .pick-title, .hot-title, .quantum-author-name {
+    font-size: 0.93rem;
+  }
 }
 
 </style>

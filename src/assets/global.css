@@ -2,7 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Space Grotesk', sans-serif;
-  }
+    overflow-x: hidden;
+}
   
   .container {
     width: 100%;

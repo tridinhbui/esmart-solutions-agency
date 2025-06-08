@@ -2,17 +2,37 @@
   <section class="media-blog-section">
     <h2>Ấn phẩm truyền thông</h2>
     <div class="carousel">
-      <button class="carousel-nav left" @click="scrollLeft">❮</button>
-      <div class="carousel-content" ref="carouselContent">
-        <div class="carousel-item" v-for="(item, index) in items" :key="index">
-          <img :src="require(`@/assets/${item.image}`)" :alt="item.title">
+      <button
+        class="carousel-nav left"
+        @click="scrollLeft"
+      >
+        ❮
+      </button>
+      <div
+        ref="carouselContent"
+        class="carousel-content"
+      >
+        <div
+          v-for="(item, index) in items"
+          :key="index"
+          class="carousel-item"
+        >
+          <img
+            :src="require(`@/assets/${item.image}`)"
+            :alt="item.title"
+          >
           <div class="item-content">
             <h3>{{ item.title }}</h3>
             <p>{{ item.description }}</p>
           </div>
         </div>
       </div>
-      <button class="carousel-nav right" @click="scrollRight">❯</button>
+      <button
+        class="carousel-nav right"
+        @click="scrollRight"
+      >
+        ❯
+      </button>
     </div>
   </section>
 </template>

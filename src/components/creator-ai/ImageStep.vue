@@ -10,10 +10,16 @@
       <div class="api-error-content">
         <h3>Dịch vụ tạo hình ảnh không khả dụng</h3>
         <p>{{ apiStatus.message }}</p>
-        <p v-if="apiStatus.details" class="error-details">
+        <p
+          v-if="apiStatus.details"
+          class="error-details"
+        >
           Chi tiết lỗi: {{ apiStatus.details }}
         </p>
-        <button class="retry-button" @click="checkApiStatus">
+        <button
+          class="retry-button"
+          @click="checkApiStatus"
+        >
           Kiểm tra lại
         </button>
       </div>
@@ -28,7 +34,9 @@
         @click="removeToast(toast.id)"
       >
         <span>{{ toast.message }}</span>
-        <button class="toast-close-btn">&times;</button>
+        <button class="toast-close-btn">
+          &times;
+        </button>
       </div>
     </div>
 
@@ -39,12 +47,18 @@
           :src="displayImage"
           alt="AI Generated Image"
           @error="handleImageLoadError"
-        />
-        <div v-else-if="isGenerating" class="image-placeholder">
-          <div class="loading-spinner"></div>
+        >
+        <div
+          v-else-if="isGenerating"
+          class="image-placeholder"
+        >
+          <div class="loading-spinner" />
           <p>{{ $t("creatorAI.image.generating") }}</p>
         </div>
-        <div v-else class="image-placeholder">
+        <div
+          v-else
+          class="image-placeholder"
+        >
           <p>The generated image will appear here</p>
         </div>
       </div>
@@ -87,7 +101,10 @@
             </div>
           </div>
 
-          <div class="form-group" v-if="generationMethod === 'prompt'">
+          <div
+            v-if="generationMethod === 'prompt'"
+            class="form-group"
+          >
             <label for="customPrompt">{{
               $t("creatorAI.image.customPromptLabel")
             }}</label>
@@ -96,7 +113,7 @@
               v-model="customPrompt"
               :placeholder="$t('creatorAI.image.promptPlaceholder')"
               rows="3"
-            ></textarea>
+            />
           </div>
 
           <div class="form-group">
@@ -130,36 +147,42 @@
         <div class="generate-button-container">
           <button
             class="generate-button"
-            @click="generateImage"
             :disabled="isGenerating"
+            @click="generateImage"
           >
-            <span v-if="isGenerating" class="loading-spinner-btn"></span>
+            <span
+              v-if="isGenerating"
+              class="loading-spinner-btn"
+            />
             {{
               isGenerating
                 ? $t("creatorAI.image.generating")
                 : generatedImage
-                ? $t("creatorAI.image.regenerateButton")
-                : $t("creatorAI.image.generateButton")
+                  ? $t("creatorAI.image.regenerateButton")
+                  : $t("creatorAI.image.generateButton")
             }}
           </button>
         </div>
 
-        <div v-if="error" class="error-message">
+        <div
+          v-if="error"
+          class="error-message"
+        >
           {{ error }}
         </div>
 
         <div class="additional-buttons">
           <button
             class="function-button"
-            @click="generatePromptFromContent"
             :disabled="isGenerating"
+            @click="generatePromptFromContent"
           >
             {{ $t("creatorAI.image.generatePrompt") }}
           </button>
           <button
             class="function-button"
-            @click="saveGeneratedImage"
             :disabled="!displayImage || isGenerating"
+            @click="saveGeneratedImage"
           >
             {{ $t("creatorAI.image.saveImage") }}
           </button>
@@ -167,10 +190,16 @@
       </div>
     </div>
     <div class="button-group">
-      <button class="secondary-button" @click="$emit('prev')">
+      <button
+        class="secondary-button"
+        @click="$emit('prev')"
+      >
         {{ $t("creatorAI.image.previous") }}
       </button>
-      <button class="primary-button" @click="handleContinue">
+      <button
+        class="primary-button"
+        @click="handleContinue"
+      >
         {{ $t("creatorAI.image.next") }}
       </button>
     </div>
@@ -237,6 +266,22 @@ export default {
       // Extract contentId from requirements
       return this.requirements && this.requirements.contentId;
     },
+  },
+  mounted() {
+    // Check API status when component is created
+    this.checkApiStatus();
+
+    // Debug logging for image data
+    console.log("ImageStep mounted with props:", {
+      generatedImage: this.generatedImage
+        ? typeof this.generatedImage === "string"
+          ? "string data (truncated)"
+          : typeof this.generatedImage
+        : "null",
+      hasContent: !!this.content,
+      requirements: this.requirements,
+      contentId: this.contentId,
+    });
   },
   methods: {
     selectStyle(style) {
@@ -681,22 +726,6 @@ export default {
         });
       }
     },
-  },
-  mounted() {
-    // Check API status when component is created
-    this.checkApiStatus();
-
-    // Debug logging for image data
-    console.log("ImageStep mounted with props:", {
-      generatedImage: this.generatedImage
-        ? typeof this.generatedImage === "string"
-          ? "string data (truncated)"
-          : typeof this.generatedImage
-        : "null",
-      hasContent: !!this.content,
-      requirements: this.requirements,
-      contentId: this.contentId,
-    });
   },
 };
 </script>

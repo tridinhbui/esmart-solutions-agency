@@ -1,8 +1,8 @@
 <template>
-    <button class="styled-button">
-      <slot></slot>
-    </button>
-  </template>
+  <button class="styled-button">
+    <slot />
+  </button>
+</template>
   
   <script>
   export default {

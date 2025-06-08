@@ -26,7 +26,9 @@ Here's the updated code:
         <p>
           How is your business’ Facebook performing? <strong>Click the button</strong> to see how you stack up and learn how NexGen can take you to the next level!
         </p>
-        <button @click="goToSocialMediaCheckup">Click Here</button>
+        <button @click="goToSocialMediaCheckup">
+          Click Here
+        </button>
       </div>
       
       <div class="card">
@@ -34,7 +36,9 @@ Here's the updated code:
         <p>
           How is your business’ Facebook performing? <strong>Fill out your brief questionnaire</strong> to receive recommendations and statistics on the current state of your contact center!
         </p>
-        <button @click="goToCallCenterCheckup">Click Here</button>
+        <button @click="goToCallCenterCheckup">
+          Click Here
+        </button>
       </div>
     </div>
   </div>

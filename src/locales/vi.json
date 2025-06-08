@@ -146,21 +146,94 @@
   },
   "hero": {
     "title": "Công ty ESmart Solutions",
+    "subtitle": "Chuyển đổi Doanh nghiệp của Bạn",
     "description": "ESmart Solutions Agency là đối tác, người bạn đồng hành chuyên nghiệp cùng doanh nghiệp Việt Nam trên hành trình xây dựng và phát triển thương hiệu uy tín, chất lượng.",
+    "badge": "Dẫn đầu Đổi mới Kỹ thuật số",
+    "stats": {
+      "projects": "Dự án",
+      "satisfaction": "Hài lòng",
+      "support": "Hỗ trợ 24/7"
+    },
     "buttons": {
+      "getStarted": "Bắt đầu ngay",
+      "watchDemo": "Xem Demo",
       "join": "Tham gia",
       "contact": "Liên hệ"
-    }
+    },
+    "trustedBy": "Được tin cậy bởi hơn 1000+ công ty",
+    "cards": {
+      "analytics": {
+        "title": "Phân tích dữ liệu",
+        "description": "Theo dõi và phân tích hiệu suất marketing với báo cáo chi tiết, giúp tối ưu hóa chiến lược kinh doanh"
+      },
+      "team": {
+        "title": "Đội ngũ chuyên nghiệp", 
+        "description": "Đội ngũ chuyên gia giàu kinh nghiệm, cam kết mang đến dịch vụ chất lượng cao và hỗ trợ 24/7"
+      },
+      "growth": {
+        "title": "Tăng trưởng bền vững",
+        "description": "Chiến lược phát triển dài hạn, giúp doanh nghiệp mở rộng thị trường và tăng doanh thu ổn định"
+      },
+      "innovation": {
+        "title": "Đổi mới sáng tạo",
+        "description": "Ứng dụng công nghệ AI và các giải pháp tiên tiến để tạo ra những trải nghiệm khách hàng độc đáo"
+      }
+    },
+    "logoAlt": "Logo ESmart",
+    "scrollDown": "Cuộn xuống"
   },
   "feats": {
-    "sectionTitle": "Phát triển website",
-    "mainTitle": "Cùng Esmart trải nghiệm những tính năng đặc biệt",
+    "sectionTitle": "Dịch vụ phát triển website chuyên nghiệp",
+    "mainTitle": "Cùng ESmart Solutions trải nghiệm các tính năng đặc biệt",
+    "subtitle": "Giải pháp website toàn diện từ thiết kế đến triển khai",
+    "description": "Chúng tôi mang đến những công nghệ tiên tiến nhất để xây dựng website hiện đại, tối ưu SEO và thân thiện với người dùng.",
     "items": {
-      "0": "Trình tạo trang Elementor",
-      "1": "Tích hợp sẵn Woocommerce",
-      "2": "Hỗ trợ WPML Đa ngôn ngữ",
-      "3": "Tài liệu hướng dẫn bằng video",
-      "4": "Tùy chọn màu sắc không giới hạn"
+      "0": {
+        "title": "Trình tạo trang Elementor Pro",
+        "description": "Thiết kế website dễ dàng với công cụ kéo thả chuyên nghiệp, tạo ra các trang web đẹp mắt mà không cần code.",
+        "icon": "🎨"
+      },
+      "1": {
+        "title": "Tích hợp WooCommerce hoàn chỉnh", 
+        "description": "Xây dựng cửa hàng trực tuyến mạnh mẽ với đầy đủ tính năng thanh toán, quản lý đơn hàng và báo cáo chi tiết.",
+        "icon": "🛒"
+      },
+      "2": {
+        "title": "Hỗ trợ đa ngôn ngữ WPML",
+        "description": "Website đa ngôn ngữ chuyên nghiệp, tiếp cận khách hàng toàn cầu với bản dịch tự động và quản lý nội dung đa ngôn ngữ.",
+        "icon": "🌍"
+      },
+      "3": {
+        "title": "Tài liệu hướng dẫn video chi tiết",
+        "description": "Hệ thống video hướng dẫn từng bước, giúp bạn làm chủ website một cách dễ dàng và hiệu quả.",
+        "icon": "📚"
+      },
+      "4": {
+        "title": "Tùy chỉnh giao diện không giới hạn",
+        "description": "Bảng màu và thiết kế linh hoạt, tạo ra nhận diện thương hiệu độc đáo phù hợp với từng doanh nghiệp.",
+        "icon": "🎯"
+      },
+      "5": {
+        "title": "Tối ưu SEO tự động",
+        "description": "Công cụ SEO tích hợp sẵn giúp website dễ dàng lên top Google, tăng lưu lượng truy cập tự nhiên.",
+        "icon": "📈"
+      },
+      "6": {
+        "title": "Responsive trên mọi thiết bị",
+        "description": "Website hiển thị hoàn hảo trên điện thoại, máy tính bảng và desktop, mang lại trải nghiệm tối ưu.",
+        "icon": "📱"
+      },
+      "7": {
+        "title": "Bảo mật SSL cao cấp",
+        "description": "Hệ thống bảo mật nhiều lớp, chứng chỉ SSL miễn phí, bảo vệ dữ liệu khách hàng tuyệt đối.",
+        "icon": "🔒"
+      }
+    },
+    "cta": {
+      "title": "Sẵn sàng xây dựng website chuyên nghiệp?",
+      "description": "Liên hệ ngay để được tư vấn miễn phí và nhận báo giá tốt nhất",
+      "button": "Tư vấn miễn phí ngay",
+      "phone": "Hotline: 0123 456 789"
     }
   },
   "process": {
@@ -253,6 +326,28 @@
         "title": "Xây dựng từ 2 Năm Kinh nghiệm",
         "description": "Esmart Solutions được xây dựng trên nền tảng trong lĩnh vực quảng cáo và quản lý truyền thông số kênh."
       }
+    }
+  },
+  "blog": {
+    "featured": "Bài viết nổi bật",
+    "title": "ESmart Solutions",
+    "subtitle": "Blog & Thông tin",
+    "description": "Khám phá những xu hướng mới nhất, thông tin chi tiết và chiến lược trong marketing số, phát triển kinh doanh và đổi mới công nghệ.",
+    "readMore": "Xem thêm",
+    "recentPosts": "Bài viết gần đây",
+    "categories": {
+      "title": "Danh mục",
+      "digital_marketing": "Marketing Số",
+      "business_growth": "Phát Triển Kinh Doanh",
+      "technology": "Công Nghệ",
+      "strategy": "Chiến Lược",
+      "innovation": "Đổi Mới"
+    },
+    "newsletter": {
+      "title": "Bản tin",
+      "description": "Đăng ký để nhận những thông tin mới nhất được gửi đến hộp thư của bạn.",
+      "placeholder": "Nhập email của bạn",
+      "subscribe": "Đăng ký"
     }
   },
   "creatorAI": {
