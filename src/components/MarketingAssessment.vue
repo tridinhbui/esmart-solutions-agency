@@ -1,35 +1,88 @@
 <template>
   <section class="assessment">
-    <h2>{{ $t("creatorAI.MarketingAssessment.title") }}</h2>
-
-    <div class="progress-container">
-      <div class="progress-info">
-        <span class="progress-text">
-          {{
-            $t("creatorAI.MarketingAssessment.progressText", {
-              completed: completedQuestions,
-              total: questions.length,
-            })
-          }}
-        </span>
-        <span class="progress-percentage">
-          {{
-            $t("creatorAI.MarketingAssessment.progressPercentage", {
-              percentage: Math.round(progressPercentage),
-            })
-          }}
-        </span>
+    <!-- Revolutionary Quantum Background System -->
+    <div class="assessment-quantum-background">
+      <div class="quantum-orb orb-1" />
+      <div class="quantum-orb orb-2" />
+      <div class="quantum-orb orb-3" />
+      <div class="quantum-orb orb-4" />
+      <div class="energy-matrix">
+        <div class="matrix-grid">
+          <div
+            v-for="i in 12"
+            :key="'cell-'+i"
+            class="grid-cell"
+          />
+        </div>
       </div>
-      <div class="progress-bar">
+      <div class="floating-assessment-particles">
         <div
-          class="progress-fill"
-          :style="{ width: progressPercentage + '%' }"
-        ></div>
+          v-for="i in 6"
+          :key="'particle-'+i"
+          class="quantum-particle"
+        />
+      </div>
+    </div>
+    
+    <!-- Revolutionary Title Section -->
+    <div class="assessment-title-zone">
+      <div class="title-quantum-frame">
+        <h2 class="quantum-assessment-title">
+          {{ $t("creatorAI.MarketingAssessment.title") }}
+          <div class="title-energy-pulse" />
+        </h2>
+        <div class="title-holographic-border" />
+      </div>
+    </div>
+
+    <!-- Revolutionary Progress System -->
+    <div class="quantum-progress-container">
+      <div class="progress-quantum-frame">
+        <div class="progress-holographic-shell">
+          <div class="progress-info">
+            <span class="progress-quantum-text">
+              {{
+                $t("creatorAI.MarketingAssessment.progressText", {
+                  completed: completedQuestions,
+                  total: questions.length,
+                })
+              }}
+            </span>
+            <span class="progress-quantum-percentage">
+              {{
+                $t("creatorAI.MarketingAssessment.progressPercentage", {
+                  percentage: Math.round(progressPercentage),
+                })
+              }}
+            </span>
+          </div>
+          <div class="quantum-progress-bar">
+            <div class="progress-energy-track" />
+            <div
+              class="progress-quantum-fill"
+              :style="{ width: progressPercentage + '%' }"
+            >
+              <div class="progress-energy-flow" />
+              <div class="progress-particles">
+                <div
+                  v-for="i in 3"
+                  :key="'flow-'+i"
+                  class="flow-particle"
+                />
+              </div>
+            </div>
+            <div class="progress-glow-effect" />
+          </div>
+        </div>
+        <div class="progress-quantum-border" />
       </div>
     </div>
 
     <form @submit.prevent="submitAnswers">
-      <transition name="fade" mode="out-in">
+      <transition
+        name="fade"
+        mode="out-in"
+      >
         <div
           v-if="currentQuestion"
           :key="currentQuestionIndex"
@@ -42,7 +95,9 @@
               })
             }}
           </span>
-          <h3 class="question-text">{{ currentQuestion.question }}</h3>
+          <h3 class="question-text">
+            {{ currentQuestion.question }}
+          </h3>
 
           <div class="answers-container">
             <label
@@ -50,14 +105,16 @@
               :key="index"
               class="answer-option"
               :class="{ selected: answers[currentQuestionIndex] === index }"
+              @click="selectAnswer(index)"
             >
               <input
+                v-model="answers[currentQuestionIndex]"
                 type="radio"
                 :name="'question' + currentQuestionIndex"
                 :value="index"
-                v-model="answers[currentQuestionIndex]"
-              />
-              <span class="radio-custom"></span>
+                class="radio-input"
+                @change="selectAnswer(index)"
+              >
               <span class="answer-text">{{ answer.text }}</span>
             </label>
           </div>
@@ -68,8 +125,8 @@
         <button
           type="button"
           class="nav-button prev-button"
-          @click="prevQuestion"
           :disabled="currentQuestionIndex === 0"
+          @click="prevQuestion"
         >
           {{ $t("creatorAI.MarketingAssessment.prevButton") }}
         </button>
@@ -78,8 +135,8 @@
           v-if="currentQuestionIndex < questions.length - 1"
           type="button"
           class="nav-button next-button"
-          @click="nextQuestion"
           :disabled="answers[currentQuestionIndex] === undefined"
+          @click="nextQuestion"
         >
           {{ $t("creatorAI.MarketingAssessment.nextButton") }}
         </button>
@@ -96,17 +153,25 @@
     </form>
 
     <transition name="fade">
-      <div v-if="report" class="results-container">
+      <div
+        v-if="report"
+        class="results-container"
+      >
         <div class="score-card">
           <h3>{{ $t("creatorAI.MarketingAssessment.results.scoreTitle") }}</h3>
-          <div class="score-value">{{ score }}<span>/100</span></div>
+          <div class="score-value">
+            {{ score }}<span>/100</span>
+          </div>
         </div>
 
         <div class="report-sections">
           <div class="report-section strengths">
             <h4>{{ $t("creatorAI.MarketingAssessment.results.strengthsTitle") }}</h4>
             <ul>
-              <li v-for="strength in report.strengths" :key="strength">
+              <li
+                v-for="strength in report.strengths"
+                :key="strength"
+              >
                 {{ strength }}
               </li>
             </ul>
@@ -115,7 +180,10 @@
           <div class="report-section weaknesses">
             <h4>{{ $t("creatorAI.MarketingAssessment.results.weaknessesTitle") }}</h4>
             <ul>
-              <li v-for="weakness in report.weaknesses" :key="weakness">
+              <li
+                v-for="weakness in report.weaknesses"
+                :key="weakness"
+              >
                 {{ weakness }}
               </li>
             </ul>
@@ -124,7 +192,10 @@
           <div class="report-section suggestions">
             <h4>{{ $t("creatorAI.MarketingAssessment.results.suggestionsTitle") }}</h4>
             <ul>
-              <li v-for="suggestion in report.suggestions" :key="suggestion">
+              <li
+                v-for="suggestion in report.suggestions"
+                :key="suggestion"
+              >
                 {{ suggestion }}
               </li>
             </ul>
@@ -257,23 +328,134 @@ export default {
         this.currentQuestionIndex--;
       }
     },
+    selectAnswer(index) {
+      this.answers[this.currentQuestionIndex] = index;
+    },
   },
 };
 </script>
 
 <style scoped>
-/* Base styles */
+/* Revolutionary Base Styles */
 .assessment {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  color: #1a202c;
-  padding: 2rem 1rem;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: white;
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, #181824 0%, #23234a 100%);
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
 }
+
+/* Simplified Quantum Background */
+.assessment-quantum-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.quantum-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 107, 53, 0.1);
+  filter: blur(30px);
+  animation: orbFloat 6s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 200px;
+  height: 200px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 150px;
+  height: 150px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.orb-3 {
+  width: 180px;
+  height: 180px;
+  bottom: 20%;
+  left: 50%;
+  animation-delay: 4s;
+}
+
+.orb-4 {
+  width: 120px;
+  height: 120px;
+  top: 30%;
+  right: 40%;
+  animation-delay: 3s;
+}
+
+/* Simplified Grid */
+.energy-matrix {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+}
+
+.grid-cell {
+  border: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+/* Simplified Particles */
+.floating-assessment-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.quantum-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 107, 53, 0.5);
+  border-radius: 50%;
+  animation: particleFloat 4s linear infinite;
+}
+
+.quantum-particle:nth-child(1) { top: 20%; left: 30%; animation-delay: 0s; }
+.quantum-particle:nth-child(2) { top: 70%; right: 20%; animation-delay: 1s; }
+.quantum-particle:nth-child(3) { bottom: 30%; left: 60%; animation-delay: 2s; }
+.quantum-particle:nth-child(4) { top: 50%; right: 50%; animation-delay: 3s; }
+.quantum-particle:nth-child(5) { bottom: 60%; right: 70%; animation-delay: 4s; }
+.quantum-particle:nth-child(6) { top: 80%; left: 20%; animation-delay: 5s; }
 
 .container {
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 h2 {
@@ -329,24 +511,32 @@ h2 {
 }
 
 /* Question card */
-.question-card {
-  background: white;
-  border-radius: 12px;
-  padding: 2rem;
+.question-card, .score-card, .report-section {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(255, 107, 53, 0.2), 0 1.5px 8px rgba(0, 0, 0, 0.1);
+  border: 1.5px solid rgba(255, 107, 53, 0.3);
   margin-bottom: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
-    0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s ease;
+  padding: 2rem;
+  transition: box-shadow 0.3s, transform 0.3s;
+  position: relative;
+  z-index: 10;
+}
+
+.question-card:hover, .score-card:hover, .report-section:hover {
+  box-shadow: 0 8px 32px rgba(255, 107, 53, 0.3), 0 2px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
 }
 
 .question-number {
   display: inline-block;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #3182ce;
-  background-color: #ebf8ff;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
+  color: #ff6b35;
+  background-color: rgba(255, 107, 53, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
   margin-bottom: 1rem;
 }
 
@@ -362,73 +552,52 @@ h2 {
 .answers-container {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .answer-option {
-  position: relative;
   display: flex;
   align-items: center;
-  padding: 1rem 1.25rem;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  background-color: #f8fafc;
+  gap: 1rem;
+  padding: 1.2rem 1.5rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  min-height: 48px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(255, 107, 53, 0.2);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .answer-option:hover {
-  background-color: #edf2f7;
-  border-color: #cbd5e0;
+  background: rgba(255, 107, 53, 0.1);
+  border-color: rgba(255, 107, 53, 0.4);
+  transform: translateY(-2px);
 }
 
 .answer-option.selected {
-  background-color: #ebf8ff;
-  border-color: #90cdf4;
+  background: rgba(255, 107, 53, 0.15);
+  border-color: #ff6b35;
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
 }
 
-.answer-option input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.radio-custom {
-  position: relative;
-  display: inline-block;
+.radio-input {
   width: 20px;
   height: 20px;
-  border-radius: 50%;
-  border: 2px solid #cbd5e0;
-  margin-right: 12px;
-  transition: all 0.2s ease;
-}
-
-.answer-option.selected .radio-custom {
-  border-color: #3182ce;
-}
-
-.answer-option.selected .radio-custom::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #3182ce;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #ff6b35;
 }
 
 .answer-text {
   font-size: 1rem;
-  color: #4a5568;
+  color: #2d3748;
   font-weight: 500;
+  flex: 1;
 }
 
 .answer-option.selected .answer-text {
-  color: #2c5282;
+  color: #1a202c;
   font-weight: 600;
 }
 
@@ -613,8 +782,13 @@ h2 {
 
 /* Responsive adjustments */
 @media (max-width: 640px) {
+  .assessment {
+    padding: 4rem 1rem;
+  }
+  
   .question-card {
     padding: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .navigation {
@@ -624,6 +798,62 @@ h2 {
 
   .nav-button {
     width: 100%;
+    padding: 1rem;
   }
+  
+  .answer-option {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .quantum-orb {
+    display: none;
+  }
+  
+  .container {
+    padding: 0;
+  }
+}
+
+/* Simplified Animations */
+@keyframes orbFloat {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 0.6;
+  }
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-20px);
+    opacity: 1;
+  }
+}
+
+.quantum-assessment-title {
+  color: #FFFFFF;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-shadow: 0 0 10px rgba(255, 107, 53, 0.5), 0 0 20px rgba(255, 107, 53, 0.3);
+  letter-spacing: -0.05em;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/* Revolutionary Progress System */
+.quantum-progress-container {
+  max-width: 800px;
+  margin: 2.5rem auto 3rem;
+  position: relative;
+  z-index: 10;
 }
 </style>

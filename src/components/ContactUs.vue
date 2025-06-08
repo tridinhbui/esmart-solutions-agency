@@ -2,15 +2,23 @@
   <section>
     <div class="banner">
       <div class="banner-top">
-        <h2 class="banner-title">{{ $t("contactUs.title") }}</h2>
+        <h2 class="banner-title">
+          {{ $t("contactUs.title") }}
+        </h2>
       </div>
       <div>
         <div class="contact-card">
           <div class="form-section">
-            <h3 class="form-title">{{ $t("contactUs.general.title") }}</h3>
-            <p class="form-description">{{ $t("contactUs.general.description") }}</p>
-            <v-form ref="form" @submit.prevent="submitForm">
-
+            <h3 class="form-title">
+              {{ $t("contactUs.general.title") }}
+            </h3>
+            <p class="form-description">
+              {{ $t("contactUs.general.description") }}
+            </p>
+            <v-form
+              ref="form"
+              @submit.prevent="submitForm"
+            >
               <v-text-field
                 v-model="formData.name"
                 :label="$t('contactUs.general.form.name')"
@@ -19,7 +27,7 @@
                 variant="outlined"
                 class="mb-4"
                 color="#2375d4"
-              ></v-text-field>
+              />
 
               <v-text-field
                 v-model="formData.email"
@@ -30,7 +38,7 @@
                 variant="outlined"
                 class="mb-4"
                 color="#2375d4"
-              ></v-text-field>
+              />
 
               <v-select
                 v-model="formData.inquiryType"
@@ -41,22 +49,32 @@
                 variant="outlined"
                 class="mb-4"
                 color="#2375d4"
-              ></v-select>
+              />
 
-              <v-btn type="submit" color="#0077b6" class="white--text submit-button">
+              <v-btn
+                type="submit"
+                color="#0077b6"
+                class="white--text submit-button"
+              >
                 {{ $t("contactUs.general.form.submit") }}
               </v-btn>
             </v-form>
           </div>
 
           <div class="support-section">
-            <h3 class="support-title">{{ $t("contactUs.support.title") }}</h3>
-            <p class="support-description">{{ $t("contactUs.support.description") }}</p>
-            <v-btn color="#00c853" class="white--text chat-button">
+            <h3 class="support-title">
+              {{ $t("contactUs.support.title") }}
+            </h3>
+            <p class="support-description">
+              {{ $t("contactUs.support.description") }}
+            </p>
+            <v-btn
+              color="#00c853"
+              class="white--text chat-button"
+            >
               {{ $t("contactUs.support.button") }}
             </v-btn>
           </div>
-
         </div>
       </div>
     </div>

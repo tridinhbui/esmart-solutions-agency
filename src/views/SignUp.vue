@@ -2,29 +2,39 @@
   <div class="login-wrapper">
     <div class="login-container">
       <div class="login-content">
-        <h2 class="login-title">Create New Account</h2>
+        <h2 class="login-title">
+          Create New Account
+        </h2>
 
         <!-- Phần đăng ký bằng Google -->
         <div class="social-login">
-          <p class="social-login-title">Sign up with social networks</p>
-          <button @click="handleGoogleSignUp" class="google-btn">
+          <p class="social-login-title">
+            Sign up with social networks
+          </p>
+          <button
+            class="google-btn"
+            @click="handleGoogleSignUp"
+          >
             <img
               src="https://www.google.com/favicon.ico"
               alt="Google"
               class="google-icon"
-            />
+            >
           </button>
         </div>
 
         <!-- Dòng ngăn cách OR -->
         <div class="or-divider">
-          <span class="or-line"></span>
+          <span class="or-line" />
           <span class="or-text">OR</span>
-          <span class="or-line"></span>
+          <span class="or-line" />
         </div>
 
         <!-- Form đăng ký -->
-        <form @submit.prevent="handleSubmit" class="login-form">
+        <form
+          class="login-form"
+          @submit.prevent="handleSubmit"
+        >
           <div class="input-group">
             <input
               v-model="form.name"
@@ -32,7 +42,7 @@
               placeholder="Full Name"
               class="input-field"
               required
-            />
+            >
           </div>
 
           <div class="input-group">
@@ -42,7 +52,7 @@
               placeholder="Email"
               class="input-field"
               required
-            />
+            >
           </div>
 
           <div class="input-group password-group">
@@ -52,7 +62,7 @@
               placeholder="Password"
               class="input-field"
               required
-            />
+            >
             <button
               type="button"
               class="toggle-password"
@@ -72,8 +82,13 @@
               >
                 <path
                   d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
-                ></path>
-                <line x1="1" y1="1" x2="23" y2="23"></line>
+                />
+                <line
+                  x1="1"
+                  y1="1"
+                  x2="23"
+                  y2="23"
+                />
               </svg>
               <svg
                 v-else
@@ -87,8 +102,12 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="3"
+                />
               </svg>
             </button>
           </div>
@@ -99,19 +118,31 @@
               placeholder="Confirm Password"
               class="input-field"
               required
-            />
+            >
           </div>
 
           <div class="button-container">
-            <button type="submit" class="submit-btn">Sign Up</button>
+            <button
+              type="submit"
+              class="submit-btn"
+            >
+              Sign Up
+            </button>
           </div>
         </form>
       </div>
     </div>
     <div class="welcome-section">
       <div class="welcome-content">
-        <p class="account-exists">Already have an account?</p>
-        <router-link to="/sign-in" class="signin-btn">Sign In</router-link>
+        <p class="account-exists">
+          Already have an account?
+        </p>
+        <router-link
+          to="/sign-in"
+          class="signin-btn"
+        >
+          Sign In
+        </router-link>
       </div>
     </div>
   </div>

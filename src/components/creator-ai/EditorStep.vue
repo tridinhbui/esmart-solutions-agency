@@ -6,11 +6,11 @@
         <textarea
           v-model="content"
           placeholder="Your AI-generated content will appear here..."
-          @input="handleInput"
           style="height: 600px; resize: none"
-        ></textarea>
+          @input="handleInput"
+        />
 
-        <div class="editor-actions"></div>
+        <div class="editor-actions" />
       </div>
       <div class="sidebar">
         <div class="sidebar-section">
@@ -19,8 +19,11 @@
             class="seo-score-box"
             :class="{ loading: isAnalyzing || isFetchingSeo }"
           >
-            <div v-if="isAnalyzing || isFetchingSeo" class="loading-indicator">
-              <div class="spinner"></div>
+            <div
+              v-if="isAnalyzing || isFetchingSeo"
+              class="loading-indicator"
+            >
+              <div class="spinner" />
               <p>{{ $t("creatorAI.editor.seoAnalyzing") }}</p>
             </div>
             <div
@@ -41,10 +44,13 @@
                       '%',
                   }"
                   :class="getSEOScoreClass()"
-                ></div>
+                />
               </div>
             </div>
-            <div v-else class="no-data-message">
+            <div
+              v-else
+              class="no-data-message"
+            >
               <p>{{ $t("creatorAI.editor.seoAnalyzing") }}</p>
             </div>
           </div>
@@ -53,15 +59,18 @@
         <div class="sidebar-section">
           <h3>{{ $t("creatorAI.editor.keywordsTitle") }}</h3>
           <ul>
-            <li v-for="(keyword, index) in keywordsList" :key="index">
+            <li
+              v-for="(keyword, index) in keywordsList"
+              :key="index"
+            >
               {{ keyword }}
             </li>
           </ul>
           <div
             v-if="
               seoData &&
-              seoData.suggestedKeywords &&
-              seoData.suggestedKeywords.length > 0
+                seoData.suggestedKeywords &&
+                seoData.suggestedKeywords.length > 0
             "
           >
             <h4>{{ $t("creatorAI.editor.keywordsTitle") }}</h4>
@@ -94,8 +103,13 @@
             class="analysis-category"
           >
             <h4>{{ formatCategoryName(key) }} ({{ category.score }}/100)</h4>
-            <div class="improvement-list" v-if="category.improvements">
-              <p class="improvement-title">Improvement Suggestions:</p>
+            <div
+              v-if="category.improvements"
+              class="improvement-list"
+            >
+              <p class="improvement-title">
+                Improvement Suggestions:
+              </p>
               <ul>
                 <li
                   v-for="(improvement, i) in category.improvements.slice(0, 3)"
@@ -110,13 +124,22 @@
       </div>
     </div>
     <div class="button-group">
-      <button class="secondary-button" @click="goBack">
+      <button
+        class="secondary-button"
+        @click="goBack"
+      >
         {{ $t("creatorAI.editor.previous") }}
       </button>
-      <button class="primary-button-save" @click="saveContent">
+      <button
+        class="primary-button-save"
+        @click="saveContent"
+      >
         {{ $t("creatorAI.editor.save") }}
       </button>
-      <button class="primary-button" @click="$emit('next')">
+      <button
+        class="primary-button"
+        @click="$emit('next')"
+      >
         {{ $t("creatorAI.editor.next") }}
       </button>
     </div>
@@ -210,6 +233,170 @@ export default {
       if (!this.content) return 0;
       return this.content.trim().split(/\s+/).length;
     },
+  },
+  watch: {
+    initialContent(newValue) {
+      this.content = newValue || "";
+      if (newValue && newValue !== this.lastSavedContent) {
+        this.lastSavedContent = newValue;
+      }
+    },
+    content(newValue) {
+      // When content changes, don't analyze immediately
+      // Only set timer to analyze after a certain time when user stops typing
+      if (this.updateContentTimer) {
+        clearTimeout(this.updateContentTimer);
+      }
+
+      if (newValue === this.lastSavedContent) {
+        return;
+      }
+
+      this.updateContentTimer = setTimeout(() => {
+        this.hasBeenOptimized = false;
+      }, 5000);
+    },
+    contentId: {
+      immediate: true,
+      async handler(newValue) {
+        if (newValue) {
+          // Reset optimization count when a new content is loaded
+          this.optimizationCount = 0;
+          this.hasBeenOptimized = false;
+          this.lastAnalysisTime = null;
+
+          // If contentId exists, check if SEO data is available
+          const seoData = await this.fetchSEOData();
+          if (seoData) {
+            this.seoData = seoData;
+            this.lastSeoScore = seoData.seoScore || seoData.score || 0;
+
+            // If SEO score is below 80, automatically optimize
+            if (
+              (seoData.seoScore || seoData.score) < 80 &&
+              !this.hasBeenOptimized
+            ) {
+              await this.autoOptimizeSEO();
+              this.hasBeenOptimized = true;
+            }
+          } else {
+            // If no SEO data, automatically analyze and optimize
+            await this.autoAnalyzeAndOptimize();
+            this.hasBeenOptimized = true;
+          }
+        }
+      },
+    },
+  },
+  mounted() {
+    console.log("EditorStep mounted, contentId:", this.contentId);
+    console.log(
+      "EditorStep initialContent:",
+      this.initialContent
+        ? this.initialContent.substring(0, 50) + "..."
+        : "No content"
+    );
+
+    // Ensure content is initialized from props
+    this.content = this.initialContent || "";
+
+    // Initialize lastSavedContent initially - set to initialContent to avoid unnecessary auto-save
+    this.lastSavedContent = this.initialContent || "";
+    console.log("lastSavedContent initialized with initial content");
+
+    // Avoid unnecessary emit event if there's no content
+    if (this.content) {
+      console.log(
+        "Initializing content with:",
+        this.content.substring(0, 50) + "..."
+      );
+      // Avoid unnecessary emit event if there's no content
+      // this.$emit("update:content", this.content);
+    }
+
+    // Add variable to save final SEO score
+    this.lastSeoScore = 0;
+
+    // Add event listener for navigation buttons
+    document.querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", (e) => {
+        // If not save button and content has changed, save before navigation
+        if (
+          !e.target.classList.contains("primary-button-save") &&
+          this.contentId &&
+          this.content &&
+          this.content !== this.lastSavedContent
+        ) {
+          console.log("Auto-saving content before navigation");
+          // Call API to save content silently - no notification
+          this.autoSaveContent();
+        }
+      });
+    });
+
+    // If contentId exists but no SEO data, analyze and optimize immediately
+    if (this.contentId && !this.seoData) {
+      this.$nextTick(async () => {
+        // Get SEO data if available
+        const seoData = await this.fetchSEOData();
+        if (seoData) {
+          this.seoData = seoData;
+          this.lastSeoScore = seoData.seoScore || seoData.score || 0;
+
+          // Only optimize if score is below 80 and no previous analysis
+          if (
+            (seoData.seoScore || seoData.score) < 80 &&
+            !this.hasBeenOptimized
+          ) {
+            await this.autoOptimizeSEO();
+            this.hasBeenOptimized = true;
+          }
+        } else {
+          await this.autoAnalyzeAndOptimize();
+          this.hasBeenOptimized = true;
+        }
+      });
+    }
+
+    // If in SEO analysis state, update UI
+    if (this.isAnalyzingSeo) {
+      this.isFetchingSeo = true;
+
+      // Set interval to check SEO data every 3 seconds
+      const checkSeoInterval = setInterval(async () => {
+        if (this.contentId) {
+          try {
+            const seoData = await this.fetchSEOData();
+            if (seoData) {
+              clearInterval(checkSeoInterval);
+              this.isFetchingSeo = false;
+              this.lastSeoScore = seoData.seoScore || seoData.score || 0;
+            }
+          } catch (error) {
+            console.error("Error checking SEO data:", error);
+          }
+        }
+      }, 3000);
+
+      // Clear interval after 30 seconds to avoid wasting resources
+      setTimeout(() => {
+        clearInterval(checkSeoInterval);
+        this.isFetchingSeo = false;
+      }, 30000);
+    }
+  },
+  beforeUnmount() {
+    // When component is destroyed, save content before navigating
+    console.log("EditorStep beforeUnmount, will attempt to save content");
+    if (
+      this.contentId &&
+      this.content &&
+      this.content !== this.lastSavedContent
+    ) {
+      console.log("Content changed but not saved, auto-saving before unmount");
+      // Use autoSaveContent instead of saveContent to avoid showing notification
+      this.autoSaveContent();
+    }
   },
   methods: {
     handleInput(event) {
@@ -633,170 +820,6 @@ export default {
         console.error("Error during auto-save:", error);
       }
     },
-  },
-  watch: {
-    initialContent(newValue) {
-      this.content = newValue || "";
-      if (newValue && newValue !== this.lastSavedContent) {
-        this.lastSavedContent = newValue;
-      }
-    },
-    content(newValue) {
-      // When content changes, don't analyze immediately
-      // Only set timer to analyze after a certain time when user stops typing
-      if (this.updateContentTimer) {
-        clearTimeout(this.updateContentTimer);
-      }
-
-      if (newValue === this.lastSavedContent) {
-        return;
-      }
-
-      this.updateContentTimer = setTimeout(() => {
-        this.hasBeenOptimized = false;
-      }, 5000);
-    },
-    contentId: {
-      immediate: true,
-      async handler(newValue) {
-        if (newValue) {
-          // Reset optimization count when a new content is loaded
-          this.optimizationCount = 0;
-          this.hasBeenOptimized = false;
-          this.lastAnalysisTime = null;
-
-          // If contentId exists, check if SEO data is available
-          const seoData = await this.fetchSEOData();
-          if (seoData) {
-            this.seoData = seoData;
-            this.lastSeoScore = seoData.seoScore || seoData.score || 0;
-
-            // If SEO score is below 80, automatically optimize
-            if (
-              (seoData.seoScore || seoData.score) < 80 &&
-              !this.hasBeenOptimized
-            ) {
-              await this.autoOptimizeSEO();
-              this.hasBeenOptimized = true;
-            }
-          } else {
-            // If no SEO data, automatically analyze and optimize
-            await this.autoAnalyzeAndOptimize();
-            this.hasBeenOptimized = true;
-          }
-        }
-      },
-    },
-  },
-  mounted() {
-    console.log("EditorStep mounted, contentId:", this.contentId);
-    console.log(
-      "EditorStep initialContent:",
-      this.initialContent
-        ? this.initialContent.substring(0, 50) + "..."
-        : "No content"
-    );
-
-    // Ensure content is initialized from props
-    this.content = this.initialContent || "";
-
-    // Initialize lastSavedContent initially - set to initialContent to avoid unnecessary auto-save
-    this.lastSavedContent = this.initialContent || "";
-    console.log("lastSavedContent initialized with initial content");
-
-    // Avoid unnecessary emit event if there's no content
-    if (this.content) {
-      console.log(
-        "Initializing content with:",
-        this.content.substring(0, 50) + "..."
-      );
-      // Avoid unnecessary emit event if there's no content
-      // this.$emit("update:content", this.content);
-    }
-
-    // Add variable to save final SEO score
-    this.lastSeoScore = 0;
-
-    // Add event listener for navigation buttons
-    document.querySelectorAll("button").forEach((button) => {
-      button.addEventListener("click", (e) => {
-        // If not save button and content has changed, save before navigation
-        if (
-          !e.target.classList.contains("primary-button-save") &&
-          this.contentId &&
-          this.content &&
-          this.content !== this.lastSavedContent
-        ) {
-          console.log("Auto-saving content before navigation");
-          // Call API to save content silently - no notification
-          this.autoSaveContent();
-        }
-      });
-    });
-
-    // If contentId exists but no SEO data, analyze and optimize immediately
-    if (this.contentId && !this.seoData) {
-      this.$nextTick(async () => {
-        // Get SEO data if available
-        const seoData = await this.fetchSEOData();
-        if (seoData) {
-          this.seoData = seoData;
-          this.lastSeoScore = seoData.seoScore || seoData.score || 0;
-
-          // Only optimize if score is below 80 and no previous analysis
-          if (
-            (seoData.seoScore || seoData.score) < 80 &&
-            !this.hasBeenOptimized
-          ) {
-            await this.autoOptimizeSEO();
-            this.hasBeenOptimized = true;
-          }
-        } else {
-          await this.autoAnalyzeAndOptimize();
-          this.hasBeenOptimized = true;
-        }
-      });
-    }
-
-    // If in SEO analysis state, update UI
-    if (this.isAnalyzingSeo) {
-      this.isFetchingSeo = true;
-
-      // Set interval to check SEO data every 3 seconds
-      const checkSeoInterval = setInterval(async () => {
-        if (this.contentId) {
-          try {
-            const seoData = await this.fetchSEOData();
-            if (seoData) {
-              clearInterval(checkSeoInterval);
-              this.isFetchingSeo = false;
-              this.lastSeoScore = seoData.seoScore || seoData.score || 0;
-            }
-          } catch (error) {
-            console.error("Error checking SEO data:", error);
-          }
-        }
-      }, 3000);
-
-      // Clear interval after 30 seconds to avoid wasting resources
-      setTimeout(() => {
-        clearInterval(checkSeoInterval);
-        this.isFetchingSeo = false;
-      }, 30000);
-    }
-  },
-  beforeUnmount() {
-    // When component is destroyed, save content before navigating
-    console.log("EditorStep beforeUnmount, will attempt to save content");
-    if (
-      this.contentId &&
-      this.content &&
-      this.content !== this.lastSavedContent
-    ) {
-      console.log("Content changed but not saved, auto-saving before unmount");
-      // Use autoSaveContent instead of saveContent to avoid showing notification
-      this.autoSaveContent();
-    }
   },
 };
 </script>

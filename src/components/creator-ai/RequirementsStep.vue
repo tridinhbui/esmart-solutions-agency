@@ -8,7 +8,7 @@
           v-model="formData.title"
           type="text"
           placeholder="Enter project title"
-        />
+        >
       </div>
       <div class="form-group">
         <label>{{ $t("creatorAI.requirements.projectDescription") }}</label>
@@ -17,7 +17,7 @@
           placeholder="Enter project description"
           rows="3"
           style="resize: none"
-        ></textarea>
+        />
       </div>
       <div class="form-group">
         <label>{{ $t("creatorAI.requirements.topic") }}</label>
@@ -25,7 +25,7 @@
           v-model="formData.topic"
           type="text"
           placeholder="Enter your topic"
-        />
+        >
       </div>
       <div class="form-group">
         <label>{{ $t("creatorAI.requirements.keywords") }}</label>
@@ -33,7 +33,7 @@
           v-model="formData.keywords"
           type="text"
           :placeholder="$t('creatorAI.requirements.keywordsTip')"
-        />
+        >
       </div>
       <div class="form-group">
         <label>{{ $t("creatorAI.requirements.tone") }}</label>
@@ -61,7 +61,9 @@
       <div class="form-group">
         <label>{{ $t("creatorAI.requirements.contentType") }}</label>
         <select v-model="formData.type">
-          <option value="blog">{{ $t("creatorAI.requirements.blog") }}</option>
+          <option value="blog">
+            {{ $t("creatorAI.requirements.blog") }}
+          </option>
           <option value="social">
             {{ $t("creatorAI.requirements.socialMedia") }}
           </option>
@@ -78,17 +80,23 @@
       </div>
     </div>
     <div class="button-group">
-      <button class="secondary-button" @click="$emit('prev')">
+      <button
+        class="secondary-button"
+        @click="$emit('prev')"
+      >
         {{ $t("creatorAI.requirements.previous") }}
       </button>
       <button
         class="primary-button"
-        @click="generateContent"
         :disabled="isLoading"
         :class="{ 'loading-button': isLoading }"
+        @click="generateContent"
       >
         <div class="button-content">
-          <span v-if="isLoading" class="loading-spinner"></span>
+          <span
+            v-if="isLoading"
+            class="loading-spinner"
+          />
           <span>{{
             isLoading
               ? $t("creatorAI.requirements.analyzing")

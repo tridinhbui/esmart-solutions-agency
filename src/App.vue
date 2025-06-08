@@ -2,77 +2,116 @@
   <div id="app">
     <!-- Render Navbar only if the current route is not DetailedBlog1 or EsmartCreatorAI or ContactUs -->
     <Navbar v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage" />
-    <router-view v-if="shouldShowRouterView"></router-view>
+    <router-view v-if="shouldShowRouterView" />
     <!-- Render sections only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
     <template v-if="shouldShowMainContent && !isCreatorAIPage">
-      <section id="intro" class="hero-section">
+      <section
+        id="intro"
+        class="hero-section"
+        style="padding-top: 6rem;"
+      >
         <IntroSection />
       </section>
-      <section id="social-proof" class="section-spacing">
+      <section
+        id="social-proof"
+        class="section-spacing"
+      >
         <SocialProof />
       </section>
-      <section id="marketing-assessment" class="section-spacing gradient-section">
+      <section
+        id="marketing-assessment"
+        class="section-spacing gradient-section"
+      >
         <MarketingAssessment />
       </section>
-      <section id="features" class="section-spacing">
+      <section
+        id="features"
+        class="section-spacing"
+      >
         <FeaturesPage />
       </section>
       <!-- TestimonialQuote section -->
-      <section id="testimonials" class="section-spacing testimonial-section">
+      <section
+        id="testimonials"
+        class="section-spacing testimonial-section"
+      >
         <TestimonialQuote />
       </section>
-      <section id="process" class="section-spacing">
+      <section
+        id="process"
+        class="section-spacing"
+      >
         <ProcessInt />
       </section>
-      <section id="blog" class="section-spacing blog-section">
+      <section
+        id="blog"
+        class="section-spacing blog-section"
+      >
         <BlogPost />
       </section>
-      <section id="project" class="section-spacing">
+      <section
+        id="project"
+        class="section-spacing"
+      >
         <Project />
       </section>
-      <section id="about-us" class="section-spacing gradient-section-reverse">
+      <section
+        id="about-us"
+        class="section-spacing gradient-section-reverse"
+      >
         <AboutUs />
       </section>
-      <section id="service" class="section-spacing">
+      <section
+        id="service"
+        class="section-spacing"
+      >
         <Service />
       </section>
-      <section id="questions" class="section-spacing faq-section">
+      <section
+        id="questions"
+        class="section-spacing faq-section"
+      >
         <Questions />
       </section>
-      <section id="chat" class="section-spacing">
+      <section
+        id="chat"
+        class="section-spacing"
+      >
         <Chat />
       </section>
     </template>
     <section
-      id="footer"
       v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage"
+      id="footer"
       class="footer-section"
     >
-      <Footer />
+      <AppFooter />
     </section>
     <!-- Chatbot -->
     <ChatBot />
-    <!-- Enhanced Scroll to Top Button -->
-    <transition name="fade">
-      <button
-        v-if="showScrollButton"
-        class="scroll-to-top"
-        @click="scrollToTop"
-        title="Go to top"
-      >
-        <i class="fas fa-chevron-up"></i>
-      </button>
-    </transition>
     
     <!-- Background decorative elements -->
     <div class="bg-decoration">
       <div class="floating-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
+        <div class="shape shape-1" />
+        <div class="shape shape-2" />
+        <div class="shape shape-3" />
+        <div class="shape shape-4" />
       </div>
     </div>
+    <GoToTopButton />
+    
+    <!-- Scroll to Top Button -->
+    <transition name="scroll-fade">
+      <button
+        v-show="showScrollTop"
+        @click="scrollToTop"
+        class="scroll-to-top"
+        aria-label="Scroll to top"
+      >
+        <i class="fas fa-chevron-up"></i>
+      </button>
+    </transition>
   </div>
 </template>
 
@@ -83,7 +122,7 @@ import SocialProof from "./components/SocialProof.vue";
 import FeaturesPage from "./components/FeaturesPage.vue";
 import ProcessInt from "./components/ServiceSection.vue";
 import BlogPost from "./components/BlogPost.vue";
-import Footer from "./components/FooterBar.vue";
+import AppFooter from "./components/FooterBar.vue";
 import Project from "./components/ProjectSection.vue";
 import AboutUs from "./components/AboutUs.vue";
 import Questions from "./components/Questions.vue";
@@ -91,6 +130,7 @@ import Chat from "./components/Chat.vue";
 import MarketingAssessment from "./components/MarketingAssessment.vue";
 import TestimonialQuote from "./components/TestimonialQuote.vue";
 import ChatBot from "@/components/ChatBot.vue";
+import GoToTopButton from "./components/GoToTopButton.vue";
 
 export default {
   name: "App",
@@ -103,12 +143,13 @@ export default {
     ProcessInt,
     BlogPost,
     Project,
-    Footer,
+    AppFooter,
     AboutUs,
     Questions,
     Chat,
     TestimonialQuote,
     ChatBot,
+    GoToTopButton,
   },
   data() {
     return {
@@ -116,6 +157,7 @@ export default {
       cursorTrails: [],
       magicParticles: [],
       lastCursorTime: 0,
+      showScrollTop: false,
     };
   },
   computed: {
@@ -146,6 +188,28 @@ export default {
       );
     },
   },
+  mounted() {
+    // Add scroll event listener
+    let lastScroll = 0;
+    window.addEventListener('scroll', function throttledScrollHandler() {
+      const now = Date.now();
+      if (now - lastScroll > 50) {
+        this.handleScroll();
+        lastScroll = now;
+      }
+    }.bind(this));
+    
+    // Initialize magical effects
+    this.initializePageEffects();
+    
+    console.log("App mounted with magical effects");
+  },
+  beforeUnmount() {
+    // Clean up event listeners
+    window.removeEventListener("scroll", this.handleScroll);
+    document.removeEventListener('mousemove', this.createCursorTrail);
+    console.log("App unmounted, event listeners cleaned up");
+  },
   methods: {
     scrollToTop() {
       window.scrollTo({
@@ -154,7 +218,7 @@ export default {
       });
     },
     handleScroll() {
-      this.showScrollButton = window.scrollY > 300;
+      this.showScrollTop = window.scrollY > 300;
       
       // Parallax effect for floating shapes
       const scrollY = window.scrollY;
@@ -272,25 +336,43 @@ export default {
       });
     }
   },
-  mounted() {
-    // Add scroll event listener
-    window.addEventListener("scroll", this.handleScroll);
-    
-    // Initialize magical effects
-    this.initializePageEffects();
-    
-    console.log("App mounted with magical effects");
-  },
-  beforeUnmount() {
-    // Clean up event listeners
-    window.removeEventListener("scroll", this.handleScroll);
-    document.removeEventListener('mousemove', this.createCursorTrail);
-    console.log("App unmounted, event listeners cleaned up");
-  },
 };
 </script>
 
 <style>
+/* Scroll to Top Button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #ff6b35, #f59e0b);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+}
+
+.scroll-fade-enter-active,
+.scroll-fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+.scroll-fade-enter-from,
+.scroll-fade-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
 /* CSS Variables for consistent theming - Enhanced energetic color palette */
 :root {
   --primary-color: #ff6b35;
@@ -343,6 +425,7 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
+  width: 100vw;
 }
 
 body::before {
@@ -377,6 +460,9 @@ body::before {
   position: relative;
   min-height: 100vh;
   backdrop-filter: blur(0.5px);
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* Magic cursor trail effect */
@@ -404,7 +490,7 @@ body::before {
 
 /* Section Spacing and Styling - Enhanced */
 .section-spacing {
-  padding: 120px 0;
+  padding: 60px 0;
   position: relative;
   overflow: hidden;
 }
@@ -479,7 +565,7 @@ body::before {
   background: var(--gradient-tertiary);
   color: white;
   transform: skewY(-2deg);
-  padding: 140px 0;
+  padding: 80px 0;
 }
 
 .gradient-section-reverse > * {
@@ -490,14 +576,14 @@ body::before {
   background: var(--background-gray);
   position: relative;
   clip-path: polygon(0 10%, 100% 0%, 100% 90%, 0% 100%);
-  padding: 140px 0;
+  padding: 80px 0;
 }
 
 .blog-section {
   background: var(--background-light);
   position: relative;
   transform: skewY(1deg);
-  padding: 140px 0;
+  padding: 80px 0;
 }
 
 .blog-section > * {
@@ -508,13 +594,15 @@ body::before {
   background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
   position: relative;
   clip-path: polygon(0 0%, 100% 10%, 100% 100%, 0% 90%);
-  padding: 140px 0;
+  padding: 80px 0;
 }
 
 .footer-section {
   background: var(--background-dark);
   color: white;
   position: relative;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 /* Enhanced Card Styles with more magic */
@@ -567,58 +655,6 @@ body::before {
 
 .card:hover::before {
   left: 100%;
-}
-
-/* Enhanced Scroll to Top Button with more magic */
-.scroll-to-top {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: var(--gradient-magical);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 65px;
-  height: 65px;
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: var(--shadow-magical);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1000;
-  backdrop-filter: blur(20px);
-  border: 2px solid var(--glass-border);
-  position: relative;
-  overflow: hidden;
-}
-
-.scroll-to-top::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  animation: buttonSpinner 3s linear infinite;
-  z-index: -1;
-}
-
-@keyframes buttonSpinner {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.scroll-to-top:hover {
-  transform: translateY(-8px) scale(1.15) rotate(5deg);
-  box-shadow: var(--shadow-heavy), 0 0 30px rgba(255, 107, 53, 0.5);
-  background: var(--gradient-secondary);
-}
-
-.scroll-to-top:active {
-  transform: translateY(-5px) scale(1.05) rotate(-5deg);
 }
 
 /* Enhanced Background Decorative Elements */

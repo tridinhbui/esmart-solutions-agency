@@ -1,5 +1,24 @@
 <template>
   <div class="detailed-blog-page">
+    <!-- Enhanced Quantum Background -->
+    <div class="quantum-universe">
+      <!-- Atomic Particles Field -->
+      <div class="atomic-field">
+        <div class="atomic-particle" v-for="i in 40" :key="`atomic-${i}`" />
+      </div>
+      
+      <!-- Universe Energy Streams -->
+      <div class="universe-energy">
+        <div class="energy-stream" v-for="i in 12" :key="`universe-${i}`" />
+      </div>
+      
+      <!-- Quantum Cosmic Grid -->
+      <div class="cosmic-grid">
+        <div class="grid-node" v-for="i in 20" :key="`grid-${i}`" />
+        <div class="grid-connection" v-for="i in 35" :key="`connection-${i}`" />
+      </div>
+    </div>
+
     <!-- Use the global NavBar component -->
     <NavBar />
     
@@ -9,51 +28,81 @@
         <!-- Hero Section -->
         <section class="blog-hero">
           <div class="hero-background">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="particles"></div>
+            <div class="quantum-orb orb-1" />
+            <div class="quantum-orb orb-2" />
+            <div class="quantum-orb orb-3" />
+            <div class="hero-particles" />
           </div>
           <div class="hero-content">
-            <div class="badge">
-              <div class="badge-icon">📚</div>
-              <span>{{ $t('blog.featured') || 'Featured Blog' }}</span>
+            <div class="cosmic-badge">
+              <div class="badge-icon">
+                ✨
+              </div>
+              <span>{{ $t('blog.featured') || 'Bài viết nổi bật' }}</span>
             </div>
             <h1 class="hero-title">
-              <span class="title-line">{{ $t('blog.title') || 'ESmart Solutions' }}</span>
-              <span class="gradient-text">{{ $t('blog.subtitle') || 'Blog & Insights' }}</span>
+              <span class="title-line quantum-text">{{ $t('blog.title') || 'ESmart Solutions' }}</span>
+              <span class="gradient-text">{{ $t('blog.subtitle') || 'Blog & Thông tin' }}</span>
             </h1>
             <p class="hero-description">
-              {{ $t('blog.description') || 'Discover the latest trends, insights, and strategies in digital marketing, business growth, and technology innovation.' }}
+              {{ $t('blog.description') || 'Khám phá những xu hướng mới nhất, thông tin chi tiết và chiến lược trong marketing số, phát triển kinh doanh và đổi mới công nghệ.' }}
             </p>
           </div>
         </section>
 
-        <!-- Loop through each category -->
+        <!-- Categories Container with Quantum Enhancement -->
         <div class="categories-container">
-          <div v-for="(categoryPosts, category) in groupedPosts" :key="category" class="category-section">
-            <h2 class="category-title">
+          <div
+            v-for="(categoryPosts, category) in groupedPosts"
+            :key="category"
+            class="category-section"
+          >
+            <h2 class="category-title quantum-title">
               <span class="category-icon">{{ getCategoryIcon(category) }}</span>
-              <span>{{ $t(`blog.categories.${category.toLowerCase().replace(' ', '_')}`) || category }}</span>
+              <span class="quantum-text">{{ $t(`blog.categories.${category.toLowerCase().replace(' ', '_')}`) || category }}</span>
+              <div class="title-glow"></div>
             </h2>
-            <!-- Loop through posts in this category -->
+            
+            <!-- Posts Grid with Quantum Cards -->
             <div class="category-posts">
-              <div v-for="post in categoryPosts" :key="post.id" class="blog-post" :data-aos="'fade-up'" :data-aos-delay="post.id * 100">
+              <div
+                v-for="post in categoryPosts"
+                :key="post.id"
+                class="blog-post quantum-card"
+                :data-aos="'fade-up'"
+                :data-aos-delay="post.id * 100"
+              >
+                <div class="quantum-border"></div>
                 <div class="post-image-container">
-                  <img :src="post.image" :alt="post.title" class="post-image" />
-                  <div class="post-overlay">
-                    <div class="post-category-badge">{{ category }}</div>
+                  <img
+                    :src="post.image"
+                    :alt="post.title"
+                    class="post-image"
+                  >
+                  <div class="image-overlay">
+                    <div class="category-badge">
+                      {{ $t(`blog.categories.${category.toLowerCase().replace(' ', '_')}`) || category }}
+                    </div>
                   </div>
                 </div>
                 <div class="post-content">
-                  <h3 class="post-title">{{ getTranslatedTitle(post) }}</h3>
-                  <p class="post-excerpt">{{ getTranslatedExcerpt(post) }}</p>
+                  <h3 class="post-title quantum-title">
+                    {{ getTranslatedTitle(post) }}
+                  </h3>
+                  <p class="post-excerpt">
+                    {{ getTranslatedExcerpt(post) }}
+                  </p>
                   <div class="post-meta">
                     <span class="post-date">{{ formatDate(post.date) }}</span>
-                    <span class="post-read-time">{{ post.readTime || '5 min read' }}</span>
+                    <span class="post-read-time">{{ post.readTime || '5 phút đọc' }}</span>
                   </div>
-                  <router-link :to="`/blog/${post.id}`" class="read-more-btn">
-                    <span>{{ $t('blog.readMore') || 'Read More' }}</span>
-                    <i class="fas fa-arrow-right"></i>
+                  <router-link
+                    :to="`/blog/${post.id}`"
+                    class="read-more-btn quantum-button"
+                  >
+                    <span class="button-glow"></span>
+                    <span class="button-text">{{ $t('blog.readMore') || 'Xem thêm' }}</span>
+                    <i class="fas fa-arrow-right" />
                   </router-link>
                 </div>
               </div>
@@ -62,16 +111,26 @@
         </div>
       </div>
 
-      <!-- Enhanced Sidebar -->
-      <aside class="sidebar">
-        <div class="widget categories-widget">
-          <h3 class="widget-title">
-            <i class="fas fa-folder"></i>
-            {{ $t('blog.categories.title') || 'Categories' }}
+      <!-- Enhanced Quantum Sidebar -->
+      <aside class="sidebar quantum-sidebar">
+        <!-- Categories Widget -->
+        <div class="widget categories-widget quantum-widget">
+          <div class="widget-border"></div>
+          <h3 class="widget-title quantum-title">
+            <i class="fas fa-folder quantum-icon" />
+            {{ $t('blog.categories.title') || 'Danh mục' }}
           </h3>
           <ul class="categories-list">
-            <li v-for="category in categories" :key="category" class="category-item">
-              <a href="#" @click.prevent="filterByCategory(category)" class="category-link">
+            <li
+              v-for="category in categories"
+              :key="category"
+              class="category-item"
+            >
+              <a
+                href="#"
+                class="category-link quantum-link"
+                @click.prevent="filterByCategory(category)"
+              >
                 <span class="category-icon">{{ getCategoryIcon(category) }}</span>
                 <span>{{ $t(`blog.categories.${category.toLowerCase().replace(' ', '_')}`) || category }}</span>
                 <span class="post-count">{{ getCategoryCount(category) }}</span>
@@ -80,42 +139,80 @@
           </ul>
         </div>
         
-        <div class="widget recent-posts-widget">
-          <h3 class="widget-title">
-            <i class="fas fa-clock"></i>
-            {{ $t('blog.recentPosts') || 'Recent Posts' }}
-          </h3>
-          <ul class="recent-posts-list">
-            <li v-for="post in recentPosts" :key="post.id" class="recent-post-item">
-              <div class="recent-post-image">
-                <img :src="post.image" :alt="post.title" />
-              </div>
-              <div class="recent-post-content">
-                <h4 class="recent-post-title">{{ getTranslatedTitle(post) }}</h4>
-                <span class="recent-post-date">{{ formatDate(post.date) }}</span>
-              </div>
-            </li>
-          </ul>
+        <!-- Row for Hot Posts and Authors -->
+        <div class="sidebar-double-row">
+          <!-- Recent Posts Widget -->
+          <div class="widget recent-posts-widget quantum-widget half-width">
+            <div class="widget-border"></div>
+            <h3 class="widget-title quantum-title">
+              <i class="fas fa-fire quantum-icon" />
+              Bài Hot Trong Tuần
+            </h3>
+            <ul class="recent-posts-list">
+              <li
+                v-for="post in recentPosts.slice(0,3)"
+                :key="post.id"
+                class="recent-post-item compact"
+              >
+                <div class="recent-post-content">
+                  <h4 class="recent-post-title">
+                    {{ getTranslatedTitle(post) }}
+                  </h4>
+                  <span class="recent-post-date">{{ formatDate(post.date) }}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Authors Widget -->
+          <div class="widget authors-widget quantum-widget half-width">
+            <div class="widget-border"></div>
+            <h3 class="widget-title quantum-title">
+              <i class="fas fa-users quantum-icon" />
+              Tác Giả Nổi Bật
+            </h3>
+            <ul class="authors-list">
+              <li
+                v-for="author in ['Tình Nguyễn', 'Kim Ngọc', 'Lý Tú Nhã']"
+                :key="author"
+                class="author-item compact"
+              >
+                <div class="author-content">
+                  <h4 class="author-name">{{ author }}</h4>
+                  <span class="author-title">Content Writer</span>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="widget newsletter-widget">
-          <h3 class="widget-title">
-            <i class="fas fa-envelope"></i>
-            {{ $t('blog.newsletter.title') || 'Newsletter' }}
+        <!-- Newsletter Widget -->
+        <div class="widget newsletter-widget quantum-widget">
+          <div class="widget-border"></div>
+          <h3 class="widget-title quantum-title">
+            <i class="fas fa-envelope quantum-icon" />
+            {{ $t('blog.newsletter.title') || 'Bản tin' }}
           </h3>
           <p class="newsletter-description">
-            {{ $t('blog.newsletter.description') || 'Subscribe to get the latest insights delivered to your inbox.' }}
+            {{ $t('blog.newsletter.description') || 'Đăng ký để nhận những thông tin mới nhất được gửi đến hộp thư của bạn.' }}
           </p>
-          <form class="newsletter-form" @submit.prevent="subscribeNewsletter">
+          <form
+            class="newsletter-form"
+            @submit.prevent="subscribeNewsletter"
+          >
             <input 
-              type="email" 
               v-model="newsletterEmail" 
-              :placeholder="$t('blog.newsletter.placeholder') || 'Enter your email'"
-              class="newsletter-input"
+              type="email" 
+              :placeholder="$t('blog.newsletter.placeholder') || 'Nhập email của bạn'"
+              class="newsletter-input quantum-input"
               required
-            />
-            <button type="submit" class="newsletter-btn">
-              <i class="fas fa-paper-plane"></i>
+            >
+            <button
+              type="submit"
+              class="newsletter-btn quantum-button"
+            >
+              <span class="button-glow"></span>
+              <i class="fas fa-paper-plane" />
             </button>
           </form>
         </div>
@@ -123,19 +220,19 @@
     </div>
 
     <!-- Use the global Footer component -->
-    <Footer />
+    <AppFooter />
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue';
-import Footer from '@/components/FooterBar.vue';
+import AppFooter from '@/components/FooterBar.vue';
 
 export default {
   name: "DetailedBlog1",
   components: {
     NavBar,
-    Footer
+    AppFooter
   },
   data() {
     return {
@@ -261,7 +358,7 @@ export default {
     }
   },
   mounted() {
-    this.createParticles();
+    this.initializeQuantumEffects();
     this.initializeAOS();
   },
   methods: {
@@ -310,17 +407,61 @@ export default {
         // Show success message
       }
     },
-    createParticles() {
-      const particlesContainer = document.querySelector('.particles');
-      if (!particlesContainer) return;
+    initializeQuantumEffects() {
+      this.createAtomicParticles();
+      this.createEnergyStreams();
+      this.createCosmicGrid();
+    },
+    
+    createAtomicParticles() {
+      const atomicField = document.querySelector('.atomic-field');
+      if (!atomicField) return;
       
-      for (let i = 0; i < 30; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDuration = (Math.random() * 4 + 3) + 's';
-        particle.style.animationDelay = Math.random() * 3 + 's';
-        particlesContainer.appendChild(particle);
+      for (let i = 0; i < 40; i++) {
+        const particle = document.querySelector(`.atomic-particle:nth-child(${i + 1})`);
+        if (particle) {
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.animationDelay = Math.random() * 15 + 's';
+        }
+      }
+    },
+    
+    createEnergyStreams() {
+      const universeEnergy = document.querySelector('.universe-energy');
+      if (!universeEnergy) return;
+      
+      for (let i = 0; i < 12; i++) {
+        const stream = document.querySelector(`.energy-stream:nth-child(${i + 1})`);
+        if (stream) {
+          stream.style.left = (i * 8.33) + '%';
+          stream.style.animationDelay = Math.random() * 8 + 's';
+        }
+      }
+    },
+    
+    createCosmicGrid() {
+      const cosmicGrid = document.querySelector('.cosmic-grid');
+      if (!cosmicGrid) return;
+      
+      // Position grid nodes randomly
+      for (let i = 0; i < 20; i++) {
+        const node = document.querySelector(`.grid-node:nth-child(${i + 1})`);
+        if (node) {
+          node.style.left = Math.random() * 100 + '%';
+          node.style.top = Math.random() * 100 + '%';
+          node.style.animationDelay = Math.random() * 4 + 's';
+        }
+      }
+      
+      // Position grid connections
+      for (let i = 0; i < 35; i++) {
+        const connection = document.querySelector(`.grid-connection:nth-child(${i + 21})`);
+        if (connection) {
+          connection.style.top = Math.random() * 100 + '%';
+          connection.style.width = (Math.random() * 30 + 20) + '%';
+          connection.style.left = Math.random() * 70 + '%';
+          connection.style.animationDelay = Math.random() * 6 + 's';
+        }
       }
     },
     initializeAOS() {
@@ -339,31 +480,261 @@ export default {
 </script>
 
 <style scoped>
-/* Reset and Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Enhanced Quantum Blog Page */
+.detailed-blog-page {
+  min-height: 100vh;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+  position: relative;
+  overflow-x: hidden;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.6;
-}
-
-/* Navigation Bar Styles */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: url('https://via.placeholder.com/1200x200?text=World+Map+Background') center/cover no-repeat;
-  padding: 1rem 2rem;
+/* Quantum Universe Background */
+.quantum-universe {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
-  height: 100px; /* Increased height to accommodate logo and tagline */
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Atomic Particles Field */
+.atomic-field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.atomic-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: radial-gradient(circle, #ff6b35 0%, #f59e0b 50%, transparent 100%);
+  border-radius: 50%;
+  animation: atomicFloat 15s infinite linear;
+  box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+}
+
+.atomic-particle:nth-child(2n) {
+  background: radial-gradient(circle, #f59e0b 0%, #d97706 50%, transparent 100%);
+  animation-duration: 18s;
+}
+
+.atomic-particle:nth-child(3n) {
+  background: radial-gradient(circle, #d97706 0%, #ff6b35 50%, transparent 100%);
+  animation-duration: 12s;
+}
+
+/* Universe Energy Streams */
+.universe-energy {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.energy-stream {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #ff6b35, transparent);
+  animation: energyFlow 8s infinite linear;
+  opacity: 0.2;
+}
+
+.energy-stream:nth-child(odd) {
+  animation-duration: 10s;
+  background: linear-gradient(180deg, transparent, #f59e0b, transparent);
+}
+
+/* Cosmic Grid */
+.cosmic-grid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.grid-node {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #ff6b35;
+  border-radius: 50%;
+  animation: gridPulse 4s infinite ease-in-out;
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.5);
+}
+
+.grid-connection {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.2), transparent);
+  animation: connectionFlow 6s infinite linear;
+}
+
+/* Quantum Animations */
+@keyframes atomicFloat {
+  0% { transform: translateY(100vh) translateX(0px) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100px) translateX(50px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes energyFlow {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100vw); }
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.5); }
+}
+
+@keyframes connectionFlow {
+  0% { transform: translateX(-100%); opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* Blog Container */
+.blog-container {
+  display: flex;
+  max-width: 1400px;
+  margin: 120px auto 2rem;
+  padding: 0 2rem;
+  gap: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.blog-main {
+  flex: 2;
+  min-width: 0;
+}
+
+/* Blog Hero Section */
+.blog-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rem;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.quantum-orb {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: quantumPulse 6s infinite ease-in-out;
+}
+
+.orb-1 {
+  top: 10%;
+  left: 10%;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.3) 0%, transparent 70%);
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  top: 60%;
+  right: 10%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, transparent 70%);
+  animation-delay: 2s;
+}
+
+.orb-3 {
+  bottom: 20%;
+  left: 50%;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.3) 0%, transparent 70%);
+  animation-delay: 4s;
+}
+
+.hero-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="%23ff6b35" opacity="0.3"/><circle cx="30" cy="20" r="0.5" fill="%23f59e0b" opacity="0.5"/><circle cx="60" cy="40" r="1.5" fill="%23d97706" opacity="0.2"/></svg>') repeat;
+  animation: particlesDrift 20s infinite linear;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cosmic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 107, 53, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  color: #ff6b35;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(255, 107, 53, 0.1);
+}
+
+.badge-icon {
+  font-size: 1.2rem;
+  animation: badgeGlow 2s infinite ease-in-out;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+.title-line {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.quantum-text {
+  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
+  animation: quantumGlow 3s infinite ease-in-out;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .navbar::before {
@@ -565,157 +936,542 @@ body {
   text-decoration: underline;
 }
 
-/* Sidebar Styles */
-.sidebar {
-  flex: 1;
-  background: #f9f9f9;
-  padding: 1rem;
-  border-radius: 5px;
+
+
+/* Categories and Posts */
+.categories-container {
+  margin-top: 2rem;
 }
 
-.widget {
+.category-section {
+  margin-bottom: 4rem;
+}
+
+.category-title {
+  position: relative;
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  padding: 1rem 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+.category-title .quantum-text {
+  position: relative;
+  z-index: 2;
+}
+
+.category-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+  filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.5));
+}
+
+.title-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 50px;
+  background: rgba(255, 107, 53, 0.2);
+  filter: blur(20px);
+  border-radius: 50px;
+  animation: titleGlow 3s infinite ease-in-out;
+}
+
+.category-posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.quantum-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.quantum-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.2),
+    0 0 40px rgba(255, 107, 53, 0.2);
+}
+
+.quantum-border {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff6b35, #f59e0b, #d97706, #ff6b35);
+  border-radius: 22px;
+  z-index: -1;
+  opacity: 0;
+  animation: borderGlow 3s infinite linear;
+}
+
+.quantum-card:hover .quantum-border {
+  opacity: 1;
+}
+
+.post-image-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.post-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.quantum-card:hover .post-image {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.category-badge {
+  background: rgba(255, 107, 53, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.post-content {
+  color: white;
+}
+
+.post-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  color: white;
+}
+
+.post-excerpt {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.post-date, .post-read-time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quantum-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 2rem;
+  background: rgba(255, 107, 53, 0.1);
+  border: 2px solid rgba(255, 107, 53, 0.3);
+  border-radius: 50px;
+  color: #ff6b35;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.quantum-button:hover {
+  background: rgba(255, 107, 53, 0.2);
+  border-color: #ff6b35;
+  color: white;
+  box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
+}
+
+.button-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.quantum-button:hover .button-glow {
+  left: 100%;
+}
+
+.button-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* Quantum Sidebar */
+.quantum-sidebar {
+  flex: 1;
+  max-width: 350px;
+  min-width: 300px;
+}
+
+.quantum-widget {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.widget-border {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: linear-gradient(45deg, #ff6b35, #f59e0b, #d97706, #ff6b35);
+  border-radius: 21px;
+  z-index: -1;
+  opacity: 0.5;
+  animation: borderGlow 4s infinite linear;
+}
+
+.widget-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.quantum-icon {
+  color: #ff6b35;
+  filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.5));
+}
+
+.categories-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-item {
+  margin-bottom: 0.75rem;
+}
+
+.quantum-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+.quantum-link:hover {
+  background: rgba(255, 107, 53, 0.1);
+  color: white;
+  border-color: rgba(255, 107, 53, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.1);
+}
+
+.post-count {
+  background: #ff6b35;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  min-width: 25px;
+  text-align: center;
+}
+
+.recent-posts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recent-post-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+.recent-post-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.recent-post-image {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.recent-post-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+}
+
+.recent-post-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.recent-post-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.recent-post-date {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Double Row Layout for Sidebar */
+.sidebar-double-row {
+  display: flex;
+  gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
-.widget h3 {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+.half-width {
+  flex: 1;
 }
 
-.widget ul {
+.recent-post-item.compact {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.recent-post-item.compact:last-child {
+  border-bottom: none;
+}
+
+.author-item.compact {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.author-item.compact:last-child {
+  border-bottom: none;
+}
+
+.authors-list {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.widget ul li {
-  margin-bottom: 0.5rem;
+.author-content {
+  text-align: left;
 }
 
-.widget ul li a {
-  color: #333;
-  text-decoration: none;
+.author-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.25rem;
 }
 
-.widget ul li a:hover {
-  color: #007bff;
-  text-decoration: underline;
+.author-title {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-/* Footer Styles */
-.footer {
-  background: #333;
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
+.newsletter-description {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
 }
 
-.footer-links {
-  margin-bottom: 1rem;
+.newsletter-form {
+  display: flex;
+  gap: 0.75rem;
 }
 
-.footer-links a {
-  color: #fff;
-  margin: 0 1rem;
-  text-decoration: none;
+.quantum-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 107, 53, 0.2);
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
-.footer-links a:hover {
-  text-decoration: underline;
+.quantum-input:focus {
+  outline: none;
+  border-color: #ff6b35;
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.2);
+}
+
+.quantum-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-btn {
+  padding: 0.75rem 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+/* Additional Quantum Animations */
+@keyframes quantumPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+  50% { transform: scale(1.2) rotate(180deg); opacity: 0.6; }
+}
+
+@keyframes quantumGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(255, 107, 53, 0.3); }
+  50% { text-shadow: 0 0 40px rgba(255, 107, 53, 0.6), 0 0 60px rgba(245, 158, 11, 0.4); }
+}
+
+@keyframes badgeGlow {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.1); filter: brightness(1.2); }
+}
+
+@keyframes titleGlow {
+  0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+@keyframes borderGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes particlesDrift {
+  0% { transform: translateX(0) translateY(0); }
+  100% { transform: translateX(-100px) translateY(-100px); }
 }
 
 /* Responsive Design */
-@media (min-width: 769px) {
-  .navbar {
-    justify-content: space-between;
-    align-items: center;
+@media (max-width: 1200px) {
+  .blog-container {
+    max-width: 100%;
+    padding: 0 1rem;
   }
-
-  .hamburger {
-    display: none;
-  }
-
-  .navbar-logo {
-    flex: none;
-    text-align: left;
-  }
-
-  .navbar-menu {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-  }
-
-  .social-icons {
-    flex: none;
+  
+  .hero-title {
+    font-size: 3rem;
   }
 }
 
 @media (max-width: 768px) {
-  .navbar {
-    flex-wrap: wrap;
-    height: auto;
-    padding: 1rem;
-  }
-
-  .navbar-menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100px;
-    left: 0;
-    width: 100%;
-    background: #fff;
-    padding: 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-
-  .navbar-menu.active {
-    display: flex;
-  }
-
-  .nav-link {
-    padding: 0.5rem 0;
-    font-size: 1rem;
-  }
-
   .blog-container {
-    margin-top: 140px; /* Adjusted for mobile navbar height */
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 100px;
   }
-
+  
+  .quantum-sidebar {
+    max-width: 100%;
+    min-width: auto;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
   .category-posts {
     grid-template-columns: 1fr;
   }
-
-  .sidebar {
-    width: 100%;
+  
+  .quantum-card {
+    margin-bottom: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .logo-the {
-    font-size: 1rem;
+  .blog-container {
+    padding: 0 0.5rem;
   }
-
-  .logo-main {
-    font-size: 1.8rem;
+  
+  .hero-title {
+    font-size: 2rem;
   }
-
-  .logo-icon {
-    font-size: 1.2rem;
+  
+  .quantum-card {
+    padding: 1rem;
   }
-
-  .tagline {
-    font-size: 0.8rem;
-  }
-
-  .social-icon {
-    width: 25px;
-    height: 25px;
-  }
-
-  .social-icon .icon {
-    font-size: 0.9rem;
+  
+  .quantum-widget {
+    padding: 1.5rem;
   }
 }
 </style>

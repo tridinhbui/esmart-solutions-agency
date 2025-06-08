@@ -1,64 +1,135 @@
 <template>
   <div class="chatbot-container">
-    <!-- Chatbot Toggle Button -->
-    <div class="chatbot-toggle" @click="toggleChat" :class="{ 'active': isChatOpen }">
-      <div class="toggle-background"></div>
+    <!-- Revolutionary Quantum Chatbot Toggle -->
+    <div
+      class="chatbot-toggle"
+      :class="{ 'active': isChatOpen }"
+      @click="toggleChat"
+    >
+      <!-- Quantum Background System -->
+      <div class="toggle-quantum-background">
+        <div class="quantum-orb" />
+        <div class="quantum-energy-field" />
+      </div>
+      
+      <!-- Toggle Icon with Quantum Effects -->
       <div class="toggle-icon">
-        <transition name="icon-rotate" mode="out-in">
-          <i v-if="!isChatOpen" class="fas fa-comments" key="chat"></i>
-          <i v-else class="fas fa-times" key="close"></i>
+        <transition
+          name="icon-rotate"
+          mode="out-in"
+        >
+          <i
+            v-if="!isChatOpen"
+            key="chat"
+            class="fas fa-comments"
+          />
+          <i
+            v-else
+            key="close"
+            class="fas fa-times"
+          />
         </transition>
+        <div class="icon-quantum-glow" />
       </div>
+      
+      <!-- Enhanced Pulse Rings -->
       <div class="pulse-rings">
-        <div class="pulse-ring ring-1"></div>
-        <div class="pulse-ring ring-2"></div>
-        <div class="pulse-ring ring-3"></div>
+        <div class="pulse-ring ring-1" />
+        <div class="pulse-ring ring-2" />
+        <div class="pulse-ring ring-3" />
+        <div class="pulse-ring ring-4" />
       </div>
-      <div class="notification-badge" v-if="hasUnreadMessage && !isChatOpen">
-        {{ unreadCount }}
+      
+      <!-- Quantum Particles -->
+      <div class="toggle-particles">
+        <div
+          v-for="i in 6"
+          :key="'particle-'+i"
+          class="quantum-particle"
+        />
+      </div>
+      
+      <!-- Enhanced Notification Badge -->
+      <div
+        v-if="hasUnreadMessage && !isChatOpen"
+        class="notification-badge"
+      >
+        <span class="badge-number">{{ unreadCount }}</span>
+        <div class="badge-quantum-glow" />
+        <div class="badge-energy-ring" />
+      </div>
+      
+      <!-- Lightning Effects -->
+      <div class="toggle-lightning">
+        <div
+          v-for="i in 3"
+          :key="'lightning-'+i"
+          class="lightning-bolt"
+        />
       </div>
     </div>
 
     <!-- Chatbot Window -->
     <transition name="chat-window">
-      <div v-if="isChatOpen" class="chatbot-window">
+      <div
+        v-if="isChatOpen"
+        class="chatbot-window"
+      >
         <div class="chat-header">
           <div class="bot-avatar">
-            <div class="avatar-glow"></div>
-            <i class="fas fa-robot"></i>
-            <div class="status-indicator"></div>
+            <div class="avatar-glow" />
+            <i class="fas fa-robot" />
+            <div class="status-indicator" />
           </div>
           <div class="bot-info">
             <h3>{{ $t('chatbot.name') || 'ESmart Assistant' }}</h3>
             <p>{{ $t('chatbot.status') || 'Online • Ready to help!' }}</p>
           </div>
-          <button @click="toggleChat" class="close-btn">
-            <i class="fas fa-minus"></i>
+          <button
+            class="close-btn"
+            @click="toggleChat"
+          >
+            <i class="fas fa-minus" />
           </button>
         </div>
 
-        <div class="chat-body" ref="chatBody">
-          <div class="welcome-message" v-if="messages.length === 0">
+        <div
+          ref="chatBody"
+          class="chat-body"
+        >
+          <div
+            v-if="messages.length === 0"
+            class="welcome-message"
+          >
             <div class="welcome-animation">
               <div class="floating-icons">
-                <i class="fas fa-rocket"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-heart"></i>
+                <i class="fas fa-rocket" />
+                <i class="fas fa-star" />
+                <i class="fas fa-heart" />
               </div>
             </div>
             <h4>{{ $t('chatbot.welcome') || 'Welcome to ESmart!' }}</h4>
             <p>{{ $t('chatbot.welcomeMessage') || 'How can I help you today?' }}</p>
             <div class="quick-actions">
-              <button @click="sendQuickMessage('pricing')" class="quick-btn">
-                <i class="fas fa-dollar-sign"></i>
+              <button
+                class="quick-btn"
+                @click="sendQuickMessage('pricing')"
+              >
+                <i class="fas fa-dollar-sign" />
                 {{ $t('chatbot.pricing') || 'Pricing' }}
               </button>
-              <button @click="sendQuickMessage('services')" class="quick-btn">
-                <i class="fas fa-cogs"></i>
+              <button
+                class="quick-btn"
+                @click="sendQuickMessage('services')"
+              >
+                <i class="fas fa-cogs" />
                 {{ $t('chatbot.services') || 'Services' }}
               </button>
-              <button @click="sendQuickMessage('contact')" class="quick-btn">
-                <i class="fas fa-phone"></i>
+              <button
+                class="quick-btn"
+                @click="sendQuickMessage('contact')"
+              >
+                <i class="fas fa-phone" />
                 {{ $t('chatbot.contact') || 'Contact' }}
               </button>
             </div>
@@ -71,49 +142,67 @@
               :class="['message', message.type]"
               :style="{ animationDelay: `${index * 0.1}s` }"
             >
-              <div v-if="message.type === 'bot'" class="message-avatar">
-                <i class="fas fa-robot"></i>
+              <div
+                v-if="message.type === 'bot'"
+                class="message-avatar"
+              >
+                <i class="fas fa-robot" />
               </div>
               <div class="message-content">
                 <div class="message-bubble">
-                  <div class="message-text" v-html="message.text"></div>
-                  <div class="message-time">{{ formatTime(message.timestamp) }}</div>
-                  <div class="bubble-glow"></div>
+                  <div
+                    class="message-text"
+                    v-html="message.text"
+                  />
+                  <div class="message-time">
+                    {{ formatTime(message.timestamp) }}
+                  </div>
+                  <div class="bubble-glow" />
                 </div>
               </div>
             </div>
           </div>
 
-          <div v-if="isTyping" class="typing-indicator">
+          <div
+            v-if="isTyping"
+            class="typing-indicator"
+          >
             <div class="typing-avatar">
-              <i class="fas fa-robot"></i>
+              <i class="fas fa-robot" />
             </div>
             <div class="typing-content">
               <div class="typing-dots">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span />
+                <span />
+                <span />
               </div>
             </div>
           </div>
         </div>
 
         <div class="chat-input">
-          <form @submit.prevent="sendMessage" class="input-form">
+          <form
+            class="input-form"
+            @submit.prevent="sendMessage"
+          >
             <div class="input-container">
               <input
+                ref="messageInput"
                 v-model="currentMessage"
                 :placeholder="$t('chatbot.placeholder') || 'Type your message...'"
                 class="message-input"
-                ref="messageInput"
                 :disabled="isTyping"
-              />
-              <div class="input-glow"></div>
+              >
+              <div class="input-glow" />
             </div>
-            <button type="submit" class="send-btn" :disabled="!currentMessage.trim() || isTyping">
-              <div class="btn-background"></div>
-              <i class="fas fa-paper-plane"></i>
-              <div class="send-ripple"></div>
+            <button
+              type="submit"
+              class="send-btn"
+              :disabled="!currentMessage.trim() || isTyping"
+            >
+              <div class="btn-background" />
+              <i class="fas fa-paper-plane" />
+              <div class="send-ripple" />
             </button>
           </form>
         </div>
@@ -134,6 +223,14 @@ export default {
       unreadCount: 1,
       messages: []
     };
+  },
+  
+  mounted() {
+    // Add initial notification
+    setTimeout(() => {
+      this.hasUnreadMessage = true;
+      this.unreadCount = 1;
+    }, 3000);
   },
   methods: {
     toggleChat() {
@@ -224,43 +321,73 @@ export default {
         }
       });
     }
-  },
-  
-  mounted() {
-    // Add initial notification
-    setTimeout(() => {
-      this.hasUnreadMessage = true;
-      this.unreadCount = 1;
-    }, 3000);
   }
 };
 </script>
 
 <style scoped>
-.chatbot-container {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 10000;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+/* Enhanced CSS Variables with Quantum Theme */
+:root {
+  --primary-color: rgba(255, 107, 53, 1);
+  --secondary-color: rgba(245, 158, 11, 1);
+  --tertiary-color: rgba(217, 119, 6, 1);
+  --quantum-blue: rgba(59, 130, 246, 1);
+  --quantum-purple: rgba(139, 92, 246, 1);
+  --quantum-green: rgba(34, 197, 94, 1);
+  --gradient-magical: linear-gradient(135deg, rgba(255, 107, 53, 0.9) 0%, rgba(245, 158, 11, 0.8) 50%, rgba(217, 119, 6, 0.9) 100%);
+  --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, var(--tertiary-color) 100%);
+  --gradient-tertiary: linear-gradient(135deg, var(--tertiary-color) 0%, var(--primary-color) 100%);
+  --gradient-quantum: linear-gradient(135deg, var(--quantum-blue) 0%, var(--quantum-purple) 50%, var(--primary-color) 100%);
+  --gradient-cyber: linear-gradient(135deg, var(--quantum-green) 0%, var(--quantum-blue) 100%);
+  --success-color: var(--quantum-green);
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
 }
 
-/* Enhanced Toggle Button */
+/* Chatbot Container with Super High Z-Index */
+.chatbot-container {
+  position: fixed !important;
+  bottom: 2rem !important;
+  right: 2rem !important;
+  z-index: 999999 !important;
+  pointer-events: none;
+  /* Create a new stacking context to ensure z-index is respected */
+  transform: translateZ(0);
+}
+
+/* Revolutionary Quantum Toggle */
 .chatbot-toggle {
-  position: relative;
-  width: 70px;
-  height: 70px;
+  width: 3.5rem;
+  height: 3.5rem;
+  background: var(--primary-gradient);
   border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  z-index: 999999;
+  pointer-events: all;
+  box-shadow: 
+    0 8px 32px rgba(138, 43, 226, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Revolutionary Quantum Background */
+.toggle-quantum-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
   overflow: hidden;
 }
 
-.toggle-background {
+.quantum-orb {
   position: absolute;
   top: 0;
   left: 0;
@@ -268,8 +395,21 @@ export default {
   height: 100%;
   background: var(--gradient-magical);
   border-radius: 50%;
-  transition: all 0.3s ease;
-  animation: backgroundPulse 3s ease-in-out infinite;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: quantumOrbPulse 3s ease-in-out infinite;
+}
+
+.quantum-energy-field {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: var(--gradient-quantum);
+  border-radius: 50%;
+  filter: blur(15px);
+  opacity: 0.6;
+  animation: energyFieldRotate 8s linear infinite;
 }
 
 .toggle-icon {
@@ -277,90 +417,188 @@ export default {
   z-index: 3;
   color: white;
   font-size: 1.5rem;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.icon-quantum-glow {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: var(--gradient-magical);
+  border-radius: 50%;
+  filter: blur(10px);
+  opacity: 0.7;
+  animation: iconGlowPulse 2s ease-in-out infinite;
+  z-index: -1;
+}
+
+/* Enhanced Pulse Rings - Simplified */
 .pulse-rings {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
 }
 
 .pulse-ring {
   position: absolute;
+  border: 2px solid var(--secondary-color);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Quantum Particles - Simplified */
+.toggle-particles {
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 2px solid var(--primary-color);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.quantum-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--secondary-color);
   border-radius: 50%;
-  animation: pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.ring-1 {
-  width: 70px;
-  height: 70px;
-  animation-delay: 0s;
+/* Lightning Effects - Simplified */
+.toggle-lightning {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
 }
 
-.ring-2 {
-  width: 90px;
-  height: 90px;
-  animation-delay: 0.3s;
+.lightning-bolt {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(45deg, var(--secondary-color), transparent);
+  opacity: 0;
+  pointer-events: none;
 }
 
-.ring-3 {
-  width: 110px;
-  height: 110px;
-  animation-delay: 0.6s;
-}
-
+/* Enhanced Notification Badge */
 .notification-badge {
   position: absolute;
-  top: -5px;
-  right: -5px;
-  background: var(--secondary-color);
+  top: -8px;
+  right: -8px;
+  background: var(--gradient-quantum);
   color: white;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
   font-weight: 700;
   border: 2px solid white;
-  animation: badgeBounce 2s infinite;
-  z-index: 4;
+  animation: quantumBadgePulse 2s infinite;
+  z-index: 5;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+.badge-number {
+  position: relative;
+  z-index: 2;
+}
+
+.badge-quantum-glow {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: var(--gradient-cyber);
+  border-radius: 50%;
+  filter: blur(8px);
+  opacity: 0.8;
+  animation: badgeGlowRotate 3s linear infinite;
+  z-index: -1;
+}
+
+.badge-energy-ring {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid var(--quantum-green);
+  border-radius: 50%;
+  animation: badgeRingPulse 2s ease-in-out infinite;
+  opacity: 0.7;
 }
 
 .chatbot-toggle:hover {
-  transform: translateY(-5px) scale(1.1);
-  box-shadow: 0 15px 35px rgba(255, 107, 53, 0.4);
+  transform: translateY(-8px) scale(1.15);
+  box-shadow: 
+    0 20px 40px rgba(255, 107, 53, 0.4),
+    0 0 30px rgba(59, 130, 246, 0.3);
 }
 
-.chatbot-toggle:hover .toggle-background {
-  background: var(--gradient-secondary);
-  transform: scale(1.1);
+.chatbot-toggle:hover .quantum-orb {
+  background: var(--gradient-cyber);
+  transform: scale(1.1) rotate(180deg);
+}
+
+.chatbot-toggle:hover .quantum-energy-field {
+  opacity: 0.9;
+  filter: blur(20px);
+  animation-duration: 4s;
 }
 
 .chatbot-toggle:hover .toggle-icon {
-  transform: scale(1.2) rotate(15deg);
+  transform: scale(1.3) rotate(15deg);
+  color: #fff;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
 }
 
-.chatbot-toggle.active .toggle-background {
+.chatbot-toggle:hover .quantum-particle {
+  animation-duration: 3s;
+  transform: scale(1.5);
+}
+
+.chatbot-toggle:hover .lightning-bolt {
+  opacity: 1;
+  animation-duration: 1s;
+}
+
+.chatbot-toggle.active .quantum-orb {
   background: var(--gradient-tertiary);
-  animation: none;
+  animation: quantumOrbActive 2s ease-in-out infinite;
+}
+
+.chatbot-toggle.active .quantum-energy-field {
+  background: var(--gradient-magical);
+  animation: energyFieldActive 6s linear infinite;
 }
 
 /* Enhanced Chat Window */
 .chatbot-window {
-  position: absolute;
-  bottom: 80px;
-  right: 0;
-  width: 380px;
-  height: 500px;
+  position: fixed;
+  bottom: 5rem;
+  right: 2rem;
+  z-index: 99998;
+  pointer-events: auto;
+  max-width: 360px;
+  width: 360px;
+  max-height: 80vh;
+  min-width: 260px;
+  box-sizing: border-box;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -877,7 +1115,7 @@ export default {
 }
 
 /* Animation Keyframes */
-@keyframes backgroundPulse {
+@keyframes quantumOrbPulse {
   0%, 100% {
     transform: scale(1);
     box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
@@ -886,6 +1124,52 @@ export default {
     transform: scale(1.05);
     box-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
   }
+}
+
+@keyframes energyFieldRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes iconGlowPulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes particleOrbit {
+  0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+}
+
+@keyframes lightningFlash {
+  0%, 90%, 100% { opacity: 0; }
+  5%, 15% { opacity: 1; }
+}
+
+@keyframes quantumBadgePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
+  50% { transform: scale(1.1); box-shadow: 0 0 25px rgba(59, 130, 246, 0.8); }
+}
+
+@keyframes badgeGlowRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes badgeRingPulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes quantumOrbActive {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(180deg); }
+}
+
+@keyframes energyFieldActive {
+  0% { transform: rotate(0deg); filter: blur(15px); }
+  50% { transform: rotate(180deg); filter: blur(25px); }
+  100% { transform: rotate(360deg); filter: blur(15px); }
 }
 
 @keyframes pulseRing {
@@ -1033,14 +1317,16 @@ export default {
 /* Responsive Design */
 @media (max-width: 768px) {
   .chatbot-container {
-    bottom: 1rem;
+    bottom: 1.5rem;
     right: 1rem;
   }
   
   .chatbot-window {
-    width: 320px;
-    height: 450px;
-    bottom: 70px;
+    width: 90vw;
+    max-width: 340px;
+    min-width: 280px;
+    bottom: 4.5rem;
+    right: 1rem;
   }
   
   .chat-header {
@@ -1057,10 +1343,17 @@ export default {
 }
 
 @media (max-width: 480px) {
+  .chatbot-container {
+    bottom: 1rem;
+    right: 0.5rem;
+  }
+  
   .chatbot-window {
-    width: calc(100vw - 2rem);
-    max-width: 300px;
-    height: 400px;
+    width: 95vw;
+    max-width: 95vw;
+    min-width: 280px;
+    bottom: 4rem;
+    right: 0.5rem;
   }
   
   .quick-actions {

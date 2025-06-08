@@ -2,28 +2,36 @@
   <section class="social-proof-testimonials">
     <!-- Enhanced background with particles -->
     <div class="background-effects">
-      <div class="particles-container"></div>
+      <div class="particles-container" />
       <div class="floating-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
+        <div class="shape shape-1" />
+        <div class="shape shape-2" />
+        <div class="shape shape-3" />
       </div>
     </div>
 
     <!-- Enhanced title with animation -->
-    <div class="section-header" data-aos="fade-down">
+    <div
+      class="section-header"
+      data-aos="fade-down"
+    >
       <div class="title-badge">
-        <i class="fas fa-star"></i>
-        <span>{{ $t("socialProof.badge") || "Trusted Partners" }}</span>
+        <i class="fas fa-star" />
+                  <span>{{ $t("socialProof.toolkitTitle") }}</span>
       </div>
       <h2 class="section-title">
-        <span class="title-main">{{ $t("socialProof.mediaTitle") || "Our Social Media Presence" }}</span>
-        <div class="title-underline"></div>
+        <span class="title-main">{{ $t("socialProof.mediaTitle") }}</span>
+        <div class="title-underline" />
       </h2>
     </div>
 
     <!-- Enhanced social media scroller -->
-    <div class="scroller" data-speed="fast" data-aos="fade-up" data-aos-delay="200">
+    <div
+      class="scroller"
+      data-speed="fast"
+      data-aos="fade-up"
+      data-aos-delay="200"
+    >
       <div class="socials scroller__inner">
         <a
           v-for="social in socialMedia"
@@ -33,8 +41,11 @@
           class="social-item magical-card"
         >
           <div class="social-icon-container">
-            <img :src="getImageUrl(social.icon)" :alt="social.name" />
-            <div class="icon-glow"></div>
+            <img
+              :src="getImageUrl(social.icon)"
+              :alt="social.name"
+            >
+            <div class="icon-glow" />
           </div>
           <p class="description">
             {{ $t("socialProof." + social.name.toLowerCase()) || social.name }}
@@ -43,36 +54,44 @@
             <span class="followers-count">{{ social.followers || '10K+' }}</span>
             <span class="followers-label">{{ $t("socialProof.followers") || "Followers" }}</span>
           </div>
-          <div class="card-shimmer"></div>
+          <div class="card-shimmer" />
         </a>
       </div>
     </div>
 
     <!-- Enhanced toolkit section -->
     <div class="toolkit-section">
-      <div class="section-header" data-aos="fade-down" data-aos-delay="400">
+      <div
+        class="section-header"
+        data-aos="fade-down"
+        data-aos-delay="400"
+      >
         <div class="title-badge">
-          <i class="fas fa-tools"></i>
-          <span>{{ $t("socialProof.toolkitBadge") || "Our Toolkit" }}</span>
+          <i class="fas fa-tools" />
+          <span>{{ $t("socialProof.toolkitTitle") }}</span>
         </div>
         <h2 class="section-title">
-          <span class="title-main">{{ $t("socialProof.toolkitTitle") || "Professional Tools & Services" }}</span>
-          <div class="title-underline"></div>
+          <span class="title-main">{{ $t("socialProof.toolkitTitle") }}</span>
+          <div class="title-underline" />
         </h2>
       </div>
       
-      <div class="toolkit animate-slideIn" data-aos="fade-up" data-aos-delay="600">
+      <div
+        class="toolkit animate-slideIn"
+        data-aos="fade-up"
+        data-aos-delay="600"
+      >
         <div
-          class="toolkit-item magical-card"
           v-for="(item, index) in toolkit"
           :key="index"
-          @click="openModal(item)"
+          class="toolkit-item magical-card"
           :data-aos="'zoom-in'"
           :data-aos-delay="800 + (index * 100)"
+          @click="openModal(item)"
         >
           <div class="toolkit-icon-container">
-            <i :class="item.icon"></i>
-            <div class="icon-pulse"></div>
+            <i :class="item.icon" />
+            <div class="icon-pulse" />
           </div>
           <h3>{{ $t("socialProof.toolkit.item" + (index + 1) + ".title") || `Tool ${index + 1}` }}</h3>
           <p>
@@ -80,25 +99,34 @@
           </p>
           <div class="toolkit-cta">
             <span>{{ $t("socialProof.learnMore") || "Learn More" }}</span>
-            <i class="fas fa-arrow-right"></i>
+            <i class="fas fa-arrow-right" />
           </div>
-          <div class="card-glow"></div>
+          <div class="card-glow" />
         </div>
       </div>
     </div>
 
     <!-- Enhanced modal -->
-    <v-dialog v-model="isModalOpen" max-width="500px">
+    <v-dialog
+      v-model="isModalOpen"
+      max-width="500px"
+    >
       <v-card class="magical-modal">
-        <v-card-title class="headline">{{ selectedItem.title }}</v-card-title>
+        <v-card-title class="headline">
+          {{ selectedItem.title }}
+        </v-card-title>
         <v-card-text>
           <p>{{ selectedItem.description }}</p>
         </v-card-text>
         <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="isModalOpen = false"
-            >Close</v-btn
+          <v-spacer />
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="isModalOpen = false"
           >
+            Close
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -173,6 +201,11 @@ export default {
       return this.testimonials.length * 320;
     },
   },
+  mounted() {
+    this.createParticles();
+    this.initializeAnimations();
+    this.setupScrollerAnimation();
+  },
   methods: {
     getImageUrl(image) {
       return require(`@/assets/${image}`);
@@ -225,15 +258,16 @@ export default {
       }
     },
     addScrollerAnimation() {
-      const scroller = document.querySelectorAll(".scroller");
+      const scroller = document.querySelectorAll('.scroller');
       scroller.forEach((scroller) => {
-        scroller.setAttribute("data-animated", true);
-        const scrollerInner = scroller.querySelector(".scroller__inner");
+        if (scroller.getAttribute('data-cloned')) return;
+        scroller.setAttribute('data-animated', true);
+        scroller.setAttribute('data-cloned', 'true');
+        const scrollerInner = scroller.querySelector('.scroller__inner');
         const scrollerContent = Array.from(scrollerInner.children);
-
         scrollerContent.forEach((item) => {
           const duplicatedItem = item.cloneNode(true);
-          duplicatedItem.setAttribute("aria-hidden", true);
+          duplicatedItem.setAttribute('aria-hidden', true);
           scrollerInner.appendChild(duplicatedItem);
         });
       });
@@ -246,11 +280,6 @@ export default {
         }
       }, 16);
     },
-  },
-  mounted() {
-    this.createParticles();
-    this.initializeAnimations();
-    this.setupScrollerAnimation();
   },
 };
 </script>
@@ -407,12 +436,31 @@ export default {
   --_animation-duration: 60s;
 }
 
-.scroller__inner {
-  padding-block: 1rem;
+.socials.scroller__inner {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 2rem;
-  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 900px) {
+  .socials.scroller__inner {
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .socials.scroller__inner {
+    gap: 1rem;
+    padding: 0 0.5rem;
+    justify-content: center;
+  }
 }
 
 /* Enhanced social item cards */
@@ -427,14 +475,15 @@ export default {
 .magical-card {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1.5px solid #ff6b3522;
   border-radius: 24px;
   padding: 2rem;
   text-align: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 24px #ff6b3533, 0 1.5px 8px #1e293b33;
   transform-style: preserve-3d;
+  transition: box-shadow 0.3s, transform 0.3s;
 }
 
 .magical-card::before {
@@ -451,8 +500,8 @@ export default {
 }
 
 .magical-card:hover {
-  transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 30px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 8px 32px #ff6b35cc, 0 2px 12px #1e293b99;
+  transform: translateY(-4px) scale(1.03);
 }
 
 .social-icon-container {

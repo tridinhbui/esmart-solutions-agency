@@ -181,11 +181,41 @@
   },
   "hero": {
     "title": "ESmart Solutions Agency",
+    "subtitle": "Transform Your Business",
     "description": "ESmart Solutions Agency is a professional partner and companion for Vietnamese businesses on the journey to build and develop reputable and quality brands.",
+    "badge": "Digital Innovation Leader",
+    "stats": {
+      "projects": "Projects",
+      "satisfaction": "Satisfaction",
+      "support": "24/7 Support"
+    },
     "buttons": {
+      "getStarted": "Get Started",
+      "watchDemo": "Watch Demo",
       "join": "Join Us",
       "contact": "Contact Us"
-    }
+    },
+    "trustedBy": "Trusted by 1000+ companies",
+    "cards": {
+      "analytics": {
+        "title": "Data Analytics",
+        "description": "Track and analyze marketing performance with detailed reports to optimize business strategies"
+      },
+      "team": {
+        "title": "Professional Team",
+        "description": "Experienced team of experts committed to delivering high-quality services and 24/7 support"
+      },
+      "growth": {
+        "title": "Sustainable Growth",
+        "description": "Long-term development strategies to help businesses expand markets and increase stable revenue"
+      },
+      "innovation": {
+        "title": "Creative Innovation",
+        "description": "Apply AI technology and advanced solutions to create unique customer experiences"
+      }
+    },
+    "logoAlt": "ESmart Logo",
+    "scrollDown": "Scroll Down"
   },
   "feats": {
     "sectionTitle": "Website Development",

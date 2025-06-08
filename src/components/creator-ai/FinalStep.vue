@@ -1,9 +1,14 @@
 <template>
   <div class="step-content">
     <h2>Final Step</h2>
-    <div v-if="hasProjectId" class="project-info">
+    <div
+      v-if="hasProjectId"
+      class="project-info"
+    >
       <h3>{{ projectTitle }}</h3>
-      <p v-if="projectDescription">{{ projectDescription }}</p>
+      <p v-if="projectDescription">
+        {{ projectDescription }}
+      </p>
       <div class="project-status">
         <span :class="['status-badge', projectStatus]">
           {{ projectStatus === "in_progress" ? "In Progress" : "Finished" }}
@@ -11,36 +16,56 @@
         <button
           v-if="projectStatus === 'in_progress'"
           class="status-button"
-          @click="markAsFinished"
           :disabled="loading"
+          @click="markAsFinished"
         >
           {{ loading ? "Updating..." : "Mark as Finished" }}
         </button>
         <button
           v-else
           class="status-button"
-          @click="markAsInProgress"
           :disabled="loading"
+          @click="markAsInProgress"
         >
           {{ loading ? "Updating..." : "Mark as In Progress" }}
         </button>
       </div>
-      <p v-if="error" class="error-message">{{ error }}</p>
+      <p
+        v-if="error"
+        class="error-message"
+      >
+        {{ error }}
+      </p>
     </div>
-    <div v-else class="project-info warning">
+    <div
+      v-else
+      class="project-info warning"
+    >
       <p>
         This content is not saved to a project. Create a new project to save
         your work.
       </p>
     </div>
     <div class="final-content">
-      <h3 class="mb-3">Generated Content</h3>
-      <div v-if="loading" class="d-flex justify-content-center">
-        <div class="spinner-border text-primary" role="status">
+      <h3 class="mb-3">
+        Generated Content
+      </h3>
+      <div
+        v-if="loading"
+        class="d-flex justify-content-center"
+      >
+        <div
+          class="spinner-border text-primary"
+          role="status"
+        >
           <span class="visually-hidden">Loading...</span>
         </div>
       </div>
-      <div v-else class="content-box" v-html="formattedContent"></div>
+      <div
+        v-else
+        class="content-box"
+        v-html="formattedContent"
+      />
     </div>
 
     <div class="final-image-section">
@@ -50,28 +75,36 @@
           v-if="imageLoading"
           class="d-flex justify-content-center align-items-center image-loading"
         >
-          <div class="spinner-border text-primary" role="status">
+          <div
+            class="spinner-border text-primary"
+            role="status"
+          >
             <span class="visually-hidden">Loading...</span>
           </div>
-          <p class="loading-text">Loading image...</p>
+          <p class="loading-text">
+            Loading image...
+          </p>
         </div>
-        <div v-else-if="imageError" class="no-image-placeholder">
-          <i class="fa-solid fa-triangle-exclamation fa-3x"></i>
+        <div
+          v-else-if="imageError"
+          class="no-image-placeholder"
+        >
+          <i class="fa-solid fa-triangle-exclamation fa-3x" />
           <p>{{ imageError }}</p>
           <div class="image-error-actions">
             <button
               v-if="hasContentId"
-              @click="generateImageForContent"
               class="btn btn-primary mt-2"
+              @click="generateImageForContent"
             >
-              <i class="fa-solid fa-image"></i> Tạo hình ảnh mới
+              <i class="fa-solid fa-image" /> Tạo hình ảnh mới
             </button>
             <button
               v-if="hasContentId"
-              @click="loadImageFromDatabase"
               class="btn btn-secondary mt-2 ms-2"
+              @click="loadImageFromDatabase"
             >
-              <i class="fa-solid fa-rotate"></i> Tải lại hình ảnh
+              <i class="fa-solid fa-rotate" /> Tải lại hình ảnh
             </button>
           </div>
         </div>
@@ -82,16 +115,19 @@
           class="img-fluid rounded mb-3"
           @error="handleImageError"
           @load="handleImageLoad"
-        />
-        <div v-else class="no-image-placeholder">
-          <i class="fa-solid fa-image fa-5x"></i>
+        >
+        <div
+          v-else
+          class="no-image-placeholder"
+        >
+          <i class="fa-solid fa-image fa-5x" />
           <p>Không có hình ảnh</p>
           <button
             v-if="hasContentId"
-            @click="generateImageForContent"
             class="btn btn-primary mt-3"
+            @click="generateImageForContent"
           >
-            <i class="fa-solid fa-image"></i> Tạo hình ảnh
+            <i class="fa-solid fa-image" /> Tạo hình ảnh
           </button>
         </div>
 
@@ -101,7 +137,7 @@
             class="btn btn-success mt-2"
             @click="generateImageForContent"
           >
-            <i class="fas fa-magic me-1"></i>
+            <i class="fas fa-magic me-1" />
             Generate Image
           </button>
         </div>
@@ -111,16 +147,25 @@
     <div class="final-actions">
       <div class="action-buttons">
         <div class="additional-actions">
-          <button class="btn btn-outline-primary" @click="exportContent">
-            <i class="fas fa-file-export me-1"></i>
+          <button
+            class="btn btn-outline-primary"
+            @click="exportContent"
+          >
+            <i class="fas fa-file-export me-1" />
             Export
           </button>
-          <button class="btn btn-outline-primary" @click="shareContent">
-            <i class="fas fa-share-alt me-1"></i>
+          <button
+            class="btn btn-outline-primary"
+            @click="shareContent"
+          >
+            <i class="fas fa-share-alt me-1" />
             Share
           </button>
-          <button class="btn btn-outline-primary" @click="downloadPDF">
-            <i class="fas fa-file-pdf me-1"></i>
+          <button
+            class="btn btn-outline-primary"
+            @click="downloadPDF"
+          >
+            <i class="fas fa-file-pdf me-1" />
             Download PDF
           </button>
         </div>
@@ -131,20 +176,30 @@
           class="btn btn-light"
           @click="$emit('prev')"
         >
-          <i class="fas fa-arrow-left me-1"></i>
+          <i class="fas fa-arrow-left me-1" />
           Previous Step
         </button>
-        <button v-else class="btn btn-light" @click="$emit('go-to-dashboard')">
-          <i class="fas fa-home me-1"></i>
+        <button
+          v-else
+          class="btn btn-light"
+          @click="$emit('go-to-dashboard')"
+        >
+          <i class="fas fa-home me-1" />
           Back to Dashboard
         </button>
-        <button class="btn btn-success" @click="$emit('new')">
-          <i class="fas fa-plus me-1"></i>
+        <button
+          class="btn btn-success"
+          @click="$emit('new')"
+        >
+          <i class="fas fa-plus me-1" />
           Create New
         </button>
       </div>
     </div>
-    <div v-if="saveMessage" :class="['save-message', saveStatus]">
+    <div
+      v-if="saveMessage"
+      :class="['save-message', saveStatus]"
+    >
       {{ saveMessage }}
     </div>
 
@@ -157,7 +212,9 @@
         @click="removeToast(toast.id)"
       >
         <span>{{ toast.message }}</span>
-        <button class="toast-close-btn">&times;</button>
+        <button class="toast-close-btn">
+          &times;
+        </button>
       </div>
     </div>
   </div>
@@ -272,6 +329,42 @@ export default {
       }
 
       return null;
+    },
+  },
+  watch: {
+    generatedImage: {
+      immediate: true,
+      handler(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          console.log("generatedImage changed:", newValue);
+
+          // If we get a new generatedImage value, update localImage
+          if (newValue) {
+            this.localImage = newValue;
+          }
+          // Don't clear localImage if newValue is null - we may already have a valid image
+          // from fetchContentImage
+        }
+      },
+    },
+    contentId: {
+      immediate: true,
+      handler(newValue, oldValue) {
+        if (newValue && newValue !== oldValue) {
+          console.log("Content ID changed from", oldValue, "to", newValue);
+
+          // Only clear localImage if we're switching to a different content
+          if (oldValue) {
+            this.localImage = null;
+          }
+
+          // Always fetch the image when contentId changes
+          this.fetchContentImage();
+
+          // Load image from database
+          this.loadImageFromDatabase();
+        }
+      },
     },
   },
   created() {
@@ -1435,42 +1528,6 @@ export default {
         this.$emit("update:image", originalUrl);
         this.imageLoading = false;
       }
-    },
-  },
-  watch: {
-    generatedImage: {
-      immediate: true,
-      handler(newValue, oldValue) {
-        if (newValue !== oldValue) {
-          console.log("generatedImage changed:", newValue);
-
-          // If we get a new generatedImage value, update localImage
-          if (newValue) {
-            this.localImage = newValue;
-          }
-          // Don't clear localImage if newValue is null - we may already have a valid image
-          // from fetchContentImage
-        }
-      },
-    },
-    contentId: {
-      immediate: true,
-      handler(newValue, oldValue) {
-        if (newValue && newValue !== oldValue) {
-          console.log("Content ID changed from", oldValue, "to", newValue);
-
-          // Only clear localImage if we're switching to a different content
-          if (oldValue) {
-            this.localImage = null;
-          }
-
-          // Always fetch the image when contentId changes
-          this.fetchContentImage();
-
-          // Load image from database
-          this.loadImageFromDatabase();
-        }
-      },
     },
   },
 };
