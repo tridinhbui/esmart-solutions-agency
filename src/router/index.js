@@ -52,15 +52,6 @@ const routes = [
     component: MarketingAssessment,
   },
   {
-    path: "/creator-ai",
-    name: "EsmartCreatorAI",
-    component: EsmartCreatorAIPage,
-    beforeEnter: (to, from, next) => {
-      console.log("Entering creator-ai route");
-      next();
-    },
-  },
-  {
     path: "/dashboard",
     name: "Dashboard",
     component: EsmartCreatorAIPage,
@@ -80,6 +71,10 @@ const routes = [
     name: "ContentDetail",
     component: EsmartCreatorAIPage,
     props: (route) => ({ id: route.params.id, type: "content" }),
+  },
+  {
+    path: "/",
+    redirect: "/intro",
   },
 ];
 

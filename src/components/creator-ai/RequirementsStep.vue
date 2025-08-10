@@ -360,7 +360,7 @@ Don't wait to enhance your understanding of ${topic}. Start your journey today!
 }
 
 h2 {
-  color: #1c1c4c;
+  color: black;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -380,7 +380,7 @@ h2 {
 
 .form-group label {
   font-weight: 500;
-  color: #1c1c4c;
+  color: black;
 }
 
 .form-group input,
@@ -408,7 +408,7 @@ h2 {
 }
 
 .primary-button {
-  background: #1c1c4c;
+  background: black;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -422,16 +422,16 @@ h2 {
 }
 
 .primary-button:hover:not(:disabled) {
-  background: #2a2a6c;
+  background: #333;
 }
 
 .primary-button:disabled {
-  background: #7a7a9c;
+  background: #666;
   cursor: not-allowed;
 }
 
 .loading-button {
-  background: #2a2a6c !important;
+  background: #333 !important;
 }
 
 .button-content {
@@ -444,8 +444,8 @@ h2 {
 
 .secondary-button {
   background: white;
-  color: #1c1c4c;
-  border: 1px solid #1c1c4c;
+  color: black;
+  border: 1px solid black;
   padding: 0.75rem 1.5rem;
   border-radius: 6px;
   cursor: pointer;
@@ -461,12 +461,12 @@ h2 {
 
 .loading-spinner {
   display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ffffff;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #e5e5e5;
   border-radius: 50%;
-  border-top-color: transparent;
-  animation: spin 1s linear infinite;
+  border-top-color: #333;
+  animation: spin 1.2s linear infinite;
 }
 
 @keyframes spin {

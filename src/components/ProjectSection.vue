@@ -30,11 +30,11 @@
         <div class="quantum-badge">
           <div class="badge-energy-core" />
           <i class="fas fa-rocket" />
-          <span>{{ $t("feats.sectionTitle") }}</span>
+          <span>Dự Án Nổi Bật</span>
           <div class="badge-quantum-trail" />
         </div>
         <h1 class="quantum-feats-title">
-          {{ $t("feats.mainTitle") }}
+          Trải Nghiệm Tính Năng Đặc Biệt Với ESmart
           <div class="title-energy-beam" />
           <div class="title-matrix-scan" />
         </h1>
@@ -69,11 +69,11 @@
           <!-- Revolutionary Feature Content -->
           <div class="feat-quantum-content">
             <h3 class="feat-title">
-              {{ $t(`feats.items.${index}.title`) }}
+              {{ feat.title }}
               <div class="title-energy-underline" />
             </h3>
             <div class="feat-description">
-              <span class="quantum-text">{{ $t(`feats.items.${index}.description`) }}</span>
+              <span class="quantum-text">{{ feat.description }}</span>
             </div>
             
             <!-- Quantum Feature Tags -->
@@ -106,11 +106,11 @@
         <div class="cta-energy-border" />
         <div class="cta-content">
           <h3 class="cta-title">
-            {{ $t("feats.cta.title") }}
+            Bắt Đầu Dự Án Của Bạn
             <div class="cta-title-glow" />
           </h3>
           <p class="cta-description">
-            {{ $t("feats.cta.description") }}
+            Liên hệ với chúng tôi để được tư vấn miễn phí
           </p>
           <div class="cta-buttons">
             <button
@@ -118,7 +118,7 @@
               @click="scrollToContact"
             >
               <div class="button-quantum-core" />
-              <span>{{ $t("feats.cta.button") }}</span>
+              <span>Liên Hệ Ngay</span>
               <div class="button-energy-trail" />
             </button>
             <button
@@ -145,22 +145,32 @@ export default {
       features: [
         { 
           icon: "fas fa-cogs",
+          title: "Elementor Page Builder",
+          description: "Công cụ xây dựng trang chuyên nghiệp với giao diện trực quan",
           tags: ["Drag & Drop", "Visual", "Advanced"]
         },
         { 
           icon: "fas fa-shopping-cart",
+          title: "Built-in Woocommerce", 
+          description: "Tích hợp sẵn hệ thống thương mại điện tử",
           tags: ["E-commerce", "Payments", "Secure"]
         },
         { 
           icon: "fas fa-globe",
+          title: "WPML Multilingual Support",
+          description: "Hỗ trợ đa ngôn ngữ toàn cầu",
           tags: ["Multi-language", "Global", "SEO"]
         },
         { 
           icon: "fas fa-video",
+          title: "Video Documentation",
+          description: "Tài liệu hướng dẫn bằng video chi tiết",
           tags: ["Tutorials", "Learning", "Support"]
         },
         { 
           icon: "fas fa-paint-brush",
+          title: "Unlimited Color Options",
+          description: "Tùy chỉnh màu sắc không giới hạn",
           tags: ["Unlimited", "Customizable", "Creative"]
         },
       ],

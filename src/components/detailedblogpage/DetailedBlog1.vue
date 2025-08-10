@@ -20,7 +20,7 @@
     </div>
 
     <!-- Use the global NavBar component -->
-    <NavBar />
+    
     
     <!-- Blog Content -->
     <div class="blog-container">
@@ -225,13 +225,12 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue';
+
 import AppFooter from '@/components/FooterBar.vue';
 
 export default {
   name: "DetailedBlog1",
   components: {
-    NavBar,
     AppFooter
   },
   data() {

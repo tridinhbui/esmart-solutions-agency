@@ -28,11 +28,11 @@
         <div class="quantum-badge">
           <div class="badge-energy-core" />
           <i class="fas fa-trophy" />
-          <span>{{ $t("features.title") }}</span>
+          <span>Thành Tựu Nổi Bật</span>
           <div class="badge-quantum-trail" />
         </div>
         <h2 class="quantum-achievements-title">
-          {{ $t("features.title") }}
+          Thành Tựu Nổi Bật
           <div class="title-energy-beam" />
           <div class="title-matrix-scan" />
         </h2>
@@ -80,11 +80,11 @@
           <!-- Quantum Content -->
           <div class="achievement-quantum-content">
             <h3 class="achievement-title">
-          {{ $t(`features.achievements.${index}.title`) }}
+              {{ achievements[index].title }}
               <div class="title-energy-underline" />
             </h3>
             <p class="achievement-description">
-              {{ $t(`features.achievements.${index}.description`) }}
+              {{ achievements[index].description }}
             </p>
         </div>
           
@@ -98,10 +98,10 @@
       <div class="portal-title-section">
         <div class="portal-badge">
           <i class="fas fa-rocket" />
-          <span>{{ $t("features.title") }}</span>
+          <span>Dịch Vụ Chuyên Nghiệp</span>
         </div>
         <h3 class="portal-title">
-          {{ $t("features.title") }}
+          Dịch Vụ Chuyên Nghiệp
           <div class="portal-title-glow" />
         </h3>
       </div>
@@ -118,10 +118,10 @@
               <div class="feature-icon-glow" />
             </div>
             <h4 class="feature-quantum-title">
-              {{ $t(`features.feature${index + 1}.title`) }}
+              {{ feature.title }}
             </h4>
             <p class="feature-quantum-description">
-              {{ $t(`features.feature${index + 1}.description`) }}
+              {{ feature.description }}
             </p>
             <div class="feature-energy-trail" />
           </div>
@@ -141,31 +141,51 @@ export default {
           icon: "fas fa-users",
           value: 20,
           currentValue: 0,
+          title: "Đội Ngũ Chuyên Nghiệp",
+          description: "Chuyên gia giàu kinh nghiệm trong lĩnh vực"
         },
         {
           icon: "fas fa-shopping-cart",
           value: 5000,
           currentValue: 0,
+          title: "Dự Án Thành Công",
+          description: "Dự án đã hoàn thành với chất lượng cao"
         },
         {
           icon: "fas fa-globe",
           value: 10,
           currentValue: 0,
+          title: "Thị Trường Quốc Tế",
+          description: "Mở rộng ra thị trường toàn cầu"
         },
         {
           icon: "fas fa-bullhorn",
           value: 1000000,
           currentValue: 0,
+          title: "Lượt Tiếp Cận",
+          description: "Người dùng được tiếp cận qua các kênh"
         },
       ],
       quantumFeatures: [
         {
           icon: "fas fa-users-cog",
-          title: "Revolutionary Team"
+          title: "Đội Ngũ Chuyên Nghiệp",
+          description: "Các ấn phẩm truyền thông của ESmart Solutions đã đạt được số lượng người tiếp cận lên tới 1,000,000+."
         },
         {
           icon: "fas fa-chart-line",
-          title: "Strategic Investment"
+          title: "Đầu Tư Chiến Lược",
+          description: "Esmart Solution đã gây quỹ tài trợ và nhận được sự hợp tác chiến lược từ tổ chức Macalester Entrepreneurship."
+        },
+        {
+          icon: "fas fa-rocket",
+          title: "Tăng Trưởng Vượt Trội",
+          description: "Tăng 300% lượt truy cập và chuyển đổi khách hàng hiệu quả."
+        },
+        {
+          icon: "fas fa-headset",
+          title: "Hỗ Trợ 24/7",
+          description: "Đội ngũ hỗ trợ chuyên nghiệp luôn sẵn sàng phục vụ."
         }
       ]
     };

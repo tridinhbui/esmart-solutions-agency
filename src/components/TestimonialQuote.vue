@@ -42,13 +42,13 @@
       <div class="testimonials-quantum-badge">
         <div class="badge-energy-core" />
         <i class="fas fa-comments" />
-        <span>{{ $t("socialProof.testimonialsTitle") }}</span>
+        <span>Khách Hàng Nói Gì</span>
         <div class="badge-quantum-ring" />
       </div>
 
       <!-- Revolutionary Title -->
       <h2 class="testimonials-revolutionary-title animate-slideIn" data-aos="fade-up" data-aos-delay="200">
-        <span class="title-main">{{ $t("socialProof.testimonialsTitle") }}</span>
+        <span class="title-main">Khách Hàng Nói Gì</span>
         <div class="title-energy-beams">
           <div class="energy-beam beam-1" />
           <div class="energy-beam beam-2" />

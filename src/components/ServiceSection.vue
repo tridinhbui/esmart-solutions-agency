@@ -27,7 +27,7 @@
       <div class="title-quantum-container">
         <div class="title-hologram-effect">
           <h2 class="quantum-process-title">
-            {{ $t("process.title") }}
+            Quy Trình Làm Việc Của Chúng Tôi
             <div class="title-energy-trail" />
           </h2>
           <div class="title-quantum-glow" />
@@ -70,7 +70,7 @@
         <!-- Content -->
         <div class="quantum-content">
           <h3 class="process-quantum-title">
-            {{ $t(step.title) }}
+            {{ step.title }}
             <div class="title-energy-underline" />
           </h3>
           <ul class="quantum-substeps">
@@ -78,9 +78,10 @@
               v-for="(subStep, subIndex) in step.subsSteps" 
               :key="subIndex"
               class="quantum-substep"
+              :style="{ animationDelay: `${subIndex * 0.1}s` }"
             >
-              <div class="substep-quantum-bullet" />
-              <span class="substep-text">{{ $t(`process.steps.${index}.subs.${subIndex}`) }}</span>
+              <div class="substep-quantum-marker"></div>
+              <span class="substep-text">{{ subStep }}</span>
             </li>
           </ul>
         </div>
@@ -113,8 +114,7 @@
     >
       <v-card>
         <v-card-title class="headline">
-          {{ $t(selectedStep.title)
-          }}
+          {{ selectedStep.title }}
         </v-card-title>
         <v-card-text>
           <ul>
@@ -122,7 +122,7 @@
               v-for="(subStep, subIndex) in selectedStep?.subsSteps || []"
               :key="subIndex"
             >
-              {{ $t(subStep) }}
+              {{ subStep }}
             </li>
           </ul>
         </v-card-text>
@@ -133,9 +133,7 @@
             text
             @click="isModalOpen = false"
           >
-            {{
-              $t("process.closeButton")
-            }}
+            Đóng
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -155,28 +153,28 @@ export default {
       },
       steps: [
         {
-          title: "process.steps.0.title",
+          title: "Tư Vấn & Phân Tích",
           subsSteps: [
-            "process.steps.0.subs.0",
-            "process.steps.0.subs.1",
-            "process.steps.0.subs.2",
+            "Khảo sát nhu cầu khách hàng",
+            "Phân tích thị trường mục tiêu", 
+            "Đánh giá đối thủ cạnh tranh"
           ],
         },
         {
-          title: "process.steps.1.title",
-          subsSteps: ["process.steps.1.subs.0"],
+          title: "Lập Kế Hoạch Chiến Lược",
+          subsSteps: ["Xây dựng roadmap chi tiết"],
         },
         {
-          title: "process.steps.2.title",
+          title: "Triển Khai Thực Hiện",
           subsSteps: [
-            "process.steps.2.subs.0",
-            "process.steps.2.subs.1",
-            "process.steps.2.subs.2",
+            "Phát triển sản phẩm/dịch vụ",
+            "Kiểm tra chất lượng",
+            "Tối ưu hóa hiệu suất"
           ],
         },
         {
-          title: "process.steps.3.title",
-          subsSteps: ["process.steps.3.subs.0", "process.steps.3.subs.1"],
+          title: "Bàn Giao & Hỗ Trợ",
+          subsSteps: ["Đào tạo sử dụng", "Hỗ trợ kỹ thuật 24/7"],
         },
       ],
     };

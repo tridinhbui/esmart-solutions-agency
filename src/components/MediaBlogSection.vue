@@ -18,8 +18,9 @@
           class="carousel-item"
         >
           <img
-            :src="require(`@/assets/${item.image}`)"
+            :src="getImageUrl(item.image)"
             :alt="item.title"
+            @error="handleImageError"
           >
           <div class="item-content">
             <h3>{{ item.title }}</h3>
@@ -45,10 +46,10 @@ export default {
       items: [
         { image: 'image1.jpg', title: 'Có thực sự đáng sống?', description: 'Khám phá các yếu tố tạo nên một cuộc sống đáng sống.' },
         { image: 'image2.jpg', title: 'Tình trạng hiện nay', description: 'Phân tích và đánh giá tình hình hiện tại của xã hội.' },
-        { image: 'image3.jpg', title: 'Thông điệp vũ trụ', description: 'Những thông điệp sâu sắc từ vũ trụ và những bài học cuộc sống.' },
-        { image: 'image4.jpg', title: 'Chăm sóc sức khỏe', description: 'Những bí quyết chăm sóc sức khỏe cho cuộc sống hiện đại.' },
-        { image: 'image5.jpg', title: 'Kinh nghiệm sống', description: 'Những kinh nghiệm quý báu để sống hạnh phúc và thành công.' },
-        { image: 'image6.jpg', title: 'Công nghệ và cuộc sống', description: 'Cách công nghệ đang thay đổi cuộc sống hàng ngày của chúng ta.' }
+        { image: 'bg.jpg', title: 'Thông điệp vũ trụ', description: 'Những thông điệp sâu sắc từ vũ trụ và những bài học cuộc sống.' },
+        { image: 'esmart_start.jpg', title: 'Chăm sóc sức khỏe', description: 'Những bí quyết chăm sóc sức khỏe cho cuộc sống hiện đại.' },
+        { image: 'esmart_end.jpg', title: 'Kinh nghiệm sống', description: 'Những kinh nghiệm quý báu để sống hạnh phúc và thành công.' },
+        { image: 'testimonial1.jpg', title: 'Công nghệ và cuộc sống', description: 'Cách công nghệ đang thay đổi cuộc sống hàng ngày của chúng ta.' }
       ]
     }
   },
@@ -60,6 +61,19 @@ export default {
     scrollRight() {
       const carousel = this.$refs.carouselContent;
       carousel.scrollBy({ left: 300, behavior: 'smooth' });
+    },
+    getImageUrl(imageName) {
+      try {
+        return require(`@/assets/${imageName}`);
+      } catch (error) {
+        console.warn(`Image not found: ${imageName}, using fallback`);
+        return 'https://via.placeholder.com/300x200/f8f9fa/6c757d?text=ESmart+Content';
+      }
+    },
+    handleImageError(event) {
+      console.warn('Media blog image failed to load');
+      event.target.src = 'https://via.placeholder.com/300x200/f8f9fa/6c757d?text=ESmart+Content';
+      event.target.classList.add('fallback-image');
     }
   }
 }

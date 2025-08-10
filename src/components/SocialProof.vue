@@ -17,10 +17,10 @@
     >
       <div class="title-badge">
         <i class="fas fa-star" />
-                  <span>{{ $t("socialProof.toolkitTitle") }}</span>
+                  <span>Bộ Công Cụ Của Chúng Tôi</span>
       </div>
       <h2 class="section-title">
-        <span class="title-main">{{ $t("socialProof.mediaTitle") }}</span>
+        <span class="title-main">Mạng Xã Hội</span>
         <div class="title-underline" />
       </h2>
     </div>
@@ -48,11 +48,11 @@
             <div class="icon-glow" />
           </div>
           <p class="description">
-            {{ $t("socialProof." + social.name.toLowerCase()) || social.name }}
+            {{ social.name }}
           </p>
           <div class="social-stats">
             <span class="followers-count">{{ social.followers || '10K+' }}</span>
-            <span class="followers-label">{{ $t("socialProof.followers") || "Followers" }}</span>
+            <span class="followers-label">Followers</span>
           </div>
           <div class="card-shimmer" />
         </a>
@@ -68,10 +68,10 @@
       >
         <div class="title-badge">
           <i class="fas fa-tools" />
-          <span>{{ $t("socialProof.toolkitTitle") }}</span>
+          <span>Bộ Công Cụ Của Chúng Tôi</span>
         </div>
         <h2 class="section-title">
-          <span class="title-main">{{ $t("socialProof.toolkitTitle") }}</span>
+          <span class="title-main">Bộ Công Cụ Của Chúng Tôi</span>
           <div class="title-underline" />
         </h2>
       </div>
@@ -93,12 +93,12 @@
             <i :class="item.icon" />
             <div class="icon-pulse" />
           </div>
-          <h3>{{ $t("socialProof.toolkit.item" + (index + 1) + ".title") || `Tool ${index + 1}` }}</h3>
+          <h3>{{ `Tool ${index + 1}` }}</h3>
           <p>
-            {{ $t("socialProof.toolkit.item" + (index + 1) + ".description") || "Professional tool description" }}
+            Professional tool description
           </p>
           <div class="toolkit-cta">
-            <span>{{ $t("socialProof.learnMore") || "Learn More" }}</span>
+            <span>Tìm Hiểu Thêm</span>
             <i class="fas fa-arrow-right" />
           </div>
           <div class="card-glow" />

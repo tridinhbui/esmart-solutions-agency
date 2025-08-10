@@ -328,64 +328,31 @@ export default {
 </script>
 
 <style scoped>
-/* Revolutionary Quantum Dashboard */
+/* Simple Black & White Dashboard */
 .step-content {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 107, 53, 0.2);
-  border-radius: 24px;
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
   padding: 3rem;
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.3),
-    0 0 50px rgba(255, 107, 53, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
 }
 
 .step-content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: -1;
+  display: none;
 }
 
 .step-content::after {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, 
-    rgba(255, 107, 53, 0.3) 0%, 
-    rgba(245, 158, 11, 0.3) 25%, 
-    rgba(217, 119, 6, 0.3) 50%, 
-    rgba(255, 107, 53, 0.3) 75%, 
-    rgba(245, 158, 11, 0.3) 100%);
-  border-radius: 24px;
-  z-index: -2;
-  animation: borderGlow 4s ease-in-out infinite;
+  display: none;
 }
 
 h2 {
-  color: white;
+  color: black;
   margin-bottom: 3rem;
   text-align: center;
   font-size: 2.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #d97706 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
   position: relative;
 }
 
@@ -397,12 +364,11 @@ h2::after {
   transform: translateX(-50%);
   width: 100px;
   height: 3px;
-  background: linear-gradient(90deg, transparent, #ff6b35, #f59e0b, #d97706, transparent);
+  background: black;
   border-radius: 2px;
-  animation: underlineGlow 3s ease-in-out infinite;
 }
 
-/* Quantum Content Grid */
+/* Simple Content Grid */
 .content-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -410,51 +376,28 @@ h2::after {
   margin-bottom: 3rem;
 }
 
-/* Revolutionary Quantum Content Cards */
+/* Simple Content Cards */
 .content-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 107, 53, 0.2);
-  border-radius: 20px;
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
   padding: 2rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
+  transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
-}
-
-.content-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 107, 53, 0.05) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.content-card:hover::before {
-  opacity: 1;
 }
 
 .content-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    0 0 40px rgba(255, 107, 53, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 107, 53, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: #333;
 }
 
 .content-card.finished {
-  border-color: rgba(34, 197, 94, 0.4);
+  border-color: #28a745;
 }
 
 .content-card.finished::before {
-  background: radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 70%);
+  display: none;
 }
 
 .card-header {
@@ -491,14 +434,10 @@ h2::after {
   font-size: 1.4rem;
   font-weight: 700;
   max-width: 70%;
-  color: white;
-  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: black;
 }
 
-/* Quantum Status Badges */
+/* Simple Status Badges */
 .status-badge,
 .content-type-badge {
   font-size: 0.8rem;
@@ -512,41 +451,34 @@ h2::after {
 }
 
 .status-badge::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s ease;
+  display: none;
 }
 
 .status-badge:hover::before {
-  left: 100%;
+  display: none;
 }
 
 .status-badge.in_progress {
-  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(245, 158, 11, 0.2));
-  color: #ff6b35;
-  border: 1px solid rgba(255, 107, 53, 0.3);
+  background: #f8f9fa;
+  color: #666;
+  border: 1px solid #ddd;
 }
 
 .status-badge.finished {
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(16, 185, 129, 0.2));
-  color: #22c55e;
-  border: 1px solid rgba(34, 197, 94, 0.3);
+  background: #f8f9fa;
+  color: #28a745;
+  border: 1px solid #28a745;
 }
 
 .content-type-badge {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.2));
-  color: #3b82f6;
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  background: #f8f9fa;
+  color: black;
+  border: 1px solid #333;
 }
 
 /* Quantum Description */
 .description {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
   margin-bottom: 1.5rem;
   font-size: 1rem;
   line-height: 1.6;
@@ -558,34 +490,30 @@ h2::after {
   -webkit-box-orient: vertical;
 }
 
-/* Quantum Meta Information */
-.content-meta {
+/* Simple Meta Information */
+.meta-info {
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
-  border-top: 1px solid rgba(255, 107, 53, 0.2);
+  color: rgba(0, 0, 0, 0.6);
+  border-top: 1px solid #e5e5e5;
   padding-top: 1rem;
   margin-top: 1rem;
-  font-weight: 500;
 }
 
 /* Quantum Empty State & Loading */
-.empty-state,
-.loading-indicator {
-  grid-column: 1 / -1;
+.empty-state {
   text-align: center;
   padding: 4rem;
-  color: rgba(255, 255, 255, 0.7);
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 107, 53, 0.2);
-  border-radius: 20px;
+  color: rgba(0, 0, 0, 0.7);
+  background: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
   position: relative;
 }
 
 .primary-button {
-  background: #1c1c4c;
+  background: black;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -601,8 +529,8 @@ h2::after {
 
 .secondary-button {
   background: transparent;
-  color: #1c1c4c;
-  border: 1px solid #1c1c4c;
+  color: black;
+  border: 1px solid black;
   padding: 0.75rem 1.5rem;
   border-radius: 6px;
   cursor: pointer;
@@ -691,7 +619,7 @@ h2::after {
 
 .project-menu h3 {
   margin-top: 0;
-  color: #1c1c4c;
+  color: black;
   margin-bottom: 0.5rem;
 }
 
@@ -727,7 +655,7 @@ h2::after {
 }
 
 .edit-button {
-  background-color: #1c1c4c;
+  background-color: black;
   color: white;
 }
 
@@ -778,7 +706,7 @@ h2::after {
 }
 
 .primary-button {
-  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #d97706 100%);
+  background: linear-gradient(135deg, black 0%, black 50%, black 100%);
   color: white;
   box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
 }

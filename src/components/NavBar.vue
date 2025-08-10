@@ -59,6 +59,7 @@
             <span>{{ $t("AboutUs.title") }}</span>
           </router-link>
         </li>
+
         
         <li class="language-switcher-item">
           <div class="language-switcher">
@@ -259,21 +260,15 @@ export default {
 <style scoped>
 /* Enhanced Quantum Navbar with Fixed Positioning */
 .navbar {
-  position: fixed !important;
-  top: 0 !important;
+  background: #121212;
+  border-bottom: 1px solid #333;
+  position: fixed;
+  top: 0;
   left: 0;
-  width: 100%;
-  z-index: 10000 !important;
+  right: 0;
+  z-index: 1000;
   padding: 1rem 2rem;
-  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-  background: rgba(10, 10, 20, 0.85);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    0 0 60px rgba(255, 107, 53, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
 .navbar-fixed {
@@ -282,12 +277,10 @@ export default {
 }
 
 .navbar-scrolled {
-  background: rgba(26, 26, 38, 0.7); /* Dark semi-transparent background */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  background: #121212;
   padding: 0.75rem 2rem;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+  border-bottom: 1px solid #333;
 }
 
 .navbar::before {
@@ -419,6 +412,26 @@ export default {
 .nav-item:hover::after,
 .nav-item.router-link-exact-active::after {
   width: 100%;
+}
+
+/* Special styling for creator AI link */
+.creator-ai-link {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 0.5rem 1rem !important;
+  backdrop-filter: blur(10px);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.85rem;
+}
+
+.creator-ai-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 /* Enhanced Language Switcher */

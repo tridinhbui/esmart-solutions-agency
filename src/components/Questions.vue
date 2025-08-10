@@ -185,7 +185,7 @@ export default {
                 },
                 {
                     question: 'eSmart phù hợp với loại hình doanh nghiệp nào?',
-                    answer: 'Chúng tôi phục vụ đa dạng khách hàng, từ doanh nghiệp nhỏ, startup đến các công ty lớn trong nhiều lĩnh vực như bán lẻ, giáo dục, tài chính, và sản xuất.'
+                    answer: 'Chúng tôi phục vụ đa dạng khách hàng, từ doanh nghiệp nhỏ, startup đến các agency lớn trong nhiều lĩnh vực như bán lẻ, giáo dục, tài chính, và sản xuất.'
                 },
                 {
                     question: 'Tôi không rành về công nghệ, eSmart có hỗ trợ không?',

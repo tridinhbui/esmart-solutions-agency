@@ -157,146 +157,56 @@
                 <i class="fas fa-rocket" />
                 <div class="icon-trail" />
               </div>
-              <span>{{ $t("hero.badge") }}</span>
+              <span>Giải Pháp Hàng Đầu</span>
             </div>
             <div class="badge-energy-field" />
           </div>
           
-          <!-- Quantum Title -->
-          <h1 class="quantum-title animate-slideIn" data-aos="fade-up" data-aos-delay="200">
-            <div class="title-matrix">
-              <span
-                class="matrix-line"
-                data-aos="fade-up"
-                data-aos-delay="200"
-              >
-                {{ $t("hero.title") || "ESmart Solutions Agency" }}
-              </span>
-              <span
-                class="quantum-gradient-text"
-                data-aos="fade-up"
-                data-aos-delay="400"
-              >
-                {{ $t("hero.subtitle") || "Transform Your Business" }}
-              </span>
-            </div>
-            <div class="title-energy-field">
-              <div class="energy-beam beam-1" />
-              <div class="energy-beam beam-2" />
-              <div class="energy-beam beam-3" />
-            </div>
-            <div class="quantum-decoration">
-              <div class="quantum-line" />
-              <div class="quantum-dots">
-                <span class="quantum-dot" />
-                <span class="quantum-dot" />
-                <span class="quantum-dot" />
-                <span class="quantum-dot" />
-              </div>
-            </div>
+          <!-- Simple Title -->
+          <h1 class="simple-hero-title">
+            <span class="main-title">ESmart Solutions Agency</span>
+            <span class="sub-title">Chuyển Đổi Doanh Nghiệp Của Bạn</span>
           </h1>
           
-          <!-- Enhanced Description with Glitch Effect -->
-          <div
-            class="hero-description glitch-text animate-fadeIn"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            {{ $t("hero.description") || "ESmart Solutions Agency is a professional partner and companion for Vietnamese businesses on the journey to build and develop reputable and quality brands." }}
-            <div class="text-glow-effect" />
+          <!-- Simple Description -->
+          <div class="simple-hero-description">
+            ESmart Solutions Agency là đối tác, người bạn đồng hành chuyên nghiệp cùng doanh nghiệp Việt Nam trên hành trình xây dựng và phát triển thương hiệu uy tín, chất lượng.
           </div>
           
-          <!-- Revolutionary Stats Grid -->
-          <div
-            class="quantum-stats-grid animate-slideIn"
-            data-aos="fade-up"
-            data-aos-delay="400"
-          >
-            <div class="quantum-stat-card">
-              <div class="stat-hologram">
-                <div class="stat-icon">
-                  <i class="fas fa-chart-line" />
-                </div>
-                <div class="stat-energy" />
-              </div>
-              <div class="stat-data">
-                <span class="stat-number">500+</span>
-                <span class="stat-label">{{ $t("hero.stats.projects") || "Projects" }}</span>
-              </div>
-              <div class="stat-plasma-field" />
+          <!-- Simple Stats Grid -->
+          <div class="simple-stats-grid">
+            <div class="simple-stat-card">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Dự Án</span>
             </div>
             
-            <div class="quantum-stat-card">
-              <div class="stat-hologram">
-                <div class="stat-icon">
-                  <i class="fas fa-heart" />
-                </div>
-                <div class="stat-energy" />
-              </div>
-              <div class="stat-data">
-                <span class="stat-number">98%</span>
-                <span class="stat-label">{{ $t("hero.stats.satisfaction") || "Satisfaction" }}</span>
-              </div>
-              <div class="stat-plasma-field" />
+            <div class="simple-stat-card">
+              <span class="stat-number">98%</span>
+              <span class="stat-label">Hài Lòng</span>
             </div>
             
-            <div class="quantum-stat-card">
-              <div class="stat-hologram">
-                <div class="stat-icon">
-                  <i class="fas fa-clock" />
-                </div>
-                <div class="stat-energy" />
-              </div>
-              <div class="stat-data">
-                <span class="stat-number">24/7</span>
-                <span class="stat-label">{{ $t("hero.stats.support") || "Support" }}</span>
-              </div>
-              <div class="stat-plasma-field" />
+            <div class="simple-stat-card">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label">Hỗ Trợ</span>
             </div>
           </div>
           
-          <!-- Enhanced Action Buttons -->
-          <div
-            class="quantum-action-hub animate-fadeIn"
-            data-aos="fade-up"
-            data-aos-delay="500"
-          >
-            <div class="action-buttons-grid">
-              <button
-                class="quantum-premium-btn get-started-btn"
-                @click="scrollToSection('marketing-assessment')"
-              >
-                <div class="btn-quantum-shell">
-                  <div class="shell-energy-core" />
-                  <div class="shell-glow-ring" />
-                </div>
-                <div class="btn-content">
-                  <i class="fas fa-rocket btn-icon" />
-                  <span class="btn-text">{{ $t("hero.buttons.getStarted") }}</span>
-                  <div class="btn-arrow">
-                    <i class="fas fa-arrow-right" />
-                  </div>
-                </div>
-                <div class="btn-energy-trail" />
+          <!-- Simple Action Buttons -->
+          <div class="simple-action-buttons">
+            <button class="simple-primary-btn" @click="scrollToSection('marketing-assessment')">
+              Bắt Đầu Ngay
+            </button>
+            
+            <button class="simple-secondary-btn" @click="scrollToSection('about-us')">
+              Xem Demo
+            </button>
+            
+                          <button class="simple-elegant-btn" @click="goToElegantDemo">
+                Khám Phá
               </button>
-              
-              <button
-                class="quantum-demo-btn"
-                @click="scrollToSection('about-us')"
-              >
-                <div class="demo-btn-frame">
-                  <div class="frame-border" />
-                  <div class="frame-glow" />
-                </div>
-                <div class="demo-content">
-                  <div class="play-icon-wrapper">
-                    <i class="fas fa-play" />
-                    <div class="play-pulse" />
-                  </div>
-                  <span>{{ $t("hero.buttons.watchDemo") }}</span>
-                </div>
-              </button>
-            </div>
+          </div>
+          
+
             
             <!-- Scroll Down Indicator -->
             <div 
@@ -315,7 +225,7 @@
                     <i class="fas fa-chevron-down" />
                   </div>
                 </div>
-                <span class="scroll-text">{{ $t("hero.scrollDown") }}</span>
+                <span class="scroll-text">Cuộn xuống</span>
               </div>
             </div>
           </div>
@@ -334,7 +244,7 @@
                   <div class="icon-glow" />
                 </div>
                 <div class="trust-text">
-                  <span class="trust-label">{{ $t("hero.trustedBy") }}</span>
+                  <span class="trust-label">Được tin tưởng bởi</span>
                   <div class="trust-companies-preview">
                     <div class="company-dot" v-for="i in 5" :key="i" />
                     <span class="companies-count">1000+</span>
@@ -410,8 +320,8 @@
                     <div class="icon-energy-pulse" />
                   </div>
                   <div class="mini-card-text">
-                    <h4 class="mini-card-title">{{ $t("hero.cards.analytics.title") }}</h4>
-                    <p class="mini-card-description">{{ $t("hero.cards.analytics.description") }}</p>
+                    <h4 class="mini-card-title">Phân Tích Dữ Liệu</h4>
+                    <p class="mini-card-description">Theo dõi và phân tích hiệu suất</p>
                   </div>
                 </div>
                 <div class="mini-card-particles">
@@ -431,8 +341,8 @@
                     <div class="icon-energy-pulse" />
                   </div>
                   <div class="mini-card-text">
-                    <h4 class="mini-card-title">{{ $t("hero.cards.team.title") }}</h4>
-                    <p class="mini-card-description">{{ $t("hero.cards.team.description") }}</p>
+                    <h4 class="mini-card-title">Đội Ngũ Chuyên Nghiệp</h4>
+                    <p class="mini-card-description">Chuyên gia giàu kinh nghiệm</p>
                   </div>
                 </div>
                 <div class="mini-card-particles">
@@ -452,8 +362,8 @@
                     <div class="icon-energy-pulse" />
                   </div>
                   <div class="mini-card-text">
-                    <h4 class="mini-card-title">{{ $t("hero.cards.growth.title") }}</h4>
-                    <p class="mini-card-description">{{ $t("hero.cards.growth.description") }}</p>
+                    <h4 class="mini-card-title">Tăng Trưởng Bền Vững</h4>
+                    <p class="mini-card-description">Phát triển doanh nghiệp lâu dài</p>
                   </div>
                 </div>
                 <div class="mini-card-particles">
@@ -473,8 +383,8 @@
                     <div class="icon-energy-pulse" />
                   </div>
                   <div class="mini-card-text">
-                    <h4 class="mini-card-title">{{ $t("hero.cards.innovation.title") }}</h4>
-                    <p class="mini-card-description">{{ $t("hero.cards.innovation.description") }}</p>
+                    <h4 class="mini-card-title">Đổi Mới Sáng Tạo</h4>
+                    <p class="mini-card-description">Giải pháp công nghệ tiên tiến</p>
                   </div>
                 </div>
                 <div class="mini-card-particles">
@@ -512,7 +422,6 @@
           </div>
         </div>
       </div>
-    </div>
     
     <!-- Revolutionary Scroll Indicator -->
     <div
@@ -532,7 +441,7 @@
           <div class="energy-beam" />
         </div>
       </div>
-      <span class="scroll-quantum-text">{{ $t("hero.scrollDown") }}</span>
+      <span class="scroll-quantum-text">Cuộn xuống</span>
       <div class="scroll-quantum-field" />
     </div>
   </section>
@@ -573,6 +482,9 @@ export default {
       } else {
         this.$router.push({ path: '/', hash: `#${sectionId}` });
       }
+    },
+    goToElegantDemo() {
+              this.$router.push('/about');
     },
     createParticles() {
       const particlesContainer = document.querySelector('.particles');
@@ -778,8 +690,15 @@ export default {
 <style scoped>
 /* Quantum Hero Revolutionary Design */
 .hero {
+  background: #ffffff;
+  color: #000000;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
+  padding: 2rem;
 }
 
 /* Revolutionary Quantum Background System */
@@ -1024,27 +943,19 @@ export default {
   flex-direction: column;
   gap: 0.75rem;
   position: relative;
-  background: var(--gradient-energy);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 4s ease-in-out infinite;
+  color: #000000;
 }
 
 .title-line {
   display: block;
   animation: fadeInUp 1.2s ease-out 0.3s both;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  color: #000000;
+  font-weight: 700;
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: fadeInUp 1.2s ease-out 0.6s both, gradientShift 4s ease-in-out infinite;
-  text-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+  color: #000000;
+  animation: fadeInUp 1.2s ease-out 0.6s both;
 }
 
 .title-decoration {
@@ -3438,6 +3349,8 @@ export default {
   display: flex;
   gap: 1.2rem;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .quantum-premium-btn {
@@ -3558,6 +3471,59 @@ export default {
   border: 1px solid rgba(255, 107, 53, 0.5);
   border-radius: 50%;
   animation: playPulse 2s ease-in-out infinite;
+}
+
+/* Elegant Demo Button Styles */
+.elegant-demo-btn {
+  position: relative;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(31, 41, 55, 0.9) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.elegant-demo-btn:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(31, 41, 55, 1) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.elegant-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.elegant-icon-wrapper {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.elegant-shine {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: 50%;
+  animation: elegantShine 3s infinite;
+}
+
+@keyframes elegantShine {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.2); }
 }
 
 /* Scroll Indicator Enhanced */
