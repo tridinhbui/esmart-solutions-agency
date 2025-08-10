@@ -23,7 +23,7 @@
       <!-- Magical Hero Content -->
       <div class="magical-hero-content">
         <h1 class="magical-title holographic-text">
-          <span class="company-name typing-effect mystical-glow">Công ty ESmart Solutions</span>
+          <span class="company-name typing-effect mystical-glow">ESmart Solutions Agency</span>
           <span class="main-title glitch-effect dimensional-shift">Chuyển đổi Doanh nghiệp của Bạn</span>
         </h1>
         <p class="simple-hero-description spectral-shimmer">
@@ -47,9 +47,9 @@
           <button class="simple-primary-btn enchanted-btn astral-projection" @click="scrollToAssessment">
             Bắt đầu ngay
           </button>
-          <button class="simple-secondary-btn enchanted-btn ethereal-float" @click="scrollToCreatorAI">
-            AI Creator
-          </button>
+                  <button class="simple-secondary-btn enchanted-btn ethereal-float" @click="scrollToAbout">
+          Khám Phá
+        </button>
         </div>
       </div>
     </div>
@@ -82,12 +82,12 @@ export default {
       this.scrollToSection('marketing-assessment');
     },
     
-    scrollToCreatorAI() {
-      this.$router.push('/creator-ai');
+    scrollToAbout() {
+      this.$router.push('/about');
     },
     
     goToElegantDemo() {
-      this.$router.push('/creator-ai');
+      this.$router.push('/about');
     },
     
     // Initialize counter animations
@@ -167,10 +167,10 @@ export default {
 </script>
 
 <style scoped>
-/* Simple Hero Section - Black & White Only */
+/* Simple Hero Section - White Background, Black Text */
 .simple-hero {
-  background: #121212;
-  color: #ffffff;
+  background: #ffffff;
+  color: #000000;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -199,20 +199,20 @@ export default {
 .main-title {
   font-size: 3.5rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 1.5rem;
   line-height: 1.2;
   text-align: center;
 }
 
 .title-line {
-  color: #ffffff;
+  color: #000000;
   font-weight: 700;
 }
 
 .sub-title {
   font-size: 1.4rem;
-  color: #b0b0b0;
+  color: #333333;
   margin-bottom: 1rem;
   font-weight: 500;
 }
@@ -220,7 +220,7 @@ export default {
 /* Simple Description */
 .simple-hero-description {
   font-size: 1.1rem;
-  color: #999;
+  color: #666666;
   margin-bottom: 2.5rem;
   max-width: 600px;
   line-height: 1.6;
@@ -435,7 +435,7 @@ export default {
 .typing-effect {
   display: block;
   font-size: 1.2rem;
-  color: #333;
+  color: #000000;
   margin-bottom: 1rem;
   overflow: hidden;
   border-right: 2px solid black;
@@ -447,7 +447,7 @@ export default {
   display: block;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
-  color: black;
+  color: #000000;
   margin-bottom: 1rem;
   line-height: 1.2;
 }

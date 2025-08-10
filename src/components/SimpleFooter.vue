@@ -36,7 +36,7 @@
             <li><router-link to="/#about-us">Về Chúng Tôi</router-link></li>
             <li><router-link to="/#project">Sản Phẩm</router-link></li>
             <li><router-link to="/blog">Blog</router-link></li>
-            <li><router-link to="/creator-ai">AI Creator</router-link></li>
+
           </ul>
         </div>
 

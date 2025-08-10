@@ -135,7 +135,7 @@ export default {
         {
           title: "Thông Tin Cơ Bản",
           description: "Cho chúng tôi biết về doanh nghiệp của bạn",
-          question: "Tên công ty/doanh nghiệp của bạn?",
+          question: "Tên agency/doanh nghiệp của bạn?",
           type: "text",
           placeholder: "VD: ABC Company"
         },

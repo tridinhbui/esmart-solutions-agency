@@ -8,7 +8,7 @@
 
       <nav class="nav-menu" :class="{ 'nav-open': isOpen }">
         <router-link to="/" class="nav-link" @click="closeMenu">Trang Chủ</router-link>
-        <router-link to="/creator-ai" class="nav-link" @click="closeMenu">AI Creator</router-link>
+
         <router-link to="/#marketing-assessment" class="nav-link" @click="closeMenu">Đánh Giá</router-link>
         <router-link to="/blog" class="nav-link" @click="closeMenu">Blog</router-link>
         <router-link to="/#project" class="nav-link" @click="closeMenu">Sản Phẩm</router-link>

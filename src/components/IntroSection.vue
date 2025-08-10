@@ -202,7 +202,7 @@
             </button>
             
                           <button class="simple-elegant-btn" @click="goToElegantDemo">
-                AI Creator
+                Khám Phá
               </button>
           </div>
           
@@ -484,7 +484,7 @@ export default {
       }
     },
     goToElegantDemo() {
-      this.$router.push('/creator-ai');
+              this.$router.push('/about');
     },
     createParticles() {
       const particlesContainer = document.querySelector('.particles');
@@ -690,8 +690,8 @@ export default {
 <style scoped>
 /* Quantum Hero Revolutionary Design */
 .hero {
-  background: #121212;
-  color: #ffffff;
+  background: #ffffff;
+  color: #000000;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -943,18 +943,18 @@ export default {
   flex-direction: column;
   gap: 0.75rem;
   position: relative;
-  color: black;
+  color: #000000;
 }
 
 .title-line {
   display: block;
   animation: fadeInUp 1.2s ease-out 0.3s both;
-  color: #ffffff;
+  color: #000000;
   font-weight: 700;
 }
 
 .gradient-text {
-  color: #ffffff;
+  color: #000000;
   animation: fadeInUp 1.2s ease-out 0.6s both;
 }
 

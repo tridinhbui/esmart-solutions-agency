@@ -748,7 +748,7 @@ body {
 
 /* Holographic Text Effect - Fixed for visibility */
 .holographic-text {
-  color: #ffffff;
+  color: #000000;
   font-weight: 700;
 }
 
@@ -827,7 +827,7 @@ body {
 
 /* Mystical Glow Effect - Fixed for visibility */
 .mystical-glow {
-  color: #ffffff;
+  color: #000000;
   font-weight: 600;
 }
 
@@ -895,7 +895,7 @@ body {
 
 /* Spectral Shimmer - Fixed for visibility */
 .spectral-shimmer {
-  color: #e0e0e0;
+  color: #333333;
   font-weight: 500;
 }
 
