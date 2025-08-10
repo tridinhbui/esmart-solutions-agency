@@ -833,7 +833,7 @@ export default {
 }
 
 h2 {
-  color: #1c1c4c;
+  color: black;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -878,10 +878,10 @@ h2 {
   display: inline-block;
   width: 16px;
   height: 16px;
-  border: 2px solid rgba(46, 125, 50, 0.3);
+  border: 2px solid #e5e5e5;
   border-radius: 50%;
-  border-top-color: #2e7d32;
-  animation: spin 1s linear infinite;
+  border-top-color: #333;
+  animation: spin 1.2s linear infinite;
 }
 
 @keyframes spin {
@@ -909,14 +909,14 @@ h2 {
 }
 
 .sidebar-section h3 {
-  color: #1c1c4c;
+  color: black;
   margin-bottom: 0.5rem;
   border-bottom: 1px solid #eaeaea;
   padding-bottom: 8px;
 }
 
 .sidebar-section h4 {
-  color: #1c1c4c;
+  color: black;
   font-size: 0.9rem;
   margin-top: 0.8rem;
   margin-bottom: 0.3rem;
@@ -936,8 +936,8 @@ h2 {
 }
 
 .suggested-keywords li {
-  background: #e3f2fd;
-  color: #0d47a1;
+  background: #f0f0f0;
+  color: black;
 }
 
 .seo-score-box {
@@ -957,7 +957,7 @@ h2 {
 .score-number {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #1c1c4c;
+  color: black;
 }
 
 .score-percent {
@@ -1040,7 +1040,7 @@ h2 {
 .length {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #1c1c4c;
+  color: black;
   text-align: center;
   padding: 0.5rem;
   background: #e9ecef;
@@ -1055,7 +1055,7 @@ h2 {
 }
 
 .primary-button {
-  background: #1c1c4c;
+  background: black;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -1086,8 +1086,8 @@ h2 {
 
 .secondary-button {
   background: white;
-  color: #1c1c4c;
-  border: 1px solid #1c1c4c;
+  color: black;
+  border: 1px solid black;
   padding: 0.75rem 1.5rem;
   border-radius: 6px;
   cursor: pointer;

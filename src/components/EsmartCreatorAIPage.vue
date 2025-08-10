@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    <NavBar />
+    
 
     <div
       v-if="isLoading"
@@ -159,7 +159,7 @@ import RequirementsStep from "./creator-ai/RequirementsStep.vue";
 import EditorStep from "./creator-ai/EditorStep.vue";
 import ImageStep from "./creator-ai/ImageStep.vue";
 import FinalStep from "./creator-ai/FinalStep.vue";
-import NavBar from "./NavBar.vue";
+
 import AppFooter from "./FooterBar.vue";
 import Chat from "./Chat.vue";
 import axios from "axios";
@@ -172,7 +172,6 @@ export default {
     EditorStep,
     ImageStep,
     FinalStep,
-    NavBar,
     AppFooter,
     Chat,
   },
@@ -715,165 +714,26 @@ export default {
 </script>
 
 <style>
-/* Quantum Creator AI Page */
+/* Simple Black & White Creator AI Page */
 .creator-ai-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   margin-top: 6rem;
-  background: 
-    radial-gradient(circle at 20% 30%, rgba(139, 69, 244, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 70%),
-    linear-gradient(135deg, #0f0f1e 0%, #1e1b4b 50%, #1e293b 100%);
+  background: white;
+  color: black;
   position: relative;
   overflow-x: hidden;
 }
 
-/* Quantum Background Effects */
-.quantum-cosmos {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
+/* Remove all quantum effects - keep it simple */
+.quantum-cosmos,
+.quantum-universe,
+.atomic-field,
+.neural-network,
+.energy-waves {
+  display: none !important;
 }
-
-.cosmic-particles {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.cosmic-particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
-  border-radius: 50%;
-  animation: cosmicFloat 15s infinite linear;
-  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
-}
-
-.cosmic-particle:nth-child(odd) {
-  background: radial-gradient(circle, #6366f1 0%, transparent 70%);
-  animation-duration: 18s;
-}
-
-.cosmic-particle:nth-child(3n) {
-  background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
-  animation-duration: 12s;
-}
-
-/* Positioning cosmic particles */
-.cosmic-particle:nth-child(1) { left: 5%; top: 90%; animation-delay: 0s; }
-.cosmic-particle:nth-child(2) { left: 12%; top: 95%; animation-delay: 2s; }
-.cosmic-particle:nth-child(3) { left: 18%; top: 88%; animation-delay: 1s; }
-.cosmic-particle:nth-child(4) { left: 25%; top: 92%; animation-delay: 3s; }
-.cosmic-particle:nth-child(5) { left: 32%; top: 96%; animation-delay: 1.5s; }
-.cosmic-particle:nth-child(6) { left: 38%; top: 89%; animation-delay: 4s; }
-.cosmic-particle:nth-child(7) { left: 45%; top: 94%; animation-delay: 2.5s; }
-.cosmic-particle:nth-child(8) { left: 52%; top: 91%; animation-delay: 5s; }
-.cosmic-particle:nth-child(9) { left: 58%; top: 97%; animation-delay: 0.5s; }
-.cosmic-particle:nth-child(10) { left: 65%; top: 93%; animation-delay: 3.5s; }
-.cosmic-particle:nth-child(11) { left: 72%; top: 86%; animation-delay: 1.8s; }
-.cosmic-particle:nth-child(12) { left: 78%; top: 98%; animation-delay: 4.5s; }
-.cosmic-particle:nth-child(13) { left: 85%; top: 87%; animation-delay: 2.8s; }
-.cosmic-particle:nth-child(14) { left: 91%; top: 95%; animation-delay: 6s; }
-.cosmic-particle:nth-child(15) { left: 97%; top: 90%; animation-delay: 3.8s; }
-.cosmic-particle:nth-child(16) { left: 8%; top: 85%; animation-delay: 7s; }
-.cosmic-particle:nth-child(17) { left: 15%; top: 82%; animation-delay: 4.2s; }
-.cosmic-particle:nth-child(18) { left: 28%; top: 84%; animation-delay: 8s; }
-.cosmic-particle:nth-child(19) { left: 42%; top: 80%; animation-delay: 5.5s; }
-.cosmic-particle:nth-child(20) { left: 55%; top: 83%; animation-delay: 9s; }
-.cosmic-particle:nth-child(21) { left: 68%; top: 81%; animation-delay: 6.5s; }
-.cosmic-particle:nth-child(22) { left: 75%; top: 79%; animation-delay: 10s; }
-.cosmic-particle:nth-child(23) { left: 88%; top: 78%; animation-delay: 7.5s; }
-.cosmic-particle:nth-child(24) { left: 93%; top: 76%; animation-delay: 11s; }
-.cosmic-particle:nth-child(25) { left: 22%; top: 75%; animation-delay: 8.5s; }
-
-.energy-streams {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.energy-stream {
-  position: absolute;
-  width: 1px;
-  height: 100%;
-  background: linear-gradient(to bottom, transparent, #ff6b35, transparent);
-  animation: energyFlow 8s infinite ease-in-out;
-  opacity: 0.3;
-}
-
-.energy-stream:nth-child(1) { left: 10%; animation-delay: 0s; }
-.energy-stream:nth-child(2) { left: 20%; animation-delay: 1s; }
-.energy-stream:nth-child(3) { left: 35%; animation-delay: 2s; }
-.energy-stream:nth-child(4) { left: 50%; animation-delay: 3s; }
-.energy-stream:nth-child(5) { left: 65%; animation-delay: 1.5s; }
-.energy-stream:nth-child(6) { left: 80%; animation-delay: 2.5s; }
-.energy-stream:nth-child(7) { left: 90%; animation-delay: 0.5s; }
-.energy-stream:nth-child(8) { left: 95%; animation-delay: 4s; }
-
-.neural-network-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0.1;
-}
-
-.neural-node {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: #ff6b35;
-  border-radius: 50%;
-  animation: neuralPulse 3s infinite ease-in-out;
-}
-
-.neural-node:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
-.neural-node:nth-child(2) { top: 20%; left: 35%; animation-delay: 0.5s; }
-.neural-node:nth-child(3) { top: 15%; left: 55%; animation-delay: 1s; }
-.neural-node:nth-child(4) { top: 30%; left: 75%; animation-delay: 1.5s; }
-.neural-node:nth-child(5) { top: 45%; left: 20%; animation-delay: 2s; }
-.neural-node:nth-child(6) { top: 40%; left: 50%; animation-delay: 2.5s; }
-.neural-node:nth-child(7) { top: 55%; left: 80%; animation-delay: 0.8s; }
-.neural-node:nth-child(8) { top: 70%; left: 10%; animation-delay: 1.3s; }
-.neural-node:nth-child(9) { top: 65%; left: 40%; animation-delay: 1.8s; }
-.neural-node:nth-child(10) { top: 80%; left: 65%; animation-delay: 2.3s; }
-.neural-node:nth-child(11) { top: 85%; left: 25%; animation-delay: 0.3s; }
-.neural-node:nth-child(12) { top: 90%; left: 85%; animation-delay: 2.8s; }
-
-.neural-connection {
-  position: absolute;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #ff6b35, transparent);
-  animation: connectionPulse 4s infinite ease-in-out;
-}
-
-.neural-connection:nth-child(1) { top: 12%; left: 15%; width: 18%; animation-delay: 0s; }
-.neural-connection:nth-child(2) { top: 22%; left: 35%; width: 15%; animation-delay: 0.5s; }
-.neural-connection:nth-child(3) { top: 17%; left: 55%; width: 20%; animation-delay: 1s; }
-.neural-connection:nth-child(4) { top: 32%; left: 20%; width: 25%; animation-delay: 1.5s; }
-.neural-connection:nth-child(5) { top: 47%; left: 50%; width: 22%; animation-delay: 2s; }
-.neural-connection:nth-child(6) { top: 42%; left: 25%; width: 20%; animation-delay: 2.5s; }
-.neural-connection:nth-child(7) { top: 57%; left: 10%; width: 25%; animation-delay: 0.8s; }
-.neural-connection:nth-child(8) { top: 72%; left: 40%; width: 18%; animation-delay: 1.3s; }
-.neural-connection:nth-child(9) { top: 67%; left: 65%; width: 15%; animation-delay: 1.8s; }
-.neural-connection:nth-child(10) { top: 82%; left: 10%; width: 12%; animation-delay: 2.3s; }
-.neural-connection:nth-child(11) { top: 87%; left: 25%; width: 35%; animation-delay: 0.3s; }
-.neural-connection:nth-child(12) { top: 92%; left: 45%; width: 30%; animation-delay: 2.8s; }
-.neural-connection:nth-child(13) { top: 25%; left: 60%; width: 15%; animation-delay: 0.7s; }
-.neural-connection:nth-child(14) { top: 35%; left: 30%; width: 18%; animation-delay: 1.2s; }
-.neural-connection:nth-child(15) { top: 50%; left: 75%; width: 20%; animation-delay: 1.7s; }
-.neural-connection:nth-child(16) { top: 60%; left: 15%; width: 22%; animation-delay: 2.2s; }
-.neural-connection:nth-child(17) { top: 75%; left: 50%; width: 12%; animation-delay: 0.4s; }
-.neural-connection:nth-child(18) { top: 78%; left: 30%; width: 28%; animation-delay: 1.4s; }
-.neural-connection:nth-child(19) { top: 88%; left: 60%; width: 25%; animation-delay: 1.9s; }
-.neural-connection:nth-child(20) { top: 95%; left: 15%; width: 65%; animation-delay: 2.4s; }
 
 .creator-ai-content {
   flex: 1;
@@ -886,7 +746,7 @@ export default {
   z-index: 1;
 }
 
-/* Quantum Loading */
+/* Simple Loading */
 .quantum-loading {
   display: flex;
   flex-direction: column;
@@ -898,12 +758,13 @@ export default {
   text-align: center;
   position: relative;
   z-index: 1;
+  background: white;
 }
 
 .quantum-loader {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   margin-bottom: 2rem;
 }
 
@@ -913,36 +774,40 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  border: 2px solid transparent;
-  border-top: 2px solid #ff6b35;
+  border: 2px solid #f0f0f0;
+  border-top: 2px solid black;
   border-radius: 50%;
-  animation: quantumSpin 2s linear infinite;
+  animation: simpleSpinAI 1s linear infinite;
 }
 
 .quantum-ring:nth-child(2) {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   top: 10px;
   left: 10px;
-  border-top-color: #f59e0b;
+  border-top-color: #666;
   animation-duration: 1.5s;
   animation-direction: reverse;
 }
 
 .quantum-ring:nth-child(3) {
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   top: 20px;
   left: 20px;
-  border-top-color: #d97706;
-  animation-duration: 1s;
+  border-top-color: #333;
+  animation-duration: 0.8s;
+}
+
+@keyframes simpleSpinAI {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .loading-text {
-  color: rgba(255, 255, 255, 0.8);
+  color: #333;
   font-size: 1.1rem;
   font-weight: 500;
-  animation: textPulse 2s infinite ease-in-out;
 }
 
 .error-container {
@@ -951,127 +816,51 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  padding-top: 120px;
-  min-height: 60vh;
   text-align: center;
-  position: relative;
-  z-index: 1;
+  background: white;
+  color: black;
 }
 
-.error-container p {
-  color: rgba(255, 255, 255, 0.8);
+.error-message {
+  color: #dc3545;
   font-size: 1.1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
-/* Quantum Animations */
-@keyframes cosmicFloat {
-  0% {
-    transform: translateY(100vh) translateX(0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100px) translateX(50px) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-@keyframes energyFlow {
-  0%, 100% {
-    transform: translateY(0);
-    opacity: 0.1;
-  }
-  50% {
-    transform: translateY(-20px);
-    opacity: 0.5;
-  }
-}
-
-@keyframes neuralPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 1;
-  }
-}
-
-@keyframes connectionPulse {
-  0%, 100% {
-    opacity: 0.1;
-    transform: scaleX(0.5);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scaleX(1);
-  }
-}
-
-@keyframes quantumSpin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes textPulse {
-  0%, 100% {
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 1;
-    text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
-  }
-}
-
-.debug-panel {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.8);
+.retry-button {
+  background: black;
   color: white;
-  padding: 10px;
-  border-radius: 4px;
-  max-width: 500px;
-  max-height: 300px;
-  overflow: auto;
-  z-index: 1000;
-  font-family: monospace;
-  font-size: 12px;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
-/* .primary-button {
-  background-color: #1c1c4c;
+.retry-button:hover {
+  background: #333;
+  transform: translateY(-2px);
+}
+
+.primary-button {
+  background: black;
   color: white;
   border: none;
   padding: 12px 24px;
   border-radius: 6px;
   cursor: pointer;
-  margin-top: 1rem;
   font-size: 16px;
-  transition: background-color 0.3s ease;
-  height: 48px;
-  line-height: 24px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-} */
-
-.primary-button:hover {
-  background-color: #2a2a6c;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-/* Override NavBar styles for creator-ai pages */
+.primary-button:hover {
+  background: #333;
+  transform: translateY(-2px);
+}
+
+/* Simple NavBar for creator-ai pages */
 .creator-ai-page .navbar {
   background-color: #ffffff !important;
   color: #333333 !important;
@@ -1083,10 +872,10 @@ export default {
 }
 
 .creator-ai-page .navbar a:hover {
-  color: #0077b6 !important;
+  color: black !important;
 }
 
-/* Dashboard button styles */
+/* Simple button styles */
 .creator-ai-page .button-group {
   display: flex;
   gap: 15px;
@@ -1110,7 +899,7 @@ export default {
 
 .creator-ai-page .secondary-button {
   background-color: #f5f5f5;
-  color: #1c1c4c;
+  color: black;
   border: 1px solid #ddd;
   height: 48px;
   line-height: 24px;
@@ -1121,6 +910,7 @@ export default {
 
 .creator-ai-page .secondary-button:hover {
   background-color: #e5e5e5;
+  transform: translateY(-2px);
 }
 
 /* Responsive design adjustments */
@@ -1139,464 +929,4 @@ export default {
     max-width: 300px;
   }
 }
-
-/* Enhanced Atomic Universe Theme */
-.quantum-universe {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* Atomic Particles Field */
-.atomic-field {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.atomic-particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: radial-gradient(circle, #ff6b35 0%, #f59e0b 50%, transparent 100%);
-  border-radius: 50%;
-  animation: atomicOrbit 20s infinite linear;
-  box-shadow: 
-    0 0 15px rgba(255, 107, 53, 0.8),
-    0 0 30px rgba(245, 158, 11, 0.4);
-}
-
-.atomic-particle:nth-child(odd) {
-  background: radial-gradient(circle, #3b82f6 0%, #1e40af 50%, transparent 100%);
-  box-shadow: 
-    0 0 15px rgba(59, 130, 246, 0.8),
-    0 0 30px rgba(30, 64, 175, 0.4);
-  animation-duration: 25s;
-  animation-direction: reverse;
-}
-
-.atomic-particle:nth-child(3n) {
-  background: radial-gradient(circle, #10b981 0%, #047857 50%, transparent 100%);
-  box-shadow: 
-    0 0 15px rgba(16, 185, 129, 0.8),
-    0 0 30px rgba(4, 120, 87, 0.4);
-  animation-duration: 30s;
-}
-
-/* Universe Energy Streams */
-.universe-energy {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.energy-stream {
-  position: absolute;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(
-    to bottom, 
-    transparent 0%,
-    rgba(255, 107, 53, 0.3) 20%,
-    rgba(245, 158, 11, 0.6) 50%,
-    rgba(217, 119, 6, 0.4) 80%,
-    transparent 100%
-  );
-  animation: universeFlow 12s infinite ease-in-out;
-  opacity: 0.4;
-  filter: blur(0.5px);
-}
-
-.energy-stream:nth-child(odd) {
-  background: linear-gradient(
-    to bottom, 
-    transparent 0%,
-    rgba(59, 130, 246, 0.3) 20%,
-    rgba(30, 64, 175, 0.6) 50%,
-    rgba(37, 99, 235, 0.4) 80%,
-    transparent 100%
-  );
-  animation-duration: 15s;
-}
-
-/* Cosmic Grid */
-.cosmic-grid {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0.15;
-}
-
-.grid-node {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: #ff6b35;
-  border-radius: 50%;
-  animation: gridPulse 4s infinite ease-in-out;
-  box-shadow: 0 0 20px rgba(255, 107, 53, 0.6);
-}
-
-.grid-node:nth-child(even) {
-  background: #3b82f6;
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
-  animation-duration: 5s;
-}
-
-.grid-connection {
-  position: absolute;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.4), transparent);
-  animation: gridConnection 6s infinite ease-in-out;
-}
-
-.grid-connection:nth-child(even) {
-  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.4), transparent);
-  animation-duration: 7s;
-}
-
-/* Stellar Field */
-.stellar-field {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.star {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  background: white;
-  border-radius: 50%;
-  animation: starTwinkle 8s infinite ease-in-out;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-}
-
-.star:nth-child(3n) {
-  animation-duration: 12s;
-  background: #ff6b35;
-  box-shadow: 0 0 5px rgba(255, 107, 53, 0.8);
-}
-
-.star:nth-child(5n) {
-  animation-duration: 15s;
-  background: #3b82f6;
-  box-shadow: 0 0 5px rgba(59, 130, 246, 0.8);
-}
-
-/* Dark Matter Effects */
-.dark-matter {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.matter-wave {
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent);
-  animation: matterWave 20s infinite ease-in-out;
-  opacity: 0.3;
-}
-
-/* Quantum Vortex */
-.quantum-vortex {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  height: 400px;
-  margin: -200px 0 0 -200px;
-  border-radius: 50%;
-  opacity: 0.1;
-}
-
-.vortex-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border: 1px solid rgba(255, 107, 53, 0.3);
-  border-radius: 50%;
-  animation: vortexSpin 15s infinite linear;
-}
-
-.vortex-ring:nth-child(1) {
-  width: 50px; height: 50px; margin: -25px 0 0 -25px;
-  animation-duration: 10s;
-}
-
-.vortex-ring:nth-child(2) {
-  width: 100px; height: 100px; margin: -50px 0 0 -50px;
-  animation-duration: 12s; animation-direction: reverse;
-}
-
-.vortex-ring:nth-child(3) {
-  width: 150px; height: 150px; margin: -75px 0 0 -75px;
-  animation-duration: 14s;
-}
-
-.vortex-ring:nth-child(4) {
-  width: 200px; height: 200px; margin: -100px 0 0 -100px;
-  animation-duration: 16s; animation-direction: reverse;
-}
-
-.vortex-ring:nth-child(5) {
-  width: 250px; height: 250px; margin: -125px 0 0 -125px;
-  animation-duration: 18s;
-}
-
-.vortex-ring:nth-child(6) {
-  width: 300px; height: 300px; margin: -150px 0 0 -150px;
-  animation-duration: 20s; animation-direction: reverse;
-}
-
-.vortex-ring:nth-child(7) {
-  width: 350px; height: 350px; margin: -175px 0 0 -175px;
-  animation-duration: 22s;
-}
-
-.vortex-ring:nth-child(8) {
-  width: 400px; height: 400px; margin: -200px 0 0 -200px;
-  animation-duration: 25s; animation-direction: reverse;
-}
-
-/* Enhanced versions of existing elements */
-.quantum-cosmos.enhanced {
-  z-index: -1;
-}
-
-.cosmic-particle.enhanced {
-  width: 3px;
-  height: 3px;
-  box-shadow: 
-    0 0 15px rgba(255, 107, 53, 0.7),
-    0 0 30px rgba(245, 158, 11, 0.3);
-  animation-duration: 20s;
-}
-
-.energy-stream.enhanced {
-  width: 2px;
-  opacity: 0.5;
-  filter: blur(0.5px);
-  box-shadow: 0 0 10px rgba(255, 107, 53, 0.4);
-}
-
-.neural-node.enhanced {
-  width: 6px;
-  height: 6px;
-  box-shadow: 0 0 15px rgba(255, 107, 53, 0.6);
-  animation-duration: 4s;
-}
-
-.neural-connection.enhanced {
-  opacity: 0.3;
-  box-shadow: 0 0 5px rgba(255, 107, 53, 0.3);
-}
-
-/* Enhanced Atomic Universe Animations */
-@keyframes atomicOrbit {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(200px, -300px) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-@keyframes universeFlow {
-  0%, 100% {
-    transform: translateY(0) scaleY(1);
-    opacity: 0.2;
-  }
-  25% {
-    transform: translateY(-50px) scaleY(1.2);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateY(-100px) scaleY(0.8);
-    opacity: 0.8;
-  }
-  75% {
-    transform: translateY(-150px) scaleY(1.1);
-    opacity: 0.4;
-  }
-}
-
-@keyframes gridPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.3;
-  }
-  50% {
-    transform: scale(1.8);
-    opacity: 1;
-  }
-}
-
-@keyframes gridConnection {
-  0%, 100% {
-    opacity: 0.1;
-    transform: scaleX(0.3);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scaleX(1.2);
-  }
-}
-
-@keyframes starTwinkle {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  25% {
-    opacity: 1;
-    transform: scale(1.5);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(0.8);
-  }
-  75% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
-@keyframes matterWave {
-  0% {
-    transform: translateX(-100%) scaleY(1);
-    opacity: 0;
-  }
-  50% {
-    transform: translateX(50%) scaleY(1.5);
-    opacity: 0.3;
-  }
-  100% {
-    transform: translateX(200%) scaleY(1);
-    opacity: 0;
-  }
-}
-
-@keyframes vortexSpin {
-  0% {
-    transform: rotate(0deg) scale(1);
-    opacity: 0.1;
-  }
-  50% {
-    opacity: 0.3;
-    transform: rotate(180deg) scale(1.1);
-  }
-  100% {
-    transform: rotate(360deg) scale(1);
-    opacity: 0.1;
-  }
-}
-
-/* Generate random positions for atomic particles */
-.atomic-particle:nth-child(1) { left: 5%; top: 10%; animation-delay: 0s; }
-.atomic-particle:nth-child(2) { left: 15%; top: 20%; animation-delay: 2s; }
-.atomic-particle:nth-child(3) { left: 25%; top: 15%; animation-delay: 4s; }
-.atomic-particle:nth-child(4) { left: 35%; top: 30%; animation-delay: 1s; }
-.atomic-particle:nth-child(5) { left: 45%; top: 25%; animation-delay: 3s; }
-.atomic-particle:nth-child(6) { left: 55%; top: 35%; animation-delay: 5s; }
-.atomic-particle:nth-child(7) { left: 65%; top: 20%; animation-delay: 1.5s; }
-.atomic-particle:nth-child(8) { left: 75%; top: 40%; animation-delay: 3.5s; }
-.atomic-particle:nth-child(9) { left: 85%; top: 30%; animation-delay: 0.5s; }
-.atomic-particle:nth-child(10) { left: 95%; top: 45%; animation-delay: 2.5s; }
-.atomic-particle:nth-child(11) { left: 10%; top: 50%; animation-delay: 4.5s; }
-.atomic-particle:nth-child(12) { left: 20%; top: 60%; animation-delay: 1.2s; }
-.atomic-particle:nth-child(13) { left: 30%; top: 55%; animation-delay: 3.2s; }
-.atomic-particle:nth-child(14) { left: 40%; top: 65%; animation-delay: 5.2s; }
-.atomic-particle:nth-child(15) { left: 50%; top: 70%; animation-delay: 0.8s; }
-.atomic-particle:nth-child(16) { left: 60%; top: 60%; animation-delay: 2.8s; }
-.atomic-particle:nth-child(17) { left: 70%; top: 75%; animation-delay: 4.8s; }
-.atomic-particle:nth-child(18) { left: 80%; top: 65%; animation-delay: 1.8s; }
-.atomic-particle:nth-child(19) { left: 90%; top: 80%; animation-delay: 3.8s; }
-.atomic-particle:nth-child(20) { left: 8%; top: 85%; animation-delay: 5.8s; }
-.atomic-particle:nth-child(21) { left: 18%; top: 90%; animation-delay: 0.3s; }
-.atomic-particle:nth-child(22) { left: 28%; top: 95%; animation-delay: 2.3s; }
-.atomic-particle:nth-child(23) { left: 38%; top: 88%; animation-delay: 4.3s; }
-.atomic-particle:nth-child(24) { left: 48%; top: 93%; animation-delay: 1.3s; }
-.atomic-particle:nth-child(25) { left: 58%; top: 98%; animation-delay: 3.3s; }
-.atomic-particle:nth-child(26) { left: 68%; top: 92%; animation-delay: 5.3s; }
-.atomic-particle:nth-child(27) { left: 78%; top: 87%; animation-delay: 0.6s; }
-.atomic-particle:nth-child(28) { left: 88%; top: 95%; animation-delay: 2.6s; }
-.atomic-particle:nth-child(29) { left: 3%; top: 75%; animation-delay: 4.6s; }
-.atomic-particle:nth-child(30) { left: 13%; top: 65%; animation-delay: 1.6s; }
-.atomic-particle:nth-child(31) { left: 23%; top: 80%; animation-delay: 3.6s; }
-.atomic-particle:nth-child(32) { left: 33%; top: 70%; animation-delay: 5.6s; }
-.atomic-particle:nth-child(33) { left: 43%; top: 85%; animation-delay: 0.9s; }
-.atomic-particle:nth-child(34) { left: 53%; top: 78%; animation-delay: 2.9s; }
-.atomic-particle:nth-child(35) { left: 63%; top: 82%; animation-delay: 4.9s; }
-.atomic-particle:nth-child(36) { left: 73%; top: 88%; animation-delay: 1.9s; }
-.atomic-particle:nth-child(37) { left: 83%; top: 72%; animation-delay: 3.9s; }
-.atomic-particle:nth-child(38) { left: 93%; top: 68%; animation-delay: 5.9s; }
-.atomic-particle:nth-child(39) { left: 12%; top: 38%; animation-delay: 0.7s; }
-.atomic-particle:nth-child(40) { left: 87%; top: 12%; animation-delay: 2.7s; }
-
-/* Universe energy stream positions */
-.universe-energy .energy-stream:nth-child(1) { left: 8%; animation-delay: 0s; }
-.universe-energy .energy-stream:nth-child(2) { left: 16%; animation-delay: 1s; }
-.universe-energy .energy-stream:nth-child(3) { left: 24%; animation-delay: 2s; }
-.universe-energy .energy-stream:nth-child(4) { left: 32%; animation-delay: 3s; }
-.universe-energy .energy-stream:nth-child(5) { left: 40%; animation-delay: 4s; }
-.universe-energy .energy-stream:nth-child(6) { left: 48%; animation-delay: 5s; }
-.universe-energy .energy-stream:nth-child(7) { left: 56%; animation-delay: 1.5s; }
-.universe-energy .energy-stream:nth-child(8) { left: 64%; animation-delay: 2.5s; }
-.universe-energy .energy-stream:nth-child(9) { left: 72%; animation-delay: 3.5s; }
-.universe-energy .energy-stream:nth-child(10) { left: 80%; animation-delay: 4.5s; }
-.universe-energy .energy-stream:nth-child(11) { left: 88%; animation-delay: 0.5s; }
-.universe-energy .energy-stream:nth-child(12) { left: 96%; animation-delay: 5.5s; }
-
-/* Grid nodes positions */
-.grid-node:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
-.grid-node:nth-child(2) { top: 25%; left: 30%; animation-delay: 0.5s; }
-.grid-node:nth-child(3) { top: 35%; left: 50%; animation-delay: 1s; }
-.grid-node:nth-child(4) { top: 45%; left: 70%; animation-delay: 1.5s; }
-.grid-node:nth-child(5) { top: 55%; left: 90%; animation-delay: 2s; }
-.grid-node:nth-child(6) { top: 65%; left: 20%; animation-delay: 2.5s; }
-.grid-node:nth-child(7) { top: 75%; left: 40%; animation-delay: 3s; }
-.grid-node:nth-child(8) { top: 85%; left: 60%; animation-delay: 3.5s; }
-.grid-node:nth-child(9) { top: 20%; left: 80%; animation-delay: 4s; }
-.grid-node:nth-child(10) { top: 30%; left: 15%; animation-delay: 4.5s; }
-.grid-node:nth-child(11) { top: 40%; left: 35%; animation-delay: 5s; }
-.grid-node:nth-child(12) { top: 50%; left: 55%; animation-delay: 0.2s; }
-.grid-node:nth-child(13) { top: 60%; left: 75%; animation-delay: 0.7s; }
-.grid-node:nth-child(14) { top: 70%; left: 95%; animation-delay: 1.2s; }
-.grid-node:nth-child(15) { top: 80%; left: 25%; animation-delay: 1.7s; }
-.grid-node:nth-child(16) { top: 90%; left: 45%; animation-delay: 2.2s; }
-.grid-node:nth-child(17) { top: 10%; left: 65%; animation-delay: 2.7s; }
-.grid-node:nth-child(18) { top: 12%; left: 85%; animation-delay: 3.2s; }
-.grid-node:nth-child(19) { top: 22%; left: 5%; animation-delay: 3.7s; }
-.grid-node:nth-child(20) { top: 32%; left: 95%; animation-delay: 4.2s; }
-
-/* Stars positioning (sample - automatically distributed) */
-.star:nth-child(n) {
-  left: calc(var(--i, 0) * 1% + 0%);
-  top: calc(var(--j, 0) * 1% + 0%);
-  animation-delay: calc(var(--k, 0) * 0.1s);
-}
-
-/* Dark matter waves positioning */
-.matter-wave:nth-child(1) { top: 15%; animation-delay: 0s; }
-.matter-wave:nth-child(2) { top: 35%; animation-delay: 5s; }
-.matter-wave:nth-child(3) { top: 55%; animation-delay: 10s; }
-.matter-wave:nth-child(4) { top: 75%; animation-delay: 15s; }
-.matter-wave:nth-child(5) { top: 45%; animation-delay: 7.5s; }
-.matter-wave:nth-child(6) { top: 85%; animation-delay: 12.5s; }
 </style>

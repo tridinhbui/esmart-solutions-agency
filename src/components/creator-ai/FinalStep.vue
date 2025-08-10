@@ -1539,12 +1539,21 @@ export default {
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e5e5;
 }
 
 h2 {
-  color: #1c1c4c;
-  margin-bottom: 1.5rem;
+  color: black;
+  margin-bottom: 2rem;
   text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h3 {
+  color: black;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
 }
 
@@ -1556,7 +1565,7 @@ h2 {
 }
 
 .project-info h3 {
-  color: #1c1c4c;
+  color: black;
   margin: 0 0 0.5rem 0;
 }
 
@@ -1581,7 +1590,7 @@ h2 {
 
 .status-badge.in_progress {
   background-color: #ecedf7;
-  color: #1c1c4c;
+  color: black;
 }
 
 .status-badge.finished {
@@ -1591,8 +1600,8 @@ h2 {
 
 .status-button {
   background: transparent;
-  border: 1px solid #1c1c4c;
-  color: #1c1c4c;
+  border: 1px solid black;
+  color: black;
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   cursor: pointer;
@@ -1612,7 +1621,7 @@ h2 {
 
 .final-content h3 {
   margin-bottom: 1rem;
-  color: #1c1c4c;
+  color: black;
   font-weight: 600;
 }
 
@@ -1641,7 +1650,7 @@ h2 {
 .content-box h6 {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
-  color: #1c1c4c;
+  color: black;
 }
 
 .final-image-section {
@@ -1653,7 +1662,7 @@ h2 {
 
 .final-image-section h3 {
   margin-bottom: 1.5rem;
-  color: #1c1c4c;
+  color: black;
   font-weight: 600;
 }
 
@@ -1751,7 +1760,7 @@ h2 {
 }
 
 .btn-primary {
-  background: #1c1c4c;
+  background: black;
   color: white;
   border: none;
 }
@@ -1762,8 +1771,8 @@ h2 {
 
 .btn-outline-primary {
   background: transparent;
-  border: 1px solid #1c1c4c;
-  color: #1c1c4c;
+  border: 1px solid black;
+  color: black;
 }
 
 .btn-outline-primary:hover {
@@ -1772,8 +1781,8 @@ h2 {
 
 .btn-light {
   background: white;
-  color: #1c1c4c;
-  border: 1px solid #1c1c4c;
+  color: black;
+  border: 1px solid black;
 }
 
 .btn-light:hover {
@@ -1782,8 +1791,8 @@ h2 {
 
 .btn-info {
   background: white;
-  color: #1c1c4c;
-  border: 1px solid #1c1c4c;
+  color: black;
+  border: 1px solid black;
 }
 
 .btn-info:hover {
@@ -1791,7 +1800,7 @@ h2 {
 }
 
 .btn-success {
-  background: #1c1c4c;
+  background: black;
   color: white;
   border: none;
 }
@@ -1833,6 +1842,47 @@ h2 {
 .save-message.error {
   background-color: #ffebee;
   color: #dc3545;
+}
+
+.primary-button {
+  background: black;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  height: 48px;
+}
+
+.primary-button:hover:not(:disabled) {
+  background: #333;
+  transform: translateY(-2px);
+}
+
+.primary-button:disabled {
+  background: #666;
+  cursor: not-allowed;
+}
+
+.secondary-button {
+  background: white;
+  color: black;
+  border: 1px solid black;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  height: 48px;
+}
+
+.secondary-button:hover {
+  background: #f8f9fa;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {

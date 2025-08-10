@@ -1,83 +1,77 @@
+/* eslint-disable */
 <template>
   <div id="app">
     <!-- Render Navbar only if the current route is not DetailedBlog1 or EsmartCreatorAI or ContactUs -->
-    <Navbar v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage" />
+    <SimpleNavBar v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage" />
     <router-view v-if="shouldShowRouterView" />
     <!-- Render sections only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
     <template v-if="shouldShowMainContent && !isCreatorAIPage">
       <section
         id="intro"
-        class="hero-section"
+        class="simple-hero-section"
         style="padding-top: 6rem;"
       >
-        <IntroSection />
+        <SimpleHeroSection />
       </section>
       <section
         id="social-proof"
-        class="section-spacing"
+        class="simple-section"
       >
-        <SocialProof />
+        <SimpleSocialProof />
       </section>
       <section
         id="marketing-assessment"
-        class="section-spacing gradient-section"
+        class="simple-section"
       >
-        <MarketingAssessment />
+        <SimpleMarketingAssessment />
       </section>
       <section
         id="features"
-        class="section-spacing"
+        class="simple-section"
       >
-        <FeaturesPage />
+        <SimpleFeatures />
       </section>
-      <!-- TestimonialQuote section -->
       <section
         id="testimonials"
-        class="section-spacing testimonial-section"
+        class="simple-section"
       >
-        <TestimonialQuote />
+        <SimpleTestimonial />
       </section>
       <section
         id="process"
-        class="section-spacing"
+        class="simple-section"
       >
-        <ProcessInt />
+        <SimpleServiceSection />
       </section>
       <section
         id="blog"
-        class="section-spacing blog-section"
+        class="simple-section"
       >
-        <BlogPost />
+        <SimpleBlogPost />
       </section>
       <section
         id="project"
-        class="section-spacing"
+        class="simple-section"
       >
-        <Project />
+        <SimpleProject />
       </section>
       <section
         id="about-us"
-        class="section-spacing gradient-section-reverse"
+        class="simple-section"
       >
-        <AboutUs />
-      </section>
-      <section
-        id="service"
-        class="section-spacing"
-      >
-        <Service />
+        <SimpleAboutUs />
       </section>
       <section
         id="questions"
-        class="section-spacing faq-section"
+        class="simple-section"
       >
-        <Questions />
+        <SimpleQuestions />
       </section>
       <section
         id="chat"
-        class="section-spacing"
+        class="simple-section"
       >
-        <Chat />
+        <SimpleChat />
       </section>
     </template>
     <section
@@ -85,20 +79,11 @@
       id="footer"
       class="footer-section"
     >
-      <AppFooter />
+      <SimpleFooter />
     </section>
     <!-- Chatbot -->
     <ChatBot />
     
-    <!-- Background decorative elements -->
-    <div class="bg-decoration">
-      <div class="floating-shapes">
-        <div class="shape shape-1" />
-        <div class="shape shape-2" />
-        <div class="shape shape-3" />
-        <div class="shape shape-4" />
-      </div>
-    </div>
     <GoToTopButton />
     
     <!-- Scroll to Top Button -->
@@ -116,38 +101,38 @@
 </template>
 
 <script>
-import Navbar from "./components/NavBar.vue";
-import IntroSection from "./components/IntroSection.vue";
-import SocialProof from "./components/SocialProof.vue";
-import FeaturesPage from "./components/FeaturesPage.vue";
-import ProcessInt from "./components/ServiceSection.vue";
-import BlogPost from "./components/BlogPost.vue";
-import AppFooter from "./components/FooterBar.vue";
-import Project from "./components/ProjectSection.vue";
-import AboutUs from "./components/AboutUs.vue";
-import Questions from "./components/Questions.vue";
-import Chat from "./components/Chat.vue";
-import MarketingAssessment from "./components/MarketingAssessment.vue";
-import TestimonialQuote from "./components/TestimonialQuote.vue";
+import SimpleNavBar from "./components/SimpleNavBar.vue";
+import SimpleHeroSection from "./components/SimpleHeroSection.vue";
+import SimpleSocialProof from "./components/SimpleSocialProof.vue";
+import SimpleBlogPost from "./components/SimpleBlogPost.vue";
+import SimpleFeatures from "./components/SimpleFeatures.vue";
+import SimpleServiceSection from "./components/SimpleServiceSection.vue";
+import SimpleAboutUs from "./components/SimpleAboutUs.vue";
+import SimpleQuestions from "./components/SimpleQuestions.vue";
+import SimpleFooter from "./components/SimpleFooter.vue";
+import SimpleProject from "./components/SimpleProject.vue";
+import SimpleChat from "./components/SimpleChat.vue";
+import SimpleMarketingAssessment from "./components/SimpleMarketingAssessment.vue";
+import SimpleTestimonial from "./components/SimpleTestimonial.vue";
 import ChatBot from "@/components/ChatBot.vue";
 import GoToTopButton from "./components/GoToTopButton.vue";
 
 export default {
   name: "App",
   components: {
-    Navbar,
-    IntroSection,
-    MarketingAssessment,
-    SocialProof,
-    FeaturesPage,
-    ProcessInt,
-    BlogPost,
-    Project,
-    AppFooter,
-    AboutUs,
-    Questions,
-    Chat,
-    TestimonialQuote,
+    SimpleNavBar,
+    SimpleHeroSection,
+    SimpleSocialProof,
+    SimpleMarketingAssessment,
+    SimpleFeatures,
+    SimpleTestimonial,
+    SimpleServiceSection,
+    SimpleBlogPost,
+    SimpleProject,
+    SimpleAboutUs,
+    SimpleQuestions,
+    SimpleChat,
+    SimpleFooter,
     ChatBot,
     GoToTopButton,
   },
@@ -158,6 +143,7 @@ export default {
       magicParticles: [],
       lastCursorTime: 0,
       showScrollTop: false,
+      scrollY: 0,
     };
   },
   computed: {
@@ -201,6 +187,10 @@ export default {
     
     // Initialize magical effects
     this.initializePageEffects();
+    this.initMagicalEffects();
+    this.initScrollAnimations();
+    this.initCursorTrail();
+    this.initParallaxEffect();
     
     console.log("App mounted with magical effects");
   },
@@ -334,43 +324,370 @@ export default {
           el.classList.add('glow-effect');
         });
       });
+    },
+    initMagicalEffects() {
+      // Add magical loader
+      const loader = document.createElement('div');
+      loader.className = 'magical-loader';
+      loader.innerHTML = '<div class="loader-spinner"></div>';
+      document.body.appendChild(loader);
+
+      // Remove loader after 2 seconds
+      setTimeout(() => {
+        loader.remove();
+      }, 2000);
+
+      // Add Matrix Rain Effect
+      this.createMatrixRain();
+      
+      // Add Quantum Particles
+      this.createQuantumParticles();
+    },
+
+    createMatrixRain() {
+      const matrixContainer = document.createElement('div');
+      matrixContainer.className = 'matrix-rain';
+      
+      for (let i = 0; i < 50; i++) {
+        const char = document.createElement('div');
+        char.className = 'matrix-char';
+        char.textContent = String.fromCharCode(0x30A0 + Math.random() * 96);
+        char.style.left = Math.random() * 100 + '%';
+        char.style.animationDuration = (2 + Math.random() * 8) + 's';
+        char.style.animationDelay = Math.random() * 5 + 's';
+        matrixContainer.appendChild(char);
+      }
+      
+      document.body.appendChild(matrixContainer);
+    },
+
+    createQuantumParticles() {
+      const sections = document.querySelectorAll('section');
+      sections.forEach((section, index) => {
+        const particlesContainer = document.createElement('div');
+        particlesContainer.className = 'quantum-particles';
+        
+        for (let i = 0; i < 20; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'quantum-particle';
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.top = Math.random() * 100 + '%';
+          particle.style.animationDelay = Math.random() * 8 + 's';
+          particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+          particlesContainer.appendChild(particle);
+        }
+
+        section.style.position = 'relative';
+        section.style.zIndex = index + 1; // Use index
+        section.appendChild(particlesContainer);
+      });
+    },
+    
+    initScrollAnimations() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all elements with scroll-reveal classes
+      setTimeout(() => {
+        const scrollElements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right');
+        scrollElements.forEach(el => observer.observe(el));
+      }, 100);
+    },
+    
+    initCursorTrail() {
+      let mouseX = 0, mouseY = 0;
+      let trail = []; // Declare trail
+      
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        // Create cursor trail effect
+        const trailElement = document.createElement('div');
+        trailElement.className = 'cursor-trail';
+        trailElement.style.left = mouseX + 'px';
+        trailElement.style.top = mouseY + 'px';
+        
+        document.body.appendChild(trailElement);
+        trail.push(trailElement); // Use trail
+        
+        // Remove old trail elements
+        if (trail.length > 10) {
+          const oldElement = trail.shift();
+          oldElement.remove();
+        }
+        
+        setTimeout(() => {
+          trailElement.remove();
+        }, 1000);
+      });
+    },
+    
+    initParallaxEffect() {
+      window.addEventListener('scroll', () => {
+        this.scrollY = window.scrollY;
+        
+        // Apply parallax to elements
+        const parallaxElements = document.querySelectorAll('.parallax-element');
+        // eslint-disable-next-line no-unused-vars
+        parallaxElements.forEach((element, index) => {
+          const speed = 0.5 + (index * 0.1);
+          const yPos = -(this.scrollY * speed);
+          element.style.transform = `translateY(${yPos}px)`;
+        });
+        
+        // Scroll animations disabled
+      });
+    },
+    
+    updateScrollAnimations() {
+      // Disabled to prevent any opacity/blur effects
+      return;
     }
   },
 };
 </script>
 
 <style>
-/* Scroll to Top Button */
+@import './assets/magical-animations.css';
+/* Simple Design - Override all previous styles */
+/* Global Dark Mode Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  width: 100vw;
+}
+
+#app {
+  background-color: #121212;
+  color: #ffffff;
+  min-height: 100vh;
+  text-align: center;
+  position: relative;
+  backdrop-filter: none;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Hide all background effects */
+body::before,
+.bg-decoration,
+.magic-particles,
+.cursor-trail,
+.section-spacing::before,
+.floating-shapes,
+.shape,
+.quantum-orb,
+.energy-grid,
+.quantum-particle,
+.background-effects,
+.particles-container {
+  display: none !important;
+}
+
+/* Floating Elements - Disabled to prevent blur */
+.floating-particles {
+  display: none !important;
+}
+
+.morphing-shapes {
+  display: none !important;
+}
+
+/* Remove all blur and backdrop filters */
+* {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Add fallback image styles */
+.fallback-image {
+  border: 2px dashed #ddd !important;
+  background-color: #f8f9fa !important;
+}
+
+.fallback-image::after {
+  content: '⚠️ Image not found';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  color: #6c757d;
+  background: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Simple Section Styles */
+.simple-section {
+  background: white;
+  color: black;
+  padding: 4rem 2rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.simple-section:nth-child(even) {
+  background: #fafafa;
+}
+
+/* Override all gradient and special section styles */
+.gradient-section,
+.gradient-section-reverse,
+.testimonial-section,
+.blog-section,
+.faq-section,
+.section-spacing {
+  background: white !important;
+  color: black !important;
+  transform: none !important;
+  clip-path: none !important;
+  animation: none !important;
+}
+
+/* Simple footer */
+.footer-section {
+  background: #f8f8f8 !important;
+  color: black !important;
+}
+
+/* Simple Scroll to Top Button */
 .scroll-to-top {
   position: fixed;
   bottom: 30px;
   right: 30px;
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, #ff6b35, #f59e0b);
+  background: black;
   color: white;
   border: none;
-  border-radius: 50%;
+  border-radius: 6px;
   cursor: pointer;
   z-index: 1000;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .scroll-to-top:hover {
-  transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+  background: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Remove all animations */
+@keyframes fadeIn {
+  from, to { 
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from, to { 
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from, to { 
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  from, to { 
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  from, to { 
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes glow {
+  from, to { 
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  from, to { 
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes quantum-pulse {
+  from, to { 
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes energy-flow {
+  from, to { 
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes particle-float {
+  from, to { 
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Disable all AOS animations */
+[data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Simple transitions only */
+* {
+  transition: all 0.2s ease !important;
+}
+
+/* Remove scroll fade transition */
 .scroll-fade-enter-active,
 .scroll-fade-leave-active {
-  transition: all 0.3s ease;
+  transition: opacity 0.2s ease;
 }
 
 .scroll-fade-enter-from,
 .scroll-fade-leave-to {
   opacity: 0;
-  transform: translateY(20px);
 }
 
 /* CSS Variables for consistent theming - Enhanced energetic color palette */
@@ -413,196 +730,222 @@ export default {
   box-sizing: border-box;
 }
 
+/* Global Magical Effects */
 html {
   scroll-behavior: smooth;
 }
 
 body {
+  font-family: 'Inter', sans-serif;
   margin: 0;
-  font-family: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--gradient-aurora);
-  color: var(--text-primary);
-  line-height: 1.6;
+  padding: 0;
+  background: white;
+  color: black;
   overflow-x: hidden;
-  position: relative;
-  width: 100vw;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--gradient-aurora);
-  animation: gradientShift 15s ease infinite;
-  z-index: -2;
+/* Magical Scroll Animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-@keyframes gradientShift {
-  0%, 100% {
-    background: var(--gradient-aurora);
-  }
-  25% {
-    background: var(--gradient-primary);
-  }
-  50% {
-    background: var(--gradient-secondary);
-  }
-  75% {
-    background: var(--gradient-tertiary);
-  }
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-#app {
-  text-align: center;
-  position: relative;
-  min-height: 100vh;
-  backdrop-filter: blur(0.5px);
-  overflow-x: hidden;
-  width: 100%;
-  max-width: 100vw;
+.scroll-reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Magic cursor trail effect */
+.scroll-reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.scroll-reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Magical Cursor Trail */
 .cursor-trail {
   position: fixed;
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 107, 53, 0.8), transparent);
+  background: rgba(0, 0, 0, 0.1);
   pointer-events: none;
   z-index: 9999;
-  animation: trailFade 0.5s ease-out forwards;
+  animation: cursorPulse 2s ease-in-out infinite;
+  transition: all 0.1s ease;
 }
 
-@keyframes trailFade {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0);
-  }
+@keyframes cursorPulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.5); opacity: 0.1; }
 }
 
-/* Section Spacing and Styling - Enhanced */
-.section-spacing {
-  padding: 60px 0;
+/* Enhanced Card Animations */
+.magical-card {
   position: relative;
   overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.section-spacing::before {
+.magical-card::before {
   content: '';
   position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+  transition: left 0.8s ease;
+  z-index: 1;
+}
+
+.magical-card:hover::before {
+  left: 100%;
+}
+
+.magical-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(0, 0, 0, 0.03), transparent);
+  animation: magicalRotate 15s linear infinite;
+  z-index: -1;
+}
+
+@keyframes magicalRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Magical Button Effects */
+.magical-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.magical-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.6s ease;
+}
+
+.magical-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Magical Text Effects */
+.magical-text {
+  background: linear-gradient(45deg, black, #333, black);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 3s ease-in-out infinite;
+}
+
+@keyframes textShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Magical Hover Zones */
+.hover-zone {
+  transition: all 0.4s ease;
+}
+
+.hover-zone:hover {
+  transform: translateY(-5px);
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+}
+
+/* Parallax Scroll Effect */
+.parallax-element {
+  transform: translateY(0);
+  transition: transform 0.1s ease-out;
+}
+
+/* Magical Loading Animation */
+.magical-loader {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.03) 50%, transparent 70%);
-  animation: sectionShimmer 8s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes sectionShimmer {
-  0%, 100% { transform: translateX(-100%); }
-  50% { transform: translateX(100%); }
-}
-
-.hero-section {
-  min-height: 100vh;
+  background: white;
   display: flex;
   align-items: center;
-  background: var(--gradient-magical);
-  position: relative;
-  overflow: hidden;
+  justify-content: center;
+  z-index: 10000;
+  animation: loaderFadeOut 1s ease-out 2s forwards;
 }
 
-.hero-section::after {
+.loader-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid #e5e5e5;
+  border-top: 3px solid black;
+  border-radius: 50%;
+  animation: loaderSpin 1s linear infinite;
+}
+
+@keyframes loaderSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes loaderFadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Magical Section Transitions */
+.section-transition {
+  position: relative;
+}
+
+.section-transition::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-  animation: grainMove 20s linear infinite;
-  pointer-events: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, black, transparent);
+  animation: sectionDivider 3s ease-in-out infinite;
 }
 
-@keyframes grainMove {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(-100px, -100px); }
-}
-
-.gradient-section {
-  background: var(--gradient-secondary);
-  color: white;
-  position: relative;
-}
-
-.gradient-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
-  animation: waveEffect 6s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes waveEffect {
-  0%, 100% { transform: translateX(-50%) skewX(0deg); }
-  50% { transform: translateX(50%) skewX(5deg); }
-}
-
-.gradient-section-reverse {
-  background: var(--gradient-tertiary);
-  color: white;
-  transform: skewY(-2deg);
-  padding: 80px 0;
-}
-
-.gradient-section-reverse > * {
-  transform: skewY(2deg);
-}
-
-.testimonial-section {
-  background: var(--background-gray);
-  position: relative;
-  clip-path: polygon(0 10%, 100% 0%, 100% 90%, 0% 100%);
-  padding: 80px 0;
-}
-
-.blog-section {
-  background: var(--background-light);
-  position: relative;
-  transform: skewY(1deg);
-  padding: 80px 0;
-}
-
-.blog-section > * {
-  transform: skewY(-1deg);
-}
-
-.faq-section {
-  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-  position: relative;
-  clip-path: polygon(0 0%, 100% 10%, 100% 100%, 0% 90%);
-  padding: 80px 0;
-}
-
-.footer-section {
-  background: var(--background-dark);
-  color: white;
-  position: relative;
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
+@keyframes sectionDivider {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
 }
 
 /* Enhanced Card Styles with more magic */
@@ -766,12 +1109,6 @@ body::before {
   }
 }
 
-/* Parallax scrolling effect */
-.parallax-element {
-  transform: translateZ(0);
-  will-change: transform;
-}
-
 /* Magic particle system enhancement */
 .magic-particles {
   position: fixed;
@@ -808,6 +1145,127 @@ body::before {
   100% {
     transform: translateY(0) translateX(0) scale(0);
     opacity: 0;
+  }
+}
+
+/* Add magical floating particles background */
+.magical-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  animation: floatParticle 15s infinite linear;
+}
+
+.particle:nth-child(odd) {
+  background: rgba(0, 0, 0, 0.05);
+  animation-duration: 20s;
+}
+
+.particle:nth-child(3n) {
+  width: 6px;
+  height: 6px;
+  animation-duration: 25s;
+}
+
+.particle:nth-child(5n) {
+  background: rgba(0, 0, 0, 0.15);
+  animation-duration: 12s;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(100vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Magical morphing shapes */
+.morphing-shapes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.morph-shape {
+  position: absolute;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.05));
+  border-radius: 50%;
+  animation: morphFloat 20s infinite ease-in-out;
+}
+
+.morph-1 {
+  width: 200px;
+  height: 200px;
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.morph-2 {
+  width: 150px;
+  height: 150px;
+  top: 60%;
+  right: 10%;
+  animation-delay: 7s;
+}
+
+.morph-3 {
+  width: 100px;
+  height: 100px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 14s;
+}
+
+@keyframes morphFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    border-radius: 50%;
+  }
+  25% {
+    transform: translateY(-30px) rotate(90deg) scale(1.1);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg) scale(0.9);
+    border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+  }
+  75% {
+    transform: translateY(-40px) rotate(270deg) scale(1.05);
+    border-radius: 40% 60% 60% 40% / 60% 40% 40% 60%;
   }
 }
 

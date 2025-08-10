@@ -82,8 +82,8 @@
             <div class="status-indicator" />
           </div>
           <div class="bot-info">
-            <h3>{{ $t('chatbot.name') || 'ESmart Assistant' }}</h3>
-            <p>{{ $t('chatbot.status') || 'Online • Ready to help!' }}</p>
+            <h3>ESmart Assistant</h3>
+            <p>Online • Sẵn sàng hỗ trợ!</p>
           </div>
           <button
             class="close-btn"
@@ -108,29 +108,29 @@
                 <i class="fas fa-heart" />
               </div>
             </div>
-            <h4>{{ $t('chatbot.welcome') || 'Welcome to ESmart!' }}</h4>
-            <p>{{ $t('chatbot.welcomeMessage') || 'How can I help you today?' }}</p>
+            <h4>Chào mừng đến với ESmart!</h4>
+            <p>Tôi có thể giúp gì cho bạn hôm nay?</p>
             <div class="quick-actions">
               <button
                 class="quick-btn"
                 @click="sendQuickMessage('pricing')"
               >
                 <i class="fas fa-dollar-sign" />
-                {{ $t('chatbot.pricing') || 'Pricing' }}
+                Bảng Giá
               </button>
               <button
                 class="quick-btn"
                 @click="sendQuickMessage('services')"
               >
                 <i class="fas fa-cogs" />
-                {{ $t('chatbot.services') || 'Services' }}
+                Dịch Vụ
               </button>
               <button
                 class="quick-btn"
                 @click="sendQuickMessage('contact')"
               >
                 <i class="fas fa-phone" />
-                {{ $t('chatbot.contact') || 'Contact' }}
+                Liên Hệ
               </button>
             </div>
           </div>
@@ -189,7 +189,7 @@
               <input
                 ref="messageInput"
                 v-model="currentMessage"
-                :placeholder="$t('chatbot.placeholder') || 'Type your message...'"
+                placeholder="Nhập tin nhắn của bạn..."
                 class="message-input"
                 :disabled="isTyping"
               >
@@ -275,9 +275,9 @@ export default {
     
     sendQuickMessage(action) {
       const quickMessages = {
-        pricing: this.$t('chatbot.quickPricing') || 'What are your pricing plans?',
-        services: this.$t('chatbot.quickServices') || 'What services do you offer?',
-        contact: this.$t('chatbot.quickContact') || 'How can I contact you?'
+        pricing: 'Bảng Giá',
+        services: 'Dịch Vụ',
+        contact: 'Liên Hệ'
       };
       
       this.currentMessage = quickMessages[action];
@@ -286,10 +286,10 @@ export default {
     
     generateBotResponse(userMessage) {
       const responses = {
-        pricing: "Our pricing is flexible and depends on your specific needs. We offer:\n\n🚀 <strong>Starter Package</strong> - $500/month\n💼 <strong>Business Package</strong> - $1,500/month\n⭐ <strong>Enterprise Package</strong> - Custom pricing\n\nWould you like to schedule a consultation?",
-        services: "We provide comprehensive digital solutions:\n\n✨ <strong>Digital Marketing</strong>\n🎯 <strong>SEO & SEM</strong>\n📱 <strong>Social Media Management</strong>\n🌐 <strong>Web Development</strong>\n📊 <strong>Analytics & Reporting</strong>\n\nWhich service interests you most?",
-        contact: "You can reach us through multiple channels:\n\n📧 <strong>Email:</strong> info@esmart.com\n📞 <strong>Phone:</strong> +84 123 456 789\n💬 <strong>WhatsApp:</strong> +84 987 654 321\n🏢 <strong>Office:</strong> Ho Chi Minh City, Vietnam\n\nWe're available 24/7 for support!",
-        default: "Thank you for your message! 🚀 Our team specializes in digital marketing and business growth solutions. How can we help transform your business today?"
+        pricing: "Bảng Giá",
+        services: "Dịch Vụ",
+        contact: "Liên Hệ",
+        default: "Cảm ơn tin nhắn của bạn! 🚀 Đội ngũ của chúng tôi chuyên về quản lý marketing và giải pháp phát triển kinh doanh. Chúng tôi có thể giúp bạn thay đổi kinh doanh của mình ngày hôm nay như thế nào?"
       };
       
       let responseText = responses.default;
@@ -328,21 +328,21 @@ export default {
 <style scoped>
 /* Enhanced CSS Variables with Quantum Theme */
 :root {
-  --primary-color: rgba(255, 107, 53, 1);
-  --secondary-color: rgba(245, 158, 11, 1);
-  --tertiary-color: rgba(217, 119, 6, 1);
-  --quantum-blue: rgba(59, 130, 246, 1);
-  --quantum-purple: rgba(139, 92, 246, 1);
-  --quantum-green: rgba(34, 197, 94, 1);
-  --gradient-magical: linear-gradient(135deg, rgba(255, 107, 53, 0.9) 0%, rgba(245, 158, 11, 0.8) 50%, rgba(217, 119, 6, 0.9) 100%);
-  --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-  --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, var(--tertiary-color) 100%);
-  --gradient-tertiary: linear-gradient(135deg, var(--tertiary-color) 0%, var(--primary-color) 100%);
-  --gradient-quantum: linear-gradient(135deg, var(--quantum-blue) 0%, var(--quantum-purple) 50%, var(--primary-color) 100%);
-  --gradient-cyber: linear-gradient(135deg, var(--quantum-green) 0%, var(--quantum-blue) 100%);
-  --success-color: var(--quantum-green);
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
+  --primary-color: black;
+  --secondary-color: #333;
+  --tertiary-color: #111;
+  --quantum-blue: #333;
+  --quantum-purple: #333;
+  --quantum-green: #198754;
+  --gradient-magical: linear-gradient(135deg, #000 0%, #333 100%);
+  --gradient-primary: linear-gradient(135deg, #000 0%, #333 100%);
+  --gradient-secondary: linear-gradient(135deg, #333 0%, #111 100%);
+  --gradient-tertiary: linear-gradient(135deg, #111 0%, #000 100%);
+  --gradient-quantum: linear-gradient(135deg, #222 0%, #555 100%);
+  --gradient-cyber: linear-gradient(135deg, #333 0%, #000 100%);
+  --success-color: #198754;
+  --text-primary: #000;
+  --text-secondary: #333;
 }
 
 /* Chatbot Container with Super High Z-Index */
@@ -611,7 +611,7 @@ export default {
 }
 
 .chat-header {
-  background: var(--gradient-magical);
+  background: #000;
   color: white;
   padding: 1.5rem;
   display: flex;
@@ -833,7 +833,7 @@ export default {
 .message-avatar {
   width: 35px;
   height: 35px;
-  background: var(--gradient-magical);
+  background: #000;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -875,7 +875,7 @@ export default {
 }
 
 .message.user .message-bubble {
-  background: var(--gradient-primary);
+  background: #000;
   color: white;
   margin-left: 2rem;
 }
@@ -895,7 +895,7 @@ export default {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: var(--gradient-magical);
+  background: #000;
   border-radius: 18px;
   z-index: -1;
   filter: blur(10px);
@@ -929,7 +929,7 @@ export default {
 .typing-avatar {
   width: 35px;
   height: 35px;
-  background: var(--gradient-magical);
+  background: #000;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1000,8 +1000,8 @@ export default {
 }
 
 .message-input:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 4px 20px rgba(255, 107, 53, 0.2);
+  border-color: #000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .input-glow {
@@ -1044,7 +1044,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--gradient-magical);
+  background: #000;
   border-radius: 50%;
   transition: all 0.3s ease;
 }

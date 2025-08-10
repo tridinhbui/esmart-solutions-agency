@@ -739,13 +739,13 @@ export default {
 }
 
 h2 {
-  color: #1c1c4c;
+  color: black;
   margin-bottom: 2rem;
   text-align: center;
 }
 
 h3 {
-  color: #1c1c4c;
+  color: black;
   margin-bottom: 1rem;
 }
 
@@ -779,30 +779,30 @@ h3 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #f1f1f4;
+  background: #f8f9fa;
   border-radius: 4px;
-  color: #1c1c4c;
+  color: black;
 }
 
 .loading-spinner {
   display: inline-block;
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(28, 28, 76, 0.3);
+  width: 18px;
+  height: 18px;
+  border: 2px solid #e5e5e5;
   border-radius: 50%;
-  border-top-color: #1c1c4c;
-  animation: spin 1s linear infinite;
+  border-top-color: #333;
+  animation: spin 1.2s linear infinite;
   margin-bottom: 16px;
 }
 
 .loading-spinner-btn {
   display: inline-block;
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  width: 14px;
+  height: 14px;
+  border: 2px solid #e5e5e5;
   border-radius: 50%;
-  border-top-color: white;
-  animation: spin 1s linear infinite;
+  border-top-color: #333;
+  animation: spin 1.2s linear infinite;
   margin-right: 8px;
   vertical-align: middle;
 }
@@ -836,9 +836,9 @@ h3 {
 }
 
 .style-button.active {
-  background: #1c1c4c;
+  background: black;
   color: white;
-  border-color: #1c1c4c;
+  border-color: black;
 }
 
 .method-buttons {
@@ -858,9 +858,9 @@ h3 {
 }
 
 .method-button.active {
-  background: #1c1c4c;
+  background: black;
   color: white;
-  border-color: #1c1c4c;
+  border-color: black;
 }
 
 .prompt-container {
@@ -876,7 +876,7 @@ h3 {
 
 .form-group label {
   font-weight: 500;
-  color: #1c1c4c;
+  color: black;
 }
 
 .form-group textarea {
@@ -894,7 +894,7 @@ h3 {
 }
 
 .generate-button {
-  background: #1c1c4c;
+  background: black;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -949,7 +949,7 @@ h3 {
 }
 
 .primary-button {
-  background: #1c1c4c;
+  background: black;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -957,26 +957,35 @@ h3 {
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.3s ease;
+  position: relative;
+  min-width: 120px;
+  height: 48px;
 }
 
 .primary-button:hover:not(:disabled) {
-  background: #2a2a6c;
+  background: #333;
 }
 
 .primary-button:disabled {
-  background: #7a7a9c;
+  background: #666;
   cursor: not-allowed;
+}
+
+.loading-button {
+  background: #333 !important;
 }
 
 .secondary-button {
   background: white;
-  color: #1c1c4c;
-  border: 1px solid #1c1c4c;
+  color: black;
+  border: 1px solid black;
   padding: 0.75rem 1.5rem;
   border-radius: 6px;
   cursor: pointer;
   font-size: 1rem;
   transition: all 0.3s ease;
+  min-width: 120px;
+  height: 48px;
 }
 
 .secondary-button:hover {
@@ -1000,9 +1009,9 @@ h3 {
 }
 
 .quality-button.active {
-  background: #1c1c4c;
+  background: black;
   color: white;
-  border-color: #1c1c4c;
+  border-color: black;
 }
 
 .additional-buttons {

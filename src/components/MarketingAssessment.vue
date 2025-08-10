@@ -27,9 +27,8 @@
     <!-- Revolutionary Title Section -->
     <div class="assessment-title-zone">
       <div class="title-quantum-frame">
-        <h2 class="quantum-assessment-title">
-          {{ $t("creatorAI.MarketingAssessment.title") }}
-          <div class="title-energy-pulse" />
+        <h2 class="assessment-title">
+          Đánh Giá Marketing Miễn Phí
         </h2>
         <div class="title-holographic-border" />
       </div>

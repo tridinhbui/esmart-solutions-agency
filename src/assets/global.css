@@ -1,46 +1,110 @@
+/* Global Styles */
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: #333;
     overflow-x: hidden;
 }
   
-  .container {
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 20px;
+* {
+  box-sizing: border-box;
+}
+
+/* Image Loading and Error Handling */
+img {
+  max-width: 100%;
+  height: auto;
+  transition: opacity 0.3s ease;
   }
   
-  @media (max-width: 768px) {
-    .container {
-      padding: 0 10px;
+img[src*="placeholder.com"] {
+  filter: grayscale(0.2);
+  opacity: 0.8;
+}
+
+.fallback-image {
+  position: relative;
+  border: 2px dashed #ddd !important;
+  background-color: #f8f9fa !important;
+  filter: grayscale(0.3) !important;
     }
   
-    .responsive-text {
-      font-size: 1.5rem;
+.fallback-image::before {
+  content: '⚠️';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2px 6px;
+  border-radius: 4px;
+  z-index: 1;
     }
   
-    .responsive-padding {
-      padding: 1rem;
-    }
-  
-    .responsive-flex {
-      flex-direction: column;
-      align-items: stretch;
-    }
+/* Loading states */
+.image-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
   }
   
-  @media (max-width: 480px) {
-    .responsive-text {
-      font-size: 1.2rem;
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Animation Performance */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
     }
   
-    .responsive-padding {
-      padding: 0.5rem;
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out;
+}
+
+.animate-bounce-in {
+  animation: bounceIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
     }
-  
-    .responsive-flex {
-      flex-direction: column;
-      align-items: stretch;
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
     }
   }
