@@ -92,7 +92,7 @@
         >
           <div
             class="message-content"
-            v-html="message.text"
+            v-text="message.text"
           />
           <div class="message-time">
             {{ message.time }}

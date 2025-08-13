@@ -1,7 +1,12 @@
 <template>
   <transition name="fade">
-    <button v-if="visible" class="go-to-top-btn" @click="scrollToTop" aria-label="Go to top">
-      <i class="fas fa-arrow-up"></i>
+    <button
+      v-if="visible"
+      class="go-to-top-btn"
+      aria-label="Go to top"
+      @click="scrollToTop"
+    >
+      <i class="fas fa-arrow-up" />
     </button>
   </transition>
 </template>

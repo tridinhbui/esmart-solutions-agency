@@ -2,7 +2,10 @@
   <div class="login-wrapper">
     <!-- Navigation Bar with Logo -->
     <nav class="login-navbar">
-      <router-link to="/" class="navbar-logo">
+      <router-link
+        to="/"
+        class="navbar-logo"
+      >
         <img
           src="@/assets/logo.png"
           alt="ESmart Logo"
@@ -14,18 +17,36 @@
 
     <!-- Quantum Background Effects -->
     <div class="quantum-background">
-      <div class="quantum-particle" v-for="i in 15" :key="i" />
+      <div
+        v-for="(item, index) in backgroundItems"
+        :key="index"
+        class="background-item"
+        :style="{ animationDelay: `${index * 0.5}s` }"
+      />
       <div class="energy-waves">
-        <div class="energy-wave" v-for="i in 5" :key="i" />
+        <div
+          v-for="(item, index) in energyWaves"
+          :key="index"
+          class="energy-wave"
+          :style="{ animationDelay: `${index * 0.3}s` }"
+        />
       </div>
       <div class="neural-grid">
-        <div class="grid-line horizontal" v-for="i in 8" :key="`h-${i}`" />
-        <div class="grid-line vertical" v-for="i in 6" :key="`v-${i}`" />
+        <div
+          v-for="i in 8"
+          :key="`h-${i}`"
+          class="grid-line horizontal"
+        />
+        <div
+          v-for="i in 6"
+          :key="`v-${i}`"
+          class="grid-line vertical"
+        />
       </div>
     </div>
 
     <div class="welcome-section">
-      <div class="cosmic-glow"></div>
+      <div class="cosmic-glow" />
       <h3 class="welcome-title">
         <span class="quantum-text">Lần đầu tới đây?</span>
       </h3>
@@ -36,13 +57,15 @@
         class="signup-btn quantum-button"
         @click="handleSignUp"
       >
-        <span class="button-glow"></span>
+        <span class="button-glow" />
         <span class="button-text">Bắt đầu hành trình</span>
       </button>
     </div>
-    <div class="login-container">
+    <div
+      class="signin-container"
+    >
       <div class="login-content">
-        <div class="hologram-frame"></div>
+        <div class="hologram-frame" />
         <h2 class="login-title">
           <span class="quantum-text">Cổng đăng nhập</span>
         </h2>
@@ -56,7 +79,7 @@
             class="google-btn quantum-button"
             @click="handleGoogleLogin"
           >
-            <span class="button-glow"></span>
+            <span class="button-glow" />
             <img
               src="https://www.google.com/favicon.ico"
               alt="Google"
@@ -150,7 +173,7 @@
               type="submit"
               class="submit-btn quantum-button"
             >
-              <span class="button-glow"></span>
+              <span class="button-glow" />
               <span class="button-text">Đăng nhập</span>
             </button>
           </div>
@@ -451,7 +474,7 @@ const handleSignUp = () => {
   max-width: 400px;
 }
 
-.login-container {
+.signin-container {
   width: 55%;
   display: flex;
   justify-content: center;
@@ -751,7 +774,7 @@ const handleSignUp = () => {
   }
   
   .welcome-section,
-  .login-container {
+  .signin-container {
     width: 100%;
   }
   
@@ -764,7 +787,7 @@ const handleSignUp = () => {
     font-size: 3rem;
   }
   
-  .login-container {
+  .signin-container {
     min-height: 60vh;
   }
 }

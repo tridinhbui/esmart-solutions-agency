@@ -1,94 +1,106 @@
 <template>
-  <section class="simple-social-proof">
+  <section class="simple-social">
+    <!-- Animated Background Elements -->
+    <div class="animated-bg">
+      <div class="parallax-layer" data-speed="0.1">
+        <div class="floating-dots dot-1" />
+        <div class="floating-dots dot-2" />
+      </div>
+      
+      <div class="parallax-layer" data-speed="0.3">
+        <div class="floating-dots dot-3" />
+        <div class="connection-lines line-1" />
+      </div>
+      
+      <div class="parallax-layer" data-speed="0.5">
+        <div class="connection-lines line-2" />
+      </div>
+    </div>
+
     <div class="container">
-      <!-- Simple Title -->
-      <div class="section-header">
-        <h2 class="section-title">Khách Hàng Tin Tưởng</h2>
-        <p class="section-subtitle">Hơn 500+ doanh nghiệp đã tin tưởng và hợp tác cùng ESmart Solutions</p>
+      <!-- Section Header with Slide In Animation -->
+      <div class="section-header slide-in-element">
+        <h2 class="section-title fade-in-element">
+          Our Clients
+        </h2>
+        <p
+          class="section-subtitle fade-in-element"
+          style="animation-delay: 0.3s;"
+        >
+          Những đối tác tin tưởng đã chọn ESmart Solutions
+        </p>
       </div>
 
-      <!-- Clients Slideshow -->
-      <div class="clients-slider" @mouseenter="pauseAuto" @mouseleave="resumeAuto">
-        <div class="slider-track" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
-          <div class="client-slide" v-for="client in socialNetworks" :key="client.name">
-            <div class="client-logo">
-              <img :src="getImageUrl(client.icon)" :alt="client.name" @error="handleImageError" />
-            </div>
-            <div class="client-info">
-              <h3>{{ client.name }}</h3>
-              <p class="client-meta">{{ client.followers }}</p>
-              <p class="client-desc">{{ client.description }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="slider-dots">
-          <button v-for="(c, i) in socialNetworks" :key="i" :class="['dot', { active: i === currentIndex }]" @click="goTo(i)" />
-        </div>
-      </div>
-
-      <!-- Trust Badges Section -->
-      <div class="trust-section">
-        <h2 class="section-title">Chứng Nhận & Đối Tác</h2>
-        <div class="trust-grid">
-          <div class="trust-badge" v-for="badge in certifications" :key="badge.title">
-            <div class="badge-icon"><i :class="badge.icon"></i></div>
-            <div class="badge-info">
-              <h4>{{ badge.title }}</h4>
-              <p>{{ badge.subtitle }}</p>
-            </div>
+      <!-- Clients Banner with Slide In Animation -->
+      <div class="clients-banner slide-in-up">
+        <div class="clients-scroll">
+          <div
+            v-for="(client, index) in clients"
+            :key="index"
+            class="client-logo fade-in-element"
+            :style="{ animationDelay: `${index * 0.1}s` }"
+          >
+            <img 
+              :src="client.logo" 
+              :alt="client.name"
+              @error="handleImageError"
+            >
+            <span class="client-name">{{ client.name }}</span>
           </div>
         </div>
       </div>
 
-      <!-- Service Commitments Section -->
-      <div class="commit-section">
-        <h2 class="section-title">Cam Kết Dịch Vụ</h2>
-        <div class="commit-grid">
-          <div class="commit-card" v-for="c in commitments" :key="c.title">
-            <h3>{{ c.title }}</h3>
-            <p>{{ c.description }}</p>
+      <!-- Trust Cards with Staggered Animation -->
+      <div class="trust-cards">
+        <div
+          v-for="(card, index) in trustCards"
+          :key="index"
+          class="trust-card glass-card slide-in-up"
+          :style="{ animationDelay: `${index * 0.2}s` }"
+        >
+          <div class="card-icon fade-in-element">
+            <i :class="card.icon" />
           </div>
+          <h3 class="card-title slide-in-left">
+            {{ card.title }}
+          </h3>
+          <p class="card-description slide-in-right">
+            {{ card.description }}
+          </p>
         </div>
       </div>
 
-      <!-- Contact Information Section -->
-      <div class="contact-section">
-        <h2 class="section-title">Thông Tin Liên Hệ</h2>
-        <div class="contact-grid">
-          <div class="contact-item">
-            <h4>{{ contact.address }}</h4>
-            <p>{{ contact.addressValue }}</p>
-          </div>
-          <div class="contact-item">
-            <h4>{{ contact.phoneTitle }}</h4>
-            <p>{{ contact.phoneValue }}</p>
-          </div>
-          <div class="contact-item">
-            <h4>{{ contact.emailTitle }}</h4>
-            <p>{{ contact.emailValue }}</p>
-          </div>
-          <div class="contact-item">
-            <h4>{{ contact.hours }}</h4>
-            <p>{{ contact.hoursValue }}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Simple Toolkit Section -->
+      <!-- Bộ Công Cụ Của Chúng Tôi Section -->
       <div class="toolkit-section">
-        <h2 class="section-title">Bộ Công Cụ Của Chúng Tôi</h2>
-        
+        <div class="section-header slide-in-element">
+          <h2 class="section-title fade-in-element">
+            Bộ Công Cụ Của Chúng Tôi
+          </h2>
+          <p
+            class="section-subtitle fade-in-element"
+            style="animation-delay: 0.3s;"
+          >
+            Những giải pháp công nghệ tiên tiến giúp doanh nghiệp phát triển bền vững
+          </p>
+        </div>
+
         <div class="toolkit-grid">
           <div
-            v-for="(item, index) in toolkit"
+            v-for="(tool, index) in toolkit"
             :key="index"
-            class="toolkit-card"
+            class="toolkit-item glass-card slide-in-up"
+            :style="{ animationDelay: `${index * 0.2}s` }"
           >
-            <div class="toolkit-icon">
-              <i :class="item.icon" />
+            <div class="tool-icon fade-in-element">
+              <i :class="tool.icon" />
             </div>
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.description }}</p>
+            <h3 class="tool-title slide-in-left">
+              {{ tool.title }}
+            </h3>
+            <p class="tool-description slide-in-right">
+              {{ tool.description }}
+            </p>
+            <div class="tool-hover-effect" />
           </div>
         </div>
       </div>
@@ -101,8 +113,68 @@ export default {
   name: "SimpleSocialProof",
   data() {
     return {
+      animatedElements: [],
       currentIndex: 0,
       autoTimer: null,
+      
+      // Clients Array for Our Clients Section
+      clients: [
+        {
+          name: "VinPhuc Holdings",
+          logo: "https://via.placeholder.com/120x60/1e3a8a/ffffff?text=VinPhuc",
+          description: "B2B SaaS Partner since 2020"
+        },
+        {
+          name: "Hoa Phat Tech",
+          logo: "https://via.placeholder.com/120x60/3b82f6/ffffff?text=HoaPhat",
+          description: "Fintech Partner since 2019"
+        },
+        {
+          name: "NextGen Retail",
+          logo: "https://via.placeholder.com/120x60/60a5fa/ffffff?text=NextGen",
+          description: "Retail Partner since 2021"
+        },
+        {
+          name: "SunPetro Services",
+          logo: "https://via.placeholder.com/120x60/93c5fd/ffffff?text=SunPetro",
+          description: "Industrial Services since 2022"
+        },
+        {
+          name: "Mekong Logistics",
+          logo: "https://via.placeholder.com/120x60/bfdbfe/ffffff?text=Mekong",
+          description: "Logistics Partner since 2020"
+        },
+        {
+          name: "AlphaEdu Group",
+          logo: "https://via.placeholder.com/120x60/dbeafe/ffffff?text=AlphaEdu",
+          description: "EdTech Partner since 2018"
+        }
+      ],
+
+      // Trust Cards Array
+      trustCards: [
+        {
+          icon: "fas fa-award",
+          title: "Chất Lượng Đảm Bảo",
+          description: "Cam kết chất lượng dịch vụ cao nhất với khách hàng"
+        },
+        {
+          icon: "fas fa-clock",
+          title: "Giao Hàng Đúng Hạn",
+          description: "Đảm bảo hoàn thành dự án đúng thời gian cam kết"
+        },
+        {
+          icon: "fas fa-users",
+          title: "Đội Ngũ Chuyên Nghiệp",
+          description: "Đội ngũ kỹ sư giàu kinh nghiệm và tâm huyết"
+        },
+        {
+          icon: "fas fa-headset",
+          title: "Hỗ Trợ 24/7",
+          description: "Sẵn sàng hỗ trợ khách hàng mọi lúc, mọi nơi"
+        }
+      ],
+
       socialNetworks: [
         {
           name: "VinPhuc Holdings",
@@ -147,18 +219,7 @@ export default {
           description: "300K học viên hoạt động, giảm 42% CAC, tăng tỉ lệ hoàn thành khóa học +35%"
         }
       ],
-      certifications: [
-        { icon: 'fas fa-shield-check', title: 'ISO 9001:2015', subtitle: 'Hệ thống quản lý chất lượng' },
-        { icon: 'fas fa-shield-heart', title: 'ISO 27001', subtitle: 'An toàn thông tin doanh nghiệp' },
-        { icon: 'fas fa-handshake', title: 'Google Partner', subtitle: 'Đối tác quảng cáo chính thức' },
-        { icon: 'fas fa-certificate', title: 'Meta Business Partner', subtitle: 'Đối tác Meta' }
-      ],
-      commitments: [
-        { title: 'SLA 99.9%', description: 'Cam kết thời gian phản hồi và chất lượng triển khai' },
-        { title: 'Bàn giao minh bạch', description: 'Dashboard realtime, báo cáo KPI/OKR định kỳ' },
-        { title: 'Bảo mật tuyệt đối', description: 'Quy trình bảo mật nhiều lớp, phân quyền chặt chẽ' },
-        { title: 'Đồng hành dài hạn', description: 'Đào tạo, chuyển giao, tối ưu liên tục theo mục tiêu' }
-      ],
+
       toolkit: [
         {
           icon: "fas fa-chart-line",
@@ -180,18 +241,16 @@ export default {
           title: "Marketing Số",
           description: "Nền tảng quảng cáo đa kênh"
         }
-      ],
-      contact: {
-        address: "Địa chỉ",
-        addressValue: "Số 123, Đường ABC, Quận 1, TP.HCM",
-        phoneTitle: "Điện thoại",
-        phoneValue: "(028) 123 4567",
-        emailTitle: "Email",
-        emailValue: "info@example.com",
-        hours: "Giờ làm việc",
-        hoursValue: "Thứ 2 - Thứ 6: 8:00 - 18:00, Thứ 7: 8:00 - 12:00"
-      }
+      ]
     };
+  },
+  mounted() {
+    this.startAuto();
+    this.setupScrollAnimation();
+    this.setupParallaxEffect();
+  },
+  beforeUnmount() {
+    this.stopAuto();
   },
   methods: {
     getImageUrl(iconName) {
@@ -218,28 +277,77 @@ export default {
     },
     pauseAuto() { this.stopAuto(); },
     resumeAuto() { this.startAuto(); },
-    goTo(i) { this.currentIndex = i; }
-  },
-  mounted() {
-    this.startAuto();
-  },
-  beforeUnmount() {
-    this.stopAuto();
+    goTo(i) { this.currentIndex = i; },
+    
+    setupScrollAnimation() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Add staggered delay based on element type
+            const delay = this.getAnimationDelay(entry.target);
+            setTimeout(() => {
+              entry.target.classList.add('animate-in');
+            }, delay);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      });
+
+      // Observe all elements with animation classes
+      this.$nextTick(() => {
+        const elements = this.$el.querySelectorAll('.slide-in-element, .fade-in-element, .slide-in-up, .slide-in-left, .slide-in-right, .move-in-element');
+        elements.forEach(el => {
+          observer.observe(el);
+        });
+      });
+    },
+    
+    getAnimationDelay(element) {
+      const classList = element.classList;
+      
+      if (classList.contains('slide-in-element')) return 0;
+      if (classList.contains('fade-in-element')) return 150;
+      if (classList.contains('slide-in-up')) return 300;
+      if (classList.contains('slide-in-left')) return 450;
+      if (classList.contains('slide-in-right')) return 600;
+      if (classList.contains('move-in-element')) return 750;
+      
+      return 0;
+    },
+    
+    setupParallaxEffect() {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = this.$el.querySelectorAll('.parallax-layer');
+        
+        parallaxElements.forEach(element => {
+          const speed = parseFloat(element.dataset.speed) || 0.5;
+          const yPos = -(scrolled * speed);
+          const scale = 1 + (scrolled * 0.0001);
+          const rotate = scrolled * 0.004;
+          
+          element.style.transform = `translateY(${yPos}px) scale(${scale}) rotate(${rotate}deg)`;
+        });
+      });
+    }
   }
 };
 </script>
 
 <style scoped>
 /* Magical Social Proof Animations */
-.simple-social-proof {
-  background: #121212;
-  color: #ffffff;
-  padding: 4rem 2rem;
+.simple-social {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
+  color: #e0f2fe;
+  padding: 6rem 0;
   position: relative;
   overflow: hidden;
 }
 
-.simple-social-proof::before {
+.simple-social::before {
   content: '';
   position: absolute;
   top: 0;
@@ -250,21 +358,143 @@ export default {
   animation: sectionSweep 8s ease-in-out infinite;
 }
 
+/* Animated Background Elements */
+.animated-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Parallax Layers */
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.parallax-layer[data-speed="0.1"] { z-index: 1; }
+.parallax-layer[data-speed="0.3"] { z-index: 2; }
+.parallax-layer[data-speed="0.5"] { z-index: 3; }
+.parallax-layer[data-speed="0.7"] { z-index: 4; }
+.parallax-layer[data-speed="0.9"] { z-index: 5; }
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.animated-bg > * {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Container with proper z-index */
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Section Spacing and Layout Improvements */
+.simple-social {
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.section-subtitle {
+  font-size: 1.3rem;
+  color: #bfdbfe;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Clients Banner Improvements */
+.clients-banner {
+  margin: 4rem 0;
+  padding: 2rem 0;
+}
+
+.clients-scroll {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.client-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.client-logo:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.client-logo img {
+  width: 80px;
+  height: 40px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.client-logo:hover img {
+  filter: grayscale(0%);
+}
+
+.client-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
 }
 
 /* Social Media Grid */
@@ -276,8 +506,8 @@ export default {
 }
 
 .magical-social-card {
-  background: #1a1a1a;
-  border: 1px solid #333;
+  background: rgba(30, 58, 138, 0.3);
+  border: 1px solid rgba(96, 165, 250, 0.3);
   border-radius: 16px;
   padding: 2rem;
   text-align: center;
@@ -285,6 +515,8 @@ export default {
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   animation: cardSlideIn 1s ease-out backwards;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
 }
 
 .magical-social-card::before {
@@ -301,8 +533,9 @@ export default {
 
 .magical-social-card:hover {
   transform: translateY(-15px) rotateX(10deg) scale(1.03);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-  border-color: #ffffff;
+  box-shadow: 0 25px 50px rgba(96, 165, 250, 0.4);
+  border-color: #60a5fa;
+  background: rgba(30, 58, 138, 0.5);
 }
 
 .magical-social-card:hover .social-icon {
@@ -318,8 +551,10 @@ export default {
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  color: #ffffff;
+  color: #93c5fd;
   transition: all 0.6s ease;
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(147, 197, 253, 0.1));
+  text-shadow: 0 2px 15px rgba(96, 165, 250, 0.5);
   position: relative;
 }
 
@@ -355,14 +590,14 @@ export default {
 .social-name {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #1e3a8a;
   margin-bottom: 0.5rem;
   animation: titleSlideIn 1s ease-out 0.3s backwards;
 }
 
 .social-description {
   font-size: 0.95rem;
-  color: #999;
+  color: #93c5fd;
   margin-bottom: 1.5rem;
   animation: descSlideIn 1s ease-out 0.5s backwards;
 }
@@ -378,30 +613,33 @@ export default {
 .stats-number {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #1e3a8a;
   animation: numberGlow 2s ease-in-out infinite;
 }
 
 .stats-label {
   font-size: 0.9rem;
-  color: #999;
+  color: #93c5fd;
   font-weight: 500;
 }
 
-/* Toolkit Section */
+/* Toolkit Section Improvements */
 .toolkit-section {
-  margin-top: 4rem;
+  margin-top: 8rem;
+  padding-top: 5rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.15);
 }
 
 .toolkit-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin-top: 4rem;
 }
 
 .toolkit-card {
-  background: #1a1a1a;
-  border: 1px solid #333;
+  background: white; border: 2px solid #1e3a8a;
+  border: 2px solid #1e3a8a;
   border-radius: 12px;
   padding: 2rem;
   text-align: center;
@@ -409,41 +647,41 @@ export default {
 }
 
 .toolkit-card:hover {
-  border-color: #555;
+  border-color: #bfdbfe;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .toolkit-icon {
   font-size: 2rem;
-  color: #ffffff;
+  color: #1e3a8a;
   margin-bottom: 1rem;
 }
 
 .toolkit-card h3 {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #1e3a8a;
   margin-bottom: 0.5rem;
 }
 
 .toolkit-card p {
   font-size: 0.9rem;
-  color: #999;
+  color: #93c5fd;
   line-height: 1.5;
 }
 
 /* Trust & Commitments */
 .trust-section, .commit-section { margin-top: 4rem; }
 .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-.trust-badge { display: flex; gap: 0.75rem; align-items: center; border: 1px solid #333; border-radius: 10px; padding: 0.75rem 1rem; background: #1a1a1a; }
-.badge-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid #555; border-radius: 8px; color: #ffffff; }
-.badge-info h4 { margin: 0 0 2px; font-size: 1rem; color: #ffffff; }
-.badge-info p { margin: 0; color: #999; font-size: 0.9rem; }
+.trust-badge { display: flex; gap: 0.75rem; align-items: center; border: 2px solid #1e3a8a; border-radius: 10px; padding: 0.75rem 1rem; background: white; border: 2px solid #1e3a8a; }
+.badge-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid #1e3a8a; border-radius: 8px; color: #1e3a8a; }
+.badge-info h4 { margin: 0 0 2px; font-size: 1rem; color: #1e3a8a; }
+.badge-info p { margin: 0; color: #93c5fd; font-size: 0.9rem; }
 .commit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-.commit-card { border: 1px solid #333; border-radius: 10px; background: #1a1a1a; padding: 1rem; }
-.commit-card h3 { margin: 0 0 6px; color: #ffffff; font-size: 1.05rem; }
-.commit-card p { margin: 0; color: #999; }
+.commit-card { border: 2px solid #1e3a8a; border-radius: 10px; background: white; border: 2px solid #1e3a8a; padding: 1rem; }
+.commit-card h3 { margin: 0 0 6px; color: #1e3a8a; font-size: 1.05rem; }
+.commit-card p { margin: 0; color: #93c5fd; }
 
 /* Contact Section */
 .contact-section {
@@ -455,33 +693,33 @@ export default {
   gap: 1.5rem;
 }
 .contact-item {
-  background: #1a1a1a;
-  border: 1px solid #333;
+  background: white; border: 2px solid #1e3a8a;
+  border: 2px solid #1e3a8a;
   border-radius: 10px;
   padding: 1.5rem;
   text-align: center;
   transition: all 0.3s ease;
 }
 .contact-item:hover {
-  background: #2a2a2a;
+  background: #f8fafc;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border-color: #555;
+  border-color: #bfdbfe;
 }
 .contact-item h4 {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #1e3a8a;
   margin-bottom: 0.5rem;
 }
 .contact-item p {
   font-size: 0.9rem;
-  color: #999;
+  color: #93c5fd;
   line-height: 1.6;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .simple-social-proof {
+  .simple-social {
     padding: 2rem 1rem;
   }
   
@@ -489,17 +727,55 @@ export default {
     font-size: 2rem;
   }
   
-  .social-grid,
-  .toolkit-grid,
-  .contact-grid {
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
+  .clients-banner {
+    margin: 2rem 0;
+    padding: 2rem 0;
+  }
+  
+  .clients-scroll {
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .client-logo {
+    min-width: 120px;
+    padding: 1rem;
+  }
+  
+  .trust-cards {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  .toolkit-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .toolkit-item,
+  .trust-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .clients-scroll {
+    flex-direction: column;
     gap: 1rem;
   }
   
-  .social-card,
-  .toolkit-card,
-  .contact-item {
-    padding: 1.5rem;
+  .client-logo {
+    min-width: 100%;
   }
 }
 
@@ -569,15 +845,334 @@ export default {
   50% { text-shadow: 0 0 10px rgba(0, 0, 0, 0.3); }
 }
 
-/* Clients Slider */
-.clients-slider { overflow: hidden; position: relative; }
-.slider-track { display: flex; transition: transform 0.5s ease; }
-.client-slide { min-width: 100%; display: flex; align-items: center; gap: 1.5rem; justify-content: center; }
-.client-logo img { max-height: 60px; object-fit: contain; filter: grayscale(100%); }
-.client-info h3 { margin: 0 0 0.25rem; color: #ffffff; }
-.client-meta { margin: 0 0 0.25rem; color: #999; font-weight: 500; }
-.client-desc { margin: 0; color: #999; }
-.slider-dots { display: flex; gap: 8px; justify-content: center; margin-top: 1rem; }
-.dot { width: 8px; height: 8px; border-radius: 50%; border: 1px solid #999; background: transparent; }
-.dot.active { background: #999; }
+/* Clients Banner - Horizontal Scrolling */
+.clients-banner {
+  margin: 4rem 0;
+  padding: 3rem 0;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.clients-banner-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #e0f2fe;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.clients-marquee {
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+.clients-track {
+  display: inline-flex;
+  animation: marqueeScroll 30s linear infinite;
+  gap: 4rem;
+  align-items: center;
+}
+
+.client-logo-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  border: 2px solid rgba(30, 58, 138, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  min-width: 160px;
+  height: 80px;
+}
+
+.client-logo-item:hover {
+  transform: translateY(-5px) scale(1.05);
+  border-color: #3b82f6;
+  box-shadow: 0 10px 30px rgba(30, 58, 138, 0.3);
+}
+
+.client-logo-item img {
+  max-width: 120px;
+  max-height: 60px;
+  object-fit: contain;
+  filter: grayscale(0%);
+  transition: all 0.3s ease;
+}
+
+.clients-marquee:hover .clients-track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Trust Cards Improvements */
+.trust-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  margin: 5rem 0;
+}
+
+.trust-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.trust-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+}
+
+.card-icon {
+  font-size: 3rem;
+  color: #3b82f6;
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #bfdbfe;
+  line-height: 1.6;
+}
+
+/* Toolkit Section Styling */
+.toolkit-section {
+  margin-top: 6rem;
+  padding-top: 4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toolkit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.toolkit-item {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.toolkit-item:hover {
+  transform: translateY(-10px) scale(1.02);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 25px 50px rgba(59, 130, 246, 0.3);
+}
+
+.tool-icon {
+  font-size: 3rem;
+  color: #3b82f6;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.toolkit-item:hover .tool-icon {
+  transform: scale(1.1);
+  color: #60a5fa;
+}
+
+.tool-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.tool-description {
+  font-size: 1rem;
+  color: #bfdbfe;
+  line-height: 1.6;
+}
+
+.tool-hover-effect {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.8s ease;
+  pointer-events: none;
+}
+
+.toolkit-item:hover .tool-hover-effect {
+  left: 100%;
+}
+
+/* Enhanced Animation Classes */
+.slide-in-element {
+  animation: slideInElement 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.fade-in-element {
+  animation: fadeInElement 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* Animation Keyframes */
+@keyframes slideInElement {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInElement {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Floating Dots Animation */
+.floating-dots {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgba(59, 130, 246, 0.6);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.dot-1 {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.dot-2 {
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.dot-3 {
+  bottom: 30%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Connection Lines Animation */
+.connection-lines {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.4), transparent);
+  animation: connect 8s ease-in-out infinite;
+}
+
+.line-1 {
+  top: 40%;
+  left: 0;
+  width: 100px;
+  animation-delay: 0s;
+}
+
+.line-2 {
+  bottom: 50%;
+  right: 0;
+  width: 80px;
+  animation-delay: 4s;
+}
+
+@keyframes connect {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scaleX(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
 </style> 

@@ -4,47 +4,91 @@
     <div class="quantum-universe">
       <!-- Atomic Particles Field -->
       <div class="atomic-field">
-        <div class="atomic-particle" v-for="i in 40" :key="`atomic-${i}`" />
+        <div
+          v-for="i in 40"
+          :key="`atomic-${i}`"
+          class="atomic-particle"
+        />
       </div>
       
       <!-- Universe Energy Streams -->
       <div class="universe-energy">
-        <div class="energy-stream" v-for="i in 12" :key="`universe-${i}`" />
+        <div
+          v-for="i in 12"
+          :key="`universe-${i}`"
+          class="energy-stream"
+        />
       </div>
       
       <!-- Quantum Cosmic Grid -->
       <div class="cosmic-grid">
-        <div class="grid-node" v-for="i in 20" :key="`grid-${i}`" />
-        <div class="grid-connection" v-for="i in 35" :key="`connection-${i}`" />
+        <div
+          v-for="i in 20"
+          :key="`grid-${i}`"
+          class="grid-node"
+        />
+        <div
+          v-for="i in 35"
+          :key="`connection-${i}`"
+          class="grid-connection"
+        />
       </div>
       
       <!-- Stellar Background -->
       <div class="stellar-field">
-        <div class="star" v-for="i in 100" :key="`star-${i}`" />
+        <div
+          v-for="i in 100"
+          :key="`star-${i}`"
+          class="star"
+        />
       </div>
       
       <!-- Dark Matter Effects -->
       <div class="dark-matter">
-        <div class="matter-wave" v-for="i in 6" :key="`matter-${i}`" />
+        <div
+          v-for="i in 6"
+          :key="`matter-${i}`"
+          class="matter-wave"
+        />
       </div>
       
       <!-- Quantum Vortex -->
       <div class="quantum-vortex">
-        <div class="vortex-ring" v-for="i in 8" :key="`vortex-${i}`" />
+        <div
+          v-for="i in 8"
+          :key="`vortex-${i}`"
+          class="vortex-ring"
+        />
       </div>
     </div>
 
     <!-- Original Quantum Background Effects (Enhanced) -->
     <div class="quantum-cosmos enhanced">
       <div class="cosmic-particles">
-        <div class="cosmic-particle enhanced" v-for="i in 35" :key="i" />
+        <div
+          v-for="i in 35"
+          :key="i"
+          class="cosmic-particle enhanced"
+        />
       </div>
       <div class="energy-streams">
-        <div class="energy-stream enhanced" v-for="i in 15" :key="i" />
+        <div
+          v-for="i in 15"
+          :key="i"
+          class="energy-stream enhanced"
+        />
       </div>
       <div class="neural-network-bg">
-        <div class="neural-node enhanced" v-for="i in 18" :key="i" />
-        <div class="neural-connection enhanced" v-for="i in 30" :key="i" />
+        <div
+          v-for="i in 18"
+          :key="i"
+          class="neural-node enhanced"
+        />
+        <div
+          v-for="i in 30"
+          :key="i"
+          class="neural-connection enhanced"
+        />
       </div>
     </div>
 
@@ -55,9 +99,15 @@
       class="loading-container quantum-loading"
     >
       <div class="quantum-loader">
-        <div class="quantum-ring" v-for="i in 3" :key="i" />
+        <div
+          v-for="i in 3"
+          :key="i"
+          class="quantum-ring"
+        />
       </div>
-      <p class="loading-text">{{ $t("creatorAI.common.loading") }}</p>
+      <p class="loading-text">
+        {{ $t("creatorAI.common.loading") }}
+      </p>
     </div>
 
     <div

@@ -37,7 +37,11 @@
     </div>
 
     <!-- Revolutionary Title Zone -->
-    <div class="testimonials-title-zone animate-fadeIn" data-aos="fade-down" data-aos-delay="100">
+    <div
+      class="testimonials-title-zone animate-fadeIn"
+      data-aos="fade-down"
+      data-aos-delay="100"
+    >
       <!-- Quantum Badge -->
       <div class="testimonials-quantum-badge">
         <div class="badge-energy-core" />
@@ -47,7 +51,11 @@
       </div>
 
       <!-- Revolutionary Title -->
-      <h2 class="testimonials-revolutionary-title animate-slideIn" data-aos="fade-up" data-aos-delay="200">
+      <h2
+        class="testimonials-revolutionary-title animate-slideIn"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
         <span class="title-main">Khách Hàng Nói Gì</span>
         <div class="title-energy-beams">
           <div class="energy-beam beam-1" />
@@ -65,8 +73,8 @@
       data-aos-delay="300"
     >
       <div
-        class="testimonials-track scroller__inner"
         ref="testimonialTrack"
+        class="testimonials-track scroller__inner"
       >
         <!-- First set of testimonials -->
         <div

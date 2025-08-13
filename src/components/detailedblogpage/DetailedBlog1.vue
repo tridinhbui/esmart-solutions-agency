@@ -4,18 +4,34 @@
     <div class="quantum-universe">
       <!-- Atomic Particles Field -->
       <div class="atomic-field">
-        <div class="atomic-particle" v-for="i in 40" :key="`atomic-${i}`" />
+        <div
+          v-for="i in 40"
+          :key="`atomic-${i}`"
+          class="atomic-particle"
+        />
       </div>
       
       <!-- Universe Energy Streams -->
       <div class="universe-energy">
-        <div class="energy-stream" v-for="i in 12" :key="`universe-${i}`" />
+        <div
+          v-for="i in 12"
+          :key="`universe-${i}`"
+          class="energy-stream"
+        />
       </div>
       
       <!-- Quantum Cosmic Grid -->
       <div class="cosmic-grid">
-        <div class="grid-node" v-for="i in 20" :key="`grid-${i}`" />
-        <div class="grid-connection" v-for="i in 35" :key="`connection-${i}`" />
+        <div
+          v-for="i in 20"
+          :key="`grid-${i}`"
+          class="grid-node"
+        />
+        <div
+          v-for="i in 35"
+          :key="`connection-${i}`"
+          class="grid-connection"
+        />
       </div>
     </div>
 
@@ -60,7 +76,7 @@
             <h2 class="category-title quantum-title">
               <span class="category-icon">{{ getCategoryIcon(category) }}</span>
               <span class="quantum-text">{{ $t(`blog.categories.${category.toLowerCase().replace(' ', '_')}`) || category }}</span>
-              <div class="title-glow"></div>
+              <div class="title-glow" />
             </h2>
             
             <!-- Posts Grid with Quantum Cards -->
@@ -72,7 +88,7 @@
                 :data-aos="'fade-up'"
                 :data-aos-delay="post.id * 100"
               >
-                <div class="quantum-border"></div>
+                <div class="quantum-border" />
                 <div class="post-image-container">
                   <img
                     :src="post.image"
@@ -100,7 +116,7 @@
                     :to="`/blog/${post.id}`"
                     class="read-more-btn quantum-button"
                   >
-                    <span class="button-glow"></span>
+                    <span class="button-glow" />
                     <span class="button-text">{{ $t('blog.readMore') || 'Xem thêm' }}</span>
                     <i class="fas fa-arrow-right" />
                   </router-link>
@@ -115,7 +131,7 @@
       <aside class="sidebar quantum-sidebar">
         <!-- Categories Widget -->
         <div class="widget categories-widget quantum-widget">
-          <div class="widget-border"></div>
+          <div class="widget-border" />
           <h3 class="widget-title quantum-title">
             <i class="fas fa-folder quantum-icon" />
             {{ $t('blog.categories.title') || 'Danh mục' }}
@@ -143,7 +159,7 @@
         <div class="sidebar-double-row">
           <!-- Recent Posts Widget -->
           <div class="widget recent-posts-widget quantum-widget half-width">
-            <div class="widget-border"></div>
+            <div class="widget-border" />
             <h3 class="widget-title quantum-title">
               <i class="fas fa-fire quantum-icon" />
               Bài Hot Trong Tuần
@@ -166,7 +182,7 @@
           
           <!-- Authors Widget -->
           <div class="widget authors-widget quantum-widget half-width">
-            <div class="widget-border"></div>
+            <div class="widget-border" />
             <h3 class="widget-title quantum-title">
               <i class="fas fa-users quantum-icon" />
               Tác Giả Nổi Bật
@@ -178,7 +194,11 @@
                 class="author-item compact"
               >
                 <div class="author-content">
-                  <h4 class="author-name">{{ author }}</h4>
+                  <h4
+                    class="author-name"
+                  >
+                    {{ author }}
+                  </h4>
                   <span class="author-title">Content Writer</span>
                 </div>
               </li>
@@ -188,7 +208,7 @@
 
         <!-- Newsletter Widget -->
         <div class="widget newsletter-widget quantum-widget">
-          <div class="widget-border"></div>
+          <div class="widget-border" />
           <h3 class="widget-title quantum-title">
             <i class="fas fa-envelope quantum-icon" />
             {{ $t('blog.newsletter.title') || 'Bản tin' }}
@@ -211,7 +231,7 @@
               type="submit"
               class="newsletter-btn quantum-button"
             >
-              <span class="button-glow"></span>
+              <span class="button-glow" />
               <i class="fas fa-paper-plane" />
             </button>
           </form>

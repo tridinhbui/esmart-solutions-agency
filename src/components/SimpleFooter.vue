@@ -1,70 +1,65 @@
 <template>
   <footer class="simple-footer">
     <div class="footer-container">
-      <!-- Footer Content -->
-      <div class="footer-content">
-        <!-- Company Info -->
-        <div class="footer-section">
+      <!-- Main Footer Content -->
+      <div class="footer-main">
+        <!-- Company Section -->
+        <div class="company-section">
           <div class="footer-logo">
             <span class="logo-text">ESmart</span>
             <span class="logo-subtitle">Solutions</span>
           </div>
           <p class="footer-description">
-            ESmart Solutions - tập trung hỗ trợ các doanh nghiệp kinh doanh tăng cường khả năng tiếp cận và quảng bá sản phẩm đến khách hàng tiềm năng.
+            Tạo ra những giải pháp số sáng tạo cho doanh nghiệp hiện đại
           </p>
           <div class="social-links">
-            <a href="#" class="social-link">
-              <i class="fab fa-facebook"></i>
+            <a
+              href="#"
+              class="social-link"
+            >
+              <i class="fab fa-facebook" />
             </a>
-            <a href="#" class="social-link">
-              <i class="fab fa-instagram"></i>
+            <a
+              href="#"
+              class="social-link"
+            >
+              <i class="fab fa-instagram" />
             </a>
-            <a href="#" class="social-link">
-              <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="#" class="social-link">
-              <i class="fab fa-twitter"></i>
+            <a
+              href="#"
+              class="social-link"
+            >
+              <i class="fab fa-linkedin" />
             </a>
           </div>
         </div>
 
-        <!-- Quick Links -->
-        <div class="footer-section">
-          <h3 class="footer-title">Quick Links</h3>
-          <ul class="footer-links">
-            <li><router-link to="/">Trang Chủ</router-link></li>
-            <li><router-link to="/#about-us">Về Chúng Tôi</router-link></li>
-            <li><router-link to="/#project">Sản Phẩm</router-link></li>
-            <li><router-link to="/blog">Blog</router-link></li>
+        <!-- Links Grid -->
+        <div class="links-grid">
+          <div class="link-group">
+            <h4>Dịch Vụ</h4>
+            <ul>
+              <li><a href="#web-dev">Web Development</a></li>
+              <li><a href="#mobile">Mobile Apps</a></li>
+              <li><a href="#marketing">Digital Marketing</a></li>
+            </ul>
+          </div>
 
-          </ul>
-        </div>
+          <div class="link-group">
+            <h4>Tài Nguyên</h4>
+            <ul>
+              <li><a href="#blog">Blog</a></li>
+              <li><a href="#portfolio">Portfolio</a></li>
+              <li><a href="#case-studies">Case Studies</a></li>
+            </ul>
+          </div>
 
-        <!-- Services -->
-        <div class="footer-section">
-          <h3 class="footer-title">Services</h3>
-          <ul class="footer-links">
-            <li><a href="#marketing-assessment">Đánh Giá</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#process">Process</a></li>
-          </ul>
-        </div>
-
-        <!-- Contact Info -->
-        <div class="footer-section">
-          <h3 class="footer-title">Contact</h3>
-          <div class="contact-info">
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <span>contact@esmart.vn</span>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-phone"></i>
-              <span>+84 123 456 789</span>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <span>Ho Chi Minh City, Vietnam</span>
+          <div class="link-group">
+            <h4>Liên Hệ</h4>
+            <div class="contact-simple">
+              <p>contact@esmart.vn</p>
+              <p>+84 123 456 789</p>
+              <p>Ho Chi Minh City</p>
             </div>
           </div>
         </div>
@@ -72,15 +67,12 @@
 
       <!-- Footer Bottom -->
       <div class="footer-bottom">
-        <div class="footer-bottom-content">
-          <p class="copyright">
-            © 2024 ESmart Solutions. All rights reserved.
-          </p>
-          <div class="footer-bottom-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Cookie Policy</a>
-          </div>
+        <p class="copyright">
+          © 2024 ESmart Solutions. All rights reserved.
+        </p>
+        <div class="bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
         </div>
       </div>
     </div>
@@ -95,32 +87,33 @@ export default {
 
 <style scoped>
 .simple-footer {
-  background: #1a1a1a;
+  background: linear-gradient(135deg, #0f1629 0%, #1e3a8a 100%);
   color: #ffffff;
-  padding: 3rem 2rem 2rem;
-  text-align: center;
-  border-top: 1px solid #333;
+  padding: 3rem 2rem 1rem;
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 0;
 }
 
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 2rem 0;
 }
 
-.footer-content {
+.footer-main {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
   margin-bottom: 2rem;
+  align-items: start;
 }
 
-.footer-section {
+.company-section {
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 
-/* Footer Logo */
 .footer-logo {
   display: flex;
   flex-direction: column;
@@ -128,82 +121,100 @@ export default {
 }
 
 .logo-text {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: black;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
   line-height: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .logo-subtitle {
-  font-size: 0.8rem;
-  color: #333;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: -2px;
+  font-size: 0.9rem;
+  color: #93c5fd;
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin-top: 2px;
 }
 
 .footer-description {
-  font-size: 0.9rem;
-  color: #333;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: #e2e8f0;
+  line-height: 1.7;
+  margin: 1.5rem 0;
+  font-weight: 400;
+  max-width: 300px;
 }
 
-/* Social Links */
 .social-links {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
 
 .social-link {
-  width: 40px;
-  height: 40px;
-  background: white;
-  border: 1px solid #e5e5e5;
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #333;
+  color: #cbd5e1;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
 }
 
 .social-link:hover {
-  background: black;
-  color: white;
-  border-color: black;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
-/* Footer Titles */
-.footer-title {
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.link-group h4 {
   font-size: 1.1rem;
   font-weight: 600;
-  color: black;
-  margin-bottom: 1rem;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.3px;
 }
 
-/* Footer Links */
-.footer-links {
+.link-group ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.footer-links li {
-  margin-bottom: 0.5rem;
+.link-group ul li {
+  margin-bottom: 0.75rem;
 }
 
-.footer-links a {
-  color: #333;
+.link-group ul a {
+  color: #cbd5e1;
   text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.2s ease;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
-.footer-links a:hover {
-  color: black;
-  transform: translateX(5px);
+.link-group ul a:hover {
+  color: #ffffff;
+  padding-left: 4px;
+}
+
+.contact-simple p {
+  font-size: 0.95rem;
+  color: #e2e8f0;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
 }
 
 .debug-link {
@@ -218,35 +229,10 @@ export default {
   color: #ff5252 !important;
 }
 
-/* Contact Info */
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  color: #333;
-}
-
-.contact-item i {
-  width: 16px;
-  color: black;
-}
-
 /* Footer Bottom */
 .footer-bottom {
-  border-top: 1px solid #333;
-  padding-top: 1.5rem;
-  color: #888;
-  font-size: 0.9rem;
-}
-
-.footer-bottom-content {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -255,41 +241,58 @@ export default {
 }
 
 .copyright {
-  font-size: 0.8rem;
-  color: #333;
+  font-size: 0.9rem;
+  color: #94a3b8;
   margin: 0;
+  font-weight: 400;
 }
 
-.footer-bottom-links {
+.bottom-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
-.footer-bottom-links a {
-  font-size: 0.8rem;
-  color: #333;
+.bottom-links a {
+  font-size: 0.9rem;
+  color: #94a3b8;
   text-decoration: none;
-  transition: color 0.2s ease;
+  font-weight: 400;
+  transition: all 0.3s ease;
 }
 
-.footer-bottom-links a:hover {
-  color: black;
+.bottom-links a:hover {
+  color: #ffffff;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .footer-container {
-    padding: 2rem 1rem 0;
+  .simple-footer {
+    padding: 3rem 1.5rem 2rem;
   }
   
-  .footer-content {
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+  
+  .company-section {
+    text-align: center;
+  }
+  
+  .footer-description {
+    max-width: none;
+  }
+  
+  .links-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
   
-  .footer-bottom-content {
+  .footer-bottom {
     flex-direction: column;
     text-align: center;
+    gap: 1.5rem;
   }
   
   .social-links {

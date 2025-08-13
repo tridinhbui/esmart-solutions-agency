@@ -1,18 +1,54 @@
 <template>
   <header class="simple-navbar">
     <div class="navbar-container">
-      <router-link to="/" class="logo-link">
+      <router-link
+        to="/"
+        class="logo-link"
+      >
         <span class="logo-text">ESmart</span>
         <span class="logo-subtitle">Solutions</span>
       </router-link>
 
-      <nav class="nav-menu" :class="{ 'nav-open': isOpen }">
-        <router-link to="/" class="nav-link" @click="closeMenu">Trang Chủ</router-link>
+      <nav
+        class="nav-menu"
+        :class="{ 'nav-open': isOpen }"
+      >
+        <router-link
+          to="/"
+          class="nav-link"
+          @click="closeMenu"
+        >
+          {{ $t('navigation.home') }}
+        </router-link>
 
-        <router-link to="/#marketing-assessment" class="nav-link" @click="closeMenu">Đánh Giá</router-link>
-        <router-link to="/blog" class="nav-link" @click="closeMenu">Blog</router-link>
-        <router-link to="/#project" class="nav-link" @click="closeMenu">Sản Phẩm</router-link>
-        <router-link to="/#about-us" class="nav-link" @click="closeMenu">Về Chúng Tôi</router-link>
+        <router-link
+          to="/#marketing-assessment"
+          class="nav-link"
+          @click="closeMenu"
+        >
+          {{ $t('navigation.assessment') }}
+        </router-link>
+        <router-link
+          to="/blog"
+          class="nav-link"
+          @click="closeMenu"
+        >
+          {{ $t('navigation.blog') }}
+        </router-link>
+        <router-link
+          to="/#project"
+          class="nav-link"
+          @click="closeMenu"
+        >
+          {{ $t('navigation.products') }}
+        </router-link>
+        <router-link
+          to="/#about-us"
+          class="nav-link"
+          @click="closeMenu"
+        >
+          {{ $t('navigation.aboutUs') }}
+        </router-link>
       </nav>
 
       <!-- Language Switcher -->
@@ -36,12 +72,12 @@
       <!-- Mobile Menu Toggle -->
       <button 
         class="mobile-toggle"
-        @click="toggleMenu"
         :class="{ 'menu-open': isOpen }"
+        @click="toggleMenu"
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        <span />
+        <span />
+        <span />
       </button>
     </div>
   </header>
@@ -89,18 +125,20 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #e5e5e5;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.3);
   z-index: 1000;
   transition: all 0.4s ease;
   animation: navSlideDown 1s ease-out;
+  box-shadow: 0 2px 20px rgba(30, 58, 138, 0.2);
 }
 
 .navbar-scrolled {
-  background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  background: rgba(15, 23, 42, 0.98);
+  box-shadow: 0 5px 25px rgba(30, 58, 138, 0.3);
   animation: navGlow 0.6s ease-out;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.4);
 }
 
 .nav-logo {
@@ -128,7 +166,7 @@ export default {
   left: 50%;
   width: 0;
   height: 2px;
-  background: black;
+  background: #1e3a8a;
   transition: all 0.4s ease;
   transform: translateX(-50%);
 }
@@ -139,7 +177,7 @@ export default {
 
 .nav-link:hover {
   transform: translateY(-3px);
-  color: black;
+  color: #e0f2fe;
 }
 
 .language-selector {
@@ -266,19 +304,19 @@ export default {
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  color: black;
+  color: #e0f2fe;
 }
 
 .logo-text {
   font-size: 1.5rem;
   font-weight: 700;
-  color: black;
+  color: #e0f2fe;
   line-height: 1;
 }
 
 .logo-subtitle {
   font-size: 0.7rem;
-  color: #333;
+  color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-top: -2px;
@@ -293,7 +331,7 @@ export default {
 
 .nav-link {
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
   font-weight: 500;
   padding: 0.5rem 0;
   transition: color 0.2s ease;
@@ -302,7 +340,7 @@ export default {
 
 .nav-link:hover,
 .nav-link.router-link-active {
-  color: black;
+  color: #e0f2fe;
 }
 
 .nav-link::after {
@@ -312,7 +350,7 @@ export default {
   left: 0;
   width: 0;
   height: 2px;
-  background: black;
+  background: #1e3a8a;
   transition: width 0.2s ease;
 }
 
@@ -322,8 +360,8 @@ export default {
 }
 
 .elegant-link {
-  background: #f8f8f8;
-  color: black;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
+  color: #e0f2fe;
   padding: 0.5rem 1rem;
   border-radius: 6px;
   border: 1px solid #e5e5e5;
@@ -338,29 +376,38 @@ export default {
 .language-switcher {
   display: flex;
   gap: 0.5rem;
-  background: #f8f8f8;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
   padding: 0.25rem;
-  border-radius: 6px;
-  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  border: 2px solid rgba(96, 165, 250, 0.5);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+  transition: all 0.3s ease;
+}
+
+.language-switcher:hover {
+  border-color: rgba(96, 165, 250, 0.8);
+  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
 }
 
 .lang-btn {
   background: transparent;
   border: none;
   padding: 0.5rem 0.75rem;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 0.8rem;
-  font-weight: 600;
-  color: #333;
-  transition: all 0.2s ease;
+  font-weight: 700;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .lang-btn.active,
 .lang-btn:hover {
-  background: white;
-  color: black;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+  color: #1e3a8a;
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.2);
+  transform: translateY(-1px);
 }
 
 /* Mobile Toggle */
@@ -377,7 +424,7 @@ export default {
 .mobile-toggle span {
   width: 25px;
   height: 2px;
-  background: black;
+  background: #1e3a8a;
   transition: all 0.2s ease;
 }
 
@@ -408,7 +455,7 @@ export default {
     top: 100%;
     left: 0;
     right: 0;
-    background: white;
+    background: white; border: 2px solid #1e3a8a;
     border-top: 1px solid #e5e5e5;
     flex-direction: column;
     gap: 0;

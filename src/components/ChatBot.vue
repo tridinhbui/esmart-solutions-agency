@@ -152,7 +152,7 @@
                 <div class="message-bubble">
                   <div
                     class="message-text"
-                    v-html="message.text"
+                    v-text="message.text"
                   />
                   <div class="message-time">
                     {{ formatTime(message.timestamp) }}
@@ -328,21 +328,21 @@ export default {
 <style scoped>
 /* Enhanced CSS Variables with Quantum Theme */
 :root {
-  --primary-color: black;
-  --secondary-color: #333;
-  --tertiary-color: #111;
-  --quantum-blue: #333;
-  --quantum-purple: #333;
-  --quantum-green: #198754;
-  --gradient-magical: linear-gradient(135deg, #000 0%, #333 100%);
-  --gradient-primary: linear-gradient(135deg, #000 0%, #333 100%);
-  --gradient-secondary: linear-gradient(135deg, #333 0%, #111 100%);
-  --gradient-tertiary: linear-gradient(135deg, #111 0%, #000 100%);
-  --gradient-quantum: linear-gradient(135deg, #222 0%, #555 100%);
-  --gradient-cyber: linear-gradient(135deg, #333 0%, #000 100%);
-  --success-color: #198754;
-  --text-primary: #000;
-  --text-secondary: #333;
+  --primary-color: #0066cc;
+  --secondary-color: #003d6b;
+  --tertiary-color: #004d7a;
+  --quantum-blue: #0080ff;
+  --quantum-purple: #0066cc;
+  --quantum-green: #0099cc;
+  --gradient-magical: linear-gradient(135deg, #0066cc 0%, #0080ff 100%);
+  --gradient-primary: linear-gradient(135deg, #003d6b 0%, #0066cc 100%);
+  --gradient-secondary: linear-gradient(135deg, #0066cc 0%, #0080ff 100%);
+  --gradient-tertiary: linear-gradient(135deg, #004d7a 0%, #0066cc 100%);
+  --gradient-quantum: linear-gradient(135deg, #0080ff 0%, #00b3ff 100%);
+  --gradient-cyber: linear-gradient(135deg, #0066cc 0%, #003d6b 100%);
+  --success-color: #0099cc;
+  --text-primary: #003d6b;
+  --text-secondary: #0066cc;
 }
 
 /* Chatbot Container with Super High Z-Index */
@@ -611,14 +611,15 @@ export default {
 }
 
 .chat-header {
-  background: #000;
-  color: white;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  color: #e0f2fe;
   padding: 1.5rem;
   display: flex;
   align-items: center;
   gap: 1rem;
   position: relative;
   overflow: hidden;
+  border-radius: 1rem 1rem 0 0;
 }
 
 .chat-header::before {

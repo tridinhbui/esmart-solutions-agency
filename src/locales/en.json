@@ -1,4 +1,60 @@
 {
+  "navigation": {
+    "home": "Home",
+    "aboutUs": "About Us",
+    "process": "Process",
+    "contact": "Contact",
+    "aiCreator": "AI Creator",
+    "assessment": "Assessment",
+    "achievements": "Achievements",
+    "blog": "Blog",
+    "products": "Products",
+    "signIn": "Sign In"
+  },
+  "sections": {
+    "coreValues": "Core Values",
+    "outstandingAchievements": "Outstanding Achievements",
+    "professionalTeam": "Professional Team",
+    "professionalTeamSubtitle": "Experienced and dedicated experts",
+    "companyValues": "Company Values",
+    "companyStats": "Company Statistics",
+    "teamSection": "Team Section",
+    "ourTools": "Our Tools",
+    "ourToolsSubtitle": "Advanced technology solutions for sustainable business development",
+    "professionalServices": "Professional Services",
+    "achievements": "Achievements",
+    "achievementsSubtitle": "Outstanding achievements and services of ESmart Solutions",
+    "whatCustomersSay": "What Our Customers Say",
+    "whatCustomersSaySubtitle": "Positive feedback from our customers"
+  },
+  "companyValues": {
+    "respect": "Respect",
+    "respectDesc": "Always respect and listen to the opinions of customers, partners and employees",
+    "efficiency": "Efficiency",
+    "efficiencyDesc": "Optimize all processes to achieve the highest efficiency in the shortest time",
+    "professionalism": "Professionalism",
+    "professionalismDesc": "Team of experts with extensive experience and continuously updated knowledge",
+    "innovation": "Innovation",
+    "innovationDesc": "Continuously create and apply the latest technology to solutions"
+  },
+  "companyStats": {
+    "completedProjects": "Completed Projects",
+    "completedProjectsDesc": "Successfully completed more than 500 diverse projects",
+    "satisfiedCustomers": "Satisfied Customers",
+    "satisfiedCustomersDesc": "Customer satisfaction rate with our services",
+    "customerSupport": "Customer Support",
+    "customerSupportDesc": "Support team ready to serve anytime",
+    "yearsExperience": "Years of Experience",
+    "yearsExperienceDesc": "More than 5 years of experience in digital transformation"
+  },
+  "teamMembers": {
+    "ceo": "CEO & Founder",
+    "ceoDesc": "Expert with more than 10 years of experience in technology and business",
+    "cto": "CTO",
+    "ctoDesc": "Senior software engineer with expertise in AI/ML and cloud computing",
+    "headOfDesign": "Head of Design",
+    "headOfDesignDesc": "Talented UX/UI designer with outstanding creative ability"
+  },
   "home": "Home",
   "aiCreator": "AI Creator",
   "assessment": "Assessment",

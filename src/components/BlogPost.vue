@@ -31,9 +31,17 @@
     </div>
 
     <!-- Revolutionary Title Zone -->
-    <div class="news-title-zone animate-fadeIn" data-aos="fade-down" data-aos-delay="100">
+    <div
+      class="news-title-zone animate-fadeIn"
+      data-aos="fade-down"
+      data-aos-delay="100"
+    >
       <!-- Quantum Badge -->
-      <div class="news-quantum-badge animate-zoomIn" data-aos="zoom-in" data-aos-delay="150">
+      <div
+        class="news-quantum-badge animate-zoomIn"
+        data-aos="zoom-in"
+        data-aos-delay="150"
+      >
         <div class="badge-energy-core" />
         <i class="fas fa-newspaper" />
         <span>Latest Updates</span>
@@ -41,7 +49,11 @@
       </div>
 
       <!-- Revolutionary Title -->
-      <h1 class="news-revolutionary-title animate-slideIn" data-aos="fade-up" data-aos-delay="200">
+      <h1
+        class="news-revolutionary-title animate-slideIn"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
         <span class="title-main">Tin Tức & Cập Nhật</span>
         <div class="title-energy-beams">
           <div class="energy-beam beam-1" />
@@ -53,10 +65,22 @@
     </div>
 
     <!-- Revolutionary Content Grid -->
-    <div class="quantum-content-grid animate-fadeIn" data-aos="fade-up" data-aos-delay="300">
+    <div
+      class="quantum-content-grid animate-fadeIn"
+      data-aos="fade-up"
+      data-aos-delay="300"
+    >
       <!-- Revolutionary Main Articles Portal -->
-      <div class="quantum-main-articles animate-slideIn" data-aos="fade-right" data-aos-delay="400">
-        <div class="section-quantum-header animate-fadeIn" data-aos="fade-down" data-aos-delay="420">
+      <div
+        class="quantum-main-articles animate-slideIn"
+        data-aos="fade-right"
+        data-aos-delay="400"
+      >
+        <div
+          class="section-quantum-header animate-fadeIn"
+          data-aos="fade-down"
+          data-aos-delay="420"
+        >
           <h2 class="section-revolutionary-title">
             <span class="title-glow">Bài Viết Chính</span>
             <div class="title-energy-line" />
@@ -136,8 +160,16 @@
       </div>
 
       <!-- Revolutionary Editor's Picks Portal -->
-      <div class="quantum-editors-picks animate-slideIn" data-aos="fade-left" data-aos-delay="500">
-        <div class="section-quantum-header animate-fadeIn" data-aos="fade-down" data-aos-delay="520">
+      <div
+        class="quantum-editors-picks animate-slideIn"
+        data-aos="fade-left"
+        data-aos-delay="500"
+      >
+        <div
+          class="section-quantum-header animate-fadeIn"
+          data-aos="fade-down"
+          data-aos-delay="520"
+        >
           <h2 class="section-revolutionary-title">
             <span class="title-glow">Editor's Picks</span>
             <div class="title-energy-line" />
@@ -178,8 +210,16 @@
       </div>
 
       <!-- Revolutionary Authors Portal -->
-      <div class="quantum-authors-section animate-zoomIn" data-aos="zoom-in" data-aos-delay="600">
-        <div class="section-quantum-header animate-fadeIn" data-aos="fade-down" data-aos-delay="620">
+      <div
+        class="quantum-authors-section animate-zoomIn"
+        data-aos="zoom-in"
+        data-aos-delay="600"
+      >
+        <div
+          class="section-quantum-header animate-fadeIn"
+          data-aos="fade-down"
+          data-aos-delay="620"
+        >
           <h2 class="section-revolutionary-title">
             <span class="title-glow">Tác Giả Nổi Bật</span>
             <div class="title-energy-line" />
@@ -219,8 +259,16 @@
       </div>
 
       <!-- Revolutionary Hot Articles Portal -->
-      <div class="quantum-hot-articles animate-fadeIn" data-aos="fade-up" data-aos-delay="700">
-        <div class="section-quantum-header animate-fadeIn" data-aos="fade-down" data-aos-delay="720">
+      <div
+        class="quantum-hot-articles animate-fadeIn"
+        data-aos="fade-up"
+        data-aos-delay="700"
+      >
+        <div
+          class="section-quantum-header animate-fadeIn"
+          data-aos="fade-down"
+          data-aos-delay="720"
+        >
           <h2 class="section-revolutionary-title">
             <span class="title-glow">Bài Hot Trong Tuần</span>
             <div class="title-energy-line" />

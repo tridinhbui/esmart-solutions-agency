@@ -44,12 +44,6 @@
         <SimpleServiceSection />
       </section>
       <section
-        id="blog"
-        class="simple-section"
-      >
-        <SimpleBlogPost />
-      </section>
-      <section
         id="project"
         class="simple-section"
       >
@@ -90,11 +84,11 @@
     <transition name="scroll-fade">
       <button
         v-show="showScrollTop"
-        @click="scrollToTop"
         class="scroll-to-top"
         aria-label="Scroll to top"
+        @click="scrollToTop"
       >
-        <i class="fas fa-chevron-up"></i>
+        <i class="fas fa-chevron-up" />
       </button>
     </transition>
   </div>
@@ -104,7 +98,6 @@
 import SimpleNavBar from "./components/SimpleNavBar.vue";
 import SimpleHeroSection from "./components/SimpleHeroSection.vue";
 import SimpleSocialProof from "./components/SimpleSocialProof.vue";
-import SimpleBlogPost from "./components/SimpleBlogPost.vue";
 import SimpleFeatures from "./components/SimpleFeatures.vue";
 import SimpleServiceSection from "./components/SimpleServiceSection.vue";
 import SimpleAboutUs from "./components/SimpleAboutUs.vue";
@@ -127,7 +120,6 @@ export default {
     SimpleFeatures,
     SimpleTestimonial,
     SimpleServiceSection,
-    SimpleBlogPost,
     SimpleProject,
     SimpleAboutUs,
     SimpleQuestions,
@@ -459,9 +451,11 @@ export default {
 </script>
 
 <style>
-@import './assets/magical-animations.css';
-/* Simple Design - Override all previous styles */
-/* Global Dark Mode Styles */
+/* eslint-disable */
+@import './assets/css/hero-clean.css';
+@import './assets/css/section-animations.css';
+
+/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -469,8 +463,8 @@ export default {
 }
 
 html, body {
-  background-color: #121212;
-  color: #ffffff;
+  background: linear-gradient(135deg, #0a1628 0%, #1e3a8a 50%, #1e40af 100%);
+  color: #e0f2fe;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   line-height: 1.6;
@@ -480,8 +474,8 @@ html, body {
 }
 
 #app {
-  background-color: #121212;
-  color: #ffffff;
+  background: linear-gradient(135deg, #0a1628 0%, #1e3a8a 50%, #1e40af 100%);
+  color: #e0f2fe;
   min-height: 100vh;
   text-align: center;
   position: relative;
@@ -541,36 +535,17 @@ body::before,
   border-radius: 4px;
 }
 
-/* Simple Section Styles */
+/* Simple Section Styles - Remove overrides to allow component styling */
 .simple-section {
-  background: white;
-  color: black;
   padding: 4rem 2rem;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.simple-section:nth-child(even) {
-  background: #fafafa;
-}
-
-/* Override all gradient and special section styles */
-.gradient-section,
-.gradient-section-reverse,
-.testimonial-section,
-.blog-section,
-.faq-section,
-.section-spacing {
-  background: white !important;
-  color: black !important;
-  transform: none !important;
-  clip-path: none !important;
-  animation: none !important;
 }
 
 /* Simple footer */
 .footer-section {
   background: #f8f8f8 !important;
   color: black !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 /* Simple Scroll to Top Button */
@@ -594,6 +569,123 @@ body::before,
   background: #333;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Global Glassmorphism and Parallax Styles */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-8px) scale(1.02);
+}
+
+.glass-card:hover::before {
+  left: 100%;
+}
+
+/* Enhanced glassmorphism for different contexts */
+.glass-card.primary {
+  background: rgba(30, 58, 138, 0.1);
+  border-color: rgba(30, 58, 138, 0.3);
+}
+
+.glass-card.accent {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.glass-card.success {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+.parallax-layer[data-speed="0.1"] { 
+  z-index: 1; 
+  filter: blur(0px);
+}
+.parallax-layer[data-speed="0.3"] { 
+  z-index: 2; 
+  filter: blur(0.5px);
+}
+.parallax-layer[data-speed="0.5"] { 
+  z-index: 3; 
+  filter: blur(1px);
+}
+.parallax-layer[data-speed="0.7"] { 
+  z-index: 4; 
+  filter: blur(1.5px);
+}
+.parallax-layer[data-speed="0.9"] { 
+  z-index: 5; 
+  filter: blur(2px);
+}
+
+/* Depth-based shadows for 3D effect */
+.parallax-layer[data-speed="0.1"]::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+  pointer-events: none;
+}
+
+.parallax-layer[data-speed="0.9"]::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  pointer-events: none;
 }
 
 /* Remove all animations */
@@ -739,43 +831,34 @@ body {
   font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  background: white;
-  color: black;
+  background: linear-gradient(135deg, #0a1628 0%, #1e3a8a 50%, #1e40af 100%);
+  color: #e0f2fe;
   overflow-x: hidden;
 }
 
-/* Magical Scroll Animations */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+#app {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
-.scroll-reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
+/* Disable overlay effects to prevent blur */
+body::before,
+body::after {
+  display: none !important;
 }
 
-.scroll-reveal-left {
-  opacity: 0;
-  transform: translateX(-60px);
-  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+@keyframes sparkle {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-100px) rotate(360deg); }
 }
 
-.scroll-reveal-left.revealed {
-  opacity: 1;
-  transform: translateX(0);
-}
-
+/* Disable scroll animations to prevent opacity issues */
+.scroll-reveal,
+.scroll-reveal-left,
 .scroll-reveal-right {
-  opacity: 0;
-  transform: translateX(60px);
-  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.scroll-reveal-right.revealed {
-  opacity: 1;
-  transform: translateX(0);
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Magical Cursor Trail */

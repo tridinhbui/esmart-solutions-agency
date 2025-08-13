@@ -193,235 +193,288 @@
           
           <!-- Simple Action Buttons -->
           <div class="simple-action-buttons">
-            <button class="simple-primary-btn" @click="scrollToSection('marketing-assessment')">
+            <button
+              class="simple-primary-btn"
+              @click="scrollToSection('marketing-assessment')"
+            >
               Bắt Đầu Ngay
             </button>
             
-            <button class="simple-secondary-btn" @click="scrollToSection('about-us')">
+            <button
+              class="simple-secondary-btn"
+              @click="scrollToSection('about-us')"
+            >
               Xem Demo
             </button>
             
-                          <button class="simple-elegant-btn" @click="goToElegantDemo">
-                Khám Phá
-              </button>
+            <button
+              class="simple-elegant-btn"
+              @click="goToElegantDemo"
+            >
+              Khám Phá
+            </button>
           </div>
           
 
             
-            <!-- Scroll Down Indicator -->
-            <div 
-              class="scroll-indicator-enhanced" 
-              @click="scrollToSection('social-proof')"
-              data-aos="fade-up"
-              data-aos-delay="700"
-            >
-              <div class="scroll-wrapper">
-                <div class="scroll-icon">
-                  <div class="scroll-wheel">
-                    <div class="wheel-dot" />
-                  </div>
-                  <div class="scroll-arrows">
-                    <i class="fas fa-chevron-down" />
-                    <i class="fas fa-chevron-down" />
-                  </div>
-                </div>
-                <span class="scroll-text">Cuộn xuống</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Enhanced Trust Badge -->
-          <div
-            class="quantum-trust-badge animate-fadeIn"
+          <!-- Scroll Down Indicator -->
+          <div 
+            class="scroll-indicator-enhanced" 
             data-aos="fade-up"
-            data-aos-delay="600"
+            data-aos-delay="700"
+            @click="scrollToSection('social-proof')"
           >
-            <div class="trust-badge-shell">
-              <div class="badge-energy-border" />
-              <div class="badge-content">
-                <div class="trust-icon">
-                  <i class="fas fa-shield-check" />
-                  <div class="icon-glow" />
+            <div class="scroll-wrapper">
+              <div class="scroll-icon">
+                <div class="scroll-wheel">
+                  <div class="wheel-dot" />
                 </div>
-                <div class="trust-text">
-                  <span class="trust-label">Được tin tưởng bởi</span>
-                  <div class="trust-companies-preview">
-                    <div class="company-dot" v-for="i in 5" :key="i" />
-                    <span class="companies-count">1000+</span>
-                  </div>
+                <div class="scroll-arrows">
+                  <i class="fas fa-chevron-down" />
+                  <i class="fas fa-chevron-down" />
                 </div>
               </div>
+              <span class="scroll-text">Cuộn xuống</span>
             </div>
           </div>
         </div>
-        
-        <!-- Revolutionary Visual Content -->
-        <div class="quantum-visual-zone animate-zoomIn" data-aos="zoom-in" data-aos-delay="700">
-          <!-- Cosmic Background for Right Side -->
-          <div class="cosmic-right-effects">
-            <!-- Stellar Background -->
-            <div class="stellar-background">
-              <div
-                v-for="i in 25"
-                :key="'right-star-'+i"
-                class="background-star"
-                :style="{ 
-                  left: Math.random() * 100 + '%',
-                  top: Math.random() * 100 + '%',
-                  animationDelay: (i * 0.15) + 's'
-                }"
-              />
-            </div>
-            
-            <!-- Planet System -->
-            <div class="planet-system">
-              <div class="planet planet-1" />
-              <div class="planet planet-2" />
-              <div class="planet planet-3" />
-              <div class="planet-ring ring-1" />
-              <div class="planet-ring ring-2" />
-            </div>
-            
-            <!-- Cosmic Dust -->
-            <div class="cosmic-dust-system">
-              <div
-                v-for="i in 30"
-                :key="'dust-'+i"
-                class="cosmic-dust"
-                :style="{ 
-                  left: Math.random() * 100 + '%',
-                  top: Math.random() * 100 + '%',
-                  animationDelay: (i * 0.1) + 's'
-                }"
-              />
-            </div>
-            
-            <!-- Galaxy Spiral -->
-            <div class="galaxy-spiral">
-              <div class="spiral-arm arm-1" />
-              <div class="spiral-arm arm-2" />
-              <div class="spiral-arm arm-3" />
-              <div class="galaxy-core" />
-            </div>
-          </div>
           
-          <div class="quantum-illustration">
-            <!-- Enhanced Compact Floating Cards Grid -->
-            <div class="quantum-cards-grid">
-              <div
-                class="quantum-mini-card card-analytics"
-                data-aos="zoom-in"
-                data-aos-delay="800"
-              >
-                <div class="mini-card-glow" />
-                <div class="mini-card-content">
-                  <div class="mini-card-icon">
-                    <i class="fas fa-chart-bar" />
-                    <div class="icon-energy-pulse" />
-                  </div>
-                  <div class="mini-card-text">
-                    <h4 class="mini-card-title">Phân Tích Dữ Liệu</h4>
-                    <p class="mini-card-description">Theo dõi và phân tích hiệu suất</p>
-                  </div>
-                </div>
-                <div class="mini-card-particles">
-                  <div class="particle" v-for="i in 4" :key="i" />
-                </div>
+        <!-- Enhanced Trust Badge -->
+        <div
+          class="quantum-trust-badge animate-fadeIn"
+          data-aos="fade-up"
+          data-aos-delay="600"
+        >
+          <div class="trust-badge-shell">
+            <div class="badge-energy-border" />
+            <div class="badge-content">
+              <div class="trust-icon">
+                <i class="fas fa-shield-check" />
+                <div class="icon-glow" />
               </div>
-              
-              <div
-                class="quantum-mini-card card-team"
-                data-aos="zoom-in"
-                data-aos-delay="900"
-              >
-                <div class="mini-card-glow" />
-                <div class="mini-card-content">
-                  <div class="mini-card-icon">
-                    <i class="fas fa-users-cog" />
-                    <div class="icon-energy-pulse" />
-                  </div>
-                  <div class="mini-card-text">
-                    <h4 class="mini-card-title">Đội Ngũ Chuyên Nghiệp</h4>
-                    <p class="mini-card-description">Chuyên gia giàu kinh nghiệm</p>
-                  </div>
+              <div class="trust-text">
+                <span class="trust-label">Được tin tưởng bởi</span>
+                <div class="trust-companies-preview">
+                  <div
+                    v-for="i in 5"
+                    :key="i"
+                    class="company-dot"
+                  />
+                  <span class="companies-count">1000+</span>
                 </div>
-                <div class="mini-card-particles">
-                  <div class="particle" v-for="i in 4" :key="i" />
-                </div>
-              </div>
-              
-              <div
-                class="quantum-mini-card card-growth"
-                data-aos="zoom-in"
-                data-aos-delay="1000"
-              >
-                <div class="mini-card-glow" />
-                <div class="mini-card-content">
-                  <div class="mini-card-icon">
-                    <i class="fas fa-rocket" />
-                    <div class="icon-energy-pulse" />
-                  </div>
-                  <div class="mini-card-text">
-                    <h4 class="mini-card-title">Tăng Trưởng Bền Vững</h4>
-                    <p class="mini-card-description">Phát triển doanh nghiệp lâu dài</p>
-                  </div>
-                </div>
-                <div class="mini-card-particles">
-                  <div class="particle" v-for="i in 4" :key="i" />
-                </div>
-              </div>
-              
-              <div
-                class="quantum-mini-card card-innovation"
-                data-aos="zoom-in"
-                data-aos-delay="1100"
-              >
-                <div class="mini-card-glow" />
-                <div class="mini-card-content">
-                  <div class="mini-card-icon">
-                    <i class="fas fa-lightbulb" />
-                    <div class="icon-energy-pulse" />
-                  </div>
-                  <div class="mini-card-text">
-                    <h4 class="mini-card-title">Đổi Mới Sáng Tạo</h4>
-                    <p class="mini-card-description">Giải pháp công nghệ tiên tiến</p>
-                  </div>
-                </div>
-                <div class="mini-card-particles">
-                  <div class="particle" v-for="i in 4" :key="i" />
-                </div>
-              </div>
-            </div>
-            
-            <!-- Central Quantum Portal -->
-            <div class="quantum-portal animate-zoomIn" data-aos="zoom-in" data-aos-delay="1200">
-              <div class="portal-frame">
-                <div class="portal-ring ring-1" />
-                <div class="portal-ring ring-2" />
-                <div class="portal-ring ring-3" />
-                <div class="portal-ring ring-4" />
-                <div class="portal-ring ring-5" />
-              </div>
-              <div class="portal-core">
-                <img
-                  :src="require('@/assets/logo.png')"
-                  :alt="$t('hero.logoAlt')"
-                  class="quantum-logo"
-                >
-                <div class="logo-energy-field" />
-                <div class="logo-quantum-glow" />
-              </div>
-              <div class="portal-energy-streams">
-                <div
-                  v-for="i in 12"
-                  :key="i"
-                  class="energy-stream"
-                />
               </div>
             </div>
           </div>
         </div>
       </div>
+        
+      <!-- Revolutionary Visual Content -->
+      <div
+        class="quantum-visual-zone animate-zoomIn"
+        data-aos="zoom-in"
+        data-aos-delay="700"
+      >
+        <!-- Cosmic Background for Right Side -->
+        <div class="cosmic-right-effects">
+          <!-- Stellar Background -->
+          <div class="stellar-background">
+            <div
+              v-for="i in 25"
+              :key="'right-star-'+i"
+              class="background-star"
+              :style="{ 
+                left: Math.random() * 100 + '%',
+                top: Math.random() * 100 + '%',
+                animationDelay: (i * 0.15) + 's'
+              }"
+            />
+          </div>
+            
+          <!-- Planet System -->
+          <div class="planet-system">
+            <div class="planet planet-1" />
+            <div class="planet planet-2" />
+            <div class="planet planet-3" />
+            <div class="planet-ring ring-1" />
+            <div class="planet-ring ring-2" />
+          </div>
+            
+          <!-- Cosmic Dust -->
+          <div class="cosmic-dust-system">
+            <div
+              v-for="i in 30"
+              :key="'dust-'+i"
+              class="cosmic-dust"
+              :style="{ 
+                left: Math.random() * 100 + '%',
+                top: Math.random() * 100 + '%',
+                animationDelay: (i * 0.1) + 's'
+              }"
+            />
+          </div>
+            
+          <!-- Galaxy Spiral -->
+          <div class="galaxy-spiral">
+            <div class="spiral-arm arm-1" />
+            <div class="spiral-arm arm-2" />
+            <div class="spiral-arm arm-3" />
+            <div class="galaxy-core" />
+          </div>
+        </div>
+          
+        <div class="quantum-illustration">
+          <!-- Enhanced Compact Floating Cards Grid -->
+          <div class="quantum-cards-grid">
+            <div
+              class="quantum-mini-card card-analytics"
+              data-aos="zoom-in"
+              data-aos-delay="800"
+            >
+              <div class="mini-card-glow" />
+              <div class="mini-card-content">
+                <div class="mini-card-icon">
+                  <i class="fas fa-chart-bar" />
+                  <div class="icon-energy-pulse" />
+                </div>
+                <div class="mini-card-text">
+                  <h4 class="mini-card-title">
+                    Phân Tích Dữ Liệu
+                  </h4>
+                  <p class="mini-card-description">
+                    Theo dõi và phân tích hiệu suất
+                  </p>
+                </div>
+              </div>
+              <div class="mini-card-particles">
+                <div
+                  v-for="i in 4"
+                  :key="i"
+                  class="particle"
+                />
+              </div>
+            </div>
+              
+            <div
+              class="quantum-mini-card card-team"
+              data-aos="zoom-in"
+              data-aos-delay="900"
+            >
+              <div class="mini-card-glow" />
+              <div class="mini-card-content">
+                <div class="mini-card-icon">
+                  <i class="fas fa-users-cog" />
+                  <div class="icon-energy-pulse" />
+                </div>
+                <div class="mini-card-text">
+                  <h4 class="mini-card-title">
+                    Đội Ngũ Chuyên Nghiệp
+                  </h4>
+                  <p class="mini-card-description">
+                    Chuyên gia giàu kinh nghiệm
+                  </p>
+                </div>
+              </div>
+              <div class="mini-card-particles">
+                <div
+                  v-for="i in 4"
+                  :key="i"
+                  class="particle"
+                />
+              </div>
+            </div>
+              
+            <div
+              class="quantum-mini-card card-growth"
+              data-aos="zoom-in"
+              data-aos-delay="1000"
+            >
+              <div class="mini-card-glow" />
+              <div class="mini-card-content">
+                <div class="mini-card-icon">
+                  <i class="fas fa-rocket" />
+                  <div class="icon-energy-pulse" />
+                </div>
+                <div class="mini-card-text">
+                  <h4 class="mini-card-title">
+                    Tăng Trưởng Bền Vững
+                  </h4>
+                  <p class="mini-card-description">
+                    Phát triển doanh nghiệp lâu dài
+                  </p>
+                </div>
+              </div>
+              <div class="mini-card-particles">
+                <div
+                  v-for="i in 4"
+                  :key="i"
+                  class="particle"
+                />
+              </div>
+            </div>
+              
+            <div
+              class="quantum-mini-card card-innovation"
+              data-aos="zoom-in"
+              data-aos-delay="1100"
+            >
+              <div class="mini-card-glow" />
+              <div class="mini-card-content">
+                <div class="mini-card-icon">
+                  <i class="fas fa-lightbulb" />
+                  <div class="icon-energy-pulse" />
+                </div>
+                <div class="mini-card-text">
+                  <h4 class="mini-card-title">
+                    Đổi Mới Sáng Tạo
+                  </h4>
+                  <p class="mini-card-description">
+                    Giải pháp công nghệ tiên tiến
+                  </p>
+                </div>
+              </div>
+              <div class="mini-card-particles">
+                <div
+                  v-for="i in 4"
+                  :key="i"
+                  class="particle"
+                />
+              </div>
+            </div>
+          </div>
+            
+          <!-- Central Quantum Portal -->
+          <div
+            class="quantum-portal animate-zoomIn"
+            data-aos="zoom-in"
+            data-aos-delay="1200"
+          >
+            <div class="portal-frame">
+              <div class="portal-ring ring-1" />
+              <div class="portal-ring ring-2" />
+              <div class="portal-ring ring-3" />
+              <div class="portal-ring ring-4" />
+              <div class="portal-ring ring-5" />
+            </div>
+            <div class="portal-core">
+              <img
+                :src="require('@/assets/logo.png')"
+                :alt="$t('hero.logoAlt')"
+                class="quantum-logo"
+              >
+              <div class="logo-energy-field" />
+              <div class="logo-quantum-glow" />
+            </div>
+            <div class="portal-energy-streams">
+              <div
+                v-for="i in 12"
+                :key="i"
+                class="energy-stream"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     
     <!-- Revolutionary Scroll Indicator -->
     <div
@@ -690,8 +743,8 @@ export default {
 <style scoped>
 /* Quantum Hero Revolutionary Design */
 .hero {
-  background: #ffffff;
-  color: #000000;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
+  color: #e0f2fe;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -943,19 +996,28 @@ export default {
   flex-direction: column;
   gap: 0.75rem;
   position: relative;
-  color: #000000;
+  color: #60a5fa;
+  text-shadow: 0 2px 20px rgba(96, 165, 250, 0.5);
 }
 
 .title-line {
   display: block;
   animation: fadeInUp 1.2s ease-out 0.3s both;
-  color: #000000;
+  color: #3b82f6;
   font-weight: 700;
+  background: linear-gradient(45deg, #3b82f6, #60a5fa, #93c5fd);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .gradient-text {
-  color: #000000;
+  color: #60a5fa;
   animation: fadeInUp 1.2s ease-out 0.6s both;
+  background: linear-gradient(45deg, #3b82f6, #60a5fa, #93c5fd);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .title-decoration {

@@ -172,7 +172,11 @@
     
     <!-- Quantum Signature -->
     <div class="quantum-signature">
-      <div class="signature-particle" v-for="i in 8" :key="i" />
+      <div
+        v-for="i in 8"
+        :key="i"
+        class="signature-particle"
+      />
     </div>
   </header>
 </template>
@@ -260,8 +264,10 @@ export default {
 <style scoped>
 /* Enhanced Quantum Navbar with Fixed Positioning */
 .navbar {
-  background: #121212;
-  border-bottom: 1px solid #333;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+  box-shadow: 0 2px 20px rgba(59, 130, 246, 0.2);
   position: fixed;
   top: 0;
   left: 0;
@@ -277,10 +283,11 @@ export default {
 }
 
 .navbar-scrolled {
-  background: #121212;
+  background: rgba(15, 23, 42, 0.98);
+  backdrop-filter: blur(20px);
   padding: 0.75rem 2rem;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid #333;
+  box-shadow: 0 5px 25px rgba(59, 130, 246, 0.3);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.4);
 }
 
 .navbar::before {

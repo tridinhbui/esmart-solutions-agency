@@ -64,7 +64,7 @@
       <div
         v-else
         class="content-box"
-        v-html="formattedContent"
+        v-text="formattedContent"
       />
     </div>
 

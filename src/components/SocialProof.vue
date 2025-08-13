@@ -17,7 +17,7 @@
     >
       <div class="title-badge">
         <i class="fas fa-star" />
-                  <span>Bộ Công Cụ Của Chúng Tôi</span>
+        <span>Bộ Công Cụ Của Chúng Tôi</span>
       </div>
       <h2 class="section-title">
         <span class="title-main">Mạng Xã Hội</span>

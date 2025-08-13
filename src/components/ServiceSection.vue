@@ -80,7 +80,7 @@
               class="quantum-substep"
               :style="{ animationDelay: `${subIndex * 0.1}s` }"
             >
-              <div class="substep-quantum-marker"></div>
+              <div class="substep-quantum-marker" />
               <span class="substep-text">{{ subStep }}</span>
             </li>
           </ul>

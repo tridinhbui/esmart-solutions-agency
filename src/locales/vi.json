@@ -1,4 +1,60 @@
 {
+  "navigation": {
+    "home": "Trang chủ",
+    "aboutUs": "Về Chúng Tôi",
+    "process": "Quy trình",
+    "contact": "Liên hệ",
+    "aiCreator": "AI Creator",
+    "assessment": "Đánh giá",
+    "achievements": "Thành tựu",
+    "blog": "Blog",
+    "products": "Sản phẩm",
+    "signIn": "Đăng nhập"
+  },
+  "sections": {
+    "coreValues": "Giá Trị Cốt Lõi",
+    "outstandingAchievements": "Thành Tựu Nổi Bật",
+    "professionalTeam": "Đội Ngũ Chuyên Nghiệp",
+    "professionalTeamSubtitle": "Những chuyên gia giàu kinh nghiệm và tâm huyết",
+    "companyValues": "Giá Trị Công Ty",
+    "companyStats": "Thống Kê Công Ty",
+    "teamSection": "Phần Đội Ngũ",
+    "ourTools": "Bộ Công Cụ Của Chúng Tôi",
+    "ourToolsSubtitle": "Những giải pháp công nghệ tiên tiến giúp doanh nghiệp phát triển bền vững",
+    "professionalServices": "Dịch Vụ Chuyên Nghiệp",
+    "achievements": "Thành Tựu Nổi Bật",
+    "achievementsSubtitle": "Những thành tựu và dịch vụ nổi bật của ESmart Solutions",
+    "whatCustomersSay": "Khách Hàng Nói Gì",
+    "whatCustomersSaySubtitle": "Những phản hồi tích cực từ khách hàng của chúng tôi"
+  },
+  "companyValues": {
+    "respect": "Tôn Trọng",
+    "respectDesc": "Luôn tôn trọng và lắng nghe ý kiến của khách hàng, đối tác và nhân viên",
+    "efficiency": "Hiệu Quả",
+    "efficiencyDesc": "Tối ưu hóa mọi quy trình để đạt hiệu quả cao nhất trong thời gian ngắn nhất",
+    "professionalism": "Chuyên Nghiệp",
+    "professionalismDesc": "Đội ngũ chuyên gia với kinh nghiệm dày dặn và kiến thức cập nhật liên tục",
+    "innovation": "Đổi Mới",
+    "innovationDesc": "Không ngừng sáng tạo và áp dụng công nghệ mới nhất vào giải pháp"
+  },
+  "companyStats": {
+    "completedProjects": "Dự Án Hoàn Thành",
+    "completedProjectsDesc": "Đã thực hiện thành công hơn 500 dự án đa dạng",
+    "satisfiedCustomers": "Khách Hàng Hài Lòng",
+    "satisfiedCustomersDesc": "Tỷ lệ khách hàng hài lòng với dịch vụ của chúng tôi",
+    "customerSupport": "Hỗ Trợ Khách Hàng",
+    "customerSupportDesc": "Đội ngũ hỗ trợ sẵn sàng phục vụ mọi lúc",
+    "yearsExperience": "Năm Kinh Nghiệm",
+    "yearsExperienceDesc": "Hơn 5 năm kinh nghiệm trong lĩnh vực digital transformation"
+  },
+  "teamMembers": {
+    "ceo": "CEO & Founder",
+    "ceoDesc": "Chuyên gia với hơn 10 năm kinh nghiệm trong lĩnh vực công nghệ và kinh doanh",
+    "cto": "CTO",
+    "ctoDesc": "Kỹ sư phần mềm cao cấp với chuyên môn về AI/ML và cloud computing",
+    "headOfDesign": "Head of Design",
+    "headOfDesignDesc": "Nhà thiết kế UX/UI tài năng với khả năng sáng tạo vượt trội"
+  },
   "home": "Trang chủ",
   "aiCreator": "AI Creator",
   "assessment": "Đánh giá",

@@ -3,16 +3,25 @@
     <div class="container">
       <!-- Simple Title -->
       <div class="section-header">
-        <h2 class="section-title">Liên Hệ Với Chúng Tôi</h2>
-        <p class="section-subtitle">Sẵn sàng hỗ trợ bạn 24/7. Hãy để lại thông tin để được tư vấn miễn phí!</p>
+        <h2 class="section-title">
+          Liên Hệ Với Chúng Tôi
+        </h2>
+        <p class="section-subtitle">
+          Sẵn sàng hỗ trợ bạn 24/7. Hãy để lại thông tin để được tư vấn miễn phí!
+        </p>
       </div>
 
       <div class="contact-content">
         <!-- Magical Contact Form -->
         <div class="contact-form magical-card magical-3d-hover">
-          <h3 class="form-title magical-text magical-glow">Gửi Tin Nhắn</h3>
+          <h3 class="form-title magical-text magical-glow">
+            Gửi Tin Nhắn
+          </h3>
           
-          <form @submit.prevent="submitForm" class="form">
+          <form
+            class="form"
+            @submit.prevent="submitForm"
+          >
             <div class="form-row">
               <div class="form-group slide-in-left stagger-1">
                 <label class="form-label">Họ và tên</label>
@@ -49,13 +58,29 @@
             
             <div class="form-group scale-in stagger-4">
               <label class="form-label">Chủ đề</label>
-              <select v-model="form.subject" class="form-select magical-select" required>
-                <option value="">Chọn chủ đề</option>
-                <option value="consultation">Tư vấn dịch vụ</option>
-                <option value="quote">Báo giá dự án</option>
-                <option value="support">Hỗ trợ kỹ thuật</option>
-                <option value="partnership">Hợp tác kinh doanh</option>
-                <option value="other">Khác</option>
+              <select
+                v-model="form.subject"
+                class="form-select magical-select"
+                required
+              >
+                <option value="">
+                  Chọn chủ đề
+                </option>
+                <option value="consultation">
+                  Tư vấn dịch vụ
+                </option>
+                <option value="quote">
+                  Báo giá dự án
+                </option>
+                <option value="support">
+                  Hỗ trợ kỹ thuật
+                </option>
+                <option value="partnership">
+                  Hợp tác kinh doanh
+                </option>
+                <option value="other">
+                  Khác
+                </option>
               </select>
             </div>
             
@@ -67,10 +92,14 @@
                 rows="5"
                 placeholder="Nhập tin nhắn của bạn..."
                 required
-              ></textarea>
+              />
             </div>
             
-            <button type="submit" class="submit-btn magical-btn magical-pulse ripple" :disabled="!isFormValid">
+            <button
+              type="submit"
+              class="submit-btn magical-btn magical-pulse ripple"
+              :disabled="!isFormValid"
+            >
               <span>Gửi Tin Nhắn</span>
             </button>
           </form>
@@ -78,12 +107,18 @@
 
         <!-- Magical Contact Info -->
         <div class="contact-info magical-card bounce-in">
-          <h3 class="info-title magical-text">Thông Tin Liên Hệ</h3>
+          <h3 class="info-title magical-text">
+            Thông Tin Liên Hệ
+          </h3>
           
           <div class="info-items">
-            <div class="info-item slide-in-left stagger-1" v-for="(info, index) in contactInfo" :key="index">
+            <div
+              v-for="(info, index) in contactInfo"
+              :key="index"
+              class="info-item slide-in-left stagger-1"
+            >
               <div class="info-icon magical-glow">
-                <i :class="info.icon"></i>
+                <i :class="info.icon" />
               </div>
               <div class="info-content">
                 <h4>{{ info.title }}</h4>
@@ -94,19 +129,33 @@
 
           <!-- Magical Social Links -->
           <div class="contact-social">
-            <h4 class="social-title magical-text">Theo Dõi Chúng Tôi</h4>
+            <h4 class="social-title magical-text">
+              Theo Dõi Chúng Tôi
+            </h4>
             <div class="social-links">
-              <a href="#" class="social-link magical-hover rotate-in stagger-1">
-                <i class="fab fa-facebook"></i>
+              <a
+                href="#"
+                class="social-link magical-hover rotate-in stagger-1"
+              >
+                <i class="fab fa-facebook" />
               </a>
-              <a href="#" class="social-link magical-hover rotate-in stagger-2">
-                <i class="fab fa-instagram"></i>
+              <a
+                href="#"
+                class="social-link magical-hover rotate-in stagger-2"
+              >
+                <i class="fab fa-instagram" />
               </a>
-              <a href="#" class="social-link magical-hover rotate-in stagger-3">
-                <i class="fab fa-linkedin"></i>
+              <a
+                href="#"
+                class="social-link magical-hover rotate-in stagger-3"
+              >
+                <i class="fab fa-linkedin" />
               </a>
-              <a href="#" class="social-link magical-hover rotate-in stagger-4">
-                <i class="fab fa-youtube"></i>
+              <a
+                href="#"
+                class="social-link magical-hover rotate-in stagger-4"
+              >
+                <i class="fab fa-youtube" />
               </a>
             </div>
           </div>
@@ -187,8 +236,8 @@ export default {
 
 <style scoped>
 .simple-contact {
-  background: white;
-  color: black;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
+  color: #e0f2fe;
   padding: 4rem 2rem;
 }
 
@@ -205,13 +254,14 @@ export default {
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: black;
+  color: #ffffff;
   margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .section-subtitle {
   font-size: 1.1rem;
-  color: #333;
+  color: #ffffff;
   line-height: 1.6;
 }
 
@@ -225,16 +275,18 @@ export default {
 
 /* Contact Form */
 .contact-form {
-  background: white;
-  border: 1px solid #e5e5e5;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #1e3a8a;
   border-radius: 12px;
   padding: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(30, 58, 138, 0.15);
 }
 
 .form-title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: black;
+  color: #1e3a8a;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -253,7 +305,7 @@ export default {
   display: block;
   font-size: 0.9rem;
   font-weight: 600;
-  color: black;
+  color: #1e3a8a;
   margin-bottom: 0.5rem;
 }
 
@@ -262,23 +314,26 @@ export default {
 .form-textarea {
   width: 100%;
   padding: 1rem;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #cbd5e1;
   border-radius: 6px;
   font-size: 1rem;
   transition: border-color 0.2s ease;
   box-sizing: border-box;
+  background: white;
+  color: #1e3a8a;
 }
 
 .form-input:focus,
 .form-select:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: black;
+  border-color: #1e3a8a;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
 }
 
 .submit-btn {
   width: 100%;
-  background: black;
+  background: #1e3a8a;
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -286,12 +341,13 @@ export default {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .submit-btn:hover:not(:disabled) {
-  background: #333;
-  transform: translateY(-1px);
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
 }
 
 .submit-btn:disabled {
@@ -301,18 +357,20 @@ export default {
 
 /* Contact Info */
 .contact-info {
-  background: #f8f8f8;
-  border: 1px solid #e5e5e5;
+  background: rgba(30, 58, 138, 0.1);
+  border: 2px solid #1e3a8a;
   border-radius: 12px;
   padding: 2rem;
+  backdrop-filter: blur(10px);
 }
 
 .info-title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: black;
+  color: #ffffff;
   margin-bottom: 2rem;
   text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .info-items {
@@ -329,26 +387,27 @@ export default {
 .info-icon {
   width: 40px;
   height: 40px;
-  background: white;
-  border: 1px solid #e5e5e5;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: black;
+  color: #ffffff;
   flex-shrink: 0;
 }
 
 .info-content h4 {
   font-size: 1rem;
   font-weight: 600;
-  color: black;
+  color: #ffffff;
   margin-bottom: 0.25rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .info-content p {
   font-size: 0.9rem;
-  color: #333;
+  color: #e2e8f0;
   line-height: 1.5;
 }
 
@@ -360,7 +419,7 @@ export default {
 .social-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: black;
+  color: #e0f2fe;
   margin-bottom: 1rem;
 }
 
@@ -373,21 +432,21 @@ export default {
 .social-link {
   width: 40px;
   height: 40px;
-  background: white;
+  background: white; border: 2px solid #1e3a8a;
   border: 1px solid #e5e5e5;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #333;
+  color: #ffffff;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .social-link:hover {
-  background: black;
-  color: white;
-  border-color: black;
+  background: #1e3a8a;
+  color: #e0f2fe;
+  border-color: #e0f2fe;
 }
 
 /* Magical Form Animations */
@@ -402,7 +461,7 @@ export default {
 .magical-input:focus,
 .magical-select:focus,
 .magical-textarea:focus {
-  border-color: black;
+  border-color: #e0f2fe;
   transform: scale(1.02);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   animation: inputGlow 0.6s ease-out;

@@ -94,10 +94,10 @@
           </label>
           <div class="quantum-input-portal">
             <div class="input-energy-frame">
-        <input
+              <input
                 v-model="emailInput"
                 class="quantum-input"
-          type="email"
+                type="email"
                 :placeholder="$t('footer.subscribe.placeholder') || 'Enter your quantum coordinates...'"
               >
               <div class="input-quantum-glow" />
@@ -135,7 +135,7 @@
                 Điều hướng chính
                 <div class="title-quantum-dots" />
               </h4>
-    </div>
+            </div>
             <ul class="quantum-nav-list">
               <li>
                 <a
@@ -146,8 +146,8 @@
                   <span>{{ $t("footer.links.home") }}</span>
                   <div class="link-quantum-trail" />
                 </a>
-        </li>
-        <li>
+              </li>
+              <li>
                 <a
                   href="/#about-us"
                   class="quantum-nav-link"
@@ -156,8 +156,8 @@
                   <span>{{ $t("footer.links.aboutUs") }}</span>
                   <div class="link-quantum-trail" />
                 </a>
-        </li>
-        <li>
+              </li>
+              <li>
                 <a
                   href="/#process"
                   class="quantum-nav-link"
@@ -166,8 +166,8 @@
                   <span>{{ $t("footer.links.process") }}</span>
                   <div class="link-quantum-trail" />
                 </a>
-        </li>
-      </ul>
+              </li>
+            </ul>
             <div class="card-quantum-field" />
           </div>
         </div>
@@ -191,8 +191,8 @@
                   <span>{{ $t("footer.links.contact") }}</span>
                   <div class="link-quantum-trail" />
                 </router-link>
-        </li>
-        <li>
+              </li>
+              <li>
                 <a
                   href="/#social-proof"
                   class="quantum-nav-link"
@@ -201,8 +201,8 @@
                   <span>{{ $t("footer.links.socialProof") }}</span>
                   <div class="link-quantum-trail" />
                 </a>
-        </li>
-        <li>
+              </li>
+              <li>
                 <a
                   href="/#achievements"
                   class="quantum-nav-link"
@@ -211,8 +211,8 @@
                   <span>{{ $t("footer.links.socialProof") }}</span>
                   <div class="link-quantum-trail" />
                 </a>
-        </li>
-      </ul>
+              </li>
+            </ul>
             <div class="card-quantum-field" />
           </div>
         </div>

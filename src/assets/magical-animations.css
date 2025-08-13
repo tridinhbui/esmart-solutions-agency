@@ -748,8 +748,13 @@ body {
 
 /* Holographic Text Effect - Fixed for visibility */
 .holographic-text {
-  color: #000000;
+  color: #60a5fa;
   font-weight: 700;
+  background: linear-gradient(45deg, #3b82f6, #60a5fa, #93c5fd);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 20px rgba(96, 165, 250, 0.5);
 }
 
 @keyframes holographic {
@@ -827,8 +832,10 @@ body {
 
 /* Mystical Glow Effect - Fixed for visibility */
 .mystical-glow {
-  color: #000000;
+  color: #3b82f6;
   font-weight: 600;
+  text-shadow: 0 0 20px rgba(0, 128, 255, 0.5);
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
 .mystical-glow::before {
@@ -895,8 +902,14 @@ body {
 
 /* Spectral Shimmer - Fixed for visibility */
 .spectral-shimmer {
-  color: #333333;
+  color: #004d7a;
   font-weight: 500;
+  background: linear-gradient(90deg, #60a5fa, #3b82f6, #0080ff, #3b82f6, #60a5fa);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s ease-in-out infinite;
 }
 
 .spectral-shimmer::after {
@@ -1088,4 +1101,23 @@ body {
 .scroll-reveal-magical.revealed {
   opacity: 1;
   transform: translateY(0) rotateX(0deg);
+} 
+
+/* New Magical Animations */
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 20px rgba(0, 128, 255, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 30px rgba(0, 128, 255, 0.8), 0 0 40px rgba(0, 102, 204, 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 } 

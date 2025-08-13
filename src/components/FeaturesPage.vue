@@ -75,7 +75,7 @@
               </div>
             </div>
             <div class="number-hologram-effect" />
-        </div>
+          </div>
           
           <!-- Quantum Content -->
           <div class="achievement-quantum-content">
@@ -86,7 +86,7 @@
             <p class="achievement-description">
               {{ achievements[index].description }}
             </p>
-        </div>
+          </div>
           
           <div class="achievement-quantum-field" />
         </div>

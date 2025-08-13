@@ -1,55 +1,123 @@
 <template>
-  <section class="simple-hero magical-hero">
-    <!-- Magical Background -->
-    <div class="magical-bg">
-      <div class="floating-particles">
-        <div v-for="n in 50" :key="n" class="particle" 
-             :style="{ 
-               left: Math.random() * 100 + '%',
-               animationDelay: Math.random() * 15 + 's',
-               animationDuration: (15 + Math.random() * 10) + 's'
-             }"></div>
+  <section class="simple-hero">
+    <!-- Mystical Background Elements -->
+    <div class="mystical-bg">
+      <!-- Parallax Layers -->
+      <div class="parallax-layer" data-speed="0.1">
+        <div class="floating-orb orb-1" />
+        <div class="floating-orb orb-2" />
       </div>
       
-      <div class="morphing-shapes">
-        <div class="morph-shape morph-1"></div>
-        <div class="morph-shape morph-2"></div>
-        <div class="morph-shape morph-3"></div>
+      <div class="parallax-layer" data-speed="0.3">
+        <div class="floating-orb orb-3" />
+        <div class="energy-field field-1" />
+      </div>
+      
+      <div class="parallax-layer" data-speed="0.5">
+        <div class="floating-orb orb-4" />
+        <div class="energy-field field-2" />
+        <div class="cosmic-waves">
+          <div class="cosmic-wave wave-1" />
+          <div class="cosmic-wave wave-2" />
+        </div>
+      </div>
+      
+      <div class="parallax-layer" data-speed="0.7">
+        <div class="floating-orb orb-5" />
+        <div class="energy-field field-3" />
+        <div class="cosmic-waves">
+          <div class="cosmic-wave wave-3" />
+          <div class="cosmic-wave wave-4" />
+        </div>
+      </div>
+      
+      <div class="parallax-layer" data-speed="0.9">
+        <!-- Mystical Particles -->
+        <div class="mystical-particles">
+          <div
+            v-for="n in 30"
+            :key="n"
+            class="mystical-particle"
+            :style="{ 
+              left: Math.random() * 100 + '%',
+              top: Math.random() * 100 + '%',
+              animationDelay: Math.random() * 15 + 's',
+              animationDuration: (8 + Math.random() * 12) + 's',
+              '--particle-size': (3 + Math.random() * 8) + 'px'
+            }"
+          />
+        </div>
+        
+        <!-- Stardust Trail -->
+        <div class="stardust-trail" />
+        
+        <!-- Aurora Effect -->
+        <div class="aurora-effect aurora-1" />
+        <div class="aurora-effect aurora-2" />
+        <div class="aurora-effect aurora-3" />
       </div>
     </div>
 
     <div class="container">
-
-      <!-- Magical Hero Content -->
-      <div class="magical-hero-content">
-        <h1 class="magical-title holographic-text">
-          <span class="company-name typing-effect mystical-glow">ESmart Solutions Agency</span>
-          <span class="main-title glitch-effect dimensional-shift">Chuyển đổi Doanh nghiệp của Bạn</span>
+      <!-- Hero Content -->
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span class="company-name mystical-text">ESmart Solutions Agency</span>
+          <span class="main-title mystical-text">Chuyển đổi Doanh nghiệp của Bạn</span>
         </h1>
-        <p class="simple-hero-description spectral-shimmer">
-          ESmart Solutions Agency là đối tác, người bạn đồng hành chuyên nghiệp cùng doanh nghiệp Việt Nam trên hành trình xây dựng và phát triển thương hiệu uy tín, chất lượng.
+        
+        <p class="hero-description mystical-text glitch-text">
+          {{ currentText }}<span v-if="isTyping" class="typing-cursor">|</span>
         </p>
-        <div class="simple-stats-grid">
-          <div class="simple-stat-card scroll-reveal cosmic-pulse">
-            <span class="stat-number counter-animation" data-target="500">0</span>
-            <span class="stat-label">Dự án</span>
+        
+        <!-- Improved Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card mystical-card glass-card">
+            <div class="stat-number-wrapper">
+              <span
+                class="stat-number counter-animation mystical-number"
+                data-target="500"
+              >0</span>
+              <span class="stat-plus mystical-accent">+</span>
+            </div>
+            <span class="stat-label mystical-label">Dự án</span>
           </div>
-          <div class="simple-stat-card scroll-reveal cosmic-pulse" style="animation-delay: 0.2s;">
-            <span class="stat-number counter-animation" data-target="98">0</span>
-            <span class="stat-label">Hài lòng%</span>
+          
+          <div class="stat-card mystical-card glass-card">
+            <div class="stat-number-wrapper">
+              <span
+                class="stat-number counter-animation mystical-number"
+                data-target="98"
+              >0</span>
+              <span class="stat-percent mystical-accent">%</span>
+            </div>
+            <span class="stat-label mystical-label">Hài lòng</span>
           </div>
-          <div class="simple-stat-card scroll-reveal cosmic-pulse" style="animation-delay: 0.4s;">
-            <span class="stat-number">24/7</span>
-            <span class="stat-label">Hỗ trợ 24/7</span>
+          
+          <div class="stat-card mystical-card glass-card">
+            <div class="stat-number-wrapper">
+              <span class="stat-number mystical-number">24/7</span>
+            </div>
+            <span class="stat-label mystical-label">Hỗ trợ</span>
           </div>
         </div>
-        <div class="simple-action-buttons">
-          <button class="simple-primary-btn enchanted-btn astral-projection" @click="scrollToAssessment">
-            Bắt đầu ngay
+        
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button
+            class="primary-btn mystical-btn"
+            @click="scrollToAssessment"
+          >
+            <span class="btn-text">Bắt đầu ngay</span>
+            <div class="btn-glow" />
           </button>
-                  <button class="simple-secondary-btn enchanted-btn ethereal-float" @click="scrollToAbout">
-          Khám Phá
-        </button>
+          <button
+            class="secondary-btn mystical-btn"
+            @click="scrollToAbout"
+          >
+            <span class="btn-text">Khám Phá</span>
+            <div class="btn-glow" />
+          </button>
         </div>
       </div>
     </div>
@@ -61,116 +129,192 @@ export default {
   name: 'SimpleHeroSection',
   data() {
     return {
+      animatedElements: [],
       stats: [
         { number: "500+", label: "Projects" },
         { number: "98%", label: "Satisfaction" },
         { number: "24/7", label: "Support" }
-      ]
+      ],
+      currentText: "",
+      fullText: "ESmart Solutions Agency - Đối tác tin cậy cho sự phát triển bền vững",
+      textIndex: 0,
+      isTyping: true,
+      gradientAngle: 0,
+      glitchActive: false
     };
   },
+  mounted() {
+    this.initializeMysticalEffects();
+    this.startCounterAnimation();
+    this.setupScrollAnimation();
+    this.setupParallaxEffect();
+    this.startTypewriterEffect();
+    this.startGradientAnimation();
+    this.startGlitchEffect();
+  },
   methods: {
-    scrollToSection(sectionId) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        this.$router.push({ path: '/', hash: `#${sectionId}` });
-      }
+    initializeMysticalEffects() {
+      // Add mystical entrance animations
+      const elements = document.querySelectorAll('.mystical-text, .mystical-card, .mystical-btn');
+      elements.forEach((el, index) => {
+        el.style.animationDelay = `${index * 0.2}s`;
+        el.classList.add('mystical-entrance');
+      });
     },
-    
-    scrollToAssessment() {
-      this.scrollToSection('marketing-assessment');
-    },
-    
-    scrollToAbout() {
-      this.$router.push('/about');
-    },
-    
-    goToElegantDemo() {
-      this.$router.push('/about');
-    },
-    
-    // Initialize counter animations
-    initCounterAnimations() {
+    startCounterAnimation() {
       const counters = document.querySelectorAll('.counter-animation');
-      
-      const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px 0px -100px 0px'
-      };
-      
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+        let current = 0;
+        
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          counter.textContent = Math.floor(current);
+        }, 16);
+      });
+    },
+    scrollToAssessment() {
+      // Scroll to assessment section
+      console.log('Scroll to assessment');
+    },
+    scrollToAbout() {
+      // Scroll to about section
+      console.log('Scroll to about');
+    },
+    
+    setupScrollAnimation() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            this.animateCounter(entry.target);
+            // Add staggered delay based on element type
+            const delay = this.getAnimationDelay(entry.target);
+            setTimeout(() => {
+              entry.target.classList.add('animate-in');
+            }, delay);
             observer.unobserve(entry.target);
           }
         });
-      }, observerOptions);
-      
-      counters.forEach(counter => {
-        observer.observe(counter);
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      });
+
+      // Observe all elements with animation classes
+      this.$nextTick(() => {
+        const elements = this.$el.querySelectorAll('.slide-in-element, .fade-in-element, .slide-in-up, .slide-in-left, .slide-in-right, .move-in-element');
+        elements.forEach(el => {
+          observer.observe(el);
+        });
       });
     },
     
-    // Animate counter numbers
-    animateCounter(element) {
-      const target = parseInt(element.getAttribute('data-target'));
-      const duration = 2000; // 2 seconds
-      const increment = target / (duration / 16); // 60fps
-      let current = 0;
+    getAnimationDelay(element) {
+      const classList = element.classList;
       
-      const updateCounter = () => {
-        current += increment;
-        if (current < target) {
-          element.textContent = Math.floor(current);
-          requestAnimationFrame(updateCounter);
-        } else {
-          element.textContent = target;
-        }
-      };
+      if (classList.contains('slide-in-element')) return 0;
+      if (classList.contains('slide-in-up')) return 300;
+      if (classList.contains('slide-in-left')) return 450;
+      if (classList.contains('slide-in-right')) return 600;
+      if (classList.contains('move-in-element')) return 750;
       
-      updateCounter();
+      return 0;
     },
     
-    // Initialize scroll animations
-    initScrollAnimations() {
-      const animatedElements = document.querySelectorAll('.scroll-reveal');
+    setupParallaxEffect() {
+      // Scroll-based parallax
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = this.$el.querySelectorAll('.parallax-layer');
+        
+        parallaxElements.forEach(element => {
+          const speed = parseFloat(element.dataset.speed) || 0.5;
+          const yPos = -(scrolled * speed);
+          const scale = 1 + (scrolled * 0.0001);
+          const rotate = scrolled * 0.01;
+          
+          element.style.transform = `translateY(${yPos}px) scale(${scale}) rotate(${rotate}deg)`;
+        });
+      });
       
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
+      // Mouse-based parallax for 3D effect
+      this.$el.addEventListener('mousemove', (e) => {
+        const rect = this.$el.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const parallaxElements = this.$el.querySelectorAll('.parallax-layer');
+        parallaxElements.forEach(element => {
+          const speed = parseFloat(element.dataset.speed) || 0.5;
+          const xOffset = (mouseX - centerX) * speed * 0.01;
+          const yOffset = (mouseY - centerY) * speed * 0.01;
+          
+          const currentTransform = element.style.transform;
+          const scrollTransform = currentTransform.includes('translateY') ? currentTransform : '';
+          
+          element.style.transform = `${scrollTransform} translate(${xOffset}px, ${yOffset}px)`;
+        });
+      });
+    },
+    
+    startTypewriterEffect() {
+      const typeInterval = setInterval(() => {
+        if (this.textIndex < this.fullText.length) {
+          this.currentText += this.fullText[this.textIndex];
+          this.textIndex++;
+        } else {
+          clearInterval(typeInterval);
+          this.isTyping = false;
+        }
+      }, 100);
+    },
+    
+    startGradientAnimation() {
+      setInterval(() => {
+        this.gradientAngle = (this.gradientAngle + 1) % 360;
+        const gradientElements = this.$el.querySelectorAll('.animated-gradient');
+        gradientElements.forEach(element => {
+          element.style.background = `linear-gradient(${this.gradientAngle}deg, #0f172a 0%, #1e3a8a 25%, #3b82f6 50%, #1e3a8a 75%, #0f172a 100%)`;
+        });
+      }, 50);
+    },
+    
+    startGlitchEffect() {
+      setInterval(() => {
+        this.glitchActive = !this.glitchActive;
+        const glitchElements = this.$el.querySelectorAll('.glitch-text');
+        glitchElements.forEach(element => {
+          if (this.glitchActive) {
+            element.style.textShadow = `
+              2px 0 #ff0000,
+              -2px 0 #00ffff,
+              0 2px #00ff00,
+              0 -2px #ff00ff
+            `;
+            element.style.transform = 'translate(2px, -1px)';
+          } else {
+            element.style.textShadow = 'none';
+            element.style.transform = 'translate(0, 0)';
           }
         });
-      }, observerOptions);
-      
-      animatedElements.forEach(element => {
-        observer.observe(element);
-      });
+      }, 200);
     }
-  },
-  
-  mounted() {
-    // Initialize animations after component is mounted
-    this.$nextTick(() => {
-      this.initCounterAnimations();
-      this.initScrollAnimations();
-    });
   }
-}
+};
 </script>
 
 <style scoped>
-/* Simple Hero Section - White Background, Black Text */
+/* Mystical Hero Section */
 .simple-hero {
-  background: #ffffff;
-  color: #000000;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
+  color: #e0f2fe;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -180,10 +324,380 @@ export default {
   padding: 2rem;
 }
 
-.hero-container {
+.simple-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #0f172a 0%, #1e3a8a 25%, #3b82f6 50%, #1e3a8a 75%, #0f172a 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* Mystical Background Elements */
+.mystical-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Parallax Layers */
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.parallax-layer[data-speed="0.1"] { z-index: 1; }
+.parallax-layer[data-speed="0.3"] { z-index: 2; }
+.parallax-layer[data-speed="0.5"] { z-index: 3; }
+.parallax-layer[data-speed="0.7"] { z-index: 4; }
+.parallax-layer[data-speed="0.9"] { z-index: 5; }
+
+/* Typewriter Effect */
+.typing-cursor {
+  animation: blink 1s infinite;
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Glitch Effect */
+.glitch-text {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.glitch-text::before {
+  color: #ff0000;
+  animation: glitch-1 0.3s infinite;
+}
+
+.glitch-text::after {
+  color: #00ffff;
+  animation: glitch-2 0.3s infinite;
+}
+
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(-2px, 2px); }
+}
+
+/* Animated Gradient Background */
+.animated-gradient {
+  background: linear-gradient(0deg, #0f172a 0%, #1e3a8a 25%, #3b82f6 50%, #1e3a8a 75%, #0f172a 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Enhanced Background Animation */
+.simple-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(30, 58, 138, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(15, 23, 42, 0.1) 0%, transparent 50%);
+  animation: backgroundFloat 20s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes backgroundFloat {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1);
+    opacity: 0.1;
+  }
+  25% { 
+    transform: translate(-20px, -20px) scale(1.1);
+    opacity: 0.15;
+  }
+  50% { 
+    transform: translate(20px, -10px) scale(0.9);
+    opacity: 0.2;
+  }
+  75% { 
+    transform: translate(-10px, 20px) scale(1.05);
+    opacity: 0.15;
+  }
+}
+
+/* Enhanced Glassmorphism Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-8px) scale(1.02);
+}
+
+.glass-card:hover::before {
+  left: 100%;
+}
+
+/* Special glassmorphism for hero stats */
+.stat-card.glass-card {
+  background: rgba(255, 255, 255, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.stat-card.glass-card:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-10px) scale(1.03);
+}
+
+/* Floating Orbs */
+.floating-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  filter: blur(25px);
+  animation: orbFloat 12s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 250px;
+  height: 250px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 180px;
+  height: 180px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 3s;
+}
+
+.orb-3 {
+  width: 120px;
+  height: 120px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 6s;
+}
+
+.orb-4 {
+  width: 200px;
+  height: 200px;
+  top: 30%;
+  right: 30%;
+  animation-delay: 9s;
+}
+
+.orb-5 {
+  width: 150px;
+  height: 150px;
+  bottom: 40%;
+  right: 10%;
+  animation-delay: 12s;
+}
+
+/* Energy Fields */
+.energy-field {
+  position: absolute;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent, rgba(96, 165, 250, 0.1), transparent);
+  filter: blur(30px);
+  animation: energyPulse 8s ease-in-out infinite;
+}
+
+.field-1 {
+  width: 400px;
+  height: 400px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 0s;
+}
+
+.field-2 {
+  width: 300px;
+  height: 300px;
+  top: 20%;
+  left: 20%;
+  animation-delay: 2s;
+}
+
+.field-3 {
+  width: 350px;
+  height: 350px;
+  bottom: 10%;
+  right: 20%;
+  animation-delay: 4s;
+}
+
+/* Mystical Particles */
+.mystical-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.mystical-particle {
+  position: absolute;
+  width: var(--particle-size);
+  height: var(--particle-size);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 100%);
+  border-radius: 50%;
+  animation: particleFloat 15s linear infinite;
+}
+
+/* Cosmic Waves */
+.cosmic-waves {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.cosmic-wave {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(96, 165, 250, 0.05) 0%, transparent 70%);
+  filter: blur(40px);
+  animation: cosmicWave 20s ease-in-out infinite;
+}
+
+.wave-1 { animation-delay: 0s; }
+.wave-2 { animation-delay: 5s; }
+.wave-3 { animation-delay: 10s; }
+.wave-4 { animation-delay: 15s; }
+
+/* Stardust Trail */
+.stardust-trail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.2), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.3), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: stardustMove 25s linear infinite;
+}
+
+/* Aurora Effect */
+.aurora-effect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(96, 165, 250, 0.03) 25%, 
+    rgba(147, 197, 253, 0.05) 50%, 
+    rgba(96, 165, 250, 0.03) 75%, 
+    transparent 100%);
+  filter: blur(50px);
+  animation: auroraShift 30s ease-in-out infinite;
+}
+
+.aurora-1 { animation-delay: 0s; }
+.aurora-2 { animation-delay: 10s; }
+.aurora-3 { animation-delay: 20s; }
+
+.container {
   max-width: 1200px;
   width: 100%;
   text-align: center;
+  position: relative;
+  z-index: 3;
 }
 
 .hero-content {
@@ -191,469 +705,282 @@ export default {
   margin: 0 auto;
 }
 
-/* Simple Title Styles */
-.simple-hero-title {
+/* Hero Title */
+.hero-title {
   margin-bottom: 2rem;
+}
+
+.company-name {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #60a5fa;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 15px rgba(96, 165, 250, 0.6);
+  animation: companyNameGlow 4s ease-in-out infinite;
 }
 
 .main-title {
+  display: block;
   font-size: 3.5rem;
   font-weight: 800;
-  color: #000000;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-  text-align: center;
+  color: #ffffff;
+  line-height: 1.1;
+  text-shadow: 0 4px 20px rgba(255, 255, 255, 0.4);
+  animation: mainTitleFloat 6s ease-in-out infinite;
 }
 
-.title-line {
-  color: #000000;
-  font-weight: 700;
-}
-
-.sub-title {
-  font-size: 1.4rem;
-  color: #333333;
-  margin-bottom: 1rem;
-  font-weight: 500;
-}
-
-/* Simple Description */
-.simple-hero-description {
-  font-size: 1.1rem;
-  color: #666666;
-  margin-bottom: 2.5rem;
-  max-width: 600px;
-  line-height: 1.6;
-}
-
-/* Simple Stats Grid */
-.simple-stats-grid {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
-}
-
-.simple-stat-card {
-  text-align: center;
-  padding: 1rem;
-  border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  background: white;
-  min-width: 120px;
-}
-
-.stat-number {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  color: black;
-  margin-bottom: 0.5rem;
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  color: #333;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 500;
-}
-
-/* Simple Action Buttons */
-.simple-action-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.simple-primary-btn,
-.simple-secondary-btn,
-.simple-elegant-btn {
-  padding: 1rem 2rem;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 2px solid;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.simple-primary-btn {
-  background: black;
-  color: white;
-  border-color: black;
-}
-
-.simple-primary-btn:hover {
-  background: #333;
-  border-color: #333;
-}
-
-.simple-secondary-btn {
-  background: white;
-  color: black;
-  border-color: black;
-}
-
-.simple-secondary-btn:hover {
-  background: #f5f5f5;
-}
-
-.simple-elegant-btn {
-  background: #f8f8f8;
-  color: black;
-  border-color: #ddd;
-}
-
-.simple-elegant-btn:hover {
-  background: #e8e8e8;
-  border-color: #bbb;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .simple-hero-section {
-    padding: 1rem;
-  }
-  
-  .simple-stats-grid {
-    gap: 1.5rem;
-  }
-  
-  .simple-action-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .simple-primary-btn,
-  .simple-secondary-btn,
-  .simple-elegant-btn {
-    width: 100%;
-    max-width: 300px;
-  }
-}
-
-/* Magical Hero Animations */
-.magical-hero {
-  position: relative;
-  overflow: hidden;
-}
-
-.magical-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  margin-bottom: 4rem;
-  animation: slideDown 1s ease-out;
-}
-
-.animated-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.logo-text {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: black;
-  animation: logoGlow 3s ease-in-out infinite;
-}
-
-.logo-accent {
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: #333;
-  animation: logoFloat 2s ease-in-out infinite;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.magical-link {
-  color: black;
-  text-decoration: none;
-  font-weight: 500;
-  position: relative;
-  transition: all 0.3s ease;
-  animation: linkFadeIn 0.8s ease-out backwards;
-}
-
-.magical-link::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: black;
-  transition: width 0.3s ease;
-}
-
-.magical-link:hover::after {
-  width: 100%;
-}
-
-.magical-link:hover {
-  transform: translateY(-2px);
-}
-
-.magical-select {
-  background: white;
-  border: 1px solid #e5e5e5;
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.magical-select:hover {
-  border-color: black;
-  transform: scale(1.05);
-}
-
-/* Hero Content Animations */
-.magical-hero-content {
-  text-align: center;
-  animation: heroContentFadeIn 1.5s ease-out;
-}
-
-.magical-title {
-  margin-bottom: 2rem;
-}
-
-.typing-effect {
-  display: block;
+.hero-description {
   font-size: 1.2rem;
-  color: #000000;
-  margin-bottom: 1rem;
-  overflow: hidden;
-  border-right: 2px solid black;
-  white-space: nowrap;
-  animation: typewriter 3s steps(40) 1s both, blinkCursor 2s infinite;
+  line-height: 1.6;
+  color: #bfdbfe;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: descriptionFade 3s ease-out 1s backwards;
 }
 
-.glitch-effect {
-  display: block;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
-  color: #000000;
-  margin-bottom: 1rem;
-  line-height: 1.2;
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.fade-in-up {
-  animation: fadeInUp 1s ease-out 0.5s both;
-}
-
-/* Magical Stats */
-.magical-stats-grid {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin: 3rem 0;
-  flex-wrap: wrap;
-}
-
-.magical-stat-card {
+.stat-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #1e3a8a;
+  border-radius: 24px;
+  padding: 2rem 1rem;
   text-align: center;
-  padding: 2rem 1.5rem;
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
-  background: white;
-  min-width: 140px;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
-  animation: cardFloatIn 1s ease-out backwards;
-  transition: all 0.4s ease;
   overflow: hidden;
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 8px 32px rgba(30, 58, 138, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.magical-stat-card::before {
+.stat-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
-  transition: left 0.6s ease;
+  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.1), transparent);
+  transition: left 0.8s ease;
+  z-index: 1;
 }
 
-.magical-stat-card:hover::before {
+.stat-card:hover::before {
   left: 100%;
 }
 
-.magical-stat-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-color: black;
+.stat-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 
+    0 24px 72px rgba(30, 58, 138, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+  border-color: #3b82f6;
+  background: rgba(255, 255, 255, 0.98);
 }
 
-.counter-animation {
-  display: block;
+.stat-number-wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+.stat-number {
   font-size: 2.5rem;
   font-weight: 700;
-  color: black;
+  color: #1e3a8a;
+  display: block;
   margin-bottom: 0.5rem;
-  animation: countUp 2s ease-out 1s both;
 }
 
-/* Magical Buttons */
-.magical-action-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  margin-top: 3rem;
+.stat-plus,
+.stat-percent {
+  font-size: 1.5rem;
+  color: #3b82f6;
+  font-weight: 600;
 }
 
-.magical-primary-btn,
-.magical-secondary-btn,
-.magical-elegant-btn {
-  padding: 1.2rem 2.5rem;
-  border-radius: 8px;
+.stat-label {
   font-size: 1rem;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+  position: relative;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  border: 2px solid;
-  text-decoration: none;
-  display: inline-block;
-  position: relative;
-  overflow: hidden;
   transition: all 0.4s ease;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
-.magical-primary-btn {
-  background: black;
-  color: white;
-  border-color: black;
-  animation: buttonPulse 2s ease-in-out infinite;
+.primary-btn {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 25px rgba(96, 165, 250, 0.4);
 }
 
-.pulse-glow {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  animation: pulseGlow 2s ease-in-out infinite;
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1e3a8a;
+  border: 2px solid #1e3a8a;
+  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.2);
 }
 
-.btn-ripple {
+.btn-glow {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 0;
   height: 0;
-  background: rgba(255, 255, 255, 0.3);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: all 0.6s ease;
 }
 
-.magical-primary-btn:hover .btn-ripple {
+.primary-btn:hover .btn-glow,
+.secondary-btn:hover .btn-glow {
   width: 300px;
   height: 300px;
 }
 
-.magical-secondary-btn {
-  background: white;
-  color: black;
-  border-color: black;
+.primary-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(96, 165, 250, 0.5);
 }
 
-.hover-morph:hover {
-  transform: translateY(-5px) rotate(2deg);
-  border-radius: 15px;
+.secondary-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(30, 58, 138, 0.3);
+  background: #1e3a8a;
+  color: #ffffff;
 }
 
-.magical-elegant-btn {
-  background: transparent;
-  color: black;
-  border-color: black;
-  border-style: dashed;
-}
-
-.floating-btn {
-  animation: floatingButton 3s ease-in-out infinite;
+/* Mystical Entrance Animation */
+.mystical-entrance {
+  animation: mysticalEntrance 1.5s ease-out forwards;
 }
 
 /* Animation Keyframes */
-@keyframes slideDown {
-  from {
-    transform: translateY(-100px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes logoGlow {
-  0%, 100% { text-shadow: none; }
-  50% { text-shadow: 0 0 10px rgba(0, 0, 0, 0.3); }
-}
-
-@keyframes logoFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
-}
-
-@keyframes linkFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes heroContentFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes typewriter {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blinkCursor {
-  50% { border-color: transparent; }
-}
-
-@keyframes glitchTitle {
+@keyframes orbFloat {
   0%, 100% { 
-    transform: translateX(0);
-    text-shadow: none;
+    transform: translateY(0) rotate(0deg) scale(1); 
+    opacity: 0.6;
   }
-  10% { 
-    transform: translateX(-2px);
-    text-shadow: 2px 0 rgba(0, 0, 0, 0.1);
+  50% { 
+    transform: translateY(-30px) rotate(180deg) scale(1.1); 
+    opacity: 1;
   }
-  20% { 
-    transform: translateX(2px);
-    text-shadow: -2px 0 rgba(0, 0, 0, 0.1);
-  }
-  30% { transform: translateX(0); }
 }
 
-@keyframes fadeInUp {
+@keyframes energyPulse {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg); 
+    opacity: 0.3;
+  }
+  50% { 
+    transform: scale(1.2) rotate(180deg); 
+    opacity: 0.6;
+  }
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes cosmicWave {
+  0%, 100% { 
+    transform: scale(1) translateX(0); 
+    opacity: 0.3;
+  }
+  50% { 
+    transform: scale(1.1) translateX(20px); 
+    opacity: 0.6;
+  }
+}
+
+@keyframes stardustMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100px); }
+}
+
+@keyframes auroraShift {
+  0%, 100% { 
+    transform: translateX(0) skewX(0deg); 
+    opacity: 0.3;
+  }
+  50% { 
+    transform: translateX(50px) skewX(5deg); 
+    opacity: 0.6;
+  }
+}
+
+@keyframes companyNameGlow {
+  0%, 100% { 
+    text-shadow: 0 2px 15px rgba(96, 165, 250, 0.6);
+  }
+  50% { 
+    text-shadow: 0 4px 25px rgba(96, 165, 250, 0.8), 0 0 30px rgba(96, 165, 250, 0.4);
+  }
+}
+
+@keyframes mainTitleFloat {
+  0%, 100% { 
+    transform: translateY(0); 
+    text-shadow: 0 4px 20px rgba(255, 255, 255, 0.4);
+  }
+  50% { 
+    transform: translateY(-5px); 
+    text-shadow: 0 6px 30px rgba(255, 255, 255, 0.6);
+  }
+}
+
+@keyframes descriptionFade {
   from {
     opacity: 0;
     transform: translateY(30px);
@@ -664,44 +991,61 @@ export default {
   }
 }
 
-@keyframes cardFloatIn {
+@keyframes mysticalEntrance {
   from {
     opacity: 0;
-    transform: translateY(50px) scale(0.8);
+    transform: translateY(50px) rotateX(-30deg);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0) rotateX(0);
   }
 }
 
-@keyframes countUp {
-  from {
-    transform: scale(0);
-    opacity: 0;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .simple-hero {
+    padding: 1rem;
   }
-  to {
-    transform: scale(1);
-    opacity: 1;
+  
+  .company-name {
+    font-size: 2rem;
+  }
+  
+  .main-title {
+    font-size: 2.5rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .floating-orb {
+    display: none;
   }
 }
 
-@keyframes buttonPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-}
-
-@keyframes pulseGlow {
-  0%, 100% { 
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+@media (max-width: 480px) {
+  .company-name {
+    font-size: 1.75rem;
   }
-  50% { 
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  
+  .main-title {
+    font-size: 2rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
   }
 }
-
-@keyframes floatingButton {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-</style> 
+</style>
