@@ -89,7 +89,7 @@ export default {
 .simple-footer {
   background: linear-gradient(135deg, #0f1629 0%, #1e3a8a 100%);
   color: #ffffff;
-  padding: 3rem 2rem 1rem;
+  padding: 2rem 2rem 0;
   position: relative;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-bottom: 0;
@@ -103,8 +103,8 @@ export default {
 .footer-main {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 4rem;
-  margin-bottom: 2rem;
+  gap: 3rem;
+  margin-bottom: 0.5rem;
   align-items: start;
 }
 
@@ -121,6 +121,7 @@ export default {
 }
 
 .logo-text {
+  font-family: 'Playfair Display', serif;
   font-size: 2rem;
   font-weight: 800;
   color: #ffffff;
@@ -129,19 +130,21 @@ export default {
 }
 
 .logo-subtitle {
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
-  color: #93c5fd;
   font-weight: 500;
+  color: #93c5fd;
   letter-spacing: 2px;
   margin-top: 2px;
 }
 
 .footer-description {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
+  font-weight: 400;
   color: #e2e8f0;
   line-height: 1.7;
   margin: 1.5rem 0;
-  font-weight: 400;
   max-width: 300px;
 }
 
@@ -232,7 +235,8 @@ export default {
 /* Footer Bottom */
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -267,7 +271,7 @@ export default {
 /* Responsive Design */
 @media (max-width: 768px) {
   .simple-footer {
-    padding: 3rem 1.5rem 2rem;
+    padding: 2rem 1.5rem 0;
   }
   
   .footer-main {

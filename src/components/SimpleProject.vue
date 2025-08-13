@@ -26,7 +26,7 @@
               @error="handleImageError"
             >
             <div class="project-overlay">
-              <button class="view-project-btn">
+              <button class="modern-btn">
                 Xem Chi Tiết
               </button>
             </div>
@@ -61,7 +61,7 @@
 
       <!-- View All Button -->
       <div class="projects-actions">
-        <button class="view-all-btn">
+        <button class="modern-btn secondary">
           Xem Tất Cả Dự Án
         </button>
       </div>
@@ -150,7 +150,7 @@ export default {
 .simple-projects {
   background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
   color: #e0f2fe;
-  padding: 4rem 2rem;
+  padding: 4rem 2rem 2rem;
   position: relative;
   overflow: hidden;
 }
@@ -162,10 +162,11 @@ export default {
 
 .section-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .section-title {
+  font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #ffffff;
@@ -174,7 +175,9 @@ export default {
 }
 
 .section-subtitle {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.2rem;
+  font-weight: 400;
   color: #bfdbfe;
   line-height: 1.6;
   max-width: 600px;
@@ -186,7 +189,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .project-card {

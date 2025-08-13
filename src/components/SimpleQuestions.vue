@@ -65,7 +65,7 @@
         >
           Liên hệ với đội ngũ chuyên gia của chúng tôi để được tư vấn miễn phí
         </p>
-        <button class="magical-contact-btn">
+        <button class="modern-btn">
           Liên Hệ Ngay
         </button>
       </div>
@@ -124,22 +124,23 @@ export default {
 .simple-questions {
   background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
   color: #e0f2fe;
-  padding: 4rem 2rem;
+  padding: 4rem 2rem 2rem;
   position: relative;
   overflow: hidden;
 }
 
 .questions-list {
   max-width: 800px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 2rem;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .section-title {
+  font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #ffffff;
@@ -153,13 +154,14 @@ export default {
 }
 
 .section-subtitle {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.2rem;
+  font-weight: 400;
   color: #bfdbfe;
   line-height: 1.6;
   max-width: 600px;
   margin: 0 auto;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  font-weight: 400;
 }
 
 .magical-question-item {

@@ -97,7 +97,7 @@
             
             <button
               type="submit"
-              class="submit-btn magical-btn magical-pulse ripple"
+              class="modern-btn"
               :disabled="!isFormValid"
             >
               <span>Gửi Tin Nhắn</span>
@@ -238,7 +238,7 @@ export default {
 .simple-contact {
   background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
   color: #e0f2fe;
-  padding: 4rem 2rem;
+  padding: 4rem 2rem 1rem;
 }
 
 .container {
@@ -248,10 +248,11 @@ export default {
 
 .section-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .section-title {
+  font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #ffffff;
@@ -260,7 +261,9 @@ export default {
 }
 
 .section-subtitle {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.1rem;
+  font-weight: 400;
   color: #ffffff;
   line-height: 1.6;
 }

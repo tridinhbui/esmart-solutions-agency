@@ -18,59 +18,45 @@
     </div>
 
     <div class="container">
-      <!-- Section Header with Slide In Animation -->
-      <div class="section-header slide-in-element">
-        <h2 class="section-title fade-in-element">
-          {{ $t('sections.whatCustomersSay') }}
+      <!-- Section Header -->
+      <div class="section-header">
+        <h2 class="section-title typing-text" data-text="Khách hàng nói gì">
+          Khách hàng nói gì
         </h2>
-        <p
-          class="section-subtitle fade-in-element"
-          style="animation-delay: 0.3s;"
-        >
-          {{ $t('sections.whatCustomersSaySubtitle') }}
+        <p class="section-subtitle sequential-text" data-delay="0.5">
+          Những phản hồi chân thực từ khách hàng đã tin tưởng chúng tôi
         </p>
       </div>
 
-      <!-- Testimonials Grid with Staggered Animation -->
+      <!-- Testimonials Grid -->
       <div class="testimonials-grid">
         <div
           v-for="(testimonial, index) in testimonials"
           :key="index"
-          class="testimonial-item glass-card slide-in-up"
-          :style="{ animationDelay: `${index * 0.2}s` }"
+          class="testimonial-item sequential-appear"
+          :data-delay="1.0 + (index * 0.2)"
         >
           <div class="testimonial-content">
-            <div class="quote-icon fade-in-element">
-              <i class="fas fa-quote-left" />
+            <div class="quote-icon">
+              <i class="fas fa-quote-left"></i>
             </div>
-            <p class="testimonial-text slide-in-left">
+            <p class="testimonial-text sequential-text" :data-delay="1.2 + (index * 0.2)">
               {{ testimonial.content }}
             </p>
-            <div class="testimonial-author slide-in-right">
-              <div class="author-avatar fade-in-element">
-                <img 
-                  :src="testimonial.avatar" 
-                  :alt="testimonial.name"
-                  @error="handleImageError"
-                >
+            <div class="testimonial-author">
+              <div class="author-avatar">
+                <img :src="testimonial.avatar" :alt="testimonial.name" />
               </div>
               <div class="author-info">
-                <h4 class="author-name fade-in-element">
+                <h4 class="author-name sequential-text" :data-delay="1.4 + (index * 0.2)">
                   {{ testimonial.name }}
                 </h4>
-                <p class="author-position fade-in-element">
+                <p class="author-position sequential-text" :data-delay="1.6 + (index * 0.2)">
                   {{ testimonial.position }}
-                </p>
-                <p class="author-company fade-in-element">
-                  {{ testimonial.company }}
                 </p>
               </div>
             </div>
           </div>
-          
-          <!-- Elegant Hover Effects -->
-          <div class="testimonial-glow" />
-          <div class="testimonial-shine" />
         </div>
       </div>
     </div>
@@ -242,7 +228,7 @@ export default {
 .simple-testimonial {
   background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
   color: #e0f2fe;
-  padding: 4rem 2rem;
+  padding: 4rem 2rem 2rem;
   position: relative;
   overflow: hidden;
 }
@@ -546,6 +532,7 @@ export default {
 }
 
 .section-title {
+  font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #ffffff;
@@ -554,7 +541,9 @@ export default {
 }
 
 .section-subtitle {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.2rem;
+  font-weight: 400;
   color: #b0b0b0;
   text-align: center;
   margin-bottom: 3rem;
@@ -593,7 +582,7 @@ export default {
 
 .quote-icon {
   font-size: 2.5rem;
-  color: #3b82f6;
+  color: #3B82F6;
   margin-bottom: 1.5rem;
   opacity: 0.8;
 }

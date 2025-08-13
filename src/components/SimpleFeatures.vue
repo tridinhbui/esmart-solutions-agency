@@ -18,34 +18,31 @@
     </div>
 
     <div class="container">
-      <!-- Section Header with Slide In Animation -->
-      <div class="section-header slide-in-element">
-        <h2 class="section-title fade-in-element">
-          {{ $t('sections.ourTools') }}
+      <!-- Section Header -->
+      <div class="section-header">
+        <h2 class="section-title typing-text" data-text="Bộ Công Cụ Của Chúng Tôi">
+          Bộ Công Cụ Của Chúng Tôi
         </h2>
-        <p
-          class="section-subtitle fade-in-element"
-          style="animation-delay: 0.3s;"
-        >
-          {{ $t('sections.ourToolsSubtitle') }}
+        <p class="section-subtitle sequential-text" data-delay="0.5">
+          Những giải pháp công nghệ tiên tiến giúp doanh nghiệp phát triển bền vững
         </p>
       </div>
 
-      <!-- Features Grid with Staggered Animation -->
+      <!-- Features Grid -->
       <div class="features-grid">
         <div
           v-for="(feature, index) in features"
           :key="index"
-          class="feature-item glass-card slide-in-up"
-          :style="{ animationDelay: `${index * 0.2}s` }"
+          class="feature-item sequential-appear"
+          :data-delay="1.0 + (index * 0.2)"
         >
-          <div class="feature-icon fade-in-element">
-            <i :class="feature.icon" />
+          <div class="feature-icon">
+            <i :class="feature.icon"></i>
           </div>
-          <h3 class="feature-title slide-in-left">
+          <h3 class="feature-title sequential-text" :data-delay="1.2 + (index * 0.2)">
             {{ feature.title }}
           </h3>
-          <p class="feature-description slide-in-right">
+          <p class="feature-description sequential-text" :data-delay="1.4 + (index * 0.2)">
             {{ feature.description }}
           </p>
           
@@ -183,10 +180,31 @@ export default {
     };
   },
   mounted() {
+    this.initSequentialAnimations();
     this.setupScrollAnimation();
     this.setupParallaxEffect();
   },
   methods: {
+    initSequentialAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const delay = parseFloat(entry.target.dataset.delay) || 0;
+            setTimeout(() => {
+              entry.target.classList.add('animate-in');
+            }, delay * 1000);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      // Observe all sequential elements
+      const sequentialElements = document.querySelectorAll('.sequential-text, .sequential-appear');
+      sequentialElements.forEach(el => observer.observe(el));
+    },
+    
     setupScrollAnimation() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -250,7 +268,7 @@ export default {
 .simple-features {
   background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
   color: #e0f2fe;
-  padding: 5rem 2rem;
+  padding: 5rem 2rem 2rem;
   position: relative;
   overflow: hidden;
 }
@@ -399,6 +417,7 @@ export default {
 }
 
 .section-title {
+  font-family: 'Playfair Display', serif;
   font-size: 3rem;
   font-weight: 800;
   background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
@@ -410,12 +429,13 @@ export default {
 }
 
 .section-subtitle {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.2rem;
+  font-weight: 400;
   color: #bfdbfe;
   line-height: 1.7;
   max-width: 700px;
   margin: 0 auto;
-  font-weight: 400;
 }
 
 /* Enhanced Features Grid */
@@ -1014,6 +1034,61 @@ export default {
   .service-card {
     padding: 2rem 1.5rem;
   }
+}
+
+/* Typing Effect */
+.typing-text {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #3B82F6;
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+.typing-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(40, end) forwards;
+}
+
+/* Sequential Text Appearance */
+.sequential-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sequential-text.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sequential Appear for Feature Items */
+.sequential-appear {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sequential-appear.animate-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Typing Animation Keyframes */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #3B82F6; }
 }
 </style> 
 

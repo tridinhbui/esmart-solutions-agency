@@ -1,86 +1,60 @@
 <template>
-  <header class="simple-navbar">
-    <div class="navbar-container">
-      <router-link
-        to="/"
-        class="logo-link"
-      >
+  <nav class="navbar" :class="{ 'navbar-scrolled': isScrolled }">
+    <div class="nav-container">
+      <!-- Logo -->
+      <div class="nav-logo">
         <span class="logo-text">ESmart</span>
         <span class="logo-subtitle">Solutions</span>
-      </router-link>
+      </div>
 
-      <nav
-        class="nav-menu"
-        :class="{ 'nav-open': isOpen }"
-      >
-        <router-link
-          to="/"
-          class="nav-link"
-          @click="closeMenu"
-        >
-          {{ $t('navigation.home') }}
-        </router-link>
+      <!-- Navigation Links -->
+      <div class="nav-links">
+        <a href="#home" class="nav-link">Trang chủ</a>
+        <a href="#about" class="nav-link">Về chúng tôi</a>
+        <a href="#services" class="nav-link">Dịch vụ</a>
+        <a href="#projects" class="nav-link">Dự án</a>
+        <a href="#contact" class="nav-link">Liên hệ</a>
+      </div>
 
-        <router-link
-          to="/#marketing-assessment"
-          class="nav-link"
-          @click="closeMenu"
-        >
-          {{ $t('navigation.assessment') }}
-        </router-link>
-        <router-link
-          to="/blog"
-          class="nav-link"
-          @click="closeMenu"
-        >
-          {{ $t('navigation.blog') }}
-        </router-link>
-        <router-link
-          to="/#project"
-          class="nav-link"
-          @click="closeMenu"
-        >
-          {{ $t('navigation.products') }}
-        </router-link>
-        <router-link
-          to="/#about-us"
-          class="nav-link"
-          @click="closeMenu"
-        >
-          {{ $t('navigation.aboutUs') }}
-        </router-link>
-      </nav>
-
-      <!-- Language Switcher -->
-      <div class="language-switcher">
+      <!-- Language Selector -->
+      <div class="language-selector">
         <button 
+          @click="toggleLanguage" 
           class="lang-btn"
-          :class="{ active: $i18n.locale === 'vi' }"
-          @click="switchLanguage('vi')"
+          :class="{ 'active': currentLanguage === 'vi' }"
         >
-          VI
-        </button>
-        <button 
-          class="lang-btn"
-          :class="{ active: $i18n.locale === 'en' }"
-          @click="switchLanguage('en')"
-        >
-          EN
+          <i class="fas fa-globe"></i>
+          {{ currentLanguage === 'vi' ? 'VI' : 'EN' }}
         </button>
       </div>
 
+      <!-- CTA Button -->
+      <button class="nav-cta">
+        <i class="fas fa-phone"></i>
+        Book a Call
+      </button>
+
       <!-- Mobile Menu Toggle -->
-      <button 
-        class="mobile-toggle"
-        :class="{ 'menu-open': isOpen }"
-        @click="toggleMenu"
-      >
-        <span />
-        <span />
-        <span />
+      <button class="mobile-menu-toggle" @click="toggleMobileMenu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
       </button>
     </div>
-  </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" :class="{ 'mobile-menu-open': isMobileMenuOpen }">
+      <a href="#home" class="mobile-menu-link" @click="closeMobileMenu">Trang chủ</a>
+      <a href="#about" class="mobile-menu-link" @click="closeMobileMenu">Về chúng tôi</a>
+      <a href="#services" class="mobile-menu-link" @click="closeMobileMenu">Dịch vụ</a>
+      <a href="#projects" class="mobile-menu-link" @click="closeMobileMenu">Dự án</a>
+      <a href="#contact" class="mobile-menu-link" @click="closeMobileMenu">Liên hệ</a>
+      <button class="mobile-cta" @click="closeMobileMenu">
+        <i class="fas fa-phone"></i>
+        Book a Call
+      </button>
+    </div>
+  </nav>
 </template>
 
 <script>
@@ -89,7 +63,9 @@ export default {
   data() {
     return {
       isOpen: false,
-      isScrolled: false
+      isScrolled: false,
+      isMobileMenuOpen: false,
+      currentLanguage: 'vi' // Default to Vietnamese
     };
   },
   mounted() {
@@ -113,375 +89,334 @@ export default {
       if (this.isScrolled && this.isOpen) {
         this.isOpen = false;
       }
+    },
+    toggleLanguage() {
+      this.currentLanguage = this.currentLanguage === 'vi' ? 'en' : 'vi';
+      this.$i18n.locale = this.currentLanguage;
+    },
+    toggleMobileMenu() {
+      this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    },
+    closeMobileMenu() {
+      this.isMobileMenuOpen = false;
     }
   }
 };
 </script>
 
 <style scoped>
-/* Magical Navigation Animations */
-.simple-navbar {
+/* Compact Ocean Theme Navigation */
+.navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1000px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 30px;
   z-index: 1000;
-  transition: all 0.4s ease;
-  animation: navSlideDown 1s ease-out;
-  box-shadow: 0 2px 20px rgba(30, 58, 138, 0.2);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-scrolled {
-  background: rgba(15, 23, 42, 0.98);
-  box-shadow: 0 5px 25px rgba(30, 58, 138, 0.3);
-  animation: navGlow 0.6s ease-out;
-  border-bottom: 1px solid rgba(59, 130, 246, 0.4);
+  background: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.4);
 }
 
-.nav-logo {
-  animation: logoSlideIn 1s ease-out;
-}
-
-.logo-text {
-  animation: logoTextGlow 3s ease-in-out infinite;
-}
-
-.nav-links {
-  animation: linksSlideIn 1s ease-out 0.3s backwards;
-}
-
-.nav-link {
-  position: relative;
-  transition: all 0.3s ease;
-  animation: linkFadeIn 0.8s ease-out backwards;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: #1e3a8a;
-  transition: all 0.4s ease;
-  transform: translateX(-50%);
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-
-.nav-link:hover {
-  transform: translateY(-3px);
-  color: #e0f2fe;
-}
-
-.language-selector {
-  animation: selectorSlideIn 1s ease-out 0.6s backwards;
-  transition: all 0.3s ease;
-}
-
-.language-selector:hover {
-  transform: scale(1.05) rotate(2deg);
-}
-
-/* Mobile Menu Animations */
-.mobile-menu {
-  animation: mobileMenuSlideIn 0.5s ease-out;
-}
-
-.mobile-menu-link {
-  animation: mobileItemSlideIn 0.4s ease-out backwards;
-}
-
-/* Animation Keyframes */
-@keyframes navSlideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes navGlow {
-  from {
-    box-shadow: none;
-  }
-  to {
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  }
-}
-
-@keyframes logoSlideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-50px) scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-}
-
-@keyframes logoTextGlow {
-  0%, 100% { text-shadow: none; }
-  50% { text-shadow: 0 0 10px rgba(0, 0, 0, 0.3); }
-}
-
-@keyframes linksSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes linkFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes selectorSlideIn {
-  from {
-    opacity: 0;
-    transform: translateX(30px) scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-}
-
-@keyframes mobileMenuSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes mobileItemSlideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.navbar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
+.nav-container {
+  height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
 }
 
 /* Logo */
-.logo-link {
+.nav-logo {
   display: flex;
   flex-direction: column;
-  text-decoration: none;
-  color: #e0f2fe;
-}
-
-.logo-text {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #e0f2fe;
+  align-items: flex-start;
   line-height: 1;
 }
 
-.logo-subtitle {
-  font-size: 0.7rem;
+.logo-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: #ffffff;
-  text-transform: uppercase;
+  animation: logoTextGlow 3s ease-in-out infinite;
+}
+
+.logo-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: #3B82F6;
   letter-spacing: 1px;
   margin-top: -2px;
 }
 
-/* Navigation */
-.nav-menu {
+/* Navigation Links */
+.nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
 }
 
 .nav-link {
-  text-decoration: none;
-  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
   font-weight: 500;
-  padding: 0.5rem 0;
-  transition: color 0.2s ease;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.3s ease;
   position: relative;
-}
-
-.nav-link:hover,
-.nav-link.router-link-active {
-  color: #e0f2fe;
+  padding: 0.4rem 0;
 }
 
 .nav-link::after {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 50%;
   width: 0;
   height: 2px;
-  background: #1e3a8a;
-  transition: width 0.2s ease;
+  background: #3B82F6;
+  transition: all 0.4s ease;
+  transform: translateX(-50%);
 }
 
-.nav-link:hover::after,
-.nav-link.router-link-active::after {
+.nav-link:hover {
+  color: #93C5FD;
+  transform: translateY(-1px);
+}
+
+.nav-link:hover::after {
   width: 100%;
 }
 
-.elegant-link {
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
-  color: #e0f2fe;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  border: 1px solid #e5e5e5;
-}
-
-.elegant-link:hover {
-  background: #e8e8e8;
-  border-color: #ccc;
-}
-
-/* Language Switcher */
-.language-switcher {
+/* Language Selector */
+.language-selector {
   display: flex;
-  gap: 0.5rem;
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
-  padding: 0.25rem;
-  border-radius: 8px;
-  border: 2px solid rgba(96, 165, 250, 0.5);
-  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
-  transition: all 0.3s ease;
-}
-
-.language-switcher:hover {
-  border-color: rgba(96, 165, 250, 0.8);
-  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
+  align-items: center;
 }
 
 .lang-btn {
   background: transparent;
-  border: none;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.8rem;
-  font-weight: 700;
+  border: 1px solid rgba(59, 130, 246, 0.3);
   color: #ffffff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
   transition: all 0.3s ease;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-.lang-btn.active,
 .lang-btn:hover {
-  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
-  color: #1e3a8a;
-  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.2);
-  transform: translateY(-1px);
+  border-color: #3B82F6;
+  background: rgba(59, 130, 246, 0.1);
+  transform: scale(1.05);
 }
 
-/* Mobile Toggle */
-.mobile-toggle {
+.lang-btn.active {
+  background: #3B82F6;
+  color: #ffffff;
+  border-color: #3B82F6;
+}
+
+.lang-btn i {
+  font-size: 0.7rem;
+}
+
+/* CTA Button */
+.nav-cta {
+  background: #3B82F6;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.nav-cta:hover {
+  background: #2563EB;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.nav-cta i {
+  font-size: 0.7rem;
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
   display: none;
   flex-direction: column;
-  gap: 4px;
-  background: none;
+  background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.4rem;
+  gap: 3px;
 }
 
-.mobile-toggle span {
-  width: 25px;
+.hamburger-line {
+  width: 20px;
   height: 2px;
-  background: #1e3a8a;
-  transition: all 0.2s ease;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  border-radius: 2px;
 }
 
-.mobile-toggle.menu-open span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.mobile-toggle.menu-open span:nth-child(2) {
+/* Mobile Menu */
+.mobile-menu {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 20px;
+  transform: translateX(-50%) translateY(-100%);
   opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 999;
+  overflow: hidden;
 }
 
-.mobile-toggle.menu-open span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -6px);
+.mobile-menu-open {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
 }
 
-/* Mobile Responsive */
+.mobile-menu-link {
+  display: block;
+  padding: 1rem 2rem;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-link:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: #93C5FD;
+  padding-left: 2.5rem;
+}
+
+.mobile-cta {
+  width: 100%;
+  background: #3B82F6;
+  color: #ffffff;
+  border: none;
+  padding: 1rem 2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.mobile-cta:hover {
+  background: #2563EB;
+}
+
+.mobile-cta i {
+  font-size: 0.8rem;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .navbar-container {
-    padding: 1rem;
+  .navbar {
+    top: 15px;
+    width: 95%;
+    height: 55px;
   }
   
-  .mobile-toggle {
+  .nav-links,
+  .language-selector,
+  .nav-cta {
+    display: none;
+  }
+  
+  .mobile-menu-toggle {
     display: flex;
   }
   
-  .nav-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white; border: 2px solid #1e3a8a;
-    border-top: 1px solid #e5e5e5;
-    flex-direction: column;
-    gap: 0;
-    padding: 1rem;
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.2s ease;
+  .nav-container {
+    padding: 0 1.5rem;
   }
   
-  .nav-menu.nav-open {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
+  .logo-text {
+    font-size: 1.2rem;
   }
   
-  .nav-link {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #f0f0f0;
-    width: 100%;
-    text-align: left;
+  .logo-subtitle {
+    font-size: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    top: 10px;
+    width: 98%;
+    height: 50px;
   }
   
-  .language-switcher {
-    margin-top: 1rem;
-    justify-self: center;
+  .mobile-menu {
+    top: 70px;
+  }
+  
+  .nav-container {
+    padding: 0 1rem;
+  }
+  
+  .logo-text {
+    font-size: 1.1rem;
+  }
+  
+  .logo-subtitle {
+    font-size: 0.45rem;
+  }
+}
+
+/* Animation Keyframes */
+@keyframes logoTextGlow {
+  0%, 100% { 
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  }
+  50% { 
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
   }
 }
 </style> 

@@ -24,153 +24,61 @@
     </div>
 
     <div class="container">
-      <!-- Section Header with Elegant Animation -->
-      <div class="section-header slide-in-element">
-        <h2 class="section-title fade-in-element">
+      <!-- Section Header -->
+      <div class="section-header">
+        <h2 class="section-title typing-text" data-text="Về Chúng Tôi">
           Về Chúng Tôi
         </h2>
-        <p
-          class="section-subtitle fade-in-element"
-          style="animation-delay: 0.3s;"
-        >
-          ESmart Solutions Agency - Đối tác tin cậy cho sự phát triển bền vững
+        <p class="section-subtitle sequential-text" data-delay="0.5">
+          Đội ngũ chuyên gia giàu kinh nghiệm với tầm nhìn đổi mới
         </p>
       </div>
 
-      <!-- Main Content with Elegant Animation -->
+      <!-- About Content -->
       <div class="about-content">
-        <!-- Company Story with Slide In Animation -->
-        <div class="company-story slide-in-left">
-          <div class="story-card elegant-card glass-card">
-            <div class="story-icon elegant-icon fade-in-element">
-              <i class="fas fa-rocket" />
-            </div>
-            <h3 class="story-title slide-in-left">
-              Câu Chuyện Của Chúng Tôi
-            </h3>
-            <p class="story-description slide-in-right">
-              ESmart Solutions Agency được thành lập với tầm nhìn trở thành đối tác chiến lược hàng đầu trong lĩnh vực digital transformation. Chúng tôi cam kết mang đến những giải pháp công nghệ tiên tiến, giúp doanh nghiệp Việt Nam vươn tầm quốc tế.
+        <div class="about-text">
+          <div class="text-block sequential-text" data-delay="0.8">
+            <p class="about-description">
+              Chúng tôi là ESmart Solutions Agency - đối tác tin cậy trong lĩnh vực công nghệ và chuyển đổi số. Với kinh nghiệm hơn 10 năm, chúng tôi đã giúp hàng trăm doanh nghiệp tối ưu hóa quy trình và tăng hiệu suất hoạt động.
             </p>
-            
-            <!-- Elegant Decorative Elements -->
-            <div class="card-decoration decoration-1" />
-            <div class="card-decoration decoration-2" />
           </div>
         </div>
 
-        <!-- Company Values with Staggered Animation -->
-        <div class="company-values">
-          <h3 class="values-title fade-in-element">
-            {{ $t('sections.coreValues') }}
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div
+            v-for="(stat, index) in stats"
+            :key="index"
+            class="stat-card sequential-appear"
+            :data-delay="1.2 + (index * 0.2)"
+          >
+            <div class="stat-number sequential-text" :data-delay="1.4 + (index * 0.2)">
+              {{ stat.number }}
+            </div>
+            <div class="stat-label sequential-text" :data-delay="1.6 + (index * 0.2)">
+              {{ stat.label }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Values Section -->
+        <div class="values-section">
+          <h3 class="values-title typing-text" data-text="Giá trị cốt lõi">
+            Giá trị cốt lõi
           </h3>
           <div class="values-grid">
             <div
-              v-for="(value, index) in companyValues"
+              v-for="(value, index) in values"
               :key="index"
-              class="value-card elegant-card glass-card slide-in-up"
-              :style="{ animationDelay: (index * 0.2) + 0.5 + 's' }"
+              class="value-card sequential-appear"
+              :data-delay="2.0 + (index * 0.2)"
             >
-              <div class="value-icon elegant-icon fade-in-element">
-                <i :class="value.icon" />
-              </div>
-              <h4 class="value-title slide-in-left">
+              <h4 class="value-title sequential-text" :data-delay="2.2 + (index * 0.2)">
                 {{ value.title }}
               </h4>
-              <p class="value-description slide-in-right">
+              <p class="value-description sequential-text" :data-delay="2.4 + (index * 0.2)">
                 {{ value.description }}
               </p>
-              
-              <!-- Elegant Hover Effects -->
-              <div class="card-glow" />
-              <div class="card-shine" />
-            </div>
-          </div>
-        </div>
-
-        <!-- Company Stats with Move In Animation -->
-        <div class="company-stats move-in-element">
-          <h3 class="stats-title fade-in-element">
-            {{ $t('sections.outstandingAchievements') }}
-          </h3>
-          <div class="stats-grid">
-            <div
-              v-for="(stat, index) in companyStats"
-              :key="index"
-              class="stat-card elegant-card glass-card slide-in-up"
-              :style="{ animationDelay: (index * 0.15) + 1 + 's' }"
-            >
-              <div class="stat-number elegant-number fade-in-element">
-                {{ stat.number }}
-              </div>
-              <div class="stat-label slide-in-left">
-                {{ stat.label }}
-              </div>
-              <div class="stat-description slide-in-right">
-                {{ stat.description }}
-              </div>
-              
-              <!-- Elegant Progress Bar -->
-              <div class="stat-progress">
-                <div 
-                  class="progress-fill slide-in-left"
-                  :style="{ width: stat.percentage + '%' }"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Team Section with Elegant Animation -->
-        <div class="team-section move-in-element">
-          <h3 class="team-title fade-in-element">
-            {{ $t('sections.professionalTeam') }}
-          </h3>
-          <p
-            class="team-subtitle fade-in-element"
-            style="animation-delay: 0.2s;"
-          >
-            {{ $t('sections.professionalTeamSubtitle') }}
-          </p>
-          
-          <div class="team-grid">
-            <div
-              v-for="(member, index) in teamMembers"
-              :key="index"
-              class="team-card elegant-card slide-in-up"
-              :style="{ animationDelay: (index * 0.25) + 1.5 + 's' }"
-            >
-              <div class="member-avatar elegant-avatar fade-in-element">
-                <img 
-                  :src="member.avatar" 
-                  :alt="member.name"
-                  @error="handleImageError"
-                >
-                <div class="avatar-overlay" />
-              </div>
-              <h4 class="member-name slide-in-left">
-                {{ member.name }}
-              </h4>
-              <p class="member-position slide-in-right">
-                {{ member.position }}
-              </p>
-              <p class="member-description fade-in-element">
-                {{ member.description }}
-              </p>
-              
-              <!-- Social Links -->
-              <div class="member-social">
-                <a 
-                  v-for="(social, socialIndex) in member.social"
-                  :key="socialIndex"
-                  :href="social.link"
-                  class="social-link elegant-link fade-in-element"
-                  :style="{ animationDelay: (socialIndex * 0.1) + 2 + 's' }"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i :class="social.icon" />
-                </a>
-              </div>
             </div>
           </div>
         </div>
@@ -269,12 +177,32 @@ export default {
     };
   },
   mounted() {
+    this.initSequentialAnimations();
     this.setupScrollAnimation();
     this.setupParallaxEffect();
   },
   methods: {
     handleImageError(event) {
       event.target.src = "https://via.placeholder.com/150x150/1e3a8a/ffffff?text=Avatar";
+    },
+    initSequentialAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const delay = parseFloat(entry.target.dataset.delay) || 0;
+            setTimeout(() => {
+              entry.target.classList.add('animate-in');
+            }, delay * 1000);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      // Observe all sequential elements
+      const sequentialElements = document.querySelectorAll('.sequential-text, .sequential-appear');
+      sequentialElements.forEach(el => observer.observe(el));
     },
     setupScrollAnimation() {
       const observer = new IntersectionObserver((entries) => {
@@ -338,7 +266,7 @@ export default {
 .simple-about {
   background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
   color: #e0f2fe;
-  padding: 4rem 2rem;
+  padding: 4rem 2rem 2rem;
   position: relative;
   overflow: hidden;
 }
@@ -350,10 +278,11 @@ export default {
 
 .section-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .section-title {
+  font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #e0f2fe;
@@ -362,12 +291,12 @@ export default {
 
 /* About Content */
 .about-content {
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .about-text {
   max-width: 800px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 2rem;
 }
 
 .text-block {
@@ -1233,5 +1162,60 @@ export default {
   .stat-number {
     font-size: 2rem;
   }
+}
+
+/* Typing Effect */
+.typing-text {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #3B82F6;
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+.typing-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(40, end) forwards;
+}
+
+/* Sequential Text Appearance */
+.sequential-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sequential-text.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sequential Appear for Cards */
+.sequential-appear {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sequential-appear.animate-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Typing Animation Keyframes */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #3B82F6; }
 }
 </style> 
