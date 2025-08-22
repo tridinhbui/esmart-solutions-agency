@@ -858,4 +858,92 @@ export default {
     font-size: 1.5rem;
   }
 }
+
+/* iPhone SE and small mobile devices */
+@media (max-width: 375px) {
+  .container {
+    height: 75vh;
+    padding: 0 1rem;
+  }
+  
+  .skyline-content {
+    padding: 0 1rem;
+  }
+  
+  .main-message {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    gap: 4px;
+    line-height: 1.1;
+  }
+  
+  .pre-title {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+  
+  .sub-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 25px;
+  }
+  
+  .cta-buttons {
+    gap: 15px;
+  }
+  
+  .primary-cta,
+  .secondary-cta {
+    padding: 14px 24px;
+    font-size: 0.9rem;
+    min-width: 200px;
+  }
+  
+  .money-symbol {
+    font-size: 1.3rem;
+  }
+}
+
+/* iPhone 5 and very small devices */
+@media (max-width: 320px) {
+  .container {
+    height: 70vh;
+    padding: 0 0.8rem;
+  }
+  
+  .skyline-content {
+    padding: 0 0.8rem;
+  }
+  
+  .main-message {
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+    gap: 3px;
+    line-height: 1.0;
+  }
+  
+  .pre-title {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+  
+  .sub-text {
+    font-size: 0.8rem;
+    line-height: 1.3;
+    margin-bottom: 20px;
+  }
+  
+  .cta-buttons {
+    gap: 12px;
+  }
+  
+  .primary-cta,
+  .secondary-cta {
+    padding: 12px 20px;
+    font-size: 0.85rem;
+    min-width: 180px;
+  }
+  
+  .money-symbol {
+    font-size: 1.2rem;
+  }
+}
 </style> 

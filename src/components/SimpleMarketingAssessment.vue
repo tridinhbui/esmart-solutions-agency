@@ -174,79 +174,6 @@
           </div>
         </div>
       </div>
-      
-      <!-- Contact Form Section -->
-      <div class="contact-form-section slide-up-element" data-delay="0.4">
-        <div class="section-container">
-          <h3 class="section-title typing-text" data-text="Ready to Get Started?"></h3>
-          <p class="section-subtitle typing-text" data-text="Fill out the form below and we'll get back to you within 24 hours"></p>
-          
-          <div class="contact-form-container">
-            <form class="contact-form" @submit.prevent="submitContactForm">
-              <div class="form-grid">
-                <div class="form-group">
-                  <label for="contact-name">Full Name</label>
-                  <input 
-                    type="text" 
-                    id="contact-name" 
-                    v-model="contactFormData.name" 
-                    placeholder="Enter your full name"
-                    required
-                  />
-                </div>
-                
-                <div class="form-group">
-                  <label for="contact-email">Email Address</label>
-                  <input 
-                    type="email" 
-                    id="contact-email" 
-                    v-model="contactFormData.email" 
-                    placeholder="Enter your email address"
-                    required
-                  />
-                </div>
-                
-                <div class="form-group">
-                  <label for="contact-phone">Phone Number</label>
-                  <input 
-                    type="tel" 
-                    id="contact-phone" 
-                    v-model="contactFormData.phone" 
-                    placeholder="Enter your phone number"
-                  />
-                </div>
-                
-                <div class="form-group">
-                  <label for="contact-channel">Channel Link</label>
-                  <input 
-                    type="url" 
-                    id="contact-channel" 
-                    v-model="contactFormData.channel" 
-                    placeholder="https://your-channel.com"
-                  />
-                </div>
-                
-                <div class="form-group full-width">
-                  <label for="contact-message">How can we help you?</label>
-                  <textarea 
-                    id="contact-message" 
-                    v-model="contactFormData.message" 
-                    placeholder="Tell us about your project or what you need help with..."
-                    rows="4"
-                  ></textarea>
-                </div>
-              </div>
-              
-              <div class="form-actions">
-                <button type="submit" class="submit-contact-btn">
-                  <i class="fas fa-paper-plane"></i>
-                  <span>Send Message</span>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 </template>
@@ -615,25 +542,205 @@ export default {
 }
 
 @media (max-width: 480px) {
-  .radial-ribbon {
-    width: 250px; /* Even smaller for mobile */
-    height: 250px;
-    opacity: 0.06;
+  .simple-marketing-assessment {
+    padding: 60px 0 100px 0;
   }
   
-  .ribbon-1 {
-    top: 2%;
-    left: 5%;
+  .section-title {
+    font-size: 1.8rem;
   }
   
-  .ribbon-2 {
-    bottom: 5%;
-    right: 2%;
+  .section-subtitle {
+    font-size: 1rem;
   }
   
-  .ribbon-3 {
-    top: 50%;
-    left: 45%;
+  .form-card {
+    padding: 25px;
+  }
+  
+  .form-title {
+    font-size: 1.6rem;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+  
+  .submit-btn {
+    padding: 14px 28px;
+    font-size: 1rem;
+  }
+  
+  /* BRANDING + PERFORMANCE Section - iPhone SE Specific */
+  .branding-performance-section {
+    margin-top: 80px;
+    padding: 60px 20px;
+  }
+  
+  .branding-performance-section .main-title {
+    font-size: clamp(1.8rem, 8vw, 2.2rem);
+    line-height: 1.2;
+    gap: 8px;
+    margin-bottom: 25px;
+  }
+  
+  .branding-performance-section .title-line-1,
+  .branding-performance-section .title-line-2 {
+    display: block;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .branding-performance-section .description-container {
+    margin-bottom: 40px;
+  }
+  
+  .branding-performance-section .subtitle,
+  .branding-performance-section .highlight-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  
+  .branding-performance-section .cta-container {
+    gap: 20px;
+  }
+  
+  .branding-performance-section .hero-cta-button {
+    padding: 20px 30px;
+    font-size: 1rem;
+    max-width: 100%;
+  }
+  
+  .branding-performance-section .secondary-cta-button {
+    padding: 16px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra Small Devices - iPhone SE and similar */
+@media (max-width: 375px) {
+  .branding-performance-section {
+    margin-top: 60px;
+    padding: 50px 15px;
+  }
+  
+  .branding-performance-section .main-title {
+    font-size: clamp(1.6rem, 9vw, 2rem);
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  
+  .branding-performance-section .subtitle,
+  .branding-performance-section .highlight-subtitle {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  
+  .branding-performance-section .hero-cta-button {
+    padding: 18px 25px;
+    font-size: 0.95rem;
+  }
+  
+  .branding-performance-section .secondary-cta-button {
+    padding: 14px 20px;
+    font-size: 0.85rem;
+  }
+}
+
+/* iPhone 5/SE Extra Small */
+@media (max-width: 320px) {
+  .branding-performance-section {
+    margin-top: 50px;
+    padding: 40px 10px;
+  }
+  
+  .branding-performance-section .main-title {
+    font-size: clamp(1.2rem, 12vw, 1.6rem);
+    gap: 4px;
+    margin-bottom: 15px;
+    line-height: 1.1;
+    word-spacing: -2px;
+    letter-spacing: -1px;
+  }
+  
+  .branding-performance-section .title-line-1,
+  .branding-performance-section .title-line-2 {
+    display: block;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .branding-performance-section .description-container {
+    margin-bottom: 30px;
+  }
+  
+  .branding-performance-section .subtitle,
+  .branding-performance-section .highlight-subtitle {
+    font-size: 0.85rem;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .branding-performance-section .cta-container {
+    gap: 15px;
+  }
+  
+  .branding-performance-section .hero-cta-button {
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    min-width: 200px;
+  }
+  
+  .branding-performance-section .secondary-cta-button {
+    padding: 12px 18px;
+    font-size: 0.8rem;
+    min-width: 150px;
+  }
+}
+
+/* iPhone 4 and very small devices */
+@media (max-width: 280px) {
+  .branding-performance-section {
+    margin-top: 40px;
+    padding: 30px 8px;
+  }
+  
+  .branding-performance-section .main-title {
+    font-size: clamp(1.0rem, 13vw, 1.4rem);
+    gap: 3px;
+    margin-bottom: 12px;
+    line-height: 1.0;
+    word-spacing: -3px;
+    letter-spacing: -2px;
+  }
+  
+  .branding-performance-section .subtitle,
+  .branding-performance-section .highlight-subtitle {
+    font-size: 0.75rem;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  
+  .branding-performance-section .hero-cta-button {
+    padding: 14px 18px;
+    font-size: 0.85rem;
+    min-width: 180px;
+  }
+  
+  .branding-performance-section .secondary-cta-button {
+    padding: 10px 16px;
+    font-size: 0.75rem;
+    min-width: 140px;
   }
 }
 
@@ -1220,6 +1327,82 @@ export default {
   .submit-btn {
     padding: 14px 28px;
     font-size: 1rem;
+  }
+  
+  /* BRANDING + PERFORMANCE Section - iPhone SE Specific */
+  .branding-performance-section {
+    margin-top: 80px;
+    padding: 60px 20px;
+  }
+  
+  .branding-performance-section .main-title {
+    font-size: clamp(1.8rem, 8vw, 2.2rem);
+    line-height: 1.2;
+    gap: 8px;
+    margin-bottom: 25px;
+  }
+  
+  .branding-performance-section .title-line-1,
+  .branding-performance-section .title-line-2 {
+    display: block;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .branding-performance-section .description-container {
+    margin-bottom: 40px;
+  }
+  
+  .branding-performance-section .subtitle,
+  .branding-performance-section .highlight-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  
+  .branding-performance-section .cta-container {
+    gap: 20px;
+  }
+  
+  .branding-performance-section .hero-cta-button {
+    padding: 20px 30px;
+    font-size: 1rem;
+    max-width: 100%;
+  }
+  
+  .branding-performance-section .secondary-cta-button {
+    padding: 16px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra Small Devices - iPhone SE and similar */
+@media (max-width: 375px) {
+  .branding-performance-section {
+    margin-top: 60px;
+    padding: 50px 15px;
+  }
+  
+  .branding-performance-section .main-title {
+    font-size: clamp(1.6rem, 9vw, 2rem);
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  
+  .branding-performance-section .subtitle,
+  .branding-performance-section .highlight-subtitle {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  
+  .branding-performance-section .hero-cta-button {
+    padding: 18px 25px;
+    font-size: 0.95rem;
+  }
+  
+  .branding-performance-section .secondary-cta-button {
+    padding: 14px 20px;
+    font-size: 0.85rem;
   }
 }
 
