@@ -40,23 +40,23 @@
             START YOUR DREAM
           </button>
         </div>
-      </div>
 
-      <!-- Stats Grid with Flat Design -->
-      <div class="stats-grid">
-        <div
-          v-for="(stat, index) in stats"
-          :key="index"
-          class="stat-card flat-card slide-up-element"
-          :data-delay="1.4 + (index * 0.1)"
-        >
-          <div class="stat-icon">
-            <i :class="stat.icon"></i>
+        <!-- Stats Grid with Flat Design -->
+        <div class="stats-grid">
+          <div
+            v-for="(stat, index) in stats"
+            :key="index"
+            class="stat-card flat-card slide-up-element"
+            :data-delay="1.4 + (index * 0.1)"
+          >
+            <div class="stat-icon">
+              <i :class="stat.icon"></i>
+            </div>
+            <div class="stat-number counter-animation" :data-target="stat.number">
+              {{ stat.number }}
+            </div>
+            <div class="stat-label">{{ stat.label }}</div>
           </div>
-          <div class="stat-number counter-animation" :data-target="stat.number">
-            {{ stat.number }}
-          </div>
-          <div class="stat-label">{{ stat.label }}</div>
         </div>
       </div>
     </div>
