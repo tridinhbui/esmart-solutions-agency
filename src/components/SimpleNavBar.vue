@@ -1,57 +1,84 @@
 <template>
-  <nav class="navbar" :class="{ 'navbar-scrolled': isScrolled }">
+  <nav class="simple-navbar" :class="{ 'scrolled': isScrolled }">
     <div class="nav-container">
       <!-- Logo -->
       <div class="nav-logo">
-        <span class="logo-text">ESmart</span>
-        <span class="logo-subtitle">Solutions</span>
+        <div class="logo-icon">
+          <i class="fas fa-rocket"></i>
+        </div>
+        <div class="logo-text-container">
+          <span class="logo-text">ESmart Solutions</span>
+          <span class="logo-subtitle">Digital Agency</span>
+        </div>
       </div>
 
-      <!-- Navigation Links -->
+      <!-- Desktop Navigation -->
       <div class="nav-links">
-        <a href="#home" class="nav-link">Trang chủ</a>
-        <a href="#about" class="nav-link">Về chúng tôi</a>
-        <a href="#services" class="nav-link">Dịch vụ</a>
-        <a href="#projects" class="nav-link">Dự án</a>
-        <a href="#contact" class="nav-link">Liên hệ</a>
+        <a href="#home" class="nav-link" @click="scrollToSection('home')">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="#services" class="nav-link" @click="scrollToSection('services')">
+          <i class="fas fa-cogs"></i>
+          <span>Services</span>
+        </a>
+        <a href="#about" class="nav-link" @click="scrollToSection('about')">
+          <i class="fas fa-info-circle"></i>
+          <span>About</span>
+        </a>
+        <a href="#contact" class="nav-link" @click="scrollToSection('contact')">
+          <i class="fas fa-envelope"></i>
+          <span>Contact</span>
+        </a>
       </div>
 
       <!-- Language Selector -->
       <div class="language-selector">
-        <button 
-          @click="toggleLanguage" 
-          class="lang-btn"
-          :class="{ 'active': currentLanguage === 'vi' }"
-        >
-          <i class="fas fa-globe"></i>
-          {{ currentLanguage === 'vi' ? 'VI' : 'EN' }}
+        <button class="lang-btn" :class="{ 'active': currentLanguage === 'en' }" @click="setLanguage('en')">
+          <img src="@/assets/english-flag.png" alt="English" class="flag-icon">
+          <span>EN</span>
+        </button>
+        <button class="lang-btn" :class="{ 'active': currentLanguage === 'vi' }" @click="setLanguage('vi')">
+          <img src="@/assets/vietnamese-flag.png" alt="Vietnamese" class="flag-icon">
+          <span>VI</span>
         </button>
       </div>
 
       <!-- CTA Button -->
-      <button class="nav-cta">
-        <i class="fas fa-phone"></i>
-        Book a Call
+      <button class="nav-cta" @click="startProject">
+        <i class="fas fa-play"></i>
+        <span>Start Project</span>
       </button>
 
       <!-- Mobile Menu Toggle -->
       <button class="mobile-menu-toggle" @click="toggleMobileMenu">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
       </button>
     </div>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" :class="{ 'mobile-menu-open': isMobileMenuOpen }">
-      <a href="#home" class="mobile-menu-link" @click="closeMobileMenu">Trang chủ</a>
-      <a href="#about" class="mobile-menu-link" @click="closeMobileMenu">Về chúng tôi</a>
-      <a href="#services" class="mobile-menu-link" @click="closeMobileMenu">Dịch vụ</a>
-      <a href="#projects" class="mobile-menu-link" @click="closeMobileMenu">Dự án</a>
-      <a href="#contact" class="mobile-menu-link" @click="closeMobileMenu">Liên hệ</a>
-      <button class="mobile-cta" @click="closeMobileMenu">
-        <i class="fas fa-phone"></i>
-        Book a Call
+      <a href="#home" class="mobile-menu-link" @click="scrollToSection('home')">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#services" class="mobile-menu-link" @click="scrollToSection('services')">
+        <i class="fas fa-cogs"></i>
+        <span>Services</span>
+      </a>
+      <a href="#about" class="mobile-menu-link" @click="scrollToSection('about')">
+        <i class="fas fa-info-circle"></i>
+        <span>About</span>
+      </a>
+      <a href="#contact" class="mobile-menu-link" @click="scrollToSection('contact')">
+        <i class="fas fa-envelope"></i>
+        <span>Contact</span>
+      </a>
+      <button class="mobile-cta" @click="startProject">
+        <i class="fas fa-play"></i>
+        <span>Start Project</span>
       </button>
     </div>
   </nav>
@@ -59,75 +86,76 @@
 
 <script>
 export default {
-  name: "SimpleNavBar",
+  name: 'SimpleNavBar',
   data() {
     return {
-      isOpen: false,
       isScrolled: false,
       isMobileMenuOpen: false,
-      currentLanguage: 'vi' // Default to Vietnamese
+      currentLanguage: 'en' // Default to English
     };
   },
   mounted() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
   },
   beforeUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
-    toggleMenu() {
-      this.isOpen = !this.isOpen;
-    },
-    closeMenu() {
-      this.isOpen = false;
-    },
-    switchLanguage(language) {
-      this.$i18n.locale = language;
-    },
     handleScroll() {
-      this.isScrolled = window.scrollY > 0;
-      if (this.isScrolled && this.isOpen) {
-        this.isOpen = false;
-      }
-    },
-    toggleLanguage() {
-      this.currentLanguage = this.currentLanguage === 'vi' ? 'en' : 'vi';
-      this.$i18n.locale = this.currentLanguage;
+      this.isScrolled = window.scrollY > 50;
     },
     toggleMobileMenu() {
       this.isMobileMenuOpen = !this.isMobileMenuOpen;
     },
     closeMobileMenu() {
       this.isMobileMenuOpen = false;
+    },
+    scrollToSection(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        this.closeMobileMenu();
+      }
+    },
+    startProject() {
+      // Scroll to contact section
+      const contactSection = document.querySelector('.simple-footer');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    },
+    setLanguage(lang) {
+      this.currentLanguage = lang;
+      // You can add logic here to change the language of the website
+      // For example, if you have a language switcher component, you'd update it here
+      console.log(`Language set to: ${lang}`);
     }
   }
 };
 </script>
 
 <style scoped>
-/* Compact Ocean Theme Navigation */
-.navbar {
+/* Flat Design Navigation - White Background with Blue Accents */
+.simple-navbar {
   position: fixed;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  max-width: 1000px;
-  height: 60px;
-  background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 30px;
+  max-width: 1200px;
+  height: 70px;
+  background: #ffffff;
+  border: 2px solid #e1e5e9;
+  border-radius: 16px;
   z-index: 1000;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-.navbar-scrolled {
-  background: rgba(0, 0, 0, 0.95);
-  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
-  border-color: rgba(59, 130, 246, 0.4);
+.simple-navbar.scrolled {
+  background: #ffffff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border-color: #3b82f6;
 }
 
 .nav-container {
@@ -141,131 +169,162 @@ export default {
 /* Logo */
 .nav-logo {
   display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: #3b82f6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.logo-text-container {
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   line-height: 1;
 }
 
 .logo-text {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.4rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #ffffff;
-  animation: logoTextGlow 3s ease-in-out infinite;
+  color: #1e293b;
+  letter-spacing: -0.5px;
 }
 
 .logo-subtitle {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 400;
-  color: #3B82F6;
-  letter-spacing: 1px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #64748b;
+  letter-spacing: 0.5px;
   margin-top: -2px;
 }
 
 /* Navigation Links */
 .nav-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
   align-items: center;
 }
 
 .nav-link {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
   font-weight: 500;
-  color: #ffffff;
+  color: #475569;
   text-decoration: none;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 12px;
   position: relative;
-  padding: 0.4rem 0;
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: #3B82F6;
-  transition: all 0.4s ease;
-  transform: translateX(-50%);
+.nav-link i {
+  font-size: 16px;
+  color: #64748b;
+  transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #93C5FD;
+  color: #3b82f6;
+  background: #f8fafc;
   transform: translateY(-1px);
 }
 
-.nav-link:hover::after {
-  width: 100%;
+.nav-link:hover i {
+  color: #3b82f6;
+}
+
+.nav-link span {
+  font-weight: 500;
 }
 
 /* Language Selector */
 .language-selector {
   display: flex;
   align-items: center;
+  gap: 8px;
 }
 
 .lang-btn {
-  background: transparent;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  color: #ffffff;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.8rem;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  color: #475569;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 8px;
 }
 
 .lang-btn:hover {
-  border-color: #3B82F6;
-  background: rgba(59, 130, 246, 0.1);
-  transform: scale(1.05);
+  border-color: #3b82f6;
+  background: #eff6ff;
+  color: #3b82f6;
+  transform: translateY(-1px);
 }
 
 .lang-btn.active {
-  background: #3B82F6;
+  background: #3b82f6;
   color: #ffffff;
-  border-color: #3B82F6;
+  border-color: #3b82f6;
 }
 
 .lang-btn i {
-  font-size: 0.7rem;
+  font-size: 14px;
+}
+
+.flag-icon {
+  width: 20px;
+  height: 15px;
+  object-fit: cover;
+  border-radius: 2px;
 }
 
 /* CTA Button */
 .nav-cta {
-  background: #3B82F6;
+  background: #3b82f6;
   color: #ffffff;
   border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 20px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.8rem;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
 }
 
 .nav-cta:hover {
-  background: #2563EB;
+  background: #2563eb;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
 }
 
 .nav-cta i {
-  font-size: 0.7rem;
+  font-size: 14px;
 }
 
 /* Mobile Menu Toggle */
@@ -275,14 +334,14 @@ export default {
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0.4rem;
-  gap: 3px;
+  padding: 8px;
+  gap: 4px;
 }
 
 .hamburger-line {
-  width: 20px;
-  height: 2px;
-  background: #ffffff;
+  width: 24px;
+  height: 3px;
+  background: #475569;
   transition: all 0.3s ease;
   border-radius: 2px;
 }
@@ -290,77 +349,84 @@ export default {
 /* Mobile Menu */
 .mobile-menu {
   position: fixed;
-  top: 80px;
+  top: 90px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-100%);
   width: 90%;
   max-width: 400px;
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 20px;
-  transform: translateX(-50%) translateY(-100%);
+  background: #ffffff;
+  border: 2px solid #e1e5e9;
+  border-radius: 16px;
   opacity: 0;
   transition: all 0.3s ease;
   z-index: 999;
   overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
-.mobile-menu-open {
+.mobile-menu.mobile-menu-open {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
 }
 
 .mobile-menu-link {
-  display: block;
-  padding: 1rem 2rem;
-  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  color: #475569;
   text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
   font-weight: 500;
-  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+  border-bottom: 1px solid #f1f5f9;
   transition: all 0.3s ease;
 }
 
 .mobile-menu-link:hover {
-  background: rgba(59, 130, 246, 0.1);
-  color: #93C5FD;
-  padding-left: 2.5rem;
+  background: #f8fafc;
+  color: #3b82f6;
+  padding-left: 28px;
+}
+
+.mobile-menu-link i {
+  font-size: 16px;
+  color: #64748b;
+  width: 20px;
+  text-align: center;
 }
 
 .mobile-cta {
   width: 100%;
-  background: #3B82F6;
+  background: #3b82f6;
   color: #ffffff;
   border: none;
-  padding: 1rem 2rem;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
+  padding: 16px 24px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 12px;
 }
 
 .mobile-cta:hover {
-  background: #2563EB;
+  background: #2563eb;
 }
 
 .mobile-cta i {
-  font-size: 0.8rem;
+  font-size: 16px;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .navbar {
+  .simple-navbar {
     top: 15px;
     width: 95%;
-    height: 55px;
+    height: 65px;
   }
   
   .nav-links,
@@ -378,23 +444,29 @@ export default {
   }
   
   .logo-text {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
   
   .logo-subtitle {
-    font-size: 0.5rem;
+    font-size: 0.65rem;
+  }
+  
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
   }
 }
 
 @media (max-width: 480px) {
-  .navbar {
+  .simple-navbar {
     top: 10px;
     width: 98%;
-    height: 50px;
+    height: 60px;
   }
   
   .mobile-menu {
-    top: 70px;
+    top: 80px;
   }
   
   .nav-container {
@@ -402,21 +474,17 @@ export default {
   }
   
   .logo-text {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
   
   .logo-subtitle {
-    font-size: 0.45rem;
+    font-size: 0.6rem;
   }
-}
-
-/* Animation Keyframes */
-@keyframes logoTextGlow {
-  0%, 100% { 
-    text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
-  }
-  50% { 
-    text-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+  
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
   }
 }
 </style> 

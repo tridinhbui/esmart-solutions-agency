@@ -1,109 +1,89 @@
 <template>
   <section class="simple-features">
-    <!-- Animated Background Elements -->
-    <div class="animated-bg">
-      <div class="parallax-layer" data-speed="0.1">
-        <div class="floating-geometric geo-1" />
-        <div class="floating-geometric geo-2" />
+    <!-- Background Pattern -->
+    <div class="flat-background">
+      <div class="geometric-pattern"></div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+      <!-- Main Title -->
+      <div class="main-title">
+        <h1 class="slide-up-element" data-delay="0.2">STRATEGIC SOLUTIONS FOR BUSINESS GROWTH</h1>
       </div>
       
-      <div class="parallax-layer" data-speed="0.3">
-        <div class="floating-geometric geo-3" />
-        <div class="energy-wave wave-1" />
+      <!-- Sub Description -->
+      <div class="sub-description">
+        <p class="description-line slide-up-element" data-delay="0.4">We deliver <span class="highlight">measurable results</span> that drive your business forward.</p>
+        <p class="description-line slide-up-element" data-delay="0.6">Transform your digital presence with our proven strategies.</p>
       </div>
       
-      <div class="parallax-layer" data-speed="0.5">
-        <div class="energy-wave wave-2" />
+      <!-- Main CTA Button -->
+      <div class="main-cta-container">
+        <button class="main-cta-button slide-up-element" data-delay="0.8">
+          <span class="cta-text">GET STARTED TODAY</span>
+          <div class="cta-shine-effect"></div>
+        </button>
+      </div>
+      
+      <!-- Secondary CTA -->
+      <div class="secondary-cta-container">
+        <button class="secondary-cta-button slide-up-element" data-delay="1.0">
+          <span class="cta-text">Learn More</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
       </div>
     </div>
-
-    <div class="container">
-      <!-- Section Header -->
-      <div class="section-header">
-        <h2 class="section-title typing-text" data-text="Bộ Công Cụ Của Chúng Tôi">
-          Bộ Công Cụ Của Chúng Tôi
-        </h2>
-        <p class="section-subtitle sequential-text" data-delay="0.5">
-          Những giải pháp công nghệ tiên tiến giúp doanh nghiệp phát triển bền vững
-        </p>
+    
+    <!-- WHAT WE OFFER Section -->
+    <div class="what-we-offer-section">
+      <!-- Decorative Instagram Icon - Neon Pink/Purple -->
+      <div class="decorative-icon instagram-icon">
+        <i class="fab fa-instagram"></i>
       </div>
-
-      <!-- Features Grid -->
-      <div class="features-grid">
-        <div
-          v-for="(feature, index) in features"
-          :key="index"
-          class="feature-item sequential-appear"
-          :data-delay="1.0 + (index * 0.2)"
-        >
-          <div class="feature-icon">
-            <i :class="feature.icon"></i>
+      
+      <!-- Decorative Facebook Icon - Blue -->
+      <div class="decorative-icon facebook-icon">
+        <i class="fab fa-facebook"></i>
+      </div>
+      
+      <!-- Section Content -->
+      <div class="container">
+        <!-- Main Title -->
+        <h2 class="section-title slide-up-element" data-delay="0.2">WHAT WE OFFER</h2>
+        
+        <!-- Section Description -->
+        <div class="section-description slide-up-element" data-delay="0.4">
+          <p>Your business doesn't just need services, it needs <strong>results</strong>.</p>
+          <p>At <strong>Esmart Solutions</strong>, we turn ideas into strategies, and strategies into measurable growth.</p>
+          <p>Whether you want to attract more customers, build a stronger brand, or scale your revenue.</p>
+          <p class="highlight-line">Because at the end of the day, it's not about what we do, it's about <strong>what you gain</strong>.</p>
+        </div>
+        
+        <!-- Service Cards Grid -->
+        <div class="service-cards">
+          <div class="service-card slide-up-element" data-delay="0.6">
+            <div class="card-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Digital Growth Solutions</h3>
+            <p>Not just running ads, we optimize the entire customer journey to turn clicks into <strong>real revenue</strong>.</p>
           </div>
-          <h3 class="feature-title sequential-text" :data-delay="1.2 + (index * 0.2)">
-            {{ feature.title }}
-          </h3>
-          <p class="feature-description sequential-text" :data-delay="1.4 + (index * 0.2)">
-            {{ feature.description }}
-          </p>
           
-          <!-- Elegant Hover Effects -->
-          <div class="feature-glow" />
-          <div class="feature-shine" />
-        </div>
-      </div>
-
-      <!-- Services Section with Move In Animation -->
-      <div class="services-section move-in-element">
-        <h3 class="services-title fade-in-element">
-          {{ $t('sections.professionalServices') }}
-        </h3>
-        <div class="services-grid">
-          <div
-            v-for="(service, index) in services"
-            :key="index"
-            class="service-card glass-card slide-in-up"
-            :style="{ animationDelay: `${index * 0.15}s` }"
-          >
-            <div class="service-icon fade-in-element">
-              <i :class="service.icon" />
+          <div class="service-card slide-up-element" data-delay="0.8">
+            <div class="card-icon">
+              <i class="fas fa-palette"></i>
             </div>
-            <h4 class="service-name slide-in-left">
-              {{ service.name }}
-            </h4>
-            <p class="service-description slide-in-right">
-              {{ service.description }}
-            </p>
+            <h3>Brand Identity & Design</h3>
+            <p>We build brands that are not only visually striking but also <strong>memorable and meaningful</strong> to your audience.</p>
           </div>
-        </div>
-      </div>
-
-      <!-- Achievements Section with Staggered Animation -->
-      <div class="achievements-section move-in-element">
-        <h3 class="achievements-title fade-in-element">
-          {{ $t('sections.achievements') }}
-        </h3>
-        <p
-          class="achievements-subtitle fade-in-element"
-          style="animation-delay: 0.2s;"
-        >
-          {{ $t('sections.achievementsSubtitle') }}
-        </p>
-        <div class="achievements-grid">
-          <div
-            v-for="(achievement, index) in achievements"
-            :key="index"
-            class="achievement-card glass-card slide-in-up"
-            :style="{ animationDelay: `${index * 0.25}s` }"
-          >
-            <div class="achievement-icon fade-in-element">
-              <i :class="achievement.icon" />
+          
+          <div class="service-card slide-up-element" data-delay="1.0">
+            <div class="card-icon">
+              <i class="fas fa-comments"></i>
             </div>
-            <h4 class="achievement-title slide-in-left">
-              {{ achievement.title }}
-            </h4>
-            <p class="achievement-description slide-in-right">
-              {{ achievement.description }}
-            </p>
+            <h3>Communication Content</h3>
+            <p>From <strong>videos and articles</strong> to social campaigns, every piece of content is crafted to <strong>inspire and drive action</strong>.</p>
           </div>
         </div>
       </div>
@@ -113,79 +93,17 @@
 
 <script>
 export default {
-  name: "SimpleFeatures",
+  name: 'SimpleFeatures',
   data() {
     return {
-      animatedElements: [],
-      features: [
-        {
-          title: "Đội Ngũ Chuyên Nghiệp",
-          description: "Đội ngũ kỹ sư và chuyên gia giàu kinh nghiệm, cam kết mang đến những giải pháp công nghệ chất lượng cao.",
-          icon: "fas fa-users"
-        },
-        {
-          title: "Đầu Tư Chiến Lược",
-          description: "Tập trung vào việc đầu tư và phát triển các giải pháp công nghệ tiên tiến, đáp ứng nhu cầu thị trường.",
-          icon: "fas fa-chart-line"
-        },
-        {
-          title: "Tối Ưu Hiệu Quả",
-          description: "Tăng cường khả năng tiếp cận và chuyển đổi khách hàng thông qua các giải pháp công nghệ hiện đại.",
-          icon: "fas fa-rocket"
-        }
-      ],
-      services: [
-        {
-          name: "Web Development",
-          description: "Thiết kế và phát triển website hiện đại",
-          icon: "fas fa-laptop-code",
-          items: ["Responsive Design", "E-commerce", "CMS", "API Integration"]
-        },
-        {
-          name: "Digital Marketing",
-          description: "Chiến lược marketing toàn diện",
-          icon: "fas fa-chart-line",
-          items: ["Social Media", "Content Marketing", "Email Marketing", "PPC Ads"]
-        },
-        {
-          name: "SEO & Analytics",
-          description: "Tối ưu hóa và phân tích dữ liệu",
-          icon: "fas fa-chart-bar",
-          items: ["On-page SEO", "Technical SEO", "Google Analytics", "Performance Tracking"]
-        },
-        {
-          name: "Branding",
-          description: "Xây dựng và phát triển thương hiệu",
-          icon: "fas fa-palette",
-          items: ["Logo Design", "Brand Identity", "Visual Guidelines", "Brand Strategy"]
-        }
-      ],
-      achievements: [
-        {
-          title: "Số Lượng Khách Hàng",
-          description: "Đã hợp tác với hơn 500 doanh nghiệp trong nhiều lĩnh vực khác nhau.",
-          icon: "fas fa-users"
-        },
-        {
-          title: "Số Dự Án Hoàn Thành",
-          description: "Đã hoàn thành hơn 1,500 dự án trong nhiều nền tảng và ngôn ngữ khác nhau.",
-          icon: "fas fa-project-diagram"
-        },
-        {
-          title: "Số Lượng Sản Phẩm",
-          description: "Đã phát triển và triển khai hơn 2,000 sản phẩm trực tuyến.",
-          icon: "fas fa-code"
-        }
-      ]
+      // Component data if needed
     };
   },
   mounted() {
-    this.initSequentialAnimations();
-    this.setupScrollAnimation();
-    this.setupParallaxEffect();
+    this.initSlideUpAnimations();
   },
   methods: {
-    initSequentialAnimations() {
+    initSlideUpAnimations() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -200,391 +118,289 @@ export default {
         rootMargin: '0px 0px -50px 0px'
       });
 
-      // Observe all sequential elements
-      const sequentialElements = document.querySelectorAll('.sequential-text, .sequential-appear');
-      sequentialElements.forEach(el => observer.observe(el));
-    },
-    
-    setupScrollAnimation() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Add staggered delay based on element type
-            const delay = this.getAnimationDelay(entry.target);
-            setTimeout(() => {
-              entry.target.classList.add('animate-in');
-            }, delay);
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-      });
-
-      // Observe all elements with animation classes
-      this.$nextTick(() => {
-        const elements = this.$el.querySelectorAll('.slide-in-element, .fade-in-element, .slide-in-up, .slide-in-left, .slide-in-right, .move-in-element');
-        elements.forEach(el => {
-          observer.observe(el);
-        });
-      });
-    },
-    
-    getAnimationDelay(element) {
-      const classList = element.classList;
-      
-      if (classList.contains('slide-in-element')) return 0;
-      if (classList.contains('fade-in-element')) return 150;
-      if (classList.contains('slide-in-up')) return 300;
-      if (classList.contains('slide-in-left')) return 450;
-      if (classList.contains('slide-in-right')) return 600;
-      if (classList.contains('move-in-element')) return 750;
-      
-      return 0;
-    },
-    
-    setupParallaxEffect() {
-      window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = this.$el.querySelectorAll('.parallax-layer');
-        
-        parallaxElements.forEach(element => {
-          const speed = parseFloat(element.dataset.speed) || 0.5;
-          const yPos = -(scrolled * speed);
-          const scale = 1 + (scrolled * 0.0001);
-          const rotate = scrolled * 0.003;
-          
-          element.style.transform = `translateY(${yPos}px) scale(${scale}) rotate(${rotate}deg)`;
-        });
-      });
+      // Observe all slide-up elements
+      const slideUpElements = document.querySelectorAll('.slide-up-element');
+      slideUpElements.forEach(el => observer.observe(el));
     }
   }
 };
 </script>
 
 <style scoped>
-/* Enhanced Features Section */
 .simple-features {
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
-  color: #e0f2fe;
-  padding: 5rem 2rem 2rem;
   position: relative;
+  padding: 120px 0;
+  background: #ffffff;
   overflow: hidden;
 }
 
-/* Animated Background Elements */
-.animated-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Parallax Layers */
-.parallax-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  will-change: transform;
-}
-
-.parallax-layer[data-speed="0.1"] { z-index: 1; }
-.parallax-layer[data-speed="0.3"] { z-index: 2; }
-.parallax-layer[data-speed="0.5"] { z-index: 3; }
-.parallax-layer[data-speed="0.7"] { z-index: 4; }
-.parallax-layer[data-speed="0.9"] { z-index: 5; }
-
-/* Glassmorphism Cards */
-.glass-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.glass-card:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-  transform: translateY(-5px);
-}
-
-.floating-geometric {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  border: 2px solid rgba(96, 165, 250, 0.3);
-  border-radius: 20px;
-  animation: floatGeometric 8s ease-in-out infinite;
-}
-
-.geo-1 {
-  top: 10%;
-  left: 5%;
-  animation-delay: 0s;
-}
-
-.geo-2 {
-  top: 60%;
-  right: 10%;
-  animation-delay: 2s;
-}
-
-.geo-3 {
-  bottom: 20%;
-  left: 15%;
-  animation-delay: 4s;
-}
-
-.energy-wave {
-  position: absolute;
-  width: 200px;
-  height: 4px;
-  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.6), transparent);
-  border-radius: 2px;
-  animation: energyWave 6s ease-in-out infinite;
-}
-
-.wave-1 {
-  top: 30%;
-  left: -200px;
-  animation-delay: 0s;
-}
-
-.wave-2 {
-  top: 70%;
-  right: -200px;
-  animation-delay: 3s;
-}
-
-@keyframes floatGeometric {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0.3;
-  }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
-    opacity: 0.6;
-  }
-}
-
-@keyframes energyWave {
-  0% {
-    transform: translateX(0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(400px);
-    opacity: 0;
-  }
-}
-
-.simple-features::before {
-  content: '';
+.flat-background {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-  pointer-events: none;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
   z-index: 1;
 }
 
-/* Enhanced Header */
-.section-header {
+.geometric-pattern {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 48%, rgba(59, 130, 246, 0.02) 50%, transparent 52%);
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
   text-align: center;
-  margin-bottom: 4rem;
 }
 
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
+/* Main Title */
+.main-title {
+  margin-bottom: 40px;
+}
+
+.main-title h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
-  background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 1rem;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  line-height: 1.1;
+  color: #1e40af;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin: 0;
 }
 
-.section-subtitle {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.2rem;
+/* Sub Description */
+.sub-description {
+  margin-bottom: 60px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.description-line {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   font-weight: 400;
-  color: #bfdbfe;
-  line-height: 1.7;
-  max-width: 700px;
+  line-height: 1.6;
+  color: #64748b;
+  margin: 0 0 16px 0;
+}
+
+.description-line:last-child {
+  margin-bottom: 0;
+}
+
+.highlight {
+  font-style: italic;
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+/* Main CTA Button */
+.main-cta-container {
+  margin-bottom: 40px;
+}
+
+.main-cta-button {
+  position: relative;
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+  border: none;
+  border-radius: 16px;
+  padding: 24px 48px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+  min-width: 400px;
+}
+
+.main-cta-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px rgba(59, 130, 246, 0.4);
+}
+
+.main-cta-button:active {
+  transform: translateY(-2px);
+}
+
+.cta-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-shine-effect {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Secondary CTA */
+.secondary-cta-container {
+  margin-bottom: 40px;
+}
+
+.secondary-cta-button {
+  background: #1e40af;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.secondary-cta-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(30, 64, 175, 0.4);
+}
+
+.secondary-cta-button:active {
+  transform: translateY(0);
+}
+
+.secondary-cta-button .cta-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.secondary-cta-button i {
+  font-size: 0.9rem;
+  color: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.secondary-cta-button:hover i {
+  transform: translateX(4px);
+}
+
+/* WHAT WE OFFER Section */
+.what-we-offer-section {
+  position: relative;
+  padding: 120px 0;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.what-we-offer-section .container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* Main Title - Uppercase, Blue, Professional */
+.what-we-offer-section .section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #1e40af;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+/* Section Description - Clear, Persuasive */
+.what-we-offer-section .section-description {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  font-weight: 400;
+  line-height: 1.8;
+  color: #374151;
+  margin-bottom: 70px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.what-we-offer-section .section-description p {
+  margin-bottom: 18px;
+}
+
+.what-we-offer-section .section-description strong {
+  color: #1e40af;
+  font-weight: 700;
+}
+
+.what-we-offer-section .highlight-line {
+  font-style: italic;
+  color: #3b82f6;
+  font-weight: 600;
+  margin-top: 25px;
+  font-size: 1.2rem;
+}
+
+/* Service Cards Grid - 3 Columns, Blue Background */
+.what-we-offer-section .service-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Enhanced Features Grid */
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2.5rem;
-  margin-bottom: 5rem;
-}
-
-.feature-item {
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid #1e3a8a;
-  border-radius: 20px;
-  padding: 3rem 2.5rem;
+/* Service Card - Dark Blue Background, White Text */
+.what-we-offer-section .service-card {
+  background: linear-gradient(135deg, #1e40af, #1d4ed8);
+  border-radius: 16px;
+  padding: 40px 30px;
   text-align: center;
+  box-shadow: 0 15px 40px rgba(30, 64, 175, 0.25);
+  transition: all 0.4s ease;
+  border: none;
   position: relative;
   overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: featureSlideUp 1s ease-out backwards;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 15px 35px rgba(30, 58, 138, 0.15);
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.feature-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #1e3a8a, #3b82f6, #60a5fa);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-}
-
-.feature-item:hover::before {
-  transform: translateX(0);
-}
-
-.feature-item:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(30, 58, 138, 0.3);
-  border-color: #3b82f6;
-}
-
-.feature-icon {
-  font-size: 3.5rem;
-  color: #1e3a8a;
-  margin-bottom: 2rem;
-  transition: all 0.4s ease;
-}
-
-.feature-item:hover .feature-icon {
-  transform: scale(1.1) rotate(5deg);
-  color: #3b82f6;
-}
-
-.feature-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1e3a8a;
-  margin-bottom: 1.5rem;
-  line-height: 1.3;
-  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.feature-description {
-  font-size: 1.1rem;
-  color: #64748b;
-  line-height: 1.7;
-  font-weight: 400;
-}
-
-/* Elegant Hover Effects */
-.feature-glow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  border-radius: 20px;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-}
-
-.feature-item:hover .feature-glow {
-  opacity: 1;
-}
-
-.feature-shine {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 20%, transparent 60%);
-  border-radius: 20px;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-}
-
-.feature-item:hover .feature-shine {
-  opacity: 1;
-}
-
-/* Enhanced Services Section */
-.services-section {
-  text-align: center;
-}
-
-.services-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #e0f2fe;
-  margin-bottom: 3rem;
-  background: linear-gradient(135deg, #ffffff, #e0f2fe);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
-}
-
-.service-card {
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
-  border: 2px solid #3b82f6;
-  border-radius: 20px;
-  padding: 3rem 2.5rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 15px 35px rgba(30, 58, 138, 0.3);
-}
-
-.service-card::before {
+.what-we-offer-section .service-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -596,500 +412,239 @@ export default {
   transition: transform 0.4s ease;
 }
 
-.service-card:hover::before {
+.what-we-offer-section .service-card:hover::before {
   transform: scaleX(1);
 }
 
-.service-card:hover {
+.what-we-offer-section .service-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 25px 50px rgba(30, 58, 138, 0.4);
-  border-color: #60a5fa;
+  box-shadow: 0 20px 50px rgba(30, 64, 175, 0.35);
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
 }
 
-.service-icon {
-  font-size: 3.5rem;
-  color: #60a5fa;
-  margin-bottom: 2rem;
-  transition: all 0.4s ease;
-}
-
-.service-card:hover .service-icon {
-  transform: scale(1.1);
-  color: #93c5fd;
-}
-
-.service-name {
-  font-size: 1.5rem;
-  font-weight: 700;
+/* Card Icon - White, Centered */
+.what-we-offer-section .card-icon {
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
   color: #ffffff;
-  margin-bottom: 1.5rem;
-  line-height: 1.3;
-  background: linear-gradient(135deg, #ffffff, #e0f2fe);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 32px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-.service-description {
-  font-size: 1.1rem;
-  color: #bfdbfe;
+.what-we-offer-section .service-card:hover .card-icon {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+/* Card Title - White, Bold */
+.what-we-offer-section .service-card h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Card Description - White, Clear */
+.what-we-offer-section .service-card p {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  font-weight: 400;
   line-height: 1.6;
-  margin-bottom: 2rem;
-  font-weight: 400;
+  color: #e0e7ff;
+  margin-bottom: 0;
 }
 
-.service-items {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1rem;
+.what-we-offer-section .service-card strong {
+  color: #ffffff;
+  font-weight: 600;
 }
 
-.service-items li {
-  background: rgba(255, 255, 255, 0.1);
-  color: #e0f2fe;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
-}
-
-.service-items li:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: #60a5fa;
-  transform: translateY(-2px);
-}
-
-/* Achievements Section */
-.achievements-section {
-  text-align: center;
-  margin-top: 5rem;
-}
-
-.achievements-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #e0f2fe;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #ffffff, #e0f2fe);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.achievements-subtitle {
-  font-size: 1.2rem;
-  color: #bfdbfe;
-  line-height: 1.7;
-  max-width: 700px;
-  margin: 0 auto 3rem auto;
-  font-weight: 400;
-}
-
-.achievements-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
-}
-
-.achievement-card {
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid #1e3a8a;
-  border-radius: 20px;
-  padding: 3rem 2.5rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: achievementSlideUp 1s ease-out backwards;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 15px 35px rgba(30, 58, 138, 0.15);
-}
-
-.achievement-card::before {
-  content: '';
+/* Decorative Icons - Neon Effects */
+.what-we-offer-section .decorative-icon {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #1e3a8a, #3b82f6, #60a5fa);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
+  font-size: 120px;
+  opacity: 0.08;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 20px currentColor);
 }
 
-.achievement-card:hover::before {
-  transform: translateX(0);
+/* Instagram Icon - Neon Pink/Purple */
+.what-we-offer-section .instagram-icon {
+  top: 20%;
+  left: 10%;
+  color: #ec4899;
+  animation: neonGlow 3s ease-in-out infinite alternate;
 }
 
-.achievement-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(30, 58, 138, 0.3);
-  border-color: #3b82f6;
-}
-
-.achievement-icon {
-  font-size: 3.5rem;
-  color: #1e3a8a;
-  margin-bottom: 2rem;
-  transition: all 0.4s ease;
-}
-
-.achievement-card:hover .achievement-icon {
-  transform: scale(1.1) rotate(5deg);
+/* Facebook Icon - Blue */
+.what-we-offer-section .facebook-icon {
+  top: 80%;
+  right: 10%;
   color: #3b82f6;
+  animation: neonGlow 3s ease-in-out infinite alternate-reverse;
 }
 
-.achievement-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1e3a8a;
-  margin-bottom: 1.5rem;
-  line-height: 1.3;
-  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.achievement-description {
-  font-size: 1.1rem;
-  color: #64748b;
-  line-height: 1.7;
-  font-weight: 400;
-}
-
-/* Animations */
-@keyframes featureSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
+/* Neon Glow Animation */
+@keyframes neonGlow {
+  0% {
+    filter: drop-shadow(0 0 20px currentColor) brightness(1);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.stagger-1 {
-  animation-delay: 0.1s;
-}
-
-.magical-hover {
-  animation-fill-mode: both;
-}
-
-.icon-bounce {
-  animation: iconBounce 2s ease-in-out infinite;
-}
-
-@keyframes iconBounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.fade-in-up {
-  animation: fadeInUp 1s ease-out;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.magical-glow {
-  text-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
-}
-
-.mystical-glow {
-  text-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
-}
-
-.holographic-text {
-  background: linear-gradient(135deg, #ffffff, #e0f2fe);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.ethereal-float {
-  animation: etherealFloat 3s ease-in-out infinite;
-}
-
-@keyframes etherealFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-}
-
-@keyframes achievementSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Animation Classes */
-.slide-in-element {
-  opacity: 0;
-  transform: translateX(-80px) scale(0.9);
-  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  filter: blur(5px);
-}
-
-.fade-in-element {
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  filter: blur(3px);
-}
-
-.slide-in-up {
-  opacity: 0;
-  transform: translateY(80px) scale(0.9);
-  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  filter: blur(5px);
-}
-
-.slide-in-left {
-  opacity: 0;
-  transform: translateX(-60px) scale(0.9);
-  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  filter: blur(4px);
-}
-
-.slide-in-right {
-  opacity: 0;
-  transform: translateX(60px) scale(0.9);
-  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  filter: blur(4px);
-}
-
-.move-in-element {
-  opacity: 0;
-  transform: translateY(60px) scale(0.9);
-  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  filter: blur(4px);
-}
-
-/* Animate when visible */
-.slide-in-element.animate-in,
-.fade-in-element.animate-in,
-.slide-in-up.animate-in,
-.slide-in-left.animate-in,
-.slide-in-right.animate-in,
-.move-in-element.animate-in {
-  opacity: 1;
-  transform: translate(0, 0) scale(1);
-  filter: blur(0px);
-}
-
-/* Enhanced hover effects */
-.slide-in-element.animate-in:hover,
-.fade-in-element.animate-in:hover,
-.slide-in-up.animate-in:hover,
-.slide-in-left.animate-in:hover,
-.slide-in-right.animate-in:hover,
-.move-in-element.animate-in:hover {
-  transform: translate(0, 0) scale(1.02);
-  transition: all 0.3s ease;
-}
-
-/* Animation Keyframes */
-@keyframes slideInElement {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInElement {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes moveInElement {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  100% {
+    filter: drop-shadow(0 0 30px currentColor) brightness(1.2);
   }
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .what-we-offer-section .service-cards {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+  
+  .what-we-offer-section .service-card {
+    padding: 35px 25px;
+    min-height: 260px;
+  }
+  
+  .what-we-offer-section .decorative-icon {
+    font-size: 100px;
+  }
+}
+
 @media (max-width: 768px) {
   .simple-features {
-    padding: 3rem 1rem;
+    padding: 80px 0;
   }
   
-  .section-title {
-    font-size: 2.2rem;
+  .main-cta-button {
+    min-width: 300px;
+    padding: 20px 36px;
   }
   
-  .services-title {
-    font-size: 2rem;
+  .cta-text {
+    font-size: 1.1rem;
   }
   
-  .features-grid {
+  .description-line {
+    font-size: 1rem;
+  }
+  
+  .what-we-offer-section {
+    padding: 80px 0;
+  }
+  
+  .what-we-offer-section .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .what-we-offer-section .section-description {
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+  }
+  
+  .what-we-offer-section .service-cards {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 20px;
+    max-width: 400px;
   }
   
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .what-we-offer-section .service-card {
+    padding: 30px 25px;
+    min-height: 240px;
   }
   
-  .feature-item,
-  .service-card {
-    padding: 2.5rem 2rem;
+  .what-we-offer-section .card-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    margin-bottom: 20px;
   }
   
-  .service-items {
-    grid-template-columns: 1fr;
+  .what-we-offer-section .decorative-icon {
+    font-size: 80px;
+    opacity: 0.05;
   }
 }
 
 @media (max-width: 480px) {
-  .section-title {
-    font-size: 1.8rem;
+  .simple-features {
+    padding: 60px 0;
   }
   
-  .services-title {
-    font-size: 1.6rem;
+  .main-cta-button {
+    min-width: 280px;
+    padding: 18px 32px;
   }
   
-  .feature-title,
-  .service-name {
-    font-size: 1.3rem;
+  .cta-text {
+    font-size: 1rem;
   }
   
-  .feature-item,
-  .service-card {
-    padding: 2rem 1.5rem;
+  .main-title h1 {
+    font-size: 2rem;
+  }
+  
+  .what-we-offer-section {
+    padding: 60px 0;
+  }
+  
+  .what-we-offer-section .section-title {
+    font-size: 2rem;
+  }
+  
+  .what-we-offer-section .section-description {
+    font-size: 1rem;
+    margin-bottom: 40px;
+  }
+  
+  .what-we-offer-section .service-card {
+    padding: 25px 20px;
+    min-height: 220px;
+  }
+  
+  .what-we-offer-section .card-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    margin-bottom: 18px;
+  }
+  
+  .what-we-offer-section .decorative-icon {
+    font-size: 60px;
   }
 }
 
-/* Typing Effect */
-.typing-text {
-  position: relative;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 3px solid #3B82F6;
-  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
-}
-
-.typing-text::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typing 3s steps(40, end) forwards;
-}
-
-/* Sequential Text Appearance */
-.sequential-text {
+/* Slide Up Animation */
+.slide-up-element {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.sequential-text.animate-in {
+.slide-up-element.animate-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Sequential Appear for Feature Items */
-.sequential-appear {
-  opacity: 0;
-  transform: translateY(30px) scale(0.95);
-  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.sequential-appear.animate-in {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* Typing Animation Keyframes */
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: #3B82F6; }
-}
+/* Staggered delays for different elements */
+.slide-up-element[data-delay="0.2"] { transition-delay: 0.2s; }
+.slide-up-element[data-delay="0.4"] { transition-delay: 0.4s; }
+.slide-up-element[data-delay="0.6"] { transition-delay: 0.6s; }
+.slide-up-element[data-delay="0.8"] { transition-delay: 0.8s; }
+.slide-up-element[data-delay="1.0"] { transition-delay: 1.0s; }
 </style> 
 
 

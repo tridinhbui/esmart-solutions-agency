@@ -3,76 +3,98 @@
     <div class="footer-container">
       <!-- Main Footer Content -->
       <div class="footer-main">
-        <!-- Company Section -->
-        <div class="company-section">
-          <div class="footer-logo">
-            <span class="logo-text">ESmart</span>
-            <span class="logo-subtitle">Solutions</span>
-          </div>
-          <p class="footer-description">
-            Tạo ra những giải pháp số sáng tạo cho doanh nghiệp hiện đại
+        <!-- Footer Left - Company Info -->
+        <div class="footer-left">
+          <h2 class="main-title slide-up-element" data-delay="0.2">
+            ALL STARTS WITH A CONVERSATION
+          </h2>
+          <p class="subtitle slide-up-element" data-delay="0.4">
+            Ready to transform your business?
           </p>
-          <div class="social-links">
-            <a
-              href="#"
-              class="social-link"
-            >
-              <i class="fab fa-facebook" />
-            </a>
-            <a
-              href="#"
-              class="social-link"
-            >
-              <i class="fab fa-instagram" />
-            </a>
-            <a
-              href="#"
-              class="social-link"
-            >
-              <i class="fab fa-linkedin" />
-            </a>
+        </div>
+        
+        <!-- Footer Center - Contact Form -->
+        <div class="footer-center">
+          <div class="contact-form-section">
+            <h3 class="form-title slide-up-element" data-delay="0.6">GET IN TOUCH</h3>
+            <form class="contact-form slide-up-element" data-delay="0.8" @submit.prevent="submitForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Name</label>
+                  <input 
+                    type="text" 
+                    v-model="formData.name" 
+                    placeholder="Enter your name"
+                    required
+                  >
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input 
+                    type="email" 
+                    v-model="formData.email" 
+                    placeholder="Enter your email"
+                    required
+                  >
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Phone</label>
+                  <input 
+                    type="tel" 
+                    v-model="formData.phone" 
+                    placeholder="Enter your phone number"
+                  >
+                </div>
+                <div class="form-group">
+                  <label>Channel</label>
+                  <input 
+                    type="url" 
+                    v-model="formData.channelLink" 
+                    placeholder="Enter your channel link"
+                  >
+                </div>
+              </div>
+              <div class="form-group full-width">
+                <label>Message</label>
+                <textarea 
+                  v-model="formData.message" 
+                  placeholder="Tell us how we can help..."
+                  rows="4"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="submit-btn">
+                Send Message
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
           </div>
         </div>
 
-        <!-- Links Grid -->
-        <div class="links-grid">
-          <div class="link-group">
-            <h4>Dịch Vụ</h4>
-            <ul>
-              <li><a href="#web-dev">Web Development</a></li>
-              <li><a href="#mobile">Mobile Apps</a></li>
-              <li><a href="#marketing">Digital Marketing</a></li>
-            </ul>
-          </div>
-
-          <div class="link-group">
-            <h4>Tài Nguyên</h4>
-            <ul>
-              <li><a href="#blog">Blog</a></li>
-              <li><a href="#portfolio">Portfolio</a></li>
-              <li><a href="#case-studies">Case Studies</a></li>
-            </ul>
-          </div>
-
-          <div class="link-group">
-            <h4>Liên Hệ</h4>
-            <div class="contact-simple">
-              <p>contact@esmart.vn</p>
-              <p>+84 123 456 789</p>
-              <p>Ho Chi Minh City</p>
-            </div>
+        <!-- Footer Right - CTA -->
+        <div class="footer-right">
+          <div class="cta-section">
+            <h3 class="cta-title slide-up-element" data-delay="1.0">READY TO START?</h3>
+            <p class="cta-subtitle slide-up-element" data-delay="1.2">Let's make your dreams come true</p>
+            <button class="cta-button slide-up-element" data-delay="1.4" @click="startConversation">
+              START YOUR DREAM
+            </button>
           </div>
         </div>
       </div>
-
+      
       <!-- Footer Bottom -->
       <div class="footer-bottom">
-        <p class="copyright">
-          © 2024 ESmart Solutions. All rights reserved.
-        </p>
-        <div class="bottom-links">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
+        <div class="footer-bottom-content">
+          <p class="copyright">© 2024 ESmart Solutions Agency. All rights reserved.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -81,226 +103,418 @@
 
 <script>
 export default {
-  name: "SimpleFooter"
+  name: "SimpleFooter",
+  data() {
+    return {
+      formData: {
+        name: '',
+        email: '',
+        channelLink: '',
+        phone: '',
+        message: '',
+      },
+    };
+  },
+  mounted() {
+    this.initSlideUpAnimations();
+  },
+  methods: {
+    startConversation() {
+      // Scroll to contact form or redirect to contact page
+      const contactSection = document.querySelector('.simple-about');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // Fallback: scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    },
+    
+    submitForm() {
+      console.log('Form submitted:', this.formData);
+      // In a real application, you would send this data to a backend API
+      alert('Thank you for your message! We will get back to you soon.');
+      this.formData = {
+        name: '',
+        email: '',
+        channelLink: '',
+        phone: '',
+        message: '',
+      };
+    },
+    
+    initSlideUpAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const delay = parseFloat(entry.target.dataset.delay) || 0;
+            setTimeout(() => {
+              entry.target.classList.add('animate-in');
+            }, delay * 1000);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      // Observe all slide-up elements
+      const slideUpElements = document.querySelectorAll('.slide-up-element');
+      slideUpElements.forEach(el => observer.observe(el));
+    }
+  }
 };
 </script>
 
 <style scoped>
 .simple-footer {
-  background: linear-gradient(135deg, #0f1629 0%, #1e3a8a 100%);
-  color: #ffffff;
-  padding: 2rem 2rem 0;
-  position: relative;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 0;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  padding: 80px 0 40px;
 }
 
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .footer-main {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 3rem;
-  margin-bottom: 0.5rem;
-  align-items: start;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 4rem;
+  margin-bottom: 60px;
 }
 
-.company-section {
+/* Footer Left */
+.footer-left {
   display: flex;
   flex-direction: column;
-  text-align: left;
+  gap: 20px;
 }
 
-.footer-logo {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-
-.logo-text {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  font-weight: 800;
-  color: #ffffff;
-  line-height: 1;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.logo-subtitle {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #93c5fd;
-  letter-spacing: 2px;
-  margin-top: 2px;
-}
-
-.footer-description {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  color: #e2e8f0;
-  line-height: 1.7;
-  margin: 1.5rem 0;
-  max-width: 300px;
-}
-
-.social-links {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.social-link {
-  width: 36px;
-  height: 36px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #cbd5e1;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-}
-
-.social-link:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  transform: translateY(-1px);
-}
-
-.links-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-}
-
-.link-group h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 1.25rem;
-  letter-spacing: 0.3px;
-}
-
-.link-group ul {
-  list-style: none;
-  padding: 0;
+.main-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.2;
   margin: 0;
 }
 
-.link-group ul li {
-  margin-bottom: 0.75rem;
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
 }
 
-.link-group ul a {
-  color: #cbd5e1;
-  text-decoration: none;
-  font-size: 0.95rem;
+/* Footer Center - Contact Form */
+.footer-center {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-form-section {
+  width: 100%;
+  max-width: 500px;
+}
+
+.form-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1e293b;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  font-weight: 400;
-  line-height: 1.5;
+  background: #ffffff;
 }
 
-.link-group ul a:hover {
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   color: #ffffff;
-  padding-left: 4px;
-}
-
-.contact-simple p {
-  font-size: 0.95rem;
-  color: #e2e8f0;
-  font-weight: 400;
-  margin-bottom: 0.75rem;
-  line-height: 1.5;
-}
-
-.debug-link {
-  color: #ff6b6b !important;
-  font-weight: bold;
-  opacity: 0.7;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
   transition: all 0.3s ease;
+  margin-top: 10px;
 }
 
-.debug-link:hover {
-  opacity: 1;
-  color: #ff5252 !important;
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+.submit-btn i {
+  font-size: 14px;
+}
+
+/* Footer Right */
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.cta-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.cta-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.cta-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.cta-button {
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(30, 41, 59, 0.3);
 }
 
 /* Footer Bottom */
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 30px;
+}
+
+.footer-bottom-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 20px;
 }
 
 .copyright {
+  font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
-  color: #94a3b8;
+  color: #64748b;
   margin: 0;
-  font-weight: 400;
 }
 
-.bottom-links {
+.social-links {
   display: flex;
-  gap: 2rem;
+  gap: 15px;
 }
 
-.bottom-links a {
-  font-size: 0.9rem;
-  color: #94a3b8;
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #f1f5f9;
+  color: #64748b;
+  border-radius: 50%;
   text-decoration: none;
-  font-weight: 400;
   transition: all 0.3s ease;
 }
 
-.bottom-links a:hover {
+.social-link:hover {
+  background: #3b82f6;
   color: #ffffff;
+  transform: translateY(-2px);
 }
 
+.social-link i {
+  font-size: 16px;
+}
+
+/* Slide Up Animation */
+.slide-up-element {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide-up-element.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delays for different elements */
+.slide-up-element[data-delay="0.2"] { transition-delay: 0.2s; }
+.slide-up-element[data-delay="0.4"] { transition-delay: 0.4s; }
+.slide-up-element[data-delay="0.6"] { transition-delay: 0.6s; }
+.slide-up-element[data-delay="0.8"] { transition-delay: 0.8s; }
+.slide-up-element[data-delay="1.0"] { transition-delay: 1.0s; }
+.slide-up-element[data-delay="1.2"] { transition-delay: 1.2s; }
+.slide-up-element[data-delay="1.4"] { transition-delay: 1.4s; }
+
+
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .footer-main {
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 3rem;
+  }
+  
+  .main-title {
+    font-size: 2.2rem;
+  }
+  
+  .form-title,
+  .cta-title {
+    font-size: 1.6rem;
+  }
+}
+
 @media (max-width: 768px) {
   .simple-footer {
-    padding: 2rem 1.5rem 0;
+    padding: 60px 0 30px;
   }
   
   .footer-main {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 3rem;
     text-align: center;
   }
   
-  .company-section {
-    text-align: center;
+  .footer-left {
+    align-items: center;
   }
   
-  .footer-description {
-    max-width: none;
+  .main-title {
+    font-size: 2rem;
   }
   
-  .links-grid {
+  .form-title,
+  .cta-title {
+    font-size: 1.5rem;
+  }
+  
+  .form-row {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 15px;
   }
   
-  .footer-bottom {
+  .footer-bottom-content {
     flex-direction: column;
     text-align: center;
-    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .simple-footer {
+    padding: 50px 0 25px;
   }
   
-  .social-links {
-    justify-content: center;
+  .footer-container {
+    padding: 0 15px;
+  }
+  
+  .main-title {
+    font-size: 1.8rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .form-title,
+  .cta-title {
+    font-size: 1.4rem;
+  }
+  
+  .contact-form {
+    gap: 15px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+  
+  .submit-btn,
+  .cta-button {
+    padding: 12px 24px;
+    font-size: 0.9rem;
   }
 }
 </style> 
