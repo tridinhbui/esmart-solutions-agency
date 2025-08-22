@@ -1085,11 +1085,11 @@ export default {
   box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
 }
 
-/* Slide Up Animation */
+/* Slide Up Animation - Faster */
 .slide-up-element {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .slide-up-element.animate-in {
@@ -1097,12 +1097,19 @@ export default {
   transform: translateY(0);
 }
 
-/* Staggered delays for different elements */
+/* Staggered delays for different elements - Reduced delays */
+.slide-up-element[data-delay="0.1"] { transition-delay: 0.1s; }
 .slide-up-element[data-delay="0.2"] { transition-delay: 0.2s; }
+.slide-up-element[data-delay="0.3"] { transition-delay: 0.3s; }
 .slide-up-element[data-delay="0.4"] { transition-delay: 0.4s; }
+.slide-up-element[data-delay="0.5"] { transition-delay: 0.5s; }
 .slide-up-element[data-delay="0.6"] { transition-delay: 0.6s; }
+.slide-up-element[data-delay="0.7"] { transition-delay: 0.7s; }
 .slide-up-element[data-delay="0.8"] { transition-delay: 0.8s; }
+.slide-up-element[data-delay="0.9"] { transition-delay: 0.9s; }
 .slide-up-element[data-delay="1.0"] { transition-delay: 1.0s; }
+.slide-up-element[data-delay="1.1"] { transition-delay: 1.1s; }
+.slide-up-element[data-delay="1.2"] { transition-delay: 1.2s; }
 
 /* Responsive Design */
 @media (max-width: 1024px) {

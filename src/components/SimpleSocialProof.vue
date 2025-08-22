@@ -86,7 +86,7 @@
             </div>
           <div class="trust-content">
             <h3 class="trust-number">500+</h3>
-            <p class="trust-label">Khách hàng tin tưởng</p>
+            <p class="trust-label">Trusted Customers</p>
           </div>
         </div>
         
@@ -96,7 +96,7 @@
           </div>
           <div class="trust-content">
             <h3 class="trust-number">1000+</h3>
-            <p class="trust-label">Dự án thành công</p>
+            <p class="trust-label">Successful Projects</p>
           </div>
         </div>
         
@@ -106,7 +106,7 @@
           </div>
           <div class="trust-content">
             <h3 class="trust-number">98%</h3>
-            <p class="trust-label">Tỷ lệ hài lòng</p>
+            <p class="trust-label">Satisfaction Rate</p>
           </div>
         </div>
       </div>

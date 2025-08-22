@@ -40,24 +40,6 @@
             START YOUR DREAM
           </button>
         </div>
-
-        <!-- Stats Grid with Flat Design -->
-        <div class="stats-grid">
-          <div
-            v-for="(stat, index) in stats"
-            :key="index"
-            class="stat-card flat-card slide-up-element"
-            :data-delay="1.4 + (index * 0.1)"
-          >
-            <div class="stat-icon">
-              <i :class="stat.icon"></i>
-            </div>
-            <div class="stat-number counter-animation" :data-target="stat.number">
-              {{ stat.number }}
-            </div>
-            <div class="stat-label">{{ stat.label }}</div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -68,11 +50,7 @@ export default {
   name: 'SimpleHeroSection',
   data() {
     return {
-      stats: [
-        { number: 500, label: 'Project', icon: 'fas fa-project-diagram' },
-        { number: 98, label: 'Satisfaction', icon: 'fas fa-heart' },
-        { number: '24/7', label: 'Support', icon: 'fas fa-headset' }
-      ]
+      // Stats data removed as stats section is no longer needed
     };
   },
   mounted() {
@@ -346,11 +324,11 @@ export default {
   letter-spacing: 0.5px;
 }
 
-/* Slide Up Animation */
+/* Slide Up Animation - Faster */
 .slide-up-element {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .slide-up-element.animate-in {
@@ -358,12 +336,16 @@ export default {
   transform: translateY(0);
 }
 
-/* Staggered delays for different elements */
+/* Staggered delays for different elements - Reduced delays */
+.slide-up-element[data-delay="0.1"] { transition-delay: 0.1s; }
 .slide-up-element[data-delay="0.2"] { transition-delay: 0.2s; }
 .slide-up-element[data-delay="0.3"] { transition-delay: 0.3s; }
 .slide-up-element[data-delay="0.4"] { transition-delay: 0.4s; }
+.slide-up-element[data-delay="0.5"] { transition-delay: 0.5s; }
 .slide-up-element[data-delay="0.6"] { transition-delay: 0.6s; }
+.slide-up-element[data-delay="0.7"] { transition-delay: 0.7s; }
 .slide-up-element[data-delay="0.8"] { transition-delay: 0.8s; }
+.slide-up-element[data-delay="0.9"] { transition-delay: 0.9s; }
 .slide-up-element[data-delay="1.0"] { transition-delay: 1.0s; }
 
 /* Responsive Design */
