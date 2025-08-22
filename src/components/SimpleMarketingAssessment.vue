@@ -12,19 +12,24 @@
     <div class="container">
       <!-- Section Header -->
       <div class="section-header">
-        <div class="header-icon slide-up-element" data-delay="0.2">
+        <!-- Header Icon -->
+        <div class="header-icon slide-up-element" data-delay="0.05">
           <i class="fas fa-chart-line"></i>
         </div>
-        <h2 class="section-title slide-up-element" data-delay="0.4">
-          <span class="typing-text" data-text="FREE MARKETING ASSESSMENT"></span>
+        
+        <!-- Section Title -->
+        <h2 class="section-title slide-up-element" data-delay="0.1">
+          <span class="typing-text" data-text="FREE MARKETING ASSESSMENT">FREE MARKETING ASSESSMENT</span>
         </h2>
-        <p class="section-subtitle slide-up-element" data-delay="0.6">
-          <span class="typing-text" data-text="Get a comprehensive analysis of your marketing strategy"></span>
+        
+        <!-- Section Subtitle -->
+        <p class="section-subtitle slide-up-element" data-delay="0.15">
+          <span class="typing-text" data-text="Get a comprehensive analysis of your digital presence">Get a comprehensive analysis of your digital presence</span>
         </p>
       </div>
       
       <!-- Assessment Form -->
-      <div class="assessment-form-container slide-up-element" data-delay="0.8">
+      <div class="assessment-form-container slide-up-element" data-delay="0.2">
         <div class="form-card">
           <h3 class="form-title typing-text" data-text="Ready to Transform Your Business?"></h3>
           <p class="form-description typing-text" data-text="Discover how our strategic approach can drive real results for your business. Get insights, recommendations, and a clear roadmap to success."></p>
@@ -145,7 +150,7 @@
       </div>
       
       <!-- BRANDING + PERFORMANCE Section -->
-      <div class="branding-performance-section slide-up-element" data-delay="1.0">
+      <div class="branding-performance-section slide-up-element" data-delay="0.3">
         <div class="section-container">
           <h2 class="main-title">
             <span class="title-line-1 typing-text" data-text="NO MORE FLOOP"></span>
@@ -171,7 +176,7 @@
       </div>
       
       <!-- Contact Form Section -->
-      <div class="contact-form-section slide-up-element" data-delay="1.2">
+      <div class="contact-form-section slide-up-element" data-delay="0.4">
         <div class="section-container">
           <h3 class="section-title typing-text" data-text="Ready to Get Started?"></h3>
           <p class="section-subtitle typing-text" data-text="Fill out the form below and we'll get back to you within 24 hours"></p>
@@ -1085,11 +1090,11 @@ export default {
   box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
 }
 
-/* Slide Up Animation - Faster */
+/* Slide Up Element Animations */
 .slide-up-element {
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s ease-out;
 }
 
 .slide-up-element.animate-in {
@@ -1097,19 +1102,13 @@ export default {
   transform: translateY(0);
 }
 
-/* Staggered delays for different elements - Reduced delays */
+/* Staggered Animation Delays */
+.slide-up-element[data-delay="0.05"] { transition-delay: 0.05s; }
 .slide-up-element[data-delay="0.1"] { transition-delay: 0.1s; }
+.slide-up-element[data-delay="0.15"] { transition-delay: 0.15s; }
 .slide-up-element[data-delay="0.2"] { transition-delay: 0.2s; }
 .slide-up-element[data-delay="0.3"] { transition-delay: 0.3s; }
 .slide-up-element[data-delay="0.4"] { transition-delay: 0.4s; }
-.slide-up-element[data-delay="0.5"] { transition-delay: 0.5s; }
-.slide-up-element[data-delay="0.6"] { transition-delay: 0.6s; }
-.slide-up-element[data-delay="0.7"] { transition-delay: 0.7s; }
-.slide-up-element[data-delay="0.8"] { transition-delay: 0.8s; }
-.slide-up-element[data-delay="0.9"] { transition-delay: 0.9s; }
-.slide-up-element[data-delay="1.0"] { transition-delay: 1.0s; }
-.slide-up-element[data-delay="1.1"] { transition-delay: 1.1s; }
-.slide-up-element[data-delay="1.2"] { transition-delay: 1.2s; }
 
 /* Responsive Design */
 @media (max-width: 1024px) {

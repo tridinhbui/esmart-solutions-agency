@@ -14,22 +14,22 @@
 
       <!-- Desktop Navigation -->
       <div class="nav-links">
-        <a href="#home" class="nav-link" @click="scrollToSection('home')">
+        <router-link to="/" class="nav-link">
           <i class="fas fa-home"></i>
           <span>Home</span>
-        </a>
-        <a href="#services" class="nav-link" @click="scrollToSection('services')">
+        </router-link>
+        <router-link to="/features" class="nav-link">
           <i class="fas fa-cogs"></i>
           <span>Services</span>
-        </a>
-        <a href="#about" class="nav-link" @click="scrollToSection('about')">
+        </router-link>
+        <router-link to="/about-us" class="nav-link">
           <i class="fas fa-info-circle"></i>
           <span>About</span>
-        </a>
-        <a href="#contact" class="nav-link" @click="scrollToSection('contact')">
+        </router-link>
+        <router-link to="/contact" class="nav-link">
           <i class="fas fa-envelope"></i>
           <span>Contact</span>
-        </a>
+        </router-link>
       </div>
 
       <!-- Language Selector -->
@@ -60,22 +60,22 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" :class="{ 'mobile-menu-open': isMobileMenuOpen }">
-      <a href="#home" class="mobile-menu-link" @click="scrollToSection('home')">
+      <router-link to="/" class="mobile-menu-link" @click="closeMobileMenu">
         <i class="fas fa-home"></i>
         <span>Home</span>
-      </a>
-      <a href="#services" class="mobile-menu-link" @click="scrollToSection('services')">
+      </router-link>
+      <router-link to="/features" class="mobile-menu-link" @click="closeMobileMenu">
         <i class="fas fa-cogs"></i>
         <span>Services</span>
-      </a>
-      <a href="#about" class="mobile-menu-link" @click="scrollToSection('about')">
+      </router-link>
+      <router-link to="/about-us" class="mobile-menu-link" @click="closeMobileMenu">
         <i class="fas fa-info-circle"></i>
         <span>About</span>
-      </a>
-      <a href="#contact" class="mobile-menu-link" @click="scrollToSection('contact')">
+      </router-link>
+      <router-link to="/contact" class="mobile-menu-link" @click="closeMobileMenu">
         <i class="fas fa-envelope"></i>
         <span>Contact</span>
-      </a>
+      </router-link>
       <button class="mobile-cta" @click="startProject">
         <i class="fas fa-play"></i>
         <span>Start Project</span>

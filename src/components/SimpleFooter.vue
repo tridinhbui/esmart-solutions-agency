@@ -5,10 +5,10 @@
       <div class="footer-main">
         <!-- Footer Left - Company Info -->
         <div class="footer-left">
-          <h2 class="main-title slide-up-element" data-delay="0.2">
+          <h2 class="main-title slide-up-element" data-delay="0.05">
             ALL STARTS WITH A CONVERSATION
           </h2>
-          <p class="subtitle slide-up-element" data-delay="0.4">
+          <p class="subtitle slide-up-element" data-delay="0.1">
             Ready to transform your business?
           </p>
         </div>
@@ -16,8 +16,8 @@
         <!-- Footer Center - Contact Form -->
         <div class="footer-center">
           <div class="contact-form-section">
-            <h3 class="form-title slide-up-element" data-delay="0.6">GET IN TOUCH</h3>
-            <form class="contact-form slide-up-element" data-delay="0.8" @submit.prevent="submitForm">
+            <h3 class="form-title slide-up-element" data-delay="0.15">GET IN TOUCH</h3>
+            <form class="contact-form slide-up-element" data-delay="0.2" @submit.prevent="submitForm">
               <div class="form-row">
                 <div class="form-group">
                   <label>Name</label>
@@ -76,9 +76,9 @@
         <!-- Footer Right - CTA -->
         <div class="footer-right">
           <div class="cta-section">
-            <h3 class="cta-title slide-up-element" data-delay="1.0">READY TO START?</h3>
-            <p class="cta-subtitle slide-up-element" data-delay="1.2">Let's make your dreams come true</p>
-            <button class="cta-button slide-up-element" data-delay="1.4" @click="startConversation">
+            <h3 class="cta-title slide-up-element" data-delay="0.2">READY TO START?</h3>
+            <p class="cta-subtitle slide-up-element" data-delay="0.3">Let's make your dreams come true</p>
+            <button class="cta-button slide-up-element" data-delay="0.4" @click="startConversation">
               START YOUR DREAM
             </button>
           </div>
@@ -405,11 +405,11 @@ export default {
   font-size: 16px;
 }
 
-/* Slide Up Animation - Faster */
+/* Slide Up Element Animations */
 .slide-up-element {
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s ease-out;
 }
 
 .slide-up-element.animate-in {
@@ -417,17 +417,13 @@ export default {
   transform: translateY(0);
 }
 
-/* Staggered delays for different elements - Reduced delays */
+/* Staggered Animation Delays */
+.slide-up-element[data-delay="0.05"] { transition-delay: 0.05s; }
 .slide-up-element[data-delay="0.1"] { transition-delay: 0.1s; }
+.slide-up-element[data-delay="0.15"] { transition-delay: 0.15s; }
 .slide-up-element[data-delay="0.2"] { transition-delay: 0.2s; }
 .slide-up-element[data-delay="0.3"] { transition-delay: 0.3s; }
 .slide-up-element[data-delay="0.4"] { transition-delay: 0.4s; }
-.slide-up-element[data-delay="0.5"] { transition-delay: 0.5s; }
-.slide-up-element[data-delay="0.6"] { transition-delay: 0.6s; }
-.slide-up-element[data-delay="0.7"] { transition-delay: 0.7s; }
-.slide-up-element[data-delay="0.8"] { transition-delay: 0.8s; }
-.slide-up-element[data-delay="0.9"] { transition-delay: 0.9s; }
-.slide-up-element[data-delay="1.0"] { transition-delay: 1.0s; }
 
 
 /* Responsive Design */

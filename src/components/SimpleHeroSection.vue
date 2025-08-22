@@ -13,28 +13,29 @@
     <div class="container">
       <!-- Hero Content -->
       <div class="hero-content">
-        <!-- Company Icon and Name -->
-        <div class="company-header slide-up-element" data-delay="0.2">
-          <div class="company-icon slide-up-element" data-delay="0.3">
+        <!-- Company Header -->
+        <div class="company-header slide-up-element" data-delay="0.05">
+          <div class="company-icon slide-up-element" data-delay="0.1">
             <i class="fas fa-rocket"></i>
           </div>
-          <div class="company-info slide-up-element" data-delay="0.4">
-            <span class="company-name">ESmart Solutions Agency</span>
-            <span class="company-tagline">Digital Innovation Partner</span>
+          
+          <div class="company-info slide-up-element" data-delay="0.15">
+            <span class="company-name">ESmart Solutions</span>
+            <span class="company-tagline">Digital Agency</span>
           </div>
         </div>
         
         <!-- Main Title -->
-        <h1 class="main-title">
-          <span class="title-main slide-up-element" data-delay="0.6">ALL STARTS WITH A</span>
-          <span class="title-accent slide-up-element" data-delay="0.8">CONVERSATION</span>
-        </h1>
+        <div class="hero-title">
+          <span class="title-main slide-up-element" data-delay="0.2">ALL STARTS WITH A</span>
+          <span class="title-accent slide-up-element" data-delay="0.25">CONVERSATION</span>
+        </div>
         
         <!-- Action Buttons -->
         <div class="action-buttons">
-          <button
+          <button 
             class="cta-primary flat-btn slide-up-element"
-            data-delay="1.0"
+            data-delay="0.3"
             @click="scrollToAssessment"
           >
             START YOUR DREAM
@@ -207,11 +208,12 @@ export default {
 }
 
 /* Main Title */
-.main-title {
+.hero-title {
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  text-align: center;
 }
 
 .title-main {
@@ -221,6 +223,7 @@ export default {
   color: #1e293b;
   line-height: 1.1;
   letter-spacing: -1px;
+  display: block;
 }
 
 .title-accent {
@@ -230,6 +233,7 @@ export default {
   color: #3b82f6;
   line-height: 1.1;
   letter-spacing: -1px;
+  display: block;
 }
 
 /* Action Buttons */
@@ -324,11 +328,11 @@ export default {
   letter-spacing: 0.5px;
 }
 
-/* Slide Up Animation - Faster */
+/* Slide Up Element Animations */
 .slide-up-element {
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s ease-out;
 }
 
 .slide-up-element.animate-in {
@@ -336,17 +340,13 @@ export default {
   transform: translateY(0);
 }
 
-/* Staggered delays for different elements - Reduced delays */
+/* Staggered Animation Delays */
+.slide-up-element[data-delay="0.05"] { transition-delay: 0.05s; }
 .slide-up-element[data-delay="0.1"] { transition-delay: 0.1s; }
+.slide-up-element[data-delay="0.15"] { transition-delay: 0.15s; }
 .slide-up-element[data-delay="0.2"] { transition-delay: 0.2s; }
+.slide-up-element[data-delay="0.25"] { transition-delay: 0.25s; }
 .slide-up-element[data-delay="0.3"] { transition-delay: 0.3s; }
-.slide-up-element[data-delay="0.4"] { transition-delay: 0.4s; }
-.slide-up-element[data-delay="0.5"] { transition-delay: 0.5s; }
-.slide-up-element[data-delay="0.6"] { transition-delay: 0.6s; }
-.slide-up-element[data-delay="0.7"] { transition-delay: 0.7s; }
-.slide-up-element[data-delay="0.8"] { transition-delay: 0.8s; }
-.slide-up-element[data-delay="0.9"] { transition-delay: 0.9s; }
-.slide-up-element[data-delay="1.0"] { transition-delay: 1.0s; }
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -357,6 +357,14 @@ export default {
   .title-main,
   .title-accent {
     font-size: 2.5rem;
+  }
+  
+  .company-name {
+    font-size: 1.2rem;
+  }
+  
+  .company-tagline {
+    font-size: 0.8rem;
   }
   
   .action-buttons {
@@ -387,19 +395,27 @@ export default {
 }
 
 @media (max-width: 480px) {
+  .simple-hero {
+    padding: 80px 0 40px;
+  }
+  
   .title-main,
   .title-accent {
     font-size: 2rem;
-  }
-  
-  .company-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
+    letter-spacing: -0.5px;
   }
   
   .company-name {
-    font-size: 1.3rem;
+    font-size: 1rem;
+  }
+  
+  .company-tagline {
+    font-size: 0.7rem;
+  }
+  
+  .flat-btn {
+    padding: 14px 24px;
+    font-size: 0.9rem;
   }
 }
 </style>

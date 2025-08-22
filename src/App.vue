@@ -7,112 +7,29 @@
     
     <!-- Render Navbar only if the current route is not DetailedBlog1 or EsmartCreatorAI or ContactUs -->
     <SimpleNavBar v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage" />
-    <router-view v-if="shouldShowRouterView" />
-    <!-- Render sections only if the current route is not DetailedBlog1 or EsmartCreatorAI -->
-    <template v-if="shouldShowMainContent && !isCreatorAIPage">
-      <!-- Hero Section -->
-      <div class="hero-wrapper" style="padding-top: 0;">
-        <SimpleHeroSection />
-      </div>
-      
-      <!-- Main Sections -->
-      <div class="main-sections-container">
-        <!-- Social Proof Section -->
-        <SimpleSocialProof />
-        
-        <!-- Marketing Assessment Section -->
-        <SimpleMarketingAssessment />
-        
-        <!-- Features Section -->
-        <SimpleFeatures />
-        
-        <!-- Testimonials Section -->
-        <SimpleTestimonial />
-        
-        <!-- About Us Section -->
-        <SimpleAboutUs />
-      </div>
-    </template>
-    <section
-      v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage"
-      id="footer"
-      class="footer-section"
-    >
-      <SimpleFooter />
-    </section>
-    <ChatBot v-if="!isAuthPage && !isDetailedBlogPage && !isCreatorAIPage" />
-    <GoToTopButton v-if="showScrollTop && !isAuthPage && !isDetailedBlogPage && !isCreatorAIPage" />
+    
+    <!-- Router View for all pages -->
+    <router-view />
   </div>
 </template>
 
 <script>
 import SimpleNavBar from "./components/SimpleNavBar.vue";
-import SimpleHeroSection from "./components/SimpleHeroSection.vue";
-import SimpleSocialProof from "./components/SimpleSocialProof.vue";
-import SimpleFeatures from "./components/SimpleFeatures.vue";
-import SimpleAboutUs from "./components/SimpleAboutUs.vue";
-import SimpleTestimonial from "./components/SimpleTestimonial.vue";
-import SimpleMarketingAssessment from "./components/SimpleMarketingAssessment.vue";
-
-import SimpleFooter from "./components/SimpleFooter.vue";
-import ChatBot from "./components/ChatBot.vue";
-import GoToTopButton from "./components/GoToTopButton.vue";
 
 export default {
   name: "App",
   components: {
     SimpleNavBar,
-    SimpleHeroSection,
-    SimpleSocialProof,
-    SimpleFeatures,
-    SimpleAboutUs,
-    SimpleTestimonial,
-    SimpleMarketingAssessment,
-    SimpleFooter,
-    ChatBot,
-    GoToTopButton,
-  },
-  data() {
-    return {
-      showScrollTop: false,
-      scrollY: 0,
-      lastCursorTime: 0,
-    };
   },
   computed: {
     isAuthPage() {
-      return this.$route.name === "Login" || this.$route.name === "Register";
+      return this.$route.name === "SignIn" || this.$route.name === "SignUp";
     },
     isDetailedBlogPage() {
       return this.$route.name === "DetailedBlog1";
     },
     isCreatorAIPage() {
       return this.$route.name === "EsmartCreatorAI";
-    },
-    shouldShowRouterView() {
-      return this.isAuthPage || this.isDetailedBlogPage || this.isCreatorAIPage;
-    },
-    shouldShowMainContent() {
-      return !this.isAuthPage && !this.isDetailedBlogPage;
-    },
-  },
-  mounted() {
-    // Setup scroll event listener
-    window.addEventListener("scroll", this.handleScroll);
-  },
-  beforeUnmount() {
-    // Clean up event listeners
-    window.removeEventListener("scroll", this.handleScroll);
-  },
-  methods: {
-    scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    },
-    handleScroll() {
-      this.showScrollTop = window.scrollY > 300;
     },
   },
 };

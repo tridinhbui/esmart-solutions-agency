@@ -74,7 +74,8 @@ const routes = [
   },
   {
     path: "/",
-    redirect: "/intro",
+    name: "Home",
+    component: () => import("@/components/HomePage.vue"),
   },
 ];
 

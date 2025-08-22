@@ -12,13 +12,18 @@
     <div class="container">
       <!-- Section Header -->
       <div class="section-header">
-        <div class="header-icon slide-up-element" data-delay="0.2">
+        <!-- Header Icon -->
+        <div class="header-icon slide-up-element" data-delay="0.05">
           <i class="fas fa-handshake"></i>
         </div>
-        <h2 class="section-title slide-up-element" data-delay="0.4">
+        
+        <!-- Section Title -->
+        <h2 class="section-title slide-up-element" data-delay="0.1">
           OUR AMAZING CUSTOMERS & PARTNERS
         </h2>
-        <p class="section-subtitle slide-up-element" data-delay="0.6">
+        
+        <!-- Section Subtitle -->
+        <p class="section-subtitle slide-up-element" data-delay="0.15">
           Trusted partners for sustainable growth
         </p>
       </div>
@@ -571,11 +576,11 @@ export default {
   line-height: 1.4;
 }
 
-/* Slide Up Animation */
+/* Slide Up Element Animations */
 .slide-up-element {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(20px);
+  transition: all 0.4s ease-out;
 }
 
 .slide-up-element.animate-in {
@@ -583,10 +588,10 @@ export default {
   transform: translateY(0);
 }
 
-/* Staggered delays for different elements */
-.slide-up-element[data-delay="0.2"] { transition-delay: 0.2s; }
-.slide-up-element[data-delay="0.4"] { transition-delay: 0.4s; }
-.slide-up-element[data-delay="0.6"] { transition-delay: 0.6s; }
+/* Staggered Animation Delays */
+.slide-up-element[data-delay="0.05"] { transition-delay: 0.05s; }
+.slide-up-element[data-delay="0.1"] { transition-delay: 0.1s; }
+.slide-up-element[data-delay="0.15"] { transition-delay: 0.15s; }
 
 /* Responsive Design */
 @media (max-width: 1024px) {

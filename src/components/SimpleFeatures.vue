@@ -9,81 +9,69 @@
     <div class="container">
       <!-- Main Title -->
       <div class="main-title">
-        <h1 class="slide-up-element" data-delay="0.2">STRATEGIC SOLUTIONS FOR BUSINESS GROWTH</h1>
+        <h1 class="slide-up-element" data-delay="0.05">STRATEGIC SOLUTIONS FOR BUSINESS GROWTH</h1>
       </div>
       
       <!-- Sub Description -->
       <div class="sub-description">
-        <p class="description-line slide-up-element" data-delay="0.4">We deliver <span class="highlight">measurable results</span> that drive your business forward.</p>
-        <p class="description-line slide-up-element" data-delay="0.6">Transform your digital presence with our proven strategies.</p>
+        <p class="description-line slide-up-element" data-delay="0.1">
+          We deliver <span class="highlight">measurable results</span> that drive your business forward.
+        </p>
+        <p class="description-line slide-up-element" data-delay="0.15">
+          Transform your digital presence with our proven strategies.
+        </p>
       </div>
       
-      <!-- Main CTA Button -->
-      <div class="main-cta-container">
-        <button class="main-cta-button slide-up-element" data-delay="0.8">
-          <span class="cta-text">GET STARTED TODAY</span>
-          <div class="cta-shine-effect"></div>
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="main-cta-button slide-up-element" data-delay="0.2">
+          <i class="fas fa-rocket"></i>
+          <span>GET STARTED TODAY</span>
         </button>
-      </div>
-      
-      <!-- Secondary CTA -->
-      <div class="secondary-cta-container">
-        <button class="secondary-cta-button slide-up-element" data-delay="1.0">
-          <span class="cta-text">Learn More</span>
-          <i class="fas fa-arrow-right"></i>
-        </button>
-      </div>
-    </div>
-    
-    <!-- WHAT WE OFFER Section -->
-    <div class="what-we-offer-section">
-      <!-- Decorative Instagram Icon - Neon Pink/Purple -->
-      <div class="decorative-icon instagram-icon">
-        <i class="fab fa-instagram"></i>
-      </div>
-      
-      <!-- Decorative Facebook Icon - Blue -->
-      <div class="decorative-icon facebook-icon">
-        <i class="fab fa-facebook"></i>
-      </div>
-      
-      <!-- Section Content -->
-      <div class="container">
-        <!-- Main Title -->
-        <h2 class="section-title slide-up-element" data-delay="0.2">WHAT WE OFFER</h2>
         
-        <!-- Section Description -->
-        <div class="section-description slide-up-element" data-delay="0.4">
-          <p>Your business doesn't just need services, it needs <strong>results</strong>.</p>
-          <p>At <strong>Esmart Solutions</strong>, we turn ideas into strategies, and strategies into measurable growth.</p>
-          <p>Whether you want to attract more customers, build a stronger brand, or scale your revenue.</p>
-          <p class="highlight-line">Because at the end of the day, it's not about what we do, it's about <strong>what you gain</strong>.</p>
+        <button class="secondary-cta-button slide-up-element" data-delay="0.25">
+          <i class="fas fa-arrow-right"></i>
+          <span>Learn More</span>
+        </button>
+      </div>
+      
+      <!-- WHAT WE OFFER Section -->
+      <div class="what-we-offer-section">
+        <!-- Decorative Icons -->
+        <div class="decorative-icons">
+          <i class="fab fa-instagram decorative-icon instagram-icon"></i>
+          <i class="fab fa-facebook decorative-icon facebook-icon"></i>
         </div>
         
-        <!-- Service Cards Grid -->
+        <h2 class="section-title slide-up-element" data-delay="0.3">WHAT WE OFFER</h2>
+        
+        <div class="section-description slide-up-element" data-delay="0.35">
+          <p>We provide comprehensive digital solutions that deliver <strong>results</strong>. With <strong>Esmart Solutions</strong>, you gain more than just services – you gain a strategic partner committed to your growth and success.</p>
+        </div>
+        
         <div class="service-cards">
-          <div class="service-card slide-up-element" data-delay="0.6">
+          <div class="service-card slide-up-element" data-delay="0.4">
             <div class="card-icon">
               <i class="fas fa-chart-line"></i>
             </div>
             <h3>Digital Growth Solutions</h3>
-            <p>Not just running ads, we optimize the entire customer journey to turn clicks into <strong>real revenue</strong>.</p>
+            <p>Strategic growth strategies that focus on customers and revenue.</p>
           </div>
           
-          <div class="service-card slide-up-element" data-delay="0.8">
+          <div class="service-card slide-up-element" data-delay="0.45">
             <div class="card-icon">
               <i class="fas fa-palette"></i>
             </div>
             <h3>Brand Identity & Design</h3>
-            <p>We build brands that are not only visually striking but also <strong>memorable and meaningful</strong> to your audience.</p>
+            <p>Build a strong, distinctive brand that stands out.</p>
           </div>
           
-          <div class="service-card slide-up-element" data-delay="1.0">
+          <div class="service-card slide-up-element" data-delay="0.5">
             <div class="card-icon">
               <i class="fas fa-comments"></i>
             </div>
             <h3>Communication Content</h3>
-            <p>From <strong>videos and articles</strong> to social campaigns, every piece of content is crafted to <strong>inspire and drive action</strong>.</p>
+            <p>Develop creative content and effective communication.</p>
           </div>
         </div>
       </div>
@@ -167,7 +155,8 @@ export default {
 
 /* Main Title */
 .main-title {
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  text-align: center;
 }
 
 .main-title h1 {
@@ -179,6 +168,9 @@ export default {
   text-transform: uppercase;
   letter-spacing: -0.02em;
   margin: 0;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Sub Description */
@@ -187,6 +179,7 @@ export default {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 
 .description-line {
@@ -195,7 +188,7 @@ export default {
   font-weight: 400;
   line-height: 1.6;
   color: #64748b;
-  margin: 0 0 16px 0;
+  margin: 0 0 20px 0;
 }
 
 .description-line:last-child {
@@ -208,9 +201,13 @@ export default {
   font-weight: 600;
 }
 
-/* Main CTA Button */
-.main-cta-container {
-  margin-bottom: 40px;
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 80px;
 }
 
 .main-cta-button {
@@ -218,12 +215,22 @@ export default {
   background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
   border: none;
   border-radius: 16px;
-  padding: 24px 48px;
+  padding: 20px 40px;
   cursor: pointer;
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
-  min-width: 400px;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .main-cta-button:hover {
@@ -235,77 +242,43 @@ export default {
   transform: translateY(-2px);
 }
 
-.cta-text {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  position: relative;
-  z-index: 2;
-}
-
-.cta-shine-effect {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  animation: shine 3s infinite;
-}
-
-@keyframes shine {
-  0% {
-    left: -100%;
-  }
-  50% {
-    left: 100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-/* Secondary CTA */
-.secondary-cta-container {
-  margin-bottom: 40px;
+.main-cta-button i {
+  font-size: 16px;
 }
 
 .secondary-cta-button {
-  background: #1e40af;
-  border: none;
-  border-radius: 50px;
+  background: transparent;
+  border: 2px solid #3b82f6;
+  border-radius: 12px;
   padding: 16px 32px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
-  display: inline-flex;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3b82f6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 10px;
+  min-width: 200px;
 }
 
 .secondary-cta-button:hover {
-  background: #1d4ed8;
+  background: #3b82f6;
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 12px 25px rgba(30, 64, 175, 0.4);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
 }
 
 .secondary-cta-button:active {
   transform: translateY(0);
 }
 
-.secondary-cta-button .cta-text {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #ffffff;
-}
-
 .secondary-cta-button i {
-  font-size: 0.9rem;
-  color: #ffffff;
+  font-size: 14px;
   transition: transform 0.3s ease;
 }
 
@@ -529,17 +502,38 @@ export default {
     padding: 80px 0;
   }
   
-  .main-cta-button {
-    min-width: 300px;
-    padding: 20px 36px;
+  .main-title {
+    margin-bottom: 40px;
   }
   
-  .cta-text {
-    font-size: 1.1rem;
+  .main-title h1 {
+    font-size: 2.5rem;
+  }
+  
+  .sub-description {
+    margin-bottom: 50px;
   }
   
   .description-line {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+  }
+  
+  .action-buttons {
+    margin-bottom: 60px;
+    gap: 16px;
+  }
+  
+  .main-cta-button {
+    min-width: 280px;
+    padding: 18px 32px;
     font-size: 1rem;
+  }
+  
+  .secondary-cta-button {
+    min-width: 180px;
+    padding: 14px 28px;
+    font-size: 0.9rem;
   }
   
   .what-we-offer-section {
@@ -584,17 +578,38 @@ export default {
     padding: 60px 0;
   }
   
-  .main-cta-button {
-    min-width: 280px;
-    padding: 18px 32px;
-  }
-  
-  .cta-text {
-    font-size: 1rem;
+  .main-title {
+    margin-bottom: 30px;
   }
   
   .main-title h1 {
     font-size: 2rem;
+  }
+  
+  .sub-description {
+    margin-bottom: 40px;
+  }
+  
+  .description-line {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+  
+  .action-buttons {
+    margin-bottom: 50px;
+    gap: 14px;
+  }
+  
+  .main-cta-button {
+    min-width: 260px;
+    padding: 16px 28px;
+    font-size: 0.95rem;
+  }
+  
+  .secondary-cta-button {
+    min-width: 160px;
+    padding: 12px 24px;
+    font-size: 0.85rem;
   }
   
   .what-we-offer-section {
@@ -627,11 +642,11 @@ export default {
   }
 }
 
-/* Slide Up Animation - Faster */
+/* Slide Up Element Animations */
 .slide-up-element {
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s ease-out;
 }
 
 .slide-up-element.animate-in {
@@ -639,17 +654,17 @@ export default {
   transform: translateY(0);
 }
 
-/* Staggered delays for different elements - Reduced delays */
+/* Staggered Animation Delays */
+.slide-up-element[data-delay="0.05"] { transition-delay: 0.05s; }
 .slide-up-element[data-delay="0.1"] { transition-delay: 0.1s; }
+.slide-up-element[data-delay="0.15"] { transition-delay: 0.15s; }
 .slide-up-element[data-delay="0.2"] { transition-delay: 0.2s; }
+.slide-up-element[data-delay="0.25"] { transition-delay: 0.25s; }
 .slide-up-element[data-delay="0.3"] { transition-delay: 0.3s; }
+.slide-up-element[data-delay="0.35"] { transition-delay: 0.35s; }
 .slide-up-element[data-delay="0.4"] { transition-delay: 0.4s; }
+.slide-up-element[data-delay="0.45"] { transition-delay: 0.45s; }
 .slide-up-element[data-delay="0.5"] { transition-delay: 0.5s; }
-.slide-up-element[data-delay="0.6"] { transition-delay: 0.6s; }
-.slide-up-element[data-delay="0.7"] { transition-delay: 0.7s; }
-.slide-up-element[data-delay="0.8"] { transition-delay: 0.8s; }
-.slide-up-element[data-delay="0.9"] { transition-delay: 0.9s; }
-.slide-up-element[data-delay="1.0"] { transition-delay: 1.0s; }
 </style> 
 
 

@@ -48,32 +48,35 @@
         <div class="skyline-content">
           <div class="message-container">
             <!-- Pre-title -->
-            <div class="pre-title">
-              <span class="pre-title-text">The Question Is</span>
-              <div class="pre-title-line"></div>
-        </div>
-
+            <div class="pre-title slide-up-element" data-delay="0.05">
+              <span class="typing-text" data-text="READY TO">READY TO</span>
+            </div>
+            
             <!-- Main Message -->
-            <h1 class="main-message">
-              <span class="ready-text slide-up-element" data-delay="0.2">READY TO</span>
-              <span class="make-text slide-up-element" data-delay="0.4">MAKE</span>
-              <span class="cash-text slide-up-element" data-delay="0.6">CASH?</span>
-            </h1>
+            <div class="main-message">
+              <div class="ready-text slide-up-element" data-delay="0.1">
+                <span class="typing-text" data-text="MAKE">MAKE</span>
+              </div>
+              <div class="make-text slide-up-element" data-delay="0.15">
+                <span class="typing-text" data-text="CASH?">CASH?</span>
+              </div>
+            </div>
             
             <!-- Sub Message -->
-            <p class="sub-message slide-up-element" data-delay="0.8">
-              Transform your business with our proven strategies and innovative solutions
-            </p>
+            <div class="sub-message slide-up-element" data-delay="0.2">
+              <span class="typing-text" data-text="Let's turn your ideas into profitable reality">Let's turn your ideas into profitable reality</span>
+            </div>
             
             <!-- CTA Buttons -->
             <div class="cta-buttons">
-              <button class="primary-cta slide-up-element" data-delay="1.0" @click="startJourney">
+              <button class="cta-primary slide-up-element" data-delay="0.25" @click="startProject">
                 <i class="fas fa-rocket"></i>
-                <span>Start Your Journey</span>
+                <span>START PROJECT</span>
               </button>
-              <button class="secondary-cta slide-up-element" data-delay="1.2" @click="learnMore">
+              
+              <button class="cta-secondary slide-up-element" data-delay="0.3" @click="learnMore">
                 <i class="fas fa-info-circle"></i>
-                <span>Learn More</span>
+                <span>LEARN MORE</span>
               </button>
             </div>
           </div>
@@ -191,7 +194,7 @@ export default {
     handleImageError(event) {
       event.target.src = "https://via.placeholder.com/150x150/1e3a8a/ffffff?text=Avatar";
     },
-    startJourney() {
+    startProject() {
       // Scroll to footer or contact section
       const footer = document.querySelector('.simple-footer');
       if (footer) {
@@ -748,11 +751,11 @@ export default {
   }
 }
 
-/* Slide Up Animation - Faster */
+/* Slide Up Element Animations */
 .slide-up-element {
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s ease-out;
 }
 
 .slide-up-element.animate-in {
@@ -760,17 +763,13 @@ export default {
   transform: translateY(0);
 }
 
-/* Staggered delays for different elements - Reduced delays */
+/* Staggered Animation Delays */
+.slide-up-element[data-delay="0.05"] { transition-delay: 0.05s; }
 .slide-up-element[data-delay="0.1"] { transition-delay: 0.1s; }
+.slide-up-element[data-delay="0.15"] { transition-delay: 0.15s; }
 .slide-up-element[data-delay="0.2"] { transition-delay: 0.2s; }
+.slide-up-element[data-delay="0.25"] { transition-delay: 0.25s; }
 .slide-up-element[data-delay="0.3"] { transition-delay: 0.3s; }
-.slide-up-element[data-delay="0.4"] { transition-delay: 0.4s; }
-.slide-up-element[data-delay="0.5"] { transition-delay: 0.5s; }
-.slide-up-element[data-delay="0.6"] { transition-delay: 0.6s; }
-.slide-up-element[data-delay="0.7"] { transition-delay: 0.7s; }
-.slide-up-element[data-delay="0.8"] { transition-delay: 0.8s; }
-.slide-up-element[data-delay="0.9"] { transition-delay: 0.9s; }
-.slide-up-element[data-delay="1.0"] { transition-delay: 1.0s; }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
