@@ -45,9 +45,10 @@
       </div>
 
       <!-- CTA Button -->
-      <button class="nav-cta" @click="startProject">
+      <button class="nav-cta">
         <i class="fas fa-play"></i>
-        <span>Start Project</span>
+        <span>Start</span>
+        <span class="cta-project">Project</span>
       </button>
 
       <!-- Mobile Menu Toggle -->
@@ -163,7 +164,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: 0 1rem;
 }
 
 /* Logo */
@@ -191,11 +192,18 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   line-height: 1;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) and (max-width: 1015px) {
+  .logo-text-container {
+    display: none;
+  }
 }
 
 .logo-text {
   font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #1e293b;
   letter-spacing: -0.5px;
@@ -213,7 +221,7 @@ export default {
 /* Navigation Links */
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: auto;
   align-items: center;
 }
 
@@ -263,16 +271,18 @@ export default {
   background: #f8fafc;
   border: 2px solid #e2e8f0;
   color: #475569;
-  padding: 8px 16px;
+  padding: 8px 12px;      /* vertical + horizontal padding */
   border-radius: 12px;
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 8px;              /* space between flag and text */
+  min-height: 48px;         
+  line-height: 1; 
 }
 
 .lang-btn:hover {
@@ -295,8 +305,26 @@ export default {
 .flag-icon {
   width: 20px;
   height: 15px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 2px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1100px) {
+  .lang-btn span {
+    display: none;        /* hide text */
+  }
+
+  .lang-btn {
+    gap: 8;               /* remove text gap */
+  }
+  .flag-icon {
+    width: 28px;
+    height: 21px;
+    object-fit: contain;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
 }
 
 /* CTA Button */
@@ -325,6 +353,15 @@ export default {
 
 .nav-cta i {
   font-size: 14px;
+}
+
+@media (max-width: 1100px) {
+  .cta-project {
+    display: none;
+  }
+  .nav-cta {
+    gap: 6px;
+  }
 }
 
 /* Mobile Menu Toggle */

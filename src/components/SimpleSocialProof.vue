@@ -73,14 +73,14 @@
       </div>
 
         <!-- Banner Controls -->
-        <div class="banner-controls">
+        <!-- <div class="banner-controls">
           <button class="control-btn pause-btn" @click="togglePause">
             <i :class="isPaused ? 'fas fa-play' : 'fas fa-pause'"></i>
           </button>
           <button class="control-btn speed-btn" @click="toggleSpeed">
             <span class="speed-text">{{ speedLabels[currentSpeedIndex] }}</span>
           </button>
-        </div>
+        </div> -->
         </div>
 
       <!-- Trust Indicators -->

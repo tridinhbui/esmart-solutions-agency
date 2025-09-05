@@ -34,101 +34,143 @@
           <h3 class="form-title typing-text" data-text="Ready to Transform Your Business?"></h3>
           <p class="form-description typing-text" data-text="Discover how our strategic approach can drive real results for your business. Get insights, recommendations, and a clear roadmap to success."></p>
           
-          <form class="assessment-form" @submit.prevent="submitAssessment">
-            <div class="form-grid">
-              <div class="form-group">
-                <label for="name">Full Name</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  v-model="formData.name" 
-                  placeholder="Enter your full name"
-                  required
-                />
+          <!-- Progress Indicator -->
+          <div class="form-progress">
+            <div class="progress-step" :class="{ active: currentSection === 1, completed: currentSection > 1 }">
+              <div class="step-number">1</div>
+              <span class="step-label">Personal Info</span>
+            </div>
+            <div class="progress-line" :class="{ completed: currentSection > 1 }" style="left: 25%; right: 25%;"></div>
+            <div class="progress-step" :class="{ active: currentSection === 2, completed: currentSection > 2 }">
+              <div class="step-number">2</div>
+              <span class="step-label">Business Details</span>
+            </div>
+          </div>
+          
+          <form class="assessment-form" @submit.prevent="submitAssessment" style="width: 100%;">
+            <!-- Section 1: Personal Information -->
+            <div v-show="currentSection === 1" class="form-section">
+              <div class="section-header-small">
+                <h4 class="section-title-small">Personal Information</h4>
+                <p class="section-description-small">Let's start with your basic contact details</p>
               </div>
               
-              <div class="form-group">
-                <label for="email">Email Address</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  v-model="formData.email" 
-                  placeholder="Enter your email address"
-                  required
-                />
+              <div class="form-fields">
+                <div class="form-row">
+                  <label for="name">Full Name</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    v-model="formData.name" 
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+                
+                <div class="form-row">
+                  <label for="email">Email Address</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    v-model="formData.email" 
+                    placeholder="Enter your email address"
+                    required
+                  />
+                </div>
+                
+                <div class="form-row">
+                  <label for="phone">Phone Number</label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    v-model="formData.phone" 
+                    placeholder="Enter your phone number"
+                  />
+                </div>
               </div>
               
-              <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input 
-                  type="tel" 
-                  id="phone" 
-                  v-model="formData.phone" 
-                  placeholder="Enter your phone number"
-                />
-              </div>
-              
-              <div class="form-group">
-                <label for="company">Company Name</label>
-                <input 
-                  type="text" 
-                  id="company" 
-                  v-model="formData.company" 
-                  placeholder="Enter your company name"
-                />
-              </div>
-              
-              <div class="form-group full-width">
-                <label for="website">Website URL</label>
-                <input 
-                  type="url" 
-                  id="website" 
-                  v-model="formData.website" 
-                  placeholder="https://yourwebsite.com"
-                />
-              </div>
-              
-              <div class="form-group full-width">
-                <label for="industry">Industry</label>
-                <select id="industry" v-model="formData.industry">
-                  <option value="">Select your industry</option>
-                  <option value="ecommerce">E-commerce</option>
-                  <option value="saas">SaaS/Tech</option>
-                  <option value="healthcare">Healthcare</option>
-                  <option value="finance">Finance</option>
-                  <option value="education">Education</option>
-                  <option value="real-estate">Real Estate</option>
-                  <option value="consulting">Consulting</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              
-              <div class="form-group full-width">
-                <label for="goals">Marketing Goals</label>
-                <textarea 
-                  id="goals" 
-                  v-model="formData.goals" 
-                  placeholder="What are your main marketing objectives? (e.g., increase brand awareness, generate more leads, improve conversion rates)"
-                  rows="4"
-                ></textarea>
-              </div>
-              
-              <div class="form-group full-width">
-                <label for="challenges">Current Challenges</label>
-                <textarea 
-                  id="challenges" 
-                  v-model="formData.challenges" 
-                  placeholder="What marketing challenges are you currently facing?"
-                  rows="3"
-                ></textarea>
+              <div class="form-actions">
+                <button type="button" class="next-btn" @click="nextSection" :disabled="!canProceedToNext">
+                  <span>Next</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
               </div>
             </div>
             
-            <div class="form-actions">
-              <button type="submit" class="submit-btn">
-                <i class="fas fa-rocket"></i>
-                <span>Get Free Assessment</span>
-              </button>
+            <!-- Section 2: Business Details -->
+            <div v-show="currentSection === 2" class="form-section">
+              <div class="section-header-small">
+                <h4 class="section-title-small">Business Details</h4>
+                <p class="section-description-small">Tell us more about your business and goals</p>
+              </div>
+              
+              <div class="form-fields">
+                <div class="form-row">
+                  <label for="company">Company Name</label>
+                  <input 
+                    type="text" 
+                    id="company" 
+                    v-model="formData.company" 
+                    placeholder="Enter your company name"
+                  />
+                </div>
+                
+                <div class="form-row">
+                  <label for="website">Website URL</label>
+                  <input 
+                    type="url" 
+                    id="website" 
+                    v-model="formData.website" 
+                    placeholder="https://yourwebsite.com"
+                  />
+                </div>
+                
+                <div class="form-row">
+                  <label for="industry">Industry</label>
+                  <select id="industry" v-model="formData.industry">
+                    <option value="">Select your industry</option>
+                    <option value="ecommerce">E-commerce</option>
+                    <option value="saas">SaaS/Tech</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="finance">Finance</option>
+                    <option value="education">Education</option>
+                    <option value="real-estate">Real Estate</option>
+                    <option value="consulting">Consulting</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                
+                <div class="form-row">
+                  <label for="goals">Marketing Goals</label>
+                  <textarea 
+                    id="goals" 
+                    v-model="formData.goals" 
+                    placeholder="What are your main marketing objectives? (e.g., increase brand awareness, generate more leads, improve conversion rates)"
+                    rows="4"
+                  ></textarea>
+                </div>
+                
+                <div class="form-row">
+                  <label for="challenges">Current Challenges</label>
+                  <textarea 
+                    id="challenges" 
+                    v-model="formData.challenges" 
+                    placeholder="What marketing challenges are you currently facing?"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+              
+              <div class="form-actions">
+                <button type="button" class="back-btn" @click="previousSection">
+                  <i class="fas fa-arrow-left"></i>
+                  <span>Back</span>
+                </button>
+                <button type="submit" class="submit-btn">
+                  <i class="fas fa-rocket"></i>
+                  <span>Get Free Assessment</span>
+                </button>
+              </div>
             </div>
           </form>
           
@@ -183,6 +225,7 @@ export default {
   name: 'SimpleMarketingAssessment',
   data() {
     return {
+      currentSection: 1,
       formData: {
         name: '',
         email: '',
@@ -204,6 +247,14 @@ export default {
       scrollObserver: null
     };
   },
+  computed: {
+    canProceedToNext() {
+      if (this.currentSection === 1) {
+        return this.formData.name.trim() !== '' && this.formData.email.trim() !== '';
+      }
+      return true;
+    }
+  },
   mounted() {
     this.initSlideUpAnimations();
     this.initTypingEffect();
@@ -215,10 +266,20 @@ export default {
     }
   },
   methods: {
+    nextSection() {
+      if (this.currentSection < 2) {
+        this.currentSection++;
+      }
+    },
+    previousSection() {
+      if (this.currentSection > 1) {
+        this.currentSection--;
+      }
+    },
     submitAssessment() {
       console.log("Assessment submitted:", this.formData);
       alert("Thank you for your interest! We will send your free assessment report shortly.");
-      // Reset form
+      // Reset form and go back to first section
       this.formData = {
         name: '',
         email: '',
@@ -229,6 +290,7 @@ export default {
         goals: '',
         challenges: '',
       };
+      this.currentSection = 1;
     },
     submitContactForm() {
       console.log("Contact form submitted:", this.contactFormData);
@@ -297,14 +359,14 @@ export default {
               entry.target.style.opacity = '1';
             }
             
-            // Animate form fields sequentially
-            if (entry.target.classList.contains('form-group')) {
-              const delay = Array.from(entry.target.parentNode.children).indexOf(entry.target) * 100;
-              setTimeout(() => {
-                entry.target.style.transform = 'translateX(0)';
-                entry.target.style.opacity = '1';
-              }, delay);
-            }
+                  // Animate form fields sequentially
+      if (entry.target.classList.contains('form-row')) {
+        const delay = Array.from(entry.target.parentNode.children).indexOf(entry.target) * 100;
+        setTimeout(() => {
+          entry.target.style.transform = 'translateX(0)';
+          entry.target.style.opacity = '1';
+        }, delay);
+      }
           }
         });
       }, {
@@ -314,10 +376,10 @@ export default {
 
       // Observe form elements for scroll animations
       const formCard = document.querySelector('.form-card');
-      const formGroups = document.querySelectorAll('.form-group');
+      const formRows = document.querySelectorAll('.form-row');
       
       if (formCard) this.scrollObserver.observe(formCard);
-      formGroups.forEach(group => this.scrollObserver.observe(group));
+      formRows.forEach(row => this.scrollObserver.observe(row));
     }
   }
 };
@@ -478,11 +540,13 @@ export default {
   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.form-group {
+.form-row {
   transform: translateX(-30px);
   opacity: 0;
   transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
+
 
 /* Enhanced hover effects for ribbons */
 .radial-ribbon:hover {
@@ -562,16 +626,87 @@ export default {
     font-size: 1.6rem;
   }
   
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
+  .submit-btn {
+    padding: 14px 28px;
+    font-size: 1rem;
+  }
+  
+  /* Progress indicator small screens */
+  .form-progress {
+    max-width: 280px;
+    margin-bottom: 30px;
+  }
+  
+  .step-number {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+  
+  .step-label {
+    font-size: 0.75rem;
+    margin-top: 6px;
+  }
+  
+  /* Form sections small screens */
+  .section-header-small {
+    margin-bottom: 25px;
+    padding-left: 5px;
+  }
+  
+  .section-title-small {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+  
+  .section-description-small {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  /* Form rows small screens */
+  .form-row {
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .form-row label {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  
+  .form-row input,
+  .form-row select,
+  .form-row textarea {
     padding: 12px 16px;
     font-size: 0.95rem;
   }
   
-  .submit-btn {
-    padding: 14px 28px;
-    font-size: 1rem;
+  /* Ensure full width on small screens */
+  .form-section,
+  .form-fields {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  /* Center section headers on small screens */
+  .section-header-small {
+    text-align: center;
+    padding-left: 0;
+  }
+  
+  /* Navigation buttons small screens */
+  .next-btn, .back-btn {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+  
+  /* Center form actions on small screens */
+  .form-actions {
+    justify-content: center;
   }
   
   /* BRANDING + PERFORMANCE Section - iPhone SE Specific */
@@ -808,6 +943,7 @@ export default {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   position: relative;
   overflow: hidden;
+  text-align: center;
 }
 
 .form-card::before {
@@ -843,41 +979,54 @@ export default {
   text-align: center;
   max-width: 600px;
   margin: 0 auto 40px auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
-/* Form Grid */
+/* Form Fields Layout */
 .assessment-form {
   margin-bottom: 40px;
+  width: 100%;
+  text-align: center;
+  align-items: center;
 }
 
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.form-fields {
+  display: flex;
+  flex-direction: column;
   gap: 25px;
+  width: 100%;
+  max-width: 600px;
+  align-items: center;
+  margin: 0 auto;
 }
 
-.form-group {
-  position: relative;
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 600px;
+  justify-content: center;
 }
 
-.form-group.full-width {
-  grid-column: 1 / -1;
-}
-
-.form-group label {
-  display: block;
+.form-row label {
+  flex: 0 0 200px;
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
   color: #374151;
-  margin-bottom: 8px;
-  transition: all 0.3s ease;
+  margin: 0;
+  padding-top: 14px;
+  line-height: 1.4;
+  text-align: left;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
+.form-row input,
+.form-row select,
+.form-row textarea {
+  flex: 1;
   padding: 14px 18px;
   border: 2px solid #e5e7eb;
   border-radius: 12px;
@@ -887,33 +1036,110 @@ export default {
   background: #ffffff;
   transition: all 0.3s ease;
   box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
 }
 
-.form-group input::placeholder,
-.form-group select::placeholder,
-.form-group textarea::placeholder {
+.form-row input::placeholder,
+.form-row select::placeholder,
+.form-row textarea::placeholder {
   color: #9ca3af;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
   outline: none;
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   transform: translateY(-1px);
 }
 
-.form-group textarea {
+.form-row textarea {
   resize: vertical;
   min-height: 100px;
 }
 
-/* Form Actions */
-.form-actions {
+/* Progress Indicator Styles */
+.form-progress {
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  background-color: #e0e7ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  margin-top: 40px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #3b82f6;
+  border: 2px solid #3b82f6;
+  transition: all 0.3s ease;
+}
+
+.progress-step.active .step-number {
+  background-color: #3b82f6;
+  color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+.progress-step.completed .step-number {
+  background-color: #10b981;
+  color: #ffffff;
+  border-color: #10b981;
+}
+
+.step-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-top: 8px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.progress-step.active .step-label {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.progress-step.completed .step-label {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.progress-line {
+  position: absolute;
+  top: 20px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: #e0e7ff;
+  z-index: 0;
+  transition: background 0.3s ease;
+}
+
+.progress-line.completed {
+  background: linear-gradient(90deg, #3b82f6, #10b981);
 }
 
 .submit-btn {
@@ -1197,6 +1423,181 @@ export default {
   box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
 }
 
+/* Progress Indicator Styles */
+.form-progress {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  background-color: #e0e7ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #3b82f6;
+  border: 2px solid #3b82f6;
+  transition: all 0.3s ease;
+}
+
+.progress-step.active .step-number {
+  background-color: #3b82f6;
+  color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+.progress-step.completed .step-number {
+  background-color: #10b981;
+  color: #ffffff;
+  border-color: #10b981;
+}
+
+.step-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-top: 8px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.progress-step.active .step-label {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.progress-step.completed .step-label {
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* Form Section Styles */
+.form-section {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-header-small {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-left: 0;
+}
+
+.section-title-small {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.8rem;
+  color: #1e293b;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.section-description-small {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #64748b;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Navigation Buttons */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  gap: 20px;
+}
+
+.next-btn, .back-btn {
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.next-btn {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
+}
+
+.next-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(59, 130, 246, 0.35);
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+}
+
+.next-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.back-btn {
+  background: transparent;
+  color: #64748b;
+  border: 2px solid #e5e7eb;
+}
+
+.back-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #475569;
+  transform: translateY(-2px);
+}
+
+.next-btn i, .back-btn i {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.next-btn:hover:not(:disabled) i {
+  transform: translateX(4px);
+}
+
+.back-btn:hover i {
+  transform: translateX(-4px);
+}
+
 /* Slide Up Element Animations */
 .slide-up-element {
   opacity: 0;
@@ -1219,11 +1620,6 @@ export default {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .form-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
   .form-card {
     padding: 40px;
   }
@@ -1258,6 +1654,13 @@ export default {
     font-size: 1rem;
   }
   
+  /* Form card padding for smaller screens */
+  @media (max-width: 480px) {
+    .form-card {
+      padding: 25px;
+    }
+  }
+  
   .header-icon {
     width: 60px;
     height: 60px;
@@ -1268,6 +1671,75 @@ export default {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+  }
+  
+  /* Progress indicator responsive */
+  .form-progress {
+    max-width: 300px;
+  }
+  
+  .step-number {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  .step-label {
+    font-size: 0.8rem;
+  }
+  
+  /* Form sections responsive */
+  .section-title-small {
+    font-size: 1.6rem;
+  }
+  
+  .section-description-small {
+    font-size: 0.9rem;
+  }
+  
+  /* Form rows responsive */
+  .form-row {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .form-row label {
+    flex: none;
+    width: 100%;
+    padding-top: 0;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  
+  /* Ensure form sections take full width on mobile */
+  .form-section {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .form-fields {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  /* Center form actions on mobile */
+  .form-actions {
+    justify-content: center;
+  }
+  
+  /* Navigation buttons responsive */
+  .form-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .next-btn, .back-btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .branding-performance-section {
@@ -1309,24 +1781,24 @@ export default {
     font-size: 1rem;
   }
   
-  .form-card {
-    padding: 25px;
-  }
-  
   .form-title {
     font-size: 1.6rem;
-  }
-  
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: 12px 16px;
-    font-size: 0.95rem;
   }
   
   .submit-btn {
     padding: 14px 28px;
     font-size: 1rem;
+  }
+  
+  /* Form sections centering on small screens */
+  .form-section {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .form-fields {
+    max-width: 100%;
+    margin: 0 auto;
   }
   
   /* BRANDING + PERFORMANCE Section - iPhone SE Specific */

@@ -48,16 +48,16 @@
         <div class="skyline-content">
           <div class="message-container">
             <!-- Pre-title -->
-            <div class="pre-title slide-up-element" data-delay="0.05">
+            <div class="ready-text slide-up-element" data-delay="0.05">
               <span class="typing-text" data-text="READY TO">READY TO</span>
             </div>
             
             <!-- Main Message -->
             <div class="main-message">
-              <div class="ready-text slide-up-element" data-delay="0.1">
+              <div class="make-text slide-up-element" data-delay="0.1">
                 <span class="typing-text" data-text="MAKE">MAKE</span>
               </div>
-              <div class="make-text slide-up-element" data-delay="0.15">
+              <div class="cash-text slide-up-element" data-delay="0.15">
                 <span class="typing-text" data-text="CASH?">CASH?</span>
               </div>
             </div>
@@ -470,14 +470,19 @@ export default {
 }
 
 .ready-text {
-  color: #1e293b;
+  font-family: 'Roboto Condensed', sans-serif;  /* subtle contrast */
+  font-size: 1rem;                              /* smaller than headline */
+  font-weight: 600;                             /* firm but not bold */
+  text-transform: uppercase;
+  letter-spacing: 0.15em;                       /* spaced-out label feel */
+  color: #475569;                               /* softer gray-blue */
   text-shadow: 0 2px 10px rgba(30, 41, 59, 0.1);
   opacity: 0;
   animation: slideInUp 1s ease-out 1s forwards;
 }
 
 .make-text {
-  color: #3b82f6;
+  color: #1c3256;
   text-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
   opacity: 0;
   animation: slideInUp 1s ease-out 1.3s forwards;
@@ -500,9 +505,9 @@ export default {
   right: 0;
   height: 6px;
   background: linear-gradient(90deg, #3b82f6, #60a5fa);
-  border-radius: 3px;
+  /* border-radius: 3px; */
   opacity: 0;
-  animation: expandWidth 1s ease-out 2.5s forwards;
+  /* animation: expandWidth 1s ease-out 2.5s forwards; */
 }
 
 /* Sub Message */

@@ -338,7 +338,7 @@ export default {
 
 .cta-button {
   padding: 16px 32px;
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   color: #ffffff;
   border: none;
   border-radius: 8px;
