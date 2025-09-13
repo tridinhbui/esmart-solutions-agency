@@ -2,7 +2,7 @@
   "navigation": {
     "home": "Home",
     "services": "Services",
-    "aboutUs": "About Us",
+    "about": "About",
     "process": "Process",
     "contact": "Contact",
     "aiCreator": "AI Creator",
@@ -10,7 +10,8 @@
     "achievements": "Achievements",
     "blog": "Blog",
     "products": "Products",
-    "signIn": "Sign In"
+    "signIn": "Sign In",
+    "startProject": "Start Project"
   },
   "sections": {
     "coreValues": "Core Values",
@@ -80,10 +81,8 @@
   "aiCreator": "AI Creator",
   "assessment": "Assessment",
   "achievements": "Achievements",
-  "blog": "Blog",
   "blogPage1": "Blog Page 1",
   "products": "Products",
-  "AboutUs": "About Us",
   "Process": "Process",
   "signIn": "Sign In",
   "AboutUs": {
@@ -390,7 +389,15 @@
       "viewAll": "View All",
       "savedContent": "Saved Content",
       "noProjects": "You don't have any projects yet",
-      "getStarted": "Get Started"
+      "getStarted": "Get Started",
+      "inProgress": "In Progress",
+      "finished": "Finished",
+      "noDescription": "No description provided",
+      "backToHome": "Back to Home",
+      "deleteConfirm": "Are you sure you want to delete this project?",
+      "deleteError": "An error occurred while deleting the project",
+      "deleteSuccess": "Project deleted successfully",
+      "deleteFailed": "Failed to delete the project"
     },
     "requirements": {
       "title": "Content Requirements",
@@ -642,5 +649,22 @@
         ]
       }
     ]
-  }
+  },
+  "blog": {
+    "title": "ESmart Solutions",
+    "subtitle": "Blog & Information",
+    "description": "Explore the latest trends, insights, and strategies in digital marketing, business growth, and technological innovation.",
+    "featured": "Featured Posts",
+    "readMore": "Read More",
+    "readLess": "Read Less",
+    "categories": {
+      "title": "Categories"
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "description": "Subscribe to receive the latest updates delivered to your inbox.",
+      "placeholder": "Enter your email"
+    }
+  },
+  "Sign Out": "Sign Out"
 }
