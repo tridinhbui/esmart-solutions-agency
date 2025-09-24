@@ -256,6 +256,24 @@
       "blog": "Blog"
     }
   },
+  "contactFooter": {
+    "brand": "ESMART SOLUTIONS",
+    "title": "Let’s connect",
+    "subtitle": "Reach us via any channel below.",
+    "address": "140 Nguyen Xien st, Thanh Xuan dist",
+    "altLocation": "Location",
+    "openInMaps": "Open in Maps",
+    "altPhone": "Phone",
+    "tapToCall": "Tap to call",
+    "altEmail": "Email",
+    "emailDisplay": "esmartsolutions.agency@gmail.com",
+    "sendEmail": "Send an email",
+    "altWebsite": "Website",
+    "websiteDisplay": "Esmartsolutions.com.vn",
+    "visitSite": "Visit site",
+    "businessHours": "Business hours: 9:00–18:00 ICT",
+    "copyright": "© 2024 ESmart Solutions Agency. All rights reserved."
+  },
   "hero": {
     "title": "ESmart Solutions Agency",
     "subtitle": "Transform Your Business",

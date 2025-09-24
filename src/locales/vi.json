@@ -84,7 +84,6 @@
   "achievements": "Thành tựu",
   "blogPage1": "Trang Blog 1",
   "products": "Sản phẩm",
-  "AboutUs": "Về Chúng Tôi",
   "Process": "Quy trình",
   "signIn": "Đăng nhập",
   "AboutUs": {
@@ -205,6 +204,24 @@
       "description": "Esmart Solution đã gây quỹ tài trợ và nhận được sự hợp tác chiến lược từ tổ chức Macalester Entrepreneurship and Innovation Fund có trụ sở tại Saint Paul, Minnesota."
     }
   },
+  "contactFooter": {
+    "brand": "ESMART SOLUTIONS",
+    "title": "Kết nối với chúng tôi",
+    "subtitle": "Liên hệ qua bất kỳ kênh nào bên dưới.",
+    "address": "140 Nguyễn Xiển, Thanh Xuân",
+    "altLocation": "Địa điểm",
+    "openInMaps": "Mở trong Bản đồ",
+    "altPhone": "Điện thoại",
+    "tapToCall": "Nhấn để gọi",
+    "altEmail": "Email",
+    "emailDisplay": "esmartsolutions.agency@gmail.com",
+    "sendEmail": "Gửi email",
+    "altWebsite": "Website",
+    "websiteDisplay": "Esmartsolutions.com.vn",
+    "visitSite": "Truy cập trang",
+    "businessHours": "Giờ làm việc: 9:00–18:00 ICT",
+    "copyright": "© 2024 ESmart Solutions Agency. Mọi quyền được bảo lưu."
+  },
   "footer": {
     "brand": "ESmart Solutions",
     "description": "Hiệu quả - Tôn trọng - Chuyên nghiệp.",
@@ -320,7 +337,7 @@
       "phone": "Hotline: 0123 456 789"
     }
   },
-  "process": {
+  "processStep": {
     "title": "Quy trình của chúng tôi",
     "closeButton": "Đóng",
     "steps": {

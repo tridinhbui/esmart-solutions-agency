@@ -17,18 +17,20 @@
       >
         <!-- header -->
         <div class="flex flex-col items-center gap-2 px-6 pt-6 text-center">
-          <span class="text-[10px] tracking-[0.2em] text-blue-500/80"
-            >ESMART SOLUTIONS</span
-          >
+          <span class="text-[10px] tracking-[0.2em] text-blue-500/80">
+            {{ $t("contactFooter.brand") }}
+          </span>
           <h2 class="text-xl font-semibold tracking-tight text-slate-800">
-            Let’s connect
+            {{ $t("contactFooter.title") }}
           </h2>
-          <p class="text-sm text-slate-500">Reach us via any channel below.</p>
+          <p class="text-sm text-slate-500">
+            {{ $t("contactFooter.subtitle") }}
+          </p>
         </div>
 
         <!-- items: row on md+ -->
         <ul class="px-4 py-5">
-          <li class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
+          <li class="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-2">
             <!-- Address -->
             <a
               href="https://maps.google.com/?q=140 Nguyen Xien st, Thanh Xuan dist"
@@ -44,7 +46,7 @@
                 ></span>
                 <img
                   src="@/assets/pin.png"
-                  alt="Location"
+                  :alt="$t('contactFooter.altLocation')"
                   class="contact-icon"
                 />
               </span>
@@ -52,11 +54,11 @@
                 <span
                   class="block truncate font-medium text-slate-700 underline-offset-4 group-hover:underline group-hover:text-blue-600"
                 >
-                  140 Nguyen Xien st, Thanh Xuan dist
+                  {{ $t("contactFooter.address") }}
                 </span>
-                <span class="mt-0.5 block text-xs text-blue-700/70"
-                  >Open in Maps</span
-                >
+                <span class="mt-0.5 block text-xs text-blue-700/70">
+                  {{ $t("contactFooter.openInMaps") }}
+                </span>
               </span>
             </a>
 
@@ -73,7 +75,7 @@
                 ></span>
                 <img
                   src="@/assets/phone-call.png"
-                  alt="Phone"
+                  :alt="$t('contactFooter.altPhone')"
                   class="contact-icon"
                 />
               </span>
@@ -83,9 +85,9 @@
                 >
                   +84 868 885 505
                 </span>
-                <span class="mt-0.5 block text-xs text-emerald-700/70"
-                  >Tap to call</span
-                >
+                <span class="mt-0.5 block text-xs text-emerald-700/70">
+                  {{ $t("contactFooter.tapToCall") }}
+                </span>
               </span>
             </a>
 
@@ -102,7 +104,7 @@
                 ></span>
                 <img
                   src="@/assets/email.png"
-                  alt="Email"
+                  :alt="$t('contactFooter.altEmail')"
                   class="contact-icon"
                 />
               </span>
@@ -110,11 +112,11 @@
                 <span
                   class="block truncate font-medium text-slate-700 underline-offset-4 group-hover:underline group-hover:text-violet-600"
                 >
-                  esmartsolutions.agency@gmail.com
+                  {{ $t("contactFooter.emailDisplay") }}
                 </span>
-                <span class="mt-0.5 block text-xs text-violet-700/70"
-                  >Send an email</span
-                >
+                <span class="mt-0.5 block text-xs text-violet-700/70">
+                  {{ $t("contactFooter.sendEmail") }}
+                </span>
               </span>
             </a>
 
@@ -133,7 +135,7 @@
                 ></span>
                 <img
                   src="@/assets/www.png"
-                  alt="Website"
+                  :alt="$t('contactFooter.altWebsite')"
                   class="contact-icon"
                 />
               </span>
@@ -141,11 +143,11 @@
                 <span
                   class="block truncate font-medium text-slate-700 underline-offset-4 group-hover:underline group-hover:text-amber-700"
                 >
-                  Esmartsolutions.com.vn
+                  {{ $t("contactFooter.websiteDisplay") }}
                 </span>
-                <span class="mt-0.5 block text-xs text-amber-700/70"
-                  >Visit site</span
-                >
+                <span class="mt-0.5 block text-xs text-amber-700/70">
+                  {{ $t("contactFooter.visitSite") }}
+                </span>
               </span>
             </a>
           </li>
@@ -155,8 +157,8 @@
         <div
           class="flex items-center justify-between border-t border-slate-100/80 px-6 py-4 text-xs text-slate-500"
         >
-          <p>© 2024 ESmart Solutions Agency. All rights reserved.</p>
-          <p class="hidden sm:block">Business hours: 9:00–18:00 ICT</p>
+          <p>{{ $t("contactFooter.copyright") }}</p>
+          <p class="hidden sm:block">{{ $t("contactFooter.businessHours") }}</p>
         </div>
       </div>
     </div>
