@@ -7,45 +7,29 @@
       <div class="quantum-orb orb-footer-3" />
       <div class="quantum-orb orb-footer-4" />
     </div>
-    
+
     <!-- Energy Grid -->
     <div class="footer-energy-grid">
-      <div
-        v-for="i in 4"
-        :key="'h-'+i"
-        class="grid-line horizontal"
-      />
-      <div
-        v-for="i in 6"
-        :key="'v-'+i"
-        class="grid-line vertical"
-      />
+      <div v-for="i in 4" :key="'h-' + i" class="grid-line horizontal" />
+      <div v-for="i in 6" :key="'v-' + i" class="grid-line vertical" />
     </div>
-    
+
     <!-- Floating Particles -->
     <div class="footer-particles">
-      <div
-        v-for="i in 12"
-        :key="i"
-        class="quantum-particle"
-      />
+      <div v-for="i in 12" :key="i" class="quantum-particle" />
     </div>
-    
+
     <!-- Quantum Lightning Effects -->
     <div class="footer-lightning-system">
-      <div
-        v-for="i in 3"
-        :key="'lightning-'+i"
-        class="lightning-bolt"
-      />
+      <div v-for="i in 3" :key="'lightning-' + i" class="lightning-bolt" />
     </div>
-    
+
     <!-- Revolutionary Holographic Overlay -->
     <div class="holographic-overlay">
       <div class="holo-pattern" />
       <div class="holo-scanlines" />
     </div>
-    
+
     <div class="footer-container">
       <!-- Revolutionary Brand Section -->
       <div class="quantum-brand-section">
@@ -59,10 +43,13 @@
           <div class="brand-matrix-effect" />
         </div>
         <div class="quantum-description">
-          {{ $t("footer.description") || "Revolutionizing digital experiences through quantum-powered solutions and breakthrough innovations." }}
+          {{
+            $t("footer.description") ||
+            "Revolutionizing digital experiences through quantum-powered solutions and breakthrough innovations."
+          }}
           <div class="description-glow" />
         </div>
-        
+
         <!-- Social Quantum Portals -->
         <div class="social-quantum-grid">
           <div
@@ -75,6 +62,10 @@
               <a
                 :href="social.url"
                 class="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                :aria-label="social.name"
+                :title="social.name"
               >
                 <i :class="social.icon" />
                 <div class="icon-quantum-field" />
@@ -84,7 +75,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Quantum Subscription Portal -->
       <div class="quantum-subscription">
         <div class="subscription-hologram">
@@ -98,17 +89,17 @@
                 v-model="emailInput"
                 class="quantum-input"
                 type="email"
-                :placeholder="$t('footer.subscribe.placeholder') || 'Enter your quantum coordinates...'"
-              >
+                :placeholder="
+                  $t('footer.subscribe.placeholder') ||
+                  'Enter your quantum coordinates...'
+                "
+              />
               <div class="input-quantum-glow" />
               <div class="input-hologram-layer" />
             </div>
-            <button
-              class="quantum-submit-btn"
-              @click="handleSubscribe"
-            >
+            <button class="quantum-submit-btn" @click="handleSubscribe">
               <div class="btn-quantum-core">
-                <span>{{ $t('footer.subscribe.submit') || "Launch" }}</span>
+                <span>{{ $t("footer.subscribe.submit") || "Launch" }}</span>
                 <div class="btn-energy-burst" />
                 <div class="btn-rocket-trail" />
               </div>
@@ -116,15 +107,11 @@
             </button>
           </div>
           <div class="subscription-quantum-effects">
-            <div
-              v-for="i in 3"
-              :key="'wave-'+i"
-              class="quantum-wave"
-            />
+            <div v-for="i in 3" :key="'wave-' + i" class="quantum-wave" />
           </div>
         </div>
       </div>
-      
+
       <!-- Quantum Navigation Grid -->
       <div class="quantum-nav-grid">
         <div class="nav-quantum-column">
@@ -138,30 +125,21 @@
             </div>
             <ul class="quantum-nav-list">
               <li>
-                <a
-                  href="/#intro"
-                  class="quantum-nav-link"
-                >
+                <a href="/#intro" class="quantum-nav-link">
                   <div class="link-energy-core" />
                   <span>{{ $t("footer.links.home") }}</span>
                   <div class="link-quantum-trail" />
                 </a>
               </li>
               <li>
-                <a
-                  href="/#about-us"
-                  class="quantum-nav-link"
-                >
+                <a href="/#about-us" class="quantum-nav-link">
                   <div class="link-energy-core" />
                   <span>{{ $t("footer.links.aboutUs") }}</span>
                   <div class="link-quantum-trail" />
                 </a>
               </li>
               <li>
-                <a
-                  href="/#process"
-                  class="quantum-nav-link"
-                >
+                <a href="/#process" class="quantum-nav-link">
                   <div class="link-energy-core" />
                   <span>{{ $t("footer.links.process") }}</span>
                   <div class="link-quantum-trail" />
@@ -171,7 +149,7 @@
             <div class="card-quantum-field" />
           </div>
         </div>
-        
+
         <div class="nav-quantum-column">
           <div class="nav-quantum-card">
             <div class="card-energy-border" />
@@ -183,30 +161,21 @@
             </div>
             <ul class="quantum-nav-list">
               <li>
-                <router-link
-                  to="/contact"
-                  class="quantum-nav-link"
-                >
+                <router-link to="/contact" class="quantum-nav-link">
                   <div class="link-energy-core" />
                   <span>{{ $t("footer.links.contact") }}</span>
                   <div class="link-quantum-trail" />
                 </router-link>
               </li>
               <li>
-                <a
-                  href="/#social-proof"
-                  class="quantum-nav-link"
-                >
+                <a href="/#social-proof" class="quantum-nav-link">
                   <div class="link-energy-core" />
                   <span>{{ $t("footer.links.socialProof") }}</span>
                   <div class="link-quantum-trail" />
                 </a>
               </li>
               <li>
-                <a
-                  href="/#achievements"
-                  class="quantum-nav-link"
-                >
+                <a href="/#achievements" class="quantum-nav-link">
                   <div class="link-energy-core" />
                   <span>{{ $t("footer.links.socialProof") }}</span>
                   <div class="link-quantum-trail" />
@@ -218,7 +187,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Quantum Footer Bottom -->
     <div class="quantum-footer-bottom">
       <div class="bottom-energy-line" />
@@ -229,11 +198,7 @@
         <div class="copyright-quantum-signature" />
       </div>
       <div class="footer-quantum-signature">
-        <div
-          v-for="i in 6"
-          :key="'sig-'+i"
-          class="signature-particle"
-        />
+        <div v-for="i in 6" :key="'sig-' + i" class="signature-particle" />
       </div>
     </div>
   </section>
@@ -244,24 +209,35 @@ export default {
   name: "FooterBar",
   data() {
     return {
-      emailInput: '',
+      emailInput: "",
       socialLinks: [
-        { name: 'facebook', icon: 'fab fa-facebook-f', url: '#' },
-        { name: 'twitter', icon: 'fab fa-twitter', url: '#' },
-        { name: 'linkedin', icon: 'fab fa-linkedin-in', url: '#' },
-        { name: 'instagram', icon: 'fab fa-instagram', url: '#' }
-      ]
+        {
+          name: "facebook",
+          icon: "fab fa-facebook-f",
+          url: "https://www.facebook.com/esmartsolution.agency",
+        },
+        {
+          name: "linkedin",
+          icon: "fab fa-linkedin-in",
+          url: "https://www.linkedin.com/company/e-smart-solutions-agency/",
+        },
+        {
+          name: "instagram",
+          icon: "fab fa-instagram",
+          url: "https://instagram.com/esmart.agency",
+        },
+      ],
     };
   },
   methods: {
     handleSubscribe() {
       if (this.emailInput) {
         // Handle subscription logic
-        console.log('Subscribing:', this.emailInput);
-        this.emailInput = '';
+        console.log("Subscribing:", this.emailInput);
+        this.emailInput = "";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -273,10 +249,27 @@ export default {
   --primary-color: rgba(255, 107, 53, 1);
   --secondary-color: rgba(245, 158, 11, 1);
   --tertiary-color: rgba(217, 119, 6, 1);
-  --gradient-magical: linear-gradient(135deg, rgba(255, 107, 53, 0.9) 0%, rgba(245, 158, 11, 0.8) 50%, rgba(217, 119, 6, 0.9) 100%);
-  --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-  --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, var(--tertiary-color) 100%);
-  --gradient-tertiary: linear-gradient(135deg, var(--tertiary-color) 0%, var(--primary-color) 100%);
+  --gradient-magical: linear-gradient(
+    135deg,
+    rgba(255, 107, 53, 0.9) 0%,
+    rgba(245, 158, 11, 0.8) 50%,
+    rgba(217, 119, 6, 0.9) 100%
+  );
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
+  --gradient-secondary: linear-gradient(
+    135deg,
+    var(--secondary-color) 0%,
+    var(--tertiary-color) 100%
+  );
+  --gradient-tertiary: linear-gradient(
+    135deg,
+    var(--tertiary-color) 0%,
+    var(--primary-color) 100%
+  );
 }
 
 /* Revolutionary Quantum Footer */
@@ -352,7 +345,12 @@ export default {
 
 .grid-line {
   position: absolute;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 107, 53, 0.3) 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 107, 53, 0.3) 50%,
+    transparent 100%
+  );
   animation: energyPulse 3s ease-in-out infinite;
 }
 
@@ -366,16 +364,43 @@ export default {
   height: 100%;
 }
 
-.grid-line.horizontal:nth-child(1) { top: 25%; animation-delay: 0s; }
-.grid-line.horizontal:nth-child(2) { top: 50%; animation-delay: 0.5s; }
-.grid-line.horizontal:nth-child(3) { top: 75%; animation-delay: 1s; }
-.grid-line.horizontal:nth-child(4) { bottom: 10%; animation-delay: 1.5s; }
+.grid-line.horizontal:nth-child(1) {
+  top: 25%;
+  animation-delay: 0s;
+}
+.grid-line.horizontal:nth-child(2) {
+  top: 50%;
+  animation-delay: 0.5s;
+}
+.grid-line.horizontal:nth-child(3) {
+  top: 75%;
+  animation-delay: 1s;
+}
+.grid-line.horizontal:nth-child(4) {
+  bottom: 10%;
+  animation-delay: 1.5s;
+}
 
-.grid-line.vertical:nth-child(5) { left: 16.66%; animation-delay: 0.3s; }
-.grid-line.vertical:nth-child(6) { left: 33.33%; animation-delay: 0.8s; }
-.grid-line.vertical:nth-child(7) { left: 50%; animation-delay: 1.3s; }
-.grid-line.vertical:nth-child(8) { left: 66.66%; animation-delay: 1.8s; }
-.grid-line.vertical:nth-child(9) { left: 83.33%; animation-delay: 2.3s; }
+.grid-line.vertical:nth-child(5) {
+  left: 16.66%;
+  animation-delay: 0.3s;
+}
+.grid-line.vertical:nth-child(6) {
+  left: 33.33%;
+  animation-delay: 0.8s;
+}
+.grid-line.vertical:nth-child(7) {
+  left: 50%;
+  animation-delay: 1.3s;
+}
+.grid-line.vertical:nth-child(8) {
+  left: 66.66%;
+  animation-delay: 1.8s;
+}
+.grid-line.vertical:nth-child(9) {
+  left: 83.33%;
+  animation-delay: 2.3s;
+}
 
 /* Floating Particles */
 .footer-particles {
@@ -396,18 +421,54 @@ export default {
   animation: particleFloat 6s linear infinite;
 }
 
-.quantum-particle:nth-child(1) { left: 10%; animation-delay: 0s; }
-.quantum-particle:nth-child(2) { left: 20%; animation-delay: 0.5s; }
-.quantum-particle:nth-child(3) { left: 30%; animation-delay: 1s; }
-.quantum-particle:nth-child(4) { left: 40%; animation-delay: 1.5s; }
-.quantum-particle:nth-child(5) { left: 50%; animation-delay: 2s; }
-.quantum-particle:nth-child(6) { left: 60%; animation-delay: 2.5s; }
-.quantum-particle:nth-child(7) { left: 70%; animation-delay: 3s; }
-.quantum-particle:nth-child(8) { left: 80%; animation-delay: 3.5s; }
-.quantum-particle:nth-child(9) { left: 90%; animation-delay: 4s; }
-.quantum-particle:nth-child(10) { left: 25%; animation-delay: 4.5s; }
-.quantum-particle:nth-child(11) { left: 65%; animation-delay: 5s; }
-.quantum-particle:nth-child(12) { left: 85%; animation-delay: 5.5s; }
+.quantum-particle:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+}
+.quantum-particle:nth-child(2) {
+  left: 20%;
+  animation-delay: 0.5s;
+}
+.quantum-particle:nth-child(3) {
+  left: 30%;
+  animation-delay: 1s;
+}
+.quantum-particle:nth-child(4) {
+  left: 40%;
+  animation-delay: 1.5s;
+}
+.quantum-particle:nth-child(5) {
+  left: 50%;
+  animation-delay: 2s;
+}
+.quantum-particle:nth-child(6) {
+  left: 60%;
+  animation-delay: 2.5s;
+}
+.quantum-particle:nth-child(7) {
+  left: 70%;
+  animation-delay: 3s;
+}
+.quantum-particle:nth-child(8) {
+  left: 80%;
+  animation-delay: 3.5s;
+}
+.quantum-particle:nth-child(9) {
+  left: 90%;
+  animation-delay: 4s;
+}
+.quantum-particle:nth-child(10) {
+  left: 25%;
+  animation-delay: 4.5s;
+}
+.quantum-particle:nth-child(11) {
+  left: 65%;
+  animation-delay: 5s;
+}
+.quantum-particle:nth-child(12) {
+  left: 85%;
+  animation-delay: 5.5s;
+}
 
 /* Lightning Effects */
 .footer-lightning-system {
@@ -423,7 +484,12 @@ export default {
   position: absolute;
   width: 2px;
   height: 100px;
-  background: linear-gradient(0deg, transparent 0%, var(--secondary-color) 50%, transparent 100%);
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    var(--secondary-color) 50%,
+    transparent 100%
+  );
   animation: lightningStrike 4s ease-in-out infinite;
   opacity: 0;
 }
@@ -577,7 +643,11 @@ export default {
   left: -5px;
   right: -5px;
   bottom: -5px;
-  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   border-radius: 8px;
   filter: blur(8px);
   opacity: 0.4;
@@ -692,6 +762,7 @@ export default {
   border-radius: 50%;
   filter: blur(5px);
   transition: all 0.5s ease;
+  pointer-events: none;
 }
 
 .social-portal:hover .portal-frame {
@@ -857,7 +928,12 @@ export default {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   transition: left 0.6s ease;
 }
 
@@ -910,9 +986,18 @@ export default {
   animation: waveMove 3s ease-in-out infinite;
 }
 
-.quantum-wave:nth-child(1) { animation-delay: 0s; opacity: 0.7; }
-.quantum-wave:nth-child(2) { animation-delay: 1s; opacity: 0.5; }
-.quantum-wave:nth-child(3) { animation-delay: 2s; opacity: 0.3; }
+.quantum-wave:nth-child(1) {
+  animation-delay: 0s;
+  opacity: 0.7;
+}
+.quantum-wave:nth-child(2) {
+  animation-delay: 1s;
+  opacity: 0.5;
+}
+.quantum-wave:nth-child(3) {
+  animation-delay: 2s;
+  opacity: 0.3;
+}
 
 /* Quantum Navigation Grid */
 .quantum-nav-grid {
@@ -947,7 +1032,11 @@ export default {
   border-radius: 20px;
   opacity: 0;
   transition: opacity 0.3s ease;
-  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   background-size: 400% 400%;
   animation: gradientShift 8s ease infinite;
 }
@@ -974,7 +1063,7 @@ export default {
 
 .title-quantum-dots::before,
 .title-quantum-dots::after {
-  content: '';
+  content: "";
   width: 6px;
   height: 6px;
   background: var(--primary-color);
@@ -1039,8 +1128,8 @@ export default {
 }
 
 .quantum-nav-link:hover .link-quantum-trail {
-    width: 100%;
-  }
+  width: 100%;
+}
 
 .card-quantum-field {
   position: absolute;
@@ -1152,132 +1241,280 @@ export default {
   animation: signatureFloat 4s ease-in-out infinite;
 }
 
-.signature-particle:nth-child(1) { left: 20%; animation-delay: 0s; }
-.signature-particle:nth-child(2) { left: 30%; animation-delay: 0.5s; }
-.signature-particle:nth-child(3) { left: 50%; animation-delay: 1s; }
-.signature-particle:nth-child(4) { left: 60%; animation-delay: 1.5s; }
-.signature-particle:nth-child(5) { left: 70%; animation-delay: 2s; }
-.signature-particle:nth-child(6) { left: 80%; animation-delay: 2.5s; }
+.signature-particle:nth-child(1) {
+  left: 20%;
+  animation-delay: 0s;
+}
+.signature-particle:nth-child(2) {
+  left: 30%;
+  animation-delay: 0.5s;
+}
+.signature-particle:nth-child(3) {
+  left: 50%;
+  animation-delay: 1s;
+}
+.signature-particle:nth-child(4) {
+  left: 60%;
+  animation-delay: 1.5s;
+}
+.signature-particle:nth-child(5) {
+  left: 70%;
+  animation-delay: 2s;
+}
+.signature-particle:nth-child(6) {
+  left: 80%;
+  animation-delay: 2.5s;
+}
 
 /* Animations */
 @keyframes orbitalFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-20px) rotate(90deg); }
-  50% { transform: translateY(-10px) rotate(180deg); }
-  75% { transform: translateY(-30px) rotate(270deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+  }
+  75% {
+    transform: translateY(-30px) rotate(270deg);
+  }
 }
 
 @keyframes energyPulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 @keyframes particleFloat {
-  0% { transform: translateY(100vh) scale(0); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(-10px) scale(1); opacity: 0; }
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10px) scale(1);
+    opacity: 0;
+  }
 }
 
 @keyframes lightningStrike {
-  0%, 90%, 100% { opacity: 0; }
-  5%, 15% { opacity: 1; }
+  0%,
+  90%,
+  100% {
+    opacity: 0;
+  }
+  5%,
+  15% {
+    opacity: 1;
+  }
 }
 
 @keyframes holoShift {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(20px); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(20px);
+  }
 }
 
 @keyframes scanlineMove {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(100px); }
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100px);
+  }
 }
 
 @keyframes titlePulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
 }
 
 @keyframes fieldPulse {
-  0%, 100% { opacity: 0.2; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.05); }
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.05);
+  }
 }
 
 @keyframes quantumGlow {
-  0%, 100% { opacity: 0.4; filter: hue-rotate(0deg); }
-  50% { opacity: 0.6; filter: hue-rotate(180deg); }
+  0%,
+  100% {
+    opacity: 0.4;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    opacity: 0.6;
+    filter: hue-rotate(180deg);
+  }
 }
 
 @keyframes matrixScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(50px); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50px);
+  }
 }
 
 @keyframes textGlow {
-  0%, 100% { opacity: 0.1; }
-  50% { opacity: 0.3; }
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
 }
 
 @keyframes ringRotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes labelGlow {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.4; }
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
 
 @keyframes holoShimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(200%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
 }
 
 @keyframes waveMove {
-  0%, 100% { transform: translateX(-100%); }
-  50% { transform: translateX(100%); }
+  0%,
+  100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
 }
 
 @keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes dotPulse {
-  0%, 100% { transform: scale(1); opacity: 0.7; }
-  50% { transform: scale(1.3); opacity: 1; }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
 }
 
 @keyframes coreGlow {
-  0%, 100% { box-shadow: 0 0 10px var(--primary-color); }
-  50% { box-shadow: 0 0 20px var(--secondary-color); }
+  0%,
+  100% {
+    box-shadow: 0 0 10px var(--primary-color);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--secondary-color);
+  }
 }
 
 @keyframes energyFlow {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @keyframes stripMove {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(40px); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(40px);
+  }
 }
 
 @keyframes copyrightGlow {
-  0%, 100% { opacity: 0.1; }
-  50% { opacity: 0.3; }
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
 }
 
 @keyframes signatureShimmer {
-  0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(1); }
-  50% { opacity: 0.6; transform: translateX(-50%) scale(1.1); }
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateX(-50%) scale(1.1);
+  }
 }
 
 @keyframes signatureFloat {
-  0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; }
-  50% { transform: translateY(-10px) scale(1.2); opacity: 1; }
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.2);
+    opacity: 1;
+  }
 }
 
 /* Responsive Design - Improved */
@@ -1286,7 +1523,7 @@ export default {
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
   }
-  
+
   .quantum-nav-grid {
     grid-template-columns: 1fr;
     grid-column: span 2;
@@ -1299,25 +1536,25 @@ export default {
     gap: 2.5rem;
     text-align: center;
   }
-  
+
   .quantum-nav-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     grid-column: span 1;
   }
-  
+
   .social-quantum-grid {
     justify-content: center;
   }
-  
+
   .quantum-subscription {
     order: 1;
   }
-  
+
   .quantum-brand-section {
     order: 2;
   }
-  
+
   .quantum-nav-grid {
     order: 3;
   }
@@ -1327,19 +1564,19 @@ export default {
   .quantum-footer {
     padding: 3rem 0 2rem;
   }
-  
+
   .footer-container {
     grid-template-columns: 1fr;
     gap: 2rem;
     padding: 0 1.5rem;
     text-align: center;
   }
-  
+
   .quantum-brand-title {
     font-size: 1.8rem;
     margin-bottom: 1rem;
   }
-  
+
   .quantum-description {
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
@@ -1347,7 +1584,7 @@ export default {
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   .quantum-input-portal {
     flex-direction: column;
     gap: 1rem;
@@ -1355,28 +1592,28 @@ export default {
     max-width: 350px;
     margin: 0 auto;
   }
-  
+
   .quantum-input {
     width: 100%;
   }
-  
+
   .quantum-submit-btn {
     width: 100%;
     max-width: 200px;
   }
-  
+
   .social-quantum-grid {
     justify-content: center;
     gap: 1.5rem;
     margin-top: 1.5rem;
   }
-  
+
   .quantum-nav-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
     margin-top: 1rem;
   }
-  
+
   .nav-quantum-card {
     padding: 1.5rem;
   }
@@ -1386,62 +1623,62 @@ export default {
   .quantum-footer {
     padding: 2rem 0 1.5rem;
   }
-  
+
   .footer-container {
     padding: 0 1rem;
     gap: 1.5rem;
   }
-  
+
   .quantum-brand-title {
     font-size: 1.6rem;
     margin-bottom: 0.75rem;
   }
-  
+
   .quantum-description {
     font-size: 0.9rem;
     line-height: 1.4;
     margin-bottom: 1.25rem;
   }
-  
+
   .subscription-hologram,
   .nav-quantum-card {
     padding: 1.25rem 0.75rem;
   }
-  
+
   .quantum-input-portal {
     gap: 0.75rem;
     max-width: 300px;
   }
-  
+
   .social-quantum-grid {
     gap: 1rem;
     margin-top: 1.25rem;
   }
-  
+
   .social-portal {
     width: 42px;
     height: 42px;
   }
-  
+
   .social-link {
     font-size: 0.95rem;
   }
-  
+
   .quantum-footer-bottom {
     margin-top: 2.5rem;
     padding-top: 1.25rem;
   }
-  
+
   .quantum-copyright {
     font-size: 0.85rem;
     line-height: 1.3;
   }
-  
+
   .nav-section-title {
     font-size: 1.1rem;
     margin-bottom: 1rem;
   }
-  
+
   .quantum-nav-link {
     font-size: 0.9rem;
     padding: 0.5rem 0;
@@ -1461,12 +1698,12 @@ export default {
   .quantum-footer {
     background: #000;
   }
-  
+
   .quantum-nav-link,
   .quantum-description {
     color: white;
   }
-  
+
   .quantum-input {
     border-color: white;
   }

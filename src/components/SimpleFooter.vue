@@ -117,10 +117,36 @@
         <div class="footer-bottom-content">
           <p class="copyright">{{ $t("simpleComponents.footer.copyright") }}</p>
           <div class="social-links">
-            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a
+              href="https://www.facebook.com/esmartsolution.agency"
+              class="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="ESmart on Facebook"
+              title="Facebook"
+            >
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/company/e-smart-solutions-agency/"
+              class="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="ESmart on LinkedIn"
+              title="LinkedIn"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="https://instagram.com/esmart.agency"
+              class="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="ESmart on Instagram"
+              title="Instagram"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -263,13 +289,13 @@ export default {
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 10px;
 }
 
 .form-group {
@@ -291,7 +317,7 @@ export default {
 
 .form-group input,
 .form-group textarea {
-  padding: 12px 16px;
+  padding: 12px 0px;
   border: 2px solid #e5e7eb;
   border-radius: 8px;
   font-family: "Inter", sans-serif;
