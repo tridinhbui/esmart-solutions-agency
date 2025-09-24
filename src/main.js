@@ -7,6 +7,7 @@ import "./assets/global.css";
 import "./assets/css/elegant-utilities.css";
 import i18n from "./i18n";
 import { createPinia } from "pinia";
+import "@fortawesome/fontawesome-free/css/all.css";
 
 createApp(App)
   .use(router)

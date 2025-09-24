@@ -2,11 +2,17 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   line-height: 1.6;
   color: #1e293b;
   overflow-x: hidden;
   background: #ffffff;
+}
+
+/* Global font-size boost: add ~4px to the base size so rem/em text increases app-wide */
+html {
+  /* 100% is typically 16px; +4px makes base 20px without hard-coding for all setups */
+  font-size: calc(100% + 2px);
 }
 
 * {
@@ -14,8 +20,13 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Inter', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   color: #1e293b;
   line-height: 1.2;
@@ -23,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: #64748b;
   line-height: 1.6;
 }
@@ -34,19 +45,19 @@ p {
   --primary-blue-dark: #2563eb;
   --primary-blue-light: #60a5fa;
   --primary-blue-bg: #eff6ff;
-  
+
   --text-primary: #1e293b;
   --text-secondary: #475569;
   --text-muted: #64748b;
-  
+
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
   --bg-tertiary: #f1f5f9;
-  
+
   --border-light: #e2e8f0;
   --border-medium: #cbd5e1;
   --border-dark: #94a3b8;
-  
+
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
@@ -61,7 +72,7 @@ p {
   padding: 12px 24px;
   border: none;
   border-radius: 12px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -152,7 +163,7 @@ img[src*="placeholder.com"] {
 }
 
 .fallback-image::before {
-  content: '⚠️';
+  content: "⚠️";
   position: absolute;
   top: 8px;
   right: 8px;
@@ -165,7 +176,12 @@ img[src*="placeholder.com"] {
 
 /* Loading states */
 .image-loading {
-  background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--bg-tertiary) 50%, var(--bg-secondary) 75%);
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 25%,
+    var(--bg-tertiary) 50%,
+    var(--bg-secondary) 75%
+  );
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
   border-radius: 8px;
@@ -308,7 +324,7 @@ img[src*="placeholder.com"] {
   padding: 12px 16px;
   border: 2px solid var(--border-light);
   border-radius: 12px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   color: var(--text-primary);
   background: var(--bg-primary);
@@ -344,11 +360,11 @@ img[src*="placeholder.com"] {
     padding: 10px 20px;
     font-size: 0.85rem;
   }
-  
+
   .flat-card {
     padding: 20px;
   }
-  
+
   .flat-input {
     padding: 10px 14px;
     font-size: 0.85rem;
@@ -360,11 +376,11 @@ img[src*="placeholder.com"] {
     padding: 8px 16px;
     font-size: 0.8rem;
   }
-  
+
   .flat-card {
     padding: 16px;
   }
-  
+
   .flat-input {
     padding: 8px 12px;
     font-size: 0.8rem;
