@@ -8,7 +8,7 @@
         </div>
         <div class="logo-text-container">
           <span class="logo-text">ESmart Solutions</span>
-          <span class="logo-subtitle">Digital Agency</span>
+          <span class="logo-subtitle">Marketing Agency</span>
         </div>
       </div>
 

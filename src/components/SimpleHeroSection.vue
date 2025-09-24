@@ -21,7 +21,7 @@
 
           <div class="company-info slide-up-element" data-delay="0.15">
             <span class="company-name">ESmart Solutions</span>
-            <span class="company-tagline">Digital Agency</span>
+            <span class="company-tagline">Marketing Agency</span>
           </div>
         </div>
 
