@@ -8,27 +8,19 @@
       <div class="quantum-orb orb-4" />
       <div class="energy-matrix">
         <div class="matrix-grid">
-          <div
-            v-for="i in 12"
-            :key="'cell-'+i"
-            class="grid-cell"
-          />
+          <div v-for="i in 12" :key="'cell-' + i" class="grid-cell" />
         </div>
       </div>
       <div class="floating-assessment-particles">
-        <div
-          v-for="i in 6"
-          :key="'particle-'+i"
-          class="quantum-particle"
-        />
+        <div v-for="i in 6" :key="'particle-' + i" class="quantum-particle" />
       </div>
     </div>
-    
+
     <!-- Revolutionary Title Section -->
     <div class="assessment-title-zone">
       <div class="title-quantum-frame">
         <h2 class="assessment-title">
-          Đánh Giá Marketing Miễn Phí
+          {{ $t("creatorAI.MarketingAssessment.title") }}
         </h2>
         <div class="title-holographic-border" />
       </div>
@@ -63,11 +55,7 @@
             >
               <div class="progress-energy-flow" />
               <div class="progress-particles">
-                <div
-                  v-for="i in 3"
-                  :key="'flow-'+i"
-                  class="flow-particle"
-                />
+                <div v-for="i in 3" :key="'flow-' + i" class="flow-particle" />
               </div>
             </div>
             <div class="progress-glow-effect" />
@@ -78,10 +66,7 @@
     </div>
 
     <form @submit.prevent="submitAnswers">
-      <transition
-        name="fade"
-        mode="out-in"
-      >
+      <transition name="fade" mode="out-in">
         <div
           v-if="currentQuestion"
           :key="currentQuestionIndex"
@@ -113,7 +98,7 @@
                 :value="index"
                 class="radio-input"
                 @change="selectAnswer(index)"
-              >
+              />
               <span class="answer-text">{{ answer.text }}</span>
             </label>
           </div>
@@ -152,49 +137,41 @@
     </form>
 
     <transition name="fade">
-      <div
-        v-if="report"
-        class="results-container"
-      >
+      <div v-if="report" class="results-container">
         <div class="score-card">
           <h3>{{ $t("creatorAI.MarketingAssessment.results.scoreTitle") }}</h3>
-          <div class="score-value">
-            {{ score }}<span>/100</span>
-          </div>
+          <div class="score-value">{{ score }}<span>/100</span></div>
         </div>
 
         <div class="report-sections">
           <div class="report-section strengths">
-            <h4>{{ $t("creatorAI.MarketingAssessment.results.strengthsTitle") }}</h4>
+            <h4>
+              {{ $t("creatorAI.MarketingAssessment.results.strengthsTitle") }}
+            </h4>
             <ul>
-              <li
-                v-for="strength in report.strengths"
-                :key="strength"
-              >
+              <li v-for="strength in report.strengths" :key="strength">
                 {{ strength }}
               </li>
             </ul>
           </div>
 
           <div class="report-section weaknesses">
-            <h4>{{ $t("creatorAI.MarketingAssessment.results.weaknessesTitle") }}</h4>
+            <h4>
+              {{ $t("creatorAI.MarketingAssessment.results.weaknessesTitle") }}
+            </h4>
             <ul>
-              <li
-                v-for="weakness in report.weaknesses"
-                :key="weakness"
-              >
+              <li v-for="weakness in report.weaknesses" :key="weakness">
                 {{ weakness }}
               </li>
             </ul>
           </div>
 
           <div class="report-section suggestions">
-            <h4>{{ $t("creatorAI.MarketingAssessment.results.suggestionsTitle") }}</h4>
+            <h4>
+              {{ $t("creatorAI.MarketingAssessment.results.suggestionsTitle") }}
+            </h4>
             <ul>
-              <li
-                v-for="suggestion in report.suggestions"
-                :key="suggestion"
-              >
+              <li v-for="suggestion in report.suggestions" :key="suggestion">
                 {{ suggestion }}
               </li>
             </ul>
@@ -233,9 +210,7 @@ export default {
             `Translation path 'MarketingAssessment.questions' not found for locale ${locale}`
           );
           // Return empty array or fallback to English if available
-          return (
-            this.$i18n.messages["en"]?.creatorAI?.questions || []
-          );
+          return this.$i18n.messages["en"]?.creatorAI?.questions || [];
         }
       } catch (error) {
         console.error("Error accessing translation:", error);
@@ -249,7 +224,9 @@ export default {
       return this.questions[this.currentQuestionIndex];
     },
     progressPercentage() {
-      return this.questions.length > 0 ? (this.completedQuestions / this.questions.length) * 100 : 0;
+      return this.questions.length > 0
+        ? (this.completedQuestions / this.questions.length) * 100
+        : 0;
     },
     allQuestionsAnswered() {
       return this.answers.every((answer) => answer !== undefined);
@@ -337,7 +314,8 @@ export default {
 <style scoped>
 /* Revolutionary Base Styles */
 .assessment {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
   color: white;
   padding: 6rem 2rem;
   background: linear-gradient(135deg, #181824 0%, #23234a 100%);
@@ -441,12 +419,36 @@ export default {
   animation: particleFloat 4s linear infinite;
 }
 
-.quantum-particle:nth-child(1) { top: 20%; left: 30%; animation-delay: 0s; }
-.quantum-particle:nth-child(2) { top: 70%; right: 20%; animation-delay: 1s; }
-.quantum-particle:nth-child(3) { bottom: 30%; left: 60%; animation-delay: 2s; }
-.quantum-particle:nth-child(4) { top: 50%; right: 50%; animation-delay: 3s; }
-.quantum-particle:nth-child(5) { bottom: 60%; right: 70%; animation-delay: 4s; }
-.quantum-particle:nth-child(6) { top: 80%; left: 20%; animation-delay: 5s; }
+.quantum-particle:nth-child(1) {
+  top: 20%;
+  left: 30%;
+  animation-delay: 0s;
+}
+.quantum-particle:nth-child(2) {
+  top: 70%;
+  right: 20%;
+  animation-delay: 1s;
+}
+.quantum-particle:nth-child(3) {
+  bottom: 30%;
+  left: 60%;
+  animation-delay: 2s;
+}
+.quantum-particle:nth-child(4) {
+  top: 50%;
+  right: 50%;
+  animation-delay: 3s;
+}
+.quantum-particle:nth-child(5) {
+  bottom: 60%;
+  right: 70%;
+  animation-delay: 4s;
+}
+.quantum-particle:nth-child(6) {
+  top: 80%;
+  left: 20%;
+  animation-delay: 5s;
+}
 
 .container {
   max-width: 800px;
@@ -510,7 +512,9 @@ h2 {
 }
 
 /* Question card */
-.question-card, .score-card, .report-section {
+.question-card,
+.score-card,
+.report-section {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   border-radius: 18px;
@@ -523,7 +527,9 @@ h2 {
   z-index: 10;
 }
 
-.question-card:hover, .score-card:hover, .report-section:hover {
+.question-card:hover,
+.score-card:hover,
+.report-section:hover {
   box-shadow: 0 8px 32px rgba(255, 107, 53, 0.3), 0 2px 12px rgba(0, 0, 0, 0.2);
   transform: translateY(-4px);
 }
@@ -784,7 +790,7 @@ h2 {
   .assessment {
     padding: 4rem 1rem;
   }
-  
+
   .question-card {
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -799,16 +805,16 @@ h2 {
     width: 100%;
     padding: 1rem;
   }
-  
+
   .answer-option {
     padding: 1rem;
     font-size: 0.95rem;
   }
-  
+
   .quantum-orb {
     display: none;
   }
-  
+
   .container {
     padding: 0;
   }
@@ -816,7 +822,8 @@ h2 {
 
 /* Simplified Animations */
 @keyframes orbFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
     opacity: 0.3;
   }
@@ -827,7 +834,8 @@ h2 {
 }
 
 @keyframes particleFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
     opacity: 0.5;
   }
@@ -838,10 +846,11 @@ h2 {
 }
 
 .quantum-assessment-title {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 2.5rem;
   font-weight: 800;
-  text-shadow: 0 0 10px rgba(255, 107, 53, 0.5), 0 0 20px rgba(255, 107, 53, 0.3);
+  text-shadow: 0 0 10px rgba(255, 107, 53, 0.5),
+    0 0 20px rgba(255, 107, 53, 0.3);
   letter-spacing: -0.05em;
   margin: 0;
   padding: 0;

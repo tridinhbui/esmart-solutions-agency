@@ -10,7 +10,9 @@
     "achievements": "Thành tựu",
     "blog": "Blog",
     "products": "Sản phẩm",
-    "signIn": "Đăng nhập"
+    "signIn": "Đăng nhập",
+    "start": "Bắt đầu",
+    "project": "Dự án"
   },
   "sections": {
     "coreValues": "Giá Trị Cốt Lõi",
@@ -80,7 +82,6 @@
   "aiCreator": "AI Creator",
   "assessment": "Đánh giá",
   "achievements": "Thành tựu",
-  "blog": "Blog",
   "blogPage1": "Trang Blog 1",
   "products": "Sản phẩm",
   "AboutUs": "Về Chúng Tôi",
@@ -226,6 +227,10 @@
     "subtitle": "Chuyển đổi Doanh nghiệp của Bạn",
     "description": "ESmart Solutions Agency là đối tác, người bạn đồng hành chuyên nghiệp cùng doanh nghiệp Việt Nam trên hành trình xây dựng và phát triển thương hiệu uy tín, chất lượng.",
     "badge": "Dẫn đầu Đổi mới Kỹ thuật số",
+    "allStartsWith": "TẤT CẢ BẮT ĐẦU VỚI MỘT",
+    "conversation": "CUỘC TRÒ CHUYỆN",
+    "startYourDream": "BẮT ĐẦU ƯỚC MƠ CỦA BẠN",
+    "readyToTransform": "Sẵn sàng biến đổi doanh nghiệp của bạn?",
     "stats": {
       "projects": "Dự án",
       "satisfaction": "Hài lòng",
@@ -235,7 +240,9 @@
       "getStarted": "Bắt đầu ngay",
       "watchDemo": "Xem Demo",
       "join": "Tham gia",
-      "contact": "Liên hệ"
+      "contact": "Liên hệ",
+      "getStartedToday": "BẮT ĐẦU NGAY HÔM NAY",
+      "learnMore": "Tìm hiểu thêm"
     },
     "trustedBy": "Được tin cậy bởi hơn 1000+ công ty",
     "cards": {
@@ -244,7 +251,7 @@
         "description": "Theo dõi và phân tích hiệu suất marketing với báo cáo chi tiết, giúp tối ưu hóa chiến lược kinh doanh"
       },
       "team": {
-        "title": "Đội ngũ chuyên nghiệp", 
+        "title": "Đội ngũ chuyên nghiệp",
         "description": "Đội ngũ chuyên gia giàu kinh nghiệm, cam kết mang đến dịch vụ chất lượng cao và hỗ trợ 24/7"
       },
       "growth": {
@@ -271,7 +278,7 @@
         "icon": "🎨"
       },
       "1": {
-        "title": "Tích hợp WooCommerce hoàn chỉnh", 
+        "title": "Tích hợp WooCommerce hoàn chỉnh",
         "description": "Xây dựng cửa hàng trực tuyến mạnh mẽ với đầy đủ tính năng thanh toán, quản lý đơn hàng và báo cáo chi tiết.",
         "icon": "🛒"
       },
@@ -403,6 +410,164 @@
         "title": "Xây dựng từ 2 Năm Kinh nghiệm",
         "description": "Esmart Solutions được xây dựng trên nền tảng trong lĩnh vực quảng cáo và quản lý truyền thông số kênh."
       }
+    }
+  },
+  "simpleComponents": {
+    "hero": {
+      "allStartsWith": "TẤT CẢ BẮT ĐẦU VỚI MỘT",
+      "conversation": "CUỘC TRÒ CHUYỆN",
+      "startYourDream": "BẮT ĐẦU ƯỚC MƠ CỦA BẠN"
+    },
+    "aboutUs": {
+      "readyTo": "SẴN SÀNG",
+      "make": "KIẾM",
+      "cash": "TIỀN?",
+      "subMessage": "Hãy biến ý tưởng của bạn thành hiện thực sinh lời",
+      "startProject": "BẮT ĐẦU DỰ ÁN",
+      "learnMore": "TÌM HIỂU THÊM"
+    },
+    "features": {
+      "title": "GIẢI PHÁP CHIẾN LƯỢC CHO TĂNG TRƯỞNG DOANH NGHIỆP",
+      "description1": "Chúng tôi mang đến <span class=\"highlight\">kết quả đo lường được</span> giúp thúc đẩy doanh nghiệp của bạn tiến lên.",
+      "description2": "Biến đổi sự hiện diện kỹ thuật số của bạn với các chiến lược đã được chứng minh.",
+      "getStartedToday": "BẮT ĐẦU NGAY HÔM NAY",
+      "learnMore": "Tìm hiểu thêm",
+      "whatWeOffer": "CHÚNG TÔI CUNG CẤP GÌ",
+      "whatWeOfferDesc": "Chúng tôi cung cấp các giải pháp kỹ thuật số toàn diện mang lại <strong>kết quả</strong>. Với <strong>Esmart Solutions</strong>, bạn có được nhiều hơn chỉ là các dịch vụ – bạn có được một đối tác chiến lược cam kết với sự tăng trưởng và thành công của bạn.",
+      "services": {
+        "digitalGrowth": {
+          "title": "Giải pháp Tăng trưởng Số",
+          "description": "Các chiến lược tăng trưởng chiến lược tập trung vào khách hàng và doanh thu."
+        },
+        "brandIdentity": {
+          "title": "Nhận diện Thương hiệu & Thiết kế",
+          "description": "Xây dựng một thương hiệu mạnh mẽ, đặc biệt nổi bật."
+        },
+        "communicationContent": {
+          "title": "Nội dung Truyền thông",
+          "description": "Phát triển nội dung sáng tạo và truyền thông hiệu quả."
+        }
+      }
+    },
+    "socialProof": {
+      "title": "ĐỐI TÁC VÀ KHÁCH HÀNG TUYỆT VỜI CỦA CHÚNG TÔI",
+      "trustIndicators": {
+        "trustedCustomers": {
+          "number": "500+",
+          "label": "Khách hàng Tin tưởng"
+        },
+        "successfulProjects": {
+          "number": "1000+",
+          "label": "Dự án Thành công"
+        },
+        "satisfactionRate": {
+          "number": "98%",
+          "label": "Tỷ lệ Hài lòng"
+        }
+      }
+    },
+    "testimonials": [
+      {
+        "text": "ESmart Solutions đã giúp chúng tôi tăng lưu lượng truy cập website 300% và doanh thu trực tuyến 150%. Đội ngũ cực kỳ chuyên nghiệp!",
+        "name": "John Smith",
+        "position": "CEO"
+      },
+      {
+        "text": "Dịch vụ SEO của ESmart thực sự hiệu quả. Website của chúng tôi đã lên TOP 3 Google chỉ trong 3 tháng.",
+        "name": "Sarah Johnson",
+        "position": "Quản lý Marketing"
+      },
+      {
+        "text": "Thiết kế website đẹp, hiện đại với trải nghiệm người dùng được tối ưu. Rất hài lòng với kết quả!",
+        "name": "Michael Brown",
+        "position": "Founder"
+      },
+      {
+        "text": "Chiến dịch marketing của ESmart đã giúp thương hiệu chúng tôi được biết đến rộng rãi hơn.",
+        "name": "Emily Davis",
+        "position": "Quản lý Thương hiệu"
+      },
+      {
+        "text": "Hệ thống CRM tùy chỉnh của ESmart đã tối ưu hóa quy trình bán hàng, tăng hiệu quả 200%.",
+        "name": "David Wilson",
+        "position": "Giám đốc Bán hàng"
+      },
+      {
+        "text": "Dự án marketing tự động hóa đã tiết kiệm 60% thời gian và tăng 180% khách hàng tiềm năng chất lượng.",
+        "name": "Lisa Anderson",
+        "position": "Trưởng phòng Marketing"
+      }
+    ],
+    "footer": {
+      "getInTouch": "LIÊN HỆ",
+      "readyToStart": "SẴN SÀNG BẮT ĐẦU?",
+      "makeYourDreams": "Hãy biến ước mơ của bạn thành hiện thực",
+      "copyright": "© 2024 ESmart Solutions Agency. Tất cả quyền được bảo lưu.",
+      "form": {
+        "name": "Tên",
+        "namePlaceholder": "Nhập tên của bạn",
+        "email": "Email",
+        "emailPlaceholder": "Nhập địa chỉ email của bạn",
+        "phone": "Điện thoại",
+        "phonePlaceholder": "Nhập số điện thoại của bạn",
+        "channel": "Kênh",
+        "channelPlaceholder": "Nhập liên kết kênh của bạn",
+        "message": "Tin nhắn",
+        "messagePlaceholder": "Cho chúng tôi biết làm thế nào chúng tôi có thể giúp...",
+        "sendMessage": "Gửi tin nhắn"
+      }
+    },
+    "assessment": {
+      "formTitle": "Sẵn sàng Biến đổi Doanh nghiệp của Bạn?",
+      "formDescription": "Khám phá cách tiếp cận chiến lược của chúng tôi có thể mang lại kết quả thực sự cho doanh nghiệp của bạn. Nhận thông tin chi tiết, khuyến nghị và lộ trình rõ ràng để thành công.",
+      "personalInfo": "Thông tin Cá nhân",
+      "personalInfoDesc": "Hãy bắt đầu với thông tin liên hệ cơ bản của bạn",
+      "businessDetails": "Chi tiết Doanh nghiệp",
+      "businessDetailsDesc": "Cho chúng tôi biết thêm về doanh nghiệp và mục tiêu của bạn",
+      "form": {
+        "fullName": "Họ và Tên",
+        "fullNamePlaceholder": "Nhập họ và tên đầy đủ",
+        "emailAddress": "Địa chỉ Email",
+        "emailPlaceholder": "Nhập địa chỉ email của bạn",
+        "phoneNumber": "Số Điện thoại",
+        "phonePlaceholder": "Nhập số điện thoại của bạn",
+        "companyName": "Tên Công ty",
+        "companyPlaceholder": "Nhập tên công ty của bạn",
+        "websiteUrl": "URL Website",
+        "websitePlaceholder": "https://website-cua-ban.com",
+        "industry": "Ngành nghề",
+        "selectIndustry": "Chọn ngành nghề của bạn",
+        "ecommerce": "Thương mại điện tử",
+        "saas": "SaaS/Công nghệ",
+        "healthcare": "Chăm sóc sức khỏe",
+        "finance": "Tài chính",
+        "education": "Giáo dục",
+        "realEstate": "Bất động sản",
+        "consulting": "Tư vấn",
+        "manufacturing": "Sản xuất",
+        "retail": "Bán lẻ",
+        "other": "Khác",
+        "next": "Tiếp theo",
+        "previous": "Trước đó",
+        "submit": "Gửi Đánh giá",
+        "marketingGoals": "Mục tiêu Marketing",
+        "marketingGoalsPlaceholder": "Mục tiêu marketing chính của bạn là gì? (ví dụ: tăng nhận biết thương hiệu, tạo thêm khách hàng tiềm năng, cải thiện tỷ lệ chuyển đổi)",
+        "currentChallenges": "Thách thức Hiện tại",
+        "challengesPlaceholder": "Bạn đang gặp những thách thức marketing nào?"
+      }
+    },
+    "benefits": {
+      "analysisReport": "Báo cáo phân tích toàn diện",
+      "strategicRecommendations": "Khuyến nghị chiến lược",
+      "actionableRoadmap": "Lộ trình hành động cụ thể"
+    },
+    "brandingPerformance": {
+      "title1": "KHÔNG CÒN THẤT BẠI",
+      "title2": "CHỈ CÓ TIỀN THẬT",
+      "subtitle": "Bạn không cần thêm một chiến dịch khó có thể thành công nữa.",
+      "highlightSubtitle": "Bạn cần một đối tác marketing làm cho quầy thu ngân kêu leng keng.",
+      "primaryCta": "HÃY ĐỂ CHÚNG TÔI KIẾM TIỀN CHO BẠN",
+      "secondaryCta": "Hãy nói chuyện"
     }
   },
   "blog": {

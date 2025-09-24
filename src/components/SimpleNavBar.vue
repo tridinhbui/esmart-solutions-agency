@@ -1,5 +1,5 @@
 <template>
-  <nav class="simple-navbar" :class="{ 'scrolled': isScrolled }">
+  <nav class="simple-navbar" :class="{ scrolled: isScrolled }">
     <div class="nav-container">
       <!-- Logo -->
       <div class="nav-logo">
@@ -16,30 +16,46 @@
       <div class="nav-links">
         <router-link to="/" class="nav-link">
           <i class="fas fa-home"></i>
-          <span>Home</span>
+          <span>{{ $t("navigation.home") }}</span>
         </router-link>
         <router-link to="/features" class="nav-link">
           <i class="fas fa-cogs"></i>
-          <span>Services</span>
+          <span>{{ $t("navigation.services") }}</span>
         </router-link>
         <router-link to="/about-us" class="nav-link">
           <i class="fas fa-info-circle"></i>
-          <span>About</span>
+          <span>{{ $t("navigation.aboutUs") }}</span>
         </router-link>
         <router-link to="/contact" class="nav-link">
           <i class="fas fa-envelope"></i>
-          <span>Contact</span>
+          <span>{{ $t("navigation.contact") }}</span>
         </router-link>
       </div>
 
       <!-- Language Selector -->
       <div class="language-selector">
-        <button class="lang-btn" :class="{ 'active': currentLanguage === 'en' }" @click="setLanguage('en')">
-          <img src="@/assets/english-flag.png" alt="English" class="flag-icon">
+        <button
+          class="lang-btn"
+          :class="{ active: currentLanguage === 'en' }"
+          @click="setLanguage('en')"
+        >
+          <img
+            src="@/assets/english-flag.png"
+            alt="English"
+            class="flag-icon"
+          />
           <span>EN</span>
         </button>
-        <button class="lang-btn" :class="{ 'active': currentLanguage === 'vi' }" @click="setLanguage('vi')">
-          <img src="@/assets/vietnamese-flag.png" alt="Vietnamese" class="flag-icon">
+        <button
+          class="lang-btn"
+          :class="{ active: currentLanguage === 'vi' }"
+          @click="setLanguage('vi')"
+        >
+          <img
+            src="@/assets/vietnamese-flag.png"
+            alt="Vietnamese"
+            class="flag-icon"
+          />
           <span>VI</span>
         </button>
       </div>
@@ -47,8 +63,8 @@
       <!-- CTA Button -->
       <button class="nav-cta">
         <i class="fas fa-play"></i>
-        <span>Start</span>
-        <span class="cta-project">Project</span>
+        <span>{{ $t("navigation.start") }}</span>
+        <span class="cta-project">{{ $t("navigation.project") }}</span>
       </button>
 
       <!-- Mobile Menu Toggle -->
@@ -63,19 +79,31 @@
     <div class="mobile-menu" :class="{ 'mobile-menu-open': isMobileMenuOpen }">
       <router-link to="/" class="mobile-menu-link" @click="closeMobileMenu">
         <i class="fas fa-home"></i>
-        <span>Home</span>
+        <span>{{ $t("navigation.home") }}</span>
       </router-link>
-      <router-link to="/features" class="mobile-menu-link" @click="closeMobileMenu">
+      <router-link
+        to="/features"
+        class="mobile-menu-link"
+        @click="closeMobileMenu"
+      >
         <i class="fas fa-cogs"></i>
-        <span>Services</span>
+        <span>{{ $t("navigation.services") }}</span>
       </router-link>
-      <router-link to="/about-us" class="mobile-menu-link" @click="closeMobileMenu">
+      <router-link
+        to="/about-us"
+        class="mobile-menu-link"
+        @click="closeMobileMenu"
+      >
         <i class="fas fa-info-circle"></i>
-        <span>About</span>
+        <span>{{ $t("navigation.aboutUs") }}</span>
       </router-link>
-      <router-link to="/contact" class="mobile-menu-link" @click="closeMobileMenu">
+      <router-link
+        to="/contact"
+        class="mobile-menu-link"
+        @click="closeMobileMenu"
+      >
         <i class="fas fa-envelope"></i>
-        <span>Contact</span>
+        <span>{{ $t("navigation.contact") }}</span>
       </router-link>
       <button class="mobile-cta" @click="startProject">
         <i class="fas fa-play"></i>
@@ -87,19 +115,19 @@
 
 <script>
 export default {
-  name: 'SimpleNavBar',
+  name: "SimpleNavBar",
   data() {
     return {
       isScrolled: false,
       isMobileMenuOpen: false,
-      currentLanguage: 'en' // Default to English
+      currentLanguage: "en", // Default to English
     };
   },
   mounted() {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll);
   },
   beforeUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
     handleScroll() {
@@ -114,24 +142,22 @@ export default {
     scrollToSection(sectionId) {
       const element = document.getElementById(sectionId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: "smooth" });
         this.closeMobileMenu();
       }
     },
     startProject() {
-      // Scroll to contact section
-      const contactSection = document.querySelector('.simple-footer');
+      const contactSection = document.querySelector(".simple-footer");
       if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
+        contactSection.scrollIntoView({ behavior: "smooth" });
       }
     },
     setLanguage(lang) {
       this.currentLanguage = lang;
-      // You can add logic here to change the language of the website
-      // For example, if you have a language switcher component, you'd update it here
+      this.$i18n.locale = lang; // ✅ Correct way in Options API
       console.log(`Language set to: ${lang}`);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -202,7 +228,7 @@ export default {
 }
 
 .logo-text {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
   color: #1e293b;
@@ -210,7 +236,7 @@ export default {
 }
 
 .logo-subtitle {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.7rem;
   font-weight: 500;
   color: #64748b;
@@ -226,7 +252,7 @@ export default {
 }
 
 .nav-link {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
   color: #475569;
@@ -271,18 +297,18 @@ export default {
   background: #f8fafc;
   border: 2px solid #e2e8f0;
   color: #475569;
-  padding: 8px 12px;      /* vertical + horizontal padding */
+  padding: 8px 12px; /* vertical + horizontal padding */
   border-radius: 12px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
-  gap: 8px;              /* space between flag and text */
-  min-height: 48px;         
-  line-height: 1; 
+  gap: 8px; /* space between flag and text */
+  min-height: 48px;
+  line-height: 1;
 }
 
 .lang-btn:hover {
@@ -312,11 +338,11 @@ export default {
 
 @media (max-width: 1100px) {
   .lang-btn span {
-    display: none;        /* hide text */
+    display: none; /* hide text */
   }
 
   .lang-btn {
-    gap: 8;               /* remove text gap */
+    gap: 8; /* remove text gap */
   }
   .flag-icon {
     width: 28px;
@@ -334,7 +360,7 @@ export default {
   border: none;
   padding: 12px 24px;
   border-radius: 12px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -413,7 +439,7 @@ export default {
   padding: 16px 24px;
   color: #475569;
   text-decoration: none;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.95rem;
   font-weight: 500;
   border-bottom: 1px solid #f1f5f9;
@@ -439,7 +465,7 @@ export default {
   color: #ffffff;
   border: none;
   padding: 16px 24px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
@@ -465,29 +491,29 @@ export default {
     width: 95%;
     height: 65px;
   }
-  
+
   .nav-links,
   .language-selector,
   .nav-cta {
     display: none;
   }
-  
+
   .mobile-menu-toggle {
     display: flex;
   }
-  
+
   .nav-container {
     padding: 0 1.5rem;
   }
-  
+
   .logo-text {
     font-size: 1.3rem;
   }
-  
+
   .logo-subtitle {
     font-size: 0.65rem;
   }
-  
+
   .logo-icon {
     width: 36px;
     height: 36px;
@@ -501,27 +527,27 @@ export default {
     width: 98%;
     height: 60px;
   }
-  
+
   .mobile-menu {
     top: 80px;
   }
-  
+
   .nav-container {
     padding: 0 1rem;
   }
-  
+
   .logo-text {
     font-size: 1.2rem;
   }
-  
+
   .logo-subtitle {
     font-size: 0.6rem;
   }
-  
+
   .logo-icon {
     width: 32px;
     height: 32px;
     font-size: 14px;
   }
 }
-</style> 
+</style>

@@ -18,27 +18,31 @@
           <div class="company-icon slide-up-element" data-delay="0.1">
             <i class="fas fa-rocket"></i>
           </div>
-          
+
           <div class="company-info slide-up-element" data-delay="0.15">
             <span class="company-name">ESmart Solutions</span>
             <span class="company-tagline">Digital Agency</span>
           </div>
         </div>
-        
+
         <!-- Main Title -->
         <div class="hero-title">
-          <span class="title-main slide-up-element" data-delay="0.2">ALL STARTS WITH A</span>
-          <span class="title-accent slide-up-element" data-delay="0.25">CONVERSATION</span>
+          <span class="title-main slide-up-element" data-delay="0.2">{{
+            $t("simpleComponents.hero.allStartsWith")
+          }}</span>
+          <span class="title-accent slide-up-element" data-delay="0.25">{{
+            $t("simpleComponents.hero.conversation")
+          }}</span>
         </div>
-        
+
         <!-- Action Buttons -->
         <div class="action-buttons">
-          <button 
+          <button
             class="cta-primary flat-btn slide-up-element"
             data-delay="0.3"
             @click="scrollToAssessment"
           >
-            START YOUR DREAM
+            {{ $t("simpleComponents.hero.startYourDream") }}
           </button>
         </div>
       </div>
@@ -48,7 +52,7 @@
 
 <script>
 export default {
-  name: 'SimpleHeroSection',
+  name: "SimpleHeroSection",
   data() {
     return {
       // Stats data removed as stats section is no longer needed
@@ -59,31 +63,36 @@ export default {
   },
   methods: {
     scrollToAssessment() {
-      const assessmentSection = document.querySelector('.simple-marketing-assessment');
+      const assessmentSection = document.querySelector(
+        ".simple-marketing-assessment"
+      );
       if (assessmentSection) {
-        assessmentSection.scrollIntoView({ behavior: 'smooth' });
+        assessmentSection.scrollIntoView({ behavior: "smooth" });
       }
     },
     initSlideUpAnimations() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const delay = parseFloat(entry.target.dataset.delay) || 0;
-            setTimeout(() => {
-              entry.target.classList.add('animate-in');
-            }, delay * 1000);
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const delay = parseFloat(entry.target.dataset.delay) || 0;
+              setTimeout(() => {
+                entry.target.classList.add("animate-in");
+              }, delay * 1000);
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        }
+      );
 
       // Observe all slide-up elements
-      const slideUpElements = document.querySelectorAll('.slide-up-element');
-      slideUpElements.forEach(el => observer.observe(el));
-    }
-  }
+      const slideUpElements = document.querySelectorAll(".slide-up-element");
+      slideUpElements.forEach((el) => observer.observe(el));
+    },
+  },
 };
 </script>
 
@@ -192,7 +201,7 @@ export default {
 }
 
 .company-name {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   color: #1e293b;
@@ -200,7 +209,7 @@ export default {
 }
 
 .company-tagline {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
   color: #64748b;
@@ -217,7 +226,7 @@ export default {
 }
 
 .title-main {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   color: #1e293b;
@@ -227,7 +236,7 @@ export default {
 }
 
 .title-accent {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   color: #3b82f6;
@@ -250,7 +259,7 @@ export default {
   padding: 16px 32px;
   border: none;
   border-radius: 12px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -312,7 +321,7 @@ export default {
 }
 
 .stat-number {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #1e293b;
@@ -320,7 +329,7 @@ export default {
 }
 
 .stat-label {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
   color: #64748b;
@@ -341,54 +350,66 @@ export default {
 }
 
 /* Staggered Animation Delays */
-.slide-up-element[data-delay="0.05"] { transition-delay: 0.05s; }
-.slide-up-element[data-delay="0.1"] { transition-delay: 0.1s; }
-.slide-up-element[data-delay="0.15"] { transition-delay: 0.15s; }
-.slide-up-element[data-delay="0.2"] { transition-delay: 0.2s; }
-.slide-up-element[data-delay="0.25"] { transition-delay: 0.25s; }
-.slide-up-element[data-delay="0.3"] { transition-delay: 0.3s; }
+.slide-up-element[data-delay="0.05"] {
+  transition-delay: 0.05s;
+}
+.slide-up-element[data-delay="0.1"] {
+  transition-delay: 0.1s;
+}
+.slide-up-element[data-delay="0.15"] {
+  transition-delay: 0.15s;
+}
+.slide-up-element[data-delay="0.2"] {
+  transition-delay: 0.2s;
+}
+.slide-up-element[data-delay="0.25"] {
+  transition-delay: 0.25s;
+}
+.slide-up-element[data-delay="0.3"] {
+  transition-delay: 0.3s;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .simple-hero {
     padding: 100px 0 60px;
   }
-  
+
   .title-main,
   .title-accent {
     font-size: 2.5rem;
   }
-  
+
   .company-name {
     font-size: 1.2rem;
   }
-  
+
   .company-tagline {
     font-size: 0.8rem;
   }
-  
+
   .action-buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .flat-btn {
     width: 100%;
     max-width: 300px;
     justify-content: center;
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .company-icon {
     width: 60px;
     height: 60px;
     font-size: 24px;
   }
-  
+
   .company-name {
     font-size: 1.5rem;
   }
@@ -398,21 +419,21 @@ export default {
   .simple-hero {
     padding: 80px 0 40px;
   }
-  
+
   .title-main,
   .title-accent {
     font-size: 2rem;
     letter-spacing: -0.5px;
   }
-  
+
   .company-name {
     font-size: 1rem;
   }
-  
+
   .company-tagline {
     font-size: 0.7rem;
   }
-  
+
   .flat-btn {
     padding: 14px 24px;
     font-size: 0.9rem;

@@ -1,36 +1,36 @@
 <template>
   <div class="home-page">
     <!-- Hero Section -->
-    <div class="hero-wrapper" style="padding-top: 0;">
+    <div class="hero-wrapper" style="padding-top: 0">
       <SimpleHeroSection />
     </div>
-    
+
     <!-- Main Sections -->
     <div class="main-sections-container">
       <!-- Social Proof Section -->
       <SimpleSocialProof />
-      
-      <!-- Marketing Assessment Section -->
+
+      <!-- Marketing Assessment Ssection -->
       <SimpleMarketingAssessment />
-      
+
       <!-- Features Section -->
       <SimpleFeatures />
-      
+
       <!-- Testimonials Section -->
       <SimpleTestimonial />
-      
+
       <!-- About Us Section -->
       <SimpleAboutUs />
     </div>
-    
+
     <!-- Footer -->
     <section id="footer" class="footer-section">
       <SimpleFooter />
     </section>
-    
+
     <!-- Chat Bot -->
     <ChatBot />
-    
+
     <!-- Go To Top Button -->
     <GoToTopButton v-if="showScrollTop" />
   </div>
@@ -66,10 +66,10 @@ export default {
     };
   },
   mounted() {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll);
   },
   beforeUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
     handleScroll() {

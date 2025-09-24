@@ -11,7 +11,7 @@ const messages = {
 };
 
 const i18n = createI18n({
-  locale: "vi", // default locale - changed to Vietnamese
+  locale: "en", // default locale - changed to English
   messages,
 });
 

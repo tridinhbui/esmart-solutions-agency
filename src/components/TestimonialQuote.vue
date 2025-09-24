@@ -1,9 +1,6 @@
 <template>
   <!-- Revolutionary Quantum Testimonials Section -->
-  <section
-    id="testimonials"
-    class="quantum-testimonials-zone"
-  >
+  <section id="testimonials" class="quantum-testimonials-zone">
     <!-- Revolutionary Quantum Background System -->
     <div class="testimonials-quantum-background">
       <!-- Quantum Orbs System -->
@@ -13,7 +10,7 @@
         <div class="quantum-orb orb-3" />
         <div class="quantum-orb orb-4" />
       </div>
-      
+
       <!-- Energy Grid System -->
       <div class="testimonials-energy-grid">
         <div class="energy-line line-1" />
@@ -25,14 +22,10 @@
         <div class="energy-line line-7" />
         <div class="energy-line line-8" />
       </div>
-      
+
       <!-- Floating Quantum Particles -->
       <div class="testimonials-floating-particles">
-        <div
-          v-for="i in 12"
-          :key="'particle-'+i"
-          class="quantum-particle"
-        />
+        <div v-for="i in 12" :key="'particle-' + i" class="quantum-particle" />
       </div>
     </div>
 
@@ -72,10 +65,7 @@
       data-aos="fade-up"
       data-aos-delay="300"
     >
-      <div
-        ref="testimonialTrack"
-        class="testimonials-track scroller__inner"
-      >
+      <div ref="testimonialTrack" class="testimonials-track scroller__inner">
         <!-- First set of testimonials -->
         <div
           v-for="(testimonial, index) in testimonials"
@@ -90,37 +80,39 @@
                 :src="getImageUrl(testimonial.image)"
                 :alt="testimonial.name"
                 class="avatar-image"
-              >
+              />
             </div>
 
             <!-- Customer Info -->
             <div class="customer-info">
               <h3 class="customer-name">
-                {{ $t("socialProof.testimonial" + (index + 1) + ".name") }}
+                {{
+                  $t("socialProof.testimonial" + testimonial.index + ".name")
+                }}
               </h3>
               <h4 class="customer-title">
-                {{ $t("socialProof.testimonial" + (index + 1) + ".title") }}
+                {{
+                  $t("socialProof.testimonial" + testimonial.index + ".title")
+                }}
               </h4>
-              
+
               <!-- Simple Stars -->
               <div class="stars-container">
-                <i
-                  v-for="n in 5"
-                  :key="n"
-                  class="fas fa-star star-icon"
-                />
+                <i v-for="n in 5" :key="n" class="fas fa-star star-icon" />
               </div>
             </div>
 
             <!-- Testimonial Content -->
             <div class="testimonial-content">
               <p class="testimonial-text">
-                {{ $t("socialProof.testimonial" + (index + 1) + ".text") }}
+                {{
+                  $t("socialProof.testimonial" + testimonial.index + ".text")
+                }}
               </p>
             </div>
           </div>
         </div>
-        
+
         <!-- Duplicate testimonials for seamless infinite scroll -->
         <div
           v-for="(testimonial, index) in testimonials"
@@ -135,32 +127,34 @@
                 :src="getImageUrl(testimonial.image)"
                 :alt="testimonial.name"
                 class="avatar-image"
-              >
+              />
             </div>
 
             <!-- Customer Info -->
             <div class="customer-info">
               <h3 class="customer-name">
-                {{ $t("socialProof.testimonial" + (index + 1) + ".name") }}
+                {{
+                  $t("socialProof.testimonial" + testimonial.index + ".name")
+                }}
               </h3>
               <h4 class="customer-title">
-                {{ $t("socialProof.testimonial" + (index + 1) + ".title") }}
+                {{
+                  $t("socialProof.testimonial" + testimonial.index + ".title")
+                }}
               </h4>
-              
+
               <!-- Simple Stars -->
               <div class="stars-container">
-                <i
-                  v-for="n in 5"
-                  :key="n"
-                  class="fas fa-star star-icon"
-                />
+                <i v-for="n in 5" :key="n" class="fas fa-star star-icon" />
               </div>
             </div>
 
             <!-- Testimonial Content -->
             <div class="testimonial-content">
               <p class="testimonial-text">
-                {{ $t("socialProof.testimonial" + (index + 1) + ".text") }}
+                {{
+                  $t("socialProof.testimonial" + testimonial.index + ".text")
+                }}
               </p>
             </div>
           </div>
@@ -176,17 +170,20 @@ export default {
   data() {
     return {
       translateX: 0,
-      testimonials: [
-        { image: "testimonial1.jpg" },
-        { image: "testimonial2.jpg" },
-        { image: "testimonial3.jpg" },
-        { image: "testimonial4.jpg" },
-        { image: "testimonial5.jpg" },
-        { image: "testimonial6.jpg" },
-      ],
     };
   },
   computed: {
+    testimonials() {
+      // Get testimonials from translation data
+      return [
+        { image: "testimonial1.jpg", index: 1 },
+        { image: "testimonial2.jpg", index: 2 },
+        { image: "testimonial3.jpg", index: 3 },
+        { image: "testimonial4.jpg", index: 4 },
+        { image: "testimonial5.jpg", index: 5 },
+        { image: "testimonial6.jpg", index: 6 },
+      ];
+    },
     trackWidth() {
       return this.testimonials.length * 380; // Updated for larger quantum cards
     },
@@ -194,10 +191,13 @@ export default {
   mounted() {
     this.startAutoSlide();
     const scroller = this.$refs.scroller;
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && scroller) {
-      if (!scroller.getAttribute('data-cloned')) {
+    if (
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+      scroller
+    ) {
+      if (!scroller.getAttribute("data-cloned")) {
         scroller.setAttribute("data-animated", true);
-        scroller.setAttribute('data-cloned', 'true');
+        scroller.setAttribute("data-cloned", "true");
         const scrollerInner = scroller.querySelector(".scroller__inner");
         const scrollerContent = Array.from(scrollerInner.children);
         scrollerContent.forEach((item) => {
@@ -235,12 +235,38 @@ export default {
   --quantum-blue: rgba(59, 130, 246, 1);
   --quantum-purple: rgba(139, 92, 246, 1);
   --quantum-green: rgba(34, 197, 94, 1);
-  --gradient-magical: linear-gradient(135deg, rgba(255, 107, 53, 0.9) 0%, rgba(245, 158, 11, 0.8) 50%, rgba(217, 119, 6, 0.9) 100%);
-  --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-  --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, var(--tertiary-color) 100%);
-  --gradient-tertiary: linear-gradient(135deg, var(--tertiary-color) 0%, var(--primary-color) 100%);
-  --gradient-quantum: linear-gradient(135deg, var(--quantum-blue) 0%, var(--quantum-purple) 50%, var(--primary-color) 100%);
-  --gradient-cyber: linear-gradient(135deg, var(--quantum-green) 0%, var(--quantum-blue) 100%);
+  --gradient-magical: linear-gradient(
+    135deg,
+    rgba(255, 107, 53, 0.9) 0%,
+    rgba(245, 158, 11, 0.8) 50%,
+    rgba(217, 119, 6, 0.9) 100%
+  );
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
+  --gradient-secondary: linear-gradient(
+    135deg,
+    var(--secondary-color) 0%,
+    var(--tertiary-color) 100%
+  );
+  --gradient-tertiary: linear-gradient(
+    135deg,
+    var(--tertiary-color) 0%,
+    var(--primary-color) 100%
+  );
+  --gradient-quantum: linear-gradient(
+    135deg,
+    var(--quantum-blue) 0%,
+    var(--quantum-purple) 50%,
+    var(--primary-color) 100%
+  );
+  --gradient-cyber: linear-gradient(
+    135deg,
+    var(--quantum-green) 0%,
+    var(--quantum-blue) 100%
+  );
   --success-color: var(--quantum-green);
   --text-primary: #1f2937;
   --text-secondary: #6b7280;
@@ -328,20 +354,79 @@ export default {
 
 .energy-line {
   position: absolute;
-  background: linear-gradient(90deg, transparent 0%, var(--quantum-blue) 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--quantum-blue) 50%,
+    transparent 100%
+  );
   height: 1px;
   animation: energyLineFlow 4s linear infinite;
   opacity: 0.6;
 }
 
-.line-1 { top: 10%; width: 40%; left: 0; animation-delay: 0s; }
-.line-2 { top: 25%; width: 60%; right: 0; animation-delay: 0.5s; }
-.line-3 { top: 40%; width: 35%; left: 30%; animation-delay: 1s; }
-.line-4 { top: 55%; width: 50%; right: 0; animation-delay: 1.5s; }
-.line-5 { top: 70%; width: 45%; left: 0; animation-delay: 2s; }
-.line-6 { top: 85%; width: 55%; right: 10%; animation-delay: 2.5s; }
-.line-7 { left: 20%; height: 30%; width: 1px; top: 0; background: linear-gradient(0deg, transparent 0%, var(--quantum-green) 50%, transparent 100%); animation-delay: 3s; }
-.line-8 { right: 25%; height: 25%; width: 1px; bottom: 0; background: linear-gradient(0deg, transparent 0%, var(--primary-color) 50%, transparent 100%); animation-delay: 3.5s; }
+.line-1 {
+  top: 10%;
+  width: 40%;
+  left: 0;
+  animation-delay: 0s;
+}
+.line-2 {
+  top: 25%;
+  width: 60%;
+  right: 0;
+  animation-delay: 0.5s;
+}
+.line-3 {
+  top: 40%;
+  width: 35%;
+  left: 30%;
+  animation-delay: 1s;
+}
+.line-4 {
+  top: 55%;
+  width: 50%;
+  right: 0;
+  animation-delay: 1.5s;
+}
+.line-5 {
+  top: 70%;
+  width: 45%;
+  left: 0;
+  animation-delay: 2s;
+}
+.line-6 {
+  top: 85%;
+  width: 55%;
+  right: 10%;
+  animation-delay: 2.5s;
+}
+.line-7 {
+  left: 20%;
+  height: 30%;
+  width: 1px;
+  top: 0;
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    var(--quantum-green) 50%,
+    transparent 100%
+  );
+  animation-delay: 3s;
+}
+.line-8 {
+  right: 25%;
+  height: 25%;
+  width: 1px;
+  bottom: 0;
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    var(--primary-color) 50%,
+    transparent 100%
+  );
+  animation-delay: 3.5s;
+}
 
 /* Floating Quantum Particles */
 .testimonials-floating-particles {
@@ -360,18 +445,66 @@ export default {
   box-shadow: 0 0 10px var(--primary-color);
 }
 
-.quantum-particle:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-.quantum-particle:nth-child(2) { top: 20%; left: 80%; animation-delay: 0.5s; }
-.quantum-particle:nth-child(3) { top: 30%; left: 30%; animation-delay: 1s; }
-.quantum-particle:nth-child(4) { top: 40%; right: 20%; animation-delay: 1.5s; }
-.quantum-particle:nth-child(5) { top: 50%; left: 60%; animation-delay: 2s; }
-.quantum-particle:nth-child(6) { top: 60%; right: 40%; animation-delay: 2.5s; }
-.quantum-particle:nth-child(7) { top: 70%; left: 20%; animation-delay: 3s; }
-.quantum-particle:nth-child(8) { top: 80%; right: 10%; animation-delay: 3.5s; }
-.quantum-particle:nth-child(9) { bottom: 20%; left: 50%; animation-delay: 4s; }
-.quantum-particle:nth-child(10) { bottom: 30%; right: 60%; animation-delay: 4.5s; }
-.quantum-particle:nth-child(11) { bottom: 10%; left: 70%; animation-delay: 5s; }
-.quantum-particle:nth-child(12) { bottom: 15%; right: 30%; animation-delay: 5.5s; }
+.quantum-particle:nth-child(1) {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+.quantum-particle:nth-child(2) {
+  top: 20%;
+  left: 80%;
+  animation-delay: 0.5s;
+}
+.quantum-particle:nth-child(3) {
+  top: 30%;
+  left: 30%;
+  animation-delay: 1s;
+}
+.quantum-particle:nth-child(4) {
+  top: 40%;
+  right: 20%;
+  animation-delay: 1.5s;
+}
+.quantum-particle:nth-child(5) {
+  top: 50%;
+  left: 60%;
+  animation-delay: 2s;
+}
+.quantum-particle:nth-child(6) {
+  top: 60%;
+  right: 40%;
+  animation-delay: 2.5s;
+}
+.quantum-particle:nth-child(7) {
+  top: 70%;
+  left: 20%;
+  animation-delay: 3s;
+}
+.quantum-particle:nth-child(8) {
+  top: 80%;
+  right: 10%;
+  animation-delay: 3.5s;
+}
+.quantum-particle:nth-child(9) {
+  bottom: 20%;
+  left: 50%;
+  animation-delay: 4s;
+}
+.quantum-particle:nth-child(10) {
+  bottom: 30%;
+  right: 60%;
+  animation-delay: 4.5s;
+}
+.quantum-particle:nth-child(11) {
+  bottom: 10%;
+  left: 70%;
+  animation-delay: 5s;
+}
+.quantum-particle:nth-child(12) {
+  bottom: 15%;
+  right: 30%;
+  animation-delay: 5.5s;
+}
 
 /* Revolutionary Title Zone */
 .testimonials-title-zone {
@@ -458,7 +591,12 @@ export default {
   position: absolute;
   width: 200px;
   height: 2px;
-  background: linear-gradient(90deg, transparent 0%, var(--quantum-blue) 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--quantum-blue) 50%,
+    transparent 100%
+  );
   animation: energyBeamPulse 2s ease-in-out infinite;
 }
 
@@ -502,8 +640,20 @@ export default {
   max-width: 100%;
   overflow: hidden;
   margin: 0 auto;
-  mask: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
-  -webkit-mask: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
 }
 
 .testimonials-track {
@@ -543,6 +693,12 @@ export default {
   text-align: center;
   transition: all 0.3s ease;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  /* Ensure proper height and text wrapping */
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: visible;
 }
 
 .shell-energy-border {
@@ -558,7 +714,7 @@ export default {
 }
 
 .shell-energy-border::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 2px;
   left: 2px;
@@ -629,6 +785,12 @@ export default {
 /* Testimonial Content Zone */
 .testimonial-content {
   position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 120px;
+  margin-top: 1rem;
 }
 
 .testimonial-text {
@@ -639,6 +801,16 @@ export default {
   position: relative;
   z-index: 2;
   font-style: italic;
+  /* Ensure proper text wrapping */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  hyphens: auto;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 1rem 0;
 }
 
 /* Card Energy Effects */
@@ -705,21 +877,43 @@ export default {
   box-shadow: 0 0 8px var(--primary-color);
 }
 
-.magic-particle:nth-child(1) { top: 15%; left: 85%; animation-delay: 0s; }
-.magic-particle:nth-child(2) { top: 25%; right: 85%; animation-delay: 1.3s; }
-.magic-particle:nth-child(3) { bottom: 35%; right: 80%; animation-delay: 2.6s; }
-.magic-particle:nth-child(4) { bottom: 25%; left: 80%; animation-delay: 3.9s; }
-.magic-particle:nth-child(5) { top: 45%; left: 85%; animation-delay: 5.2s; }
-.magic-particle:nth-child(6) { bottom: 15%; right: 90%; animation-delay: 6.5s; }
+.magic-particle:nth-child(1) {
+  top: 15%;
+  left: 85%;
+  animation-delay: 0s;
+}
+.magic-particle:nth-child(2) {
+  top: 25%;
+  right: 85%;
+  animation-delay: 1.3s;
+}
+.magic-particle:nth-child(3) {
+  bottom: 35%;
+  right: 80%;
+  animation-delay: 2.6s;
+}
+.magic-particle:nth-child(4) {
+  bottom: 25%;
+  left: 80%;
+  animation-delay: 3.9s;
+}
+.magic-particle:nth-child(5) {
+  top: 45%;
+  left: 85%;
+  animation-delay: 5.2s;
+}
+.magic-particle:nth-child(6) {
+  bottom: 15%;
+  right: 90%;
+  animation-delay: 6.5s;
+}
 
 /* Card Hover Effects */
 .card-simple:hover {
   transform: translateY(-8px) scale(1.02);
   border-color: var(--primary-color);
-  box-shadow: 
-    0 15px 30px rgba(255, 107, 53, 0.2),
-    0 0 20px rgba(59, 130, 246, 0.1),
-    inset 0 0 15px rgba(255, 107, 53, 0.05);
+  box-shadow: 0 15px 30px rgba(255, 107, 53, 0.2),
+    0 0 20px rgba(59, 130, 246, 0.1), inset 0 0 15px rgba(255, 107, 53, 0.05);
 }
 
 .card-simple:hover .avatar-image {
@@ -786,7 +980,8 @@ export default {
 
 /* Animation Keyframes */
 @keyframes quantumOrbFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
     opacity: 0.6;
   }
@@ -834,7 +1029,8 @@ export default {
 }
 
 @keyframes badgeEnergyPulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.2;
     transform: scale(1);
   }
@@ -859,7 +1055,8 @@ export default {
 }
 
 @keyframes energyBeamPulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     transform: scaleX(0);
   }
@@ -870,10 +1067,12 @@ export default {
 }
 
 @keyframes hologramFlicker {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
   }
-  25%, 75% {
+  25%,
+  75% {
     opacity: 0.1;
   }
   50% {
@@ -882,7 +1081,8 @@ export default {
 }
 
 @keyframes starTwinkle {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
@@ -934,6 +1134,12 @@ export default {
 
   .card-simple {
     padding: 1.5rem;
+    min-height: 380px;
+  }
+  .testimonial-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: center;
   }
 }
 
@@ -970,7 +1176,23 @@ export default {
     max-width: 320px;
   }
   .card-simple {
-    padding: 1.2rem;
+    padding: 1.5rem 1rem;
+    min-height: 350px;
+  }
+  .testimonial-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding: 0.8rem 0;
+    text-align: center;
+  }
+  .avatar-container {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+  }
+  .avatar-image {
+    width: 60px;
+    height: 60px;
   }
   .avatar-container {
     width: 60px;
@@ -1063,17 +1285,19 @@ export default {
     border: 2px solid white;
     background: rgba(0, 0, 0, 0.9);
   }
-  
+
   .testimonials-revolutionary-title .title-main {
     -webkit-text-fill-color: white;
   }
 }
 
 /* Add fallback .animate-in CSS for fade/slide/zoom */
-.animate-in, .animate-fadeIn {
+.animate-in,
+.animate-fadeIn {
   opacity: 1 !important;
   transform: none !important;
-  transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .animate-slideIn {
   opacity: 1 !important;
@@ -1088,35 +1312,55 @@ export default {
 
 /* New styles for glowing border and holographic shimmer */
 .card-simple::after {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border-radius: 24px;
   pointer-events: none;
-  background: linear-gradient(120deg, rgba(255,107,53,0.15) 0%, rgba(245,158,11,0.12) 50%, rgba(59,130,246,0.10) 100%);
+  background: linear-gradient(
+    120deg,
+    rgba(255, 107, 53, 0.15) 0%,
+    rgba(245, 158, 11, 0.12) 50%,
+    rgba(59, 130, 246, 0.1) 100%
+  );
   opacity: 0.7;
   z-index: 2;
   animation: cardShimmer 3s linear infinite;
 }
-.card-simple:hover, .card-simple.in-view {
-  box-shadow: 0 0 40px 10px rgba(255,107,53,0.25), 0 0 80px 20px rgba(59,130,246,0.12);
+.card-simple:hover,
+.card-simple.in-view {
+  box-shadow: 0 0 40px 10px rgba(255, 107, 53, 0.25),
+    0 0 80px 20px rgba(59, 130, 246, 0.12);
   border-color: var(--primary-color);
 }
 .card-simple .avatar-container {
   animation: avatarFloat 3s ease-in-out infinite;
 }
 @keyframes cardShimmer {
-  0% { background-position: -200px 0; }
-  100% { background-position: 200px 0; }
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
 }
 @keyframes avatarFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px) scale(1.05); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.05);
+  }
 }
 
 /* Parallax for orbs/particles */
-.testimonials-quantum-orbs, .testimonials-floating-particles {
+.testimonials-quantum-orbs,
+.testimonials-floating-particles {
   will-change: transform;
-  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 </style>

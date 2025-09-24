@@ -16,40 +16,43 @@
         <div class="header-icon slide-up-element" data-delay="0.05">
           <i class="fas fa-handshake"></i>
         </div>
-        
+
         <!-- Section Title -->
         <h2 class="section-title slide-up-element" data-delay="0.1">
-          OUR AMAZING CUSTOMERS & PARTNERS
+          {{ $t("simpleComponents.socialProof.title") }}
         </h2>
-        
+
         <!-- Section Subtitle -->
         <p class="section-subtitle slide-up-element" data-delay="0.15">
-          Trusted partners for sustainable growth
+          {{ $t("sections.socialProofSubtitle") }}
         </p>
       </div>
 
       <!-- Auto-Sliding Clients & Partners Banner -->
       <div class="clients-banner">
         <div class="banner-container">
-          <div class="sliding-track" :style="{ transform: `translateX(-${slidePosition}px)` }">
-            <!-- First set of logos -->
           <div
-            v-for="(client, index) in clients"
+            class="sliding-track"
+            :style="{ transform: `translateX(-${slidePosition}px)` }"
+          >
+            <!-- First set of logos -->
+            <div
+              v-for="(client, index) in clients"
               :key="`first-${index}`"
               class="client-logo"
-          >
-              <div class="logo-container">
-            <img 
-              :src="client.logo" 
-              :alt="client.name"
-              @error="handleImageError"
-                  class="client-image"
             >
+              <div class="logo-container">
+                <img
+                  :src="client.logo"
+                  :alt="client.name"
+                  @error="handleImageError"
+                  class="client-image"
+                />
                 <div class="logo-overlay">
-            <span class="client-name">{{ client.name }}</span>
-          </div>
-        </div>
-      </div>
+                  <span class="client-name">{{ client.name }}</span>
+                </div>
+              </div>
+            </div>
 
             <!-- Duplicate set for seamless loop -->
             <div
@@ -58,19 +61,19 @@
               class="client-logo"
             >
               <div class="logo-container">
-                <img 
-                  :src="client.logo" 
+                <img
+                  :src="client.logo"
                   :alt="client.name"
                   @error="handleImageError"
                   class="client-image"
-                >
+                />
                 <div class="logo-overlay">
                   <span class="client-name">{{ client.name }}</span>
-          </div>
+                </div>
               </div>
             </div>
+          </div>
         </div>
-      </div>
 
         <!-- Banner Controls -->
         <!-- <div class="banner-controls">
@@ -81,37 +84,21 @@
             <span class="speed-text">{{ speedLabels[currentSpeedIndex] }}</span>
           </button>
         </div> -->
-        </div>
+      </div>
 
       <!-- Trust Indicators -->
       <div class="trust-indicators">
-        <div class="trust-item">
+        <div
+          v-for="(indicator, index) in trustIndicators"
+          :key="index"
+          class="trust-item"
+        >
           <div class="trust-icon">
-            <i class="fas fa-users"></i>
-            </div>
-          <div class="trust-content">
-            <h3 class="trust-number">500+</h3>
-            <p class="trust-label">Trusted Customers</p>
-          </div>
-        </div>
-        
-        <div class="trust-item">
-          <div class="trust-icon">
-            <i class="fas fa-project-diagram"></i>
+            <i :class="indicator.icon"></i>
           </div>
           <div class="trust-content">
-            <h3 class="trust-number">1000+</h3>
-            <p class="trust-label">Successful Projects</p>
-          </div>
-        </div>
-        
-        <div class="trust-item">
-          <div class="trust-icon">
-            <i class="fas fa-star"></i>
-          </div>
-          <div class="trust-content">
-            <h3 class="trust-number">98%</h3>
-            <p class="trust-label">Satisfaction Rate</p>
+            <h3 class="trust-number">{{ indicator.number }}</h3>
+            <p class="trust-label">{{ indicator.label }}</p>
           </div>
         </div>
       </div>
@@ -121,7 +108,50 @@
 
 <script>
 export default {
-  name: 'SimpleSocialProof',
+  name: "SimpleSocialProof",
+  computed: {
+    // Get current translation texts for trust indicators
+    trustIndicators() {
+      return [
+        {
+          icon: "fas fa-users",
+          number: this.$t(
+            "simpleComponents.socialProof.trustIndicators.trustedCustomers.number"
+          ),
+          label: this.$t(
+            "simpleComponents.socialProof.trustIndicators.trustedCustomers.label"
+          ),
+        },
+        {
+          icon: "fas fa-project-diagram",
+          number: this.$t(
+            "simpleComponents.socialProof.trustIndicators.successfulProjects.number"
+          ),
+          label: this.$t(
+            "simpleComponents.socialProof.trustIndicators.successfulProjects.label"
+          ),
+        },
+        {
+          icon: "fas fa-star",
+          number: this.$t(
+            "simpleComponents.socialProof.trustIndicators.satisfactionRate.number"
+          ),
+          label: this.$t(
+            "simpleComponents.socialProof.trustIndicators.satisfactionRate.label"
+          ),
+        },
+      ];
+    },
+  },
+  watch: {
+    // Watch for language changes
+    "$i18n.locale"() {
+      console.log(
+        "Language changed in SimpleSocialProof, trust indicators will update"
+      );
+      this.$forceUpdate();
+    },
+  },
   data() {
     return {
       slidePosition: 0,
@@ -130,56 +160,56 @@ export default {
       slideInterval: null,
       clients: [
         {
-          name: 'Samsung',
-          logo: '/api/placeholder/120/60/3b82f6/ffffff?text=Samsung'
+          name: "Samsung",
+          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Samsung",
         },
         {
-          name: 'Nestlé',
-          logo: '/api/placeholder/120/60/3b82f6/ffffff?text=Nestlé'
+          name: "Nestlé",
+          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Nestlé",
         },
         {
-          name: 'Vinamilk',
-          logo: '/api/placeholder/120/60/3b82f6/ffffff?text=Vinamilk'
+          name: "Vinamilk",
+          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Vinamilk",
         },
         {
-          name: 'Unilever',
-          logo: '/api/placeholder/120/60/3b82f6/ffffff?text=Unilever'
+          name: "Unilever",
+          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Unilever",
         },
         {
-          name: 'L\'Oréal',
-          logo: '/api/placeholder/120/60/3b82f6/ffffff?text=L\'Oréal'
+          name: "L'Oréal",
+          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=L'Oréal",
         },
         {
-          name: 'Morinaga',
-          logo: '/api/placeholder/120/60/3b82f6/ffffff?text=Morinaga'
+          name: "Morinaga",
+          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Morinaga",
         },
         {
-          name: 'Simply',
-          logo: '/api/placeholder/120/60/3b82f6/ffffff?text=Simply'
+          name: "Simply",
+          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Simply",
         },
         {
-          name: 'Aeon Mall',
-          logo: '/api/placeholder/120/60/3b82f6/ffffff?text=Aeon+Mall'
+          name: "Aeon Mall",
+          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Aeon+Mall",
         },
         {
-          name: 'Viettel',
-          logo: '/api/placeholder/120/60/3b82f6/ffffff?text=Viettel'
+          name: "Viettel",
+          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Viettel",
         },
         {
-          name: 'FPT',
-          logo: '/api/placeholder/120/60/3b82f6/ffffff?text=FPT'
+          name: "FPT",
+          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=FPT",
         },
         {
-          name: 'Vingroup',
-          logo: '/api/placeholder/120/60/3b82f6/ffffff?text=Vingroup'
+          name: "Vingroup",
+          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Vingroup",
         },
         {
-          name: 'BIDV',
-          logo: '/api/placeholder/120/60/3b82f6/ffffff?text=BIDV'
-        }
+          name: "BIDV",
+          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=BIDV",
+        },
       ],
-      speedLabels: ['Slow', 'Normal', 'Fast'],
-      speeds: [50, 30, 15]
+      speedLabels: ["Slow", "Normal", "Fast"],
+      speeds: [50, 30, 15],
     };
   },
   mounted() {
@@ -193,10 +223,10 @@ export default {
     handleImageError(event) {
       // Fallback to text-based logo if image fails to load
       const clientName = event.target.alt;
-      event.target.style.display = 'none';
-      
-      const fallbackDiv = document.createElement('div');
-      fallbackDiv.className = 'fallback-logo';
+      event.target.style.display = "none";
+
+      const fallbackDiv = document.createElement("div");
+      fallbackDiv.className = "fallback-logo";
       fallbackDiv.textContent = clientName;
       fallbackDiv.style.cssText = `
         width: 100%;
@@ -213,17 +243,17 @@ export default {
         border-radius: 8px;
         padding: 8px;
       `;
-      
+
       event.target.parentNode.appendChild(fallbackDiv);
     },
-    
+
     startSliding() {
       if (this.slideInterval) return;
-      
+
       this.slideInterval = setInterval(() => {
         if (!this.isPaused) {
           this.slidePosition += 1;
-          
+
           // Reset position when reaching the end for seamless loop
           if (this.slidePosition >= this.clients.length * 180) {
             this.slidePosition = 0;
@@ -231,46 +261,50 @@ export default {
         }
       }, this.speeds[this.currentSpeedIndex]);
     },
-    
+
     stopSliding() {
       if (this.slideInterval) {
         clearInterval(this.slideInterval);
         this.slideInterval = null;
       }
     },
-    
+
     togglePause() {
       this.isPaused = !this.isPaused;
     },
-    
+
     toggleSpeed() {
-      this.currentSpeedIndex = (this.currentSpeedIndex + 1) % this.speeds.length;
+      this.currentSpeedIndex =
+        (this.currentSpeedIndex + 1) % this.speeds.length;
       if (this.slideInterval) {
         this.stopSliding();
         this.startSliding();
       }
     },
-    
+
     initSlideUpAnimations() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const delay = parseFloat(entry.target.dataset.delay) || 0;
-            setTimeout(() => {
-              entry.target.classList.add('animate-in');
-            }, delay * 1000);
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const delay = parseFloat(entry.target.dataset.delay) || 0;
+              setTimeout(() => {
+                entry.target.classList.add("animate-in");
+              }, delay * 1000);
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        }
+      );
 
       // Observe all slide-up elements
-      const slideUpElements = document.querySelectorAll('.slide-up-element');
-      slideUpElements.forEach(el => observer.observe(el));
-    }
-  }
+      const slideUpElements = document.querySelectorAll(".slide-up-element");
+      slideUpElements.forEach((el) => observer.observe(el));
+    },
+  },
 };
 </script>
 
@@ -358,7 +392,7 @@ export default {
 }
 
 .section-title {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #1e293b;
@@ -368,7 +402,7 @@ export default {
 }
 
 .section-subtitle {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
   color: #64748b;
@@ -386,11 +420,13 @@ export default {
 .banner-container {
   overflow: hidden;
   position: relative;
-  background: linear-gradient(90deg, 
-    rgba(255, 255, 255, 0.9) 0%, 
-    rgba(255, 255, 255, 0.7) 20%, 
-    rgba(255, 255, 255, 0.7) 80%, 
-    rgba(255, 255, 255, 0.9) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.7) 20%,
+    rgba(255, 255, 255, 0.7) 80%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
   border-radius: 16px;
   padding: 20px 0;
 }
@@ -460,7 +496,7 @@ export default {
 
 .client-name {
   color: #ffffff;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 600;
   text-align: center;
@@ -480,7 +516,7 @@ export default {
   border: 2px solid #e2e8f0;
   border-radius: 12px;
   padding: 12px 20px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   color: #64748b;
@@ -560,7 +596,7 @@ export default {
 }
 
 .trust-number {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: #1e293b;
@@ -568,7 +604,7 @@ export default {
 }
 
 .trust-label {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   color: #64748b;
@@ -589,9 +625,15 @@ export default {
 }
 
 /* Staggered Animation Delays */
-.slide-up-element[data-delay="0.05"] { transition-delay: 0.05s; }
-.slide-up-element[data-delay="0.1"] { transition-delay: 0.1s; }
-.slide-up-element[data-delay="0.15"] { transition-delay: 0.15s; }
+.slide-up-element[data-delay="0.05"] {
+  transition-delay: 0.05s;
+}
+.slide-up-element[data-delay="0.1"] {
+  transition-delay: 0.1s;
+}
+.slide-up-element[data-delay="0.15"] {
+  transition-delay: 0.15s;
+}
 
 /* Responsive Design */
 @media (max-width: 1024px) {
@@ -599,7 +641,7 @@ export default {
     grid-template-columns: repeat(4, 1fr);
     gap: 25px;
   }
-  
+
   .logo-container {
     width: 140px;
     height: 70px;
@@ -610,30 +652,30 @@ export default {
   .simple-social {
     padding: 80px 0;
   }
-  
+
   .section-title {
     font-size: 2rem;
   }
-  
+
   .clients-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
-  
+
   .logo-container {
     width: 120px;
     height: 60px;
   }
-  
+
   .trust-indicators {
     grid-template-columns: 1fr;
     gap: 25px;
   }
-  
+
   .trust-item {
     padding: 25px;
   }
-  
+
   .header-icon {
     width: 60px;
     height: 60px;
@@ -645,46 +687,46 @@ export default {
   .simple-social {
     padding: 60px 0;
   }
-  
+
   .section-title {
     font-size: 1.5rem;
   }
-  
+
   .section-subtitle {
     font-size: 1rem;
   }
-  
+
   .clients-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }
-  
+
   .logo-container {
     width: 100px;
     height: 50px;
   }
-  
+
   .trust-item {
     padding: 20px;
     flex-direction: column;
     text-align: center;
     gap: 15px;
   }
-  
+
   .trust-icon {
     width: 50px;
     height: 50px;
     font-size: 20px;
   }
-  
+
   .trust-number {
     font-size: 1.5rem;
   }
-  
+
   .header-icon {
     width: 50px;
     height: 50px;
     font-size: 20px;
   }
 }
-</style> 
+</style>

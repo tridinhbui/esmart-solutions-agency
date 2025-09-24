@@ -2,7 +2,7 @@
   "navigation": {
     "home": "Home",
     "services": "Services",
-    "about": "About",
+    "aboutUs": "About",
     "process": "Process",
     "contact": "Contact",
     "aiCreator": "AI Creator",
@@ -11,7 +11,8 @@
     "blog": "Blog",
     "products": "Products",
     "signIn": "Sign In",
-    "startProject": "Start Project"
+    "start": "Start",
+    "project": "Project"
   },
   "sections": {
     "coreValues": "Core Values",
@@ -260,6 +261,10 @@
     "subtitle": "Transform Your Business",
     "description": "ESmart Solutions Agency is a professional partner and companion for Vietnamese businesses on the journey to build and develop reputable and quality brands.",
     "badge": "Digital Innovation Leader",
+    "allStartsWith": "ALL STARTS WITH A",
+    "conversation": "CONVERSATION",
+    "startYourDream": "START YOUR DREAM",
+    "readyToTransform": "Ready to transform your business?",
     "stats": {
       "projects": "Projects",
       "satisfaction": "Satisfaction",
@@ -269,7 +274,9 @@
       "getStarted": "Get Started",
       "watchDemo": "Watch Demo",
       "join": "Join Us",
-      "contact": "Contact Us"
+      "contact": "Contact Us",
+      "getStartedToday": "GET STARTED TODAY",
+      "learnMore": "Learn More"
     },
     "trustedBy": "Trusted by 1000+ companies",
     "cards": {
@@ -649,6 +656,164 @@
         ]
       }
     ]
+  },
+  "simpleComponents": {
+    "hero": {
+      "allStartsWith": "ALL STARTS WITH A",
+      "conversation": "CONVERSATION",
+      "startYourDream": "START YOUR DREAM"
+    },
+    "aboutUs": {
+      "readyTo": "READY TO",
+      "make": "MAKE",
+      "cash": "CASH?",
+      "subMessage": "Let's turn your ideas into profitable reality",
+      "startProject": "START PROJECT",
+      "learnMore": "LEARN MORE"
+    },
+    "features": {
+      "title": "STRATEGIC SOLUTIONS FOR BUSINESS GROWTH",
+      "description1": "We deliver <span class=\"highlight\">measurable results</span> that drive your business forward.",
+      "description2": "Transform your digital presence with our proven strategies.",
+      "getStartedToday": "GET STARTED TODAY",
+      "learnMore": "Learn More",
+      "whatWeOffer": "WHAT WE OFFER",
+      "whatWeOfferDesc": "We provide comprehensive digital solutions that deliver <strong>results</strong>. With <strong>Esmart Solutions</strong>, you gain more than just services – you gain a strategic partner committed to your growth and success.",
+      "services": {
+        "digitalGrowth": {
+          "title": "Digital Growth Solutions",
+          "description": "Strategic growth strategies that focus on customers and revenue."
+        },
+        "brandIdentity": {
+          "title": "Brand Identity & Design",
+          "description": "Build a strong, distinctive brand that stands out."
+        },
+        "communicationContent": {
+          "title": "Communication Content",
+          "description": "Develop creative content and effective communication."
+        }
+      }
+    },
+    "socialProof": {
+      "title": "OUR AMAZING CUSTOMERS & PARTNERS",
+      "trustIndicators": {
+        "trustedCustomers": {
+          "number": "500+",
+          "label": "Trusted Customers"
+        },
+        "successfulProjects": {
+          "number": "1000+",
+          "label": "Successful Projects"
+        },
+        "satisfactionRate": {
+          "number": "98%",
+          "label": "Satisfaction Rate"
+        }
+      }
+    },
+    "testimonials": [
+      {
+        "text": "ESmart Solutions helped us increase website traffic by 300% and online revenue by 150%. The team is extremely professional!",
+        "name": "John Smith",
+        "position": "CEO"
+      },
+      {
+        "text": "ESmart's SEO service is truly effective. Our website reached TOP 3 on Google in just 3 months.",
+        "name": "Sarah Johnson",
+        "position": "Marketing Manager"
+      },
+      {
+        "text": "Beautiful, modern website design with optimized user experience. Very satisfied with the results!",
+        "name": "Michael Brown",
+        "position": "Founder"
+      },
+      {
+        "text": "ESmart's marketing campaign helped our brand become more widely recognized.",
+        "name": "Emily Davis",
+        "position": "Brand Manager"
+      },
+      {
+        "text": "ESmart's customized CRM system optimized our sales process, increasing efficiency by 200%.",
+        "name": "David Wilson",
+        "position": "Sales Director"
+      },
+      {
+        "text": "The marketing automation project saved us 60% time and increased quality leads by 180%.",
+        "name": "Lisa Anderson",
+        "position": "Marketing Head"
+      }
+    ],
+    "footer": {
+      "getInTouch": "GET IN TOUCH",
+      "readyToStart": "READY TO START?",
+      "makeYourDreams": "Let's make your dreams come true",
+      "copyright": "© 2024 ESmart Solutions Agency. All rights reserved.",
+      "form": {
+        "name": "Name",
+        "namePlaceholder": "Enter your name",
+        "email": "Email",
+        "emailPlaceholder": "Enter your email",
+        "phone": "Phone",
+        "phonePlaceholder": "Enter your phone number",
+        "channel": "Channel",
+        "channelPlaceholder": "Enter your channel link",
+        "message": "Message",
+        "messagePlaceholder": "Tell us how we can help...",
+        "sendMessage": "Send Message"
+      }
+    },
+    "assessment": {
+      "formTitle": "Ready to Transform Your Business?",
+      "formDescription": "Discover how our strategic approach can deliver real results for your business. Get insights, recommendations, and a clear roadmap to success.",
+      "personalInfo": "Personal Information",
+      "personalInfoDesc": "Let's start with your basic contact information",
+      "businessDetails": "Business Details",
+      "businessDetailsDesc": "Tell us more about your business and goals",
+      "form": {
+        "fullName": "Full Name",
+        "fullNamePlaceholder": "Enter your full name",
+        "emailAddress": "Email Address",
+        "emailPlaceholder": "Enter your email address",
+        "phoneNumber": "Phone Number",
+        "phonePlaceholder": "Enter your phone number",
+        "companyName": "Company Name",
+        "companyPlaceholder": "Enter your company name",
+        "websiteUrl": "Website URL",
+        "websitePlaceholder": "https://yourwebsite.com",
+        "industry": "Industry",
+        "selectIndustry": "Select your industry",
+        "ecommerce": "E-commerce",
+        "saas": "SaaS/Technology",
+        "healthcare": "Healthcare",
+        "finance": "Finance",
+        "education": "Education",
+        "realEstate": "Real Estate",
+        "consulting": "Consulting",
+        "manufacturing": "Manufacturing",
+        "retail": "Retail",
+        "other": "Other",
+        "next": "Next",
+        "previous": "Previous",
+        "submit": "Submit Assessment",
+        "marketingGoals": "Marketing Goals",
+        "marketingGoalsPlaceholder": "What are your main marketing objectives? (e.g., increase brand awareness, generate more leads, improve conversion rates)",
+        "currentChallenges": "Current Challenges",
+        "challengesPlaceholder": "What marketing challenges are you currently facing?"
+      }
+    },
+    "benefits": {
+      "analysisReport": "Comprehensive analysis report",
+      "strategicRecommendations": "Strategic recommendations",
+      "actionableRoadmap": "Actionable roadmap"
+    },
+    "brandingPerformance": {
+      "title1": "NO MORE FLOOP",
+      "title2": "JUST MORE CASH",
+      "subtitle": "You don't need another nice-to-have campaign.",
+      "highlightSubtitle": "You need a marketing partner that makes the cash register ring.",
+      "primaryCta": "LET US MAKE YOU CASH",
+      "secondaryCta": "Let's talk"
+    }
   },
   "blog": {
     "title": "ESmart Solutions",

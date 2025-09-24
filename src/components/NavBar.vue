@@ -1,15 +1,14 @@
 <template>
-  <header :class="['navbar', 'navbar-fixed', { 'navbar-scrolled': isScrolled }]">
+  <header
+    :class="['navbar', 'navbar-fixed', { 'navbar-scrolled': isScrolled }]"
+  >
     <div class="navbar-content">
-      <router-link
-        to="/#intro"
-        class="logo-link"
-      >
+      <router-link to="/#intro" class="logo-link">
         <img
           src="@/assets/logo.png"
-          alt="ESmart Logo"
+          :alt="$t('hero.logoAlt')"
           class="logo quantum-logo"
-        >
+        />
         <span class="logo-text quantum-text">ESmart</span>
       </router-link>
 
@@ -20,7 +19,7 @@
             class="nav-item quantum-nav"
             @click="toggleMenu"
           >
-            <span>{{ $t("aiCreator") }}</span>
+            <span>{{ $t("navigation.aiCreator") }}</span>
           </router-link>
         </li>
         <li>
@@ -38,7 +37,7 @@
             class="nav-item quantum-nav"
             @click="toggleMenu"
           >
-            <span>Blog</span>
+            <span>{{ $t("navigation.blog") }}</span>
           </router-link>
         </li>
         <li>
@@ -60,7 +59,6 @@
           </router-link>
         </li>
 
-        
         <li class="language-switcher-item">
           <div class="language-switcher">
             <button
@@ -68,28 +66,19 @@
               :class="{ active: $i18n.locale === 'vi' }"
               @click="switchLanguage('vi')"
             >
-              <img
-                src="@/assets/vietnamese-flag.png"
-                alt="Vietnamese"
-              >
+              <img src="@/assets/vietnamese-flag.png" alt="Vietnamese" />
             </button>
             <button
               class="lang-btn"
               :class="{ active: $i18n.locale === 'en' }"
               @click="switchLanguage('en')"
             >
-              <img
-                src="@/assets/english-flag.png"
-                alt="English"
-              >
+              <img src="@/assets/english-flag.png" alt="English" />
             </button>
           </div>
         </li>
-        
-        <li
-          v-if="!authStore.user"
-          class="sign-in-item"
-        >
+
+        <li v-if="!authStore.user" class="sign-in-item">
           <router-link
             to="/sign-in"
             class="sign-in-link quantum-sign-in"
@@ -99,28 +88,22 @@
             <span>{{ $t("signIn") }}</span>
           </router-link>
         </li>
-        
-        <li
-          v-else
-          class="user-avatar-wrapper"
-        >
+
+        <li v-else class="user-avatar-wrapper">
           <div class="avatar-dropdown">
             <img
               :src="authStore.user.photoURL || defaultAvatar"
               class="user-avatar"
               @click="toggleDropdown"
               @error="handleImageError"
-            >
+            />
             <transition name="fade">
               <div
                 v-if="showDropdown"
-                v-click-outside="() => showDropdown = false"
+                v-click-outside="() => (showDropdown = false)"
                 class="avatar-menu"
               >
-                <button
-                  class="logout-btn"
-                  @click="handleLogout"
-                >
+                <button class="logout-btn" @click="handleLogout">
                   <i class="fas fa-sign-out-alt" />
                   {{ $t("Sign Out") }}
                 </button>
@@ -132,7 +115,7 @@
 
       <div
         class="burger quantum-burger"
-        :class="{ 'visible-on-scroll': isScrolled, 'active': isOpen }"
+        :class="{ 'visible-on-scroll': isScrolled, active: isOpen }"
         @click="toggleMenu"
       >
         <span />
@@ -140,7 +123,7 @@
         <span />
       </div>
     </div>
-    
+
     <!-- Enhanced Quantum Energy Effects -->
     <div class="quantum-energy enhanced">
       <div class="energy-particle" />
@@ -156,7 +139,7 @@
       <div class="energy-particle" />
       <div class="energy-particle" />
     </div>
-    
+
     <!-- Enhanced Neural Network Lines -->
     <div class="neural-network enhanced">
       <div class="neural-line neural-line-1" />
@@ -166,17 +149,13 @@
       <div class="neural-line neural-line-5" />
       <div class="neural-line neural-line-6" />
     </div>
-    
+
     <!-- Enhanced Holographic Border -->
     <div class="holographic-border enhanced" />
-    
+
     <!-- Quantum Signature -->
     <div class="quantum-signature">
-      <div
-        v-for="i in 8"
-        :key="i"
-        class="signature-particle"
-      />
+      <div v-for="i in 8" :key="i" class="signature-particle" />
     </div>
   </header>
 </template>
@@ -189,19 +168,19 @@ import { auth } from "@/firebase";
 export default {
   name: "NavBar",
   directives: {
-    'click-outside': {
+    "click-outside": {
       mounted(el, binding) {
         el.clickOutsideEvent = (event) => {
           if (!el.contains(event.target)) {
             binding.value();
           }
         };
-        document.addEventListener('click', el.clickOutsideEvent);
+        document.addEventListener("click", el.clickOutsideEvent);
       },
       unmounted(el) {
-        document.removeEventListener('click', el.clickOutsideEvent);
-      }
-    }
+        document.removeEventListener("click", el.clickOutsideEvent);
+      },
+    },
   },
   setup() {
     const authStore = useAuthStore();
@@ -212,7 +191,7 @@ export default {
       isOpen: false,
       isScrolled: false,
       showDropdown: false, // Controls avatar dropdown visibility
-      defaultAvatar: 'https://cdn-icons-png.flaticon.com/512/149/149071.png' // Fallback avatar image
+      defaultAvatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png", // Fallback avatar image
     };
   },
   mounted() {
@@ -291,13 +270,19 @@ export default {
 }
 
 .navbar::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--primary-color), var(--secondary-color), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary-color),
+    var(--secondary-color),
+    transparent
+  );
   opacity: 0;
   transition: opacity 0.4s ease;
   filter: blur(2px);
@@ -329,7 +314,7 @@ export default {
 }
 
 .logo-link::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -10px;
   left: -10px;
@@ -389,7 +374,7 @@ export default {
 .nav-item {
   position: relative;
   padding: 0.5rem 0;
-  color: #EAEAEA;
+  color: #eaeaea;
   text-decoration: none;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -397,7 +382,7 @@ export default {
 }
 
 .nav-item::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -611,49 +596,57 @@ export default {
 }
 
 .energy-particle:nth-child(1) {
-  left: 5%; top: 20%;
+  left: 5%;
+  top: 20%;
   animation-delay: 0s;
   animation-duration: 6s;
 }
 
 .energy-particle:nth-child(2) {
-  left: 15%; top: 70%;
+  left: 15%;
+  top: 70%;
   animation-delay: 1s;
   animation-duration: 8s;
 }
 
 .energy-particle:nth-child(3) {
-  left: 30%; top: 30%;
+  left: 30%;
+  top: 30%;
   animation-delay: 2s;
   animation-duration: 7s;
 }
 
 .energy-particle:nth-child(4) {
-  left: 50%; top: 80%;
+  left: 50%;
+  top: 80%;
   animation-delay: 3s;
   animation-duration: 9s;
 }
 
 .energy-particle:nth-child(5) {
-  left: 70%; top: 15%;
+  left: 70%;
+  top: 15%;
   animation-delay: 1.5s;
   animation-duration: 6s;
 }
 
 .energy-particle:nth-child(6) {
-  left: 85%; top: 60%;
+  left: 85%;
+  top: 60%;
   animation-delay: 4s;
   animation-duration: 8s;
 }
 
 .energy-particle:nth-child(7) {
-  left: 90%; top: 40%;
+  left: 90%;
+  top: 40%;
   animation-delay: 2.5s;
   animation-duration: 7s;
 }
 
 .energy-particle:nth-child(8) {
-  left: 95%; top: 90%;
+  left: 95%;
+  top: 90%;
   animation-delay: 5s;
   animation-duration: 6s;
 }
@@ -712,12 +705,14 @@ export default {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    #ff6b35 25%, 
-    #f59e0b 50%, 
-    #d97706 75%, 
-    transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #ff6b35 25%,
+    #f59e0b 50%,
+    #d97706 75%,
+    transparent 100%
+  );
   animation: holographicShift 3s infinite ease-in-out;
   filter: blur(1px);
 }
@@ -731,12 +726,18 @@ export default {
 
 /* Enhanced Animations */
 @keyframes navShimmer {
-  0%, 100% { left: -100%; }
-  50% { left: 100%; }
+  0%,
+  100% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
 }
 
 @keyframes logoFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
   }
   50% {
@@ -749,12 +750,14 @@ export default {
     text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
   }
   100% {
-    text-shadow: 0 0 20px rgba(255, 107, 53, 0.8), 0 0 30px rgba(245, 158, 11, 0.5);
+    text-shadow: 0 0 20px rgba(255, 107, 53, 0.8),
+      0 0 30px rgba(245, 158, 11, 0.5);
   }
 }
 
 @keyframes quantumFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) scale(1) rotate(0deg);
     opacity: 0.4;
     filter: blur(0px);
@@ -777,7 +780,8 @@ export default {
 }
 
 @keyframes neuralPulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.2;
     transform: scaleX(0.5);
   }
@@ -788,7 +792,8 @@ export default {
 }
 
 @keyframes holographicShift {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0);
     opacity: 0.6;
   }
@@ -803,11 +808,13 @@ export default {
 }
 
 /* Transition Effects */
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: all 0.3s ease;
 }
 
-.fade-enter-from, .fade-leave-to {
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
   transform: translateY(-10px);
 }
@@ -880,27 +887,42 @@ export default {
 .quantum-energy.enhanced .energy-particle {
   width: 8px;
   height: 8px;
-  background: radial-gradient(circle, #ff6b35 0%, #f59e0b 50%, transparent 100%);
-  box-shadow: 
-    0 0 25px rgba(255, 107, 53, 0.8),
-    0 0 50px rgba(245, 158, 11, 0.4);
+  background: radial-gradient(
+    circle,
+    #ff6b35 0%,
+    #f59e0b 50%,
+    transparent 100%
+  );
+  box-shadow: 0 0 25px rgba(255, 107, 53, 0.8), 0 0 50px rgba(245, 158, 11, 0.4);
   animation-duration: 10s;
 }
 
 .quantum-energy.enhanced .energy-particle:nth-child(9) {
-  left: 25%; top: 10%; animation-delay: 6s; animation-duration: 12s;
+  left: 25%;
+  top: 10%;
+  animation-delay: 6s;
+  animation-duration: 12s;
 }
 
 .quantum-energy.enhanced .energy-particle:nth-child(10) {
-  left: 75%; top: 85%; animation-delay: 7s; animation-duration: 9s;
+  left: 75%;
+  top: 85%;
+  animation-delay: 7s;
+  animation-duration: 9s;
 }
 
 .quantum-energy.enhanced .energy-particle:nth-child(11) {
-  left: 45%; top: 50%; animation-delay: 8s; animation-duration: 11s;
+  left: 45%;
+  top: 50%;
+  animation-delay: 8s;
+  animation-duration: 11s;
 }
 
 .quantum-energy.enhanced .energy-particle:nth-child(12) {
-  left: 95%; top: 25%; animation-delay: 9s; animation-duration: 13s;
+  left: 95%;
+  top: 25%;
+  animation-delay: 9s;
+  animation-duration: 13s;
 }
 
 .neural-network.enhanced {
@@ -908,28 +930,35 @@ export default {
 }
 
 .neural-network.enhanced .neural-line-5 {
-  top: 80%; left: 50%; width: 20%; animation-delay: 4s;
+  top: 80%;
+  left: 50%;
+  width: 20%;
+  animation-delay: 4s;
   background: linear-gradient(90deg, transparent, #3b82f6, transparent);
 }
 
 .neural-network.enhanced .neural-line-6 {
-  top: 10%; left: 75%; width: 25%; animation-delay: 5s;
+  top: 10%;
+  left: 75%;
+  width: 25%;
+  animation-delay: 5s;
   background: linear-gradient(90deg, transparent, #10b981, transparent);
 }
 
 .holographic-border.enhanced {
   height: 3px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
     #ff6b35 15%,
-    #3b82f6 25%, 
-    #f59e0b 40%, 
+    #3b82f6 25%,
+    #f59e0b 40%,
     #10b981 55%,
-    #d97706 70%, 
+    #d97706 70%,
     #ff6b35 85%,
-    transparent 100%);
-  box-shadow: 
-    0 0 15px rgba(255, 107, 53, 0.6),
+    transparent 100%
+  );
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.6),
     0 -2px 10px rgba(59, 130, 246, 0.3);
   animation: holographicShift 2s infinite ease-in-out;
 }
@@ -955,14 +984,46 @@ export default {
   box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
 }
 
-.signature-particle:nth-child(1) { left: 10%; top: 25%; animation-delay: 0s; }
-.signature-particle:nth-child(2) { left: 20%; top: 75%; animation-delay: 2s; }
-.signature-particle:nth-child(3) { left: 35%; top: 45%; animation-delay: 4s; }
-.signature-particle:nth-child(4) { left: 55%; top: 65%; animation-delay: 6s; }
-.signature-particle:nth-child(5) { left: 75%; top: 35%; animation-delay: 8s; }
-.signature-particle:nth-child(6) { left: 85%; top: 80%; animation-delay: 10s; }
-.signature-particle:nth-child(7) { left: 90%; top: 15%; animation-delay: 12s; }
-.signature-particle:nth-child(8) { left: 5%; top: 90%; animation-delay: 14s; }
+.signature-particle:nth-child(1) {
+  left: 10%;
+  top: 25%;
+  animation-delay: 0s;
+}
+.signature-particle:nth-child(2) {
+  left: 20%;
+  top: 75%;
+  animation-delay: 2s;
+}
+.signature-particle:nth-child(3) {
+  left: 35%;
+  top: 45%;
+  animation-delay: 4s;
+}
+.signature-particle:nth-child(4) {
+  left: 55%;
+  top: 65%;
+  animation-delay: 6s;
+}
+.signature-particle:nth-child(5) {
+  left: 75%;
+  top: 35%;
+  animation-delay: 8s;
+}
+.signature-particle:nth-child(6) {
+  left: 85%;
+  top: 80%;
+  animation-delay: 10s;
+}
+.signature-particle:nth-child(7) {
+  left: 90%;
+  top: 15%;
+  animation-delay: 12s;
+}
+.signature-particle:nth-child(8) {
+  left: 5%;
+  top: 90%;
+  animation-delay: 14s;
+}
 
 .signature-particle:nth-child(odd) {
   background: radial-gradient(circle, #10b981 0%, transparent 70%);
@@ -982,7 +1043,14 @@ export default {
 }
 
 .quantum-text {
-  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 25%, #3b82f6 50%, #10b981 75%, #d97706 100%);
+  background: linear-gradient(
+    135deg,
+    #ff6b35 0%,
+    #f59e0b 25%,
+    #3b82f6 50%,
+    #10b981 75%,
+    #d97706 100%
+  );
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -997,13 +1065,18 @@ export default {
 }
 
 .quantum-nav::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 107, 53, 0.2),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -1012,10 +1085,8 @@ export default {
 }
 
 .quantum-nav:hover {
-  text-shadow: 
-    0 0 15px rgba(255, 107, 53, 0.8),
-    0 0 30px rgba(59, 130, 246, 0.4),
-    0 0 45px rgba(16, 185, 129, 0.3);
+  text-shadow: 0 0 15px rgba(255, 107, 53, 0.8),
+    0 0 30px rgba(59, 130, 246, 0.4), 0 0 45px rgba(16, 185, 129, 0.3);
   transform: translateY(-3px) scale(1.05);
 }
 
@@ -1023,8 +1094,7 @@ export default {
 .quantum-sign-in {
   background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #3b82f6 100%);
   background-size: 200% 200%;
-  box-shadow: 
-    0 8px 25px rgba(255, 107, 53, 0.4),
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4),
     0 0 40px rgba(59, 130, 246, 0.2);
   animation: quantumSignIn 4s ease-in-out infinite;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -1033,10 +1103,8 @@ export default {
 .quantum-sign-in:hover {
   background-position: 100% 100%;
   transform: translateY(-5px) scale(1.08);
-  box-shadow: 
-    0 15px 40px rgba(255, 107, 53, 0.6),
-    0 0 60px rgba(59, 130, 246, 0.4),
-    0 0 80px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 15px 40px rgba(255, 107, 53, 0.6),
+    0 0 60px rgba(59, 130, 246, 0.4), 0 0 80px rgba(16, 185, 129, 0.2);
 }
 
 /* Enhanced Burger Menu */
@@ -1048,7 +1116,8 @@ export default {
 
 /* Enhanced Animations */
 @keyframes quantumLogoFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
     filter: drop-shadow(0 0 25px rgba(255, 107, 53, 0.6));
   }
@@ -1063,7 +1132,8 @@ export default {
 }
 
 @keyframes quantumTextShift {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -1072,7 +1142,8 @@ export default {
 }
 
 @keyframes quantumSignIn {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -1081,7 +1152,8 @@ export default {
 }
 
 @keyframes signatureFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) scale(1) rotate(0deg);
     opacity: 0.3;
   }
@@ -1110,7 +1182,14 @@ export default {
 
 /* CSS Custom Properties for Magic Effects */
 :root {
-  --gradient-magical: linear-gradient(135deg, #ff6b35 0%, #f59e0b 25%, #d97706 50%, #ff6b35 75%, #f59e0b 100%);
+  --gradient-magical: linear-gradient(
+    135deg,
+    #ff6b35 0%,
+    #f59e0b 25%,
+    #d97706 50%,
+    #ff6b35 75%,
+    #f59e0b 100%
+  );
   --gradient-primary: linear-gradient(135deg, #ff6b35 0%, #f59e0b 100%);
   --gradient-secondary: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   --gradient-tertiary: linear-gradient(135deg, #d97706 0%, #ff6b35 100%);

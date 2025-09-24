@@ -6,67 +6,86 @@
         <!-- Footer Left - Company Info -->
         <div class="footer-left">
           <h2 class="main-title slide-up-element" data-delay="0.05">
-            ALL STARTS WITH A CONVERSATION
+            {{ $t("simpleComponents.hero.allStartsWith") }}
+            {{ $t("simpleComponents.hero.conversation") }}
           </h2>
           <p class="subtitle slide-up-element" data-delay="0.1">
-            Ready to transform your business?
+            {{ $t("hero.readyToTransform") }}
           </p>
         </div>
-        
+
         <!-- Footer Center - Contact Form -->
         <div class="footer-center">
           <div class="contact-form-section">
-            <h3 class="form-title slide-up-element" data-delay="0.15">GET IN TOUCH</h3>
-            <form class="contact-form slide-up-element" data-delay="0.2" @submit.prevent="submitForm">
+            <h3 class="form-title slide-up-element" data-delay="0.15">
+              {{ $t("simpleComponents.footer.getInTouch") }}
+            </h3>
+            <form
+              class="contact-form slide-up-element"
+              data-delay="0.2"
+              @submit.prevent="submitForm"
+            >
               <div class="form-row">
                 <div class="form-group">
-                  <label>Name</label>
-                  <input 
-                    type="text" 
-                    v-model="formData.name" 
-                    placeholder="Enter your name"
+                  <label>{{ $t("simpleComponents.footer.form.name") }}</label>
+                  <input
+                    type="text"
+                    v-model="formData.name"
+                    :placeholder="
+                      $t('simpleComponents.footer.form.namePlaceholder')
+                    "
                     required
-                  >
+                  />
                 </div>
                 <div class="form-group">
-                  <label>Email</label>
-                  <input 
-                    type="email" 
-                    v-model="formData.email" 
-                    placeholder="Enter your email"
+                  <label>{{ $t("simpleComponents.footer.form.email") }}</label>
+                  <input
+                    type="email"
+                    v-model="formData.email"
+                    :placeholder="
+                      $t('simpleComponents.footer.form.emailPlaceholder')
+                    "
                     required
-                  >
+                  />
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group">
-                  <label>Phone</label>
-                  <input 
-                    type="tel" 
-                    v-model="formData.phone" 
-                    placeholder="Enter your phone number"
-                  >
+                  <label>{{ $t("simpleComponents.footer.form.phone") }}</label>
+                  <input
+                    type="tel"
+                    v-model="formData.phone"
+                    :placeholder="
+                      $t('simpleComponents.footer.form.phonePlaceholder')
+                    "
+                  />
                 </div>
                 <div class="form-group">
-                  <label>Channel</label>
-                  <input 
-                    type="url" 
-                    v-model="formData.channelLink" 
-                    placeholder="Enter your channel link"
-                  >
+                  <label>{{
+                    $t("simpleComponents.footer.form.channel")
+                  }}</label>
+                  <input
+                    type="url"
+                    v-model="formData.channelLink"
+                    :placeholder="
+                      $t('simpleComponents.footer.form.channelPlaceholder')
+                    "
+                  />
                 </div>
               </div>
               <div class="form-group full-width">
-                <label>Message</label>
-                <textarea 
-                  v-model="formData.message" 
-                  placeholder="Tell us how we can help..."
+                <label>{{ $t("simpleComponents.footer.form.message") }}</label>
+                <textarea
+                  v-model="formData.message"
+                  :placeholder="
+                    $t('simpleComponents.footer.form.messagePlaceholder')
+                  "
                   rows="4"
                   required
                 ></textarea>
               </div>
               <button type="submit" class="submit-btn">
-                Send Message
+                {{ $t("simpleComponents.footer.form.sendMessage") }}
                 <i class="fas fa-paper-plane"></i>
               </button>
             </form>
@@ -76,19 +95,27 @@
         <!-- Footer Right - CTA -->
         <div class="footer-right">
           <div class="cta-section">
-            <h3 class="cta-title slide-up-element" data-delay="0.2">READY TO START?</h3>
-            <p class="cta-subtitle slide-up-element" data-delay="0.3">Let's make your dreams come true</p>
-            <button class="cta-button slide-up-element" data-delay="0.4" @click="startConversation">
-              START YOUR DREAM
+            <h3 class="cta-title slide-up-element" data-delay="0.2">
+              {{ $t("simpleComponents.footer.readyToStart") }}
+            </h3>
+            <p class="cta-subtitle slide-up-element" data-delay="0.3">
+              {{ $t("simpleComponents.footer.makeYourDreams") }}
+            </p>
+            <button
+              class="cta-button slide-up-element"
+              data-delay="0.4"
+              @click="startConversation"
+            >
+              {{ $t("simpleComponents.hero.startYourDream") }}
             </button>
           </div>
         </div>
       </div>
-      
+
       <!-- Footer Bottom -->
       <div class="footer-bottom">
         <div class="footer-bottom-content">
-          <p class="copyright">© 2024 ESmart Solutions Agency. All rights reserved.</p>
+          <p class="copyright">{{ $t("simpleComponents.footer.copyright") }}</p>
           <div class="social-links">
             <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
             <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
@@ -107,11 +134,11 @@ export default {
   data() {
     return {
       formData: {
-        name: '',
-        email: '',
-        channelLink: '',
-        phone: '',
-        message: '',
+        name: "",
+        email: "",
+        channelLink: "",
+        phone: "",
+        message: "",
       },
     };
   },
@@ -121,48 +148,51 @@ export default {
   methods: {
     startConversation() {
       // Scroll to contact form or redirect to contact page
-      const contactSection = document.querySelector('.simple-about');
+      const contactSection = document.querySelector(".simple-about");
       if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
+        contactSection.scrollIntoView({ behavior: "smooth" });
       } else {
         // Fallback: scroll to top
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     },
-    
+
     submitForm() {
-      console.log('Form submitted:', this.formData);
+      console.log("Form submitted:", this.formData);
       // In a real application, you would send this data to a backend API
-      alert('Thank you for your message! We will get back to you soon.');
+      alert("Thank you for your message! We will get back to you soon.");
       this.formData = {
-        name: '',
-        email: '',
-        channelLink: '',
-        phone: '',
-        message: '',
+        name: "",
+        email: "",
+        channelLink: "",
+        phone: "",
+        message: "",
       };
     },
-    
+
     initSlideUpAnimations() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const delay = parseFloat(entry.target.dataset.delay) || 0;
-            setTimeout(() => {
-              entry.target.classList.add('animate-in');
-            }, delay * 1000);
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const delay = parseFloat(entry.target.dataset.delay) || 0;
+              setTimeout(() => {
+                entry.target.classList.add("animate-in");
+              }, delay * 1000);
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        }
+      );
 
       // Observe all slide-up elements
-      const slideUpElements = document.querySelectorAll('.slide-up-element');
-      slideUpElements.forEach(el => observer.observe(el));
-    }
-  }
+      const slideUpElements = document.querySelectorAll(".slide-up-element");
+      slideUpElements.forEach((el) => observer.observe(el));
+    },
+  },
 };
 </script>
 
@@ -194,7 +224,7 @@ export default {
 }
 
 .main-title {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #1e293b;
@@ -203,7 +233,7 @@ export default {
 }
 
 .subtitle {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   color: #64748b;
   line-height: 1.6;
@@ -222,7 +252,7 @@ export default {
 }
 
 .form-title {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.8rem;
   font-weight: 600;
   color: #1e293b;
@@ -253,7 +283,7 @@ export default {
 }
 
 .form-group label {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
   color: #374151;
@@ -264,7 +294,7 @@ export default {
   padding: 12px 16px;
   border: 2px solid #e5e7eb;
   border-radius: 8px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1rem;
   transition: all 0.3s ease;
   background: #ffffff;
@@ -287,7 +317,7 @@ export default {
   color: #ffffff;
   border: none;
   border-radius: 8px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -321,7 +351,7 @@ export default {
 }
 
 .cta-title {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.8rem;
   font-weight: 600;
   color: #1e293b;
@@ -329,7 +359,7 @@ export default {
 }
 
 .cta-subtitle {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1rem;
   color: #64748b;
   line-height: 1.6;
@@ -342,7 +372,7 @@ export default {
   color: #ffffff;
   border: none;
   border-radius: 8px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -371,7 +401,7 @@ export default {
 }
 
 .copyright {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   color: #64748b;
   margin: 0;
@@ -418,13 +448,24 @@ export default {
 }
 
 /* Staggered Animation Delays */
-.slide-up-element[data-delay="0.05"] { transition-delay: 0.05s; }
-.slide-up-element[data-delay="0.1"] { transition-delay: 0.1s; }
-.slide-up-element[data-delay="0.15"] { transition-delay: 0.15s; }
-.slide-up-element[data-delay="0.2"] { transition-delay: 0.2s; }
-.slide-up-element[data-delay="0.3"] { transition-delay: 0.3s; }
-.slide-up-element[data-delay="0.4"] { transition-delay: 0.4s; }
-
+.slide-up-element[data-delay="0.05"] {
+  transition-delay: 0.05s;
+}
+.slide-up-element[data-delay="0.1"] {
+  transition-delay: 0.1s;
+}
+.slide-up-element[data-delay="0.15"] {
+  transition-delay: 0.15s;
+}
+.slide-up-element[data-delay="0.2"] {
+  transition-delay: 0.2s;
+}
+.slide-up-element[data-delay="0.3"] {
+  transition-delay: 0.3s;
+}
+.slide-up-element[data-delay="0.4"] {
+  transition-delay: 0.4s;
+}
 
 /* Responsive Design */
 @media (max-width: 1024px) {
@@ -432,11 +473,11 @@ export default {
     grid-template-columns: 1fr 1.5fr 1fr;
     gap: 3rem;
   }
-  
+
   .main-title {
     font-size: 2.2rem;
   }
-  
+
   .form-title,
   .cta-title {
     font-size: 1.6rem;
@@ -447,31 +488,31 @@ export default {
   .simple-footer {
     padding: 60px 0 30px;
   }
-  
+
   .footer-main {
     grid-template-columns: 1fr;
     gap: 3rem;
     text-align: center;
   }
-  
+
   .footer-left {
     align-items: center;
   }
-  
+
   .main-title {
     font-size: 2rem;
   }
-  
+
   .form-title,
   .cta-title {
     font-size: 1.5rem;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr;
     gap: 15px;
   }
-  
+
   .footer-bottom-content {
     flex-direction: column;
     text-align: center;
@@ -482,38 +523,38 @@ export default {
   .simple-footer {
     padding: 50px 0 25px;
   }
-  
+
   .footer-container {
     padding: 0 15px;
   }
-  
+
   .main-title {
     font-size: 1.8rem;
   }
-  
+
   .subtitle {
     font-size: 1rem;
   }
-  
+
   .form-title,
   .cta-title {
     font-size: 1.4rem;
   }
-  
+
   .contact-form {
     gap: 15px;
   }
-  
+
   .form-group input,
   .form-group textarea {
     padding: 10px 14px;
     font-size: 0.9rem;
   }
-  
+
   .submit-btn,
   .cta-button {
     padding: 12px 24px;
     font-size: 0.9rem;
   }
 }
-</style> 
+</style>
