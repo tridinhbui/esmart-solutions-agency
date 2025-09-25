@@ -36,11 +36,20 @@ const routes = [
   { path: "/features", name: "FeaturesPage", component: FeaturesPage },
   { path: "/process", name: "ProcessInt", component: ProcessInt },
   { path: "/blog", name: "BlogPost", component: BlogPost },
-  { path: "/contact", name: "ContactUs", component: ContactUs, meta: { fullPage: true } },
+  {
+    path: "/contact",
+    name: "ContactUs",
+    component: ContactUs,
+    meta: { fullPage: true },
+  },
   { path: "/project", name: "Project", component: Project },
   { path: "/about-us", name: "AboutUs", component: AboutUs },
   { path: "/service", name: "Service", component: Service },
-  { path: "/creator-ai", name: "EsmartCreatorAI", component: EsmartCreatorAIPage },  
+  {
+    path: "/creator-ai",
+    name: "EsmartCreatorAI",
+    component: EsmartCreatorAIPage,
+  },
   {
     path: "/detailed-blog-1",
     name: "DetailedBlog1",
@@ -109,9 +118,7 @@ router.beforeEach(async (to, from, next) => {
     });
   }
   // Prevent access to auth pages when already logged in
-  else if ((to.name === "SignIn" || to.name === "SignUp") && isAuthenticated) {
-    next("/intro"); // Redirect to main page
-  }
+  // Allow access to SignIn/SignUp even when authenticated
   // Allow access for all other cases
   else {
     next();

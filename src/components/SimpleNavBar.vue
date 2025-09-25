@@ -60,12 +60,46 @@
         </button>
       </div>
 
-      <!-- CTA Button -->
-      <button class="nav-cta">
-        <i class="fas fa-play"></i>
-        <span>{{ $t("navigation.start") }}</span>
-        <span class="cta-project">{{ $t("navigation.project") }}</span>
-      </button>
+      <!-- Auth Area: Login or Avatar + Dropdown -->
+      <div class="nav-auth">
+        <!-- Not logged in: Sign In button -->
+        <button v-if="!authUser" class="login-btn" @click="goToSignIn">
+          <i class="fas fa-sign-in-alt"></i>
+          <span>Sign In</span>
+        </button>
+
+        <!-- Logged in: avatar + caret dropdown -->
+        <div
+          v-else
+          class="profile-wrapper"
+          @keydown.escape="showDropdown = false"
+        >
+          <img
+            :src="avatarUrl"
+            class="avatar"
+            alt="Profile"
+            @error="onAvatarError"
+          />
+          <button
+            class="caret-btn"
+            @click="toggleDropdown"
+            aria-haspopup="menu"
+            :aria-expanded="showDropdown ? 'true' : 'false'"
+          >
+            ▼
+          </button>
+          <div v-if="showDropdown" class="dropdown" role="menu">
+            <button class="dropdown-item" @click="toggleDarkMode">
+              <i class="fas fa-moon"></i>
+              <span>{{ isDark ? "Light mode" : "Dark mode" }}</span>
+            </button>
+            <button class="dropdown-item" @click="handleLogout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Log out</span>
+            </button>
+          </div>
+        </div>
+      </div>
 
       <!-- Mobile Menu Toggle -->
       <button class="mobile-menu-toggle" @click="toggleMobileMenu">
@@ -105,33 +139,118 @@
         <i class="fas fa-envelope"></i>
         <span>{{ $t("navigation.contact") }}</span>
       </router-link>
-      <button class="mobile-cta" @click="startProject">
-        <i class="fas fa-play"></i>
-        <span>Start Project</span>
-      </button>
+
+      <!-- Mobile auth area -->
+      <div class="mobile-auth">
+        <button v-if="!authUser" class="mobile-login-btn" @click="goToSignIn">
+          <i class="fas fa-sign-in-alt"></i>
+          <span>Sign In</span>
+        </button>
+        <div v-else class="mobile-profile">
+          <img
+            :src="avatarUrl"
+            class="avatar"
+            alt="Profile"
+            @error="onAvatarError"
+          />
+          <button
+            class="mobile-caret"
+            @click="toggleDropdown"
+            aria-haspopup="menu"
+            :aria-expanded="showDropdown ? 'true' : 'false'"
+          >
+            ▼
+          </button>
+          <div v-if="showDropdown" class="dropdown" role="menu">
+            <button class="dropdown-item" @click="toggleDarkMode">
+              <i class="fas fa-moon"></i>
+              <span>{{ isDark ? "Light mode" : "Dark mode" }}</span>
+            </button>
+            <button class="dropdown-item" @click="handleLogout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Log out</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
 </template>
 
 <script>
+import { useAuthStore } from "@/stores/auth";
 export default {
   name: "SimpleNavBar",
+  setup() {
+    const authStore = useAuthStore();
+    return { authStore };
+  },
   data() {
     return {
       isScrolled: false,
       isMobileMenuOpen: false,
-      currentLanguage: "en", // Default to English
+      currentLanguage: "en",
+      showDropdown: false,
+      isDark: false,
+      defaultAvatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
+      forceDefaultAvatar: false,
     };
+  },
+  computed: {
+    authUser() {
+      const uRef = this.authStore?.user;
+      return uRef && typeof uRef === "object" && "value" in uRef
+        ? uRef.value
+        : uRef;
+    },
+    avatarUrl() {
+      // Prefer auth user photoURL; unwrap Pinia/Vue ref if needed
+      const u = this.authUser;
+      if (this.forceDefaultAvatar) return this.defaultAvatar;
+      const direct = u?.photoURL;
+      // Some providers store photo in providerData
+      const providerPhoto = u?.providerData?.[0]?.photoURL;
+      // Fallback to cached localStorage user (set by auth store)
+      let cachedPhoto = null;
+      try {
+        const raw = localStorage.getItem("user");
+        if (raw) cachedPhoto = JSON.parse(raw)?.photoURL || null;
+      } catch (e) {
+        // Ignore JSON or storage errors and keep cachedPhoto as null
+        cachedPhoto = null;
+      }
+      return direct || providerPhoto || cachedPhoto || this.defaultAvatar;
+    },
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
+    const saved = localStorage.getItem("theme");
+    this.isDark = saved === "dark";
+    document.documentElement.classList.toggle("dark", this.isDark);
+    document.addEventListener("click", this.onDocClick);
+    // Reset avatar fallback when auth user changes (simple polling fallback)
+    this.$watch(
+      () => this.authUser && this.authUser.uid,
+      () => {
+        this.forceDefaultAvatar = false;
+      }
+    );
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
+    document.removeEventListener("click", this.onDocClick);
   },
   methods: {
     handleScroll() {
       this.isScrolled = window.scrollY > 50;
+    },
+    goToSignIn() {
+      // preserve redirect back to current route if desired
+      const { name, fullPath } = this.$route || {};
+      const query = name ? { redirect: fullPath } : undefined;
+      this.$router.push({ name: "SignIn", query });
+      this.isMobileMenuOpen = false;
+      this.showDropdown = false;
     },
     toggleMobileMenu() {
       this.isMobileMenuOpen = !this.isMobileMenuOpen;
@@ -139,23 +258,40 @@ export default {
     closeMobileMenu() {
       this.isMobileMenuOpen = false;
     },
-    scrollToSection(sectionId) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-        this.closeMobileMenu();
+    toggleDropdown() {
+      this.showDropdown = !this.showDropdown;
+    },
+    onDocClick(e) {
+      const desktop = this.$el?.querySelector?.(".profile-wrapper");
+      const mobile = this.$el?.querySelector?.(".mobile-profile");
+      if (this.showDropdown) {
+        const insideDesktop = desktop && desktop.contains(e.target);
+        const insideMobile = mobile && mobile.contains(e.target);
+        if (!insideDesktop && !insideMobile) {
+          this.showDropdown = false;
+        }
       }
     },
-    startProject() {
-      const contactSection = document.querySelector(".simple-footer");
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: "smooth" });
+    toggleDarkMode() {
+      this.isDark = !this.isDark;
+      document.documentElement.classList.toggle("dark", this.isDark);
+      localStorage.setItem("theme", this.isDark ? "dark" : "light");
+    },
+    async handleLogout() {
+      try {
+        await this.authStore.logout();
+        this.showDropdown = false;
+        this.isMobileMenuOpen = false;
+      } catch (e) {
+        console.error("Logout failed", e);
       }
+    },
+    onAvatarError() {
+      this.forceDefaultAvatar = true;
     },
     setLanguage(lang) {
       this.currentLanguage = lang;
-      this.$i18n.locale = lang; // ✅ Correct way in Options API
-      console.log(`Language set to: ${lang}`);
+      this.$i18n.locale = lang;
     },
   },
 };
@@ -353,40 +489,94 @@ export default {
   }
 }
 
-/* CTA Button */
-.nav-cta {
+/* Auth area styles */
+.nav-auth {
+  display: flex;
+  align-items: center;
+}
+
+.login-btn {
   background: #3b82f6;
   color: #ffffff;
   border: none;
-  padding: 12px 24px;
+  padding: 10px 16px;
   border-radius: 12px;
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
 }
-
-.nav-cta:hover {
+.login-btn:hover {
   background: #2563eb;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
 }
 
-.nav-cta i {
-  font-size: 14px;
+.profile-wrapper {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #e2e8f0;
+  object-fit: cover;
+}
+
+.caret-btn {
+  margin-left: 6px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  color: #475569;
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.caret-btn:hover {
+  background: #eef2f7;
+}
+
+.dropdown {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  min-width: 180px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  padding: 8px;
+  z-index: 20;
+}
+.dropdown-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  color: #1f2937;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.dropdown-item:hover {
+  background: #f8fafc;
 }
 
 @media (max-width: 1100px) {
   .cta-project {
     display: none;
-  }
-  .nav-cta {
-    gap: 6px;
   }
 }
 
@@ -449,7 +639,6 @@ export default {
 .mobile-menu-link:hover {
   background: #f8fafc;
   color: #3b82f6;
-  padding-left: 28px;
 }
 
 .mobile-menu-link i {
@@ -459,12 +648,22 @@ export default {
   text-align: center;
 }
 
-.mobile-cta {
+/* Mobile Auth */
+.mobile-auth {
+  width: 100%;
+  padding: 12px 16px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mobile-login-btn {
   width: 100%;
   background: #3b82f6;
   color: #ffffff;
   border: none;
-  padding: 16px 24px;
+  padding: 14px 16px;
+  border-radius: 12px;
   font-family: "Inter", sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
@@ -473,15 +672,27 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
 }
-
-.mobile-cta:hover {
+.mobile-login-btn:hover {
   background: #2563eb;
 }
-
-.mobile-cta i {
-  font-size: 16px;
+.mobile-profile {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+}
+.mobile-caret {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  color: #475569;
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 /* Responsive Design */
@@ -493,8 +704,7 @@ export default {
   }
 
   .nav-links,
-  .language-selector,
-  .nav-cta {
+  .language-selector {
     display: none;
   }
 

@@ -162,7 +162,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { auth } from "@/firebase";
@@ -177,10 +177,28 @@ const showPassword = ref(false);
 const email = ref("");
 const password = ref("");
 const errorMessage = ref(null);
+const hasNavigatedAfterAuth = ref(false);
 
 // Toggle password visibility
 const togglePassword = () => {
   showPassword.value = !showPassword.value;
+};
+
+// Wait until auth store reflects a signed-in user (or timeout)
+const waitForAuthUser = async (timeoutMs = 8000) => {
+  const start = Date.now();
+  while (!authStore.user && Date.now() - start < timeoutMs) {
+    await new Promise((r) => setTimeout(r, 50));
+  }
+  return !!authStore.user;
+};
+
+const navigateAfterAuthOnce = () => {
+  if (hasNavigatedAfterAuth.value) return;
+  if (!authStore.user) return;
+  hasNavigatedAfterAuth.value = true;
+  const redirect = router.currentRoute.value.query.redirect || "/";
+  router.replace(redirect);
 };
 
 // Handle email/password login
@@ -189,10 +207,8 @@ const handleEmailLogin = async () => {
     errorMessage.value = null; // Reset lỗi trước khi thử đăng nhập
     await signInWithEmailAndPassword(auth, email.value, password.value);
     // Store will update via onAuthStateChanged
-
-    // Kiểm tra redirect từ router (nếu có)
-    const redirect = router.currentRoute.value.query.redirect || "/";
-    await router.push(redirect);
+    await waitForAuthUser();
+    navigateAfterAuthOnce();
   } catch (err) {
     console.error("Lỗi đăng nhập:", err);
     handleLoginError(err);
@@ -204,11 +220,24 @@ const handleGoogleLogin = async () => {
   try {
     errorMessage.value = null;
     await authStore.signInWithGoogle();
-    router.push("/");
+    await waitForAuthUser();
+    navigateAfterAuthOnce();
   } catch (err) {
     handleLoginError(err);
   }
 };
+
+// Handle cases where auth completes via redirect or user is already signed in
+onMounted(() => {
+  if (authStore.user) navigateAfterAuthOnce();
+});
+
+watch(
+  () => authStore.user,
+  (u) => {
+    if (u) navigateAfterAuthOnce();
+  }
+);
 
 // Common error handler
 const handleLoginError = (err) => {
@@ -236,7 +265,7 @@ const handleLoginError = (err) => {
 const handleSignUp = () => {
   const redirect = router.currentRoute.value.query.redirect;
   router.push({
-    path: "/sign-up",
+    name: "SignUp",
     ...(redirect ? { query: { redirect } } : {}),
   });
 };
