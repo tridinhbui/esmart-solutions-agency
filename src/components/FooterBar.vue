@@ -1,101 +1,368 @@
 <template>
-  <footer class="bg-black text-white py-10">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-      <!-- Left Section -->
-      <div>
-        <h2 class="text-2xl font-bold mb-4">AR Agency Revolution</h2>
-        <p class="mb-2">
-          <span class="font-semibold">📞 Phone</span><br />
-          Call: 800-606-0477
-        </p>
-        <p class="mb-2">
-          <span class="font-semibold">📧 Email</span><br />
-          Support: team@agencyrevolution.com<br />
-          Sales: grow@agencyrevolution.com
-        </p>
-        <div class="flex gap-4 mt-4">
-          <button class="px-4 py-2 border border-white rounded font-semibold">
-            Support
-          </button>
-          <button class="px-4 py-2 bg-yellow-500 text-black font-bold rounded">
-            30-Min Consult
-          </button>
+  <footer
+    class="footer-bg-light bg-white border-t border-gray-200"
+    style="padding-top: 20px; padding-bottom: 60px"
+  >
+    <div class="container mx-auto px-4">
+      <div class="flex flex-row justify-around lg:flex-row gap-8">
+        <!-- LEFT COLUMN (5/12 width) - Logo, Contact, Buttons -->
+        <div class="lg:w-5/12">
+          <!-- Phone -->
+          <div class="mb-4">
+            <p class="text-black">
+              <i class="fa fa-phone text-blue-500 mr-2"></i>
+              <strong>Phone</strong>
+            </p>
+            <ul class="text-black mt-2">
+              <li>
+                <strong>Call:</strong>
+                <a href="tel:+84868885505" class="text-black hover:underline"
+                  >868-885-505</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-6">
+            <p class="text-black">
+              <i class="fa fa-envelope text-blue-500 mr-2"></i>
+              <strong>Email</strong>
+            </p>
+            <ul class="text-black mt-2">
+              <li>
+                <strong>Support:</strong>
+                <a
+                  href="mailto:esmartsolutions.agency@gmail.com"
+                  class="text-black hover:underline"
+                  >esmartsolutions.agency@gmail.com</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Address -->
+          <div class="mb-6">
+            <p class="text-black">
+              <i class="fa fa-map-marker mr-2 text-blue-600"></i>
+              <strong>Address</strong>
+            </p>
+            <ul class="text-black mt-2">
+              <li>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=140+Nguyen+Xien+st%2C+Thanh+Xuan+dist"
+                  target="_blank"
+                  rel="noopener"
+                  class="hover:underline"
+                >
+                  140 Nguyen Xien st, Thanh Xuan dist
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- Buttons -->
+          <div class="flex flex-col gap-3">
+            <a
+              href="/contact/"
+              class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors w-fit"
+              style="
+                display: inline-flex !important;
+                background-color: #2563eb !important;
+                color: white !important;
+              "
+            >
+              <span>Support</span>
+              <span class="ml-2">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN (7/12 width) - Navigation Links in 3 columns -->
+        <div class="lg:w-7/12">
+          <div
+            class="flex flex-row sm:grid-cols-2 justify-between lg:grid-cols-3 gap-8"
+          >
+            <!-- Column 1 -->
+            <div>
+              <!-- Insurance Marketing -->
+              <div class="mb-8">
+                <h4 class="text-black font-bold mb-4">Marketing</h4>
+                <ul class="space-y-2">
+                  <li>
+                    <a
+                      href="/insurance-agency-websites/"
+                      class="text-black hover:underline"
+                      >Websites</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/insurance-marketing-automation/"
+                      class="text-black hover:underline"
+                      >Marketing Automation</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/insurance-agency-marketing-and-websites/"
+                      class="text-black hover:underline"
+                      >Marketing + Websites</a
+                    >
+                  </li>
+                  <li>
+                    <a href="/enterprise/" class="text-black hover:underline"
+                      >Enterprise</a
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Digital Features -->
+              <div>
+                <h4 class="text-black font-bold mb-4">Digital Features</h4>
+                <ul class="space-y-2">
+                  <li>
+                    <a
+                      href="/insurance-marketing-tools/business-texting/"
+                      class="text-black hover:underline"
+                      >Business Texting</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/insurance-marketing-tools/do-it-for-me-marketing/"
+                      class="text-black hover:underline"
+                      >Do It For Me Marketing</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/insurance-marketing-tools/local-listings/"
+                      class="text-black hover:underline"
+                      >Local Listings</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/insurance-marketing-tools/reputation-management/"
+                      class="text-black hover:underline"
+                      >Reputation Management</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/insurance-marketing-tools/social-media/"
+                      class="text-black hover:underline"
+                      >Social Media</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div>
+              <!-- Resources -->
+              <div class="mb-13">
+                <h4 class="text-black font-bold mb-4">Resources</h4>
+                <ul class="space-y-2">
+                  <li>
+                    <a href="/blog/" class="text-black hover:underline">Blog</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/insurance-marketing-resources/"
+                      class="text-black hover:underline"
+                      >Resources</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/insurance-marketing-webinars/"
+                      class="text-black hover:underline"
+                      >Webinars</a
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Support -->
+              <div>
+                <h4 class="text-black font-bold mb-4">Support</h4>
+                <ul class="space-y-2">
+                  <li>
+                    <a href="/support/" class="text-black hover:underline"
+                      >Get Support</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/support/#additional-support"
+                      class="text-black hover:underline"
+                      >Live Training</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/support/#additional-support/"
+                      class="text-black hover:underline"
+                      >Help Center</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Column 3 -->
+            <div>
+              <!-- Who We Are -->
+              <div class="mb-13">
+                <h4 class="text-black font-bold mb-4">Who We Are</h4>
+                <ul class="space-y-2">
+                  <li>
+                    <a href="/about-us/" class="text-black hover:underline"
+                      >About Us</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/about-us/leadership/"
+                      class="text-black hover:underline"
+                      >Leadership</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/about-us/careers/"
+                      class="text-black hover:underline"
+                      >Careers</a
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Who We Serve -->
+              <div>
+                <h4 class="text-black font-bold mb-4">Who We Serve</h4>
+                <ul class="space-y-2">
+                  <li>
+                    <a
+                      href="/independent-insurance-agencies/"
+                      class="text-black hover:underline"
+                      >Professionals</a
+                    >
+                  </li>
+                  <li>
+                    <a href="/enterprise/" class="text-black hover:underline"
+                      >Enterprises</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Insurance Marketing -->
-      <div>
-        <h3 class="font-bold mb-3">Insurance Marketing</h3>
-        <ul class="space-y-2">
-          <li>Insurance Websites</li>
-          <li>Marketing Automation</li>
-          <li>Marketing + Websites</li>
-          <li>Enterprise</li>
-        </ul>
-        <h3 class="font-bold mt-6 mb-3">Digital Features</h3>
-        <ul class="space-y-2">
-          <li>Business Texting</li>
-          <li>Do It For Me Marketing</li>
-          <li>Local Listings</li>
-          <li>Reputation Management</li>
-          <li>Social Media</li>
-        </ul>
+      <!-- Bottom Text -->
+      <div class="mt-12 pt-8 text-gray-600 text-sm border-t border-gray-200">
+        <p style="font-size: 13px; line-height: 23px">
+          ESmart Solutions provides insurance marketing automation and digital
+          marketing tools to independent insurance agents and brokers throughout
+          the nation including Oregon, California, New York, Texas, Florida,
+          Pennsylvania, Illinois, Ohio, Georgia, North Carolina, Michigan, New
+          Jersey, Virginia, Washington, Arizona and others in the United States.
+          <a href="#" class="text-gray-600 border-none hover:underline"
+            >Do not sell my personal information.</a
+          >
+        </p>
       </div>
-
-      <!-- Resources & Support -->
-      <div>
-        <h3 class="font-bold mb-3">Resources</h3>
-        <ul class="space-y-2">
-          <li>Insurance Blog</li>
-          <li>Insurance Resources</li>
-          <li>Insurance Webinars</li>
-        </ul>
-        <h3 class="font-bold mt-6 mb-3">Support</h3>
-        <ul class="space-y-2">
-          <li>Get Support</li>
-          <li>Live Training</li>
-          <li>Help Center</li>
-        </ul>
-      </div>
-
-      <!-- Who We Are & Serve -->
-      <div>
-        <h3 class="font-bold mb-3">Who We Are</h3>
-        <ul class="space-y-2">
-          <li>About Us</li>
-          <li>Leadership</li>
-          <li>Careers</li>
-        </ul>
-        <h3 class="font-bold mt-6 mb-3">Who We Serve</h3>
-        <ul class="space-y-2">
-          <li>Insurance Professionals</li>
-          <li>Enterprises</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Bottom Text -->
-    <div class="max-w-7xl mx-auto px-6 mt-10 text-sm text-gray-400">
-      <p>
-        Agency Revolution provides insurance marketing automation and digital
-        marketing tools to independent insurance agents and brokers throughout
-        the nation including Oregon, California, New York, Texas, Florida,
-        Pennsylvania, Illinois, Ohio, Georgia, North Carolina, Michigan, New
-        Jersey, Virginia, Washington, Arizona and others in the United States.
-        Do not sell my personal information.
-      </p>
     </div>
   </footer>
 </template>
 
 <script>
-export default {
-  name: "SimpleFooter",
-};
+export default { name: "SimpleFooter" };
 </script>
 
 <style scoped>
-footer ul li {
-  cursor: pointer;
+.footer-bg-light {
+  position: relative;
+  background-color: #ffffff;
+  color: black;
+  z-index: 110;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Icon styling */
+.fa {
+  font-family: FontAwesome;
+}
+
+.fa-phone:before {
+  content: "📞";
+}
+
+.fa-envelope:before {
+  content: "✉️";
+}
+
+.fa-caret-right:before {
+  content: "▶";
+}
+
+/* Button hover states */
+a:hover {
+  transition: all 0.3s ease;
+}
+
+/* Text styling */
+h4 {
+  font-weight: 600;
+}
+
+h5 {
+  font-weight: 600;
+}
+
+ul li {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Button styling */
+.inline-flex {
+  display: inline-flex;
+  align-items: center;
+  text-align: center;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer-bg-light {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .grid {
+    gap: 1.5rem;
+  }
 }
 </style>
