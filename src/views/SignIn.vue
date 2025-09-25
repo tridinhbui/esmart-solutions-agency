@@ -2,15 +2,12 @@
   <div class="login-wrapper">
     <!-- Navigation Bar with Logo -->
     <nav class="login-navbar">
-      <router-link
-        to="/"
-        class="navbar-logo"
-      >
+      <router-link to="/" class="navbar-logo">
         <img
           src="@/assets/logo.png"
           alt="ESmart Logo"
           class="navbar-logo-img"
-        >
+        />
         <span class="navbar-logo-text">ESmart Solutions</span>
       </router-link>
     </nav>
@@ -32,95 +29,76 @@
         />
       </div>
       <div class="neural-grid">
-        <div
-          v-for="i in 8"
-          :key="`h-${i}`"
-          class="grid-line horizontal"
-        />
-        <div
-          v-for="i in 6"
-          :key="`v-${i}`"
-          class="grid-line vertical"
-        />
+        <div v-for="i in 8" :key="`h-${i}`" class="grid-line horizontal" />
+        <div v-for="i in 6" :key="`v-${i}`" class="grid-line vertical" />
       </div>
     </div>
 
     <div class="welcome-section">
       <div class="cosmic-glow" />
       <h3 class="welcome-title">
-        <span class="quantum-text">Lần đầu tới đây?</span>
+        <span class="quantum-text">{{ $t("auth.welcomeNew") }}</span>
       </h3>
       <p class="welcome-subtitle">
-        Khám phá thế giới đổi mới số và những khả năng vô hạn cùng ESmart Solutions!
+        {{ $t("auth.welcomeSubtitle") }}
       </p>
-      <button
-        class="signup-btn quantum-button"
-        @click="handleSignUp"
-      >
+      <button class="signup-btn quantum-button" @click="handleSignUp">
         <span class="button-glow" />
-        <span class="button-text">Bắt đầu hành trình</span>
+        <span class="button-text">{{ $t("auth.ctaGetStarted") }}</span>
       </button>
     </div>
-    <div
-      class="signin-container"
-    >
+    <div class="signin-container">
       <div class="login-content">
         <div class="hologram-frame" />
         <h2 class="login-title">
-          <span class="quantum-text">Cổng đăng nhập</span>
+          <span class="quantum-text">{{ $t("auth.signInTitle") }}</span>
         </h2>
-        
+
         <!-- Phần đăng nhập bằng Google -->
         <div class="social-login">
-          <p class="social-login-title">
-            Đăng nhập qua mạng xã hội
-          </p>
-          <button
-            class="google-btn quantum-button"
+          <p class="social-login-title">{{ $t("auth.socialLogin") }}</p>
+          <GoogleSignInButton
+            :disabled="authStore.isLoading"
             @click="handleGoogleLogin"
           >
-            <span class="button-glow" />
-            <img
-              src="https://www.google.com/favicon.ico"
-              alt="Google"
-              class="google-icon"
-            >
-            <span class="button-text">Đăng nhập Google</span>
-          </button>
+            <template #default>
+              <span v-if="!authStore.isLoading">{{
+                $t("auth.googleSignIn")
+              }}</span>
+              <span v-else>{{ $t("auth.processing") }}</span>
+            </template>
+          </GoogleSignInButton>
         </div>
 
         <!-- Dòng ngăn cách OR -->
         <div class="or-divider">
           <span class="or-line" />
-          <span class="or-text">HOẶC</span>
+          <span class="or-text">{{ $t("auth.or") }}</span>
           <span class="or-line" />
         </div>
 
         <!-- Form đăng nhập bằng email/password -->
-        <form
-          class="login-form"
-          @submit.prevent="handleEmailLogin"
-        >
+        <form class="login-form" @submit.prevent="handleEmailLogin">
           <div class="input-group">
             <input
               id="email"
               v-model="email"
               type="email"
-              placeholder="Địa chỉ email"
+              :placeholder="$t('auth.emailPlaceholder')"
               class="input-field"
               required
-            >
+            />
           </div>
-    
+
           <div class="input-group password-group">
             <input
               id="password"
               v-model="password"
               :type="showPassword ? 'text' : 'password'"
-              placeholder="Mật khẩu"
+              :placeholder="$t('auth.passwordPlaceholder')"
               class="input-field"
               required
-            >
+            />
             <button
               type="button"
               class="toggle-password"
@@ -138,13 +116,10 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
-                <line
-                  x1="1"
-                  y1="1"
-                  x2="23"
-                  y2="23"
+                <path
+                  d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
                 />
+                <line x1="1" y1="1" x2="23" y2="23" />
               </svg>
               <svg
                 v-else
@@ -159,53 +134,49 @@
                 stroke-linejoin="round"
               >
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="3"
-                />
+                <circle cx="12" cy="12" r="3" />
               </svg>
             </button>
           </div>
-    
+
           <div class="button-container">
-            <button
-              type="submit"
-              class="submit-btn quantum-button"
-            >
+            <button type="submit" class="submit-btn quantum-button">
               <span class="button-glow" />
-              <span class="button-text">Đăng nhập</span>
+              <span class="button-text">{{ $t("auth.btnSignIn") }}</span>
             </button>
           </div>
         </form>
-    
-        <p
-          v-if="error"
-          class="error"
-        >
-          {{ error }}
+
+        <p v-if="errorMessage" class="error">
+          {{ errorMessage }}
         </p>
+        <div class="account-switch">
+          <span class="switch-text">{{ $t("auth.noAccount") }}</span>
+          <router-link to="/sign-up" class="switch-link">{{
+            $t("auth.btnSignUp")
+          }}</router-link>
+        </div>
       </div>
     </div>
   </div>
 </template>
-  
+
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { auth, googleProvider } from '@/firebase';
-import { 
-  signInWithEmailAndPassword,
-  signInWithPopup 
-} from 'firebase/auth';
-import { useAuthStore } from '@/stores/auth';
+import { ref } from "vue";
+import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
+import { auth } from "@/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useAuthStore } from "@/stores/auth";
+import GoogleSignInButton from "@/components/GoogleSignInButton.vue";
 
 const router = useRouter();
+const { t } = useI18n();
 const authStore = useAuthStore();
 const showPassword = ref(false);
-const email = ref('');
-const password = ref('');
-const error = ref(null);
+const email = ref("");
+const password = ref("");
+const errorMessage = ref(null);
 
 // Toggle password visibility
 const togglePassword = () => {
@@ -215,70 +186,62 @@ const togglePassword = () => {
 // Handle email/password login
 const handleEmailLogin = async () => {
   try {
-    error.value = null; // Reset lỗi trước khi thử đăng nhập
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email.value,
-      password.value
-    );
-    
-    // Cập nhật store và chuyển hướng
-    authStore.user = userCredential.user;
-    
+    errorMessage.value = null; // Reset lỗi trước khi thử đăng nhập
+    await signInWithEmailAndPassword(auth, email.value, password.value);
+    // Store will update via onAuthStateChanged
+
     // Kiểm tra redirect từ router (nếu có)
-    const redirect = router.currentRoute.value.query.redirect || '/';
+    const redirect = router.currentRoute.value.query.redirect || "/";
     await router.push(redirect);
-    
   } catch (err) {
-    console.error('Lỗi đăng nhập:', err);
+    console.error("Lỗi đăng nhập:", err);
     handleLoginError(err);
   }
 };
 
-  
 // Handle Google login
 const handleGoogleLogin = async () => {
   try {
-    const result = await signInWithPopup(auth, googleProvider);
-    
-    // User data is automatically saved via onAuthStateChanged in authStore
-    console.log('Google login successful:', result.user);
-    router.push('/');
-    
+    errorMessage.value = null;
+    await authStore.signInWithGoogle();
+    router.push("/");
   } catch (err) {
     handleLoginError(err);
   }
 };
 
 // Common error handler
-const handleLoginError = (error) => {
-  console.error('Login error:', error);
-  
-  switch (error.code) {
-    case 'auth/wrong-password':
-      error.value = 'Incorrect password. Please try again.';
+const handleLoginError = (err) => {
+  console.error("Login error:", err);
+
+  switch (err.code) {
+    case "auth/wrong-password":
+      errorMessage.value = t("auth.errors.wrongPassword");
       break;
-    case 'auth/user-not-found':
-      error.value = 'No account found with this email.';
+    case "auth/user-not-found":
+      errorMessage.value = t("auth.errors.userNotFound");
       break;
-    case 'auth/invalid-email':
-      error.value = 'Invalid email format.';
+    case "auth/invalid-email":
+      errorMessage.value = t("auth.errors.invalidEmail");
       break;
-    case 'auth/popup-closed-by-user':
-      error.value = 'Google login popup was closed.';
+    case "auth/popup-closed-by-user":
+      errorMessage.value = t("auth.errors.popupClosed");
       break;
     default:
-      error.value = 'Login failed. Please try again later.';
+      errorMessage.value = t("auth.errors.genericLogin");
   }
 };
 
-// Navigate to signup page
+// Navigate to signup page, preserve redirect param
 const handleSignUp = () => {
-  router.push('/sign-up');
+  const redirect = router.currentRoute.value.query.redirect;
+  router.push({
+    path: "/sign-up",
+    ...(redirect ? { query: { redirect } } : {}),
+  });
 };
-
 </script>
-  
+
 <style scoped>
 /* Login Navbar */
 .login-navbar {
@@ -286,13 +249,24 @@ const handleSignUp = () => {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1rem 2rem;
-  background: rgba(10, 10, 20, 0.9);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+  padding: 0.85rem 2rem;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
   z-index: 1000;
   display: flex;
   align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.login-navbar .navbar-logo-text {
+  background: none;
+  -webkit-text-fill-color: #1e293b;
+  color: #1e293b;
+  text-shadow: none;
+}
+
+.login-navbar .navbar-logo-img {
+  filter: none;
 }
 
 .navbar-logo {
@@ -324,16 +298,12 @@ const handleSignUp = () => {
   text-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
 }
 
-/* Quantum Mystical Login Wrapper */
+/* Flattened login wrapper to align with homepage */
 .login-wrapper {
   display: flex;
   min-height: 100vh;
   padding-top: 80px; /* Space for navbar */
-  background: 
-    radial-gradient(circle at 20% 30%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(217, 119, 6, 0.05) 0%, transparent 70%),
-    linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+  background: #ffffff;
   position: relative;
   overflow: hidden;
 }
@@ -341,12 +311,8 @@ const handleSignUp = () => {
 /* Quantum Background Effects */
 .quantum-background {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   z-index: 0;
-  overflow: hidden;
 }
 
 .quantum-particle {
@@ -364,21 +330,66 @@ const handleSignUp = () => {
   background: radial-gradient(circle, #f59e0b 0%, transparent 70%);
 }
 
-.quantum-particle:nth-child(1) { left: 10%; animation-delay: 0s; }
-.quantum-particle:nth-child(2) { left: 20%; animation-delay: 2s; }
-.quantum-particle:nth-child(3) { left: 30%; animation-delay: 4s; }
-.quantum-particle:nth-child(4) { left: 40%; animation-delay: 1s; }
-.quantum-particle:nth-child(5) { left: 50%; animation-delay: 3s; }
-.quantum-particle:nth-child(6) { left: 60%; animation-delay: 5s; }
-.quantum-particle:nth-child(7) { left: 70%; animation-delay: 2.5s; }
-.quantum-particle:nth-child(8) { left: 80%; animation-delay: 4.5s; }
-.quantum-particle:nth-child(9) { left: 90%; animation-delay: 1.5s; }
-.quantum-particle:nth-child(10) { left: 15%; animation-delay: 6s; }
-.quantum-particle:nth-child(11) { left: 25%; animation-delay: 7s; }
-.quantum-particle:nth-child(12) { left: 35%; animation-delay: 8s; }
-.quantum-particle:nth-child(13) { left: 45%; animation-delay: 3.5s; }
-.quantum-particle:nth-child(14) { left: 65%; animation-delay: 5.5s; }
-.quantum-particle:nth-child(15) { left: 85%; animation-delay: 7.5s; }
+.quantum-particle:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+}
+.quantum-particle:nth-child(2) {
+  left: 20%;
+  animation-delay: 2s;
+}
+.quantum-particle:nth-child(3) {
+  left: 30%;
+  animation-delay: 4s;
+}
+.quantum-particle:nth-child(4) {
+  left: 40%;
+  animation-delay: 1s;
+}
+.quantum-particle:nth-child(5) {
+  left: 50%;
+  animation-delay: 3s;
+}
+.quantum-particle:nth-child(6) {
+  left: 60%;
+  animation-delay: 5s;
+}
+.quantum-particle:nth-child(7) {
+  left: 70%;
+  animation-delay: 2.5s;
+}
+.quantum-particle:nth-child(8) {
+  left: 80%;
+  animation-delay: 4.5s;
+}
+.quantum-particle:nth-child(9) {
+  left: 90%;
+  animation-delay: 1.5s;
+}
+.quantum-particle:nth-child(10) {
+  left: 15%;
+  animation-delay: 6s;
+}
+.quantum-particle:nth-child(11) {
+  left: 25%;
+  animation-delay: 7s;
+}
+.quantum-particle:nth-child(12) {
+  left: 35%;
+  animation-delay: 8s;
+}
+.quantum-particle:nth-child(13) {
+  left: 45%;
+  animation-delay: 3.5s;
+}
+.quantum-particle:nth-child(14) {
+  left: 65%;
+  animation-delay: 5.5s;
+}
+.quantum-particle:nth-child(15) {
+  left: 85%;
+  animation-delay: 7.5s;
+}
 
 .energy-waves {
   position: absolute;
@@ -396,11 +407,26 @@ const handleSignUp = () => {
   opacity: 0.3;
 }
 
-.energy-wave:nth-child(1) { top: 20%; animation-delay: 0s; }
-.energy-wave:nth-child(2) { top: 40%; animation-delay: 2s; }
-.energy-wave:nth-child(3) { top: 60%; animation-delay: 4s; }
-.energy-wave:nth-child(4) { top: 80%; animation-delay: 6s; }
-.energy-wave:nth-child(5) { top: 90%; animation-delay: 1s; }
+.energy-wave:nth-child(1) {
+  top: 20%;
+  animation-delay: 0s;
+}
+.energy-wave:nth-child(2) {
+  top: 40%;
+  animation-delay: 2s;
+}
+.energy-wave:nth-child(3) {
+  top: 60%;
+  animation-delay: 4s;
+}
+.energy-wave:nth-child(4) {
+  top: 80%;
+  animation-delay: 6s;
+}
+.energy-wave:nth-child(5) {
+  top: 90%;
+  animation-delay: 1s;
+}
 
 .neural-grid {
   position: absolute;
@@ -434,19 +460,11 @@ const handleSignUp = () => {
   align-items: center;
   position: relative;
   z-index: 1;
+  background: #ffffff;
 }
 
 .cosmic-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
-  border-radius: 50%;
-  filter: blur(40px);
-  animation: cosmicPulse 4s infinite ease-in-out;
+  display: none;
 }
 
 .welcome-title {
@@ -457,20 +475,19 @@ const handleSignUp = () => {
 }
 
 .quantum-text {
-  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #fff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
-  animation: quantumGlow 3s infinite ease-in-out;
+  background: none;
+  -webkit-text-fill-color: inherit;
+  color: #1e293b;
+  text-shadow: none;
+  animation: none;
 }
 
 .welcome-subtitle {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.2rem;
+  color: #64748b;
+  font-size: 1.05rem;
   text-align: center;
-  margin-bottom: 3rem;
-  line-height: 1.6;
+  margin-bottom: 2.25rem;
+  line-height: 1.5;
   max-width: 400px;
 }
 
@@ -488,26 +505,15 @@ const handleSignUp = () => {
   width: 100%;
   max-width: 500px;
   padding: 3rem;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
+  background: #ffffff;
   border-radius: 20px;
-  border: 1px solid rgba(255, 107, 53, 0.2);
+  border: 2px solid #f1f5f9;
   position: relative;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 .hologram-frame {
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #ff6b35, #f59e0b, #d97706, #ff6b35);
-  border-radius: 22px;
-  z-index: -1;
-  animation: hologramBorder 3s infinite linear;
+  display: none;
 }
 
 .login-title {
@@ -524,55 +530,38 @@ const handleSignUp = () => {
 }
 
 .social-login-title {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-  display: block;
+  color: #64748b;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 /* Quantum Button Base */
 .quantum-button {
-  position: relative;
-  padding: 1rem 2rem;
+  padding: 0.85rem 1.5rem;
   border: none;
-  border-radius: 50px;
-  background: rgba(255, 107, 53, 0.1);
-  backdrop-filter: blur(10px);
-  color: white;
+  border-radius: 12px;
+  background: #3b82f6;
+  color: #ffffff;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.4s ease;
-  overflow: hidden;
-  display: flex;
+  transition: background 0.25s ease, transform 0.25s ease;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border: 1px solid rgba(255, 107, 53, 0.3);
 }
-
 .quantum-button:hover {
+  background: #2563eb;
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px rgba(255, 107, 53, 0.3);
-  border-color: rgba(255, 107, 53, 0.6);
 }
 
 .button-glow {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
+  display: none;
 }
-
-.quantum-button:hover .button-glow {
-  left: 100%;
-}
-
 .button-text {
   position: relative;
-  z-index: 1;
 }
 
 /* Google Button */
@@ -580,6 +569,12 @@ const handleSignUp = () => {
   width: 100%;
   max-width: 300px;
   margin: 0 auto 1rem;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  color: #1e293b;
+}
+.google-btn:hover {
+  background: #f8fafc;
 }
 
 .google-icon {
@@ -591,7 +586,7 @@ const handleSignUp = () => {
 .signup-btn {
   width: 100%;
   max-width: 300px;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 /* OR Divider */
@@ -604,13 +599,13 @@ const handleSignUp = () => {
 .or-line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.3), transparent);
+  background: #e2e8f0;
 }
 
 .or-text {
   padding: 0 1rem;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.9rem;
+  color: #64748b;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -628,25 +623,21 @@ const handleSignUp = () => {
 
 .input-field {
   width: 100%;
-  padding: 1rem 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 107, 53, 0.2);
-  border-radius: 50px;
-  font-size: 1rem;
-  color: white;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  padding: 0.85rem 1.2rem;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  color: #1e293b;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-
 .input-field::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: #94a3b8;
 }
-
 .input-field:focus {
   outline: none;
-  border-color: rgba(255, 107, 53, 0.6);
-  box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
-  background: rgba(255, 255, 255, 0.15);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
 }
 
 /* Button Container */
@@ -657,18 +648,40 @@ const handleSignUp = () => {
 /* Submit Button */
 .submit-btn {
   width: 100%;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .error {
-  color: #ff6b6b;
+  color: #b91c1c;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
   margin-top: 1rem;
   text-align: center;
-  font-size: 0.9rem;
-  background: rgba(255, 107, 107, 0.1);
+  font-size: 0.85rem;
   padding: 0.75rem;
   border-radius: 10px;
-  border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.account-switch {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.account-switch .switch-text {
+  color: #64748b;
+}
+.account-switch .switch-link {
+  color: #3b82f6;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.account-switch .switch-link:hover {
+  color: #2563eb;
 }
 
 .password-group {
@@ -693,7 +706,8 @@ const handleSignUp = () => {
 
 /* Quantum Animations */
 @keyframes quantumDrift {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
     opacity: 0.3;
   }
@@ -713,7 +727,8 @@ const handleSignUp = () => {
 }
 
 @keyframes cosmicPulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1);
     opacity: 0.1;
   }
@@ -724,11 +739,13 @@ const handleSignUp = () => {
 }
 
 @keyframes quantumGlow {
-  0%, 100% {
+  0%,
+  100% {
     text-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
   }
   50% {
-    text-shadow: 0 0 40px rgba(255, 107, 53, 0.6), 0 0 60px rgba(245, 158, 11, 0.4);
+    text-shadow: 0 0 40px rgba(255, 107, 53, 0.6),
+      0 0 60px rgba(245, 158, 11, 0.4);
   }
 }
 
@@ -751,42 +768,70 @@ const handleSignUp = () => {
 }
 
 /* Grid positioning */
-.grid-line.horizontal:nth-child(1) { top: 12.5%; }
-.grid-line.horizontal:nth-child(2) { top: 25%; }
-.grid-line.horizontal:nth-child(3) { top: 37.5%; }
-.grid-line.horizontal:nth-child(4) { top: 50%; }
-.grid-line.horizontal:nth-child(5) { top: 62.5%; }
-.grid-line.horizontal:nth-child(6) { top: 75%; }
-.grid-line.horizontal:nth-child(7) { top: 87.5%; }
-.grid-line.horizontal:nth-child(8) { top: 100%; }
+.grid-line.horizontal:nth-child(1) {
+  top: 12.5%;
+}
+.grid-line.horizontal:nth-child(2) {
+  top: 25%;
+}
+.grid-line.horizontal:nth-child(3) {
+  top: 37.5%;
+}
+.grid-line.horizontal:nth-child(4) {
+  top: 50%;
+}
+.grid-line.horizontal:nth-child(5) {
+  top: 62.5%;
+}
+.grid-line.horizontal:nth-child(6) {
+  top: 75%;
+}
+.grid-line.horizontal:nth-child(7) {
+  top: 87.5%;
+}
+.grid-line.horizontal:nth-child(8) {
+  top: 100%;
+}
 
-.grid-line.vertical:nth-child(1) { left: 16.66%; }
-.grid-line.vertical:nth-child(2) { left: 33.33%; }
-.grid-line.vertical:nth-child(3) { left: 50%; }
-.grid-line.vertical:nth-child(4) { left: 66.66%; }
-.grid-line.vertical:nth-child(5) { left: 83.33%; }
-.grid-line.vertical:nth-child(6) { left: 100%; }
+.grid-line.vertical:nth-child(1) {
+  left: 16.66%;
+}
+.grid-line.vertical:nth-child(2) {
+  left: 33.33%;
+}
+.grid-line.vertical:nth-child(3) {
+  left: 50%;
+}
+.grid-line.vertical:nth-child(4) {
+  left: 66.66%;
+}
+.grid-line.vertical:nth-child(5) {
+  left: 83.33%;
+}
+.grid-line.vertical:nth-child(6) {
+  left: 100%;
+}
 
 /* Responsive Design */
 @media (max-width: 1024px) {
   .login-wrapper {
     flex-direction: column;
   }
-  
+
   .welcome-section,
   .signin-container {
     width: 100%;
   }
-  
+
   .welcome-section {
     padding: 2rem;
     min-height: 40vh;
   }
-  
+
   .welcome-title {
     font-size: 3rem;
   }
-  
+
   .signin-container {
     min-height: 60vh;
   }
@@ -796,24 +841,24 @@ const handleSignUp = () => {
   .welcome-title {
     font-size: 2.5rem;
   }
-  
+
   .welcome-subtitle {
     font-size: 1rem;
   }
-  
+
   .login-content {
     padding: 2rem;
     margin: 1rem;
   }
-  
+
   .login-title {
     font-size: 2rem;
   }
-  
+
   .quantum-particle {
     display: none;
   }
-  
+
   .energy-wave {
     opacity: 0.1;
   }
@@ -823,15 +868,15 @@ const handleSignUp = () => {
   .welcome-section {
     padding: 1rem;
   }
-  
+
   .welcome-title {
     font-size: 2rem;
   }
-  
+
   .login-content {
     padding: 1.5rem;
   }
-  
+
   .quantum-button {
     padding: 0.75rem 1.5rem;
     font-size: 0.9rem;

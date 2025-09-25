@@ -11,8 +11,10 @@ const messages = {
 };
 
 const i18n = createI18n({
+  legacy: false, // enable composition API mode
   locale: "en", // default locale - changed to English
   messages,
+  globalInjection: true,
 });
 
 export default i18n;

@@ -2,67 +2,62 @@
   <div class="login-wrapper">
     <div class="login-container">
       <div class="login-content">
-        <h2 class="login-title">
-          Create New Account
-        </h2>
+        <h2 class="login-title">{{ $t("auth.signUpTitle") }}</h2>
 
         <!-- Phần đăng ký bằng Google -->
         <div class="social-login">
-          <p class="social-login-title">
-            Sign up with social networks
-          </p>
-          <button
-            class="google-btn"
+          <p class="social-login-title">{{ $t("auth.socialSignup") }}</p>
+          <GoogleSignInButton
+            variant="full"
+            :disabled="authStore.isLoading"
             @click="handleGoogleSignUp"
           >
-            <img
-              src="https://www.google.com/favicon.ico"
-              alt="Google"
-              class="google-icon"
-            >
-          </button>
+            <template #default>
+              <span v-if="!authStore.isLoading">{{
+                $t("auth.googleSignUp")
+              }}</span>
+              <span v-else>{{ $t("auth.processing") }}</span>
+            </template>
+          </GoogleSignInButton>
         </div>
 
         <!-- Dòng ngăn cách OR -->
         <div class="or-divider">
           <span class="or-line" />
-          <span class="or-text">OR</span>
+          <span class="or-text">{{ $t("auth.or") }}</span>
           <span class="or-line" />
         </div>
 
         <!-- Form đăng ký -->
-        <form
-          class="login-form"
-          @submit.prevent="handleSubmit"
-        >
+        <form class="login-form" @submit.prevent="handleSubmit">
           <div class="input-group">
             <input
               v-model="form.name"
               type="text"
-              placeholder="Full Name"
+              :placeholder="$t('auth.fullNamePlaceholder')"
               class="input-field"
               required
-            >
+            />
           </div>
 
           <div class="input-group">
             <input
               v-model="form.email"
               type="email"
-              placeholder="Email"
+              :placeholder="$t('auth.emailPlaceholder')"
               class="input-field"
               required
-            >
+            />
           </div>
 
           <div class="input-group password-group">
             <input
               v-model="form.password"
               :type="showPassword ? 'text' : 'password'"
-              placeholder="Password"
+              :placeholder="$t('auth.passwordPlaceholder')"
               class="input-field"
               required
-            >
+            />
             <button
               type="button"
               class="toggle-password"
@@ -83,12 +78,7 @@
                 <path
                   d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
                 />
-                <line
-                  x1="1"
-                  y1="1"
-                  x2="23"
-                  y2="23"
-                />
+                <line x1="1" y1="1" x2="23" y2="23" />
               </svg>
               <svg
                 v-else
@@ -103,11 +93,7 @@
                 stroke-linejoin="round"
               >
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="3"
-                />
+                <circle cx="12" cy="12" r="3" />
               </svg>
             </button>
           </div>
@@ -115,33 +101,41 @@
             <input
               v-model="form.confirmPassword"
               type="password"
-              placeholder="Confirm Password"
+              :placeholder="$t('auth.confirmPasswordPlaceholder')"
               class="input-field"
               required
-            >
+            />
           </div>
 
           <div class="button-container">
             <button
               type="submit"
               class="submit-btn"
+              :disabled="authStore.isLoading"
             >
-              Sign Up
+              <span v-if="!authStore.isLoading">{{
+                $t("auth.btnSignUp")
+              }}</span>
+              <span v-else>{{ $t("auth.creating") }}</span>
             </button>
           </div>
         </form>
+        <p v-if="errorMessage" class="error-msg">{{ errorMessage }}</p>
       </div>
     </div>
     <div class="welcome-section">
       <div class="welcome-content">
-        <p class="account-exists">
-          Already have an account?
-        </p>
+        <p class="account-exists">{{ $t("auth.haveAccount") }}</p>
         <router-link
-          to="/sign-in"
+          :to="{
+            path: '/sign-in',
+            query: $route.query.redirect
+              ? { redirect: $route.query.redirect }
+              : {},
+          }"
           class="signin-btn"
         >
-          Sign In
+          {{ $t("auth.btnSignIn") }}
         </router-link>
       </div>
     </div>
@@ -150,11 +144,16 @@
 
 <script setup>
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
-import { auth, googleProvider } from "@/firebase";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth } from "@/firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useAuthStore } from "@/stores/auth";
+import GoogleSignInButton from "@/components/GoogleSignInButton.vue";
 
 const router = useRouter();
+const { t } = useI18n();
+const authStore = useAuthStore();
 const showPassword = ref(false);
 const form = ref({
   name: "",
@@ -162,6 +161,7 @@ const form = ref({
   password: "",
   confirmPassword: "",
 });
+const errorMessage = ref(null);
 
 const togglePassword = () => {
   showPassword.value = !showPassword.value;
@@ -169,29 +169,58 @@ const togglePassword = () => {
 
 const handleSubmit = async () => {
   if (form.value.password !== form.value.confirmPassword) {
-    alert("Passwords don't match!");
+    errorMessage.value = t("auth.errors.passwordMismatch");
     return;
   }
   try {
-    await createUserWithEmailAndPassword(
+    errorMessage.value = null;
+    const cred = await createUserWithEmailAndPassword(
       auth,
       form.value.email,
       form.value.password
     );
-    router.push("/");
-  } catch (error) {
-    alert(`Sign up failed: ${error.message}`);
+    if (form.value.name && cred.user.displayName !== form.value.name) {
+      await updateProfile(cred.user, { displayName: form.value.name });
+    }
+    const redirect = router.currentRoute.value.query.redirect || "/";
+    router.push(redirect);
+  } catch (e) {
+    console.error("Signup error", e);
+    errorMessage.value = mapError(e);
   }
 };
 
 const handleGoogleSignUp = async () => {
   try {
-    await signInWithPopup(auth, googleProvider);
-    router.push("/");
-  } catch (error) {
-    alert(`Google sign up failed: ${error.message}`);
+    errorMessage.value = null;
+    await authStore.signInWithGoogle();
+    const redirect = router.currentRoute.value.query.redirect || "/";
+    router.push(redirect);
+  } catch (e) {
+    console.error("Google signup failed", e);
+    errorMessage.value = mapError(e);
   }
 };
+
+function mapError(e) {
+  const code = e?.code || "";
+  switch (code) {
+    case "auth/email-already-in-use":
+      return t("auth.errors.emailInUse");
+    case "auth/invalid-email":
+      return t("auth.errors.invalidEmail");
+    case "auth/operation-not-allowed":
+      return t("auth.errors.operationNotAllowed");
+    case "auth/weak-password":
+      return t("auth.errors.weakPassword");
+    case "auth/popup-blocked":
+      return t("auth.errors.popupBlocked");
+    case "auth/popup-closed-by-user":
+      return t("auth.errors.popupClosed");
+    default:
+      return t("auth.errors.genericSignup");
+  }
+}
 </script>
 
 <style scoped>
@@ -318,7 +347,7 @@ const handleGoogleSignUp = async () => {
 /* Social login - ĐÃ FIX */
 .social-login {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .social-login-title {
@@ -328,30 +357,29 @@ const handleGoogleSignUp = async () => {
   font-weight: 500;
 }
 
-.google-btn {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  background: white;
-  border: 1px solid #e2e8f0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+/* Removed old circular Google button styles to use shared component styling */
+/* Align Google button styling with SignIn page */
+.social-login .google-btn {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto 1rem;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  color: #1e293b;
 }
-
-.google-btn:hover {
+.social-login .google-btn:hover {
   background: #f8fafc;
-  border-color: #cbd5e1;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.google-icon {
-  width: 24px;
-  height: 24px;
+.error-msg {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #b91c1c;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .or-divider {

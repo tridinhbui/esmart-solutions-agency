@@ -162,8 +162,7 @@
 
 <script>
 import { useAuthStore } from "@/stores/auth";
-import { signOut } from "firebase/auth";
-import { auth } from "@/firebase";
+import { useRouter } from "vue-router";
 
 export default {
   name: "NavBar",
@@ -184,7 +183,8 @@ export default {
   },
   setup() {
     const authStore = useAuthStore();
-    return { authStore };
+    const router = useRouter();
+    return { authStore, router };
   },
   data() {
     return {
@@ -227,10 +227,10 @@ export default {
     },
     async handleLogout() {
       try {
-        await signOut(auth);
-        this.$router.push("/sign-in");
-      } catch (error) {
-        console.error("Logout error:", error);
+        await this.authStore.logout();
+        this.router.push("/sign-in");
+      } catch (e) {
+        console.error("Logout error:", e);
       }
     },
     handleImageError(e) {

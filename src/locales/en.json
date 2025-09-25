@@ -14,6 +14,41 @@
     "start": "Start",
     "project": "Project"
   },
+  "auth": {
+    "signInTitle": "Sign In Portal",
+    "signUpTitle": "Create New Account",
+    "welcomeNew": "First time here?",
+    "welcomeSubtitle": "Explore digital innovation and limitless possibilities with ESmart Solutions!",
+    "ctaGetStarted": "Start Your Journey",
+    "socialLogin": "Sign in with social networks",
+    "socialSignup": "Sign up with social networks",
+    "emailPlaceholder": "Email address",
+    "passwordPlaceholder": "Password",
+    "confirmPasswordPlaceholder": "Confirm Password",
+    "fullNamePlaceholder": "Full Name",
+    "googleSignIn": "Sign in with Google",
+    "googleSignUp": "Continue with Google",
+    "or": "OR",
+    "haveAccount": "Already have an account?",
+    "noAccount": "Don't have an account?",
+    "btnSignIn": "Sign In",
+    "btnSignUp": "Sign Up",
+    "processing": "Processing...",
+    "creating": "Creating...",
+    "errors": {
+      "passwordMismatch": "Passwords don't match",
+      "wrongPassword": "Incorrect password. Please try again.",
+      "userNotFound": "No account found with this email.",
+      "invalidEmail": "Invalid email format.",
+      "popupClosed": "Google login popup was closed.",
+      "genericLogin": "Login failed. Please try again later.",
+      "emailInUse": "Email already registered",
+      "operationNotAllowed": "Operation not allowed",
+      "weakPassword": "Password too weak",
+      "popupBlocked": "Popup was blocked by the browser",
+      "genericSignup": "Sign up failed. Please try again."
+    }
+  },
   "sections": {
     "coreValues": "Core Values",
     "outstandingAchievements": "Outstanding Achievements",
@@ -255,24 +290,6 @@
       "socialProof": "Achievements",
       "blog": "Blog"
     }
-  },
-  "contactFooter": {
-    "brand": "ESMART SOLUTIONS",
-    "title": "Let’s connect",
-    "subtitle": "Reach us via any channel below.",
-    "address": "140 Nguyen Xien st, Thanh Xuan dist",
-    "altLocation": "Location",
-    "openInMaps": "Open in Maps",
-    "altPhone": "Phone",
-    "tapToCall": "Tap to call",
-    "altEmail": "Email",
-    "emailDisplay": "esmartsolutions.agency@gmail.com",
-    "sendEmail": "Send an email",
-    "altWebsite": "Website",
-    "websiteDisplay": "Esmartsolutions.com.vn",
-    "visitSite": "Visit site",
-    "businessHours": "Business hours: 9:00–18:00 ICT",
-    "copyright": "© 2024 ESmart Solutions Agency. All rights reserved."
   },
   "hero": {
     "title": "ESmart Solutions Agency",

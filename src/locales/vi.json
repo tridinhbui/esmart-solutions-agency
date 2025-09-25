@@ -14,6 +14,41 @@
     "start": "Bắt đầu",
     "project": "Dự án"
   },
+  "auth": {
+    "signInTitle": "Cổng đăng nhập",
+    "signUpTitle": "Tạo tài khoản mới",
+    "welcomeNew": "Lần đầu tới đây?",
+    "welcomeSubtitle": "Khám phá đổi mới số và những khả năng vô hạn cùng ESmart Solutions!",
+    "ctaGetStarted": "Bắt đầu hành trình",
+    "socialLogin": "Đăng nhập qua mạng xã hội",
+    "socialSignup": "Đăng ký qua mạng xã hội",
+    "emailPlaceholder": "Địa chỉ email",
+    "passwordPlaceholder": "Mật khẩu",
+    "confirmPasswordPlaceholder": "Xác nhận mật khẩu",
+    "fullNamePlaceholder": "Họ và tên",
+    "googleSignIn": "Đăng nhập Google",
+    "googleSignUp": "Tiếp tục với Google",
+    "or": "HOẶC",
+    "haveAccount": "Đã có tài khoản?",
+    "noAccount": "Chưa có tài khoản?",
+    "btnSignIn": "Đăng nhập",
+    "btnSignUp": "Đăng ký",
+    "processing": "Đang xử lý...",
+    "creating": "Đang tạo...",
+    "errors": {
+      "passwordMismatch": "Mật khẩu không khớp",
+      "wrongPassword": "Sai mật khẩu. Vui lòng thử lại.",
+      "userNotFound": "Không tìm thấy tài khoản với email này.",
+      "invalidEmail": "Định dạng email không hợp lệ.",
+      "popupClosed": "Cửa sổ Google đã bị đóng.",
+      "genericLogin": "Đăng nhập thất bại. Vui lòng thử lại.",
+      "emailInUse": "Email đã được đăng ký",
+      "operationNotAllowed": "Thao tác không được phép",
+      "weakPassword": "Mật khẩu quá yếu",
+      "popupBlocked": "Trình duyệt đã chặn popup",
+      "genericSignup": "Đăng ký thất bại. Vui lòng thử lại."
+    }
+  },
   "sections": {
     "coreValues": "Giá Trị Cốt Lõi",
     "outstandingAchievements": "Thành Tựu Nổi Bật",
@@ -120,61 +155,7 @@
       "button": "Trò chuyện với nhóm hỗ trợ"
     }
   },
-  "process": {
-    "title": "Quy trình của chúng tôi",
-    "steps": [
-      {
-        "title": "Bước 1: Tư vấn và lập kế hoạch",
-        "subsSteps": [
-          {
-            "title": "Phân tích thị trường - khách hàng mục tiêu."
-          },
-          {
-            "title": "Xây dựng customer insight"
-          },
-          {
-            "title": "Lên kế hoạch triển khai theo tháng, có mục tiêu rõ ràng."
-          }
-        ]
-      },
-      {
-        "title": "Bước 2: Ký kết hợp đồng",
-        "subsSteps": [
-          {
-            "title": "Ký hợp đồng với gói dịch vụ phù hợp, đảm bảo điều khoản đều minh bạch, rõ ràng."
-          }
-        ]
-      },
-      {
-        "title": "Bước 3: Triển khai Dịch vụ",
-        "subsSteps": [
-          {
-            "title": "Tạo nhóm trao đổi và giám sát công việc."
-          },
-          {
-            "title": "Lên kế hoạch nội dung hàng tháng, trình khách hàng phê duyệt."
-          },
-          {
-            "title": "Thiết kế hình ảnh, sản xuất video, triển khai các chiến dịch quảng cáo."
-          }
-        ]
-      },
-      {
-        "title": "Bước 4: Báo cáo và đánh giá",
-        "subsSteps": [
-          {
-            "title": "Báo cáo kết quả cuối tháng, đưa ra điều chỉnh cần thiết."
-          },
-          {
-            "title": "Thu thập phản hồi khách hàng, hỗ trợ khách hàng trong quá trình sử dụng."
-          }
-        ]
-      }
-    ],
-    "modal": {
-      "close": "Đóng"
-    }
-  },
+
   "features": {
     "title": "Thành tựu",
     "achievements": [
@@ -203,24 +184,6 @@
       "title": "Đầu tư",
       "description": "Esmart Solution đã gây quỹ tài trợ và nhận được sự hợp tác chiến lược từ tổ chức Macalester Entrepreneurship and Innovation Fund có trụ sở tại Saint Paul, Minnesota."
     }
-  },
-  "contactFooter": {
-    "brand": "ESMART SOLUTIONS",
-    "title": "Kết nối với chúng tôi",
-    "subtitle": "Liên hệ qua bất kỳ kênh nào bên dưới.",
-    "address": "140 Nguyễn Xiển, Thanh Xuân",
-    "altLocation": "Địa điểm",
-    "openInMaps": "Mở trong Bản đồ",
-    "altPhone": "Điện thoại",
-    "tapToCall": "Nhấn để gọi",
-    "altEmail": "Email",
-    "emailDisplay": "esmartsolutions.agency@gmail.com",
-    "sendEmail": "Gửi email",
-    "altWebsite": "Website",
-    "websiteDisplay": "Esmartsolutions.com.vn",
-    "visitSite": "Truy cập trang",
-    "businessHours": "Giờ làm việc: 9:00–18:00 ICT",
-    "copyright": "© 2024 ESmart Solutions Agency. Mọi quyền được bảo lưu."
   },
   "footer": {
     "brand": "ESmart Solutions",
@@ -337,7 +300,7 @@
       "phone": "Hotline: 0123 456 789"
     }
   },
-  "processStep": {
+  "process": {
     "title": "Quy trình của chúng tôi",
     "closeButton": "Đóng",
     "steps": {
