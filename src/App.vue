@@ -15,19 +15,16 @@
 
     <!-- Router View for all pages -->
     <router-view />
-    <ContactFooter />
   </div>
 </template>
 
 <script>
 import SimpleNavBar from "./components/SimpleNavBar.vue";
-import ContactFooter from "./components/ContactFooter.vue";
 
 export default {
   name: "App",
   components: {
     SimpleNavBar,
-    ContactFooter,
   },
   computed: {
     isAuthPage() {

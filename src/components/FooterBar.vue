@@ -2,32 +2,32 @@
   <section class="quantum-footer app-footer-root">
     <!-- Quantum Background System -->
     <div class="footer-quantum-field">
-      <div class="quantum-orb orb-footer-1" />
-      <div class="quantum-orb orb-footer-2" />
-      <div class="quantum-orb orb-footer-3" />
-      <div class="quantum-orb orb-footer-4" />
+      <div class="quantum-orb orb-footer-1"></div>
+      <div class="quantum-orb orb-footer-2"></div>
+      <div class="quantum-orb orb-footer-3"></div>
+      <div class="quantum-orb orb-footer-4"></div>
     </div>
 
     <!-- Energy Grid -->
     <div class="footer-energy-grid">
-      <div v-for="i in 4" :key="'h-' + i" class="grid-line horizontal" />
-      <div v-for="i in 6" :key="'v-' + i" class="grid-line vertical" />
+      <div v-for="i in 4" :key="'h-' + i" class="grid-line horizontal"></div>
+      <div v-for="i in 6" :key="'v-' + i" class="grid-line vertical"></div>
     </div>
 
     <!-- Floating Particles -->
     <div class="footer-particles">
-      <div v-for="i in 12" :key="i" class="quantum-particle" />
+      <div v-for="i in 12" :key="i" class="quantum-particle"></div>
     </div>
 
     <!-- Quantum Lightning Effects -->
     <div class="footer-lightning-system">
-      <div v-for="i in 3" :key="'lightning-' + i" class="lightning-bolt" />
+      <div v-for="i in 3" :key="'lightning-' + i" class="lightning-bolt"></div>
     </div>
 
     <!-- Revolutionary Holographic Overlay -->
     <div class="holographic-overlay">
-      <div class="holo-pattern" />
-      <div class="holo-scanlines" />
+      <div class="holo-pattern"></div>
+      <div class="holo-scanlines"></div>
     </div>
 
     <div class="footer-container">
@@ -36,18 +36,18 @@
         <div class="brand-hologram">
           <h3 class="quantum-brand-title">
             {{ $t("footer.brand") || "ESmart Solutions" }}
-            <div class="title-energy-pulse" />
+            <div class="title-energy-pulse"></div>
           </h3>
-          <div class="brand-energy-field" />
-          <div class="brand-quantum-glow" />
-          <div class="brand-matrix-effect" />
+          <div class="brand-energy-field"></div>
+          <div class="brand-quantum-glow"></div>
+          <div class="brand-matrix-effect"></div>
         </div>
         <div class="quantum-description">
           {{
             $t("footer.description") ||
             "Revolutionizing digital experiences through quantum-powered solutions and breakthrough innovations."
           }}
-          <div class="description-glow" />
+          <div class="description-glow"></div>
         </div>
 
         <!-- Social Quantum Portals -->
@@ -58,7 +58,7 @@
             class="social-portal"
           >
             <div class="portal-frame">
-              <div class="portal-energy-ring" />
+              <div class="portal-energy-ring"></div>
               <a
                 :href="social.url"
                 class="social-link"
@@ -67,11 +67,11 @@
                 :aria-label="social.name"
                 :title="social.name"
               >
-                <i :class="social.icon" />
-                <div class="icon-quantum-field" />
+                <i :class="social.icon"></i>
+                <div class="icon-quantum-field"></div>
               </a>
             </div>
-            <div class="portal-plasma-trail" />
+            <div class="portal-plasma-trail"></div>
           </div>
         </div>
       </div>
@@ -81,7 +81,7 @@
         <div class="subscription-hologram">
           <label class="quantum-label">
             {{ $t("footer.subscribe.label") || "Subscribe to Quantum Updates" }}
-            <div class="label-energy-glow" />
+            <div class="label-energy-glow"></div>
           </label>
           <div class="quantum-input-portal">
             <div class="input-energy-frame">
@@ -94,20 +94,20 @@
                   'Enter your quantum coordinates...'
                 "
               />
-              <div class="input-quantum-glow" />
-              <div class="input-hologram-layer" />
+              <div class="input-quantum-glow"></div>
+              <div class="input-hologram-layer"></div>
             </div>
             <button class="quantum-submit-btn" @click="handleSubscribe">
               <div class="btn-quantum-core">
                 <span>{{ $t("footer.subscribe.submit") || "Launch" }}</span>
-                <div class="btn-energy-burst" />
-                <div class="btn-rocket-trail" />
+                <div class="btn-energy-burst"></div>
+                <div class="btn-rocket-trail"></div>
               </div>
-              <div class="btn-force-field" />
+              <div class="btn-force-field"></div>
             </button>
           </div>
           <div class="subscription-quantum-effects">
-            <div v-for="i in 3" :key="'wave-' + i" class="quantum-wave" />
+            <div v-for="i in 3" :key="'wave-' + i" class="quantum-wave"></div>
           </div>
         </div>
       </div>
@@ -116,73 +116,73 @@
       <div class="quantum-nav-grid">
         <div class="nav-quantum-column">
           <div class="nav-quantum-card">
-            <div class="card-energy-border" />
+            <div class="card-energy-border"></div>
             <div class="card-holographic-header">
               <h4 class="nav-section-title">
                 Điều hướng chính
-                <div class="title-quantum-dots" />
+                <div class="title-quantum-dots"></div>
               </h4>
             </div>
             <ul class="quantum-nav-list">
               <li>
                 <a href="/#intro" class="quantum-nav-link">
-                  <div class="link-energy-core" />
+                  <div class="link-energy-core"></div>
                   <span>{{ $t("footer.links.home") }}</span>
-                  <div class="link-quantum-trail" />
+                  <div class="link-quantum-trail"></div>
                 </a>
               </li>
               <li>
                 <a href="/#about-us" class="quantum-nav-link">
-                  <div class="link-energy-core" />
+                  <div class="link-energy-core"></div>
                   <span>{{ $t("footer.links.aboutUs") }}</span>
-                  <div class="link-quantum-trail" />
+                  <div class="link-quantum-trail"></div>
                 </a>
               </li>
               <li>
                 <a href="/#process" class="quantum-nav-link">
-                  <div class="link-energy-core" />
+                  <div class="link-energy-core"></div>
                   <span>{{ $t("footer.links.process") }}</span>
-                  <div class="link-quantum-trail" />
+                  <div class="link-quantum-trail"></div>
                 </a>
               </li>
             </ul>
-            <div class="card-quantum-field" />
+            <div class="card-quantum-field"></div>
           </div>
         </div>
 
         <div class="nav-quantum-column">
           <div class="nav-quantum-card">
-            <div class="card-energy-border" />
+            <div class="card-energy-border"></div>
             <div class="card-holographic-header">
               <h4 class="nav-section-title">
                 Dịch vụ
-                <div class="title-quantum-dots" />
+                <div class="title-quantum-dots"></div>
               </h4>
             </div>
             <ul class="quantum-nav-list">
               <li>
                 <router-link to="/contact" class="quantum-nav-link">
-                  <div class="link-energy-core" />
+                  <div class="link-energy-core"></div>
                   <span>{{ $t("footer.links.contact") }}</span>
-                  <div class="link-quantum-trail" />
+                  <div class="link-quantum-trail"></div>
                 </router-link>
               </li>
               <li>
                 <a href="/#social-proof" class="quantum-nav-link">
-                  <div class="link-energy-core" />
+                  <div class="link-energy-core"></div>
                   <span>{{ $t("footer.links.socialProof") }}</span>
-                  <div class="link-quantum-trail" />
+                  <div class="link-quantum-trail"></div>
                 </a>
               </li>
               <li>
                 <a href="/#achievements" class="quantum-nav-link">
-                  <div class="link-energy-core" />
+                  <div class="link-energy-core"></div>
                   <span>{{ $t("footer.links.socialProof") }}</span>
-                  <div class="link-quantum-trail" />
+                  <div class="link-quantum-trail"></div>
                 </a>
               </li>
             </ul>
-            <div class="card-quantum-field" />
+            <div class="card-quantum-field"></div>
           </div>
         </div>
       </div>
@@ -190,15 +190,15 @@
 
     <!-- Quantum Footer Bottom -->
     <div class="quantum-footer-bottom">
-      <div class="bottom-energy-line" />
-      <div class="bottom-holographic-strip" />
+      <div class="bottom-energy-line"></div>
+      <div class="bottom-holographic-strip"></div>
       <div class="quantum-copyright">
         © 2024 ESmart Solutions Agency. All rights reserved.
-        <div class="copyright-glow" />
-        <div class="copyright-quantum-signature" />
+        <div class="copyright-glow"></div>
+        <div class="copyright-quantum-signature"></div>
       </div>
       <div class="footer-quantum-signature">
-        <div v-for="i in 6" :key="'sig-' + i" class="signature-particle" />
+        <div v-for="i in 6" :key="'sig-' + i" class="signature-particle"></div>
       </div>
     </div>
   </section>
