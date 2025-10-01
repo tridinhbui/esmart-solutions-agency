@@ -672,12 +672,13 @@ export default {
 </script>
 
 <style scoped>
-/* Flat Design Marketing Assessment - Consistent with Overall Design */
+/* Theme-aware Marketing Assessment */
 .simple-marketing-assessment {
   position: relative;
   padding: 120px 0 160px 0; /* Increased bottom padding to push content below */
-  background: #ffffff;
+  background: var(--bg-primary);
   overflow: hidden;
+  transition: background-color 0.3s ease;
 }
 
 .flat-background {
@@ -806,7 +807,7 @@ export default {
   position: absolute;
   right: -4px;
   top: 0;
-  color: #3b82f6;
+  color: var(--primary-blue);
   font-weight: bold;
   animation: blink 1.2s infinite;
   text-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
@@ -911,11 +912,11 @@ html[lang="en"] .typing-text {
 
 /* Scroll-triggered animations for form elements */
 .form-card {
-  background: #ffffff;
-  border: 2px solid #f1f5f9;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
   border-radius: 20px;
   padding: 50px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-lg);
   position: relative;
   overflow: hidden;
   transform: translateY(30px);
@@ -1278,7 +1279,7 @@ html[lang="en"] .typing-text {
 .header-icon {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1293,7 +1294,7 @@ html[lang="en"] .typing-text {
   font-family: "Inter", sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
-  color: #1e293b;
+  color: var(--text-primary);
   margin: 0 0 20px 0;
   line-height: 1.2;
   text-transform: uppercase;
@@ -1308,7 +1309,7 @@ html[lang="en"] .typing-text {
 .section-subtitle {
   font-family: "Inter", sans-serif;
   font-size: 1.2rem;
-  color: #64748b;
+  color: var(--text-muted);
   line-height: 1.6;
   margin: 0;
   max-width: 600px;
@@ -1323,14 +1324,15 @@ html[lang="en"] .typing-text {
 }
 
 .form-card {
-  background: #ffffff;
-  border: 2px solid #f1f5f9;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
   border-radius: 20px;
   padding: 50px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-lg);
   position: relative;
   overflow: hidden;
   text-align: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .form-card::before {
@@ -1353,7 +1355,7 @@ html[lang="en"] .typing-text {
   font-family: "Inter", sans-serif;
   font-size: 2.2rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--text-primary);
   margin: 0 0 20px 0;
   text-align: center;
 }
@@ -1361,7 +1363,7 @@ html[lang="en"] .typing-text {
 .form-description {
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
-  color: #64748b;
+  color: var(--text-muted);
   line-height: 1.6;
   text-align: center;
   max-width: 600px;
@@ -1409,7 +1411,7 @@ html[lang="en"] .typing-text {
   font-family: "Inter", sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #374151;
+  color: var(--text-secondary);
   margin: 0;
   padding-top: 14px;
   line-height: 1.4;
@@ -1425,8 +1427,8 @@ html[lang="en"] .typing-text {
   border-radius: 12px;
   font-family: "Inter", sans-serif;
   font-size: 1rem;
-  color: #374151;
-  background: #ffffff;
+  color: var(--text-secondary);
+  background: var(--card-bg);
   transition: all 0.3s ease;
   box-sizing: border-box;
   min-width: 0;
@@ -1443,7 +1445,7 @@ html[lang="en"] .typing-text {
 .form-row select:focus,
 .form-row textarea:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: var(--primary-blue);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   transform: translateY(-1px);
 }
@@ -1484,8 +1486,8 @@ html[lang="en"] .typing-text {
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #3b82f6;
-  border: 2px solid #3b82f6;
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
   transition: all 0.3s ease;
 }
 
@@ -1504,14 +1506,14 @@ html[lang="en"] .typing-text {
 .step-label {
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
-  color: #64748b;
+  color: var(--text-muted);
   margin-top: 8px;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .progress-step.active .step-label {
-  color: #3b82f6;
+  color: var(--primary-blue);
   font-weight: 600;
 }
 
@@ -1536,7 +1538,7 @@ html[lang="en"] .typing-text {
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
   color: #ffffff;
   border: none;
   padding: 16px 32px;
@@ -1584,7 +1586,7 @@ html[lang="en"] .typing-text {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #3b82f6;
+  color: var(--primary-blue);
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-weight: 500;
@@ -1599,7 +1601,7 @@ html[lang="en"] .typing-text {
 .branding-performance-section {
   margin-top: 120px;
   padding: 100px 0;
-  background: #ffffff;
+  background: var(--card-bg);
   text-align: center;
   position: relative;
   z-index: 2;
@@ -1616,7 +1618,7 @@ html[lang="en"] .typing-text {
   font-family: "Inter", sans-serif;
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 900;
-  color: #1e40af;
+  color: var(--text-primary);
   margin-bottom: 30px;
   line-height: 1.1;
   text-transform: uppercase;
@@ -1644,7 +1646,7 @@ html[lang="en"] .typing-text {
 }
 
 .title-line-1 {
-  color: #1e40af;
+  color: var(--text-primary);
 }
 
 .title-line-2 {
@@ -1680,7 +1682,7 @@ html[lang="en"] .typing-text {
 .subtitle {
   font-family: "Inter", sans-serif;
   font-size: 1.3rem;
-  color: #64748b;
+  color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 15px;
   font-weight: 400;
@@ -1696,7 +1698,7 @@ html[lang="en"] .typing-text {
 }
 
 .highlight-subtitle strong {
-  color: #1e40af;
+  color: var(--text-primary);
   font-weight: 700;
 }
 
@@ -1710,7 +1712,7 @@ html[lang="en"] .typing-text {
 .hero-cta-button {
   width: 100%;
   max-width: 500px;
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
   color: #ffffff;
   border: none;
   padding: 24px 40px;
@@ -1803,8 +1805,8 @@ html[lang="en"] .typing-text {
 
 .secondary-cta-button {
   background: transparent;
-  color: #3b82f6;
-  border: 2px solid #3b82f6;
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
   padding: 16px 32px;
   border-radius: 50px;
   font-family: "Inter", sans-serif;
@@ -1825,7 +1827,7 @@ html[lang="en"] .typing-text {
 .secondary-cta-button:hover {
   background: #3b82f6;
   color: #ffffff;
-  border-color: #3b82f6;
+  border-color: var(--primary-blue);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
 }
@@ -1876,8 +1878,8 @@ html[lang="en"] .typing-text {
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #3b82f6;
-  border: 2px solid #3b82f6;
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
   transition: all 0.3s ease;
 }
 
@@ -1896,14 +1898,14 @@ html[lang="en"] .typing-text {
 .step-label {
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
-  color: #64748b;
+  color: var(--text-muted);
   margin-top: 8px;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .progress-step.active .step-label {
-  color: #3b82f6;
+  color: var(--primary-blue);
   font-weight: 600;
 }
 
@@ -1935,7 +1937,7 @@ html[lang="en"] .typing-text {
 .section-title-small {
   font-family: "Inter", sans-serif;
   font-size: 1.8rem;
-  color: #1e293b;
+  color: var(--text-primary);
   margin-bottom: 10px;
   font-weight: 700;
   text-align: center;
@@ -1944,7 +1946,7 @@ html[lang="en"] .typing-text {
 .section-description-small {
   font-family: "Inter", sans-serif;
   font-size: 1rem;
-  color: #64748b;
+  color: var(--text-muted);
   margin-bottom: 20px;
   line-height: 1.5;
   text-align: center;
@@ -1977,7 +1979,7 @@ html[lang="en"] .typing-text {
 }
 
 .next-btn {
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
   color: #ffffff;
   box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
 }
@@ -1997,7 +1999,7 @@ html[lang="en"] .typing-text {
 
 .back-btn {
   background: transparent;
-  color: #64748b;
+  color: var(--text-muted);
   border: 2px solid #e5e7eb;
 }
 
@@ -2388,7 +2390,7 @@ html[lang="en"] .typing-text {
   font-family: "Inter", sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
-  color: #1e293b;
+  color: var(--text-primary);
   margin-bottom: 20px;
   line-height: 1.2;
   text-transform: uppercase;
@@ -2398,7 +2400,7 @@ html[lang="en"] .typing-text {
 .contact-form-section .section-subtitle {
   font-family: "Inter", sans-serif;
   font-size: 1.2rem;
-  color: #64748b;
+  color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 50px;
   max-width: 600px;
@@ -2411,7 +2413,7 @@ html[lang="en"] .typing-text {
 }
 
 .contact-form {
-  background: #ffffff;
+  background: var(--card-bg);
   border: 2px solid #e2e8f0;
   border-radius: 20px;
   padding: 50px;
@@ -2452,7 +2454,7 @@ html[lang="en"] .typing-text {
   font-family: "Inter", sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #374151;
+  color: var(--text-secondary);
   margin-bottom: 8px;
   transition: all 0.3s ease;
 }
@@ -2465,8 +2467,8 @@ html[lang="en"] .typing-text {
   border-radius: 12px;
   font-family: "Inter", sans-serif;
   font-size: 1rem;
-  color: #374151;
-  background: #ffffff;
+  color: var(--text-secondary);
+  background: var(--card-bg);
   transition: all 0.3s ease;
   box-sizing: border-box;
 }
@@ -2479,7 +2481,7 @@ html[lang="en"] .typing-text {
 .contact-form .form-group input:focus,
 .contact-form .form-group textarea:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: var(--primary-blue);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   transform: translateY(-1px);
 }
@@ -2490,7 +2492,7 @@ html[lang="en"] .typing-text {
 }
 
 .submit-contact-btn {
-  background: linear-gradient(135deg, #3b82f6, #10b981);
+  background: linear-gradient(135deg, var(--primary-blue), #10b981);
   color: #ffffff;
   border: none;
   padding: 16px 32px;

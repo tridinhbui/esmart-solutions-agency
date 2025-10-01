@@ -39,7 +39,7 @@ const sizeClass = computed(() => {
   justify-content: center;
   gap: 8px;
   border: 2px solid #e2e8f0;
-  background: #ffffff;
+  background: var(--bg-primary);
   color: #1e293b;
   cursor: pointer;
   transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;

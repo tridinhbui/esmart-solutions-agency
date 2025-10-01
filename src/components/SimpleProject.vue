@@ -207,7 +207,7 @@ export default {
 .project-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 60px rgba(30, 58, 138, 0.2);
-  border-color: #3b82f6;
+  border-color: var(--primary-blue);
 }
 
 .project-image {
@@ -248,8 +248,8 @@ export default {
 }
 
 .view-project-btn {
-  background: #ffffff;
-  color: #1e3a8a;
+  background: var(--bg-primary);
+  color: var(--text-primary);
   border: 2px solid #ffffff;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -267,7 +267,7 @@ export default {
 .view-project-btn:hover {
   background: #1e3a8a;
   color: #ffffff;
-  border-color: #1e3a8a;
+  border-color: var(--primary-blue-dark);
 }
 
 .project-content {
@@ -294,21 +294,21 @@ export default {
 
 .project-year {
   font-size: 0.9rem;
-  color: #64748b;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
 .project-title {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: var(--text-primary);
   margin-bottom: 0.75rem;
   line-height: 1.4;
 }
 
 .project-description {
   font-size: 0.95rem;
-  color: #64748b;
+  color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
@@ -322,7 +322,7 @@ export default {
 .tech-tag {
   font-size: 0.75rem;
   background: #f1f5f9;
-  color: #1e3a8a;
+  color: var(--text-primary);
   padding: 0.3rem 0.7rem;
   border-radius: 12px;
   border: 1px solid #e2e8f0;
@@ -342,8 +342,8 @@ export default {
 }
 
 .view-all-btn {
-  background: #ffffff;
-  color: #1e3a8a;
+  background: var(--bg-primary);
+  color: var(--text-primary);
   border: 2px solid #1e3a8a;
   padding: 1rem 2rem;
   border-radius: 8px;

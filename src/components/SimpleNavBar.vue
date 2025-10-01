@@ -179,6 +179,8 @@
 
 <script>
 import { useAuthStore } from "@/stores/auth";
+import themeService from "@/utils/themeService";
+
 export default {
   name: "SimpleNavBar",
   setup() {
@@ -224,9 +226,13 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
-    const saved = localStorage.getItem("theme");
-    this.isDark = saved === "dark";
-    document.documentElement.classList.toggle("dark", this.isDark);
+    
+    // Initialize theme state from theme service
+    this.isDark = themeService.isDark();
+    
+    // Listen for theme changes
+    window.addEventListener('themeChanged', this.onThemeChanged);
+    
     document.addEventListener("click", this.onDocClick);
     // Reset avatar fallback when auth user changes (simple polling fallback)
     this.$watch(
@@ -238,6 +244,7 @@ export default {
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener('themeChanged', this.onThemeChanged);
     document.removeEventListener("click", this.onDocClick);
   },
   methods: {
@@ -273,9 +280,11 @@ export default {
       }
     },
     toggleDarkMode() {
-      this.isDark = !this.isDark;
-      document.documentElement.classList.toggle("dark", this.isDark);
-      localStorage.setItem("theme", this.isDark ? "dark" : "light");
+      const newTheme = themeService.toggleTheme();
+      this.isDark = newTheme === 'dark';
+    },
+    onThemeChanged(event) {
+      this.isDark = event.detail.isDark;
     },
     async handleLogout() {
       try {
@@ -298,7 +307,7 @@ export default {
 </script>
 
 <style scoped>
-/* Flat Design Navigation - White Background with Blue Accents */
+/* Theme-aware Navigation */
 .simple-navbar {
   position: fixed;
   top: 20px;
@@ -307,18 +316,18 @@ export default {
   width: 90%;
   max-width: 1200px;
   height: 70px;
-  background: #ffffff;
-  border: 2px solid #e1e5e9;
+  background: var(--navbar-bg);
+  border: 2px solid var(--navbar-border);
   border-radius: 16px;
   z-index: 1000;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--navbar-shadow);
 }
 
 .simple-navbar.scrolled {
-  background: #ffffff;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  border-color: #3b82f6;
+  background: var(--navbar-bg);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-blue);
 }
 
 .nav-container {
@@ -367,17 +376,19 @@ export default {
   font-family: "Inter", sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--text-primary);
   letter-spacing: -0.5px;
+  transition: color 0.3s ease;
 }
 
 .logo-subtitle {
   font-family: "Inter", sans-serif;
   font-size: 0.7rem;
   font-weight: 500;
-  color: #64748b;
+  color: var(--text-muted);
   letter-spacing: 0.5px;
   margin-top: -2px;
+  transition: color 0.3s ease;
 }
 
 /* Navigation Links */
@@ -391,7 +402,7 @@ export default {
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #475569;
+  color: var(--text-secondary);
   text-decoration: none;
   transition: all 0.3s ease;
   display: flex;
@@ -404,18 +415,18 @@ export default {
 
 .nav-link i {
   font-size: 16px;
-  color: #64748b;
+  color: var(--text-muted);
   transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #3b82f6;
-  background: #f8fafc;
+  color: var(--primary-blue);
+  background: var(--bg-secondary);
   transform: translateY(-1px);
 }
 
 .nav-link:hover i {
-  color: #3b82f6;
+  color: var(--primary-blue);
 }
 
 .nav-link span {
@@ -430,9 +441,9 @@ export default {
 }
 
 .lang-btn {
-  background: #f8fafc;
-  border: 2px solid #e2e8f0;
-  color: #475569;
+  background: var(--button-secondary-bg);
+  border: 2px solid var(--button-secondary-border);
+  color: var(--text-secondary);
   padding: 8px 12px; /* vertical + horizontal padding */
   border-radius: 12px;
   font-family: "Inter", sans-serif;
@@ -448,16 +459,16 @@ export default {
 }
 
 .lang-btn:hover {
-  border-color: #3b82f6;
-  background: #eff6ff;
-  color: #3b82f6;
+  border-color: var(--primary-blue);
+  background: var(--primary-blue-bg);
+  color: var(--primary-blue);
   transform: translateY(-1px);
 }
 
 .lang-btn.active {
-  background: #3b82f6;
-  color: #ffffff;
-  border-color: #3b82f6;
+  background: var(--primary-blue);
+  color: var(--text-inverse);
+  border-color: var(--primary-blue);
 }
 
 .lang-btn i {
@@ -496,8 +507,8 @@ export default {
 }
 
 .login-btn {
-  background: #3b82f6;
-  color: #ffffff;
+  background: var(--button-primary-bg);
+  color: var(--text-inverse);
   border: none;
   padding: 10px 16px;
   border-radius: 12px;
@@ -509,10 +520,10 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+  box-shadow: var(--shadow-blue);
 }
 .login-btn:hover {
-  background: #2563eb;
+  background: var(--button-primary-hover);
   transform: translateY(-2px);
 }
 
@@ -526,22 +537,23 @@ export default {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--border-light);
   object-fit: cover;
+  transition: border-color 0.3s ease;
 }
 
 .caret-btn {
   margin-left: 6px;
-  background: #f8fafc;
-  border: 2px solid #e2e8f0;
-  color: #475569;
+  background: var(--button-secondary-bg);
+  border: 2px solid var(--button-secondary-border);
+  color: var(--text-secondary);
   padding: 6px 10px;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 .caret-btn:hover {
-  background: #eef2f7;
+  background: var(--button-secondary-hover);
 }
 
 .dropdown {
@@ -549,10 +561,10 @@ export default {
   top: 48px;
   right: 0;
   min-width: 180px;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--dropdown-bg);
+  border: 1px solid var(--dropdown-border);
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--dropdown-shadow);
   padding: 8px;
   z-index: 20;
 }
@@ -564,14 +576,14 @@ export default {
   padding: 10px 12px;
   border: none;
   background: transparent;
-  color: #1f2937;
+  color: var(--text-primary);
   font-weight: 500;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
 .dropdown-item:hover {
-  background: #f8fafc;
+  background: var(--bg-secondary);
 }
 
 @media (max-width: 1100px) {
@@ -594,7 +606,7 @@ export default {
 .hamburger-line {
   width: 24px;
   height: 3px;
-  background: #475569;
+  background: var(--text-secondary);
   transition: all 0.3s ease;
   border-radius: 2px;
 }
@@ -607,14 +619,14 @@ export default {
   transform: translateX(-50%) translateY(-100%);
   width: 90%;
   max-width: 400px;
-  background: #ffffff;
-  border: 2px solid #e1e5e9;
+  background: var(--navbar-bg);
+  border: 2px solid var(--navbar-border);
   border-radius: 16px;
   opacity: 0;
   transition: all 0.3s ease;
   z-index: 999;
   overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--navbar-shadow);
 }
 
 .mobile-menu.mobile-menu-open {
@@ -627,23 +639,23 @@ export default {
   align-items: center;
   gap: 12px;
   padding: 16px 24px;
-  color: #475569;
+  color: var(--text-secondary);
   text-decoration: none;
   font-family: "Inter", sans-serif;
   font-size: 0.95rem;
   font-weight: 500;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--border-light);
   transition: all 0.3s ease;
 }
 
 .mobile-menu-link:hover {
-  background: #f8fafc;
-  color: #3b82f6;
+  background: var(--bg-secondary);
+  color: var(--primary-blue);
 }
 
 .mobile-menu-link i {
   font-size: 16px;
-  color: #64748b;
+  color: var(--text-muted);
   width: 20px;
   text-align: center;
 }
@@ -652,15 +664,15 @@ export default {
 .mobile-auth {
   width: 100%;
   padding: 12px 16px;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid var(--border-light);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .mobile-login-btn {
   width: 100%;
-  background: #3b82f6;
-  color: #ffffff;
+  background: var(--button-primary-bg);
+  color: var(--text-inverse);
   border: none;
   padding: 14px 16px;
   border-radius: 12px;
@@ -673,10 +685,10 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+  box-shadow: var(--shadow-blue);
 }
 .mobile-login-btn:hover {
-  background: #2563eb;
+  background: var(--button-primary-hover);
 }
 .mobile-profile {
   width: 100%;
@@ -687,9 +699,9 @@ export default {
   position: relative;
 }
 .mobile-caret {
-  background: #f8fafc;
-  border: 2px solid #e2e8f0;
-  color: #475569;
+  background: var(--button-secondary-bg);
+  border: 2px solid var(--button-secondary-border);
+  color: var(--text-secondary);
   padding: 6px 10px;
   border-radius: 10px;
   cursor: pointer;
