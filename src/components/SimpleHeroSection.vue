@@ -97,15 +97,16 @@ export default {
 </script>
 
 <style scoped>
-/* Flat Design Hero Section - White Background with Blue Accents */
+/* Theme-aware Hero Section */
 .simple-hero {
   position: relative;
   min-height: 100vh;
-  background: #ffffff;
+  background: var(--bg-primary);
   display: flex;
   align-items: center;
   overflow: hidden;
   padding: 120px 0 80px;
+  transition: background-color 0.3s ease;
 }
 
 .flat-background {
@@ -125,8 +126,9 @@ export default {
 
 .shape {
   position: absolute;
-  background: #f1f5f9;
+  background: var(--bg-tertiary);
   border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
 .shape-1 {
@@ -182,15 +184,16 @@ export default {
 .company-icon {
   width: 80px;
   height: 80px;
-  background: #3b82f6;
+  background: var(--primary-blue);
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
+  color: var(--text-inverse);
   font-size: 32px;
   font-weight: 600;
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
+  box-shadow: var(--shadow-blue);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .company-info {
@@ -204,16 +207,18 @@ export default {
   font-family: "Inter", sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--text-primary);
   letter-spacing: -0.5px;
+  transition: color 0.3s ease;
 }
 
 .company-tagline {
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #64748b;
+  color: var(--text-muted);
   letter-spacing: 0.5px;
+  transition: color 0.3s ease;
 }
 
 /* Main Title */
@@ -229,20 +234,22 @@ export default {
   font-family: "Inter", sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--text-primary);
   line-height: 1.1;
   letter-spacing: -1px;
   display: block;
+  transition: color 0.3s ease;
 }
 
 .title-accent {
   font-family: "Inter", sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
-  color: #3b82f6;
+  color: var(--primary-blue);
   line-height: 1.1;
   letter-spacing: -1px;
   display: block;
+  transition: color 0.3s ease;
 }
 
 /* Action Buttons */
@@ -268,13 +275,13 @@ export default {
 }
 
 .cta-primary {
-  background: #3b82f6;
-  color: #ffffff;
-  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
+  background: var(--primary-blue);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-blue);
 }
 
 .cta-primary:hover {
-  background: #2563eb;
+  background: var(--primary-blue-dark);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
 }
@@ -293,8 +300,8 @@ export default {
 }
 
 .flat-card {
-  background: #ffffff;
-  border: 2px solid #f1f5f9;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
   border-radius: 16px;
   padding: 30px 20px;
   text-align: center;
@@ -302,7 +309,7 @@ export default {
 }
 
 .flat-card:hover {
-  border-color: #3b82f6;
+  border-color: var(--card-hover-border);
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
 }

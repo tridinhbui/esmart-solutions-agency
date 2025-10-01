@@ -708,8 +708,9 @@ export default {
   flex: 1;
   padding: 1.5rem;
   overflow-y: auto;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: var(--bg-secondary);
   position: relative;
+  transition: background-color 0.3s ease;
 }
 
 .chat-body::-webkit-scrollbar {
@@ -865,7 +866,7 @@ export default {
 }
 
 .message-bubble {
-  background: white;
+  background: var(--bg-primary);
   border-radius: 18px;
   padding: 1rem 1.25rem;
   position: relative;
@@ -941,7 +942,7 @@ export default {
 }
 
 .typing-content {
-  background: white;
+  background: var(--bg-primary);
   border-radius: 18px;
   padding: 1rem 1.25rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -1383,7 +1384,7 @@ export default {
   
   .chatbot-window {
     border: 2px solid;
-    background: white;
+    background: var(--bg-primary);
   }
 }
 </style> 

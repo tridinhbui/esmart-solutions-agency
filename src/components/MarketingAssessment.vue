@@ -471,7 +471,7 @@ h2 {
 /* Progress bar */
 .progress-container {
   margin-bottom: 2.5rem;
-  background: white;
+  background: var(--bg-primary);
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
@@ -678,7 +678,7 @@ h2 {
 }
 
 .score-card {
-  background: white;
+  background: var(--bg-primary);
   border-radius: 12px;
   padding: 2rem;
   margin-bottom: 2rem;
@@ -720,7 +720,7 @@ h2 {
 }
 
 .report-section {
-  background: white;
+  background: var(--bg-primary);
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),

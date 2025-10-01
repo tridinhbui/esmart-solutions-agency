@@ -87,7 +87,7 @@ export default {
 }
 
 .card {
-  background-color: white;
+  background-color: var(--bg-primary);
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 2rem;

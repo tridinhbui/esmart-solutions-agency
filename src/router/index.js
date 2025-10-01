@@ -86,6 +86,11 @@ const routes = [
     name: "Home",
     component: () => import("@/components/HomePage.vue"),
   },
+  {
+    path: "/theme-test",
+    name: "ThemeTest",
+    component: () => import("@/components/ThemeTest.vue"),
+  },
 ];
 
 const router = createRouter({

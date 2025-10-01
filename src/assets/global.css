@@ -1,12 +1,13 @@
-/* Global Styles - Flat Design Theme */
+/* Global Styles - Theme-aware */
 body {
   margin: 0;
   padding: 0;
   font-family: "Inter", sans-serif;
   line-height: 1.6;
-  color: #1e293b;
+  color: var(--text-primary);
   overflow-x: hidden;
-  background: #ffffff;
+  background: var(--bg-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Global font-size boost: add ~4px to the base size so rem/em text increases app-wide */
@@ -28,19 +29,22 @@ h5,
 h6 {
   font-family: "Inter", sans-serif;
   font-weight: 600;
-  color: #1e293b;
+  color: var(--text-primary);
   line-height: 1.2;
   letter-spacing: -0.5px;
+  transition: color 0.3s ease;
 }
 
 p {
   font-family: "Inter", sans-serif;
-  color: #64748b;
+  color: var(--text-muted);
   line-height: 1.6;
+  transition: color 0.3s ease;
 }
 
-/* Flat Design Color Palette */
+/* Theme System - CSS Custom Properties */
 :root {
+  /* Light Theme (Default) */
   --primary-blue: #3b82f6;
   --primary-blue-dark: #2563eb;
   --primary-blue-light: #60a5fa;
@@ -49,19 +53,88 @@ p {
   --text-primary: #1e293b;
   --text-secondary: #475569;
   --text-muted: #64748b;
+  --text-inverse: #ffffff;
 
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
   --bg-tertiary: #f1f5f9;
+  --bg-inverse: #1e293b;
 
   --border-light: #e2e8f0;
   --border-medium: #cbd5e1;
   --border-dark: #94a3b8;
+  --border-inverse: #334155;
 
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
   --shadow-blue: 0 4px 16px rgba(59, 130, 246, 0.25);
+  
+  /* Component-specific variables */
+  --navbar-bg: #ffffff;
+  --navbar-border: #e1e5e9;
+  --navbar-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  
+  --card-bg: #ffffff;
+  --card-border: #f1f5f9;
+  --card-hover-border: #3b82f6;
+  
+  --dropdown-bg: #ffffff;
+  --dropdown-border: #e2e8f0;
+  --dropdown-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  
+  --button-primary-bg: #3b82f6;
+  --button-primary-hover: #2563eb;
+  --button-secondary-bg: #f8fafc;
+  --button-secondary-border: #e2e8f0;
+  --button-secondary-hover: #eff6ff;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --primary-blue: #3b82f6;
+  --primary-blue-dark: #2563eb;
+  --primary-blue-light: #60a5fa;
+  --primary-blue-bg: #1e3a8a;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-inverse: #1e293b;
+
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-inverse: #ffffff;
+
+  --border-light: #334155;
+  --border-medium: #475569;
+  --border-dark: #64748b;
+  --border-inverse: #e2e8f0;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-blue: 0 4px 16px rgba(59, 130, 246, 0.4);
+  
+  /* Component-specific variables for dark theme */
+  --navbar-bg: #1e293b;
+  --navbar-border: #334155;
+  --navbar-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  
+  --card-bg: #1e293b;
+  --card-border: #334155;
+  --card-hover-border: #3b82f6;
+  
+  --dropdown-bg: #1e293b;
+  --dropdown-border: #334155;
+  --dropdown-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  
+  --button-primary-bg: #3b82f6;
+  --button-primary-hover: #2563eb;
+  --button-secondary-bg: #334155;
+  --button-secondary-border: #475569;
+  --button-secondary-hover: #475569;
 }
 
 /* Flat Design Buttons */
@@ -82,25 +155,25 @@ p {
 }
 
 .flat-btn-primary {
-  background: var(--primary-blue);
-  color: #ffffff;
+  background: var(--button-primary-bg);
+  color: var(--text-inverse);
   box-shadow: var(--shadow-blue);
 }
 
 .flat-btn-primary:hover {
-  background: var(--primary-blue-dark);
+  background: var(--button-primary-hover);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
 }
 
 .flat-btn-secondary {
-  background: var(--bg-secondary);
+  background: var(--button-secondary-bg);
   color: var(--text-secondary);
-  border: 2px solid var(--border-light);
+  border: 2px solid var(--button-secondary-border);
 }
 
 .flat-btn-secondary:hover {
-  background: var(--primary-blue-bg);
+  background: var(--button-secondary-hover);
   color: var(--primary-blue);
   border-color: var(--primary-blue);
   transform: translateY(-2px);
@@ -108,8 +181,8 @@ p {
 
 /* Flat Design Cards */
 .flat-card {
-  background: var(--bg-primary);
-  border: 2px solid var(--bg-tertiary);
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
   border-radius: 16px;
   padding: 24px;
   transition: all 0.3s ease;
@@ -117,7 +190,7 @@ p {
 }
 
 .flat-card:hover {
-  border-color: var(--primary-blue);
+  border-color: var(--card-hover-border);
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
 }

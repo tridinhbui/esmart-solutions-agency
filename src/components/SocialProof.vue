@@ -948,12 +948,12 @@ export default {
 @media (prefers-contrast: high) {
   .magical-card {
     border: 2px solid;
-    background: white;
+    background: var(--bg-primary);
   }
   
   .title-badge {
     border: 2px solid;
-    background: white;
+    background: var(--bg-primary);
   }
 }
 </style>

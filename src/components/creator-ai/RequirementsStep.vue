@@ -353,7 +353,7 @@ Don't wait to enhance your understanding of ${topic}. Start your journey today!
 
 <style scoped>
 .step-content {
-  background: white;
+  background: var(--bg-primary);
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -443,7 +443,7 @@ h2 {
 }
 
 .secondary-button {
-  background: white;
+  background: var(--bg-primary);
   color: black;
   border: 1px solid black;
   padding: 0.75rem 1.5rem;

@@ -177,12 +177,13 @@ export default {
 </script>
 
 <style scoped>
-/* Flat Design Testimonials - White Background with Blue Accents */
+/* Theme-aware Testimonials */
 .simple-testimonial {
   position: relative;
   padding: 120px 0;
-  background: #ffffff;
+  background: var(--bg-primary);
   overflow: hidden;
+  transition: background-color 0.3s ease;
 }
 
 .flat-background {
@@ -251,7 +252,7 @@ export default {
   font-family: "Inter", sans-serif;
   font-size: 3rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--text-primary);
   margin: 0 0 20px 0;
   line-height: 1.2;
 }
@@ -259,7 +260,7 @@ export default {
 .section-subtitle {
   font-family: "Inter", sans-serif;
   font-size: 1.2rem;
-  color: #64748b;
+  color: var(--text-muted);
   line-height: 1.6;
   margin: 0;
   max-width: 600px;
@@ -274,7 +275,7 @@ export default {
 }
 
 .testimonial-card {
-  background: #ffffff;
+  background: var(--bg-primary);
   border: 2px solid #f1f5f9;
   border-radius: 16px;
   padding: 40px;
@@ -302,7 +303,7 @@ export default {
 .testimonial-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
-  border-color: #3b82f6;
+  border-color: var(--primary-blue);
 }
 
 .testimonial-content {
@@ -322,7 +323,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #3b82f6;
+  color: var(--primary-blue);
   font-size: 16px; /* Smaller font size */
   z-index: 1; /* Keep it above other content */
   opacity: 0.7; /* Slightly more transparent */
@@ -331,7 +332,7 @@ export default {
 .testimonial-text {
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
-  color: #475569;
+  color: var(--text-secondary);
   line-height: 1.7;
   margin: 0 0 30px 0;
   font-style: italic;
@@ -363,14 +364,14 @@ export default {
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #1e293b;
+  color: var(--text-primary);
   margin: 0 0 5px 0;
 }
 
 .author-position {
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
-  color: #64748b;
+  color: var(--text-muted);
   margin: 0;
   font-weight: 500;
 }

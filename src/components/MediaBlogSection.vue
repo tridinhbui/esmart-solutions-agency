@@ -121,7 +121,7 @@ h2 {
   flex: 0 0 auto;
   width: 250px;
   margin: 0 1rem;
-  background: white;
+  background: var(--bg-primary);
   color: #1c1c4c;
   border-radius: 8px;
   text-align: center;
