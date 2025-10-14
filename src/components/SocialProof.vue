@@ -475,13 +475,13 @@ export default {
 .magical-card {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border: 1.5px solid #ff6b3522;
+  border: 1.5px solid #3C34B522;
   border-radius: 24px;
   padding: 2rem;
   text-align: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 24px #ff6b3533, 0 1.5px 8px #1e293b33;
+  box-shadow: 0 4px 24px #3C34B533, 0 1.5px 8px #1e293b33;
   transform-style: preserve-3d;
   transition: box-shadow 0.3s, transform 0.3s;
 }
@@ -500,7 +500,7 @@ export default {
 }
 
 .magical-card:hover {
-  box-shadow: 0 8px 32px #ff6b35cc, 0 2px 12px #1e293b99;
+  box-shadow: 0 8px 32px #3C34B5cc, 0 2px 12px #1e293b99;
   transform: translateY(-4px) scale(1.03);
 }
 

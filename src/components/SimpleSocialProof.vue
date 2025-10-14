@@ -234,7 +234,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #3b82f6;
+        background: #3C34B5;
         color: #ffffff;
         font-family: 'Inter', sans-serif;
         font-size: 14px;
@@ -379,7 +379,7 @@ export default {
 .header-icon {
   width: 80px;
   height: 80px;
-  background: #3b82f6;
+  background: #3C34B5;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -472,7 +472,7 @@ export default {
 }
 
 .logo-container:hover .client-image {
-  border-color: #3b82f6;
+  border-color: #3C34B5;
 }
 
 .logo-overlay {
@@ -529,8 +529,8 @@ export default {
 }
 
 .control-btn:hover {
-  border-color: #3b82f6;
-  color: #3b82f6;
+  border-color: #3C34B5;
+  color: #3C34B5;
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
 }
@@ -567,7 +567,7 @@ export default {
 }
 
 .trust-item:hover {
-  border-color: #3b82f6;
+  border-color: #3C34B5;
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
 }
@@ -580,14 +580,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #3b82f6;
+  color: #3C34B5;
   font-size: 24px;
   flex-shrink: 0;
   transition: all 0.3s ease;
 }
 
 .trust-item:hover .trust-icon {
-  background: #3b82f6;
+  background: #3C34B5;
   color: #ffffff;
 }
 

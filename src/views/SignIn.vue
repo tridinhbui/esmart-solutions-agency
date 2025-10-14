@@ -320,7 +320,7 @@ const handleSignUp = () => {
 .navbar-logo-text {
   font-size: 1.5rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #fff 100%);
+  background: linear-gradient(135deg, #3C34B5 0%, #5A52C7 50%, #fff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -348,7 +348,7 @@ const handleSignUp = () => {
   position: absolute;
   width: 3px;
   height: 3px;
-  background: radial-gradient(circle, #ff6b35 0%, transparent 70%);
+  background: radial-gradient(circle, #3C34B5 0%, transparent 70%);
   border-radius: 50%;
   animation: quantumDrift 12s infinite linear;
   box-shadow: 0 0 15px rgba(255, 107, 53, 0.5);
@@ -356,7 +356,7 @@ const handleSignUp = () => {
 
 .quantum-particle:nth-child(odd) {
   animation-duration: 15s;
-  background: radial-gradient(circle, #f59e0b 0%, transparent 70%);
+  background: radial-gradient(circle, #5A52C7 0%, transparent 70%);
 }
 
 .quantum-particle:nth-child(1) {
@@ -431,7 +431,7 @@ const handleSignUp = () => {
   left: -50%;
   width: 200%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #ff6b35, transparent);
+  background: linear-gradient(90deg, transparent, #3C34B5, transparent);
   animation: energyFlow 8s infinite linear;
   opacity: 0.3;
 }
@@ -466,7 +466,7 @@ const handleSignUp = () => {
 
 .grid-line {
   position: absolute;
-  background: linear-gradient(90deg, transparent, #ff6b35, transparent);
+  background: linear-gradient(90deg, transparent, #3C34B5, transparent);
 }
 
 .grid-line.horizontal {
@@ -571,7 +571,7 @@ const handleSignUp = () => {
   padding: 0.85rem 1.5rem;
   border: none;
   border-radius: 12px;
-  background: #3b82f6;
+  background: #3C34B5;
   color: #ffffff;
   font-weight: 600;
   cursor: pointer;
@@ -665,7 +665,7 @@ const handleSignUp = () => {
 }
 .input-field:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: #3C34B5;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
 }
 
@@ -704,7 +704,7 @@ const handleSignUp = () => {
   color: #64748b;
 }
 .account-switch .switch-link {
-  color: #3b82f6;
+  color: #3C34B5;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -780,19 +780,19 @@ const handleSignUp = () => {
 
 @keyframes hologramBorder {
   0% {
-    background: linear-gradient(45deg, #ff6b35, #f59e0b, #d97706, #ff6b35);
+    background: linear-gradient(45deg, #3C34B5, #5A52C7, #837FFF, #3C34B5);
   }
   25% {
-    background: linear-gradient(90deg, #f59e0b, #d97706, #ff6b35, #f59e0b);
+    background: linear-gradient(90deg, #5A52C7, #837FFF, #3C34B5, #5A52C7);
   }
   50% {
-    background: linear-gradient(135deg, #d97706, #ff6b35, #f59e0b, #d97706);
+    background: linear-gradient(135deg, #837FFF, #3C34B5, #5A52C7, #837FFF);
   }
   75% {
-    background: linear-gradient(180deg, #ff6b35, #f59e0b, #d97706, #ff6b35);
+    background: linear-gradient(180deg, #3C34B5, #5A52C7, #837FFF, #3C34B5);
   }
   100% {
-    background: linear-gradient(45deg, #ff6b35, #f59e0b, #d97706, #ff6b35);
+    background: linear-gradient(45deg, #3C34B5, #5A52C7, #837FFF, #3C34B5);
   }
 }
 

@@ -55,7 +55,7 @@
                   rel="noopener"
                   class="hover:underline"
                 >
-                  140 Nguyen Xien st, Thanh Xuan dist
+                  140 Nguyen Xien St, Thanh Xuan dist
                 </a>
               </li>
             </ul>

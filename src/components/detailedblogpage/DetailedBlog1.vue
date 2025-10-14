@@ -533,19 +533,19 @@ export default {
   position: absolute;
   width: 2px;
   height: 2px;
-  background: radial-gradient(circle, #ff6b35 0%, #f59e0b 50%, transparent 100%);
+  background: radial-gradient(circle, #3C34B5 0%, #5A52C7 50%, transparent 100%);
   border-radius: 50%;
   animation: atomicFloat 15s infinite linear;
   box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
 }
 
 .atomic-particle:nth-child(2n) {
-  background: radial-gradient(circle, #f59e0b 0%, #d97706 50%, transparent 100%);
+  background: radial-gradient(circle, #5A52C7 0%, #837FFF 50%, transparent 100%);
   animation-duration: 18s;
 }
 
 .atomic-particle:nth-child(3n) {
-  background: radial-gradient(circle, #d97706 0%, #ff6b35 50%, transparent 100%);
+  background: radial-gradient(circle, #837FFF 0%, #3C34B5 50%, transparent 100%);
   animation-duration: 12s;
 }
 
@@ -560,14 +560,14 @@ export default {
   position: absolute;
   width: 1px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, #ff6b35, transparent);
+  background: linear-gradient(180deg, transparent, #3C34B5, transparent);
   animation: energyFlow 8s infinite linear;
   opacity: 0.2;
 }
 
 .energy-stream:nth-child(odd) {
   animation-duration: 10s;
-  background: linear-gradient(180deg, transparent, #f59e0b, transparent);
+  background: linear-gradient(180deg, transparent, #5A52C7, transparent);
 }
 
 /* Cosmic Grid */
@@ -581,7 +581,7 @@ export default {
   position: absolute;
   width: 3px;
   height: 3px;
-  background: #ff6b35;
+  background: #3C34B5;
   border-radius: 50%;
   animation: gridPulse 4s infinite ease-in-out;
   box-shadow: 0 0 15px rgba(255, 107, 53, 0.5);
@@ -709,7 +709,7 @@ export default {
   padding: 0.75rem 1.5rem;
   border-radius: 50px;
   border: 1px solid rgba(255, 107, 53, 0.3);
-  color: #ff6b35;
+  color: #3C34B5;
   font-weight: 600;
   margin-bottom: 2rem;
   box-shadow: 0 8px 32px rgba(255, 107, 53, 0.1);
@@ -733,7 +733,7 @@ export default {
 }
 
 .quantum-text {
-  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #fff 100%);
+  background: linear-gradient(135deg, #3C34B5 0%, #5A52C7 50%, #fff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -742,7 +742,7 @@ export default {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  background: linear-gradient(135deg, #5A52C7 0%, #837FFF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1034,7 +1034,7 @@ export default {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, #ff6b35, #f59e0b, #d97706, #ff6b35);
+  background: linear-gradient(45deg, #3C34B5, #5A52C7, #837FFF, #3C34B5);
   border-radius: 22px;
   z-index: -1;
   opacity: 0;
@@ -1130,7 +1130,7 @@ export default {
   background: rgba(255, 107, 53, 0.1);
   border: 2px solid rgba(255, 107, 53, 0.3);
   border-radius: 50px;
-  color: #ff6b35;
+  color: #3C34B5;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -1140,7 +1140,7 @@ export default {
 
 .quantum-button:hover {
   background: rgba(255, 107, 53, 0.2);
-  border-color: #ff6b35;
+  border-color: #3C34B5;
   color: white;
   box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
 }
@@ -1190,7 +1190,7 @@ export default {
   left: -1px;
   right: -1px;
   bottom: -1px;
-  background: linear-gradient(45deg, #ff6b35, #f59e0b, #d97706, #ff6b35);
+  background: linear-gradient(45deg, #3C34B5, #5A52C7, #837FFF, #3C34B5);
   border-radius: 21px;
   z-index: -1;
   opacity: 0.5;
@@ -1208,7 +1208,7 @@ export default {
 }
 
 .quantum-icon {
-  color: #ff6b35;
+  color: #3C34B5;
   filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.5));
 }
 
@@ -1243,7 +1243,7 @@ export default {
 }
 
 .post-count {
-  background: #ff6b35;
+  background: #3C34B5;
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 15px;
@@ -1393,7 +1393,7 @@ export default {
 
 .quantum-input:focus {
   outline: none;
-  border-color: #ff6b35;
+  border-color: #3C34B5;
   box-shadow: 0 0 20px rgba(255, 107, 53, 0.2);
 }
 

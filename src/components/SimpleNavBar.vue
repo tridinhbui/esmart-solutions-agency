@@ -4,7 +4,7 @@
       <!-- Logo -->
       <div class="nav-logo">
         <div class="logo-icon">
-          <i class="fas fa-rocket"></i>
+          <i class="fas"><img src="../assets/logcongty.png"/></i>
         </div>
         <div class="logo-text-container">
           <span class="logo-text">ESmart Solutions</span>
@@ -292,6 +292,8 @@ export default {
     setLanguage(lang) {
       this.currentLanguage = lang;
       this.$i18n.locale = lang;
+      
+   
     },
   },
 };
@@ -318,7 +320,7 @@ export default {
 .simple-navbar.scrolled {
   background: #ffffff;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  border-color: #3b82f6;
+  border-color: #3C34B5;
 }
 
 .nav-container {
@@ -339,7 +341,6 @@ export default {
 .logo-icon {
   width: 40px;
   height: 40px;
-  background: #3b82f6;
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -409,13 +410,13 @@ export default {
 }
 
 .nav-link:hover {
-  color: #3b82f6;
+  color: #3C34B5;
   background: #f8fafc;
   transform: translateY(-1px);
 }
 
 .nav-link:hover i {
-  color: #3b82f6;
+  color: #3C34B5;
 }
 
 .nav-link span {
@@ -448,16 +449,16 @@ export default {
 }
 
 .lang-btn:hover {
-  border-color: #3b82f6;
+  border-color: #3C34B5;
   background: #eff6ff;
-  color: #3b82f6;
+  color: #3C34B5;
   transform: translateY(-1px);
 }
 
 .lang-btn.active {
-  background: #3b82f6;
+  background: #3C34B5;
   color: #ffffff;
-  border-color: #3b82f6;
+  border-color: #3C34B5;
 }
 
 .lang-btn i {
@@ -496,7 +497,7 @@ export default {
 }
 
 .login-btn {
-  background: #3b82f6;
+  background: #3C34B5;
   color: #ffffff;
   border: none;
   padding: 10px 16px;
@@ -638,7 +639,7 @@ export default {
 
 .mobile-menu-link:hover {
   background: #f8fafc;
-  color: #3b82f6;
+  color: #3C34B5;
 }
 
 .mobile-menu-link i {
@@ -659,7 +660,7 @@ export default {
 }
 .mobile-login-btn {
   width: 100%;
-  background: #3b82f6;
+  background: #3C34B5;
   color: #ffffff;
   border: none;
   padding: 14px 16px;

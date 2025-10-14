@@ -538,7 +538,7 @@ h2 {
   display: inline-block;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #ff6b35;
+  color: #3C34B5;
   background-color: rgba(255, 107, 53, 0.1);
   padding: 0.5rem 1rem;
   border-radius: 20px;
@@ -582,7 +582,7 @@ h2 {
 
 .answer-option.selected {
   background: rgba(255, 107, 53, 0.15);
-  border-color: #ff6b35;
+  border-color: #3C34B5;
   box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
 }
 
@@ -591,7 +591,7 @@ h2 {
   height: 20px;
   margin: 0;
   cursor: pointer;
-  accent-color: #ff6b35;
+  accent-color: #3C34B5;
 }
 
 .answer-text {

@@ -611,7 +611,7 @@ export default {
 }
 
 .chat-header {
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #2A2480 0%, #3C34B5 100%);
   color: #e0f2fe;
   padding: 1.5rem;
   display: flex;
@@ -865,7 +865,7 @@ export default {
 }
 
 .message-bubble {
-  background: white;
+  background: #F0EFFF;
   border-radius: 18px;
   padding: 1rem 1.25rem;
   position: relative;
@@ -941,7 +941,7 @@ export default {
 }
 
 .typing-content {
-  background: white;
+  background: #F0EFFF;
   border-radius: 18px;
   padding: 1rem 1.25rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -1383,7 +1383,7 @@ export default {
   
   .chatbot-window {
     border: 2px solid;
-    background: white;
+    background: #F0EFFF;
   }
 }
 </style> 

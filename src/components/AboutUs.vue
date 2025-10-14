@@ -457,7 +457,7 @@ p {
 .quantum-about-title {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 900;
-  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #d97706 100%);
+  background: linear-gradient(135deg, #3C34B5 0%, #5A52C7 50%, #837FFF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -757,7 +757,7 @@ p {
 }
 
 .quantum-nav-indicator.active .nav-quantum-core {
-  background: white;
+  background: #F0EFFF;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 

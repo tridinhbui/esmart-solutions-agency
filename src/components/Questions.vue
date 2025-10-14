@@ -264,23 +264,23 @@ export default {
 <style scoped>
 /* Revolutionary CSS Variables with Quantum Theme */
 :root {
-    --primary-color: rgba(255, 107, 53, 1);
-    --secondary-color: rgba(245, 158, 11, 1);
-    --tertiary-color: rgba(217, 119, 6, 1);
-    --quantum-blue: rgba(59, 130, 246, 1);
-    --quantum-purple: rgba(139, 92, 246, 1);
+    --primary-color: rgba(60, 52, 181, 1);
+    --secondary-color: rgba(90, 82, 199, 1);
+    --tertiary-color: rgba(131, 127, 255, 1);
+    --quantum-blue: rgba(60, 52, 181, 1);
+    --quantum-purple: rgba(90, 82, 199, 1);
     --quantum-green: rgba(34, 197, 94, 1);
-    --gradient-magical: linear-gradient(135deg, rgba(255, 107, 53, 0.9) 0%, rgba(245, 158, 11, 0.8) 50%, rgba(217, 119, 6, 0.9) 100%);
+    --gradient-magical: linear-gradient(135deg, rgba(60, 52, 181, 0.9) 0%, rgba(90, 82, 199, 0.8) 50%, rgba(131, 127, 255, 0.9) 100%);
     --gradient-quantum: linear-gradient(135deg, var(--quantum-blue) 0%, var(--quantum-purple) 50%, var(--primary-color) 100%);
     --gradient-cyber: linear-gradient(135deg, var(--quantum-green) 0%, var(--quantum-blue) 100%);
-    --gradient-holographic: linear-gradient(45deg, rgba(255, 107, 53, 0.3) 0%, rgba(59, 130, 246, 0.3) 25%, rgba(139, 92, 246, 0.3) 50%, rgba(34, 197, 94, 0.3) 75%, rgba(255, 107, 53, 0.3) 100%);
+    --gradient-holographic: linear-gradient(45deg, rgba(60, 52, 181, 0.3) 0%, rgba(60, 52, 181, 0.3) 25%, rgba(90, 82, 199, 0.3) 50%, rgba(34, 197, 94, 0.3) 75%, rgba(60, 52, 181, 0.3) 100%);
 }
 
 /* Revolutionary Quantum FAQ Zone */
 .quantum-faq-zone {
     background:
-        radial-gradient(circle at 25% 30%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 75% 70%, rgba(245, 158, 11, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 25% 30%, rgba(60, 52, 181, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 75% 70%, rgba(90, 82, 199, 0.15) 0%, transparent 50%),
         linear-gradient(135deg, rgba(15, 15, 40, 1) 0%, rgba(8, 8, 20, 0.98) 100%);
     color: white;
     padding: 120px 2rem;

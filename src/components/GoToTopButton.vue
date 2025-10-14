@@ -41,10 +41,10 @@ export default {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ff6b35 60%, #f59e0b 100%);
+  background: linear-gradient(135deg, #3C34B5 60%, #5A52C7 100%);
   color: #fff;
   border: none;
-  box-shadow: 0 4px 16px #ff6b3533, 0 1.5px 8px #1e293b33;
+  box-shadow: 0 4px 16px #3C34B533, 0 1.5px 8px #1e293b33;
   font-size: 1.6rem;
   display: flex;
   align-items: center;
@@ -54,8 +54,8 @@ export default {
   outline: none;
 }
 .go-to-top-btn:hover {
-  background: linear-gradient(135deg, #f59e0b 60%, #ff6b35 100%);
-  box-shadow: 0 8px 32px #ff6b35cc, 0 2px 12px #1e293b99;
+  background: linear-gradient(135deg, #5A52C7 60%, #3C34B5 100%);
+  box-shadow: 0 8px 32px #3C34B5cc, 0 2px 12px #1e293b99;
   transform: translateY(-4px) scale(1.08);
 }
 .fade-enter-active, .fade-leave-active {

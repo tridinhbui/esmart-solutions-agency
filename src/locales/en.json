@@ -155,6 +155,56 @@
       "button": "Chat with Support Team"
     }
   },
+    "footnav": {
+    "home": "Home",
+    "services": "Services",
+    "aboutUs": "About Us",
+    "contact": "Contact"
+  },
+  "footerbar": {
+    "phone": "Phone",
+    "call": "Call",
+    "email": "Email",
+    "support": "Support",
+    "address": "Address",
+    "supportButton": "Support",
+    
+    "marketing": "Marketing",
+    "websites": "Websites",
+    "marketingAutomation": "Marketing Automation",
+    "marketingWebsites": "Marketing + Websites",
+    "enterprise": "Enterprise",
+    
+    "digitalFeatures": "Digital Features",
+    "businessTexting": "Business Texting",
+    "doItForMeMarketing": "Do It For Me Marketing",
+    "localListings": "Local Listings",
+    "reputationManagement": "Reputation Management",
+    "socialMedia": "Social Media",
+    
+    "resources": "Resources",
+    "blog": "Blog",
+    "resourcesLink": "Resources",
+    "webinars": "Webinars",
+    
+    "supportSection": "Support",
+    "getSupport": "Get Support",
+    "liveTraining": "Live Training",
+    "helpCenter": "Help Center",
+    
+    "whoWeAre": "Who We Are",
+    "aboutUs": "About Us",
+    "leadership": "Leadership",
+    "careers": "Careers",
+    
+    "whoWeServe": "Who We Serve",
+    "professionals": "Professionals",
+    "enterprises": "Enterprises",
+    
+    "bottomDescription": "ESmart Solutions provides insurance marketing automation and digital marketing tools to independent insurance agents and brokers throughout the nation including Oregon, California, New York, Texas, Florida, Pennsylvania, Illinois, Ohio, Georgia, North Carolina, Michigan, New Jersey, Virginia, Washington, Arizona and others in the United States.",
+    "doNotSell": "Do not sell my personal information."
+  }
+  ,
   "processStep": {
     "title": "Our Process",
     "closeButton": "Close",

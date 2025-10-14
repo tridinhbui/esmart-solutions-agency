@@ -213,7 +213,7 @@ export default {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
   line-height: 1.1;
-  color: #1e40af;
+  color: #2A2480;
   text-transform: uppercase;
   letter-spacing: -0.02em;
   margin: 0;
@@ -246,7 +246,7 @@ export default {
 
 .highlight {
   font-style: italic;
-  color: #3b82f6;
+  color: #3C34B5;
   font-weight: 600;
 }
 
@@ -261,7 +261,7 @@ export default {
 
 .main-cta-button {
   position: relative;
-  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+  background: linear-gradient(135deg, #2A2480 0%, #3C34B5 50%, #5A52C7 100%);
   border: none;
   border-radius: 16px;
   padding: 20px 40px;
@@ -297,7 +297,7 @@ export default {
 
 .secondary-cta-button {
   background: transparent;
-  border: 2px solid #3b82f6;
+  border: 2px solid #3C34B5;
   border-radius: 12px;
   padding: 16px 32px;
   cursor: pointer;
@@ -305,7 +305,7 @@ export default {
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-weight: 600;
-  color: #3b82f6;
+  color: #3C34B5;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   display: flex;
@@ -316,7 +316,7 @@ export default {
 }
 
 .secondary-cta-button:hover {
-  background: #3b82f6;
+  background: #3C34B5;
   color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
@@ -358,7 +358,7 @@ export default {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
   line-height: 1.1;
-  color: #1e40af;
+  color: #2A2480;
   text-transform: uppercase;
   letter-spacing: -0.02em;
   margin-bottom: 50px;
@@ -383,13 +383,13 @@ export default {
 }
 
 .what-we-offer-section .section-description strong {
-  color: #1e40af;
+  color: #2A2480;
   font-weight: 700;
 }
 
 .what-we-offer-section .highlight-line {
   font-style: italic;
-  color: #3b82f6;
+  color: #3C34B5;
   font-weight: 600;
   margin-top: 25px;
   font-size: 1.2rem;
@@ -407,7 +407,7 @@ export default {
 
 /* Service Card - Dark Blue Background, White Text */
 .what-we-offer-section .service-card {
-  background: linear-gradient(135deg, #1e40af, #1d4ed8);
+  background: linear-gradient(135deg, #2A2480, #1d4ed8);
   border-radius: 16px;
   padding: 40px 30px;
   text-align: center;
@@ -429,7 +429,7 @@ export default {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #60a5fa, #93c5fd, #60a5fa);
+  background: linear-gradient(90deg, #5A52C7, #93c5fd, #5A52C7);
   transform: scaleX(0);
   transition: transform 0.4s ease;
 }
@@ -515,7 +515,7 @@ export default {
 .what-we-offer-section .facebook-icon {
   top: 80%;
   right: 10%;
-  color: #3b82f6;
+  color: #3C34B5;
   animation: neonGlow 3s ease-in-out infinite alternate-reverse;
 }
 
