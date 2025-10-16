@@ -348,7 +348,7 @@ export default {
 .logo-text {
   font-size: 1.8rem;
   font-weight: 900;
-  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #d97706 100%);
+  background: linear-gradient(135deg, #3C34B5 0%, #5A52C7 50%, #837FFF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -554,7 +554,7 @@ export default {
 .burger span {
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, #ff6b35, #f59e0b);
+  background: linear-gradient(90deg, #3C34B5, #5A52C7);
   border-radius: 2px;
   transition: all 0.3s ease;
   transform-origin: center;
@@ -589,7 +589,7 @@ export default {
   position: absolute;
   width: 6px;
   height: 6px;
-  background: radial-gradient(circle, #ff6b35 0%, transparent 70%);
+  background: radial-gradient(circle, #3C34B5 0%, transparent 70%);
   border-radius: 50%;
   animation: quantumFloat 8s infinite ease-in-out;
   box-shadow: 0 0 20px rgba(255, 107, 53, 0.6);
@@ -666,7 +666,7 @@ export default {
 .neural-line {
   position: absolute;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #ff6b35, transparent);
+  background: linear-gradient(90deg, transparent, #3C34B5, transparent);
   animation: neuralPulse 4s infinite ease-in-out;
 }
 
@@ -708,7 +708,7 @@ export default {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    #ff6b35 25%,
+    #3C34B5 25%,
     #f59e0b 50%,
     #d97706 75%,
     transparent 100%
@@ -889,7 +889,7 @@ export default {
   height: 8px;
   background: radial-gradient(
     circle,
-    #ff6b35 0%,
+    #3C34B5 0%,
     #f59e0b 50%,
     transparent 100%
   );
@@ -934,7 +934,7 @@ export default {
   left: 50%;
   width: 20%;
   animation-delay: 4s;
-  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+  background: linear-gradient(90deg, transparent, #3C34B5, transparent);
 }
 
 .neural-network.enhanced .neural-line-6 {
@@ -950,12 +950,12 @@ export default {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    #ff6b35 15%,
-    #3b82f6 25%,
+    #3C34B5 15%,
+    #5A52C7 25%,
     #f59e0b 40%,
     #10b981 55%,
     #d97706 70%,
-    #ff6b35 85%,
+    #3C34B5 85%,
     transparent 100%
   );
   box-shadow: 0 0 15px rgba(255, 107, 53, 0.6),
@@ -978,7 +978,7 @@ export default {
   position: absolute;
   width: 3px;
   height: 3px;
-  background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+  background: radial-gradient(circle, #3C34B5 0%, transparent 70%);
   border-radius: 50%;
   animation: signatureFloat 15s infinite ease-in-out;
   box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
@@ -1045,9 +1045,9 @@ export default {
 .quantum-text {
   background: linear-gradient(
     135deg,
-    #ff6b35 0%,
-    #f59e0b 25%,
-    #3b82f6 50%,
+    #3C34B5 0%,
+    #5A52C7 25%,
+    #837FFF 50%,
     #10b981 75%,
     #d97706 100%
   );
@@ -1092,7 +1092,7 @@ export default {
 
 /* Enhanced Sign In Button */
 .quantum-sign-in {
-  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #3b82f6 100%);
+  background: linear-gradient(135deg, #3C34B5 0%, #5A52C7 50%, #837FFF 100%);
   background-size: 200% 200%;
   box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4),
     0 0 40px rgba(59, 130, 246, 0.2);
@@ -1109,7 +1109,7 @@ export default {
 
 /* Enhanced Burger Menu */
 .quantum-burger span {
-  background: linear-gradient(90deg, #ff6b35, #f59e0b, #3b82f6);
+  background: linear-gradient(90deg, #3C34B5, #5A52C7, #837FFF);
   box-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
   animation: burgerGlow 2s ease-in-out infinite alternate;
 }
@@ -1184,17 +1184,17 @@ export default {
 :root {
   --gradient-magical: linear-gradient(
     135deg,
-    #ff6b35 0%,
-    #f59e0b 25%,
-    #d97706 50%,
-    #ff6b35 75%,
-    #f59e0b 100%
+    #3C34B5 0%,
+    #5A52C7 25%,
+    #837FFF 50%,
+    #3C34B5 75%,
+    #5A52C7 100%
   );
-  --gradient-primary: linear-gradient(135deg, #ff6b35 0%, #f59e0b 100%);
-  --gradient-secondary: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  --gradient-tertiary: linear-gradient(135deg, #d97706 0%, #ff6b35 100%);
-  --gradient-energy: linear-gradient(45deg, #ff6b35, #f59e0b, #d97706, #ff6b35);
-  --accent-color: #ff6b35;
+  --gradient-primary: linear-gradient(135deg, #3C34B5 0%, #5A52C7 100%);
+  --gradient-secondary: linear-gradient(135deg, #5A52C7 0%, #837FFF 100%);
+  --gradient-tertiary: linear-gradient(135deg, #837FFF 0%, #3C34B5 100%);
+  --gradient-energy: linear-gradient(45deg, #3C34B5, #5A52C7, #837FFF, #3C34B5);
+  --accent-color: #3C34B5;
   --primary-color: #f59e0b;
   --secondary-color: #d97706;
   --success-color: #10b981;

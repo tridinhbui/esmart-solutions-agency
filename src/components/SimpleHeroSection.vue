@@ -16,7 +16,7 @@
         <!-- Company Header -->
         <div class="company-header slide-up-element" data-delay="0.05">
           <div class="company-icon slide-up-element" data-delay="0.1">
-            <i class="fas fa-rocket"></i>
+            <i class="fas"><img src="../assets/logcongty.png"/></i>
           </div>
 
           <div class="company-info slide-up-element" data-delay="0.15">
@@ -184,7 +184,10 @@ export default {
 .company-icon {
   width: 80px;
   height: 80px;
+<<<<<<< HEAD
+=======
   background: var(--primary-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -245,7 +248,11 @@ export default {
   font-family: "Inter", sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
+<<<<<<< HEAD
+  color: #3C34B5;
+=======
   color: var(--primary-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   line-height: 1.1;
   letter-spacing: -1px;
   display: block;
@@ -275,9 +282,15 @@ export default {
 }
 
 .cta-primary {
+<<<<<<< HEAD
+  background: #3C34B5;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
+=======
   background: var(--primary-blue);
   color: var(--text-inverse);
   box-shadow: var(--shadow-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
 }
 
 .cta-primary:hover {
@@ -309,7 +322,11 @@ export default {
 }
 
 .flat-card:hover {
+<<<<<<< HEAD
+  border-color: #3C34B5;
+=======
   border-color: var(--card-hover-border);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
 }
@@ -323,7 +340,7 @@ export default {
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
-  color: #3b82f6;
+  color: #3C34B5;
   font-size: 24px;
 }
 

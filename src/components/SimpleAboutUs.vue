@@ -456,7 +456,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #60a5fa;
+  color: #5A52C7;
   font-size: 24px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -533,7 +533,7 @@ export default {
 .pre-title-line {
   flex: 1;
   height: 2px;
-  background: linear-gradient(90deg, #3b82f6, transparent);
+  background: linear-gradient(90deg, #3C34B5, transparent);
 }
 
 /* Enhanced Main Message */
@@ -570,7 +570,7 @@ export default {
 }
 
 .cash-text {
-  color: #3b82f6;
+  color: #3C34B5;
   text-shadow: 0 4px 20px rgba(59, 130, 246, 0.8);
   font-size: 1.2em;
   opacity: 0;
@@ -585,7 +585,7 @@ export default {
   left: 0;
   right: 0;
   height: 6px;
-  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  background: linear-gradient(90deg, #3C34B5, #5A52C7);
   /* border-radius: 3px; */
   opacity: 0;
   /* animation: expandWidth 1s ease-out 2.5s forwards; */
@@ -609,7 +609,7 @@ export default {
 }
 
 .highlight {
-  color: #3b82f6;
+  color: #3C34B5;
   font-weight: 600;
   text-shadow: 0 2px 10px rgba(59, 130, 246, 0.2);
 }
@@ -624,7 +624,7 @@ export default {
 }
 
 .cta-primary {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #3C34B5 0%, #2A2480 100%);
   color: #ffffff;
   border: none;
   border-radius: 16px;
@@ -643,7 +643,7 @@ export default {
 .cta-primary:hover {
   transform: translateY(-3px);
   box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
-  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  background: linear-gradient(135deg, #2A2480 0%, #1e40af 100%);
 }
 
 .cta-secondary {

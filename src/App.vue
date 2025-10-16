@@ -43,6 +43,7 @@ export default {
 <style>
 /* eslint-disable */
 @import "./assets/css/elegant-utilities.css";
+@import "./assets/css/san-francisco-pro.css";
 
 /* Global Font Styles */
 * {
@@ -51,9 +52,9 @@ export default {
   box-sizing: border-box;
 }
 
-/* Typography System */
+/* Typography System - San Francisco Pro */
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 400;
   line-height: 1.6;
   color: var(--text-primary);
@@ -61,47 +62,47 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Heading Fonts - Inter (Primary) */
+/* Heading Fonts - SF Pro Display (Primary) */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: "Inter", sans-serif;
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 600;
   line-height: 1.2;
   color: var(--text-primary);
   transition: color 0.3s ease;
 }
 
-/* Body Text - Inter */
+/* Body Text - SF Pro Text */
 .body-text {
-  font-family: "Inter", sans-serif;
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 400;
 }
 
-/* Medium Weight - Inter */
+/* Medium Weight - SF Pro Text */
 .medium-text {
-  font-family: "Inter", sans-serif;
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 500;
 }
 
-/* Semi Bold - Inter */
+/* Semi Bold - SF Pro Text */
 .semi-bold-text {
-  font-family: "Inter", sans-serif;
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 600;
 }
 
-/* Bold - Inter */
+/* Bold - SF Pro Text */
 .bold-text {
-  font-family: "Inter", sans-serif;
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 700;
 }
 
-/* Extra Bold - Inter */
+/* Extra Bold - SF Pro Text */
 .extra-bold-text {
-  font-family: "Inter", sans-serif;
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 800;
 }
 

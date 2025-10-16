@@ -95,8 +95,8 @@ export const injectCriticalCSS = () => {
     .elegant-minimal-layout {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.6;
-      color: #000000;
-      background-color: #ffffff;
+      color: #ffffff;
+      background-color: #3C34B5;
     }
     
     .minimal-nav {
@@ -104,7 +104,7 @@ export const injectCriticalCSS = () => {
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(60, 52, 181, 0.95);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid #e4e4e7;
       z-index: 1000;
@@ -115,7 +115,7 @@ export const injectCriticalCSS = () => {
       display: flex;
       align-items: center;
       padding: 8rem 0 4rem;
-      background: #ffffff;
+      background: #3C34B5;
     }
   `;
   

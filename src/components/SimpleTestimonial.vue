@@ -98,9 +98,9 @@ export default {
         console.error("Error getting testimonials from translations:", error);
       }
 
-      // Fallback to hardcoded data if translation not available
-      console.log("Using fallback testimonials");
-      return this.fallbackTestimonials;
+      // Fallback to locale-specific hardcoded data if translation not available
+      console.log("Using fallback testimonials for locale:", currentLocale);
+      return this.getFallbackTestimonials(currentLocale);
     },
   },
   watch: {
@@ -110,46 +110,78 @@ export default {
       this.$forceUpdate();
     },
   },
-  data() {
-    return {
-      fallbackTestimonials: [
-        {
-          text: "ESmart Solutions helped us increase website traffic by 300% and online revenue by 150%. The team is extremely professional!",
-          name: "John Smith",
-          position: "CEO",
-        },
-        {
-          text: "ESmart's SEO service is truly effective. Our website reached TOP 3 on Google in just 3 months.",
-          name: "Sarah Johnson",
-          position: "Marketing Manager",
-        },
-        {
-          text: "Beautiful, modern website design with optimized user experience. Very satisfied with the results!",
-          name: "Michael Brown",
-          position: "Founder",
-        },
-        {
-          text: "ESmart's marketing campaign helped our brand become more widely recognized.",
-          name: "Emily Davis",
-          position: "Brand Manager",
-        },
-        {
-          text: "ESmart's customized CRM system optimized our sales process, increasing efficiency by 200%.",
-          name: "David Wilson",
-          position: "Sales Director",
-        },
-        {
-          text: "The marketing automation project saved us 60% time and increased quality leads by 180%.",
-          name: "Lisa Anderson",
-          position: "Marketing Head",
-        },
-      ],
-    };
-  },
-  mounted() {
-    this.initSlideUpAnimations();
-  },
   methods: {
+    getFallbackTestimonials(locale) {
+      const testimonials = {
+        en: [
+          {
+            text: "ESmart Solutions helped us increase website traffic by 300% and online revenue by 150%. The team is extremely professional!",
+            name: "John Smith",
+            position: "CEO",
+          },
+          {
+            text: "ESmart's SEO service is truly effective. Our website reached TOP 3 on Google in just 3 months.",
+            name: "Sarah Johnson",
+            position: "Marketing Manager",
+          },
+          {
+            text: "Beautiful, modern website design with optimized user experience. Very satisfied with the results!",
+            name: "Michael Brown",
+            position: "Founder",
+          },
+          {
+            text: "ESmart's marketing campaign helped our brand become more widely recognized.",
+            name: "Emily Davis",
+            position: "Brand Manager",
+          },
+          {
+            text: "ESmart's customized CRM system optimized our sales process, increasing efficiency by 200%.",
+            name: "David Wilson",
+            position: "Sales Director",
+          },
+          {
+            text: "The marketing automation project saved us 60% time and increased quality leads by 180%.",
+            name: "Lisa Anderson",
+            position: "Marketing Head",
+          },
+        ],
+        vi: [
+          {
+            text: "ESmart Solutions đã giúp chúng tôi tăng lưu lượng truy cập website 300% và doanh thu trực tuyến 150%. Đội ngũ cực kỳ chuyên nghiệp!",
+            name: "Nguyễn Văn An",
+            position: "Giám đốc điều hành",
+          },
+          {
+            text: "Dịch vụ SEO của ESmart thực sự hiệu quả. Website của chúng tôi đã lên TOP 3 Google chỉ sau 3 tháng.",
+            name: "Trần Thị Bình",
+            position: "Trưởng phòng Marketing",
+          },
+          {
+            text: "Thiết kế website đẹp, hiện đại với trải nghiệm người dùng được tối ưu hóa. Rất hài lòng với kết quả!",
+            name: "Lê Minh Cường",
+            position: "Nhà sáng lập",
+          },
+          {
+            text: "Chiến dịch marketing của ESmart đã giúp thương hiệu của chúng tôi được biết đến rộng rãi hơn.",
+            name: "Phạm Thu Hà",
+            position: "Trưởng phòng Thương hiệu",
+          },
+          {
+            text: "Hệ thống CRM tùy chỉnh của ESmart đã tối ưu hóa quy trình bán hàng, tăng hiệu quả 200%.",
+            name: "Hoàng Đức Việt",
+            position: "Giám đốc Kinh doanh",
+          },
+          {
+            text: "Dự án tự động hóa marketing đã tiết kiệm 60% thời gian và tăng 180% khách hàng tiềm năng chất lượng.",
+            name: "Đỗ Thị Mai",
+            position: "Trưởng phòng Marketing",
+          },
+        ],
+      };
+
+      return testimonials[locale] || testimonials.en;
+    },
+
     initSlideUpAnimations() {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -172,6 +204,9 @@ export default {
       const slideUpElements = document.querySelectorAll(".slide-up-element");
       slideUpElements.forEach((el) => observer.observe(el));
     },
+  },
+  mounted() {
+    this.initSlideUpAnimations();
   },
 };
 </script>
@@ -237,7 +272,7 @@ export default {
 .header-icon {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(135deg, #3C34B5, #2A2480);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -291,7 +326,7 @@ export default {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(90deg, #3C34B5, #2A2480);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -303,30 +338,41 @@ export default {
 .testimonial-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+<<<<<<< HEAD
+  border-color: #3C34B5;
+=======
   border-color: var(--primary-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
 }
 
 .testimonial-content {
   position: relative;
-  padding-top: 25px; /* Add padding to prevent overlap with quote icon */
-  padding-right: 25px; /* Add padding to prevent overlap on the right */
+  padding-top: 25px;
+  padding-right: 25px;
 }
 
 .quote-icon {
   position: absolute;
-  top: 0px; /* Adjust to stay within the padding area */
-  right: 0px; /* Adjust to stay within the padding area */
-  width: 40px; /* Slightly smaller to reduce overlap */
+  top: 0px;
+  right: 0px;
+  width: 40px;
   height: 40px;
   background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+<<<<<<< HEAD
+  color: #3C34B5;
+  font-size: 16px;
+  z-index: 1;
+  opacity: 0.7;
+=======
   color: var(--primary-blue);
   font-size: 16px; /* Smaller font size */
   z-index: 1; /* Keep it above other content */
   opacity: 0.7; /* Slightly more transparent */
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
 }
 
 .testimonial-text {
@@ -347,7 +393,7 @@ export default {
 .author-avatar {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(135deg, #3C34B5, #2A2480);
   border-radius: 50%;
   display: flex;
   align-items: center;

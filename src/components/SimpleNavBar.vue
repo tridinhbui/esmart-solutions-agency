@@ -4,7 +4,7 @@
       <!-- Logo -->
       <div class="nav-logo">
         <div class="logo-icon">
-          <i class="fas fa-rocket"></i>
+          <i class="fas"><img src="../assets/logcongty.png"/></i>
         </div>
         <div class="logo-text-container">
           <span class="logo-text">ESmart Solutions</span>
@@ -301,6 +301,8 @@ export default {
     setLanguage(lang) {
       this.currentLanguage = lang;
       this.$i18n.locale = lang;
+      
+   
     },
   },
 };
@@ -348,7 +350,6 @@ export default {
 .logo-icon {
   width: 40px;
   height: 40px;
-  background: #3b82f6;
   border-radius: 12px;
   display: flex;
   align-items: center;

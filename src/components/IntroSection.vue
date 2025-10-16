@@ -996,25 +996,25 @@ export default {
   flex-direction: column;
   gap: 0.75rem;
   position: relative;
-  color: #60a5fa;
+  color: #5A52C7;
   text-shadow: 0 2px 20px rgba(96, 165, 250, 0.5);
 }
 
 .title-line {
   display: block;
   animation: fadeInUp 1.2s ease-out 0.3s both;
-  color: #3b82f6;
+  color: #3C34B5;
   font-weight: 700;
-  background: linear-gradient(45deg, #3b82f6, #60a5fa, #93c5fd);
+  background: linear-gradient(45deg, #3C34B5, #5A52C7, #837FFF);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-text {
-  color: #60a5fa;
+  color: #5A52C7;
   animation: fadeInUp 1.2s ease-out 0.6s both;
-  background: linear-gradient(45deg, #3b82f6, #60a5fa, #93c5fd);
+  background: linear-gradient(45deg, #3C34B5, #5A52C7, #837FFF);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1148,7 +1148,7 @@ export default {
 }
 
 .primary-button {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  background: linear-gradient(135deg, #5A52C7 0%, #d97706 100%);
   color: white;
   border: none;
   border-radius: 50px;
@@ -2015,7 +2015,7 @@ export default {
 .mouse-quantum-core {
   width: 4px;
   height: 8px;
-  background: linear-gradient(180deg, #ff6b35, #f59e0b);
+  background: linear-gradient(180deg, #3C34B5, #5A52C7);
   border-radius: 2px;
   animation: mouseScroll 2s ease-in-out infinite;
 }
@@ -2723,21 +2723,21 @@ export default {
   position: absolute;
   width: 4px;
   height: 4px;
-  background: radial-gradient(circle, #ff6b35, transparent);
+  background: radial-gradient(circle, #3C34B5, transparent);
   border-radius: 50%;
   animation: atomicFloat 8s ease-in-out infinite;
-  box-shadow: 0 0 10px #ff6b35, 0 0 20px #ff6b35;
+  box-shadow: 0 0 10px #3C34B5, 0 0 20px #3C34B5;
 }
 
 .atomic-particle:nth-child(even) {
-  background: radial-gradient(circle, #3b82f6, transparent);
-  box-shadow: 0 0 10px #3b82f6, 0 0 20px #3b82f6;
+  background: radial-gradient(circle, #3C34B5, transparent);
+  box-shadow: 0 0 10px #3C34B5, 0 0 20px #3C34B5;
   animation-duration: 6s;
 }
 
 .atomic-particle:nth-child(3n) {
-  background: radial-gradient(circle, #f59e0b, transparent);
-  box-shadow: 0 0 10px #f59e0b, 0 0 20px #f59e0b;
+  background: radial-gradient(circle, #5A52C7, transparent);
+  box-shadow: 0 0 10px #5A52C7, 0 0 20px #5A52C7;
   animation-duration: 10s;
 }
 
@@ -2763,7 +2763,7 @@ export default {
   height: 100px;
   top: 20%;
   left: 10%;
-  border-color: #ff6b35;
+  border-color: #3C34B5;
   animation-delay: 0s;
 }
 
@@ -2772,7 +2772,7 @@ export default {
   height: 150px;
   top: 50%;
   left: 20%;
-  border-color: #3b82f6;
+  border-color: #3C34B5;
   animation-delay: 1s;
 }
 
@@ -2781,7 +2781,7 @@ export default {
   height: 80px;
   top: 70%;
   left: 15%;
-  border-color: #f59e0b;
+  border-color: #5A52C7;
   animation-delay: 2s;
 }
 
@@ -2805,7 +2805,7 @@ export default {
   position: absolute;
   width: 2px;
   height: 2px;
-  background: white;
+  background: #F0EFFF;
   border-radius: 50%;
   animation: stellarTwinkle 3s ease-in-out infinite;
   box-shadow: 0 0 6px white, 0 0 12px white;
@@ -2816,8 +2816,8 @@ export default {
 }
 
 .stellar-point:nth-child(3n) {
-  background: #ff6b35;
-  box-shadow: 0 0 6px #ff6b35, 0 0 12px #ff6b35;
+  background: #3C34B5;
+  box-shadow: 0 0 6px #3C34B5, 0 0 12px #3C34B5;
   animation-duration: 5s;
 }
 
@@ -2836,10 +2836,10 @@ export default {
   left: 50%;
   width: 12px;
   height: 12px;
-  background: radial-gradient(circle, #ff6b35, #f59e0b);
+  background: radial-gradient(circle, #3C34B5, #5A52C7);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 20px #ff6b35, 0 0 40px #ff6b35;
+  box-shadow: 0 0 20px #3C34B5, 0 0 40px #3C34B5;
   animation: atomicCorePulse 2s ease-in-out infinite;
 }
 
@@ -2874,12 +2874,12 @@ export default {
   position: absolute;
   width: 6px;
   height: 6px;
-  background: #3b82f6;
+  background: #3C34B5;
   border-radius: 50%;
   top: -3px;
   left: 50%;
   transform: translateX(-50%);
-  box-shadow: 0 0 10px #3b82f6;
+  box-shadow: 0 0 10px #3C34B5;
 }
 
 /* Quantum Field Lines */
@@ -2923,7 +2923,7 @@ export default {
 .nebula-cloud.cloud-1 {
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, #ff6b35, transparent);
+  background: radial-gradient(circle, #3C34B5, transparent);
   top: 10%;
   left: 0%;
   animation-delay: 0s;
@@ -2932,7 +2932,7 @@ export default {
 .nebula-cloud.cloud-2 {
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, #3b82f6, transparent);
+  background: radial-gradient(circle, #3C34B5, transparent);
   top: 40%;
   left: 10%;
   animation-delay: 2s;
@@ -2941,7 +2941,7 @@ export default {
 .nebula-cloud.cloud-3 {
   width: 150px;
   height: 150px;
-  background: radial-gradient(circle, #f59e0b, transparent);
+  background: radial-gradient(circle, #5A52C7, transparent);
   top: 70%;
   left: 5%;
   animation-delay: 4s;
@@ -2992,11 +2992,11 @@ export default {
 @keyframes atomicCorePulse {
   0%, 100% {
     transform: translate(-50%, -50%) scale(1);
-    box-shadow: 0 0 20px #ff6b35, 0 0 40px #ff6b35;
+    box-shadow: 0 0 20px #3C34B5, 0 0 40px #3C34B5;
   }
   50% {
     transform: translate(-50%, -50%) scale(1.2);
-    box-shadow: 0 0 30px #ff6b35, 0 0 60px #ff6b35;
+    box-shadow: 0 0 30px #3C34B5, 0 0 60px #3C34B5;
   }
 }
 
@@ -3054,7 +3054,7 @@ export default {
   position: absolute;
   width: 2px;
   height: 2px;
-  background: #ffffff;
+  background: #F0EFFF;
   border-radius: 50%;
   animation: starTwinkle 3s ease-in-out infinite;
   box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
@@ -3086,7 +3086,7 @@ export default {
 .planet {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #ff6b35, #8b4513);
+  background: radial-gradient(circle at 30% 30%, #3C34B5, #8b4513);
   animation: planetRotate 20s linear infinite;
 }
 
@@ -3202,7 +3202,7 @@ export default {
   left: 50%;
   width: 8px;
   height: 8px;
-  background: radial-gradient(circle, #ffffff, var(--secondary-color));
+  background: radial-gradient(circle, #F0EFFF, var(--secondary-color));
   border-radius: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 15px var(--secondary-color);
@@ -3330,7 +3330,7 @@ export default {
   justify-content: center;
   background: rgba(255, 107, 53, 0.2);
   border-radius: 50%;
-  color: #ff6b35;
+  color: #3C34B5;
   font-size: 1rem;
   flex-shrink: 0;
 }
@@ -3353,7 +3353,7 @@ export default {
   font-weight: 800;
   color: white;
   margin: 0 0 0.3rem 0;
-  background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #fff 100%);
+  background: linear-gradient(135deg, #3C34B5 0%, #5A52C7 50%, #F0EFFF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -3417,7 +3417,7 @@ export default {
 
 .quantum-premium-btn {
   position: relative;
-  background: linear-gradient(135deg, #ff6b35, #f59e0b);
+  background: linear-gradient(135deg, #3C34B5, #5A52C7);
   border: none;
   border-radius: 50px;
   padding: 0.9rem 1.8rem;
@@ -3633,7 +3633,7 @@ export default {
   transform: translateX(-50%);
   width: 2px;
   height: 2px;
-  background: white;
+  background: #F0EFFF;
   border-radius: 50%;
   animation: wheelScroll 2s ease-in-out infinite;
 }
@@ -3697,7 +3697,7 @@ export default {
 
 .trust-icon {
   position: relative;
-  color: #ff6b35;
+  color: #3C34B5;
   font-size: 1.5rem;
 }
 
@@ -3746,7 +3746,7 @@ export default {
 
 .companies-count {
   font-size: 0.8rem;
-  color: #ff6b35;
+  color: #3C34B5;
   font-weight: 700;
   margin-left: 0.5rem;
 }

@@ -202,6 +202,58 @@
       "blog": "Blog"
     }
   },
+  
+   "navigation": {
+    "home": "Trang chủ",
+    "services": "Dịch vụ",
+    "aboutUs": "Về chúng tôi",
+    "contact": "Liên hệ"
+  },
+  "footerbar": {
+    "phone": "Điện thoại",
+    "call": "Gọi",
+    "email": "Email",
+    "support": "Hỗ trợ",
+    "address": "Địa chỉ",
+    "supportButton": "Hỗ trợ",
+    
+    "marketing": "Tiếp thị",
+    "websites": "Trang web",
+    "marketingAutomation": "Tự động hóa tiếp thị",
+    "marketingWebsites": "Tiếp thị + Trang web",
+    "enterprise": "Doanh nghiệp",
+    
+    "digitalFeatures": "Tính năng số",
+    "businessTexting": "Tin nhắn kinh doanh",
+    "doItForMeMarketing": "Tiếp thị thay bạn",
+    "localListings": "Danh sách địa phương",
+    "reputationManagement": "Quản lý danh tiếng",
+    "socialMedia": "Mạng xã hội",
+    
+    "resources": "Tài nguyên",
+    "blog": "Blog",
+    "resourcesLink": "Tài nguyên",
+    "webinars": "Hội thảo trực tuyến",
+    
+    
+    "supportSection": "Hỗ trợ",
+    "getSupport": "Nhận hỗ trợ",
+    "liveTraining": "Đào tạo trực tiếp",
+    "helpCenter": "Trung tâm trợ giúp",
+    
+    "whoWeAre": "Chúng tôi là ai",
+    "aboutUs": "Về chúng tôi",
+    "leadership": "Ban lãnh đạo",
+    "careers": "Nghề nghiệp",
+    
+    
+    "whoWeServe": "Chúng tôi phục vụ ai",
+    "professionals": "Chuyên gia",
+    "enterprises": "Doanh nghiệp",
+    "bottomDescription": "ESmart Solutions cung cấp tự động hóa tiếp thị bảo hiểm và các công cụ tiếp thị số cho các đại lý và nhà môi giới bảo hiểm độc lập trên toàn quốc bao gồm Oregon, California, New York, Texas, Florida, Pennsylvania, Illinois, Ohio, Georgia, North Carolina, Michigan, New Jersey, Virginia, Washington, Arizona và các bang khác tại Hoa Kỳ.",
+    "doNotSell": "Không bán thông tin cá nhân của tôi."
+  }
+  ,
   "hero": {
     "title": "Công ty ESmart Solutions",
     "subtitle": "Chuyển đổi Doanh nghiệp của Bạn",

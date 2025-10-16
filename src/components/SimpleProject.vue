@@ -207,7 +207,11 @@ export default {
 .project-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 60px rgba(30, 58, 138, 0.2);
+<<<<<<< HEAD
+  border-color: #3C34B5;
+=======
   border-color: var(--primary-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
 }
 
 .project-image {

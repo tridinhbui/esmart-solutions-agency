@@ -11,11 +11,11 @@
           <div class="mb-4">
             <p class="footer-text-primary">
               <i class="fa fa-phone text-blue-500 mr-2"></i>
-              <strong>Phone</strong>
+              <strong>{{ $t("footerbar.phone") }}</strong>
             </p>
             <ul class="footer-text-secondary mt-2">
               <li>
-                <strong>Call:</strong>
+                <strong>{{ $t("footerbar.call") }}:</strong>
                 <a href="tel:+84868885505" class="footer-text-secondary hover:underline"
                   >868-885-505</a
                 >
@@ -27,11 +27,11 @@
           <div class="mb-6">
             <p class="footer-text-primary">
               <i class="fa fa-envelope text-blue-500 mr-2"></i>
-              <strong>Email</strong>
+              <strong>{{ $t("footerbar.email") }}</strong>
             </p>
             <ul class="footer-text-secondary mt-2">
               <li>
-                <strong>Support:</strong>
+                <strong>{{ $t("footerbar.support") }}:</strong>
                 <a
                   href="mailto:esmartsolutions.agency@gmail.com"
                   class="footer-text-secondary hover:underline"
@@ -45,7 +45,7 @@
           <div class="mb-6">
             <p class="footer-text-primary">
               <i class="fa fa-map-marker mr-2 text-blue-600"></i>
-              <strong>Address</strong>
+              <strong>{{ $t("footerbar.address") }}</strong>
             </p>
             <ul class="footer-text-secondary mt-2">
               <li>
@@ -71,7 +71,7 @@
                 color: white !important;
               "
             >
-              <span>Support</span>
+              <span>{{ $t("footerbar.supportButton") }}</span>
               <span class="ml-2">→</span>
             </a>
           </div>
@@ -84,34 +84,34 @@
           >
             <!-- Column 1 -->
             <div>
-              <!-- Insurance Marketing -->
+              <!-- Marketing -->
               <div class="mb-8">
-                <h4 class="footer-text-primary font-bold mb-4">Marketing</h4>
+                <h4 class="footer-text-primary font-bold mb-4">{{ $t("footerbar.marketing") }}</h4>
                 <ul class="space-y-2">
                   <li>
                     <a
                       href="/insurance-agency-websites/"
                       class="footer-text-secondary hover:underline"
-                      >Websites</a
+                      >{{ $t("footerbar.websites") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-automation/"
                       class="footer-text-secondary hover:underline"
-                      >Marketing Automation</a
+                      >{{ $t("footerbar.marketingAutomation") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-agency-marketing-and-websites/"
                       class="footer-text-secondary hover:underline"
-                      >Marketing + Websites</a
+                      >{{ $t("footerbar.marketingWebsites") }}</a
                     >
                   </li>
                   <li>
                     <a href="/enterprise/" class="footer-text-secondary hover:underline"
-                      >Enterprise</a
+                      >{{ $t("footerbar.enterprise") }}</a
                     >
                   </li>
                 </ul>
@@ -119,41 +119,41 @@
 
               <!-- Digital Features -->
               <div>
-                <h4 class="footer-text-primary font-bold mb-4">Digital Features</h4>
+                <h4 class="footer-text-primary font-bold mb-4">{{ $t("footerbar.digitalFeatures") }}</h4>
                 <ul class="space-y-2">
                   <li>
                     <a
                       href="/insurance-marketing-tools/business-texting/"
                       class="footer-text-secondary hover:underline"
-                      >Business Texting</a
+                      >{{ $t("footerbar.businessTexting") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-tools/do-it-for-me-marketing/"
                       class="footer-text-secondary hover:underline"
-                      >Do It For Me Marketing</a
+                      >{{ $t("footerbar.doItForMeMarketing") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-tools/local-listings/"
                       class="footer-text-secondary hover:underline"
-                      >Local Listings</a
+                      >{{ $t("footerbar.localListings") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-tools/reputation-management/"
                       class="footer-text-secondary hover:underline"
-                      >Reputation Management</a
+                      >{{ $t("footerbar.reputationManagement") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-tools/social-media/"
                       class="footer-text-secondary hover:underline"
-                      >Social Media</a
+                      >{{ $t("footerbar.socialMedia") }}</a
                     >
                   </li>
                 </ul>
@@ -164,23 +164,23 @@
             <div>
               <!-- Resources -->
               <div class="mb-13">
-                <h4 class="footer-text-primary font-bold mb-4">Resources</h4>
+                <h4 class="footer-text-primary font-bold mb-4">{{ $t("footerbar.resources") }}</h4>
                 <ul class="space-y-2">
                   <li>
-                    <a href="/blog/" class="footer-text-secondary hover:underline">Blog</a>
+                    <a href="/blog/" class="footer-text-secondary hover:underline">{{ $t("footerbar.blog") }}</a>
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-resources/"
                       class="footer-text-secondary hover:underline"
-                      >Resources</a
+                      >{{ $t("footerbar.resourcesLink") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-webinars/"
                       class="footer-text-secondary hover:underline"
-                      >Webinars</a
+                      >{{ $t("footerbar.webinars") }}</a
                     >
                   </li>
                 </ul>
@@ -188,25 +188,25 @@
 
               <!-- Support -->
               <div>
-                <h4 class="footer-text-primary font-bold mb-4">Support</h4>
+                <h4 class="footer-text-primary font-bold mb-4">{{ $t("footerbar.supportSection") }}</h4>
                 <ul class="space-y-2">
                   <li>
                     <a href="/support/" class="footer-text-secondary hover:underline"
-                      >Get Support</a
+                      >{{ $t("footerbar.getSupport") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/support/#additional-support"
                       class="footer-text-secondary hover:underline"
-                      >Live Training</a
+                      >{{ $t("footerbar.liveTraining") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/support/#additional-support/"
                       class="footer-text-secondary hover:underline"
-                      >Help Center</a
+                      >{{ $t("footerbar.helpCenter") }}</a
                     >
                   </li>
                 </ul>
@@ -217,25 +217,25 @@
             <div>
               <!-- Who We Are -->
               <div class="mb-13">
-                <h4 class="footer-text-primary font-bold mb-4">Who We Are</h4>
+                <h4 class="footer-text-primary font-bold mb-4">{{ $t("footerbar.whoWeAre") }}</h4>
                 <ul class="space-y-2">
                   <li>
                     <a href="/about-us/" class="footer-text-secondary hover:underline"
-                      >About Us</a
+                      >{{ $t("footerbar.aboutUs") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/about-us/leadership/"
                       class="footer-text-secondary hover:underline"
-                      >Leadership</a
+                      >{{ $t("footerbar.leadership") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/about-us/careers/"
                       class="footer-text-secondary hover:underline"
-                      >Careers</a
+                      >{{ $t("footerbar.careers") }}</a
                     >
                   </li>
                 </ul>
@@ -243,18 +243,18 @@
 
               <!-- Who We Serve -->
               <div>
-                <h4 class="footer-text-primary font-bold mb-4">Who We Serve</h4>
+                <h4 class="footer-text-primary font-bold mb-4">{{ $t("footerbar.whoWeServe") }}</h4>
                 <ul class="space-y-2">
                   <li>
                     <a
                       href="/independent-insurance-agencies/"
                       class="footer-text-secondary hover:underline"
-                      >Professionals</a
+                      >{{ $t("footerbar.professionals") }}</a
                     >
                   </li>
                   <li>
                     <a href="/enterprise/" class="footer-text-secondary hover:underline"
-                      >Enterprises</a
+                      >{{ $t("footerbar.enterprises") }}</a
                     >
                   </li>
                 </ul>
@@ -267,13 +267,9 @@
       <!-- Bottom Text -->
       <div class="mt-12 pt-8 text-gray-600 text-sm border-t border-gray-200">
         <p style="font-size: 13px; line-height: 23px">
-          ESmart Solutions provides insurance marketing automation and digital
-          marketing tools to independent insurance agents and brokers throughout
-          the nation including Oregon, California, New York, Texas, Florida,
-          Pennsylvania, Illinois, Ohio, Georgia, North Carolina, Michigan, New
-          Jersey, Virginia, Washington, Arizona and others in the United States.
+          {{ $t("footerbar.bottomDescription") }}
           <a href="#" class="text-gray-600 border-none hover:underline"
-            >Do not sell my personal information.</a
+            >{{ $t("footerbar.doNotSell") }}</a
           >
         </p>
       </div>
@@ -282,7 +278,23 @@
 </template>
 
 <script>
-export default { name: "SimpleFooter" };
+export default { 
+  name: "SimpleFooter",
+  // Option 1: If you want to receive language as a prop
+  props: {
+    currentLanguage: {
+      type: String,
+      default: "en"
+    }
+  },
+  // Option 2: If you want to watch for global language changes
+  watch: {
+    "$i18n.locale"(newLang) {
+      // React to language changes if needed
+      console.log("Language changed to:", newLang);
+    }
+  }
+};
 </script>
 
 <style scoped>

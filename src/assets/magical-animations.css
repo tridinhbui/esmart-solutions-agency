@@ -3,15 +3,20 @@
 /* Global Magical Effects */
 html {
   scroll-behavior: smooth;
+  background: #3C34B5 !important;
 }
 
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  background: white;
-  color: black;
+  background: #3C34B5 !important;
+  color: white;
   overflow-x: hidden;
+}
+
+#app {
+  background: #3C34B5 !important;
 }
 
 /* Performance optimizations for animations */
@@ -315,7 +320,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: white;
+  background: #F0EFFF;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -748,9 +753,9 @@ body {
 
 /* Holographic Text Effect - Fixed for visibility */
 .holographic-text {
-  color: #60a5fa;
+  color: #5A52C7;
   font-weight: 700;
-  background: linear-gradient(45deg, #3b82f6, #60a5fa, #93c5fd);
+  background: linear-gradient(45deg, #3C34B5, #5A52C7, #837FFF);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -808,7 +813,7 @@ body {
   position: absolute;
   width: 3px;
   height: 3px;
-  background: radial-gradient(circle, #fff, transparent);
+  background: radial-gradient(circle, #F0EFFF, transparent);
   border-radius: 50%;
   animation: quantum-dance 8s linear infinite;
 }
@@ -832,7 +837,7 @@ body {
 
 /* Mystical Glow Effect - Fixed for visibility */
 .mystical-glow {
-  color: #3b82f6;
+  color: #3C34B5;
   font-weight: 600;
   text-shadow: 0 0 20px rgba(0, 128, 255, 0.5);
   animation: glow 2s ease-in-out infinite alternate;
@@ -904,7 +909,7 @@ body {
 .spectral-shimmer {
   color: #004d7a;
   font-weight: 500;
-  background: linear-gradient(90deg, #60a5fa, #3b82f6, #0080ff, #3b82f6, #60a5fa);
+  background: linear-gradient(90deg, #5A52C7, #3C34B5, #3C34B5, #3C34B5, #5A52C7);
   background-size: 200% 100%;
   background-clip: text;
   -webkit-background-clip: text;
