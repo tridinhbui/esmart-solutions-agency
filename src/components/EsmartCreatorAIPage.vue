@@ -309,7 +309,7 @@ export default {
       setTimeout(() => {
         const navbar = document.querySelector(".navbar");
         if (navbar) {
-          navbar.style.backgroundColor = "#ffffff";
+          navbar.style.backgroundColor = "var(--bg-primary)";
           navbar.style.color = "#333333";
           navbar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.1)";
 
@@ -770,7 +770,7 @@ export default {
   flex-direction: column;
   min-height: 100vh;
   margin-top: 6rem;
-  background: white;
+  background: var(--bg-primary);
   color: black;
   position: relative;
   overflow-x: hidden;
@@ -808,7 +808,7 @@ export default {
   text-align: center;
   position: relative;
   z-index: 1;
-  background: white;
+  background: var(--bg-primary);
 }
 
 .quantum-loader {
@@ -867,7 +867,7 @@ export default {
   justify-content: center;
   padding: 2rem;
   text-align: center;
-  background: white;
+  background: var(--bg-primary);
   color: black;
 }
 
@@ -912,7 +912,7 @@ export default {
 
 /* Simple NavBar for creator-ai pages */
 .creator-ai-page .navbar {
-  background-color: #ffffff !important;
+  background-color: var(--bg-primary) !important;
   color: #333333 !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

@@ -155,8 +155,9 @@ export default {
 .simple-features {
   position: relative;
   padding: 120px 0;
-  background: #ffffff;
+  background: var(--bg-primary);
   overflow: hidden;
+  transition: background-color 0.3s ease;
 }
 
 .flat-background {
@@ -213,7 +214,11 @@ export default {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
   line-height: 1.1;
+<<<<<<< HEAD
   color: #2A2480;
+=======
+  color: var(--text-primary);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   text-transform: uppercase;
   letter-spacing: -0.02em;
   margin: 0;
@@ -236,7 +241,7 @@ export default {
   font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   font-weight: 400;
   line-height: 1.6;
-  color: #64748b;
+  color: var(--text-muted);
   margin: 0 0 20px 0;
 }
 
@@ -246,7 +251,11 @@ export default {
 
 .highlight {
   font-style: italic;
+<<<<<<< HEAD
   color: #3C34B5;
+=======
+  color: var(--primary-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   font-weight: 600;
 }
 
@@ -261,7 +270,11 @@ export default {
 
 .main-cta-button {
   position: relative;
+<<<<<<< HEAD
   background: linear-gradient(135deg, #2A2480 0%, #3C34B5 50%, #5A52C7 100%);
+=======
+  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 50%, var(--primary-blue-light) 100%);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   border: none;
   border-radius: 16px;
   padding: 20px 40px;
@@ -297,7 +310,11 @@ export default {
 
 .secondary-cta-button {
   background: transparent;
+<<<<<<< HEAD
   border: 2px solid #3C34B5;
+=======
+  border: 2px solid var(--primary-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   border-radius: 12px;
   padding: 16px 32px;
   cursor: pointer;
@@ -305,7 +322,11 @@ export default {
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-weight: 600;
+<<<<<<< HEAD
   color: #3C34B5;
+=======
+  color: var(--primary-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   text-transform: uppercase;
   letter-spacing: 0.05em;
   display: flex;
@@ -316,7 +337,11 @@ export default {
 }
 
 .secondary-cta-button:hover {
+<<<<<<< HEAD
   background: #3C34B5;
+=======
+  background: var(--primary-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
@@ -339,8 +364,9 @@ export default {
 .what-we-offer-section {
   position: relative;
   padding: 120px 0;
-  background: #ffffff;
+  background: var(--bg-primary);
   overflow: hidden;
+  transition: background-color 0.3s ease;
 }
 
 .what-we-offer-section .container {
@@ -358,7 +384,11 @@ export default {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
   line-height: 1.1;
+<<<<<<< HEAD
   color: #2A2480;
+=======
+  color: var(--text-primary);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   text-transform: uppercase;
   letter-spacing: -0.02em;
   margin-bottom: 50px;
@@ -371,7 +401,7 @@ export default {
   font-size: clamp(1.1rem, 2.5vw, 1.3rem);
   font-weight: 400;
   line-height: 1.8;
-  color: #374151;
+  color: var(--text-secondary);
   margin-bottom: 70px;
   max-width: 900px;
   margin-left: auto;
@@ -383,13 +413,21 @@ export default {
 }
 
 .what-we-offer-section .section-description strong {
+<<<<<<< HEAD
   color: #2A2480;
+=======
+  color: var(--text-primary);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   font-weight: 700;
 }
 
 .what-we-offer-section .highlight-line {
   font-style: italic;
+<<<<<<< HEAD
   color: #3C34B5;
+=======
+  color: var(--primary-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   font-weight: 600;
   margin-top: 25px;
   font-size: 1.2rem;
@@ -407,7 +445,11 @@ export default {
 
 /* Service Card - Dark Blue Background, White Text */
 .what-we-offer-section .service-card {
+<<<<<<< HEAD
   background: linear-gradient(135deg, #2A2480, #1d4ed8);
+=======
+  background: linear-gradient(135deg, var(--primary-blue-dark), var(--primary-blue));
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   border-radius: 16px;
   padding: 40px 30px;
   text-align: center;
@@ -429,7 +471,11 @@ export default {
   left: 0;
   right: 0;
   height: 4px;
+<<<<<<< HEAD
   background: linear-gradient(90deg, #5A52C7, #93c5fd, #5A52C7);
+=======
+  background: linear-gradient(90deg, var(--primary-blue-light), var(--primary-blue-light), var(--primary-blue-light));
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   transform: scaleX(0);
   transition: transform 0.4s ease;
 }
@@ -441,7 +487,7 @@ export default {
 .what-we-offer-section .service-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 50px rgba(30, 64, 175, 0.35);
-  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
 }
 
 /* Card Icon - White, Centered */
@@ -484,7 +530,7 @@ export default {
   font-size: clamp(0.95rem, 2vw, 1.05rem);
   font-weight: 400;
   line-height: 1.6;
-  color: #e0e7ff;
+  color: var(--text-inverse);
   margin-bottom: 0;
 }
 
@@ -515,7 +561,11 @@ export default {
 .what-we-offer-section .facebook-icon {
   top: 80%;
   right: 10%;
+<<<<<<< HEAD
   color: #3C34B5;
+=======
+  color: var(--primary-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   animation: neonGlow 3s ease-in-out infinite alternate-reverse;
 }
 

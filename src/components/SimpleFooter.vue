@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="footer-bg-light bg-white border-t border-gray-200"
+    class="simple-footer"
     style="padding-top: 20px; padding-bottom: 60px"
   >
     <div class="container mx-auto px-4">
@@ -9,14 +9,14 @@
         <div class="lg:w-5/12">
           <!-- Phone -->
           <div class="mb-4">
-            <p class="text-black">
+            <p class="footer-text-primary">
               <i class="fa fa-phone text-blue-500 mr-2"></i>
               <strong>{{ $t("footerbar.phone") }}</strong>
             </p>
-            <ul class="text-black mt-2">
+            <ul class="footer-text-secondary mt-2">
               <li>
                 <strong>{{ $t("footerbar.call") }}:</strong>
-                <a href="tel:+84868885505" class="text-black hover:underline"
+                <a href="tel:+84868885505" class="footer-text-secondary hover:underline"
                   >868-885-505</a
                 >
               </li>
@@ -25,16 +25,16 @@
 
           <!-- Email -->
           <div class="mb-6">
-            <p class="text-black">
+            <p class="footer-text-primary">
               <i class="fa fa-envelope text-blue-500 mr-2"></i>
               <strong>{{ $t("footerbar.email") }}</strong>
             </p>
-            <ul class="text-black mt-2">
+            <ul class="footer-text-secondary mt-2">
               <li>
                 <strong>{{ $t("footerbar.support") }}:</strong>
                 <a
                   href="mailto:esmartsolutions.agency@gmail.com"
-                  class="text-black hover:underline"
+                  class="footer-text-secondary hover:underline"
                   >esmartsolutions.agency@gmail.com</a
                 >
               </li>
@@ -43,11 +43,11 @@
 
           <!-- Address -->
           <div class="mb-6">
-            <p class="text-black">
+            <p class="footer-text-primary">
               <i class="fa fa-map-marker mr-2 text-blue-600"></i>
               <strong>{{ $t("footerbar.address") }}</strong>
             </p>
-            <ul class="text-black mt-2">
+            <ul class="footer-text-secondary mt-2">
               <li>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=140+Nguyen+Xien+st%2C+Thanh+Xuan+dist"
@@ -67,7 +67,7 @@
               class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors w-fit"
               style="
                 display: inline-flex !important;
-                background-color: #2563eb !important;
+                background-color: var(--primary-blue-dark) !important;
                 color: white !important;
               "
             >
@@ -86,31 +86,31 @@
             <div>
               <!-- Marketing -->
               <div class="mb-8">
-                <h4 class="text-black font-bold mb-4">{{ $t("footerbar.marketing") }}</h4>
+                <h4 class="footer-text-primary font-bold mb-4">{{ $t("footerbar.marketing") }}</h4>
                 <ul class="space-y-2">
                   <li>
                     <a
                       href="/insurance-agency-websites/"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.websites") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-automation/"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.marketingAutomation") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-agency-marketing-and-websites/"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.marketingWebsites") }}</a
                     >
                   </li>
                   <li>
-                    <a href="/enterprise/" class="text-black hover:underline"
+                    <a href="/enterprise/" class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.enterprise") }}</a
                     >
                   </li>
@@ -119,40 +119,40 @@
 
               <!-- Digital Features -->
               <div>
-                <h4 class="text-black font-bold mb-4">{{ $t("footerbar.digitalFeatures") }}</h4>
+                <h4 class="footer-text-primary font-bold mb-4">{{ $t("footerbar.digitalFeatures") }}</h4>
                 <ul class="space-y-2">
                   <li>
                     <a
                       href="/insurance-marketing-tools/business-texting/"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.businessTexting") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-tools/do-it-for-me-marketing/"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.doItForMeMarketing") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-tools/local-listings/"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.localListings") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-tools/reputation-management/"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.reputationManagement") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-tools/social-media/"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.socialMedia") }}</a
                     >
                   </li>
@@ -164,22 +164,22 @@
             <div>
               <!-- Resources -->
               <div class="mb-13">
-                <h4 class="text-black font-bold mb-4">{{ $t("footerbar.resources") }}</h4>
+                <h4 class="footer-text-primary font-bold mb-4">{{ $t("footerbar.resources") }}</h4>
                 <ul class="space-y-2">
                   <li>
-                    <a href="/blog/" class="text-black hover:underline">{{ $t("footerbar.blog") }}</a>
+                    <a href="/blog/" class="footer-text-secondary hover:underline">{{ $t("footerbar.blog") }}</a>
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-resources/"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.resourcesLink") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-webinars/"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.webinars") }}</a
                     >
                   </li>
@@ -188,24 +188,24 @@
 
               <!-- Support -->
               <div>
-                <h4 class="text-black font-bold mb-4">{{ $t("footerbar.supportSection") }}</h4>
+                <h4 class="footer-text-primary font-bold mb-4">{{ $t("footerbar.supportSection") }}</h4>
                 <ul class="space-y-2">
                   <li>
-                    <a href="/support/" class="text-black hover:underline"
+                    <a href="/support/" class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.getSupport") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/support/#additional-support"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.liveTraining") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/support/#additional-support/"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.helpCenter") }}</a
                     >
                   </li>
@@ -217,24 +217,24 @@
             <div>
               <!-- Who We Are -->
               <div class="mb-13">
-                <h4 class="text-black font-bold mb-4">{{ $t("footerbar.whoWeAre") }}</h4>
+                <h4 class="footer-text-primary font-bold mb-4">{{ $t("footerbar.whoWeAre") }}</h4>
                 <ul class="space-y-2">
                   <li>
-                    <a href="/about-us/" class="text-black hover:underline"
+                    <a href="/about-us/" class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.aboutUs") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/about-us/leadership/"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.leadership") }}</a
                     >
                   </li>
                   <li>
                     <a
                       href="/about-us/careers/"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.careers") }}</a
                     >
                   </li>
@@ -243,17 +243,17 @@
 
               <!-- Who We Serve -->
               <div>
-                <h4 class="text-black font-bold mb-4">{{ $t("footerbar.whoWeServe") }}</h4>
+                <h4 class="footer-text-primary font-bold mb-4">{{ $t("footerbar.whoWeServe") }}</h4>
                 <ul class="space-y-2">
                   <li>
                     <a
                       href="/independent-insurance-agencies/"
-                      class="text-black hover:underline"
+                      class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.professionals") }}</a
                     >
                   </li>
                   <li>
-                    <a href="/enterprise/" class="text-black hover:underline"
+                    <a href="/enterprise/" class="footer-text-secondary hover:underline"
                       >{{ $t("footerbar.enterprises") }}</a
                     >
                   </li>
@@ -300,7 +300,7 @@ export default {
 <style scoped>
 .footer-bg-light {
   position: relative;
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
   color: black;
   z-index: 110;
 }
@@ -366,9 +366,35 @@ a:hover {
   transition: all 0.3s ease;
 }
 
+/* Theme-aware Footer Styles */
+.simple-footer {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-light);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.footer-text-primary {
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.footer-text-secondary {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.footer-text-secondary a {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.footer-text-secondary a:hover {
+  color: var(--primary-blue);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .footer-bg-light {
+  .simple-footer {
     padding-top: 40px;
     padding-bottom: 40px;
   }

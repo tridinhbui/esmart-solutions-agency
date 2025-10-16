@@ -57,8 +57,9 @@ body {
   font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 400;
   line-height: 1.6;
-  background: white !important;
-  color: white;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Heading Fonts - SF Pro Display (Primary) */
@@ -71,6 +72,8 @@ h6 {
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 600;
   line-height: 1.2;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
 }
 
 /* Body Text - SF Pro Text */

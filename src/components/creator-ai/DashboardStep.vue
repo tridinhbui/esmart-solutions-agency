@@ -330,7 +330,7 @@ export default {
 <style scoped>
 /* Simple Black & White Dashboard */
 .step-content {
-  background: white;
+  background: var(--bg-primary);
   border: 1px solid #e5e5e5;
   border-radius: 12px;
   padding: 3rem;
@@ -378,7 +378,7 @@ h2::after {
 
 /* Simple Content Cards */
 .content-card {
-  background: white;
+  background: var(--bg-primary);
   border: 1px solid #e5e5e5;
   border-radius: 12px;
   padding: 2rem;
@@ -609,7 +609,7 @@ h2::after {
 }
 
 .project-menu {
-  background: white;
+  background: var(--bg-primary);
   border-radius: 8px;
   padding: 1.5rem;
   min-width: 300px;

@@ -697,7 +697,11 @@ export default {
   margin-bottom: 1.5rem;
   line-height: 1.1;
   text-align: center;
+<<<<<<< HEAD
   background: linear-gradient(90deg, #fff 60%, #3C34B5 100%);
+=======
+  background: linear-gradient(90deg, var(--bg-primary) 60%, #ff6b35 100%);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 2px 8px #3C34B5);
@@ -807,7 +811,7 @@ export default {
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  background-color: #fff;
+  background-color: var(--bg-primary);
   display: flex;
   flex-direction: column;
 }
@@ -876,7 +880,7 @@ export default {
   /* width: 150px; */
   padding: 20px 15px; /* Increased padding */
   border-radius: 8px;
-  background-color: #fff;
+  background-color: var(--bg-primary);
   display: flex;
   flex-direction: column;
   align-items: center;

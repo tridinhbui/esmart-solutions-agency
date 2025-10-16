@@ -378,12 +378,13 @@ export default {
 </script>
 
 <style scoped>
-/* Enhanced City Skyline Background Section */
+/* Theme-aware About Us Section */
 .simple-about {
   position: relative;
   min-height: 100vh;
-  background: #ffffff;
+  background: var(--bg-primary);
   overflow: hidden;
+  transition: background-color 0.3s ease;
 }
 
 .container {

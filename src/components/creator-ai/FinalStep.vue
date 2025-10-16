@@ -1535,7 +1535,7 @@ export default {
 
 <style scoped>
 .step-content {
-  background: white;
+  background: var(--bg-primary);
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -1630,7 +1630,7 @@ h3 {
   line-height: 1.6;
   font-family: "Arial", sans-serif;
   padding: 1.5rem;
-  background: white;
+  background: var(--bg-primary);
   border-radius: 8px;
   border: 1px solid #e9ecef;
   max-height: 400px;
@@ -1780,7 +1780,7 @@ h3 {
 }
 
 .btn-light {
-  background: white;
+  background: var(--bg-primary);
   color: black;
   border: 1px solid black;
 }
@@ -1790,7 +1790,7 @@ h3 {
 }
 
 .btn-info {
-  background: white;
+  background: var(--bg-primary);
   color: black;
   border: 1px solid black;
 }
@@ -1868,7 +1868,7 @@ h3 {
 }
 
 .secondary-button {
-  background: white;
+  background: var(--bg-primary);
   color: black;
   border: 1px solid black;
   padding: 0.75rem 1.5rem;

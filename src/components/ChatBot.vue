@@ -708,8 +708,9 @@ export default {
   flex: 1;
   padding: 1.5rem;
   overflow-y: auto;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: var(--bg-secondary);
   position: relative;
+  transition: background-color 0.3s ease;
 }
 
 .chat-body::-webkit-scrollbar {
@@ -865,7 +866,11 @@ export default {
 }
 
 .message-bubble {
+<<<<<<< HEAD
   background: #F0EFFF;
+=======
+  background: var(--bg-primary);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   border-radius: 18px;
   padding: 1rem 1.25rem;
   position: relative;
@@ -941,7 +946,11 @@ export default {
 }
 
 .typing-content {
+<<<<<<< HEAD
   background: #F0EFFF;
+=======
+  background: var(--bg-primary);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   border-radius: 18px;
   padding: 1rem 1.25rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -1383,7 +1392,11 @@ export default {
   
   .chatbot-window {
     border: 2px solid;
+<<<<<<< HEAD
     background: #F0EFFF;
+=======
+    background: var(--bg-primary);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   }
 }
 </style> 

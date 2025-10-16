@@ -286,7 +286,7 @@ export default {
   right: 20px;
   width: 350px;
   height: 550px;
-  background-color: white;
+  background-color: var(--bg-primary);
   border-radius: 12px;
   overflow: hidden;
   display: flex;
@@ -308,7 +308,7 @@ export default {
 
 .chat-header {
   padding: 16px;
-  background-color: white;
+  background-color: var(--bg-primary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -401,7 +401,7 @@ export default {
 }
 
 .agent-message .message-content {
-  background-color: white;
+  background-color: var(--bg-primary);
   color: #333;
   border-bottom-left-radius: 4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -420,7 +420,7 @@ export default {
 
 .chat-input {
   padding: 12px 16px;
-  background-color: white;
+  background-color: var(--bg-primary);
   display: flex;
   align-items: center;
   border-top: 1px solid #f0f0f0;

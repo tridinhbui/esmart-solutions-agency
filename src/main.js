@@ -8,6 +8,10 @@ import "./assets/css/elegant-utilities.css";
 import i18n from "./i18n";
 import { createPinia } from "pinia";
 import "@fortawesome/fontawesome-free/css/all.css";
+import themeService from "./utils/themeService";
+
+// Initialize theme service before mounting the app
+themeService.init();
 
 createApp(App)
   .use(router)

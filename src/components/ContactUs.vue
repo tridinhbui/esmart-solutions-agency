@@ -126,7 +126,7 @@ export default {
             email: formData.value.email,
             message: `
                <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4;">
-                <div style="max-width: 600px; margin: auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                <div style="max-width: 600px; margin: auto; background: var(--bg-primary); padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
                   <h2 style="margin-top: 0; color: #333;">📨 New Contact Form Submission</h2>
 
                   <table style="width: 100%; font-size: 16px;">
@@ -192,7 +192,7 @@ export default {
   flex: 1;
   min-width: 300px;
   max-width: 300px;
-  background: white;
+  background: var(--bg-primary);
   padding: 1rem;
   min-height: 40%;
   position: relative;
@@ -218,7 +218,7 @@ export default {
   flex: 1;
   min-width: 300px;
   max-width: 500px;
-  background: white;
+  background: var(--bg-primary);
   padding: 1rem;
   min-height: 40%;
 }
@@ -238,7 +238,7 @@ export default {
 }
 
 .contact-card {
-  background: white;
+  background: var(--bg-primary);
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -274,7 +274,7 @@ export default {
 
 .chat-button.v-btn {
   color: #2375d4 !important;
-  background-color: white !important;
+  background-color: var(--bg-primary) !important;
   border: 1px solid #2375d4 !important;
   width: 100%;
   border-radius: 10px !important;
@@ -294,7 +294,7 @@ export default {
 .banner {
   flex: 1 0 auto;
   position: relative;
-  background: white;
+  background: var(--bg-primary);
   font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;

@@ -288,7 +288,7 @@ export default { name: "SimpleFooter" };
 <style scoped>
 .footer-bg-light {
   position: relative;
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
   color: black;
   z-index: 110;
 }

@@ -309,12 +309,13 @@ export default {
 </script>
 
 <style scoped>
-/* Flat Design Social Proof Section - White Background with Blue Accents */
+/* Theme-aware Social Proof Section */
 .simple-social {
   position: relative;
-  background: #ffffff;
+  background: var(--bg-primary);
   padding: 100px 0;
   overflow: hidden;
+  transition: background-color 0.3s ease;
 }
 
 .flat-background {
@@ -334,8 +335,9 @@ export default {
 
 .pattern-shape {
   position: absolute;
-  background: #f1f5f9;
+  background: var(--bg-tertiary);
   border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
 .shape-1 {
@@ -395,7 +397,7 @@ export default {
   font-family: "Inter", sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--text-primary);
   margin-bottom: 20px;
   letter-spacing: -0.5px;
   text-transform: uppercase;
@@ -405,7 +407,7 @@ export default {
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
-  color: #64748b;
+  color: var(--text-muted);
   line-height: 1.6;
   max-width: 600px;
   margin: 0 auto;
@@ -472,7 +474,11 @@ export default {
 }
 
 .logo-container:hover .client-image {
+<<<<<<< HEAD
   border-color: #3C34B5;
+=======
+  border-color: var(--primary-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
 }
 
 .logo-overlay {
@@ -512,14 +518,15 @@ export default {
 }
 
 .control-btn {
-  background: #ffffff;
-  border: 2px solid #e2e8f0;
+  background: var(--button-secondary-bg);
+  border: 2px solid var(--button-secondary-border);
   border-radius: 12px;
   padding: 12px 20px;
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--text-secondary);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -529,8 +536,13 @@ export default {
 }
 
 .control-btn:hover {
+<<<<<<< HEAD
   border-color: #3C34B5;
   color: #3C34B5;
+=======
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
 }
@@ -560,14 +572,18 @@ export default {
   align-items: center;
   gap: 20px;
   padding: 30px;
-  background: #ffffff;
-  border: 2px solid #f1f5f9;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
   border-radius: 16px;
   transition: all 0.3s ease;
 }
 
 .trust-item:hover {
+<<<<<<< HEAD
   border-color: #3C34B5;
+=======
+  border-color: var(--primary-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
 }
@@ -580,7 +596,11 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+<<<<<<< HEAD
   color: #3C34B5;
+=======
+  color: var(--primary-blue);
+>>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   font-size: 24px;
   flex-shrink: 0;
   transition: all 0.3s ease;
@@ -599,7 +619,7 @@ export default {
   font-family: "Inter", sans-serif;
   font-size: 2rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--text-primary);
   margin: 0 0 8px 0;
 }
 
@@ -607,7 +627,7 @@ export default {
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
-  color: #64748b;
+  color: var(--text-muted);
   margin: 0;
   line-height: 1.4;
 }
