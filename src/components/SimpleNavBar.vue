@@ -8,7 +8,6 @@
         </div>
         <div class="logo-text-container">
           <span class="logo-text">ESmart Solutions</span>
-          <span class="logo-subtitle">Marketing Agency</span>
         </div>
       </div>
 
@@ -196,6 +195,7 @@ export default {
       isDark: false,
       defaultAvatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
       forceDefaultAvatar: false,
+      isLanguageSwitching: false, // Prevent rapid language switching
     };
   },
   computed: {
@@ -299,10 +299,19 @@ export default {
       this.forceDefaultAvatar = true;
     },
     setLanguage(lang) {
+      // Prevent rapid language switching
+      if (this.isLanguageSwitching) {
+        return;
+      }
+      
+      this.isLanguageSwitching = true;
       this.currentLanguage = lang;
       this.$i18n.locale = lang;
       
-   
+      // Allow language switching again after a short delay
+      setTimeout(() => {
+        this.isLanguageSwitching = false;
+      }, 300);
     },
   },
 };
@@ -382,15 +391,6 @@ export default {
   transition: color 0.3s ease;
 }
 
-.logo-subtitle {
-  font-family: "Inter", sans-serif;
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  letter-spacing: 0.5px;
-  margin-top: -2px;
-  transition: color 0.3s ease;
-}
 
 /* Navigation Links */
 .nav-links {
@@ -443,8 +443,8 @@ export default {
 
 .lang-btn {
   background: var(--button-secondary-bg);
-  border: 2px solid var(--button-secondary-border);
-  color: var(--text-secondary);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
   padding: 8px 12px; /* vertical + horizontal padding */
   border-radius: 12px;
   font-family: "Inter", sans-serif;
@@ -460,9 +460,9 @@ export default {
 }
 
 .lang-btn:hover {
-  border-color: var(--primary-blue);
-  background: var(--primary-blue-bg);
-  color: var(--primary-blue);
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
   transform: translateY(-1px);
 }
 
@@ -733,9 +733,6 @@ export default {
     font-size: 1.3rem;
   }
 
-  .logo-subtitle {
-    font-size: 0.65rem;
-  }
 
   .logo-icon {
     width: 36px;
@@ -763,9 +760,6 @@ export default {
     font-size: 1.2rem;
   }
 
-  .logo-subtitle {
-    font-size: 0.6rem;
-  }
 
   .logo-icon {
     width: 32px;

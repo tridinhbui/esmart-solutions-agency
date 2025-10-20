@@ -371,6 +371,8 @@
 </template>
 
 <script>
+import languageSwitchService from '@/utils/languageSwitchService';
+
 export default {
   name: "SimpleMarketingAssessment",
   data() {
@@ -396,6 +398,7 @@ export default {
       typingElements: [],
       scrollObserver: null,
       resizeTimeout: null,
+      typingTimeouts: new Set(), // Track all typing timeouts for cleanup
     };
   },
   computed: {
@@ -411,9 +414,15 @@ export default {
   watch: {
     // Watch for language changes and re-initialize typing effect
     "$i18n.locale"() {
+      // Use the language switch service to handle the transition
+      languageSwitchService.beginLanguageSwitch();
+      
       this.$nextTick(() => {
+        // Clear any existing typing timeouts to prevent race conditions
+        this.clearAllTypingTimeouts();
+        
         // Give Vue more time to update the DOM attributes
-        setTimeout(() => {
+        const timeoutId = languageSwitchService.safeSetTimeout(() => {
           // Clear any existing typing effects
           const typingElements = document.querySelectorAll(".typing-text");
           typingElements.forEach((element) => {
@@ -422,7 +431,15 @@ export default {
 
           // Re-initialize typing effect with updated translations
           this.initTypingEffect();
+          
+          // End the language switch operation
+          languageSwitchService.endLanguageSwitch();
         }, 200);
+        
+        if (!timeoutId) {
+          // If timeout wasn't created due to switching state, end the switch immediately
+          languageSwitchService.endLanguageSwitch();
+        }
       });
     },
   },
@@ -438,6 +455,8 @@ export default {
     if (this.scrollObserver) {
       this.scrollObserver.disconnect();
     }
+    // Clear all typing timeouts
+    this.clearAllTypingTimeouts();
     // Remove resize listener
     window.removeEventListener("resize", this.handleResize);
   },
@@ -514,10 +533,20 @@ export default {
       slideUpElements.forEach((el) => observer.observe(el));
     },
     initTypingEffect() {
+      // Clear any existing timeouts first
+      this.clearAllTypingTimeouts();
+      
       this.typingElements = document.querySelectorAll(".typing-text");
       this.typingElements.forEach((element, index) => {
         // Always get fresh text from data-text attribute (important for language changes)
         const text = element.getAttribute("data-text") || element.dataset.text;
+        
+        // Skip if no text or empty text
+        if (!text || text.trim() === "") {
+          element.textContent = "";
+          return;
+        }
+        
         element.textContent = "";
 
         // Check if this is a form description element
@@ -543,12 +572,28 @@ export default {
           element.style.whiteSpace = "nowrap";
         }
 
-        setTimeout(() => {
+        const timeoutId = languageSwitchService.safeSetTimeout(() => {
           this.typeText(element, text, 0);
         }, index * 500);
+        
+        // Track this timeout for cleanup if it was created
+        if (timeoutId) {
+          this.typingTimeouts.add(timeoutId);
+        }
       });
     },
     typeText(element, text, index) {
+      // Check if element still exists and has the same data-text
+      if (!element || !element.isConnected) {
+        return;
+      }
+      
+      const currentText = element.getAttribute("data-text") || element.dataset.text;
+      if (currentText !== text) {
+        // Text has changed, stop this typing animation
+        return;
+      }
+      
       if (index < text.length) {
         element.textContent += text.charAt(index);
 
@@ -589,9 +634,14 @@ export default {
           }
         }
 
-        setTimeout(() => {
+        const timeoutId = languageSwitchService.safeSetTimeout(() => {
           this.typeText(element, text, index + 1);
         }, 50); // Typing speed
+        
+        // Track this timeout for cleanup if it was created
+        if (timeoutId) {
+          this.typingTimeouts.add(timeoutId);
+        }
       } else {
         // When typing is complete, ensure final responsive adjustments
         this.adjustTypingTextResponsive(element);
@@ -666,6 +716,13 @@ export default {
           this.adjustTypingTextResponsive(element);
         });
       }, 250);
+    },
+    clearAllTypingTimeouts() {
+      // Clear all tracked typing timeouts
+      this.typingTimeouts.forEach(timeoutId => {
+        clearTimeout(timeoutId);
+      });
+      this.typingTimeouts.clear();
     },
   },
 };
@@ -807,11 +864,7 @@ export default {
   position: absolute;
   right: -4px;
   top: 0;
-<<<<<<< HEAD
-  color: #3C34B5;
-=======
-  color: var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
+  color: #ffffff;
   font-weight: bold;
   animation: blink 1.2s infinite;
   text-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
@@ -1283,11 +1336,7 @@ html[lang="en"] .typing-text {
 .header-icon {
   width: 80px;
   height: 80px;
-<<<<<<< HEAD
-  background: linear-gradient(135deg, #3C34B5, #2A2480);
-=======
   background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1317,7 +1366,7 @@ html[lang="en"] .typing-text {
 .section-subtitle {
   font-family: "Inter", sans-serif;
   font-size: 1.2rem;
-  color: var(--text-muted);
+  color: #ffffff;
   line-height: 1.6;
   margin: 0;
   max-width: 600px;
@@ -1371,7 +1420,7 @@ html[lang="en"] .typing-text {
 .form-description {
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
-  color: var(--text-muted);
+  color: #ffffff;
   line-height: 1.6;
   text-align: center;
   max-width: 600px;
@@ -1453,11 +1502,7 @@ html[lang="en"] .typing-text {
 .form-row select:focus,
 .form-row textarea:focus {
   outline: none;
-<<<<<<< HEAD
-  border-color: #3C34B5;
-=======
   border-color: var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   transform: translateY(-1px);
 }
@@ -1498,13 +1543,8 @@ html[lang="en"] .typing-text {
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
-<<<<<<< HEAD
-  color: #3C34B5;
-  border: 2px solid #3C34B5;
-=======
-  color: var(--primary-blue);
+  color: #ffffff;
   border: 2px solid var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   transition: all 0.3s ease;
 }
 
@@ -1523,23 +1563,19 @@ html[lang="en"] .typing-text {
 .step-label {
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: #ffffff;
   margin-top: 8px;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .progress-step.active .step-label {
-<<<<<<< HEAD
-  color: #3C34B5;
-=======
-  color: var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
+  color: #ffffff;
   font-weight: 600;
 }
 
 .progress-step.completed .step-label {
-  color: #10b981;
+  color: #22c55e;
   font-weight: 600;
 }
 
@@ -1559,11 +1595,7 @@ html[lang="en"] .typing-text {
 }
 
 .submit-btn {
-<<<<<<< HEAD
-  background: linear-gradient(135deg, #3C34B5, #2A2480);
-=======
   background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   color: #ffffff;
   border: none;
   padding: 16px 32px;
@@ -1604,18 +1636,14 @@ html[lang="en"] .typing-text {
   gap: 30px;
   flex-wrap: wrap;
   padding-top: 30px;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .benefit-item {
   display: flex;
   align-items: center;
   gap: 12px;
-<<<<<<< HEAD
-  color: #3C34B5;
-=======
-  color: var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
+  color: #ffffff;
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-weight: 500;
@@ -1623,7 +1651,7 @@ html[lang="en"] .typing-text {
 
 .benefit-item i {
   font-size: 1.2rem;
-  color: #10b981;
+  color: #22c55e;
 }
 
 /* BRANDING + PERFORMANCE Section - Minimalist Design */
@@ -1679,7 +1707,7 @@ html[lang="en"] .typing-text {
 }
 
 .title-line-2 {
-  color: #10b981;
+  color: #22c55e;
   text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
 }
 
@@ -1711,7 +1739,7 @@ html[lang="en"] .typing-text {
 .subtitle {
   font-family: "Inter", sans-serif;
   font-size: 1.3rem;
-  color: var(--text-muted);
+  color: #ffffff;
   line-height: 1.6;
   margin-bottom: 15px;
   font-weight: 400;
@@ -1741,11 +1769,7 @@ html[lang="en"] .typing-text {
 .hero-cta-button {
   width: 100%;
   max-width: 500px;
-<<<<<<< HEAD
-  background: linear-gradient(135deg, #3C34B5, #2A2480);
-=======
   background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   color: #ffffff;
   border: none;
   padding: 24px 40px;
@@ -1838,13 +1862,8 @@ html[lang="en"] .typing-text {
 
 .secondary-cta-button {
   background: transparent;
-<<<<<<< HEAD
-  color: #3C34B5;
-  border: 2px solid #3C34B5;
-=======
-  color: var(--primary-blue);
+  color: #ffffff;
   border: 2px solid var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   padding: 16px 32px;
   border-radius: 50px;
   font-family: "Inter", sans-serif;
@@ -1865,11 +1884,7 @@ html[lang="en"] .typing-text {
 .secondary-cta-button:hover {
   background: #3C34B5;
   color: #ffffff;
-<<<<<<< HEAD
-  border-color: #3C34B5;
-=======
   border-color: var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
 }
@@ -1920,13 +1935,8 @@ html[lang="en"] .typing-text {
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
-<<<<<<< HEAD
-  color: #3C34B5;
-  border: 2px solid #3C34B5;
-=======
-  color: var(--primary-blue);
+  color: #ffffff;
   border: 2px solid var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   transition: all 0.3s ease;
 }
 
@@ -1945,23 +1955,19 @@ html[lang="en"] .typing-text {
 .step-label {
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: #ffffff;
   margin-top: 8px;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .progress-step.active .step-label {
-<<<<<<< HEAD
-  color: #3C34B5;
-=======
-  color: var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
+  color: #ffffff;
   font-weight: 600;
 }
 
 .progress-step.completed .step-label {
-  color: #10b981;
+  color: #22c55e;
   font-weight: 600;
 }
 
@@ -1997,7 +2003,7 @@ html[lang="en"] .typing-text {
 .section-description-small {
   font-family: "Inter", sans-serif;
   font-size: 1rem;
-  color: var(--text-muted);
+  color: #ffffff;
   margin-bottom: 20px;
   line-height: 1.5;
   text-align: center;
@@ -2030,11 +2036,7 @@ html[lang="en"] .typing-text {
 }
 
 .next-btn {
-<<<<<<< HEAD
-  background: linear-gradient(135deg, #3C34B5, #2A2480);
-=======
   background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   color: #ffffff;
   box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
 }
@@ -2054,7 +2056,7 @@ html[lang="en"] .typing-text {
 
 .back-btn {
   background: transparent;
-  color: var(--text-muted);
+  color: #ffffff;
   border: 2px solid #e5e7eb;
 }
 
@@ -2455,7 +2457,7 @@ html[lang="en"] .typing-text {
 .contact-form-section .section-subtitle {
   font-family: "Inter", sans-serif;
   font-size: 1.2rem;
-  color: var(--text-muted);
+  color: #ffffff;
   line-height: 1.6;
   margin-bottom: 50px;
   max-width: 600px;
@@ -2536,11 +2538,7 @@ html[lang="en"] .typing-text {
 .contact-form .form-group input:focus,
 .contact-form .form-group textarea:focus {
   outline: none;
-<<<<<<< HEAD
-  border-color: #3C34B5;
-=======
   border-color: var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   transform: translateY(-1px);
 }
@@ -2551,11 +2549,7 @@ html[lang="en"] .typing-text {
 }
 
 .submit-contact-btn {
-<<<<<<< HEAD
-  background: linear-gradient(135deg, #3C34B5, #10b981);
-=======
   background: linear-gradient(135deg, var(--primary-blue), #10b981);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   color: #ffffff;
   border: none;
   padding: 16px 32px;

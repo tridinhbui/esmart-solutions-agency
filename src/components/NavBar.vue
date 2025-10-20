@@ -192,6 +192,7 @@ export default {
       isScrolled: false,
       showDropdown: false, // Controls avatar dropdown visibility
       defaultAvatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png", // Fallback avatar image
+      isLanguageSwitching: false, // Prevent rapid language switching
     };
   },
   mounted() {
@@ -214,7 +215,18 @@ export default {
       }
     },
     switchLanguage(language) {
+      // Prevent rapid language switching
+      if (this.isLanguageSwitching) {
+        return;
+      }
+      
+      this.isLanguageSwitching = true;
       this.$i18n.locale = language;
+      
+      // Allow language switching again after a short delay
+      setTimeout(() => {
+        this.isLanguageSwitching = false;
+      }, 300);
     },
     goToBlog() {
       this.$router.push({ name: "DetailedBlog1" });

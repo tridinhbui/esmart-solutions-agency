@@ -234,7 +234,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #3C34B5;
+        background: #1A1A80;
         color: #ffffff;
         font-family: 'Inter', sans-serif;
         font-size: 14px;
@@ -381,7 +381,7 @@ export default {
 .header-icon {
   width: 80px;
   height: 80px;
-  background: #3C34B5;
+  background: linear-gradient(135deg, #1A1A80, #22c55e);
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -390,7 +390,7 @@ export default {
   color: #ffffff;
   font-size: 32px;
   font-weight: 600;
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
+  box-shadow: 0 8px 24px rgba(26, 26, 128, 0.25);
 }
 
 .section-title {
@@ -474,11 +474,7 @@ export default {
 }
 
 .logo-container:hover .client-image {
-<<<<<<< HEAD
-  border-color: #3C34B5;
-=======
   border-color: var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
 }
 
 .logo-overlay {
@@ -536,13 +532,8 @@ export default {
 }
 
 .control-btn:hover {
-<<<<<<< HEAD
-  border-color: #3C34B5;
-  color: #3C34B5;
-=======
   border-color: var(--primary-blue);
   color: var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
 }
@@ -579,11 +570,7 @@ export default {
 }
 
 .trust-item:hover {
-<<<<<<< HEAD
-  border-color: #3C34B5;
-=======
   border-color: var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
 }
@@ -596,18 +583,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-<<<<<<< HEAD
-  color: #3C34B5;
-=======
   color: var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   font-size: 24px;
   flex-shrink: 0;
   transition: all 0.3s ease;
 }
 
 .trust-item:hover .trust-icon {
-  background: #3C34B5;
+  background: #1A1A80;
   color: #ffffff;
 }
 
