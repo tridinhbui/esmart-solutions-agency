@@ -9,14 +9,14 @@
         <div class="lg:w-5/12">
           <!-- Phone -->
           <div class="mb-4">
-            <p class="text-black">
+            <p class="text-white">
               <i class="fa fa-phone text-blue-500 mr-2"></i>
               <strong>Phone</strong>
             </p>
-            <ul class="text-black mt-2">
+            <ul class="text-white mt-2">
               <li>
                 <strong>Call:</strong>
-                <a href="tel:+84868885505" class="text-black hover:underline"
+                <a href="tel:+84868885505" class="text-white hover:underline"
                   >868-885-505</a
                 >
               </li>
@@ -25,16 +25,16 @@
 
           <!-- Email -->
           <div class="mb-6">
-            <p class="text-black">
+            <p class="text-white">
               <i class="fa fa-envelope text-blue-500 mr-2"></i>
               <strong>Email</strong>
             </p>
-            <ul class="text-black mt-2">
+            <ul class="text-white mt-2">
               <li>
                 <strong>Support:</strong>
                 <a
                   href="mailto:esmartsolutions.agency@gmail.com"
-                  class="text-black hover:underline"
+                  class="text-white hover:underline"
                   >esmartsolutions.agency@gmail.com</a
                 >
               </li>
@@ -43,17 +43,17 @@
 
           <!-- Address -->
           <div class="mb-6">
-            <p class="text-black">
+            <p class="text-white">
               <i class="fa fa-map-marker mr-2 text-blue-600"></i>
               <strong>Address</strong>
             </p>
-            <ul class="text-black mt-2">
+            <ul class="text-white mt-2">
               <li>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=140+Nguyen+Xien+st%2C+Thanh+Xuan+dist"
                   target="_blank"
                   rel="noopener"
-                  class="hover:underline"
+                  class="text-white hover:underline"
                 >
                   140 Nguyen Xien St, Thanh Xuan dist
                 </a>
@@ -86,31 +86,31 @@
             <div>
               <!-- Insurance Marketing -->
               <div class="mb-8">
-                <h4 class="text-black font-bold mb-4">Marketing</h4>
+                <h4 class="text-white font-bold mb-4">Marketing</h4>
                 <ul class="space-y-2">
                   <li>
                     <a
                       href="/insurance-agency-websites/"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Websites</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-automation/"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Marketing Automation</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-agency-marketing-and-websites/"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Marketing + Websites</a
                     >
                   </li>
                   <li>
-                    <a href="/enterprise/" class="text-black hover:underline"
+                    <a href="/enterprise/" class="text-white hover:underline"
                       >Enterprise</a
                     >
                   </li>
@@ -119,40 +119,40 @@
 
               <!-- Digital Features -->
               <div>
-                <h4 class="text-black font-bold mb-4">Digital Features</h4>
+                <h4 class="text-white font-bold mb-4">Digital Features</h4>
                 <ul class="space-y-2">
                   <li>
                     <a
                       href="/insurance-marketing-tools/business-texting/"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Business Texting</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-tools/do-it-for-me-marketing/"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Do It For Me Marketing</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-tools/local-listings/"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Local Listings</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-tools/reputation-management/"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Reputation Management</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-tools/social-media/"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Social Media</a
                     >
                   </li>
@@ -164,22 +164,22 @@
             <div>
               <!-- Resources -->
               <div class="mb-13">
-                <h4 class="text-black font-bold mb-4">Resources</h4>
+                <h4 class="text-white font-bold mb-4">Resources</h4>
                 <ul class="space-y-2">
                   <li>
-                    <a href="/blog/" class="text-black hover:underline">Blog</a>
+                    <a href="/blog/" class="text-white hover:underline">Blog</a>
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-resources/"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Resources</a
                     >
                   </li>
                   <li>
                     <a
                       href="/insurance-marketing-webinars/"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Webinars</a
                     >
                   </li>
@@ -188,24 +188,24 @@
 
               <!-- Support -->
               <div>
-                <h4 class="text-black font-bold mb-4">Support</h4>
+                <h4 class="text-white font-bold mb-4">Support</h4>
                 <ul class="space-y-2">
                   <li>
-                    <a href="/support/" class="text-black hover:underline"
+                    <a href="/support/" class="text-white hover:underline"
                       >Get Support</a
                     >
                   </li>
                   <li>
                     <a
                       href="/support/#additional-support"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Live Training</a
                     >
                   </li>
                   <li>
                     <a
                       href="/support/#additional-support/"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Help Center</a
                     >
                   </li>
@@ -217,24 +217,24 @@
             <div>
               <!-- Who We Are -->
               <div class="mb-13">
-                <h4 class="text-black font-bold mb-4">Who We Are</h4>
+                <h4 class="text-white font-bold mb-4">Who We Are</h4>
                 <ul class="space-y-2">
                   <li>
-                    <a href="/about-us/" class="text-black hover:underline"
+                    <a href="/about-us/" class="text-white hover:underline"
                       >About Us</a
                     >
                   </li>
                   <li>
                     <a
                       href="/about-us/leadership/"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Leadership</a
                     >
                   </li>
                   <li>
                     <a
                       href="/about-us/careers/"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Careers</a
                     >
                   </li>
@@ -243,17 +243,17 @@
 
               <!-- Who We Serve -->
               <div>
-                <h4 class="text-black font-bold mb-4">Who We Serve</h4>
+                <h4 class="text-white font-bold mb-4">Who We Serve</h4>
                 <ul class="space-y-2">
                   <li>
                     <a
                       href="/independent-insurance-agencies/"
-                      class="text-black hover:underline"
+                      class="text-white hover:underline"
                       >Professionals</a
                     >
                   </li>
                   <li>
-                    <a href="/enterprise/" class="text-black hover:underline"
+                    <a href="/enterprise/" class="text-white hover:underline"
                       >Enterprises</a
                     >
                   </li>
@@ -265,14 +265,14 @@
       </div>
 
       <!-- Bottom Text -->
-      <div class="mt-12 pt-8 text-gray-600 text-sm border-t border-gray-200">
+      <div class="mt-12 pt-8 text-white text-sm border-t border-gray-400">
         <p style="font-size: 13px; line-height: 23px">
           ESmart Solutions provides insurance marketing automation and digital
           marketing tools to independent insurance agents and brokers throughout
           the nation including Oregon, California, New York, Texas, Florida,
           Pennsylvania, Illinois, Ohio, Georgia, North Carolina, Michigan, New
           Jersey, Virginia, Washington, Arizona and others in the United States.
-          <a href="#" class="text-gray-600 border-none hover:underline"
+          <a href="#" class="text-white border-none hover:underline"
             >Do not sell my personal information.</a
           >
         </p>

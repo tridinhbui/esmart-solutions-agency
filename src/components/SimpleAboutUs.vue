@@ -118,6 +118,8 @@
 </template>
 
 <script>
+import languageSwitchService from '@/utils/languageSwitchService';
+
 export default {
   name: "SimpleAboutUs",
   computed: {
@@ -137,14 +139,23 @@ export default {
     // Watch for language changes and update typing effects
     "$i18n.locale"() {
       console.log("Language changed in SimpleAboutUs, updating texts");
+      // Use the language switch service to handle the transition
+      languageSwitchService.beginLanguageSwitch();
+      
+      // Clear any existing typing timeouts to prevent race conditions
+      this.clearAllTypingTimeouts();
+      
       this.$nextTick(() => {
         this.updateTranslationTexts();
+        // End the language switch operation
+        languageSwitchService.endLanguageSwitch();
       });
     },
   },
   data() {
     return {
       animatedElements: [],
+      typingTimeouts: new Set(), // Track all typing timeouts for cleanup
       companyValues: [
         {
           title: this.$t("companyValues.respect"),
@@ -247,6 +258,13 @@ export default {
           }
         });
       });
+    },
+    clearAllTypingTimeouts() {
+      // Clear all tracked typing timeouts
+      this.typingTimeouts.forEach(timeoutId => {
+        clearTimeout(timeoutId);
+      });
+      this.typingTimeouts.clear();
     },
     handleImageError(event) {
       event.target.src =
@@ -602,16 +620,16 @@ export default {
   font-family: "Inter", sans-serif;
   font-size: 1.3rem;
   font-weight: 400;
-  color: #475569;
+  color: var(--text-secondary);
   line-height: 1.6;
   max-width: 500px;
   margin: 0;
 }
 
 .highlight {
-  color: #3C34B5;
+  color: var(--primary-blue);
   font-weight: 600;
-  text-shadow: 0 2px 10px rgba(59, 130, 246, 0.2);
+  text-shadow: 0 2px 10px rgba(26, 26, 128, 0.2);
 }
 
 /* CTA Buttons */
@@ -624,7 +642,7 @@ export default {
 }
 
 .cta-primary {
-  background: linear-gradient(135deg, #3C34B5 0%, #2A2480 100%);
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
   color: #ffffff;
   border: none;
   border-radius: 16px;
@@ -637,19 +655,19 @@ export default {
   display: flex;
   align-items: center;
   gap: 12px;
-  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 10px 30px rgba(26, 26, 128, 0.3);
 }
 
 .cta-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
-  background: linear-gradient(135deg, #2A2480 0%, #1e40af 100%);
+  box-shadow: 0 15px 40px rgba(26, 26, 128, 0.4);
+  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue-light) 100%);
 }
 
 .cta-secondary {
-  background: rgba(59, 130, 246, 0.1);
-  color: #1e40af;
-  border: 2px solid rgba(59, 130, 246, 0.3);
+  background: rgba(26, 26, 128, 0.1);
+  color: var(--primary-blue);
+  border: 2px solid rgba(26, 26, 128, 0.3);
   border-radius: 16px;
   padding: 16px 32px;
   font-family: "Inter", sans-serif;
@@ -664,8 +682,8 @@ export default {
 }
 
 .cta-secondary:hover {
-  background: rgba(59, 130, 246, 0.2);
-  border-color: rgba(59, 130, 246, 0.5);
+  background: rgba(26, 26, 128, 0.2);
+  border-color: rgba(26, 26, 128, 0.5);
   transform: translateY(-2px);
 }
 
