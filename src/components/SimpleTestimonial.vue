@@ -338,11 +338,7 @@ export default {
 .testimonial-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
-<<<<<<< HEAD
-  border-color: #3C34B5;
-=======
   border-color: var(--primary-blue);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
 }
 
 .testimonial-content {
@@ -362,17 +358,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-<<<<<<< HEAD
-  color: #3C34B5;
-  font-size: 16px;
-  z-index: 1;
-  opacity: 0.7;
-=======
   color: var(--primary-blue);
   font-size: 16px; /* Smaller font size */
   z-index: 1; /* Keep it above other content */
   opacity: 0.7; /* Slightly more transparent */
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
 }
 
 .testimonial-text {

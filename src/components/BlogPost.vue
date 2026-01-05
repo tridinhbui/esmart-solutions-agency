@@ -363,15 +363,15 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "@fortawesome/fontawesome-free/css/all.css";
 
-/* Enhanced CSS Variables with Quantum Theme */
+/* Enhanced CSS Variables with Logo-Inspired Theme */
 :root {
-  --primary-color: rgba(60, 52, 181, 1);
-  --secondary-color: rgba(90, 82, 199, 1);
-  --tertiary-color: rgba(131, 127, 255, 1);
-  --quantum-blue: rgba(60, 52, 181, 1);
-  --quantum-purple: rgba(90, 82, 199, 1);
+  --primary-color: rgba(26, 26, 128, 1);
+  --secondary-color: rgba(20, 16, 102, 1);
+  --tertiary-color: rgba(42, 36, 128, 1);
+  --quantum-blue: rgba(26, 26, 128, 1);
+  --quantum-purple: rgba(20, 16, 102, 1);
   --quantum-green: rgba(34, 197, 94, 1);
-  --gradient-magical: linear-gradient(135deg, rgba(60, 52, 181, 0.9) 0%, rgba(90, 82, 199, 0.8) 50%, rgba(131, 127, 255, 0.9) 100%);
+  --gradient-magical: linear-gradient(135deg, rgba(26, 26, 128, 0.9) 0%, rgba(20, 16, 102, 0.8) 50%, rgba(42, 36, 128, 0.9) 100%);
   --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, var(--tertiary-color) 100%);
   --gradient-tertiary: linear-gradient(135deg, var(--tertiary-color) 0%, var(--primary-color) 100%);
@@ -386,7 +386,7 @@ export default {
 .quantum-news-zone {
   position: relative;
   padding: 4rem 1rem 2rem;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  background: linear-gradient(135deg, #1A1A80 0%, #141066 50%, #2A2480 100%);
   overflow: hidden;
   min-height: 80vh;
   font-family: 'Inter', sans-serif;
@@ -697,11 +697,7 @@ export default {
   margin-bottom: 1.5rem;
   line-height: 1.1;
   text-align: center;
-<<<<<<< HEAD
-  background: linear-gradient(90deg, #fff 60%, #3C34B5 100%);
-=======
   background: linear-gradient(90deg, var(--bg-primary) 60%, #ff6b35 100%);
->>>>>>> 4a2f31eb293bbefbf68faddfc42b333998a94623
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 2px 8px #3C34B5);
@@ -976,7 +972,7 @@ export default {
   color: #ffffff !important;
   font-weight: 600;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(135deg, #3C34B5, #5A52C7);
+  background: linear-gradient(135deg, #1A1A80, #22c55e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

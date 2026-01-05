@@ -492,6 +492,8 @@ export default {
   font-weight: 700;
   transition: all 0.4s ease;
   box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .sign-in-link:hover {
@@ -884,6 +886,155 @@ export default {
   }
 }
 
+@media (max-width: 768px) {
+  .main-nav-links {
+    gap: 1rem;
+  }
+
+  .sign-in-link {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.8rem !important;
+    gap: 0.25rem !important;
+    border-radius: 22px !important;
+  }
+
+  .sign-in-link i {
+    font-size: 0.7rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-nav-links {
+    gap: 0.8rem;
+  }
+
+  .sign-in-link {
+    height: 32px;
+    min-height: 32px;
+    padding: 0 9px !important;
+    font-size: 11px !important;
+    gap: 3px !important;
+    border-radius: 12px !important;
+    line-height: 1;
+  }
+
+  .sign-in-link i {
+    font-size: 11px !important;
+  }
+
+  .sign-in-link span {
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .user-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo-text {
+    display: none;
+  }
+}
+
+@media (max-width: 414px) {
+  .navbar-content {
+    padding: 0.7rem 1rem;
+  }
+
+  .main-nav-links {
+    gap: 0.6rem;
+  }
+
+  .sign-in-link {
+    height: 30px;
+    min-height: 30px;
+    padding: 0 8px !important;
+    font-size: 11px !important;
+    gap: 3px !important;
+    border-radius: 12px !important;
+    line-height: 1;
+  }
+
+  .sign-in-link i {
+    font-size: 11px !important;
+  }
+
+  .sign-in-link span {
+    max-width: 58px;
+  }
+}
+
+@media (max-width: 380px) {
+  .main-nav-links {
+    gap: 0.5rem;
+  }
+
+  .navbar-content {
+    padding: 0.6rem 0.85rem;
+  }
+
+  .sign-in-link {
+    height: 30px;
+    min-height: 30px;
+    padding: 0 7px !important;
+    font-size: 10.5px !important;
+    gap: 2.5px !important;
+    border-radius: 11px !important;
+    line-height: 1;
+  }
+
+  .sign-in-link i {
+    font-size: 10.5px !important;
+  }
+
+  .sign-in-link span {
+    max-width: 54px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo {
+    height: 35px;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar-content {
+    padding: 0.55rem 0.75rem;
+  }
+
+  .main-nav-links {
+    gap: 0.45rem;
+  }
+
+  .sign-in-link {
+    height: 28px;
+    min-height: 28px;
+    width: 28px;
+    padding: 0 !important;
+    justify-content: center;
+    border-radius: 10px !important;
+  }
+
+  .sign-in-link i {
+    font-size: 10.5px !important;
+    margin: 0;
+  }
+
+  .sign-in-link span {
+    display: none;
+  }
+}
+
 @keyframes slideInNav {
   to {
     opacity: 1;
@@ -1117,6 +1268,18 @@ export default {
   transform: translateY(-5px) scale(1.08);
   box-shadow: 0 15px 40px rgba(255, 107, 53, 0.6),
     0 0 60px rgba(59, 130, 246, 0.4), 0 0 80px rgba(16, 185, 129, 0.2);
+}
+
+@media (max-width: 480px) {
+  .quantum-sign-in {
+    animation: none;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2) !important;
+  }
+
+  .quantum-sign-in:hover {
+    transform: scale(1.02) !important;
+    box-shadow: 0 6px 16px rgba(255, 107, 53, 0.3) !important;
+  }
 }
 
 /* Enhanced Burger Menu */

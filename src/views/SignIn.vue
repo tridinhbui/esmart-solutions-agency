@@ -556,6 +556,9 @@ const handleSignUp = () => {
 .social-login {
   text-align: center;
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .social-login-title {
@@ -904,11 +907,38 @@ const handleSignUp = () => {
 
   .login-content {
     padding: 1.5rem;
+    margin: 0;
+    border-radius: 16px;
   }
 
   .quantum-button {
     padding: 0.75rem 1.5rem;
     font-size: 0.9rem;
+  }
+
+  .login-title {
+    font-size: 1.5rem;
+  }
+
+  .social-login {
+    margin-bottom: 1.5rem;
+  }
+
+  .social-login :deep(.google-btn) {
+    max-width: 100% !important;
+  }
+
+  .or-divider {
+    margin-bottom: 1.5rem;
+  }
+
+  .login-form .input-field {
+    font-size: 16px;
+  }
+
+  .submit-btn {
+    padding: 0.75rem;
+    font-size: 0.95rem;
   }
 }
 </style>

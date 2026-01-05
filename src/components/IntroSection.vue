@@ -743,7 +743,7 @@ export default {
 <style scoped>
 /* Quantum Hero Revolutionary Design */
 .hero {
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #1A1A80 0%, #141066 50%, #2A2480 100%);
   color: #e0f2fe;
   min-height: 100vh;
   display: flex;

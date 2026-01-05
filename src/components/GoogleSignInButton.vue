@@ -65,6 +65,19 @@ const sizeClass = computed(() => {
   padding: 0.85rem 1.25rem;
   font-size: 0.95rem;
 }
+
+@media (max-width: 480px) {
+  .google-btn-full {
+    max-width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .google-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
 .google-btn-compact {
   padding: 0.6rem 0.9rem;
   font-size: 0.8rem;

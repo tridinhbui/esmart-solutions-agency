@@ -161,51 +161,51 @@ export default {
       clients: [
         {
           name: "Samsung",
-          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Samsung",
+          logo: "/api/placeholder/120/60/1A1A80/ffffff?text=Samsung",
         },
         {
           name: "Nestlé",
-          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Nestlé",
+          logo: "/api/placeholder/120/60/1A1A80/ffffff?text=Nestlé",
         },
         {
           name: "Vinamilk",
-          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Vinamilk",
+          logo: "/api/placeholder/120/60/1A1A80/ffffff?text=Vinamilk",
         },
         {
           name: "Unilever",
-          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Unilever",
+          logo: "/api/placeholder/120/60/1A1A80/ffffff?text=Unilever",
         },
         {
           name: "L'Oréal",
-          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=L'Oréal",
+          logo: "/api/placeholder/120/60/1A1A80/ffffff?text=L'Oréal",
         },
         {
           name: "Morinaga",
-          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Morinaga",
+          logo: "/api/placeholder/120/60/1A1A80/ffffff?text=Morinaga",
         },
         {
           name: "Simply",
-          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Simply",
+          logo: "/api/placeholder/120/60/1A1A80/ffffff?text=Simply",
         },
         {
           name: "Aeon Mall",
-          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Aeon+Mall",
+          logo: "/api/placeholder/120/60/1A1A80/ffffff?text=Aeon+Mall",
         },
         {
           name: "Viettel",
-          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Viettel",
+          logo: "/api/placeholder/120/60/1A1A80/ffffff?text=Viettel",
         },
         {
           name: "FPT",
-          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=FPT",
+          logo: "/api/placeholder/120/60/1A1A80/ffffff?text=FPT",
         },
         {
           name: "Vingroup",
-          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=Vingroup",
+          logo: "/api/placeholder/120/60/1A1A80/ffffff?text=Vingroup",
         },
         {
           name: "BIDV",
-          logo: "/api/placeholder/120/60/3b82f6/ffffff?text=BIDV",
+          logo: "/api/placeholder/120/60/1A1A80/ffffff?text=BIDV",
         },
       ],
       speedLabels: ["Slow", "Normal", "Fast"],
@@ -460,7 +460,7 @@ export default {
 
 .logo-container:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 40px rgba(59, 130, 246, 0.25);
+  box-shadow: 0 16px 40px rgba(26, 26, 128, 0.25);
 }
 
 .client-image {
@@ -483,7 +483,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(59, 130, 246, 0.9);
+  background: rgba(26, 26, 128, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;

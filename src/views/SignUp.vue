@@ -560,5 +560,55 @@ function mapError(e) {
   .account-exists {
     font-size: 1.4rem;
   }
+
+  .social-login .google-btn {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 1.5rem;
+  }
+
+  .login-title {
+    font-size: 1.5rem;
+  }
+
+  .social-login {
+    margin-bottom: 1.5rem;
+  }
+
+  .social-login-title {
+    font-size: 0.9rem;
+  }
+
+  .social-login .google-btn {
+    max-width: 100% !important;
+  }
+
+  .submit-btn {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .input-field {
+    font-size: 16px;
+    padding: 0.75rem;
+  }
+
+  .welcome-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .account-exists {
+    font-size: 1.2rem;
+    left: 0;
+  }
+
+  .signin-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
 }
 </style>
