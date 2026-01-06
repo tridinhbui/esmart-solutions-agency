@@ -88,10 +88,6 @@
             ▼
           </button>
           <div v-if="showDropdown" class="dropdown" role="menu">
-            <button class="dropdown-item" @click="toggleDarkMode">
-              <i class="fas fa-moon"></i>
-              <span>{{ isDark ? "Light mode" : "Dark mode" }}</span>
-            </button>
             <button class="dropdown-item" @click="handleLogout">
               <i class="fas fa-sign-out-alt"></i>
               <span>Log out</span>
@@ -161,10 +157,6 @@
             ▼
           </button>
           <div v-if="showDropdown" class="dropdown" role="menu">
-            <button class="dropdown-item" @click="toggleDarkMode">
-              <i class="fas fa-moon"></i>
-              <span>{{ isDark ? "Light mode" : "Dark mode" }}</span>
-            </button>
             <button class="dropdown-item" @click="handleLogout">
               <i class="fas fa-sign-out-alt"></i>
               <span>Log out</span>
@@ -178,7 +170,6 @@
 
 <script>
 import { useAuthStore } from "@/stores/auth";
-import themeService from "@/utils/themeService";
 
 export default {
   name: "SimpleNavBar",
@@ -192,7 +183,6 @@ export default {
       isMobileMenuOpen: false,
       currentLanguage: "en",
       showDropdown: false,
-      isDark: false,
       defaultAvatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
       forceDefaultAvatar: false,
       isLanguageSwitching: false, // Prevent rapid language switching
@@ -227,12 +217,6 @@ export default {
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
     
-    // Initialize theme state from theme service
-    this.isDark = themeService.isDark();
-    
-    // Listen for theme changes
-    window.addEventListener('themeChanged', this.onThemeChanged);
-    
     document.addEventListener("click", this.onDocClick);
     // Reset avatar fallback when auth user changes (simple polling fallback)
     this.$watch(
@@ -244,7 +228,6 @@ export default {
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
-    window.removeEventListener('themeChanged', this.onThemeChanged);
     document.removeEventListener("click", this.onDocClick);
   },
   methods: {
@@ -278,13 +261,6 @@ export default {
           this.showDropdown = false;
         }
       }
-    },
-    toggleDarkMode() {
-      const newTheme = themeService.toggleTheme();
-      this.isDark = newTheme === 'dark';
-    },
-    onThemeChanged(event) {
-      this.isDark = event.detail.isDark;
     },
     async handleLogout() {
       try {
@@ -443,8 +419,8 @@ export default {
 
 .lang-btn {
   background: var(--button-secondary-bg);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: #ffffff;
+  border: 2px solid var(--button-secondary-border);
+  color: var(--text-secondary);
   padding: 8px 12px; /* vertical + horizontal padding */
   border-radius: 12px;
   font-family: "Inter", sans-serif;
@@ -460,9 +436,9 @@ export default {
 }
 
 .lang-btn:hover {
-  border-color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  border-color: var(--primary-blue);
+  background: var(--button-secondary-hover);
+  color: var(--primary-blue);
   transform: translateY(-1px);
 }
 

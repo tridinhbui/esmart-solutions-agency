@@ -279,18 +279,18 @@ const handleSignUp = () => {
   left: 0;
   width: 100%;
   padding: 0.85rem 2rem;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+  background: var(--navbar-bg);
+  border-bottom: 1px solid var(--navbar-border);
   z-index: 1000;
   display: flex;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--navbar-shadow);
 }
 
 .login-navbar .navbar-logo-text {
   background: none;
-  -webkit-text-fill-color: #1e293b;
-  color: #1e293b;
+  -webkit-text-fill-color: var(--text-primary);
+  color: var(--text-primary);
   text-shadow: none;
 }
 
@@ -332,7 +332,7 @@ const handleSignUp = () => {
   display: flex;
   min-height: 100vh;
   padding-top: 80px; /* Space for navbar */
-  background: #ffffff;
+  background: var(--bg-primary);
   position: relative;
   overflow: hidden;
 }
@@ -489,7 +489,7 @@ const handleSignUp = () => {
   align-items: center;
   position: relative;
   z-index: 1;
-  background: #ffffff;
+  background: var(--bg-primary);
 }
 
 .cosmic-glow {
@@ -506,13 +506,13 @@ const handleSignUp = () => {
 .quantum-text {
   background: none;
   -webkit-text-fill-color: inherit;
-  color: #1e293b;
+  color: var(--text-primary);
   text-shadow: none;
   animation: none;
 }
 
 .welcome-subtitle {
-  color: #64748b;
+  color: var(--text-muted);
   font-size: 1.05rem;
   text-align: center;
   margin-bottom: 2.25rem;
@@ -534,11 +534,11 @@ const handleSignUp = () => {
   width: 100%;
   max-width: 500px;
   padding: 3rem;
-  background: #ffffff;
+  background: var(--card-bg);
   border-radius: 20px;
-  border: 2px solid #f1f5f9;
+  border: 2px solid var(--card-border);
   position: relative;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-lg);
 }
 
 .hologram-frame {
@@ -562,30 +562,51 @@ const handleSignUp = () => {
 }
 
 .social-login-title {
-  color: #64748b;
+  color: var(--text-muted);
   font-size: 0.85rem;
   margin-bottom: 1rem;
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
 
+.login-btn {
+  background: var(--button-primary-bg);
+  color: var(--text-inverse);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-blue);
+}
+.login-btn:hover {
+  background: var(--button-primary-hover);
+  transform: translateY(-2px);
+}
 /* Quantum Button Base */
 .quantum-button {
   padding: 0.85rem 1.5rem;
   border: none;
   border-radius: 12px;
-  background: #3C34B5;
-  color: #ffffff;
+  background: var(--button-primary-bg);
+  color: var(--text-inverse);
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.25s ease, transform 0.25s ease;
+  transition: all 0.25s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  box-shadow: var(--shadow-blue);
 }
 .quantum-button:hover {
-  background: #2563eb;
+  background: var(--button-primary-hover);
   transform: translateY(-2px);
 }
 
@@ -601,12 +622,12 @@ const handleSignUp = () => {
   width: 100%;
   max-width: 300px;
   margin: 0 auto 1rem;
-  background: #ffffff;
-  border: 2px solid #e2e8f0;
-  color: #1e293b;
+  background: var(--card-bg);
+  border: 2px solid var(--border-light);
+  color: var(--text-primary);
 }
 .google-btn:hover {
-  background: #f8fafc;
+  background: var(--bg-secondary);
 }
 
 .google-icon {
@@ -631,12 +652,12 @@ const handleSignUp = () => {
 .or-line {
   flex: 1;
   height: 1px;
-  background: #e2e8f0;
+  background: var(--border-light);
 }
 
 .or-text {
   padding: 0 1rem;
-  color: #64748b;
+  color: var(--text-muted);
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -656,19 +677,19 @@ const handleSignUp = () => {
 .input-field {
   width: 100%;
   padding: 0.85rem 1.2rem;
-  background: #ffffff;
-  border: 2px solid #e2e8f0;
+  background: var(--card-bg);
+  border: 2px solid var(--border-light);
   border-radius: 14px;
   font-size: 0.95rem;
-  color: #1e293b;
+  color: var(--text-primary);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .input-field::placeholder {
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 .input-field:focus {
   outline: none;
-  border-color: #3C34B5;
+  border-color: var(--button-primary-bg);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
 }
 
@@ -704,16 +725,16 @@ const handleSignUp = () => {
   flex-wrap: wrap;
 }
 .account-switch .switch-text {
-  color: #64748b;
+  color: var(--text-muted);
 }
 .account-switch .switch-link {
-  color: #3C34B5;
+  color: var(--button-primary-bg);
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 .account-switch .switch-link:hover {
-  color: #2563eb;
+  color: var(--button-primary-hover);
 }
 
 .password-group {
