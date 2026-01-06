@@ -262,26 +262,26 @@ export default {
 </script>
 
 <style scoped>
-/* Revolutionary CSS Variables with Quantum Theme */
+/* Revolutionary CSS Variables with Logo-Inspired Theme */
 :root {
-    --primary-color: rgba(60, 52, 181, 1);
-    --secondary-color: rgba(90, 82, 199, 1);
-    --tertiary-color: rgba(131, 127, 255, 1);
-    --quantum-blue: rgba(60, 52, 181, 1);
-    --quantum-purple: rgba(90, 82, 199, 1);
+    --primary-color: rgba(26, 26, 128, 1);
+    --secondary-color: rgba(20, 16, 102, 1);
+    --tertiary-color: rgba(42, 36, 128, 1);
+    --quantum-blue: rgba(26, 26, 128, 1);
+    --quantum-purple: rgba(20, 16, 102, 1);
     --quantum-green: rgba(34, 197, 94, 1);
-    --gradient-magical: linear-gradient(135deg, rgba(60, 52, 181, 0.9) 0%, rgba(90, 82, 199, 0.8) 50%, rgba(131, 127, 255, 0.9) 100%);
+    --gradient-magical: linear-gradient(135deg, rgba(26, 26, 128, 0.9) 0%, rgba(20, 16, 102, 0.8) 50%, rgba(42, 36, 128, 0.9) 100%);
     --gradient-quantum: linear-gradient(135deg, var(--quantum-blue) 0%, var(--quantum-purple) 50%, var(--primary-color) 100%);
     --gradient-cyber: linear-gradient(135deg, var(--quantum-green) 0%, var(--quantum-blue) 100%);
-    --gradient-holographic: linear-gradient(45deg, rgba(60, 52, 181, 0.3) 0%, rgba(60, 52, 181, 0.3) 25%, rgba(90, 82, 199, 0.3) 50%, rgba(34, 197, 94, 0.3) 75%, rgba(60, 52, 181, 0.3) 100%);
+    --gradient-holographic: linear-gradient(45deg, rgba(26, 26, 128, 0.3) 0%, rgba(26, 26, 128, 0.3) 25%, rgba(20, 16, 102, 0.3) 50%, rgba(34, 197, 94, 0.3) 75%, rgba(26, 26, 128, 0.3) 100%);
 }
 
 /* Revolutionary Quantum FAQ Zone */
 .quantum-faq-zone {
     background:
-        radial-gradient(circle at 25% 30%, rgba(60, 52, 181, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 75% 70%, rgba(90, 82, 199, 0.15) 0%, transparent 50%),
-        linear-gradient(135deg, rgba(15, 15, 40, 1) 0%, rgba(8, 8, 20, 0.98) 100%);
+        radial-gradient(circle at 25% 30%, rgba(26, 26, 128, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 75% 70%, rgba(20, 16, 102, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, rgba(26, 26, 128, 1) 0%, rgba(20, 16, 102, 0.98) 100%);
     color: white;
     padding: 120px 2rem;
     position: relative;

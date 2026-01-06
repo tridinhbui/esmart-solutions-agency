@@ -276,7 +276,7 @@ export default {
 .quantum-testimonials-zone {
   position: relative;
   padding: 8rem 2rem;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  background: linear-gradient(135deg, #1A1A80 0%, #141066 50%, #2A2480 100%);
   overflow: hidden;
   min-height: 100vh;
   display: flex;

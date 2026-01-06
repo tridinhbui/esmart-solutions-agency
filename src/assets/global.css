@@ -16,6 +16,19 @@ html {
   font-size: calc(100% + 2px);
 }
 
+/* Reset the root font size on very small screens so rem-based components (e.g., navbar buttons) stay compact */
+@media (max-width: 480px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  html {
+    font-size: 93.75%; /* ~15px base */
+  }
+}
+
 #app {
   background: #1A1A80 !important;
   min-height: 100vh;
