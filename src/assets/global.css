@@ -62,63 +62,16 @@ p {
 
 /* Theme System - CSS Custom Properties */
 :root {
-  /* Light Theme (Default) */
-  --primary-blue: #1A1A80;
+  /* Dark Theme (Default) */
+  --primary-blue: #1A1A80;  
   --primary-blue-dark: #141066;
   --primary-blue-light: #2A2480;
-  --primary-blue-bg: #f0f0ff;
+  --primary-blue-bg: #0f0f40;
   
   /* Logo-inspired green gradient colors */
   --logo-green-start: #22c55e;
   --logo-green-end: #16a34a;
   --logo-green-gradient: linear-gradient(90deg, #22c55e 0%, #16a34a 100%);
-
-  --text-primary: #ffffff;
-  --text-secondary: #e0e0ff;
-  --text-muted: #b8b8ff;
-  --text-inverse: #ffffff;
-
-  --bg-primary: #1A1A80;
-  --bg-secondary: #141066;
-  --bg-tertiary: #2A2480;
-  --bg-inverse: #ffffff;
-
-  --border-light: #e2e8f0;
-  --border-medium: #cbd5e1;
-  --border-dark: #94a3b8;
-  --border-inverse: #334155;
-
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
-  --shadow-blue: 0 4px 16px rgba(59, 130, 246, 0.25);
-  
-  /* Component-specific variables */
-  --navbar-bg: #ffffff;
-  --navbar-border: #e1e5e9;
-  --navbar-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  
-  --card-bg: #ffffff;
-  --card-border: #f1f5f9;
-  --card-hover-border: #3b82f6;
-  
-  --dropdown-bg: #ffffff;
-  --dropdown-border: #e2e8f0;
-  --dropdown-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  
-  --button-primary-bg: #3b82f6;
-  --button-primary-hover: #2563eb;
-  --button-secondary-bg: #f8fafc;
-  --button-secondary-border: #e2e8f0;
-  --button-secondary-hover: #eff6ff;
-}
-
-/* Dark Theme */
-[data-theme="dark"] {
-  --primary-blue: #1A1A80;
-  --primary-blue-dark: #141066;
-  --primary-blue-light: #2A2480;
-  --primary-blue-bg: #0f0f40;
 
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
@@ -140,7 +93,7 @@ p {
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
   --shadow-blue: 0 4px 16px rgba(59, 130, 246, 0.4);
   
-  /* Component-specific variables for dark theme */
+  /* Component-specific variables */
   --navbar-bg: #1e293b;
   --navbar-border: #334155;
   --navbar-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);

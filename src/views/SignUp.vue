@@ -259,7 +259,7 @@ function mapError(e) {
   position: relative;
   display: flex;
   min-height: 100vh;
-  background: linear-gradient(to right, white 65%, #6089f1 35%);
+  background: linear-gradient(to right, var(--bg-primary) 65%, #ffffff 35%);
   overflow: hidden;
 }
 
@@ -317,7 +317,7 @@ function mapError(e) {
 .login-title {
   text-align: center;
   margin-bottom: 1.8rem;
-  color: #1e293b;
+  color: var(--text-primary);
   font-size: 2.8rem;
   font-weight: 800;
 }
@@ -332,11 +332,12 @@ function mapError(e) {
   width: 100%;
   padding: 15px 20px;
   font-size: 1rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--border-light);
   border-radius: 10px;
-  background-color: white;
+  background-color: var(--card-bg);
   transition: all 0.3s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
+  color: var(--text-primary);
 }
 
 .input-field:focus {
@@ -346,7 +347,7 @@ function mapError(e) {
 }
 
 .input-field::placeholder {
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .password-group .input-field {
@@ -371,7 +372,7 @@ function mapError(e) {
 }
 
 .toggle-password:hover svg {
-  stroke: #475569;
+  stroke: var(--text-secondary);
 }
 
 /* Social login - ĐÃ FIX */
@@ -381,7 +382,7 @@ function mapError(e) {
 }
 
 .social-login-title {
-  color: #64748b;
+  color: var(--text-muted);
   font-size: 1rem;
   margin-bottom: 1.5rem;
   font-weight: 500;
@@ -393,12 +394,12 @@ function mapError(e) {
   width: 100%;
   max-width: 300px;
   margin: 0 auto 1rem;
-  background: #ffffff;
-  border: 2px solid #e2e8f0;
-  color: #1e293b;
+  background: var(--card-bg);
+  border: 2px solid var(--border-light);
+  color: var(--text-primary);
 }
 .social-login .google-btn:hover {
-  background: #f8fafc;
+  background: var(--bg-secondary);
 }
 
 .error-msg {
@@ -421,35 +422,59 @@ function mapError(e) {
 .or-line {
   flex: 1;
   height: 1px;
-  background-color: #e2e8f0;
+  background-color: var(--border-light);
 }
 
 .or-text {
   padding: 0 1rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   font-size: 0.875rem;
   font-weight: 500;
 }
 
+
+
+
+.login-btn {
+  background: var(--button-primary-bg);
+    color: var(--text-inverse);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-blue);
+}
+.login-btn:hover {
+  background: var(--button-primary-hover);
+  transform: translateY(-2px);
+}
+
+
 .submit-btn {
   width: 100%;
   padding: 16px;
-  background: #6089f1;
-  color: white;
+  background: var(--button-primary-bg);
+  color: var(--text-inverse);
   border: none;
   border-radius: 10px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(96, 137, 241, 0.2);
+  box-shadow: var(--shadow-blue);
   margin-top: 1rem;
 }
 
 .submit-btn:hover {
-  background: #4f7ae9;
+  background: var(--button-primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(96, 137, 241, 0.25);
 }
 
 .submit-btn:active {
@@ -471,43 +496,39 @@ function mapError(e) {
 .welcome-content {
   max-width: 300px;
   text-align: center;
-  color: white;
+  color: #1e293b;
   padding: 2rem;
 }
 
-.account-exists {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  font-weight: 500;
-}
+
+
 
 .signin-btn {
-  background: white;
-  color: #6089f1;
+  background:  var(--button-primary-bg);
+  color: var(--text-inverse);
   border: none;
-  padding: 14px 28px;
+  padding: 12px 24px;
   border-radius: 8px;
+  font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-blue);
   margin-top: 0;
   transform: translateX(5px);
-  padding: 12px 24px;
 }
 
 .signin-btn:hover {
-  background: #f8fafc;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  background:  var(--button-primary-hover);
+  transform: translateX(5px) translateY(-2px);
 }
 
 .account-exists {
   font-size: 1.8rem;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -516,11 +537,12 @@ function mapError(e) {
   position: relative;
   left: -50px;
   gap: 10px;
+  color: #1e293b;
 }
 
 .signin-link {
-  background: white;
-  color: #6089f1;
+  background: #6089f1;
+  color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 8px;
@@ -530,15 +552,21 @@ function mapError(e) {
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(96, 137, 241, 0.3);
   white-space: nowrap; /* Đảm bảo text trong nút không xuống dòng */
+}
+
+.signin-link:hover {
+  background: #5078e0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(96, 137, 241, 0.4);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .login-wrapper {
     flex-direction: column;
-    background: white;
+    background: var(--bg-primary);
   }
 
   .login-container {
@@ -553,7 +581,7 @@ function mapError(e) {
   .welcome-section {
     position: static;
     width: 100%;
-    background: #6089f1;
+    background: #ffffff;
     padding: 2rem 1.5rem;
   }
 
