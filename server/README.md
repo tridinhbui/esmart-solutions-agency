@@ -15,7 +15,22 @@ npm install
 ```
 PORT=3001
 DEEPSEEK_API_KEY=your_api_key_here
+
+# Cloud Database Configuration (Neon/Supabase/Railway)
+DB_HOST=your-project.neon.tech
+DB_PORT=5432
+DB_NAME=esmart_agency
+DB_USER=your_username
+DB_PASSWORD=your_password
+DB_SSL=true
+
+# Optional: MongoDB for TrendData
+MONGODB_URI=mongodb+srv://user:password@cluster.mongodb.net/esmart_agency
 ```
+
+3. **Set up Cloud Database** (see [DATABASE_SETUP.md](../DATABASE_SETUP.md) for detailed guide):
+   - Recommended: [Neon](https://neon.tech) (serverless PostgreSQL)
+   - Alternative: [Supabase](https://supabase.com) or [Railway](https://railway.app)
 
 ## Chạy server
 

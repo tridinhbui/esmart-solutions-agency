@@ -2,6 +2,7 @@ const { sequelize } = require("../config/database");
 const Project = require("./Project");
 const Content = require("./Content");
 const SeoMetadata = require("./SeoMetadata");
+const Blog = require("./Blog");
 
 // MongoDB connection
 const mongoose = require("mongoose");
@@ -42,5 +43,6 @@ module.exports = {
   Content,
   SeoMetadata,
   TrendData,
+  Blog,
   initializeModels,
 };

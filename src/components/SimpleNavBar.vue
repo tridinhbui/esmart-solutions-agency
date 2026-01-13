@@ -21,6 +21,10 @@
           <i class="fas fa-cogs"></i>
           <span>{{ $t("navigation.services") }}</span>
         </router-link>
+        <router-link to="/blog" class="nav-link">
+          <i class="fas fa-blog"></i>
+          <span>{{ $t("navigation.blog") }}</span>
+        </router-link>
         <router-link to="/about-us" class="nav-link">
           <i class="fas fa-info-circle"></i>
           <span>{{ $t("navigation.aboutUs") }}</span>
@@ -117,6 +121,14 @@
       >
         <i class="fas fa-cogs"></i>
         <span>{{ $t("navigation.services") }}</span>
+      </router-link>
+      <router-link
+        to="/blog"
+        class="mobile-menu-link"
+        @click="closeMobileMenu"
+      >
+        <i class="fas fa-blog"></i>
+        <span>{{ $t("navigation.blog") }}</span>
       </router-link>
       <router-link
         to="/about-us"
@@ -371,7 +383,7 @@ export default {
 /* Navigation Links */
 .nav-links {
   display: flex;
-  gap: auto;
+  gap: 4px;
   align-items: center;
 }
 

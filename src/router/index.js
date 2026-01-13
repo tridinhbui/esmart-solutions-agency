@@ -6,6 +6,8 @@ import SocialProof from "@/components/SocialProof.vue";
 import FeaturesPage from "@/components/FeaturesPage.vue";
 import ProcessInt from "@/components/ServiceSection.vue";
 import BlogPost from "@/components/BlogPost.vue";
+import BlogListPage from "@/components/BlogListPage.vue";
+import BlogDetailPage from "@/components/BlogDetailPage.vue";
 import ContactUs from "@/components/ContactUs.vue";
 import Project from "@/components/ProjectSection.vue";
 import AboutUs from "@/components/AboutUs.vue";
@@ -35,7 +37,19 @@ const routes = [
   { path: "/social-proof", name: "SocialProof", component: SocialProof },
   { path: "/features", name: "FeaturesPage", component: FeaturesPage },
   { path: "/process", name: "ProcessInt", component: ProcessInt },
-  { path: "/blog", name: "BlogPost", component: BlogPost },
+  { 
+    path: "/blog", 
+    name: "BlogList", 
+    component: BlogListPage,
+    meta: { requiresAuth: false }
+  },
+  { 
+    path: "/blog/:slug", 
+    name: "BlogDetail", 
+    component: BlogDetailPage,
+    meta: { requiresAuth: false }
+  },
+  { path: "/blog-old", name: "BlogPost", component: BlogPost },
   {
     path: "/contact",
     name: "ContactUs",
@@ -114,17 +128,15 @@ router.beforeEach(async (to, from, next) => {
   // Check authentication status
   const isAuthenticated = authStore.user !== null;
 
-  // Handle protected routes
-  if (to.meta.requiresAuth && !isAuthenticated) {
+  // Handle protected routes - only redirect if explicitly required
+  if (to.meta.requiresAuth === true && !isAuthenticated) {
     // Redirect to login with return URL
     next({
       path: "/sign-in",
       query: { redirect: to.fullPath },
     });
   }
-  // Prevent access to auth pages when already logged in
-  // Allow access to SignIn/SignUp even when authenticated
-  // Allow access for all other cases
+  // Allow access for all other cases (public routes, authenticated routes)
   else {
     next();
   }

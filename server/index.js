@@ -4,6 +4,7 @@ const contentRoute = require("./routes/content");
 const imageRoute = require("./routes/image");
 const projectRoute = require("./routes/project");
 const seoRoute = require("./routes/seo");
+const blogRoute = require("./routes/blog");
 const { testConnection } = require("./config/database");
 const { initializeModels } = require("./models");
 require("dotenv").config();
@@ -44,6 +45,7 @@ app.use("/api/content", contentRoute);
 app.use("/api/image", imageRoute);
 app.use("/api", projectRoute);
 app.use("/api/seo", seoRoute);
+app.use("/api/blog", blogRoute);
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
